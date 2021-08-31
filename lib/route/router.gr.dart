@@ -7,9 +7,8 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
-import '../pages/homePage.dart' as _i3;
+import '../pages/pages.dart' as _i3;
 import '../pages/profilePage.dart' as _i4;
-import '../pages/reportPage.dart' as _i5;
 
 class MyAppRouter extends _i1.RootStackRouter {
   MyAppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -27,10 +26,10 @@ class MyAppRouter extends _i1.RootStackRouter {
         builder: (_) {
           return const _i4.ProfilePage();
         }),
-    ReportRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+    PiggyRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
         builder: (_) {
-          return const _i5.ReportPage();
+          return const _i3.PiggyPage();
         })
   };
 
@@ -38,7 +37,7 @@ class MyAppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(HomeRoute.name, path: '/'),
         _i1.RouteConfig(ProfileRoute.name, path: '/profile-page'),
-        _i1.RouteConfig(ReportRoute.name, path: '/report-page')
+        _i1.RouteConfig(PiggyRoute.name, path: '/piggy-page')
       ];
 }
 
@@ -54,8 +53,8 @@ class ProfileRoute extends _i1.PageRouteInfo {
   static const String name = 'ProfileRoute';
 }
 
-class ReportRoute extends _i1.PageRouteInfo {
-  const ReportRoute() : super(name, path: '/report-page');
+class PiggyRoute extends _i1.PageRouteInfo {
+  const PiggyRoute() : super(name, path: '/piggy-page');
 
-  static const String name = 'ReportRoute';
+  static const String name = 'PiggyRoute';
 }
