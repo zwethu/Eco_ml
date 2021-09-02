@@ -43,13 +43,16 @@ class _BankPageState extends State<BankPage> {
               ),
             ),
           ),
+          SizedBox(
+            height: 10,
+          ),
           Container(
             margin: EdgeInsets.all(35),
             child: ElevatedButton(
             style: ButtonStyle(
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(30),
                 ),
               ),
               backgroundColor: MaterialStateProperty.all(Color(0xff72ADB4)),

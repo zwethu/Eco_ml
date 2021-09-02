@@ -20,10 +20,12 @@ class _SettingPageState extends State<SettingPage> {
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(15),
               topRight: Radius.circular(15),
+               bottomLeft: Radius.circular(15),
+                    bottomRight: Radius.circular(15)
             ),
           ),
           width: MediaQuery.of(context).size.width / 1.2,
-          height: 350,
+          height: 360,
           child: Column(
             children: [
               Container(
@@ -32,10 +34,11 @@ class _SettingPageState extends State<SettingPage> {
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
+                   
                   ),
                 ),
                 width: MediaQuery.of(context).size.width / 1.2,
-                height: 10,
+                height: 20,
                 child: Text(''),
               ),
               Container(
