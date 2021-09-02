@@ -32,11 +32,7 @@ class _HomePageState extends State<HomePage> {
             child: Text(
               "Yuya's Wallet",
               style: TextStyle(
-<<<<<<< HEAD
-                fontSize: 28,
-=======
                 fontSize: 25,
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
                 fontWeight: FontWeight.bold,
               ),
             ),

@@ -123,7 +123,6 @@ class PieChartProfileState extends State {
         final color0 = const Color(0xff3f5166);
         final color1 = const Color(0xffff7733);
 
-        final color3 = const Color(0xff13d38e);
 
         switch (i) {
           case 0:
