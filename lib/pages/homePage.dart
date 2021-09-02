@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
             child: Text(
               "Yuya's Wallet",
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -59,20 +59,21 @@ class _HomePageState extends State<HomePage> {
           children: pages,
         ),
         bottomNavigationBar: BottomNavigationBar(
-            elevation: 2,
+            elevation: 4,
             type: BottomNavigationBarType.fixed,
-            backgroundColor: Color(0xffF0F0F0),
+            backgroundColor: Colors.white,
             selectedItemColor: Color(0xff4F98A1),
             unselectedItemColor: Color(0xffB8ADAD),
-            iconSize: 30,
-            selectedFontSize: 18,
-            unselectedFontSize: 18,
+            iconSize: 35,
+            selectedFontSize: 20,
+            unselectedFontSize: 20,
             currentIndex: currentIndex,
             onTap: (index) => setState(() => currentIndex = index),
             items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.account_balance_wallet_rounded),
                 label: 'Wallet',
+                
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.signal_cellular_alt_rounded),

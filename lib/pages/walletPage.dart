@@ -24,7 +24,11 @@ class _WalletPageState extends State<WalletPage> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Color(0xffF9E7EB),
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.white,Color(0xffF9E7EB)]),
+                  
                   borderRadius: BorderRadius.circular(30),
                   boxShadow: [
                     BoxShadow(
@@ -86,7 +90,7 @@ class _WalletPageState extends State<WalletPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.fromLTRB(10, 15, 10, 5),
                           child: Image.asset(
                             'assets/images/income.png',
                           ),
@@ -101,7 +105,7 @@ class _WalletPageState extends State<WalletPage> {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
                           child: Text(
                             '210000 Ks',
                             style: TextStyle(
@@ -132,7 +136,7 @@ class _WalletPageState extends State<WalletPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.fromLTRB(10, 15, 10, 5),
                           child: Image.asset(
                             'assets/images/shopping.png',
                           ),
@@ -147,7 +151,7 @@ class _WalletPageState extends State<WalletPage> {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.all(10),
+                         padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
                           child: Text(
                             '125000 Ks',
                             style: TextStyle(
@@ -181,6 +185,7 @@ class _WalletPageState extends State<WalletPage> {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
+                          color: Color(0xff4F98A1)
                         ),
                       ),
                     ),
