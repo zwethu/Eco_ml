@@ -30,6 +30,11 @@ class MyAppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return const _i3.PiggyPage();
+        }),
+    CategoriesRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i3.CategoriesPage();
         })
   };
 
@@ -37,7 +42,8 @@ class MyAppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(HomeRoute.name, path: '/'),
         _i1.RouteConfig(ProfileRoute.name, path: '/profile-page'),
-        _i1.RouteConfig(PiggyRoute.name, path: '/piggy-page')
+        _i1.RouteConfig(PiggyRoute.name, path: '/piggy-page'),
+        _i1.RouteConfig(CategoriesRoute.name, path: '/categories-page')
       ];
 }
 
@@ -57,4 +63,10 @@ class PiggyRoute extends _i1.PageRouteInfo {
   const PiggyRoute() : super(name, path: '/piggy-page');
 
   static const String name = 'PiggyRoute';
+}
+
+class CategoriesRoute extends _i1.PageRouteInfo {
+  const CategoriesRoute() : super(name, path: '/categories-page');
+
+  static const String name = 'CategoriesRoute';
 }

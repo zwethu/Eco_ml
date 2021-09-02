@@ -14,7 +14,8 @@ import 'package:eco_ml/pages/profilePage.dart';
   routes: <AutoRoute>[    
     AutoRoute(page: HomePage, initial: true),    
     AutoRoute(page: ProfilePage),   
-    AutoRoute(page: PiggyPage),    
+    AutoRoute(page: PiggyPage),   
+    AutoRoute(page: CategoriesPage),    
       ],  
 )    
 class $MyAppRouter {} 

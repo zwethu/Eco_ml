@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
             child: Text(
               "Yuya's Wallet",
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
             TextButton.icon(
               onPressed: (){
                 navigateToProfile(context);
+                currentIndex=2;
               },
               icon: CircleAvatar(
                 backgroundImage: AssetImage('assets/images/avator.jpeg'),
@@ -90,7 +91,7 @@ class _HomePageState extends State<HomePage> {
           ),
           floatingActionButton: FloatingActionButton(
             backgroundColor: Color(0xff72ADB4),
-            onPressed: null,
+            onPressed: () => navigateToCategories(context),
             child: Icon(Icons.edit_rounded),
           ),
         ),
@@ -100,4 +101,7 @@ class _HomePageState extends State<HomePage> {
 
 void navigateToProfile(BuildContext context){
   AutoRouter.of(context).push(ProfileRoute());
+}
+void navigateToCategories(BuildContext context){
+  AutoRouter.of(context).push(CategoriesRoute());
 }
