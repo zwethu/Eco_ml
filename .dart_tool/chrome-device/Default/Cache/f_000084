@@ -1,675 +1,382 @@
-<<<<<<< HEAD
-define(['dart_sdk', 'packages/characters/src/grapheme_clusters/table.dart'], (function load__packages__characters__src__grapheme_clusters__breaks_dart(dart_sdk, packages__characters__src__grapheme_clusters__table$46dart) {
+define(['dart_sdk', 'packages/flutter/src/gestures/drag_details.dart', 'packages/flutter/src/gestures/tap.dart', 'packages/flutter/src/gestures/long_press.dart', 'packages/flutter/src/gestures/events.dart'], (function load__packages__fl_chart__src__chart__base__base_chart__fl_touch_event_dart(dart_sdk, packages__flutter__src__gestures__drag_details$46dart, packages__flutter__src__gestures__tap$46dart, packages__flutter__src__gestures__long_press$46dart, packages__flutter__src__gestures__events$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const dart = dart_sdk.dart;
-  const dartx = dart_sdk.dartx;
-  const table = packages__characters__src__grapheme_clusters__table$46dart.src__grapheme_clusters__table;
-  var breaks = Object.create(dart.library);
-  var $codeUnitAt = dartx.codeUnitAt;
-  var $toRadixString = dartx.toRadixString;
-  dart._checkModuleNullSafetyMode(true);
-  const CT = Object.create({
-    _: () => (C, CT)
-  });
-  var I = [
-    "package:characters/src/grapheme_clusters/breaks.dart",
-    "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.1.0/lib/src/grapheme_clusters/breaks.dart"
-  ];
-  var base$ = dart.privateName(breaks, "Breaks.base");
-  var end$ = dart.privateName(breaks, "Breaks.end");
-  var cursor$ = dart.privateName(breaks, "Breaks.cursor");
-  var state$ = dart.privateName(breaks, "Breaks.state");
-  breaks.Breaks = class Breaks extends core.Object {
-    get base() {
-      return this[base$];
-    }
-    set base(value) {
-      super.base = value;
-    }
-    get end() {
-      return this[end$];
-    }
-    set end(value) {
-      super.end = value;
-    }
-    get cursor() {
-      return this[cursor$];
-    }
-    set cursor(value) {
-      this[cursor$] = value;
-    }
-    get state() {
-      return this[state$];
-    }
-    set state(value) {
-      this[state$] = value;
-    }
-    copy() {
-      return new breaks.Breaks.new(this.base, this.cursor, this.end, this.state);
-    }
-    nextBreak() {
-      let t0;
-      while (this.cursor < this.end) {
-        let breakAt = this.cursor;
-        let char = this.base[$codeUnitAt]((t0 = this.cursor, this.cursor = t0 + 1, t0));
-        if ((char & 64512) !== 55296) {
-          this.state = table.move(this.state, table.low(char));
-          if ((this.state & 1) === 0) {
-            return breakAt;
-          }
-          continue;
-        }
-        let category = 2;
-        if (this.cursor < this.end) {
-          let nextChar = this.base[$codeUnitAt](this.cursor);
-          if ((nextChar & 64512) === 56320) {
-            category = table.high(char, nextChar);
-            this.cursor = this.cursor + 1;
-          }
-        }
-        this.state = table.move(this.state, category);
-        if ((this.state & 1) === 0) {
-          return breakAt;
-        }
-      }
-      this.state = table.move(this.state, 15);
-      if ((this.state & 1) === 0) return this.cursor;
-      return -1;
-    }
-  };
-  (breaks.Breaks.new = function(base, cursor, end, state) {
-    this[base$] = base;
-    this[cursor$] = cursor;
-    this[end$] = end;
-    this[state$] = state;
-    ;
-  }).prototype = breaks.Breaks.prototype;
-  dart.addTypeTests(breaks.Breaks);
-  dart.addTypeCaches(breaks.Breaks);
-  dart.setMethodSignature(breaks.Breaks, () => ({
-    __proto__: dart.getMethods(breaks.Breaks.__proto__),
-    copy: dart.fnType(breaks.Breaks, []),
-    nextBreak: dart.fnType(core.int, [])
-  }));
-  dart.setLibraryUri(breaks.Breaks, I[0]);
-  dart.setFieldSignature(breaks.Breaks, () => ({
-    __proto__: dart.getFields(breaks.Breaks.__proto__),
-    base: dart.finalFieldType(core.String),
-    end: dart.finalFieldType(core.int),
-    cursor: dart.fieldType(core.int),
-    state: dart.fieldType(core.int)
-  }));
-  var base$0 = dart.privateName(breaks, "BackBreaks.base");
-  var start$ = dart.privateName(breaks, "BackBreaks.start");
-  var cursor$0 = dart.privateName(breaks, "BackBreaks.cursor");
-  var state$0 = dart.privateName(breaks, "BackBreaks.state");
-  var _lookAhead = dart.privateName(breaks, "_lookAhead");
-  breaks.BackBreaks = class BackBreaks extends core.Object {
-    get base() {
-      return this[base$0];
-    }
-    set base(value) {
-      super.base = value;
-    }
-    get start() {
-      return this[start$];
-    }
-    set start(value) {
-      super.start = value;
-    }
-    get cursor() {
-      return this[cursor$0];
-    }
-    set cursor(value) {
-      this[cursor$0] = value;
-    }
-    get state() {
-      return this[state$0];
-    }
-    set state(value) {
-      this[state$0] = value;
-    }
-    copy() {
-      return new breaks.BackBreaks.new(this.base, this.cursor, this.start, this.state);
-    }
-    nextBreak() {
-      while (this.cursor > this.start) {
-        let breakAt = this.cursor;
-        let char = this.base[$codeUnitAt](this.cursor = this.cursor - 1);
-        if ((char & 64512) !== 56320) {
-          this.state = table.moveBack(this.state, table.low(char));
-          if (this.state >= 208) this.state = this[_lookAhead](this.state);
-          if ((this.state & 1) === 0) {
-            return breakAt;
-          }
-          continue;
-        }
-        let category = 2;
-        if (this.cursor >= this.start) {
-          let prevChar = this.base[$codeUnitAt](this.cursor - 1);
-          if ((prevChar & 64512) === 55296) {
-            category = table.high(prevChar, char);
-            this.cursor = this.cursor - 1;
-          }
-        }
-        this.state = table.moveBack(this.state, category);
-        if (this.state >= 208) this.state = this[_lookAhead](this.state);
-        if ((this.state & 1) === 0) {
-          return breakAt;
-        }
-      }
-      this.state = table.moveBack(this.state, 15);
-      if (this.state >= 208) this.state = this[_lookAhead](this.state);
-      if ((this.state & 1) === 0) return this.cursor;
-      return -1;
-    }
-    [_lookAhead](state) {
-      return breaks.lookAhead(this.base, this.start, this.cursor, state);
-    }
-  };
-  (breaks.BackBreaks.new = function(base, cursor, start, state) {
-    this[base$0] = base;
-    this[cursor$0] = cursor;
-    this[start$] = start;
-    this[state$0] = state;
-    ;
-  }).prototype = breaks.BackBreaks.prototype;
-  dart.addTypeTests(breaks.BackBreaks);
-  dart.addTypeCaches(breaks.BackBreaks);
-  dart.setMethodSignature(breaks.BackBreaks, () => ({
-    __proto__: dart.getMethods(breaks.BackBreaks.__proto__),
-    copy: dart.fnType(breaks.BackBreaks, []),
-    nextBreak: dart.fnType(core.int, []),
-    [_lookAhead]: dart.fnType(core.int, [core.int])
-  }));
-  dart.setLibraryUri(breaks.BackBreaks, I[0]);
-  dart.setFieldSignature(breaks.BackBreaks, () => ({
-    __proto__: dart.getFields(breaks.BackBreaks.__proto__),
-    base: dart.finalFieldType(core.String),
-    start: dart.finalFieldType(core.int),
-    cursor: dart.fieldType(core.int),
-    state: dart.fieldType(core.int)
-  }));
-  breaks.lookAhead = function lookAhead(base, start, cursor, state) {
-    if (!(state >= 208)) dart.assertFailed(null, I[1], 156, 10, "state >= stateLookaheadMin");
-    if (state === 208) {
-      return breaks.lookAheadRegional(base, start, cursor);
-    }
-    if (state === 224) {
-      let prevPic = breaks.lookAheadPictorgraphicExtend(base, start, cursor);
-      if (prevPic >= 0) return (144 | 1) >>> 0;
-      return 64;
-    }
-    dart.throw(new core.StateError.new("Unexpected state: " + state[$toRadixString](16)));
-  };
-  breaks.lookAheadRegional = function lookAheadRegional(base, start, cursor) {
-    let count = 0;
-    let index = cursor;
-    while (index - 2 >= start) {
-      let tail = base[$codeUnitAt](index - 1);
-      if ((tail & 64512) !== 56320) break;
-      let lead = base[$codeUnitAt](index - 2);
-      if ((lead & 64512) !== 55296) break;
-      let category = table.high(lead, tail);
-      if (category !== 6) break;
-      index = index - 2;
-      count = (count ^ 1) >>> 0;
-    }
-    if (count === 0) {
-      return (192 | 1) >>> 0;
-    } else {
-      return 144;
-    }
-  };
-  breaks.lookAheadPictorgraphicExtend = function lookAheadPictorgraphicExtend(base, start, cursor) {
-    let index = cursor;
-    while (index > start) {
-      let char = base[$codeUnitAt](index = index - 1);
-      let prevChar = 0;
-      let category = 2;
-      if ((char & 64512) !== 56320) {
-        category = table.low(char);
-      } else if (index > start && ((prevChar = base[$codeUnitAt](index = index - 1)) & 64512) === 55296) {
-        category = table.high(prevChar, char);
-      } else {
-        break;
-      }
-      if (category === 7) {
-        return index;
-      }
-      if (category !== 4) break;
-    }
-    return -1;
-  };
-  breaks.isGraphemeClusterBoundary = function isGraphemeClusterBoundary(text, start, end, index) {
-    if (!(0 <= start)) dart.assertFailed(null, I[1], 237, 10, "0 <= start");
-    if (!(start <= index)) dart.assertFailed(null, I[1], 238, 10, "start <= index");
-    if (!(index <= end)) dart.assertFailed(null, I[1], 239, 10, "index <= end");
-    if (!(end <= text.length)) dart.assertFailed(null, I[1], 240, 10, "end <= text.length");
-    if (start < index && index < end) {
-      let char = text[$codeUnitAt](index);
-      let prevChar = text[$codeUnitAt](index - 1);
-      let catAfter = 2;
-      if ((char & 63488) !== 55296) {
-        catAfter = table.low(char);
-      } else if ((char & 64512) === 55296) {
-        if (index + 1 >= end) return true;
-        let nextChar = text[$codeUnitAt](index + 1);
-        if ((nextChar & 64512) !== 56320) return true;
-        catAfter = table.high(char, nextChar);
-      } else {
-        return (prevChar & 64512) !== 55296;
-      }
-      let catBefore = 2;
-      if ((prevChar & 64512) !== 56320) {
-        catBefore = table.low(prevChar);
-        index = index - 1;
-      } else {
-        index = index - 2;
-        if (start <= index) {
-          let prevPrevChar = text[$codeUnitAt](index);
-          if ((prevPrevChar & 64512) !== 55296) {
-            return true;
-          }
-          catBefore = table.high(prevPrevChar, prevChar);
-        } else {
-          return true;
-        }
-      }
-      let state = table.moveBack(176, catAfter);
-      if (!(state < 208)) dart.assertFailed(null, I[1], 287, 12, "state < stateLookaheadMin");
-      state = table.moveBack(state, catBefore);
-      if (state >= 208) {
-        state = breaks.lookAhead(text, start, index, state);
-      }
-      return (state & 1) === 0;
-    }
-    return start !== end;
-  };
-  breaks.previousBreak = function previousBreak(text, start, end, index) {
-    if (!(0 <= start)) dart.assertFailed(null, I[1], 301, 10, "0 <= start");
-    if (!(start <= index)) dart.assertFailed(null, I[1], 302, 10, "start <= index");
-    if (!(index <= end)) dart.assertFailed(null, I[1], 303, 10, "index <= end");
-    if (!(end <= text.length)) dart.assertFailed(null, I[1], 304, 10, "end <= text.length");
-    if (index === start || index === end) return index;
-    let indexBefore = index;
-    let nextChar = text[$codeUnitAt](index);
-    let category = 2;
-    if ((nextChar & 63488) !== 55296) {
-      category = table.low(nextChar);
-    } else if ((nextChar & 64512) === 55296) {
-      let indexAfter = index + 1;
-      if (indexAfter < end) {
-        let secondChar = text[$codeUnitAt](indexAfter);
-        if ((secondChar & 64512) === 56320) {
-          category = table.high(nextChar, secondChar);
-        }
-      }
-    } else {
-      let prevChar = text[$codeUnitAt](index - 1);
-      if ((prevChar & 64512) === 55296) {
-        category = table.high(prevChar, nextChar);
-        indexBefore = indexBefore - 1;
-      }
-    }
-    return new breaks.BackBreaks.new(text, indexBefore, start, table.moveBack(176, category)).nextBreak();
-  };
-  breaks.nextBreak = function nextBreak(text, start, end, index) {
-    if (!(0 <= start)) dart.assertFailed(null, I[1], 335, 10, "0 <= start");
-    if (!(start <= index)) dart.assertFailed(null, I[1], 336, 10, "start <= index");
-    if (!(index <= end)) dart.assertFailed(null, I[1], 337, 10, "index <= end");
-    if (!(end <= text.length)) dart.assertFailed(null, I[1], 338, 10, "end <= text.length");
-    if (index === start || index === end) return index;
-    let indexBefore = index - 1;
-    let prevChar = text[$codeUnitAt](indexBefore);
-    let prevCategory = 2;
-    if ((prevChar & 63488) !== 55296) {
-      prevCategory = table.low(prevChar);
-    } else if ((prevChar & 64512) === 55296) {
-      let nextChar = text[$codeUnitAt](index);
-      if ((nextChar & 64512) === 56320) {
-        index = index + 1;
-        if (index === end) return end;
-        prevCategory = table.high(prevChar, nextChar);
-      }
-    } else if (indexBefore > start) {
-      let secondCharIndex = indexBefore - 1;
-      let secondChar = text[$codeUnitAt](secondCharIndex);
-      if ((secondChar & 64512) === 55296) {
-        indexBefore = secondCharIndex;
-        prevCategory = table.high(secondChar, prevChar);
-      }
-    }
-    let state = 48;
-    if (prevCategory === 6) {
-      let prevState = breaks.lookAheadRegional(text, start, indexBefore);
-      if (prevState !== 144) {
-        state = 160;
-      }
-    } else if (prevCategory === 1 || prevCategory === 4) {
-      let prevPic = breaks.lookAheadPictorgraphicExtend(text, start, indexBefore);
-      if (prevPic >= 0) {
-        state = prevCategory === 1 ? 144 : 128;
-      }
-    } else {
-      state = table.move(176, prevCategory);
-    }
-    return new breaks.Breaks.new(text, index, text.length, state).nextBreak();
-  };
-  dart.trackLibraries("packages/characters/src/grapheme_clusters/breaks.dart", {
-    "package:characters/src/grapheme_clusters/breaks.dart": breaks
-  }, {
-  }, '{"version":3,"sourceRoot":"","sources":["breaks.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../packages/characters/src/grapheme_clusters/breaks.dart.lib.js"}');
-  // Exports:
-  return {
-    src__grapheme_clusters__breaks: breaks
-  };
-}));
-
-//# sourceMappingURL=breaks.dart.lib.js.map
-=======
-define(['dart_sdk', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/painting/borders.dart'], (function load__packages__fl_chart__src__utils__utils_dart(dart_sdk, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__painting__borders$46dart) {
-  'use strict';
-  const core = dart_sdk.core;
+  const io = dart_sdk.io;
   const ui = dart_sdk.ui;
-  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
-  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
-  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
-  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  var utils = Object.create(dart.library);
-  var $abs = dartx.abs;
-  var $toDouble = dartx.toDouble;
-  var $length = dartx.length;
-  var $_get = dartx._get;
-  var $last = dartx.last;
-  var $truncate = dartx.truncate;
-  var $round = dartx.round;
-  var $toInt = dartx.toInt;
-  var $toStringAsFixed = dartx.toStringAsFixed;
-  var $endsWith = dartx.endsWith;
-  var $substring = dartx.substring;
+  const drag_details = packages__flutter__src__gestures__drag_details$46dart.src__gestures__drag_details;
+  const tap = packages__flutter__src__gestures__tap$46dart.src__gestures__tap;
+  const long_press = packages__flutter__src__gestures__long_press$46dart.src__gestures__long_press;
+  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
+  var fl_touch_event = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(true);
-  var T = {
-    ListOfdouble: () => (T.ListOfdouble = dart.constFn(core.List$(core.double)))(),
-    intTodouble: () => (T.intTodouble = dart.constFn(dart.fnType(core.double, [core.int])))()
-  };
   const CT = Object.create({
     _: () => (C, CT)
   });
-  dart.defineLazy(CT, {
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: ui.FontWeight.prototype,
-        [FontWeight_index]: 6
-      });
-    },
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: text_style.TextStyle.prototype,
-        [TextStyle_fontFeatures]: null,
-        [TextStyle_shadows]: null,
-        [TextStyle_debugLabel]: null,
-        [TextStyle_decorationThickness]: null,
-        [TextStyle_decorationStyle]: null,
-        [TextStyle_decorationColor]: null,
-        [TextStyle_decoration]: null,
-        [TextStyle_background]: null,
-        [TextStyle_foreground]: null,
-        [TextStyle_locale]: null,
-        [TextStyle_leadingDistribution]: null,
-        [TextStyle_height]: null,
-        [TextStyle_textBaseline]: null,
-        [TextStyle_wordSpacing]: null,
-        [TextStyle_letterSpacing]: null,
-        [TextStyle_fontStyle]: null,
-        [TextStyle_fontWeight]: C[1] || CT.C1,
-        [TextStyle_fontSize]: null,
-        [TextStyle__package]: null,
-        [TextStyle__fontFamilyFallback]: null,
-        [TextStyle_fontFamily]: null,
-        [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: null,
-        [TextStyle_inherit]: true
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: borders.BorderStyle.prototype,
-        [_name]: "BorderStyle.solid",
-        index: 1
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278190080.0
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: borders.BorderSide.prototype,
-        [BorderSide_style]: C[3] || CT.C3,
-        [BorderSide_width]: 0,
-        [BorderSide_color]: C[4] || CT.C4
-      });
-    }
-  }, false);
-  var C = Array(5).fill(void 0);
-  var TextStyle_fontFeatures = dart.privateName(text_style, "TextStyle.fontFeatures");
-  var TextStyle_shadows = dart.privateName(text_style, "TextStyle.shadows");
-  var TextStyle_debugLabel = dart.privateName(text_style, "TextStyle.debugLabel");
-  var TextStyle_decorationThickness = dart.privateName(text_style, "TextStyle.decorationThickness");
-  var TextStyle_decorationStyle = dart.privateName(text_style, "TextStyle.decorationStyle");
-  var TextStyle_decorationColor = dart.privateName(text_style, "TextStyle.decorationColor");
-  var TextStyle_decoration = dart.privateName(text_style, "TextStyle.decoration");
-  var TextStyle_background = dart.privateName(text_style, "TextStyle.background");
-  var TextStyle_foreground = dart.privateName(text_style, "TextStyle.foreground");
-  var TextStyle_locale = dart.privateName(text_style, "TextStyle.locale");
-  var TextStyle_leadingDistribution = dart.privateName(text_style, "TextStyle.leadingDistribution");
-  var TextStyle_height = dart.privateName(text_style, "TextStyle.height");
-  var TextStyle_textBaseline = dart.privateName(text_style, "TextStyle.textBaseline");
-  var TextStyle_wordSpacing = dart.privateName(text_style, "TextStyle.wordSpacing");
-  var TextStyle_letterSpacing = dart.privateName(text_style, "TextStyle.letterSpacing");
-  var TextStyle_fontStyle = dart.privateName(text_style, "TextStyle.fontStyle");
-  var FontWeight_index = dart.privateName(ui, "FontWeight.index");
-  var TextStyle_fontWeight = dart.privateName(text_style, "TextStyle.fontWeight");
-  var TextStyle_fontSize = dart.privateName(text_style, "TextStyle.fontSize");
-  var TextStyle__package = dart.privateName(text_style, "TextStyle._package");
-  var TextStyle__fontFamilyFallback = dart.privateName(text_style, "TextStyle._fontFamilyFallback");
-  var TextStyle_fontFamily = dart.privateName(text_style, "TextStyle.fontFamily");
-  var TextStyle_backgroundColor = dart.privateName(text_style, "TextStyle.backgroundColor");
-  var TextStyle_color = dart.privateName(text_style, "TextStyle.color");
-  var TextStyle_inherit = dart.privateName(text_style, "TextStyle.inherit");
-  utils.radians = function radians(degrees) {
-    return degrees * 0.017453292519943295;
-  };
-  utils.degrees = function degrees(radians) {
-    return radians * 57.29577951308232;
-  };
-  utils.getDefaultSize = function getDefaultSize(screenSize) {
-    let resultSize = null;
-    if (screenSize.width < screenSize.height) {
-      resultSize = new ui.Size.new(screenSize.width, screenSize.width);
-    } else if (screenSize.height < screenSize.width) {
-      resultSize = new ui.Size.new(screenSize.height, screenSize.height);
-    } else {
-      resultSize = new ui.Size.new(screenSize.width, screenSize.height);
-    }
-    return resultSize['*'](0.7);
-  };
-  utils.translateRotatedPosition = function translateRotatedPosition(size, degree) {
-    return size / 4 * math.sin(utils.radians(degree[$abs]()));
-  };
-  utils.calculateRotationOffset = function calculateRotationOffset(size, degree) {
-    let rotatedHeight = (size.width * math.sin(utils.radians(degree)))[$abs]() + (size.height * math.cos(utils.radians(degree)))[$abs]();
-    let rotatedWidth = (size.width * math.cos(utils.radians(degree)))[$abs]() + (size.height * math.sin(utils.radians(degree)))[$abs]();
-    return new ui.Offset.new((size.width - rotatedWidth) / 2, (size.height - rotatedHeight) / 2);
-  };
-  utils.normalizeBorderRadius = function normalizeBorderRadius(borderRadius, width) {
-    if (borderRadius == null) {
+  var I = ["package:fl_chart/src/chart/base/base_chart/fl_touch_event.dart"];
+  fl_touch_event.FlTouchEvent = class FlTouchEvent extends core.Object {
+    get localPosition() {
       return null;
     }
-    let topLeft = null;
-    if (borderRadius.topLeft.x > width / 2 || borderRadius.topLeft.y > width / 2) {
-      topLeft = new ui.Radius.circular(width / 2);
-    } else {
-      topLeft = borderRadius.topLeft;
-    }
-    let topRight = null;
-    if (borderRadius.topRight.x > width / 2 || borderRadius.topRight.y > width / 2) {
-      topRight = new ui.Radius.circular(width / 2);
-    } else {
-      topRight = borderRadius.topRight;
-    }
-    let bottomLeft = null;
-    if (borderRadius.bottomLeft.x > width / 2 || borderRadius.bottomLeft.y > width / 2) {
-      bottomLeft = new ui.Radius.circular(width / 2);
-    } else {
-      bottomLeft = borderRadius.bottomLeft;
-    }
-    let bottomRight = null;
-    if (borderRadius.bottomRight.x > width / 2 || borderRadius.bottomRight.y > width / 2) {
-      bottomRight = new ui.Radius.circular(width / 2);
-    } else {
-      bottomRight = borderRadius.bottomRight;
-    }
-    return new border_radius.BorderRadius.only({topLeft: topLeft, topRight: topRight, bottomLeft: bottomLeft, bottomRight: bottomRight});
-  };
-  utils.normalizeBorderSide = function normalizeBorderSide(borderSide, width) {
-    if (borderSide == null) {
-      return utils.DefaultBorderSide;
-    }
-    let borderWidth = null;
-    if (borderSide.width > width / 2) {
-      borderWidth = width / (2)[$toDouble]();
-    } else {
-      borderWidth = borderSide.width;
-    }
-    return borderSide.copyWith({width: borderWidth});
-  };
-  utils.lerpGradient = function lerpGradient(colors, stops, t) {
-    let length = colors[$length];
-    if (stops[$length] !== length) {
-      stops = T.ListOfdouble().generate(length, dart.fn(i => (i + 1) / length, T.intTodouble()));
-    }
-    for (let s = 0; s < stops[$length] - 1; s = s + 1) {
-      let leftStop = stops[$_get](s);
-      let rightStop = stops[$_get](s + 1);
-      let leftColor = colors[$_get](s);
-      let rightColor = colors[$_get](s + 1);
-      if (t <= leftStop) {
-        return leftColor;
-      } else if (t < rightStop) {
-        let sectionT = (t - leftStop) / (rightStop - leftStop);
-        return dart.nullCheck(ui.Color.lerp(leftColor, rightColor, sectionT));
+    get isInterestedForInteractions() {
+      let isDesktopOrWeb = true || io.Platform.isLinux || io.Platform.isMacOS || io.Platform.isWindows;
+      if (isDesktopOrWeb && fl_touch_event.FlTapUpEvent.is(this)) {
+        return true;
       }
-    }
-    return colors[$last];
-  };
-  utils.getEfficientInterval = function getEfficientInterval(axisViewSize, diffInYAxis, opts) {
-    let pixelPerInterval = opts && 'pixelPerInterval' in opts ? opts.pixelPerInterval : 40;
-    let allowedCount = (axisViewSize / pixelPerInterval)[$truncate]();
-    let accurateInterval = diffInYAxis / allowedCount;
-    return utils._roundInterval(accurateInterval)[$toDouble]();
-  };
-  utils._roundInterval = function _roundInterval(input) {
-    let count = 0;
-    if (input >= 10) {
-      count = count + 1;
-    }
-    while ((input / 100)[$truncate]() !== 0) {
-      input = input / 10;
-      count = count + 1;
-    }
-    let scaled = input >= 10 ? input[$round]() / 10 : input;
-    if (scaled >= 2.6) {
-      return 5 * math.pow(10, count)[$toInt]();
-    } else if (scaled >= 1.6) {
-      return 2 * math.pow(10, count)[$toInt]();
-    } else {
-      return math.pow(10, count)[$toInt]();
+      return !fl_touch_event.FlPanEndEvent.is(this) && !fl_touch_event.FlPanCancelEvent.is(this) && !fl_touch_event.FlPointerExitEvent.is(this) && !fl_touch_event.FlLongPressEnd.is(this) && !fl_touch_event.FlTapUpEvent.is(this) && !fl_touch_event.FlTapCancelEvent.is(this);
     }
   };
-  utils.formatNumber = function formatNumber(number) {
-    let isNegative = number < 0;
-    if (isNegative) {
-      number = number[$abs]();
+  (fl_touch_event.FlTouchEvent.new = function() {
+    ;
+  }).prototype = fl_touch_event.FlTouchEvent.prototype;
+  dart.addTypeTests(fl_touch_event.FlTouchEvent);
+  dart.addTypeCaches(fl_touch_event.FlTouchEvent);
+  dart.setGetterSignature(fl_touch_event.FlTouchEvent, () => ({
+    __proto__: dart.getGetters(fl_touch_event.FlTouchEvent.__proto__),
+    localPosition: dart.nullable(ui.Offset),
+    isInterestedForInteractions: core.bool
+  }));
+  dart.setLibraryUri(fl_touch_event.FlTouchEvent, I[0]);
+  var details$ = dart.privateName(fl_touch_event, "FlPanDownEvent.details");
+  fl_touch_event.FlPanDownEvent = class FlPanDownEvent extends fl_touch_event.FlTouchEvent {
+    get details() {
+      return this[details$];
     }
-    let resultNumber = null;
-    let symbol = null;
-    if (number >= 1000000000) {
-      resultNumber = (number / 1000000000)[$toStringAsFixed](1);
-      symbol = "B";
-    } else if (number >= 1000000) {
-      resultNumber = (number / 1000000)[$toStringAsFixed](1);
-      symbol = "M";
-    } else if (number >= 1000) {
-      resultNumber = (number / 1000)[$toStringAsFixed](1);
-      symbol = "K";
-    } else {
-      resultNumber = number[$toStringAsFixed](1);
-      symbol = "";
+    set details(value) {
+      super.details = value;
     }
-    if (resultNumber[$endsWith](".0")) {
-      resultNumber = resultNumber[$substring](0, resultNumber.length - 2);
+    get localPosition() {
+      return this.details.localPosition;
     }
-    if (isNegative) {
-      resultNumber = "-" + resultNumber;
-    }
-    return resultNumber + symbol;
   };
-  utils.getThemeAwareTextStyle = function getThemeAwareTextStyle(context, providedStyle) {
-    let t0;
-    let defaultTextStyle = text.DefaultTextStyle.of(context);
-    let effectiveTextStyle = providedStyle;
-    if (providedStyle == null || providedStyle.inherit) {
-      effectiveTextStyle = defaultTextStyle.style.merge(providedStyle);
+  (fl_touch_event.FlPanDownEvent.new = function(details) {
+    this[details$] = details;
+    ;
+  }).prototype = fl_touch_event.FlPanDownEvent.prototype;
+  dart.addTypeTests(fl_touch_event.FlPanDownEvent);
+  dart.addTypeCaches(fl_touch_event.FlPanDownEvent);
+  dart.setGetterSignature(fl_touch_event.FlPanDownEvent, () => ({
+    __proto__: dart.getGetters(fl_touch_event.FlPanDownEvent.__proto__),
+    localPosition: ui.Offset
+  }));
+  dart.setLibraryUri(fl_touch_event.FlPanDownEvent, I[0]);
+  dart.setFieldSignature(fl_touch_event.FlPanDownEvent, () => ({
+    __proto__: dart.getFields(fl_touch_event.FlPanDownEvent.__proto__),
+    details: dart.finalFieldType(drag_details.DragDownDetails)
+  }));
+  var details$0 = dart.privateName(fl_touch_event, "FlPanStartEvent.details");
+  fl_touch_event.FlPanStartEvent = class FlPanStartEvent extends fl_touch_event.FlTouchEvent {
+    get details() {
+      return this[details$0];
     }
-    if (media_query.MediaQuery.boldTextOverride(context)) {
-      effectiveTextStyle = dart.nullCheck(effectiveTextStyle).merge(C[0] || CT.C0);
+    set details(value) {
+      super.details = value;
     }
-    t0 = effectiveTextStyle;
-    return t0 == null ? effectiveTextStyle = defaultTextStyle.style : t0;
+    get localPosition() {
+      return this.details.localPosition;
+    }
   };
-  var _name = dart.privateName(borders, "_name");
-  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
-  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
-  var Color_value = dart.privateName(ui, "Color.value");
-  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
-  dart.defineLazy(utils, {
-    /*utils._degrees2Radians*/get _degrees2Radians() {
-      return 0.017453292519943295;
-    },
-    /*utils._radians2Degrees*/get _radians2Degrees() {
-      return 57.29577951308232;
-    },
-    /*utils.DefaultBorderSide*/get DefaultBorderSide() {
-      return C[2] || CT.C2;
-    },
-    /*utils.billion*/get billion() {
-      return 1000000000;
-    },
-    /*utils.million*/get million() {
-      return 1000000;
-    },
-    /*utils.kilo*/get kilo() {
-      return 1000;
+  (fl_touch_event.FlPanStartEvent.new = function(details) {
+    this[details$0] = details;
+    ;
+  }).prototype = fl_touch_event.FlPanStartEvent.prototype;
+  dart.addTypeTests(fl_touch_event.FlPanStartEvent);
+  dart.addTypeCaches(fl_touch_event.FlPanStartEvent);
+  dart.setGetterSignature(fl_touch_event.FlPanStartEvent, () => ({
+    __proto__: dart.getGetters(fl_touch_event.FlPanStartEvent.__proto__),
+    localPosition: ui.Offset
+  }));
+  dart.setLibraryUri(fl_touch_event.FlPanStartEvent, I[0]);
+  dart.setFieldSignature(fl_touch_event.FlPanStartEvent, () => ({
+    __proto__: dart.getFields(fl_touch_event.FlPanStartEvent.__proto__),
+    details: dart.finalFieldType(drag_details.DragStartDetails)
+  }));
+  var details$1 = dart.privateName(fl_touch_event, "FlPanUpdateEvent.details");
+  fl_touch_event.FlPanUpdateEvent = class FlPanUpdateEvent extends fl_touch_event.FlTouchEvent {
+    get details() {
+      return this[details$1];
     }
-  }, false);
-  dart.trackLibraries("packages/fl_chart/src/utils/utils.dart", {
-    "package:fl_chart/src/utils/utils.dart": utils
+    set details(value) {
+      super.details = value;
+    }
+    get localPosition() {
+      return this.details.localPosition;
+    }
+  };
+  (fl_touch_event.FlPanUpdateEvent.new = function(details) {
+    this[details$1] = details;
+    ;
+  }).prototype = fl_touch_event.FlPanUpdateEvent.prototype;
+  dart.addTypeTests(fl_touch_event.FlPanUpdateEvent);
+  dart.addTypeCaches(fl_touch_event.FlPanUpdateEvent);
+  dart.setGetterSignature(fl_touch_event.FlPanUpdateEvent, () => ({
+    __proto__: dart.getGetters(fl_touch_event.FlPanUpdateEvent.__proto__),
+    localPosition: ui.Offset
+  }));
+  dart.setLibraryUri(fl_touch_event.FlPanUpdateEvent, I[0]);
+  dart.setFieldSignature(fl_touch_event.FlPanUpdateEvent, () => ({
+    __proto__: dart.getFields(fl_touch_event.FlPanUpdateEvent.__proto__),
+    details: dart.finalFieldType(drag_details.DragUpdateDetails)
+  }));
+  fl_touch_event.FlPanCancelEvent = class FlPanCancelEvent extends fl_touch_event.FlTouchEvent {};
+  (fl_touch_event.FlPanCancelEvent.new = function() {
+    ;
+  }).prototype = fl_touch_event.FlPanCancelEvent.prototype;
+  dart.addTypeTests(fl_touch_event.FlPanCancelEvent);
+  dart.addTypeCaches(fl_touch_event.FlPanCancelEvent);
+  dart.setLibraryUri(fl_touch_event.FlPanCancelEvent, I[0]);
+  var details$2 = dart.privateName(fl_touch_event, "FlPanEndEvent.details");
+  fl_touch_event.FlPanEndEvent = class FlPanEndEvent extends fl_touch_event.FlTouchEvent {
+    get details() {
+      return this[details$2];
+    }
+    set details(value) {
+      super.details = value;
+    }
+  };
+  (fl_touch_event.FlPanEndEvent.new = function(details) {
+    this[details$2] = details;
+    ;
+  }).prototype = fl_touch_event.FlPanEndEvent.prototype;
+  dart.addTypeTests(fl_touch_event.FlPanEndEvent);
+  dart.addTypeCaches(fl_touch_event.FlPanEndEvent);
+  dart.setLibraryUri(fl_touch_event.FlPanEndEvent, I[0]);
+  dart.setFieldSignature(fl_touch_event.FlPanEndEvent, () => ({
+    __proto__: dart.getFields(fl_touch_event.FlPanEndEvent.__proto__),
+    details: dart.finalFieldType(drag_details.DragEndDetails)
+  }));
+  var details$3 = dart.privateName(fl_touch_event, "FlTapDownEvent.details");
+  fl_touch_event.FlTapDownEvent = class FlTapDownEvent extends fl_touch_event.FlTouchEvent {
+    get details() {
+      return this[details$3];
+    }
+    set details(value) {
+      super.details = value;
+    }
+    get localPosition() {
+      return this.details.localPosition;
+    }
+  };
+  (fl_touch_event.FlTapDownEvent.new = function(details) {
+    this[details$3] = details;
+    ;
+  }).prototype = fl_touch_event.FlTapDownEvent.prototype;
+  dart.addTypeTests(fl_touch_event.FlTapDownEvent);
+  dart.addTypeCaches(fl_touch_event.FlTapDownEvent);
+  dart.setGetterSignature(fl_touch_event.FlTapDownEvent, () => ({
+    __proto__: dart.getGetters(fl_touch_event.FlTapDownEvent.__proto__),
+    localPosition: ui.Offset
+  }));
+  dart.setLibraryUri(fl_touch_event.FlTapDownEvent, I[0]);
+  dart.setFieldSignature(fl_touch_event.FlTapDownEvent, () => ({
+    __proto__: dart.getFields(fl_touch_event.FlTapDownEvent.__proto__),
+    details: dart.finalFieldType(tap.TapDownDetails)
+  }));
+  fl_touch_event.FlTapCancelEvent = class FlTapCancelEvent extends fl_touch_event.FlTouchEvent {};
+  (fl_touch_event.FlTapCancelEvent.new = function() {
+    ;
+  }).prototype = fl_touch_event.FlTapCancelEvent.prototype;
+  dart.addTypeTests(fl_touch_event.FlTapCancelEvent);
+  dart.addTypeCaches(fl_touch_event.FlTapCancelEvent);
+  dart.setLibraryUri(fl_touch_event.FlTapCancelEvent, I[0]);
+  var details$4 = dart.privateName(fl_touch_event, "FlTapUpEvent.details");
+  fl_touch_event.FlTapUpEvent = class FlTapUpEvent extends fl_touch_event.FlTouchEvent {
+    get details() {
+      return this[details$4];
+    }
+    set details(value) {
+      super.details = value;
+    }
+    get localPosition() {
+      return this.details.localPosition;
+    }
+  };
+  (fl_touch_event.FlTapUpEvent.new = function(details) {
+    this[details$4] = details;
+    ;
+  }).prototype = fl_touch_event.FlTapUpEvent.prototype;
+  dart.addTypeTests(fl_touch_event.FlTapUpEvent);
+  dart.addTypeCaches(fl_touch_event.FlTapUpEvent);
+  dart.setGetterSignature(fl_touch_event.FlTapUpEvent, () => ({
+    __proto__: dart.getGetters(fl_touch_event.FlTapUpEvent.__proto__),
+    localPosition: ui.Offset
+  }));
+  dart.setLibraryUri(fl_touch_event.FlTapUpEvent, I[0]);
+  dart.setFieldSignature(fl_touch_event.FlTapUpEvent, () => ({
+    __proto__: dart.getFields(fl_touch_event.FlTapUpEvent.__proto__),
+    details: dart.finalFieldType(tap.TapUpDetails)
+  }));
+  var details$5 = dart.privateName(fl_touch_event, "FlLongPressStart.details");
+  fl_touch_event.FlLongPressStart = class FlLongPressStart extends fl_touch_event.FlTouchEvent {
+    get details() {
+      return this[details$5];
+    }
+    set details(value) {
+      super.details = value;
+    }
+    get localPosition() {
+      return this.details.localPosition;
+    }
+  };
+  (fl_touch_event.FlLongPressStart.new = function(details) {
+    this[details$5] = details;
+    ;
+  }).prototype = fl_touch_event.FlLongPressStart.prototype;
+  dart.addTypeTests(fl_touch_event.FlLongPressStart);
+  dart.addTypeCaches(fl_touch_event.FlLongPressStart);
+  dart.setGetterSignature(fl_touch_event.FlLongPressStart, () => ({
+    __proto__: dart.getGetters(fl_touch_event.FlLongPressStart.__proto__),
+    localPosition: ui.Offset
+  }));
+  dart.setLibraryUri(fl_touch_event.FlLongPressStart, I[0]);
+  dart.setFieldSignature(fl_touch_event.FlLongPressStart, () => ({
+    __proto__: dart.getFields(fl_touch_event.FlLongPressStart.__proto__),
+    details: dart.finalFieldType(long_press.LongPressStartDetails)
+  }));
+  var details$6 = dart.privateName(fl_touch_event, "FlLongPressMoveUpdate.details");
+  fl_touch_event.FlLongPressMoveUpdate = class FlLongPressMoveUpdate extends fl_touch_event.FlTouchEvent {
+    get details() {
+      return this[details$6];
+    }
+    set details(value) {
+      super.details = value;
+    }
+    get localPosition() {
+      return this.details.localPosition;
+    }
+  };
+  (fl_touch_event.FlLongPressMoveUpdate.new = function(details) {
+    this[details$6] = details;
+    ;
+  }).prototype = fl_touch_event.FlLongPressMoveUpdate.prototype;
+  dart.addTypeTests(fl_touch_event.FlLongPressMoveUpdate);
+  dart.addTypeCaches(fl_touch_event.FlLongPressMoveUpdate);
+  dart.setGetterSignature(fl_touch_event.FlLongPressMoveUpdate, () => ({
+    __proto__: dart.getGetters(fl_touch_event.FlLongPressMoveUpdate.__proto__),
+    localPosition: ui.Offset
+  }));
+  dart.setLibraryUri(fl_touch_event.FlLongPressMoveUpdate, I[0]);
+  dart.setFieldSignature(fl_touch_event.FlLongPressMoveUpdate, () => ({
+    __proto__: dart.getFields(fl_touch_event.FlLongPressMoveUpdate.__proto__),
+    details: dart.finalFieldType(long_press.LongPressMoveUpdateDetails)
+  }));
+  var details$7 = dart.privateName(fl_touch_event, "FlLongPressEnd.details");
+  fl_touch_event.FlLongPressEnd = class FlLongPressEnd extends fl_touch_event.FlTouchEvent {
+    get details() {
+      return this[details$7];
+    }
+    set details(value) {
+      super.details = value;
+    }
+    get localPosition() {
+      return this.details.localPosition;
+    }
+  };
+  (fl_touch_event.FlLongPressEnd.new = function(details) {
+    this[details$7] = details;
+    ;
+  }).prototype = fl_touch_event.FlLongPressEnd.prototype;
+  dart.addTypeTests(fl_touch_event.FlLongPressEnd);
+  dart.addTypeCaches(fl_touch_event.FlLongPressEnd);
+  dart.setGetterSignature(fl_touch_event.FlLongPressEnd, () => ({
+    __proto__: dart.getGetters(fl_touch_event.FlLongPressEnd.__proto__),
+    localPosition: ui.Offset
+  }));
+  dart.setLibraryUri(fl_touch_event.FlLongPressEnd, I[0]);
+  dart.setFieldSignature(fl_touch_event.FlLongPressEnd, () => ({
+    __proto__: dart.getFields(fl_touch_event.FlLongPressEnd.__proto__),
+    details: dart.finalFieldType(long_press.LongPressEndDetails)
+  }));
+  var event$ = dart.privateName(fl_touch_event, "FlPointerEnterEvent.event");
+  fl_touch_event.FlPointerEnterEvent = class FlPointerEnterEvent extends fl_touch_event.FlTouchEvent {
+    get event() {
+      return this[event$];
+    }
+    set event(value) {
+      super.event = value;
+    }
+    get localPosition() {
+      return this.event.localPosition;
+    }
+  };
+  (fl_touch_event.FlPointerEnterEvent.new = function(event) {
+    this[event$] = event;
+    ;
+  }).prototype = fl_touch_event.FlPointerEnterEvent.prototype;
+  dart.addTypeTests(fl_touch_event.FlPointerEnterEvent);
+  dart.addTypeCaches(fl_touch_event.FlPointerEnterEvent);
+  dart.setGetterSignature(fl_touch_event.FlPointerEnterEvent, () => ({
+    __proto__: dart.getGetters(fl_touch_event.FlPointerEnterEvent.__proto__),
+    localPosition: ui.Offset
+  }));
+  dart.setLibraryUri(fl_touch_event.FlPointerEnterEvent, I[0]);
+  dart.setFieldSignature(fl_touch_event.FlPointerEnterEvent, () => ({
+    __proto__: dart.getFields(fl_touch_event.FlPointerEnterEvent.__proto__),
+    event: dart.finalFieldType(events.PointerEnterEvent)
+  }));
+  var event$0 = dart.privateName(fl_touch_event, "FlPointerHoverEvent.event");
+  fl_touch_event.FlPointerHoverEvent = class FlPointerHoverEvent extends fl_touch_event.FlTouchEvent {
+    get event() {
+      return this[event$0];
+    }
+    set event(value) {
+      super.event = value;
+    }
+    get localPosition() {
+      return this.event.localPosition;
+    }
+  };
+  (fl_touch_event.FlPointerHoverEvent.new = function(event) {
+    this[event$0] = event;
+    ;
+  }).prototype = fl_touch_event.FlPointerHoverEvent.prototype;
+  dart.addTypeTests(fl_touch_event.FlPointerHoverEvent);
+  dart.addTypeCaches(fl_touch_event.FlPointerHoverEvent);
+  dart.setGetterSignature(fl_touch_event.FlPointerHoverEvent, () => ({
+    __proto__: dart.getGetters(fl_touch_event.FlPointerHoverEvent.__proto__),
+    localPosition: ui.Offset
+  }));
+  dart.setLibraryUri(fl_touch_event.FlPointerHoverEvent, I[0]);
+  dart.setFieldSignature(fl_touch_event.FlPointerHoverEvent, () => ({
+    __proto__: dart.getFields(fl_touch_event.FlPointerHoverEvent.__proto__),
+    event: dart.finalFieldType(events.PointerHoverEvent)
+  }));
+  var event$1 = dart.privateName(fl_touch_event, "FlPointerExitEvent.event");
+  fl_touch_event.FlPointerExitEvent = class FlPointerExitEvent extends fl_touch_event.FlTouchEvent {
+    get event() {
+      return this[event$1];
+    }
+    set event(value) {
+      super.event = value;
+    }
+    get localPosition() {
+      return this.event.localPosition;
+    }
+  };
+  (fl_touch_event.FlPointerExitEvent.new = function(event) {
+    this[event$1] = event;
+    ;
+  }).prototype = fl_touch_event.FlPointerExitEvent.prototype;
+  dart.addTypeTests(fl_touch_event.FlPointerExitEvent);
+  dart.addTypeCaches(fl_touch_event.FlPointerExitEvent);
+  dart.setGetterSignature(fl_touch_event.FlPointerExitEvent, () => ({
+    __proto__: dart.getGetters(fl_touch_event.FlPointerExitEvent.__proto__),
+    localPosition: ui.Offset
+  }));
+  dart.setLibraryUri(fl_touch_event.FlPointerExitEvent, I[0]);
+  dart.setFieldSignature(fl_touch_event.FlPointerExitEvent, () => ({
+    __proto__: dart.getFields(fl_touch_event.FlPointerExitEvent.__proto__),
+    event: dart.finalFieldType(events.PointerExitEvent)
+  }));
+  dart.trackLibraries("packages/fl_chart/src/chart/base/base_chart/fl_touch_event.dart", {
+    "package:fl_chart/src/chart/base/base_chart/fl_touch_event.dart": fl_touch_event
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["utils.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../packages/fl_chart/src/utils/utils.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["fl_touch_event.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;AAa+B;IAAI;;AAIzB,2BAAgE,QAA5B,uBAAoB,uBAAoB;AAKlF,UAAI,cAAc,IAAS,+BAAL;AACpB,cAAO;;AAGT,YAI0B,EAJd,gCAAL,UACE,mCAAL,UACK,qCAAL,UACK,iCAAL,UACK,+BAAL,UACK,mCAAL;IACN;;;;EACF;;;;;;;;;;;IAQwB;;;;;;;AAIM,YAAA,AAAQ;IAAa;;;IAE7B;;EAAQ;;;;;;;;;;;;;;IAUL;;;;;;;AAIK,YAAA,AAAQ;IAAa;;;IAG5B;;EAAQ;;;;;;;;;;;;;;IAWL;;;;;;;AAII,YAAA,AAAQ;IAAa;;;IAE3B;;EAAQ;;;;;;;;;;;;;;;EAKa;;;;;;IAUtB;;;;;;;;IAEF;;EAAQ;;;;;;;;;;IAWN;;;;;;;AAIO,YAAA,AAAQ;IAAa;;;IAE7B;;EAAQ;;;;;;;;;;;;;;;EAKe;;;;;;IAUxB;;;;;;;AAIS,YAAA,AAAQ;IAAa;;;IAE/B;;EAAQ;;;;;;;;;;;;;;IAWE;;;;;;;AAIA,YAAA,AAAQ;IAAa;;;IAE3B;;EAAQ;;;;;;;;;;;;;;IAYG;;;;;;;AAIL,YAAA,AAAQ;IAAa;;;IAEtB;;EAAQ;;;;;;;;;;;;;;IAYT;;;;;;;AAIE,YAAA,AAAQ;IAAa;;;IAE7B;;EAAQ;;;;;;;;;;;;;;IAWJ;;;;;;;AAII,YAAA,AAAM;IAAa;;;IAEtB;;EAAM;;;;;;;;;;;;;;IAWP;;;;;;;AAII,YAAA,AAAM;IAAa;;;IAEtB;;EAAM;;;;;;;;;;;;;;IASR;;;;;;;AAIK,YAAA,AAAM;IAAa;;;IAEvB;;EAAM","file":"../../../../../../../../../../../packages/fl_chart/src/chart/base/base_chart/fl_touch_event.dart.lib.js"}');
   // Exports:
   return {
-    src__utils__utils: utils
+    src__chart__base__base_chart__fl_touch_event: fl_touch_event
   };
 }));
 
-//# sourceMappingURL=utils.dart.lib.js.map
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+//# sourceMappingURL=fl_touch_event.dart.lib.js.map

@@ -1,1697 +1,869 @@
-<<<<<<< HEAD
-define(['dart_sdk', 'packages/flutter/src/gestures/lsq_solver.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__gestures__velocity_tracker_dart(dart_sdk, packages__flutter__src__gestures__lsq_solver$46dart, packages__flutter__src__foundation__debug$46dart) {
-=======
-define(['dart_sdk', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/gestures/recognizer.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/rendering/viewport_offset.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/foundation/key.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/rendering/sliver_grid.dart'], (function load__packages__flutter__src__widgets__scroll_view_dart(dart_sdk, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__gestures__recognizer$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__rendering__viewport_offset$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__foundation__key$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__rendering__sliver_grid$46dart) {
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+define(['dart_sdk', 'packages/flutter/src/foundation/debug.dart', 'packages/collection/src/priority_queue.dart', 'packages/flutter/src/foundation/print.dart', 'packages/flutter/src/scheduler/debug.dart', 'packages/flutter/src/foundation/binding.dart', 'packages/flutter/src/scheduler/priority.dart'], (function load__packages__flutter__src__scheduler__binding_dart(dart_sdk, packages__flutter__src__foundation__debug$46dart, packages__collection__src__priority_queue$46dart, packages__flutter__src__foundation__print$46dart, packages__flutter__src__scheduler__debug$46dart, packages__flutter__src__foundation__binding$46dart, packages__flutter__src__scheduler__priority$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
+  const async = dart_sdk.async;
+  const _internal = dart_sdk._internal;
+  const developer = dart_sdk.developer;
   const _interceptors = dart_sdk._interceptors;
-<<<<<<< HEAD
+  const ui = dart_sdk.ui;
+  const _js_helper = dart_sdk._js_helper;
+  const collection = dart_sdk.collection;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const lsq_solver = packages__flutter__src__gestures__lsq_solver$46dart.src__gestures__lsq_solver;
   const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
-  var velocity_tracker = Object.create(dart.library);
-  var $toStringAsFixed = dartx.toStringAsFixed;
-  var $_set = dartx._set;
-  var $_get = dartx._get;
-  var $toDouble = dartx.toDouble;
-  var $abs = dartx.abs;
-  var $add = dartx.add;
-  var $modulo = dartx['%'];
-  dart._checkModuleNullSafetyMode(true);
-  var T = {
-    _PointAtTimeN: () => (T._PointAtTimeN = dart.constFn(dart.nullable(velocity_tracker._PointAtTime)))(),
-    ListOf_PointAtTimeN: () => (T.ListOf_PointAtTimeN = dart.constFn(core.List$(T._PointAtTimeN())))(),
-    JSArrayOfdouble: () => (T.JSArrayOfdouble = dart.constFn(_interceptors.JSArray$(core.double)))(),
-    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))()
-=======
-  const math = dart_sdk.math;
-  const dart = dart_sdk.dart;
-  const dartx = dart_sdk.dartx;
-  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
-  const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
-  const scroll_physics = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_physics;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const debug = packages__flutter__src__widgets__widget_span$46dart.src__widgets__debug;
-  const viewport = packages__flutter__src__widgets__widget_span$46dart.src__widgets__viewport;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const primary_scroll_controller = packages__flutter__src__widgets__widget_span$46dart.src__widgets__primary_scroll_controller;
-  const scrollable$ = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scrollable;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const notification_listener = packages__flutter__src__widgets__widget_span$46dart.src__widgets__notification_listener;
-  const scroll_notification = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_notification;
-  const focus_scope = packages__flutter__src__widgets__widget_span$46dart.src__widgets__focus_scope;
-  const scroll_controller = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_controller;
-  const scroll_configuration = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_configuration;
-  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
-  const sliver = packages__flutter__src__widgets__widget_span$46dart.src__widgets__sliver;
-  const viewport_offset = packages__flutter__src__rendering__viewport_offset$46dart.src__rendering__viewport_offset;
   const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
-  const key = packages__flutter__src__foundation__key$46dart.src__foundation__key;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const sliver_grid = packages__flutter__src__rendering__sliver_grid$46dart.src__rendering__sliver_grid;
-  var scroll_view = Object.create(dart.library);
+  const debug = packages__flutter__src__foundation__debug$46dart.src__foundation__debug;
+  const priority_queue = packages__collection__src__priority_queue$46dart.src__priority_queue;
+  const print = packages__flutter__src__foundation__print$46dart.src__foundation__print;
+  const debug$ = packages__flutter__src__scheduler__debug$46dart.src__scheduler__debug;
+  const binding = packages__flutter__src__foundation__binding$46dart.src__foundation__binding;
+  const priority$ = packages__flutter__src__scheduler__priority$46dart.src__scheduler__priority;
+  var binding$ = Object.create(dart.library);
+  var $add = dartx.add;
   var $length = dartx.length;
-  var $truncate = dartx.truncate;
-  var $isEven = dartx.isEven;
+  var $contains = dartx.contains;
+  var $remove = dartx.remove;
+  var $isEmpty = dartx.isEmpty;
+  var $compareTo = dartx.compareTo;
+  var $_set = dartx._set;
+  var $keys = dartx.keys;
+  var $_get = dartx._get;
+  var $trimRight = dartx.trimRight;
+  var $split = dartx.split;
+  var $join = dartx.join;
+  var $round = dartx.round;
+  var $toString = dartx.toString;
+  var $padRight = dartx.padRight;
+  var $padLeft = dartx.padLeft;
+  var $forEach = dartx.forEach;
+  var $clear = dartx.clear;
+  var $times = dartx['*'];
   dart._checkModuleNullSafetyMode(true);
-  var T = {
-    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
-    BuildContextAndViewportOffsetToWidget: () => (T.BuildContextAndViewportOffsetToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, viewport_offset.ViewportOffset])))(),
-    NotificationListenerOfScrollUpdateNotification: () => (T.NotificationListenerOfScrollUpdateNotification = dart.constFn(notification_listener.NotificationListener$(scroll_notification.ScrollUpdateNotification)))(),
-    ScrollUpdateNotificationTobool: () => (T.ScrollUpdateNotificationTobool = dart.constFn(dart.fnType(core.bool, [scroll_notification.ScrollUpdateNotification])))(),
-    EnumPropertyOfAxis: () => (T.EnumPropertyOfAxis = dart.constFn(diagnostics.EnumProperty$(basic_types.Axis)))(),
-    DiagnosticsPropertyOfScrollController: () => (T.DiagnosticsPropertyOfScrollController = dart.constFn(diagnostics.DiagnosticsProperty$(scroll_controller.ScrollController)))(),
-    DiagnosticsPropertyOfScrollPhysics: () => (T.DiagnosticsPropertyOfScrollPhysics = dart.constFn(diagnostics.DiagnosticsProperty$(scroll_physics.ScrollPhysics)))(),
-    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
-    DiagnosticsPropertyOfEdgeInsetsGeometry: () => (T.DiagnosticsPropertyOfEdgeInsetsGeometry = dart.constFn(diagnostics.DiagnosticsProperty$(edge_insets.EdgeInsetsGeometry)))(),
-    BuildContextAndintToWidget: () => (T.BuildContextAndintToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, core.int])))(),
-    intN: () => (T.intN = dart.constFn(dart.nullable(core.int)))(),
-    WidgetAndintTointN: () => (T.WidgetAndintTointN = dart.constFn(dart.fnType(T.intN(), [framework.Widget, core.int])))()
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+  var T$ = {
+    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    VoidToNull: () => (T$.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
+    JSArrayOfDiagnosticsNode: () => (T$.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
+    ListOfFrameTiming: () => (T$.ListOfFrameTiming = dart.constFn(core.List$(ui.FrameTiming)))(),
+    ListOfFrameTimingTovoid: () => (T$.ListOfFrameTimingTovoid = dart.constFn(dart.fnType(dart.void, [T$.ListOfFrameTiming()])))(),
+    JSArrayOfListOfFrameTimingTovoid: () => (T$.JSArrayOfListOfFrameTimingTovoid = dart.constFn(_interceptors.JSArray$(T$.ListOfFrameTimingTovoid())))(),
+    __Tobool: () => (T$.__Tobool = dart.constFn(dart.fnType(core.bool, [], {}, {priority: core.int, scheduler: binding$.SchedulerBinding})))(),
+    HeapPriorityQueueOf_TaskEntry: () => (T$.HeapPriorityQueueOf_TaskEntry = dart.constFn(priority_queue.HeapPriorityQueue$(binding$._TaskEntry)))(),
+    _TaskEntryAnd_TaskEntryToint: () => (T$._TaskEntryAnd_TaskEntryToint = dart.constFn(dart.fnType(core.int, [binding$._TaskEntry, binding$._TaskEntry])))(),
+    IdentityMapOfint$_FrameCallbackEntry: () => (T$.IdentityMapOfint$_FrameCallbackEntry = dart.constFn(_js_helper.IdentityMap$(core.int, binding$._FrameCallbackEntry)))(),
+    _IdentityHashSetOfint: () => (T$._IdentityHashSetOfint = dart.constFn(collection._IdentityHashSet$(core.int)))(),
+    DurationTovoid: () => (T$.DurationTovoid = dart.constFn(dart.fnType(dart.void, [core.Duration])))(),
+    JSArrayOfDurationTovoid: () => (T$.JSArrayOfDurationTovoid = dart.constFn(_interceptors.JSArray$(T$.DurationTovoid())))(),
+    ListOfListOfFrameTimingTovoid: () => (T$.ListOfListOfFrameTimingTovoid = dart.constFn(core.List$(T$.ListOfFrameTimingTovoid())))(),
+    DiagnosticsPropertyOfListOfFrameTimingTovoid: () => (T$.DiagnosticsPropertyOfListOfFrameTimingTovoid = dart.constFn(diagnostics.DiagnosticsProperty$(T$.ListOfFrameTimingTovoid())))(),
+    SyncIterableOfDiagnosticsNode: () => (T$.SyncIterableOfDiagnosticsNode = dart.constFn(_js_helper.SyncIterable$(diagnostics.DiagnosticsNode)))(),
+    IterableOfDiagnosticsNode: () => (T$.IterableOfDiagnosticsNode = dart.constFn(core.Iterable$(diagnostics.DiagnosticsNode)))(),
+    VoidToIterableOfDiagnosticsNode: () => (T$.VoidToIterableOfDiagnosticsNode = dart.constFn(dart.fnType(T$.IterableOfDiagnosticsNode(), [])))(),
+    FutureOfdouble: () => (T$.FutureOfdouble = dart.constFn(async.Future$(core.double)))(),
+    VoidToFutureOfdouble: () => (T$.VoidToFutureOfdouble = dart.constFn(dart.fnType(T$.FutureOfdouble(), [])))(),
+    FutureOfvoid: () => (T$.FutureOfvoid = dart.constFn(async.Future$(dart.void)))(),
+    doubleToFutureOfvoid: () => (T$.doubleToFutureOfvoid = dart.constFn(dart.fnType(T$.FutureOfvoid(), [core.double])))(),
+    LinkedHashMapOfint$_FrameCallbackEntry: () => (T$.LinkedHashMapOfint$_FrameCallbackEntry = dart.constFn(collection.LinkedHashMap$(core.int, binding$._FrameCallbackEntry)))(),
+    CompleterOfvoid: () => (T$.CompleterOfvoid = dart.constFn(async.Completer$(dart.void)))(),
+    VoidTovoid: () => (T$.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    VoidToFutureOfvoid: () => (T$.VoidToFutureOfvoid = dart.constFn(dart.fnType(T$.FutureOfvoid(), [])))(),
+    intAnd_FrameCallbackEntryTovoid: () => (T$.intAnd_FrameCallbackEntryTovoid = dart.constFn(dart.fnType(dart.void, [core.int, binding$._FrameCallbackEntry])))(),
+    ListOfDurationTovoid: () => (T$.ListOfDurationTovoid = dart.constFn(core.List$(T$.DurationTovoid())))(),
+    IdentityMapOfString$dynamic: () => (T$.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-<<<<<<< HEAD
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 0,
-        [OffsetBase__dx]: 0
-      });
-    },
     get C0() {
       return C[0] = dart.const({
-        __proto__: velocity_tracker.Velocity.prototype,
-        [pixelsPerSecond$]: C[1] || CT.C1
+        __proto__: binding$.SchedulerPhase.prototype,
+        [_name$]: "SchedulerPhase.idle",
+        index: 0
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: binding$.SchedulerPhase.prototype,
+        [_name$]: "SchedulerPhase.transientCallbacks",
+        index: 1
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: ui.PointerDeviceKind.prototype,
-        [_name]: "PointerDeviceKind.touch",
-        index: 0
-=======
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: scroll_view.ScrollViewKeyboardDismissBehavior.prototype,
-        [_name$]: "ScrollViewKeyboardDismissBehavior.manual",
-        index: 0
+        __proto__: binding$.SchedulerPhase.prototype,
+        [_name$]: "SchedulerPhase.midFrameMicrotasks",
+        index: 2
       });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: scroll_view.ScrollViewKeyboardDismissBehavior.prototype,
-        [_name$]: "ScrollViewKeyboardDismissBehavior.onDrag",
-        index: 1
-      });
-    },
-    get C2() {
-      return C[2] = dart.constList([C[0] || CT.C0, C[1] || CT.C1], scroll_view.ScrollViewKeyboardDismissBehavior);
     },
     get C3() {
       return C[3] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name]: "Axis.vertical",
-        index: 1
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+        __proto__: binding$.SchedulerPhase.prototype,
+        [_name$]: "SchedulerPhase.persistentCallbacks",
+        index: 3
       });
     },
     get C4() {
       return C[4] = dart.const({
-<<<<<<< HEAD
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 0
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: velocity_tracker.VelocityEstimate.prototype,
-        [offset$]: C[1] || CT.C1,
-        [duration$]: C[4] || CT.C4,
-        [confidence$]: 0,
-        [pixelsPerSecond$0]: C[1] || CT.C1
-      });
-    }
-  }, false);
-  var C = Array(5).fill(void 0);
-  var I = [
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/gestures/velocity_tracker.dart",
-    "package:flutter/src/gestures/velocity_tracker.dart"
-  ];
-  var pixelsPerSecond$ = dart.privateName(velocity_tracker, "Velocity.pixelsPerSecond");
-  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
-  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
-  velocity_tracker.Velocity = class Velocity extends core.Object {
-    get pixelsPerSecond() {
-      return this[pixelsPerSecond$];
-    }
-    set pixelsPerSecond(value) {
-      super.pixelsPerSecond = value;
-    }
-    _negate() {
-      return new velocity_tracker.Velocity.new({pixelsPerSecond: this.pixelsPerSecond._negate()});
-    }
-    ['-'](other) {
-      return new velocity_tracker.Velocity.new({pixelsPerSecond: this.pixelsPerSecond['-'](other.pixelsPerSecond)});
-    }
-    ['+'](other) {
-      return new velocity_tracker.Velocity.new({pixelsPerSecond: this.pixelsPerSecond['+'](other.pixelsPerSecond)});
-    }
-    clampMagnitude(minValue, maxValue) {
-      if (!(minValue !== null && minValue >= 0.0)) dart.assertFailed(null, I[0], 53, 12, "minValue != null && minValue >= 0.0");
-      if (!(maxValue !== null && maxValue >= 0.0 && maxValue >= minValue)) dart.assertFailed(null, I[0], 54, 12, "maxValue != null && maxValue >= 0.0 && maxValue >= minValue");
-      let valueSquared = this.pixelsPerSecond.distanceSquared;
-      if (valueSquared > maxValue * maxValue) return new velocity_tracker.Velocity.new({pixelsPerSecond: this.pixelsPerSecond['/'](this.pixelsPerSecond.distance)['*'](maxValue)});
-      if (valueSquared < minValue * minValue) return new velocity_tracker.Velocity.new({pixelsPerSecond: this.pixelsPerSecond['/'](this.pixelsPerSecond.distance)['*'](minValue)});
-      return this;
-    }
-    _equals(other) {
-      if (other == null) return false;
-      return velocity_tracker.Velocity.is(other) && other.pixelsPerSecond._equals(this.pixelsPerSecond);
-    }
-    get hashCode() {
-      return this.pixelsPerSecond.hashCode;
-    }
-    toString() {
-      return "Velocity(" + this.pixelsPerSecond.dx[$toStringAsFixed](1) + ", " + this.pixelsPerSecond.dy[$toStringAsFixed](1) + ")";
-    }
-  };
-  (velocity_tracker.Velocity.new = function(opts) {
-    let pixelsPerSecond = opts && 'pixelsPerSecond' in opts ? opts.pixelsPerSecond : null;
-    this[pixelsPerSecond$] = pixelsPerSecond;
-    if (!(pixelsPerSecond !== null)) dart.assertFailed(null, I[0], 21, 15, "pixelsPerSecond != null");
-    ;
-  }).prototype = velocity_tracker.Velocity.prototype;
-  dart.addTypeTests(velocity_tracker.Velocity);
-  dart.addTypeCaches(velocity_tracker.Velocity);
-  dart.setMethodSignature(velocity_tracker.Velocity, () => ({
-    __proto__: dart.getMethods(velocity_tracker.Velocity.__proto__),
-    _negate: dart.fnType(velocity_tracker.Velocity, []),
-    '-': dart.fnType(velocity_tracker.Velocity, [velocity_tracker.Velocity]),
-    '+': dart.fnType(velocity_tracker.Velocity, [velocity_tracker.Velocity]),
-    clampMagnitude: dart.fnType(velocity_tracker.Velocity, [core.double, core.double])
-  }));
-  dart.setLibraryUri(velocity_tracker.Velocity, I[1]);
-  dart.setFieldSignature(velocity_tracker.Velocity, () => ({
-    __proto__: dart.getFields(velocity_tracker.Velocity.__proto__),
-    pixelsPerSecond: dart.finalFieldType(ui.Offset)
-  }));
-  dart.defineExtensionMethods(velocity_tracker.Velocity, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(velocity_tracker.Velocity, ['hashCode']);
-  dart.defineLazy(velocity_tracker.Velocity, {
-    /*velocity_tracker.Velocity.zero*/get zero() {
-      return C[0] || CT.C0;
-    }
-  }, false);
-  var pixelsPerSecond$0 = dart.privateName(velocity_tracker, "VelocityEstimate.pixelsPerSecond");
-  var confidence$ = dart.privateName(velocity_tracker, "VelocityEstimate.confidence");
-  var duration$ = dart.privateName(velocity_tracker, "VelocityEstimate.duration");
-  var offset$ = dart.privateName(velocity_tracker, "VelocityEstimate.offset");
-  velocity_tracker.VelocityEstimate = class VelocityEstimate extends core.Object {
-    get pixelsPerSecond() {
-      return this[pixelsPerSecond$0];
-    }
-    set pixelsPerSecond(value) {
-      super.pixelsPerSecond = value;
-    }
-    get confidence() {
-      return this[confidence$];
-    }
-    set confidence(value) {
-      super.confidence = value;
-    }
-    get duration() {
-      return this[duration$];
-    }
-    set duration(value) {
-      super.duration = value;
-    }
-    get offset() {
-      return this[offset$];
-    }
-    set offset(value) {
-      super.offset = value;
-    }
-    toString() {
-      return "VelocityEstimate(" + this.pixelsPerSecond.dx[$toStringAsFixed](1) + ", " + this.pixelsPerSecond.dy[$toStringAsFixed](1) + "; offset: " + dart.str(this.offset) + ", duration: " + dart.str(this.duration) + ", confidence: " + this.confidence[$toStringAsFixed](1) + ")";
-    }
-  };
-  (velocity_tracker.VelocityEstimate.new = function(opts) {
-    let pixelsPerSecond = opts && 'pixelsPerSecond' in opts ? opts.pixelsPerSecond : null;
-    let confidence = opts && 'confidence' in opts ? opts.confidence : null;
-    let duration = opts && 'duration' in opts ? opts.duration : null;
-    let offset = opts && 'offset' in opts ? opts.offset : null;
-    this[pixelsPerSecond$0] = pixelsPerSecond;
-    this[confidence$] = confidence;
-    this[duration$] = duration;
-    this[offset$] = offset;
-    if (!(pixelsPerSecond !== null)) dart.assertFailed(null, I[0], 98, 15, "pixelsPerSecond != null");
-    if (!(confidence !== null)) dart.assertFailed(null, I[0], 99, 15, "confidence != null");
-    if (!(duration !== null)) dart.assertFailed(null, I[0], 100, 15, "duration != null");
-    if (!(offset !== null)) dart.assertFailed(null, I[0], 101, 15, "offset != null");
-    ;
-  }).prototype = velocity_tracker.VelocityEstimate.prototype;
-  dart.addTypeTests(velocity_tracker.VelocityEstimate);
-  dart.addTypeCaches(velocity_tracker.VelocityEstimate);
-  dart.setLibraryUri(velocity_tracker.VelocityEstimate, I[1]);
-  dart.setFieldSignature(velocity_tracker.VelocityEstimate, () => ({
-    __proto__: dart.getFields(velocity_tracker.VelocityEstimate.__proto__),
-    pixelsPerSecond: dart.finalFieldType(ui.Offset),
-    confidence: dart.finalFieldType(core.double),
-    duration: dart.finalFieldType(core.Duration),
-    offset: dart.finalFieldType(ui.Offset)
-  }));
-  dart.defineExtensionMethods(velocity_tracker.VelocityEstimate, ['toString']);
-  var time$ = dart.privateName(velocity_tracker, "_PointAtTime.time");
-  var point$ = dart.privateName(velocity_tracker, "_PointAtTime.point");
-  velocity_tracker._PointAtTime = class _PointAtTime extends core.Object {
-    get time() {
-      return this[time$];
-    }
-    set time(value) {
-      super.time = value;
-    }
-    get point() {
-      return this[point$];
-    }
-    set point(value) {
-      super.point = value;
-    }
-    toString() {
-      return "_PointAtTime(" + dart.str(this.point) + " at " + dart.str(this.time) + ")";
-    }
-  };
-  (velocity_tracker._PointAtTime.new = function(point, time) {
-    this[point$] = point;
-    this[time$] = time;
-    if (!(point !== null)) dart.assertFailed(null, I[0], 126, 14, "point != null");
-    if (!(time !== null)) dart.assertFailed(null, I[0], 127, 14, "time != null");
-    ;
-  }).prototype = velocity_tracker._PointAtTime.prototype;
-  dart.addTypeTests(velocity_tracker._PointAtTime);
-  dart.addTypeCaches(velocity_tracker._PointAtTime);
-  dart.setLibraryUri(velocity_tracker._PointAtTime, I[1]);
-  dart.setFieldSignature(velocity_tracker._PointAtTime, () => ({
-    __proto__: dart.getFields(velocity_tracker._PointAtTime.__proto__),
-    time: dart.finalFieldType(core.Duration),
-    point: dart.finalFieldType(ui.Offset)
-  }));
-  dart.defineExtensionMethods(velocity_tracker._PointAtTime, ['toString']);
-  var kind$ = dart.privateName(velocity_tracker, "VelocityTracker.kind");
-  var _name = dart.privateName(ui, "_name");
-  var _samples = dart.privateName(velocity_tracker, "_samples");
-  var _index = dart.privateName(velocity_tracker, "_index");
-  velocity_tracker.VelocityTracker = class VelocityTracker extends core.Object {
-    get kind() {
-      return this[kind$];
-    }
-    set kind(value) {
-      super.kind = value;
-    }
-    addPosition(time, position) {
-      this[_index] = this[_index] + 1;
-      if (this[_index] === 20) this[_index] = 0;
-      this[_samples][$_set](this[_index], new velocity_tracker._PointAtTime.new(position, time));
-    }
-    getVelocityEstimate() {
-      let x = T.JSArrayOfdouble().of([]);
-      let y = T.JSArrayOfdouble().of([]);
-      let w = T.JSArrayOfdouble().of([]);
-      let time = T.JSArrayOfdouble().of([]);
-      let sampleCount = 0;
-      let index = this[_index];
-      let newestSample = this[_samples][$_get](index);
-      if (newestSample == null) return null;
-      let previousSample = newestSample;
-      let oldestSample = newestSample;
-      do {
-        let sample = this[_samples][$_get](index);
-        if (sample == null) break;
-        let age = newestSample.time['-'](sample.time).inMicroseconds[$toDouble]() / 1000;
-        let delta = sample.time['-'](previousSample.time).inMicroseconds[$abs]()[$toDouble]() / 1000;
-        previousSample = sample;
-        if (age > 100 || delta > 40) break;
-        oldestSample = sample;
-        let position = sample.point;
-        x[$add](position.dx);
-        y[$add](position.dy);
-        w[$add](1.0);
-        time[$add](-age);
-        index = (index === 0 ? 20 : index) - 1;
-        sampleCount = sampleCount + 1;
-      } while (sampleCount < 20);
-      if (sampleCount >= 3) {
-        let xSolver = new lsq_solver.LeastSquaresSolver.new(time, x, w);
-        let xFit = xSolver.solve(2);
-        if (xFit != null) {
-          let ySolver = new lsq_solver.LeastSquaresSolver.new(time, y, w);
-          let yFit = ySolver.solve(2);
-          if (yFit != null) {
-            return new velocity_tracker.VelocityEstimate.new({pixelsPerSecond: new ui.Offset.new(xFit.coefficients[$_get](1) * 1000, yFit.coefficients[$_get](1) * 1000), confidence: xFit.confidence * yFit.confidence, duration: newestSample.time['-'](oldestSample.time), offset: newestSample.point['-'](oldestSample.point)});
-          }
-        }
-      }
-      return new velocity_tracker.VelocityEstimate.new({pixelsPerSecond: ui.Offset.zero, confidence: 1.0, duration: newestSample.time['-'](oldestSample.time), offset: newestSample.point['-'](oldestSample.point)});
-    }
-    getVelocity() {
-      let estimate = this.getVelocityEstimate();
-      if (estimate == null || estimate.pixelsPerSecond._equals(ui.Offset.zero)) return velocity_tracker.Velocity.zero;
-      return new velocity_tracker.Velocity.new({pixelsPerSecond: estimate.pixelsPerSecond});
-    }
-  };
-  (velocity_tracker.VelocityTracker.new = function(kind = C[2] || CT.C2) {
-    this[_samples] = T.ListOf_PointAtTimeN().filled(20, null, {growable: false});
-    this[_index] = 0;
-    this[kind$] = kind;
-    ;
-  }).prototype = velocity_tracker.VelocityTracker.prototype;
-  (velocity_tracker.VelocityTracker.withKind = function(kind) {
-    this[_samples] = T.ListOf_PointAtTimeN().filled(20, null, {growable: false});
-    this[_index] = 0;
-    this[kind$] = kind;
-    ;
-  }).prototype = velocity_tracker.VelocityTracker.prototype;
-  dart.addTypeTests(velocity_tracker.VelocityTracker);
-  dart.addTypeCaches(velocity_tracker.VelocityTracker);
-  dart.setMethodSignature(velocity_tracker.VelocityTracker, () => ({
-    __proto__: dart.getMethods(velocity_tracker.VelocityTracker.__proto__),
-    addPosition: dart.fnType(dart.void, [core.Duration, ui.Offset]),
-    getVelocityEstimate: dart.fnType(dart.nullable(velocity_tracker.VelocityEstimate), []),
-    getVelocity: dart.fnType(velocity_tracker.Velocity, [])
-  }));
-  dart.setLibraryUri(velocity_tracker.VelocityTracker, I[1]);
-  dart.setFieldSignature(velocity_tracker.VelocityTracker, () => ({
-    __proto__: dart.getFields(velocity_tracker.VelocityTracker.__proto__),
-    kind: dart.finalFieldType(ui.PointerDeviceKind),
-    [_samples]: dart.finalFieldType(core.List$(dart.nullable(velocity_tracker._PointAtTime))),
-    [_index]: dart.fieldType(core.int)
-  }));
-  dart.defineLazy(velocity_tracker.VelocityTracker, {
-    /*velocity_tracker.VelocityTracker._assumePointerMoveStoppedMilliseconds*/get _assumePointerMoveStoppedMilliseconds() {
-      return 40;
-    },
-    /*velocity_tracker.VelocityTracker._historySize*/get _historySize() {
-      return 20;
-    },
-    /*velocity_tracker.VelocityTracker._horizonMilliseconds*/get _horizonMilliseconds() {
-      return 100;
-    },
-    /*velocity_tracker.VelocityTracker._minSampleSize*/get _minSampleSize() {
-      return 3;
-    }
-  }, false);
-  var _touchSamples = dart.privateName(velocity_tracker, "_touchSamples");
-  var _previousVelocityAt = dart.privateName(velocity_tracker, "_previousVelocityAt");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  velocity_tracker.IOSScrollViewFlingVelocityTracker = class IOSScrollViewFlingVelocityTracker extends velocity_tracker.VelocityTracker {
-    addPosition(time, position) {
-      if (!dart.fn(() => {
-        let previousPoint = this[_touchSamples][$_get](this[_index]);
-        if (previousPoint == null || previousPoint.time['<='](time)) return true;
-        dart.throw(assertions.FlutterError.new("The position being added (" + dart.str(position) + ") has a smaller timestamp (" + dart.str(time) + ") " + "than its predecessor: " + dart.str(previousPoint) + "."));
-      }, T.VoidTobool())()) dart.assertFailed(null, I[0], 299, 12, "() {\r\n      final _PointAtTime? previousPoint = _touchSamples[_index];\r\n      if (previousPoint == null || previousPoint.time <= time)\r\n        return true;\r\n      throw FlutterError(\r\n        'The position being added ($position) has a smaller timestamp ($time) '\r\n        'than its predecessor: $previousPoint.',\r\n      );\r\n    }()");
-      this[_index] = (this[_index] + 1)[$modulo](20);
-      this[_touchSamples][$_set](this[_index], new velocity_tracker._PointAtTime.new(position, time));
-    }
-    [_previousVelocityAt](index) {
-      let endIndex = (this[_index] + index)[$modulo](20);
-      let startIndex = (this[_index] + index - 1)[$modulo](20);
-      let end = this[_touchSamples][$_get](endIndex);
-      let start = this[_touchSamples][$_get](startIndex);
-      if (end == null || start == null) {
-        return ui.Offset.zero;
-      }
-      let dt = end.time['-'](start.time).inMicroseconds;
-      if (!(dt >= 0)) dart.assertFailed(null, I[0], 326, 12, "dt >= 0");
-      return dt > 0 ? end.point['-'](start.point)['*'](1000.0)['/'](dt[$toDouble]() / 1000) : ui.Offset.zero;
-    }
-    getVelocityEstimate() {
-      let estimatedVelocity = this[_previousVelocityAt](-2)['*'](0.6)['+'](this[_previousVelocityAt](-1)['*'](0.35))['+'](this[_previousVelocityAt](0)['*'](0.05));
-      let newestSample = this[_touchSamples][$_get](this[_index]);
-      let oldestNonNullSample = null;
-      for (let i = 1; i <= 20; i = i + 1) {
-        oldestNonNullSample = this[_touchSamples][$_get]((this[_index] + i)[$modulo](20));
-        if (oldestNonNullSample != null) break;
-      }
-      if (oldestNonNullSample == null || newestSample == null) {
-        if (!false) dart.assertFailed("There must be at least 1 point in _touchSamples: " + dart.str(this[_touchSamples]), I[0], 356, 14, "false");
-        return C[3] || CT.C3;
-      } else {
-        return new velocity_tracker.VelocityEstimate.new({pixelsPerSecond: estimatedVelocity, confidence: 1.0, duration: newestSample.time['-'](oldestNonNullSample.time), offset: newestSample.point['-'](oldestNonNullSample.point)});
-      }
-    }
-  };
-  (velocity_tracker.IOSScrollViewFlingVelocityTracker.new = function(kind) {
-    this[_touchSamples] = T.ListOf_PointAtTimeN().filled(20, null, {growable: false});
-    velocity_tracker.IOSScrollViewFlingVelocityTracker.__proto__.withKind.call(this, kind);
-    ;
-  }).prototype = velocity_tracker.IOSScrollViewFlingVelocityTracker.prototype;
-  dart.addTypeTests(velocity_tracker.IOSScrollViewFlingVelocityTracker);
-  dart.addTypeCaches(velocity_tracker.IOSScrollViewFlingVelocityTracker);
-  dart.setMethodSignature(velocity_tracker.IOSScrollViewFlingVelocityTracker, () => ({
-    __proto__: dart.getMethods(velocity_tracker.IOSScrollViewFlingVelocityTracker.__proto__),
-    [_previousVelocityAt]: dart.fnType(ui.Offset, [core.int]),
-    getVelocityEstimate: dart.fnType(velocity_tracker.VelocityEstimate, [])
-  }));
-  dart.setLibraryUri(velocity_tracker.IOSScrollViewFlingVelocityTracker, I[1]);
-  dart.setFieldSignature(velocity_tracker.IOSScrollViewFlingVelocityTracker, () => ({
-    __proto__: dart.getFields(velocity_tracker.IOSScrollViewFlingVelocityTracker.__proto__),
-    [_touchSamples]: dart.finalFieldType(core.List$(dart.nullable(velocity_tracker._PointAtTime)))
-  }));
-  dart.defineLazy(velocity_tracker.IOSScrollViewFlingVelocityTracker, {
-    /*velocity_tracker.IOSScrollViewFlingVelocityTracker._sampleSize*/get _sampleSize() {
-      return 20;
-    }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/gestures/velocity_tracker.dart", {
-    "package:flutter/src/gestures/velocity_tracker.dart": velocity_tracker
-  }, {
-  }, '{"version":3,"sourceRoot":"","sources":["velocity_tracker.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/gestures/velocity_tracker.dart.lib.js"}');
-  // Exports:
-  return {
-    src__gestures__velocity_tracker: velocity_tracker
-  };
-}));
-
-//# sourceMappingURL=velocity_tracker.dart.lib.js.map
-=======
-        __proto__: recognizer.DragStartBehavior.prototype,
-        [_name$0]: "DragStartBehavior.start",
-        index: 1
+        __proto__: binding$.SchedulerPhase.prototype,
+        [_name$]: "SchedulerPhase.postFrameCallbacks",
+        index: 4
       });
     },
     get C5() {
-      return C[5] = dart.const({
-        __proto__: ui.Clip.prototype,
-        [_name$1]: "Clip.hardEdge",
-        index: 1
-      });
+      return C[5] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4], binding$.SchedulerPhase);
     },
     get C6() {
-      return C[6] = dart.const({
-        __proto__: scroll_physics.AlwaysScrollableScrollPhysics.prototype,
-        [ScrollPhysics_parent]: null
-      });
+      return C[6] = dart.fn(binding$.defaultSchedulingStrategy, T$.__Tobool());
     },
     get C7() {
-      return C[7] = dart.const({
-        __proto__: basic_types.AxisDirection.prototype,
-        [_name]: "AxisDirection.up",
-        index: 0
-      });
+      return C[7] = dart.fn(binding$.SchedulerBinding._taskSorter, T$._TaskEntryAnd_TaskEntryToint());
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: basic_types.AxisDirection.prototype,
-        [_name]: "AxisDirection.down",
-        index: 2
+        __proto__: ui.AppLifecycleState.prototype,
+        [_name]: "AppLifecycleState.resumed",
+        index: 0
       });
     },
     get C9() {
       return C[9] = dart.const({
-        __proto__: basic_types.AxisDirection.prototype,
-        [_name]: "AxisDirection.left",
-        index: 3
+        __proto__: ui.AppLifecycleState.prototype,
+        [_name]: "AppLifecycleState.inactive",
+        index: 1
       });
     },
     get C10() {
       return C[10] = dart.const({
-        __proto__: basic_types.AxisDirection.prototype,
-        [_name]: "AxisDirection.right",
-        index: 1
+        __proto__: ui.AppLifecycleState.prototype,
+        [_name]: "AppLifecycleState.paused",
+        index: 2
       });
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "axisDirection",
-        [_Location_column]: 9,
-        [_Location_line]: 368,
-        [_Location_file]: null
-      });
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "offset",
-        [_Location_column]: 9,
-        [_Location_line]: 369,
-        [_Location_file]: null
-      });
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "slivers",
-        [_Location_column]: 9,
-        [_Location_line]: 370,
-        [_Location_file]: null
-      });
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "clipBehavior",
-        [_Location_column]: 9,
-        [_Location_line]: 371,
-        [_Location_file]: null
-      });
-    },
-    get C12() {
-      return C[12] = dart.constList([C[13] || CT.C13, C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16], widget_inspector._Location);
     },
     get C11() {
       return C[11] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[12] || CT.C12,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 367,
-        [_Location_file]: "file:///D:/DevTools/flutter/packages/flutter/lib/src/widgets/scroll_view.dart"
-      });
-    },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "axisDirection",
-        [_Location_column]: 7,
-        [_Location_line]: 375,
-        [_Location_file]: null
-      });
-    },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "offset",
-        [_Location_column]: 7,
-        [_Location_line]: 376,
-        [_Location_file]: null
-      });
-    },
-    get C21() {
-      return C[21] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "slivers",
-        [_Location_column]: 7,
-        [_Location_line]: 377,
-        [_Location_file]: null
-      });
-    },
-    get C22() {
-      return C[22] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "cacheExtent",
-        [_Location_column]: 7,
-        [_Location_line]: 378,
-        [_Location_file]: null
-      });
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "center",
-        [_Location_column]: 7,
-        [_Location_line]: 379,
-        [_Location_file]: null
-      });
-    },
-    get C24() {
-      return C[24] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "anchor",
-        [_Location_column]: 7,
-        [_Location_line]: 380,
-        [_Location_file]: null
-      });
-    },
-    get C25() {
-      return C[25] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "clipBehavior",
-        [_Location_column]: 7,
-        [_Location_line]: 381,
-        [_Location_file]: null
-      });
-    },
-    get C18() {
-      return C[18] = dart.constList([C[19] || CT.C19, C[20] || CT.C20, C[21] || CT.C21, C[22] || CT.C22, C[23] || CT.C23, C[24] || CT.C24, C[25] || CT.C25], widget_inspector._Location);
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[18] || CT.C18,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 374,
-        [_Location_file]: "file:///D:/DevTools/flutter/packages/flutter/lib/src/widgets/scroll_view.dart"
-      });
-    },
-    get C28() {
-      return C[28] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "dragStartBehavior",
-        [_Location_column]: 7,
-        [_Location_line]: 393,
-        [_Location_file]: null
-      });
-    },
-    get C29() {
-      return C[29] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "axisDirection",
-        [_Location_column]: 7,
-        [_Location_line]: 394,
-        [_Location_file]: null
-      });
-    },
-    get C30() {
-      return C[30] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "controller",
-        [_Location_column]: 7,
-        [_Location_line]: 395,
-        [_Location_file]: null
-      });
-    },
-    get C31() {
-      return C[31] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "physics",
-        [_Location_column]: 7,
-        [_Location_line]: 396,
-        [_Location_file]: null
-      });
-    },
-    get C32() {
-      return C[32] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "scrollBehavior",
-        [_Location_column]: 7,
-        [_Location_line]: 397,
-        [_Location_file]: null
-      });
-    },
-    get C33() {
-      return C[33] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "semanticChildCount",
-        [_Location_column]: 7,
-        [_Location_line]: 398,
-        [_Location_file]: null
-      });
-    },
-    get C34() {
-      return C[34] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "restorationId",
-        [_Location_column]: 7,
-        [_Location_line]: 399,
-        [_Location_file]: null
-      });
-    },
-    get C35() {
-      return C[35] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "viewportBuilder",
-        [_Location_column]: 7,
-        [_Location_line]: 400,
-        [_Location_file]: null
-      });
-    },
-    get C27() {
-      return C[27] = dart.constList([C[28] || CT.C28, C[29] || CT.C29, C[30] || CT.C30, C[31] || CT.C31, C[32] || CT.C32, C[33] || CT.C33, C[34] || CT.C34, C[35] || CT.C35], widget_inspector._Location);
-    },
-    get C26() {
-      return C[26] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[27] || CT.C27,
-        [_Location_name]: null,
-        [_Location_column]: 35,
-        [_Location_line]: 392,
-        [_Location_file]: "file:///D:/DevTools/flutter/packages/flutter/lib/src/widgets/scroll_view.dart"
-      });
-    },
-    get C38() {
-      return C[38] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 40,
-        [_Location_line]: 405,
-        [_Location_file]: null
-      });
-    },
-    get C37() {
-      return C[37] = dart.constList([C[38] || CT.C38], widget_inspector._Location);
-    },
-    get C36() {
-      return C[36] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[37] || CT.C37,
-        [_Location_name]: null,
-        [_Location_column]: 35,
-        [_Location_line]: 405,
-        [_Location_file]: "file:///D:/DevTools/flutter/packages/flutter/lib/src/widgets/scroll_view.dart"
-      });
-    },
-    get C41() {
-      return C[41] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 410,
-        [_Location_file]: null
-      });
-    },
-    get C42() {
-      return C[42] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onNotification",
-        [_Location_column]: 9,
-        [_Location_line]: 411,
-        [_Location_file]: null
-      });
-    },
-    get C40() {
-      return C[40] = dart.constList([C[41] || CT.C41, C[42] || CT.C42], widget_inspector._Location);
-    },
-    get C39() {
-      return C[39] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[40] || CT.C40,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 409,
-        [_Location_file]: "file:///D:/DevTools/flutter/packages/flutter/lib/src/widgets/scroll_view.dart"
-      });
-    },
-    get C43() {
-      return C[43] = dart.constList([], framework.Widget);
-    },
-    get C46() {
-      return C[46] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 11,
-        [_Location_line]: 729,
-        [_Location_file]: null
-      });
-    },
-    get C47() {
-      return C[47] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 734,
-        [_Location_file]: null
-      });
-    },
-    get C45() {
-      return C[45] = dart.constList([C[46] || CT.C46, C[47] || CT.C47], widget_inspector._Location);
-    },
-    get C44() {
-      return C[44] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[45] || CT.C45,
-        [_Location_name]: null,
-        [_Location_column]: 18,
-        [_Location_line]: 728,
-        [_Location_file]: "file:///D:/DevTools/flutter/packages/flutter/lib/src/widgets/scroll_view.dart"
-      });
-    },
-    get C50() {
-      return C[50] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 30,
-        [_Location_line]: 740,
-        [_Location_file]: null
-      });
-    },
-    get C51() {
-      return C[51] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "sliver",
-        [_Location_column]: 57,
-        [_Location_line]: 740,
-        [_Location_file]: null
-      });
-    },
-    get C49() {
-      return C[49] = dart.constList([C[50] || CT.C50, C[51] || CT.C51], widget_inspector._Location);
-    },
-    get C48() {
-      return C[48] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[49] || CT.C49,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 740,
-        [_Location_file]: "file:///D:/DevTools/flutter/packages/flutter/lib/src/widgets/scroll_view.dart"
-      });
-    },
-    get C54() {
-      return C[54] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "delegate",
-        [_Location_column]: 9,
-        [_Location_line]: 1474,
-        [_Location_file]: null
-      });
-    },
-    get C55() {
-      return C[55] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "itemExtent",
-        [_Location_column]: 9,
-        [_Location_line]: 1475,
-        [_Location_file]: null
-      });
-    },
-    get C53() {
-      return C[53] = dart.constList([C[54] || CT.C54, C[55] || CT.C55], widget_inspector._Location);
-    },
-    get C52() {
-      return C[52] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[53] || CT.C53,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 1473,
-        [_Location_file]: "file:///D:/DevTools/flutter/packages/flutter/lib/src/widgets/scroll_view.dart"
-      });
-    },
-    get C58() {
-      return C[58] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "delegate",
-        [_Location_column]: 23,
-        [_Location_line]: 1478,
-        [_Location_file]: null
-      });
-    },
-    get C57() {
-      return C[57] = dart.constList([C[58] || CT.C58], widget_inspector._Location);
-    },
-    get C56() {
-      return C[56] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[57] || CT.C57,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 1478,
-        [_Location_file]: "file:///D:/DevTools/flutter/packages/flutter/lib/src/widgets/scroll_view.dart"
-      });
-    },
-    get C61() {
-      return C[61] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "delegate",
-        [_Location_column]: 7,
-        [_Location_line]: 2024,
-        [_Location_file]: null
-      });
-    },
-    get C62() {
-      return C[62] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "gridDelegate",
-        [_Location_column]: 7,
-        [_Location_line]: 2025,
-        [_Location_file]: null
-      });
-    },
-    get C60() {
-      return C[60] = dart.constList([C[61] || CT.C61, C[62] || CT.C62], widget_inspector._Location);
-    },
-    get C59() {
-      return C[59] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[60] || CT.C60,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 2023,
-        [_Location_file]: "file:///D:/DevTools/flutter/packages/flutter/lib/src/widgets/scroll_view.dart"
+        __proto__: ui.AppLifecycleState.prototype,
+        [_name]: "AppLifecycleState.detached",
+        index: 3
       });
     }
   }, false);
-  var C = Array(63).fill(void 0);
+  var C = Array(12).fill(void 0);
   var I = [
-    "package:flutter/src/widgets/scroll_view.dart",
-    "file:///D:/DevTools/flutter/packages/flutter/lib/src/widgets/scroll_view.dart"
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/scheduler/binding.dart",
+    "package:flutter/src/scheduler/binding.dart"
   ];
-  var _name$ = dart.privateName(scroll_view, "_name");
-  scroll_view.ScrollViewKeyboardDismissBehavior = class ScrollViewKeyboardDismissBehavior extends core.Object {
+  var ___TaskEntry_debugStack = dart.privateName(binding$, "_#_TaskEntry#debugStack");
+  const _is__TaskEntry_default = Symbol('_is__TaskEntry_default');
+  binding$._TaskEntry$ = dart.generic(T => {
+    var CompleterOfT = () => (CompleterOfT = dart.constFn(async.Completer$(T)))();
+    class _TaskEntry extends core.Object {
+      get debugStack() {
+        let t0;
+        t0 = this[___TaskEntry_debugStack];
+        return t0 == null ? dart.throw(new _internal.LateError.fieldNI("debugStack")) : t0;
+      }
+      set debugStack(t0) {
+        this[___TaskEntry_debugStack] = t0;
+      }
+      run() {
+        let t1;
+        if (!false) {
+          developer.Timeline.timeSync(core.Null, (t1 = this.debugLabel, t1 == null ? "Scheduled Task" : t1), dart.fn(() => {
+            this.completer.complete(this.task());
+          }, T$.VoidToNull()), {flow: this.flow != null ? developer.Flow.step(dart.nullCheck(this.flow).id) : null});
+        } else {
+          this.completer.complete(this.task());
+        }
+      }
+    }
+    (_TaskEntry.new = function(task, priority, debugLabel, flow) {
+      this[___TaskEntry_debugStack] = null;
+      this.completer = CompleterOfT().new();
+      this.task = task;
+      this.priority = priority;
+      this.debugLabel = debugLabel;
+      this.flow = flow;
+      if (!dart.fn(() => {
+        this.debugStack = core.StackTrace.current;
+        return true;
+      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 62, 12, "() {\r\n      debugStack = StackTrace.current;\r\n      return true;\r\n    }()");
+    }).prototype = _TaskEntry.prototype;
+    dart.addTypeTests(_TaskEntry);
+    _TaskEntry.prototype[_is__TaskEntry_default] = true;
+    dart.addTypeCaches(_TaskEntry);
+    dart.setMethodSignature(_TaskEntry, () => ({
+      __proto__: dart.getMethods(_TaskEntry.__proto__),
+      run: dart.fnType(dart.void, [])
+    }));
+    dart.setGetterSignature(_TaskEntry, () => ({
+      __proto__: dart.getGetters(_TaskEntry.__proto__),
+      debugStack: core.StackTrace
+    }));
+    dart.setSetterSignature(_TaskEntry, () => ({
+      __proto__: dart.getSetters(_TaskEntry.__proto__),
+      debugStack: core.StackTrace
+    }));
+    dart.setLibraryUri(_TaskEntry, I[1]);
+    dart.setFieldSignature(_TaskEntry, () => ({
+      __proto__: dart.getFields(_TaskEntry.__proto__),
+      task: dart.finalFieldType(dart.fnType(T, [])),
+      priority: dart.finalFieldType(core.int),
+      debugLabel: dart.finalFieldType(dart.nullable(core.String)),
+      flow: dart.finalFieldType(dart.nullable(developer.Flow)),
+      [___TaskEntry_debugStack]: dart.fieldType(dart.nullable(core.StackTrace)),
+      completer: dart.finalFieldType(async.Completer$(T))
+    }));
+    return _TaskEntry;
+  });
+  binding$._TaskEntry = binding$._TaskEntry$();
+  dart.addTypeTests(binding$._TaskEntry, _is__TaskEntry_default);
+  binding$._FrameCallbackEntry = class _FrameCallbackEntry extends core.Object {};
+  (binding$._FrameCallbackEntry.new = function(callback, opts) {
+    let rescheduling = opts && 'rescheduling' in opts ? opts.rescheduling : false;
+    this.debugStack = null;
+    this.callback = callback;
+    if (!dart.fn(() => {
+      if (rescheduling) {
+        if (!dart.fn(() => {
+          if (binding$._FrameCallbackEntry.debugCurrentCallbackStack == null) {
+            dart.throw(new assertions.FlutterError.fromParts(T$.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("scheduleFrameCallback called with rescheduling true, but no callback is in scope."), new assertions.ErrorDescription.new("The \"rescheduling\" argument should only be set to true if the " + "callback is being reregistered from within the callback itself, " + "and only then if the callback itself is entirely synchronous."), new assertions.ErrorHint.new("If this is the initial registration of the callback, or if the " + "callback is asynchronous, then do not use the \"rescheduling\" " + "argument.")])));
+          }
+          return true;
+        }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 94, 16, "() {\r\n          if (debugCurrentCallbackStack == null) {\r\n            throw FlutterError.fromParts(<DiagnosticsNode>[\r\n              ErrorSummary('scheduleFrameCallback called with rescheduling true, but no callback is in scope.'),\r\n              ErrorDescription(\r\n                'The \"rescheduling\" argument should only be set to true if the '\r\n                'callback is being reregistered from within the callback itself, '\r\n                'and only then if the callback itself is entirely synchronous.',\r\n              ),\r\n              ErrorHint(\r\n                'If this is the initial registration of the callback, or if the '\r\n                'callback is asynchronous, then do not use the \"rescheduling\" '\r\n                'argument.',\r\n              ),\r\n            ]);\r\n          }\r\n          return true;\r\n        }()");
+        this.debugStack = binding$._FrameCallbackEntry.debugCurrentCallbackStack;
+      } else {
+        this.debugStack = core.StackTrace.current;
+      }
+      return true;
+    }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 92, 12, "() {\r\n      if (rescheduling) {\r\n        assert(() {\r\n          if (debugCurrentCallbackStack == null) {\r\n            throw FlutterError.fromParts(<DiagnosticsNode>[\r\n              ErrorSummary('scheduleFrameCallback called with rescheduling true, but no callback is in scope.'),\r\n              ErrorDescription(\r\n                'The \"rescheduling\" argument should only be set to true if the '\r\n                'callback is being reregistered from within the callback itself, '\r\n                'and only then if the callback itself is entirely synchronous.',\r\n              ),\r\n              ErrorHint(\r\n                'If this is the initial registration of the callback, or if the '\r\n                'callback is asynchronous, then do not use the \"rescheduling\" '\r\n                'argument.',\r\n              ),\r\n            ]);\r\n          }\r\n          return true;\r\n        }());\r\n        debugStack = debugCurrentCallbackStack;\r\n      } else {\r\n        // TODO(ianh): trim the frames from this library, so that the call to scheduleFrameCallback is the top one\r\n        debugStack = StackTrace.current;\r\n      }\r\n      return true;\r\n    }()");
+  }).prototype = binding$._FrameCallbackEntry.prototype;
+  dart.addTypeTests(binding$._FrameCallbackEntry);
+  dart.addTypeCaches(binding$._FrameCallbackEntry);
+  dart.setLibraryUri(binding$._FrameCallbackEntry, I[1]);
+  dart.setFieldSignature(binding$._FrameCallbackEntry, () => ({
+    __proto__: dart.getFields(binding$._FrameCallbackEntry.__proto__),
+    callback: dart.finalFieldType(dart.fnType(dart.void, [core.Duration])),
+    debugStack: dart.fieldType(dart.nullable(core.StackTrace))
+  }));
+  dart.defineLazy(binding$._FrameCallbackEntry, {
+    /*binding$._FrameCallbackEntry.debugCurrentCallbackStack*/get debugCurrentCallbackStack() {
+      return null;
+    },
+    set debugCurrentCallbackStack(_) {}
+  }, false);
+  var _name$ = dart.privateName(binding$, "_name");
+  binding$.SchedulerPhase = class SchedulerPhase extends core.Object {
     toString() {
       return this[_name$];
     }
   };
-  (scroll_view.ScrollViewKeyboardDismissBehavior.new = function(index, _name) {
+  (binding$.SchedulerPhase.new = function(index, _name) {
     this.index = index;
     this[_name$] = _name;
     ;
-  }).prototype = scroll_view.ScrollViewKeyboardDismissBehavior.prototype;
-  dart.addTypeTests(scroll_view.ScrollViewKeyboardDismissBehavior);
-  dart.addTypeCaches(scroll_view.ScrollViewKeyboardDismissBehavior);
-  dart.setLibraryUri(scroll_view.ScrollViewKeyboardDismissBehavior, I[0]);
-  dart.setFieldSignature(scroll_view.ScrollViewKeyboardDismissBehavior, () => ({
-    __proto__: dart.getFields(scroll_view.ScrollViewKeyboardDismissBehavior.__proto__),
+  }).prototype = binding$.SchedulerPhase.prototype;
+  dart.addTypeTests(binding$.SchedulerPhase);
+  dart.addTypeCaches(binding$.SchedulerPhase);
+  dart.setLibraryUri(binding$.SchedulerPhase, I[1]);
+  dart.setFieldSignature(binding$.SchedulerPhase, () => ({
+    __proto__: dart.getFields(binding$.SchedulerPhase.__proto__),
     index: dart.finalFieldType(core.int),
     [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.defineExtensionMethods(scroll_view.ScrollViewKeyboardDismissBehavior, ['toString']);
-  scroll_view.ScrollViewKeyboardDismissBehavior.manual = C[0] || CT.C0;
-  scroll_view.ScrollViewKeyboardDismissBehavior.onDrag = C[1] || CT.C1;
-  scroll_view.ScrollViewKeyboardDismissBehavior.values = C[2] || CT.C2;
-  var scrollDirection$ = dart.privateName(scroll_view, "ScrollView.scrollDirection");
-  var reverse$ = dart.privateName(scroll_view, "ScrollView.reverse");
-  var controller$ = dart.privateName(scroll_view, "ScrollView.controller");
-  var primary$ = dart.privateName(scroll_view, "ScrollView.primary");
-  var physics$ = dart.privateName(scroll_view, "ScrollView.physics");
-  var scrollBehavior$ = dart.privateName(scroll_view, "ScrollView.scrollBehavior");
-  var shrinkWrap$ = dart.privateName(scroll_view, "ScrollView.shrinkWrap");
-  var center$ = dart.privateName(scroll_view, "ScrollView.center");
-  var anchor$ = dart.privateName(scroll_view, "ScrollView.anchor");
-  var cacheExtent$ = dart.privateName(scroll_view, "ScrollView.cacheExtent");
-  var semanticChildCount$ = dart.privateName(scroll_view, "ScrollView.semanticChildCount");
-  var dragStartBehavior$ = dart.privateName(scroll_view, "ScrollView.dragStartBehavior");
-  var keyboardDismissBehavior$ = dart.privateName(scroll_view, "ScrollView.keyboardDismissBehavior");
-  var restorationId$ = dart.privateName(scroll_view, "ScrollView.restorationId");
-  var clipBehavior$ = dart.privateName(scroll_view, "ScrollView.clipBehavior");
-  var _name = dart.privateName(basic_types, "_name");
-  var _name$0 = dart.privateName(recognizer, "_name");
-  var _name$1 = dart.privateName(ui, "_name");
-  var ScrollPhysics_parent = dart.privateName(scroll_physics, "ScrollPhysics.parent");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  scroll_view.ScrollView = class ScrollView extends framework.StatelessWidget {
-    get scrollDirection() {
-      return this[scrollDirection$];
+  dart.defineExtensionMethods(binding$.SchedulerPhase, ['toString']);
+  binding$.SchedulerPhase.idle = C[0] || CT.C0;
+  binding$.SchedulerPhase.transientCallbacks = C[1] || CT.C1;
+  binding$.SchedulerPhase.midFrameMicrotasks = C[2] || CT.C2;
+  binding$.SchedulerPhase.persistentCallbacks = C[3] || CT.C3;
+  binding$.SchedulerPhase.postFrameCallbacks = C[4] || CT.C4;
+  binding$.SchedulerPhase.values = C[5] || CT.C5;
+  var schedulingStrategy = dart.privateName(binding$, "SchedulerBinding.schedulingStrategy");
+  var _timingsCallbacks = dart.privateName(binding$, "_timingsCallbacks");
+  var _lifecycleState = dart.privateName(binding$, "_lifecycleState");
+  var _taskQueue = dart.privateName(binding$, "_taskQueue");
+  var _hasRequestedAnEventLoopCallback = dart.privateName(binding$, "_hasRequestedAnEventLoopCallback");
+  var _nextFrameCallbackId = dart.privateName(binding$, "_nextFrameCallbackId");
+  var _transientCallbacks = dart.privateName(binding$, "_transientCallbacks");
+  var _removedIds = dart.privateName(binding$, "_removedIds");
+  var _persistentCallbacks = dart.privateName(binding$, "_persistentCallbacks");
+  var _postFrameCallbacks = dart.privateName(binding$, "_postFrameCallbacks");
+  var _nextFrameCompleter = dart.privateName(binding$, "_nextFrameCompleter");
+  var _hasScheduledFrame = dart.privateName(binding$, "_hasScheduledFrame");
+  var _schedulerPhase = dart.privateName(binding$, "_schedulerPhase");
+  var _framesEnabled = dart.privateName(binding$, "_framesEnabled");
+  var _warmUpFrame = dart.privateName(binding$, "_warmUpFrame");
+  var _firstRawTimeStampInEpoch = dart.privateName(binding$, "_firstRawTimeStampInEpoch");
+  var _epochStart = dart.privateName(binding$, "_epochStart");
+  var _lastRawTimeStamp = dart.privateName(binding$, "_lastRawTimeStamp");
+  var _currentFrameTimeStamp = dart.privateName(binding$, "_currentFrameTimeStamp");
+  var _debugFrameNumber = dart.privateName(binding$, "_debugFrameNumber");
+  var _debugBanner = dart.privateName(binding$, "_debugBanner");
+  var _rescheduleAfterWarmUpFrame = dart.privateName(binding$, "_rescheduleAfterWarmUpFrame");
+  var _profileFramePostEvent = dart.privateName(binding$, "_profileFramePostEvent");
+  var _executeTimingsCallbacks = dart.privateName(binding$, "_executeTimingsCallbacks");
+  var _setFramesEnabledState = dart.privateName(binding$, "_setFramesEnabledState");
+  var _name = dart.privateName(ui, "_name");
+  var _ensureEventLoopCallback = dart.privateName(binding$, "_ensureEventLoopCallback");
+  var _runTasks = dart.privateName(binding$, "_runTasks");
+  var _handleBeginFrame = dart.privateName(binding$, "_handleBeginFrame");
+  var _handleDrawFrame = dart.privateName(binding$, "_handleDrawFrame");
+  var _adjustForEpoch = dart.privateName(binding$, "_adjustForEpoch");
+  var _invokeFrameCallback = dart.privateName(binding$, "_invokeFrameCallback");
+  binding$.SchedulerBinding = class SchedulerBinding extends binding.BindingBase {
+    static get instance() {
+      return binding$.SchedulerBinding._instance;
     }
-    set scrollDirection(value) {
-      super.scrollDirection = value;
+    static _taskSorter(e1, e2) {
+      return -e1.priority[$compareTo](e2.priority);
     }
-    get reverse() {
-      return this[reverse$];
-    }
-    set reverse(value) {
-      super.reverse = value;
-    }
-    get controller() {
-      return this[controller$];
-    }
-    set controller(value) {
-      super.controller = value;
-    }
-    get primary() {
-      return this[primary$];
-    }
-    set primary(value) {
-      super.primary = value;
-    }
-    get physics() {
-      return this[physics$];
-    }
-    set physics(value) {
-      super.physics = value;
-    }
-    get scrollBehavior() {
-      return this[scrollBehavior$];
-    }
-    set scrollBehavior(value) {
-      super.scrollBehavior = value;
-    }
-    get shrinkWrap() {
-      return this[shrinkWrap$];
-    }
-    set shrinkWrap(value) {
-      super.shrinkWrap = value;
-    }
-    get center() {
-      return this[center$];
-    }
-    set center(value) {
-      super.center = value;
-    }
-    get anchor() {
-      return this[anchor$];
-    }
-    set anchor(value) {
-      super.anchor = value;
-    }
-    get cacheExtent() {
-      return this[cacheExtent$];
-    }
-    set cacheExtent(value) {
-      super.cacheExtent = value;
-    }
-    get semanticChildCount() {
-      return this[semanticChildCount$];
-    }
-    set semanticChildCount(value) {
-      super.semanticChildCount = value;
-    }
-    get dragStartBehavior() {
-      return this[dragStartBehavior$];
-    }
-    set dragStartBehavior(value) {
-      super.dragStartBehavior = value;
-    }
-    get keyboardDismissBehavior() {
-      return this[keyboardDismissBehavior$];
-    }
-    set keyboardDismissBehavior(value) {
-      super.keyboardDismissBehavior = value;
-    }
-    get restorationId() {
-      return this[restorationId$];
-    }
-    set restorationId(value) {
-      super.restorationId = value;
-    }
-    get clipBehavior() {
-      return this[clipBehavior$];
-    }
-    set clipBehavior(value) {
-      super.clipBehavior = value;
-    }
-    getDirection(context) {
-      return basic.getAxisDirectionFromAxisReverseAndDirectionality(context, this.scrollDirection, this.reverse);
-    }
-    buildViewport(context, offset, axisDirection, slivers) {
+    static debugPrintTransientCallbackRegistrationStack() {
       if (!dart.fn(() => {
-        switch (axisDirection) {
-          case C[7] || CT.C7:
-          case C[8] || CT.C8:
-          {
-            return debug.debugCheckHasDirectionality(context, {why: "to determine the cross-axis direction of the scroll view", hint: "Vertical scroll views create Viewport widgets that try to determine their cross axis direction " + "from the ambient Directionality."});
-          }
-          case C[9] || CT.C9:
-          case C[10] || CT.C10:
-          {
-            return true;
-          }
+        if (binding$._FrameCallbackEntry.debugCurrentCallbackStack != null) {
+          print.debugPrint("When the current transient callback was registered, this was the stack:");
+          print.debugPrint(assertions.FlutterError.defaultStackFilter(assertions.FlutterError.demangleStackTrace(dart.nullCheck(binding$._FrameCallbackEntry.debugCurrentCallbackStack)).toString()[$trimRight]()[$split]("\n"))[$join]("\n"));
+        } else {
+          print.debugPrint("No transient callback is currently executing.");
         }
-      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 351, 12, "() {\r\n      switch (axisDirection) {\r\n        case AxisDirection.up:\r\n        case AxisDirection.down:\r\n          return debugCheckHasDirectionality(\r\n            context,\r\n            why: 'to determine the cross-axis direction of the scroll view',\r\n            hint: 'Vertical scroll views create Viewport widgets that try to determine their cross axis direction '\r\n                  'from the ambient Directionality.',\r\n          );\r\n        case AxisDirection.left:\r\n        case AxisDirection.right:\r\n          return true;\r\n      }\r\n    }()");
-      if (this.shrinkWrap) {
-        return new viewport.ShrinkWrappingViewport.new({axisDirection: axisDirection, offset: offset, slivers: slivers, clipBehavior: this.clipBehavior, $creationLocationd_0dea112b090073317d4: C[11] || CT.C11});
-      }
-      return new viewport.Viewport.new({axisDirection: axisDirection, offset: offset, slivers: slivers, cacheExtent: this.cacheExtent, center: this.center, anchor: this.anchor, clipBehavior: this.clipBehavior, $creationLocationd_0dea112b090073317d4: C[17] || CT.C17});
+        return true;
+      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 616, 12, "() {\r\n      if (_FrameCallbackEntry.debugCurrentCallbackStack != null) {\r\n        debugPrint('When the current transient callback was registered, this was the stack:');\r\n        debugPrint(\r\n          FlutterError.defaultStackFilter(\r\n            FlutterError.demangleStackTrace(\r\n              _FrameCallbackEntry.debugCurrentCallbackStack!,\r\n            ).toString().trimRight().split('\\n'),\r\n          ).join('\\n'),\r\n        );\r\n      } else {\r\n        debugPrint('No transient callback is currently executing.');\r\n      }\r\n      return true;\r\n    }()");
     }
-    build(context) {
-      let slivers = this.buildSlivers(context);
-      let axisDirection = this.getDirection(context);
-      let scrollController = this.primary ? primary_scroll_controller.PrimaryScrollController.of(context) : this.controller;
-      let scrollable = new scrollable$.Scrollable.new({dragStartBehavior: this.dragStartBehavior, axisDirection: axisDirection, controller: scrollController, physics: this.physics, scrollBehavior: this.scrollBehavior, semanticChildCount: this.semanticChildCount, restorationId: this.restorationId, viewportBuilder: dart.fn((context, offset) => this.buildViewport(context, offset, axisDirection, slivers), T.BuildContextAndViewportOffsetToWidget()), $creationLocationd_0dea112b090073317d4: C[26] || CT.C26});
-      let scrollableResult = this.primary && scrollController != null ? new primary_scroll_controller.PrimaryScrollController.none({child: scrollable, $creationLocationd_0dea112b090073317d4: C[36] || CT.C36}) : scrollable;
-      if (this.keyboardDismissBehavior === scroll_view.ScrollViewKeyboardDismissBehavior.onDrag) {
-        return new (T.NotificationListenerOfScrollUpdateNotification()).new({child: scrollableResult, onNotification: dart.fn(notification => {
-            let focusScope = focus_scope.FocusScope.of(context);
-            if (notification.dragDetails != null && focusScope.hasFocus) {
-              focusScope.unfocus();
-            }
-            return false;
-          }, T.ScrollUpdateNotificationTobool()), $creationLocationd_0dea112b090073317d4: C[39] || CT.C39});
-      } else {
-        return scrollableResult;
-      }
-    }
-    debugFillProperties(properties) {
-      super.debugFillProperties(properties);
-      properties.add(new (T.EnumPropertyOfAxis()).new("scrollDirection", this.scrollDirection));
-      properties.add(new diagnostics.FlagProperty.new("reverse", {value: this.reverse, ifTrue: "reversed", showName: true}));
-      properties.add(new (T.DiagnosticsPropertyOfScrollController()).new("controller", this.controller, {showName: false, defaultValue: null}));
-      properties.add(new diagnostics.FlagProperty.new("primary", {value: this.primary, ifTrue: "using primary controller", showName: true}));
-      properties.add(new (T.DiagnosticsPropertyOfScrollPhysics()).new("physics", this.physics, {showName: false, defaultValue: null}));
-      properties.add(new diagnostics.FlagProperty.new("shrinkWrap", {value: this.shrinkWrap, ifTrue: "shrink-wrapping", showName: true}));
+    static _debugDescribeTimeStamp(timeStamp, buffer) {
+      if (timeStamp.inDays > 0) buffer.write(dart.str(timeStamp.inDays) + "d ");
+      if (timeStamp.inHours > 0) buffer.write(dart.str(timeStamp.inHours - timeStamp.inDays * 24) + "h ");
+      if (timeStamp.inMinutes > 0) buffer.write(dart.str(timeStamp.inMinutes - timeStamp.inHours * 60) + "m ");
+      if (timeStamp.inSeconds > 0) buffer.write(dart.str(timeStamp.inSeconds - timeStamp.inMinutes * 60) + "s ");
+      buffer.write(dart.str(timeStamp.inMilliseconds - timeStamp.inSeconds * 1000));
+      let microseconds = timeStamp.inMicroseconds - timeStamp.inMilliseconds * 1000;
+      if (microseconds > 0) buffer.write("." + microseconds[$toString]()[$padLeft](3, "0"));
+      buffer.write("ms");
     }
   };
-  (scroll_view.ScrollView.new = function(opts) {
-    let t0, t0$;
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[3] || CT.C3;
-    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let primary = opts && 'primary' in opts ? opts.primary : null;
-    let physics = opts && 'physics' in opts ? opts.physics : null;
-    let scrollBehavior = opts && 'scrollBehavior' in opts ? opts.scrollBehavior : null;
-    let shrinkWrap = opts && 'shrinkWrap' in opts ? opts.shrinkWrap : false;
-    let center = opts && 'center' in opts ? opts.center : null;
-    let anchor = opts && 'anchor' in opts ? opts.anchor : 0;
-    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : null;
-    let semanticChildCount = opts && 'semanticChildCount' in opts ? opts.semanticChildCount : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[0] || CT.C0;
-    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[5] || CT.C5;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[scrollDirection$] = scrollDirection;
-    this[reverse$] = reverse;
-    this[controller$] = controller;
-    this[scrollBehavior$] = scrollBehavior;
-    this[shrinkWrap$] = shrinkWrap;
-    this[center$] = center;
-    this[anchor$] = anchor;
-    this[cacheExtent$] = cacheExtent;
-    this[semanticChildCount$] = semanticChildCount;
-    this[dragStartBehavior$] = dragStartBehavior;
-    this[keyboardDismissBehavior$] = keyboardDismissBehavior;
-    this[restorationId$] = restorationId;
-    this[clipBehavior$] = clipBehavior;
-    if (!(scrollDirection !== null)) dart.assertFailed(null, I[1], 97, 15, "scrollDirection != null");
-    if (!(reverse !== null)) dart.assertFailed(null, I[1], 98, 15, "reverse != null");
-    if (!(shrinkWrap !== null)) dart.assertFailed(null, I[1], 99, 15, "shrinkWrap != null");
-    if (!(dragStartBehavior !== null)) dart.assertFailed(null, I[1], 100, 15, "dragStartBehavior != null");
-    if (!(clipBehavior !== null)) dart.assertFailed(null, I[1], 101, 15, "clipBehavior != null");
-    if (!!(controller != null && primary === true)) dart.assertFailed("Primary ScrollViews obtain their ScrollController via inheritance from a PrimaryScrollController widget. " + "You cannot both set primary to true and pass an explicit controller.", I[1], 102, 15, "!(controller != null && primary == true)");
-    if (!(!shrinkWrap || center == null)) dart.assertFailed(null, I[1], 106, 15, "!shrinkWrap || center == null");
-    if (!(anchor !== null)) dart.assertFailed(null, I[1], 107, 15, "anchor != null");
-    if (!(anchor >= 0.0 && anchor <= 1.0)) dart.assertFailed(null, I[1], 108, 15, "anchor >= 0.0 && anchor <= 1.0");
-    if (!(semanticChildCount == null || dart.notNull(semanticChildCount) >= 0)) dart.assertFailed(null, I[1], 109, 15, "semanticChildCount == null || semanticChildCount >= 0");
-    this[primary$] = (t0 = primary, t0 == null ? controller == null && scrollDirection === basic_types.Axis.vertical : t0);
-    this[physics$] = (t0$ = physics, t0$ == null ? primary === true || primary == null && controller == null && scrollDirection === basic_types.Axis.vertical ? C[6] || CT.C6 : null : t0$);
-    scroll_view.ScrollView.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scroll_view.ScrollView.prototype;
-  dart.addTypeTests(scroll_view.ScrollView);
-  dart.addTypeCaches(scroll_view.ScrollView);
-  dart.setMethodSignature(scroll_view.ScrollView, () => ({
-    __proto__: dart.getMethods(scroll_view.ScrollView.__proto__),
-    getDirection: dart.fnType(basic_types.AxisDirection, [framework.BuildContext]),
-    buildViewport: dart.fnType(framework.Widget, [framework.BuildContext, viewport_offset.ViewportOffset, basic_types.AxisDirection, core.List$(framework.Widget)]),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
-  }));
-  dart.setLibraryUri(scroll_view.ScrollView, I[0]);
-  dart.setFieldSignature(scroll_view.ScrollView, () => ({
-    __proto__: dart.getFields(scroll_view.ScrollView.__proto__),
-    scrollDirection: dart.finalFieldType(basic_types.Axis),
-    reverse: dart.finalFieldType(core.bool),
-    controller: dart.finalFieldType(dart.nullable(scroll_controller.ScrollController)),
-    primary: dart.finalFieldType(core.bool),
-    physics: dart.finalFieldType(dart.nullable(scroll_physics.ScrollPhysics)),
-    scrollBehavior: dart.finalFieldType(dart.nullable(scroll_configuration.ScrollBehavior)),
-    shrinkWrap: dart.finalFieldType(core.bool),
-    center: dart.finalFieldType(dart.nullable(key.Key)),
-    anchor: dart.finalFieldType(core.double),
-    cacheExtent: dart.finalFieldType(dart.nullable(core.double)),
-    semanticChildCount: dart.finalFieldType(dart.nullable(core.int)),
-    dragStartBehavior: dart.finalFieldType(recognizer.DragStartBehavior),
-    keyboardDismissBehavior: dart.finalFieldType(scroll_view.ScrollViewKeyboardDismissBehavior),
-    restorationId: dart.finalFieldType(dart.nullable(core.String)),
-    clipBehavior: dart.finalFieldType(ui.Clip)
-  }));
-  var slivers$ = dart.privateName(scroll_view, "CustomScrollView.slivers");
-  scroll_view.CustomScrollView = class CustomScrollView extends scroll_view.ScrollView {
-    get slivers() {
-      return this[slivers$];
+  binding$.SchedulerBinding[dart.mixinOn] = BindingBase => class SchedulerBinding extends BindingBase {
+    get schedulingStrategy() {
+      return this[schedulingStrategy];
     }
-    set slivers(value) {
-      super.slivers = value;
+    set schedulingStrategy(value) {
+      this[schedulingStrategy] = value;
     }
-    buildSlivers(context) {
-      return this.slivers;
+    initInstances() {
+      super.initInstances();
+      binding$.SchedulerBinding._instance = this;
+      if (!false) {
+        let frameNumber = 0;
+        this.addTimingsCallback(dart.fn(timings => {
+          for (let frameTiming of timings) {
+            frameNumber = frameNumber + 1;
+            this[_profileFramePostEvent](frameNumber, frameTiming);
+          }
+        }, T$.ListOfFrameTimingTovoid()));
+      }
     }
-  };
-  (scroll_view.CustomScrollView.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[3] || CT.C3;
-    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let primary = opts && 'primary' in opts ? opts.primary : null;
-    let physics = opts && 'physics' in opts ? opts.physics : null;
-    let scrollBehavior = opts && 'scrollBehavior' in opts ? opts.scrollBehavior : null;
-    let shrinkWrap = opts && 'shrinkWrap' in opts ? opts.shrinkWrap : false;
-    let center = opts && 'center' in opts ? opts.center : null;
-    let anchor = opts && 'anchor' in opts ? opts.anchor : 0;
-    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : null;
-    let slivers = opts && 'slivers' in opts ? opts.slivers : C[43] || CT.C43;
-    let semanticChildCount = opts && 'semanticChildCount' in opts ? opts.semanticChildCount : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[0] || CT.C0;
-    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[5] || CT.C5;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[slivers$] = slivers;
-    scroll_view.CustomScrollView.__proto__.new.call(this, {key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, scrollBehavior: scrollBehavior, shrinkWrap: shrinkWrap, center: center, anchor: anchor, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount, dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior, restorationId: restorationId, clipBehavior: clipBehavior, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scroll_view.CustomScrollView.prototype;
-  dart.addTypeTests(scroll_view.CustomScrollView);
-  dart.addTypeCaches(scroll_view.CustomScrollView);
-  dart.setMethodSignature(scroll_view.CustomScrollView, () => ({
-    __proto__: dart.getMethods(scroll_view.CustomScrollView.__proto__),
-    buildSlivers: dart.fnType(core.List$(framework.Widget), [framework.BuildContext])
-  }));
-  dart.setLibraryUri(scroll_view.CustomScrollView, I[0]);
-  dart.setFieldSignature(scroll_view.CustomScrollView, () => ({
-    __proto__: dart.getFields(scroll_view.CustomScrollView.__proto__),
-    slivers: dart.finalFieldType(core.List$(framework.Widget))
-  }));
-  var padding$ = dart.privateName(scroll_view, "BoxScrollView.padding");
-  scroll_view.BoxScrollView = class BoxScrollView extends scroll_view.ScrollView {
-    get padding() {
-      return this[padding$];
+    addTimingsCallback(callback) {
+      this[_timingsCallbacks][$add](callback);
+      if (this[_timingsCallbacks][$length] === 1) {
+        if (!(this.window.onReportTimings == null)) dart.assertFailed(null, I[0], 268, 14, "window.onReportTimings == null");
+        this.window.onReportTimings = dart.bind(this, _executeTimingsCallbacks);
+      }
+      if (!dart.equals(this.window.onReportTimings, dart.bind(this, _executeTimingsCallbacks))) dart.assertFailed(null, I[0], 271, 12, "window.onReportTimings == _executeTimingsCallbacks");
     }
-    set padding(value) {
-      super.padding = value;
+    removeTimingsCallback(callback) {
+      if (!this[_timingsCallbacks][$contains](callback)) dart.assertFailed(null, I[0], 276, 12, "_timingsCallbacks.contains(callback)");
+      this[_timingsCallbacks][$remove](callback);
+      if (this[_timingsCallbacks][$isEmpty]) {
+        this.window.onReportTimings = null;
+      }
     }
-    buildSlivers(context) {
-      let sliver = this.buildChildLayout(context);
-      let effectivePadding = this.padding;
-      if (this.padding == null) {
-        let mediaQuery = media_query.MediaQuery.maybeOf(context);
-        if (mediaQuery != null) {
-          let mediaQueryHorizontalPadding = mediaQuery.padding.copyWith({top: 0.0, bottom: 0.0});
-          let mediaQueryVerticalPadding = mediaQuery.padding.copyWith({left: 0.0, right: 0.0});
-          effectivePadding = this.scrollDirection === basic_types.Axis.vertical ? mediaQueryVerticalPadding : mediaQueryHorizontalPadding;
-          sliver = new media_query.MediaQuery.new({data: mediaQuery.copyWith({padding: this.scrollDirection === basic_types.Axis.vertical ? mediaQueryHorizontalPadding : mediaQueryVerticalPadding}), child: sliver, $creationLocationd_0dea112b090073317d4: C[44] || CT.C44});
+    [_executeTimingsCallbacks](timings) {
+      let clonedCallbacks = T$.ListOfListOfFrameTimingTovoid().from(this[_timingsCallbacks]);
+      for (let callback of clonedCallbacks) {
+        try {
+          if (this[_timingsCallbacks][$contains](callback)) {
+            callback(timings);
+          }
+        } catch (e) {
+          let exception = dart.getThrown(e);
+          let stack = dart.stackTrace(e);
+          if (core.Object.is(exception)) {
+            let collector = null;
+            if (!dart.fn(() => {
+              collector = dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new(function*() {
+                yield new (T$.DiagnosticsPropertyOfListOfFrameTimingTovoid()).new("The TimingsCallback that gets executed was", callback, {style: diagnostics.DiagnosticsTreeStyle.errorProperty});
+              }), T$.VoidToIterableOfDiagnosticsNode());
+              return true;
+            }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 293, 16, "() {\r\n          collector = () sync* {\r\n            yield DiagnosticsProperty<TimingsCallback>(\r\n              'The TimingsCallback that gets executed was',\r\n              callback,\r\n              style: DiagnosticsTreeStyle.errorProperty,\r\n            );\r\n          };\r\n          return true;\r\n        }()");
+            assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: exception, stack: stack, context: new assertions.ErrorDescription.new("while executing callbacks for FrameTiming"), informationCollector: collector}));
+          } else
+            throw e;
         }
       }
-      if (effectivePadding != null) sliver = new basic.SliverPadding.new({padding: effectivePadding, sliver: sliver, $creationLocationd_0dea112b090073317d4: C[48] || CT.C48});
-      return T.JSArrayOfWidget().of([sliver]);
     }
-    debugFillProperties(properties) {
-      super.debugFillProperties(properties);
-      properties.add(new (T.DiagnosticsPropertyOfEdgeInsetsGeometry()).new("padding", this.padding, {defaultValue: null}));
-    }
-  };
-  (scroll_view.BoxScrollView.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[3] || CT.C3;
-    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let primary = opts && 'primary' in opts ? opts.primary : null;
-    let physics = opts && 'physics' in opts ? opts.physics : null;
-    let shrinkWrap = opts && 'shrinkWrap' in opts ? opts.shrinkWrap : false;
-    let padding = opts && 'padding' in opts ? opts.padding : null;
-    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : null;
-    let semanticChildCount = opts && 'semanticChildCount' in opts ? opts.semanticChildCount : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[0] || CT.C0;
-    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[5] || CT.C5;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[padding$] = padding;
-    scroll_view.BoxScrollView.__proto__.new.call(this, {key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount, dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior, restorationId: restorationId, clipBehavior: clipBehavior, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scroll_view.BoxScrollView.prototype;
-  dart.addTypeTests(scroll_view.BoxScrollView);
-  dart.addTypeCaches(scroll_view.BoxScrollView);
-  dart.setMethodSignature(scroll_view.BoxScrollView, () => ({
-    __proto__: dart.getMethods(scroll_view.BoxScrollView.__proto__),
-    buildSlivers: dart.fnType(core.List$(framework.Widget), [framework.BuildContext])
-  }));
-  dart.setLibraryUri(scroll_view.BoxScrollView, I[0]);
-  dart.setFieldSignature(scroll_view.BoxScrollView, () => ({
-    __proto__: dart.getFields(scroll_view.BoxScrollView.__proto__),
-    padding: dart.finalFieldType(dart.nullable(edge_insets.EdgeInsetsGeometry))
-  }));
-  var itemExtent$ = dart.privateName(scroll_view, "ListView.itemExtent");
-  var childrenDelegate$ = dart.privateName(scroll_view, "ListView.childrenDelegate");
-  scroll_view.ListView = class ListView extends scroll_view.BoxScrollView {
-    get itemExtent() {
-      return this[itemExtent$];
-    }
-    set itemExtent(value) {
-      super.itemExtent = value;
-    }
-    get childrenDelegate() {
-      return this[childrenDelegate$];
-    }
-    set childrenDelegate(value) {
-      super.childrenDelegate = value;
-    }
-    buildChildLayout(context) {
-      if (this.itemExtent != null) {
-        return new sliver.SliverFixedExtentList.new({delegate: this.childrenDelegate, itemExtent: dart.nullCheck(this.itemExtent), $creationLocationd_0dea112b090073317d4: C[52] || CT.C52});
+    initServiceExtensions() {
+      super.initServiceExtensions();
+      if (!false) {
+        this.registerNumericServiceExtension({name: "timeDilation", getter: dart.fn(() => async.async(core.double, function*() {
+            return binding$.timeDilation;
+          }), T$.VoidToFutureOfdouble()), setter: dart.fn(value => async.async(dart.void, function*() {
+            binding$.timeDilation = value;
+          }), T$.doubleToFutureOfvoid())});
       }
-      return new sliver.SliverList.new({delegate: this.childrenDelegate, $creationLocationd_0dea112b090073317d4: C[56] || CT.C56});
     }
-    debugFillProperties(properties) {
-      super.debugFillProperties(properties);
-      properties.add(new diagnostics.DoubleProperty.new("itemExtent", this.itemExtent, {defaultValue: null}));
+    get lifecycleState() {
+      return this[_lifecycleState];
     }
-    static _computeActualChildCount(itemCount) {
-      return math.max(core.int, 0, itemCount * 2 - 1);
+    handleAppLifecycleStateChanged(state) {
+      if (!(state !== null)) dart.assertFailed(null, I[0], 352, 12, "state != null");
+      this[_lifecycleState] = state;
+      switch (state) {
+        case C[8] || CT.C8:
+        case C[9] || CT.C9:
+        {
+          this[_setFramesEnabledState](true);
+          break;
+        }
+        case C[10] || CT.C10:
+        case C[11] || CT.C11:
+        {
+          this[_setFramesEnabledState](false);
+          break;
+        }
+      }
     }
-  };
-  (scroll_view.ListView.new = function(opts) {
-    let t0;
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[3] || CT.C3;
-    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let primary = opts && 'primary' in opts ? opts.primary : null;
-    let physics = opts && 'physics' in opts ? opts.physics : null;
-    let shrinkWrap = opts && 'shrinkWrap' in opts ? opts.shrinkWrap : false;
-    let padding = opts && 'padding' in opts ? opts.padding : null;
-    let itemExtent = opts && 'itemExtent' in opts ? opts.itemExtent : null;
-    let addAutomaticKeepAlives = opts && 'addAutomaticKeepAlives' in opts ? opts.addAutomaticKeepAlives : true;
-    let addRepaintBoundaries = opts && 'addRepaintBoundaries' in opts ? opts.addRepaintBoundaries : true;
-    let addSemanticIndexes = opts && 'addSemanticIndexes' in opts ? opts.addSemanticIndexes : true;
-    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : null;
-    let children = opts && 'children' in opts ? opts.children : C[43] || CT.C43;
-    let semanticChildCount = opts && 'semanticChildCount' in opts ? opts.semanticChildCount : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[0] || CT.C0;
-    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[5] || CT.C5;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[itemExtent$] = itemExtent;
-    this[childrenDelegate$] = new sliver.SliverChildListDelegate.new(children, {addAutomaticKeepAlives: addAutomaticKeepAlives, addRepaintBoundaries: addRepaintBoundaries, addSemanticIndexes: addSemanticIndexes});
-    scroll_view.ListView.__proto__.new.call(this, {key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: (t0 = semanticChildCount, t0 == null ? children[$length] : t0), dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior, restorationId: restorationId, clipBehavior: clipBehavior, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scroll_view.ListView.prototype;
-  (scroll_view.ListView.builder = function(opts) {
-    let t0;
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[3] || CT.C3;
-    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let primary = opts && 'primary' in opts ? opts.primary : null;
-    let physics = opts && 'physics' in opts ? opts.physics : null;
-    let shrinkWrap = opts && 'shrinkWrap' in opts ? opts.shrinkWrap : false;
-    let padding = opts && 'padding' in opts ? opts.padding : null;
-    let itemExtent = opts && 'itemExtent' in opts ? opts.itemExtent : null;
-    let itemBuilder = opts && 'itemBuilder' in opts ? opts.itemBuilder : null;
-    let itemCount = opts && 'itemCount' in opts ? opts.itemCount : null;
-    let addAutomaticKeepAlives = opts && 'addAutomaticKeepAlives' in opts ? opts.addAutomaticKeepAlives : true;
-    let addRepaintBoundaries = opts && 'addRepaintBoundaries' in opts ? opts.addRepaintBoundaries : true;
-    let addSemanticIndexes = opts && 'addSemanticIndexes' in opts ? opts.addSemanticIndexes : true;
-    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : null;
-    let semanticChildCount = opts && 'semanticChildCount' in opts ? opts.semanticChildCount : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[0] || CT.C0;
-    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[5] || CT.C5;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[itemExtent$] = itemExtent;
-    if (!(itemCount == null || dart.notNull(itemCount) >= 0)) dart.assertFailed(null, I[1], 1192, 15, "itemCount == null || itemCount >= 0");
-    if (!(semanticChildCount == null || dart.notNull(semanticChildCount) <= dart.nullCheck(itemCount))) dart.assertFailed(null, I[1], 1193, 15, "semanticChildCount == null || semanticChildCount <= itemCount!");
-    this[childrenDelegate$] = new sliver.SliverChildBuilderDelegate.new(itemBuilder, {childCount: itemCount, addAutomaticKeepAlives: addAutomaticKeepAlives, addRepaintBoundaries: addRepaintBoundaries, addSemanticIndexes: addSemanticIndexes});
-    scroll_view.ListView.__proto__.new.call(this, {key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: (t0 = semanticChildCount, t0 == null ? itemCount : t0), dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior, restorationId: restorationId, clipBehavior: clipBehavior, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scroll_view.ListView.prototype;
-  (scroll_view.ListView.separated = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[3] || CT.C3;
-    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let primary = opts && 'primary' in opts ? opts.primary : null;
-    let physics = opts && 'physics' in opts ? opts.physics : null;
-    let shrinkWrap = opts && 'shrinkWrap' in opts ? opts.shrinkWrap : false;
-    let padding = opts && 'padding' in opts ? opts.padding : null;
-    let itemBuilder = opts && 'itemBuilder' in opts ? opts.itemBuilder : null;
-    let separatorBuilder = opts && 'separatorBuilder' in opts ? opts.separatorBuilder : null;
-    let itemCount = opts && 'itemCount' in opts ? opts.itemCount : null;
-    let addAutomaticKeepAlives = opts && 'addAutomaticKeepAlives' in opts ? opts.addAutomaticKeepAlives : true;
-    let addRepaintBoundaries = opts && 'addRepaintBoundaries' in opts ? opts.addRepaintBoundaries : true;
-    let addSemanticIndexes = opts && 'addSemanticIndexes' in opts ? opts.addSemanticIndexes : true;
-    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[0] || CT.C0;
-    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[5] || CT.C5;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    if (!(itemBuilder !== null)) dart.assertFailed(null, I[1], 1285, 15, "itemBuilder != null");
-    if (!(separatorBuilder !== null)) dart.assertFailed(null, I[1], 1286, 15, "separatorBuilder != null");
-    if (!(itemCount !== null && itemCount >= 0)) dart.assertFailed(null, I[1], 1287, 15, "itemCount != null && itemCount >= 0");
-    this[itemExtent$] = null;
-    this[childrenDelegate$] = new sliver.SliverChildBuilderDelegate.new(dart.fn((context, index) => {
-      let itemIndex = (index / 2)[$truncate]();
-      let widget = null;
-      if (index[$isEven]) {
-        widget = itemBuilder(context, itemIndex);
-      } else {
-        widget = separatorBuilder(context, itemIndex);
+    scheduleTask(T, task, priority, opts) {
+      let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
+      let flow = opts && 'flow' in opts ? opts.flow : null;
+      let isFirstTask = this[_taskQueue].isEmpty;
+      let entry = new (binding$._TaskEntry$(T)).new(task, priority.value, debugLabel, flow);
+      this[_taskQueue].add(entry);
+      if (isFirstTask && !this.locked) this[_ensureEventLoopCallback]();
+      return entry.completer.future;
+    }
+    unlocked() {
+      super.unlocked();
+      if (this[_taskQueue].isNotEmpty) this[_ensureEventLoopCallback]();
+    }
+    [_ensureEventLoopCallback]() {
+      if (!!this.locked) dart.assertFailed(null, I[0], 427, 12, "!locked");
+      if (!this[_taskQueue].isNotEmpty) dart.assertFailed(null, I[0], 428, 12, "_taskQueue.isNotEmpty");
+      if (this[_hasRequestedAnEventLoopCallback]) return;
+      this[_hasRequestedAnEventLoopCallback] = true;
+      async.Timer.run(dart.bind(this, _runTasks));
+    }
+    [_runTasks]() {
+      this[_hasRequestedAnEventLoopCallback] = false;
+      if (this.handleEventLoopCallback()) this[_ensureEventLoopCallback]();
+    }
+    handleEventLoopCallback() {
+      let t2;
+      if (this[_taskQueue].isEmpty || this.locked) return false;
+      let entry = this[_taskQueue].first;
+      if (t2 = entry.priority, this.schedulingStrategy({priority: t2, scheduler: this})) {
+        try {
+          this[_taskQueue].removeFirst();
+          entry.run();
+        } catch (e) {
+          let exception = dart.getThrown(e);
+          let exceptionStack = dart.stackTrace(e);
+          if (core.Object.is(exception)) {
+            let callbackStack = null;
+            if (!dart.fn(() => {
+              callbackStack = entry.debugStack;
+              return true;
+            }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 463, 16, "() {\r\n          callbackStack = entry.debugStack;\r\n          return true;\r\n        }()");
+            assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: exception, stack: exceptionStack, library: "scheduler library", context: new assertions.ErrorDescription.new("during a task callback"), informationCollector: callbackStack == null ? null : dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new(function*() {
+                yield new assertions.DiagnosticsStackTrace.new("\nThis exception was thrown in the context of a scheduler callback. " + "When the scheduler callback was _registered_ (as opposed to when the " + "exception was thrown), this was the stack", callbackStack);
+              }), T$.VoidToIterableOfDiagnosticsNode())}));
+          } else
+            throw e;
+        }
+        return this[_taskQueue].isNotEmpty;
+      }
+      return false;
+    }
+    get transientCallbackCount() {
+      return this[_transientCallbacks][$length];
+    }
+    scheduleFrameCallback(callback, opts) {
+      let rescheduling = opts && 'rescheduling' in opts ? opts.rescheduling : false;
+      this.scheduleFrame();
+      this[_nextFrameCallbackId] = this[_nextFrameCallbackId] + 1;
+      this[_transientCallbacks][$_set](this[_nextFrameCallbackId], new binding$._FrameCallbackEntry.new(callback, {rescheduling: rescheduling}));
+      return this[_nextFrameCallbackId];
+    }
+    cancelFrameCallbackWithId(id) {
+      if (!(id > 0)) dart.assertFailed(null, I[0], 535, 12, "id > 0");
+      this[_transientCallbacks][$remove](id);
+      this[_removedIds].add(id);
+    }
+    debugAssertNoTransientCallbacks(reason) {
+      if (!dart.fn(() => {
+        if (this.transientCallbackCount > 0) {
+          let count = this.transientCallbackCount;
+          let callbacks = T$.LinkedHashMapOfint$_FrameCallbackEntry().from(this[_transientCallbacks]);
+          assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: reason, library: "scheduler library", informationCollector: dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new(function*() {
+              if (count === 1) {
+                yield new assertions.ErrorDescription.new("There was one transient callback left. " + "The stack trace for when it was registered is as follows:");
+              } else {
+                yield new assertions.ErrorDescription.new("There were " + dart.str(count) + " transient callbacks left. " + "The stack traces for when they were registered are as follows:");
+              }
+              for (let id of callbacks[$keys]) {
+                let entry = dart.nullCheck(callbacks[$_get](id));
+                yield new assertions.DiagnosticsStackTrace.new("── callback " + dart.str(id) + " ──", entry.debugStack, {showSeparator: false});
+              }
+            }), T$.VoidToIterableOfDiagnosticsNode())}));
+        }
+        return true;
+      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 561, 12, "() {\r\n      if (transientCallbackCount > 0) {\r\n        // We cache the values so that we can produce them later\r\n        // even if the information collector is called after\r\n        // the problem has been resolved.\r\n        final int count = transientCallbackCount;\r\n        final Map<int, _FrameCallbackEntry> callbacks = Map<int, _FrameCallbackEntry>.from(_transientCallbacks);\r\n        FlutterError.reportError(FlutterErrorDetails(\r\n          exception: reason,\r\n          library: 'scheduler library',\r\n          informationCollector: () sync* {\r\n            if (count == 1) {\r\n              // TODO(jacobr): I have added an extra line break in this case.\r\n              yield ErrorDescription(\r\n                'There was one transient callback left. '\r\n                'The stack trace for when it was registered is as follows:',\r\n              );\r\n            } else {\r\n              yield ErrorDescription(\r\n                'There were $count transient callbacks left. '\r\n                'The stack traces for when they were registered are as follows:',\r\n              );\r\n            }\r\n            for (final int id in callbacks.keys) {\r\n              final _FrameCallbackEntry entry = callbacks[id]!;\r\n              yield DiagnosticsStackTrace('── callback $id ──', entry.debugStack, showSeparator: false);\r\n            }\r\n          },\r\n        ));\r\n      }\r\n      return true;\r\n    }()");
+      return true;
+    }
+    addPersistentFrameCallback(callback) {
+      this[_persistentCallbacks][$add](callback);
+    }
+    addPostFrameCallback(callback) {
+      this[_postFrameCallbacks][$add](callback);
+    }
+    get endOfFrame() {
+      if (this[_nextFrameCompleter] == null) {
+        if (this.schedulerPhase === binding$.SchedulerPhase.idle) this.scheduleFrame();
+        this[_nextFrameCompleter] = T$.CompleterOfvoid().new();
+        this.addPostFrameCallback(dart.fn(timeStamp => {
+          dart.nullCheck(this[_nextFrameCompleter]).complete();
+          this[_nextFrameCompleter] = null;
+        }, T$.DurationTovoid()));
+      }
+      return dart.nullCheck(this[_nextFrameCompleter]).future;
+    }
+    get hasScheduledFrame() {
+      return this[_hasScheduledFrame];
+    }
+    get schedulerPhase() {
+      return this[_schedulerPhase];
+    }
+    get framesEnabled() {
+      return this[_framesEnabled];
+    }
+    [_setFramesEnabledState](enabled) {
+      if (this[_framesEnabled] === enabled) return;
+      this[_framesEnabled] = enabled;
+      if (enabled) this.scheduleFrame();
+    }
+    ensureFrameCallbacksRegistered() {
+      let t3, t3$;
+      t3 = this.window;
+      t3.onBeginFrame == null ? t3.onBeginFrame = dart.bind(this, _handleBeginFrame) : null;
+      t3$ = this.window;
+      t3$.onDrawFrame == null ? t3$.onDrawFrame = dart.bind(this, _handleDrawFrame) : null;
+    }
+    ensureVisualUpdate() {
+      switch (this.schedulerPhase) {
+        case C[0] || CT.C0:
+        case C[4] || CT.C4:
+        {
+          this.scheduleFrame();
+          return;
+        }
+        case C[1] || CT.C1:
+        case C[2] || CT.C2:
+        case C[3] || CT.C3:
+        {
+          return;
+        }
+      }
+    }
+    scheduleFrame() {
+      if (this[_hasScheduledFrame] || !this.framesEnabled) return;
+      if (!dart.fn(() => {
+        if (debug$.debugPrintScheduleFrameStacks) assertions.debugPrintStack({label: "scheduleFrame() called. Current phase is " + dart.str(this.schedulerPhase) + "."});
+        return true;
+      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 787, 12, "() {\r\n      if (debugPrintScheduleFrameStacks)\r\n        debugPrintStack(label: 'scheduleFrame() called. Current phase is $schedulerPhase.');\r\n      return true;\r\n    }()");
+      this.ensureFrameCallbacksRegistered();
+      this.window.scheduleFrame();
+      this[_hasScheduledFrame] = true;
+    }
+    scheduleForcedFrame() {
+      if (!this.framesEnabled) return;
+      if (this[_hasScheduledFrame]) return;
+      if (!dart.fn(() => {
+        if (debug$.debugPrintScheduleFrameStacks) assertions.debugPrintStack({label: "scheduleForcedFrame() called. Current phase is " + dart.str(this.schedulerPhase) + "."});
+        return true;
+      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 825, 12, "() {\r\n      if (debugPrintScheduleFrameStacks)\r\n        debugPrintStack(label: 'scheduleForcedFrame() called. Current phase is $schedulerPhase.');\r\n      return true;\r\n    }()");
+      this.window.scheduleFrame();
+      this[_hasScheduledFrame] = true;
+    }
+    scheduleWarmUpFrame() {
+      if (this[_warmUpFrame] || this.schedulerPhase !== binding$.SchedulerPhase.idle) return;
+      this[_warmUpFrame] = true;
+      developer.Timeline.startSync("Warm-up frame");
+      let hadScheduledFrame = this[_hasScheduledFrame];
+      async.Timer.run(dart.fn(() => {
+        if (!this[_warmUpFrame]) dart.assertFailed(null, I[0], 860, 14, "_warmUpFrame");
+        this.handleBeginFrame(null);
+      }, T$.VoidTovoid()));
+      async.Timer.run(dart.fn(() => {
+        if (!this[_warmUpFrame]) dart.assertFailed(null, I[0], 864, 14, "_warmUpFrame");
+        this.handleDrawFrame();
+        this.resetEpoch();
+        this[_warmUpFrame] = false;
+        if (hadScheduledFrame) this.scheduleFrame();
+      }, T$.VoidTovoid()));
+      this.lockEvents(dart.fn(() => async.async(dart.void, (function*() {
+        yield this.endOfFrame;
+        developer.Timeline.finishSync();
+      }).bind(this)), T$.VoidToFutureOfvoid()));
+    }
+    resetEpoch() {
+      this[_epochStart] = this[_adjustForEpoch](this[_lastRawTimeStamp]);
+      this[_firstRawTimeStampInEpoch] = null;
+    }
+    [_adjustForEpoch](rawTimeStamp) {
+      let rawDurationSinceEpoch = this[_firstRawTimeStampInEpoch] == null ? core.Duration.zero : rawTimeStamp['-'](dart.nullCheck(this[_firstRawTimeStampInEpoch]));
+      return new core.Duration.new({microseconds: (rawDurationSinceEpoch.inMicroseconds / binding$.timeDilation)[$round]() + this[_epochStart].inMicroseconds});
+    }
+    get currentFrameTimeStamp() {
+      if (!(this[_currentFrameTimeStamp] != null)) dart.assertFailed(null, I[0], 933, 12, "_currentFrameTimeStamp != null");
+      return dart.nullCheck(this[_currentFrameTimeStamp]);
+    }
+    get currentSystemFrameTimeStamp() {
+      if (!(this[_lastRawTimeStamp] !== null)) dart.assertFailed(null, I[0], 951, 12, "_lastRawTimeStamp != null");
+      return this[_lastRawTimeStamp];
+    }
+    [_handleBeginFrame](rawTimeStamp) {
+      if (this[_warmUpFrame]) {
+        if (!!this[_rescheduleAfterWarmUpFrame]) dart.assertFailed(null, I[0], 973, 14, "!_rescheduleAfterWarmUpFrame");
+        this[_rescheduleAfterWarmUpFrame] = true;
+        return;
+      }
+      this.handleBeginFrame(rawTimeStamp);
+    }
+    [_handleDrawFrame]() {
+      if (this[_rescheduleAfterWarmUpFrame]) {
+        this[_rescheduleAfterWarmUpFrame] = false;
+        this.addPostFrameCallback(dart.fn(timeStamp => {
+          this[_hasScheduledFrame] = false;
+          this.scheduleFrame();
+        }, T$.DurationTovoid()));
+        return;
+      }
+      this.handleDrawFrame();
+    }
+    handleBeginFrame(rawTimeStamp) {
+      let t3;
+      developer.Timeline.startSync("Frame", {arguments: debug.timelineArgumentsIndicatingLandmarkEvent});
+      this[_firstRawTimeStampInEpoch] == null ? this[_firstRawTimeStampInEpoch] = rawTimeStamp : null;
+      this[_currentFrameTimeStamp] = this[_adjustForEpoch]((t3 = rawTimeStamp, t3 == null ? this[_lastRawTimeStamp] : t3));
+      if (rawTimeStamp != null) this[_lastRawTimeStamp] = rawTimeStamp;
+      if (!dart.fn(() => {
+        this[_debugFrameNumber] = this[_debugFrameNumber] + 1;
+        if (debug$.debugPrintBeginFrameBanner || debug$.debugPrintEndFrameBanner) {
+          let frameTimeStampDescription = new core.StringBuffer.new();
+          if (rawTimeStamp != null) {
+            binding$.SchedulerBinding._debugDescribeTimeStamp(dart.nullCheck(this[_currentFrameTimeStamp]), frameTimeStampDescription);
+          } else {
+            frameTimeStampDescription.write("(warm-up frame)");
+          }
+          this[_debugBanner] = "▄▄▄▄▄▄▄▄ Frame " + this[_debugFrameNumber][$toString]()[$padRight](7) + "   " + frameTimeStampDescription.toString()[$padLeft](18) + " ▄▄▄▄▄▄▄▄";
+          if (debug$.debugPrintBeginFrameBanner) print.debugPrint(this[_debugBanner]);
+        }
+        return true;
+      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 1031, 12, "() {\r\n      _debugFrameNumber += 1;\r\n\r\n      if (debugPrintBeginFrameBanner || debugPrintEndFrameBanner) {\r\n        final StringBuffer frameTimeStampDescription = StringBuffer();\r\n        if (rawTimeStamp != null) {\r\n          _debugDescribeTimeStamp(_currentFrameTimeStamp!, frameTimeStampDescription);\r\n        } else {\r\n          frameTimeStampDescription.write('(warm-up frame)');\r\n        }\r\n        _debugBanner = '▄▄▄▄▄▄▄▄ Frame ${_debugFrameNumber.toString().padRight(7)}   ${frameTimeStampDescription.toString().padLeft(18)} ▄▄▄▄▄▄▄▄';\r\n        if (debugPrintBeginFrameBanner)\r\n          debugPrint(_debugBanner);\r\n      }\r\n      return true;\r\n    }()");
+      if (!(this.schedulerPhase === binding$.SchedulerPhase.idle)) dart.assertFailed(null, I[0], 1048, 12, "schedulerPhase == SchedulerPhase.idle");
+      this[_hasScheduledFrame] = false;
+      try {
+        developer.Timeline.startSync("Animate", {arguments: debug.timelineArgumentsIndicatingLandmarkEvent});
+        this[_schedulerPhase] = binding$.SchedulerPhase.transientCallbacks;
+        let callbacks = this[_transientCallbacks];
+        this[_transientCallbacks] = new (T$.IdentityMapOfint$_FrameCallbackEntry()).new();
+        callbacks[$forEach](dart.fn((id, callbackEntry) => {
+          if (!this[_removedIds].contains(id)) this[_invokeFrameCallback](callbackEntry.callback, dart.nullCheck(this[_currentFrameTimeStamp]), callbackEntry.debugStack);
+        }, T$.intAnd_FrameCallbackEntryTovoid()));
+        this[_removedIds].clear();
+      } finally {
+        this[_schedulerPhase] = binding$.SchedulerPhase.midFrameMicrotasks;
+      }
+    }
+    handleDrawFrame() {
+      if (!(this[_schedulerPhase] === binding$.SchedulerPhase.midFrameMicrotasks)) dart.assertFailed(null, I[0], 1076, 12, "_schedulerPhase == SchedulerPhase.midFrameMicrotasks");
+      developer.Timeline.finishSync();
+      try {
+        this[_schedulerPhase] = binding$.SchedulerPhase.persistentCallbacks;
+        for (let callback of this[_persistentCallbacks])
+          this[_invokeFrameCallback](callback, dart.nullCheck(this[_currentFrameTimeStamp]));
+        this[_schedulerPhase] = binding$.SchedulerPhase.postFrameCallbacks;
+        let localPostFrameCallbacks = T$.ListOfDurationTovoid().from(this[_postFrameCallbacks]);
+        this[_postFrameCallbacks][$clear]();
+        for (let callback of localPostFrameCallbacks)
+          this[_invokeFrameCallback](callback, dart.nullCheck(this[_currentFrameTimeStamp]));
+      } finally {
+        this[_schedulerPhase] = binding$.SchedulerPhase.idle;
+        developer.Timeline.finishSync();
         if (!dart.fn(() => {
-          if (widget === null) {
-            dart.throw(assertions.FlutterError.new("separatorBuilder cannot return null."));
-          }
+          if (debug$.debugPrintEndFrameBanner) print.debugPrint("▀"[$times](dart.nullCheck(this[_debugBanner]).length));
+          this[_debugBanner] = null;
           return true;
-        }, T.VoidTobool())()) dart.assertFailed(null, I[1], 1297, 21, "() {\r\n               if (widget == null) {\r\n                 throw FlutterError('separatorBuilder cannot return null.');\r\n               }\r\n               return true;\r\n             }()");
+        }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 1094, 14, "() {\r\n        if (debugPrintEndFrameBanner)\r\n          debugPrint('▀' * _debugBanner!.length);\r\n        _debugBanner = null;\r\n        return true;\r\n      }()");
+        this[_currentFrameTimeStamp] = null;
       }
-      return widget;
-    }, T.BuildContextAndintToWidget()), {childCount: scroll_view.ListView._computeActualChildCount(itemCount), addAutomaticKeepAlives: addAutomaticKeepAlives, addRepaintBoundaries: addRepaintBoundaries, addSemanticIndexes: addSemanticIndexes, semanticIndexCallback: dart.fn((_, index) => index[$isEven] ? (index / 2)[$truncate]() : null, T.WidgetAndintTointN())});
-    scroll_view.ListView.__proto__.new.call(this, {key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: itemCount, dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior, restorationId: restorationId, clipBehavior: clipBehavior, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scroll_view.ListView.prototype;
-  (scroll_view.ListView.custom = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[3] || CT.C3;
-    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let primary = opts && 'primary' in opts ? opts.primary : null;
-    let physics = opts && 'physics' in opts ? opts.physics : null;
-    let shrinkWrap = opts && 'shrinkWrap' in opts ? opts.shrinkWrap : false;
-    let padding = opts && 'padding' in opts ? opts.padding : null;
-    let itemExtent = opts && 'itemExtent' in opts ? opts.itemExtent : null;
-    let childrenDelegate = opts && 'childrenDelegate' in opts ? opts.childrenDelegate : null;
-    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : null;
-    let semanticChildCount = opts && 'semanticChildCount' in opts ? opts.semanticChildCount : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[0] || CT.C0;
-    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[5] || CT.C5;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[itemExtent$] = itemExtent;
-    this[childrenDelegate$] = childrenDelegate;
-    if (!(childrenDelegate !== null)) dart.assertFailed(null, I[1], 1435, 15, "childrenDelegate != null");
-    scroll_view.ListView.__proto__.new.call(this, {key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount, dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior, restorationId: restorationId, clipBehavior: clipBehavior, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scroll_view.ListView.prototype;
-  dart.addTypeTests(scroll_view.ListView);
-  dart.addTypeCaches(scroll_view.ListView);
-  dart.setMethodSignature(scroll_view.ListView, () => ({
-    __proto__: dart.getMethods(scroll_view.ListView.__proto__),
-    buildChildLayout: dart.fnType(framework.Widget, [framework.BuildContext])
-  }));
-  dart.setLibraryUri(scroll_view.ListView, I[0]);
-  dart.setFieldSignature(scroll_view.ListView, () => ({
-    __proto__: dart.getFields(scroll_view.ListView.__proto__),
-    itemExtent: dart.finalFieldType(dart.nullable(core.double)),
-    childrenDelegate: dart.finalFieldType(sliver.SliverChildDelegate)
-  }));
-  var gridDelegate$ = dart.privateName(scroll_view, "GridView.gridDelegate");
-  var childrenDelegate$0 = dart.privateName(scroll_view, "GridView.childrenDelegate");
-  scroll_view.GridView = class GridView extends scroll_view.BoxScrollView {
-    get gridDelegate() {
-      return this[gridDelegate$];
     }
-    set gridDelegate(value) {
-      super.gridDelegate = value;
+    [_profileFramePostEvent](frameNumber, frameTiming) {
+      this.postEvent("Flutter.Frame", new (T$.IdentityMapOfString$dynamic()).from(["number", frameNumber, "startTime", frameTiming.timestampInMicroseconds(ui.FramePhase.buildStart), "elapsed", frameTiming.totalSpan.inMicroseconds, "build", frameTiming.buildDuration.inMicroseconds, "raster", frameTiming.rasterDuration.inMicroseconds, "vsyncOverhead", frameTiming.vsyncOverhead.inMicroseconds]));
     }
-    get childrenDelegate() {
-      return this[childrenDelegate$0];
-    }
-    set childrenDelegate(value) {
-      super.childrenDelegate = value;
-    }
-    buildChildLayout(context) {
-      return new sliver.SliverGrid.new({delegate: this.childrenDelegate, gridDelegate: this.gridDelegate, $creationLocationd_0dea112b090073317d4: C[59] || CT.C59});
+    [_invokeFrameCallback](callback, timeStamp, callbackStack = null) {
+      if (!(callback !== null)) dart.assertFailed(null, I[0], 1137, 12, "callback != null");
+      if (!(binding$._FrameCallbackEntry.debugCurrentCallbackStack == null)) dart.assertFailed(null, I[0], 1138, 12, "_FrameCallbackEntry.debugCurrentCallbackStack == null");
+      if (!dart.fn(() => {
+        binding$._FrameCallbackEntry.debugCurrentCallbackStack = callbackStack;
+        return true;
+      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 1139, 12, "() {\r\n      _FrameCallbackEntry.debugCurrentCallbackStack = callbackStack;\r\n      return true;\r\n    }()");
+      try {
+        callback(timeStamp);
+      } catch (e) {
+        let exception = dart.getThrown(e);
+        let exceptionStack = dart.stackTrace(e);
+        if (core.Object.is(exception)) {
+          assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: exception, stack: exceptionStack, library: "scheduler library", context: new assertions.ErrorDescription.new("during a scheduler callback"), informationCollector: callbackStack == null ? null : dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new(function*() {
+              yield new assertions.DiagnosticsStackTrace.new("\nThis exception was thrown in the context of a scheduler callback. " + "When the scheduler callback was _registered_ (as opposed to when the " + "exception was thrown), this was the stack", callbackStack);
+            }), T$.VoidToIterableOfDiagnosticsNode())}));
+        } else
+          throw e;
+      }
+      if (!dart.fn(() => {
+        binding$._FrameCallbackEntry.debugCurrentCallbackStack = null;
+        return true;
+      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 1161, 12, "() {\r\n      _FrameCallbackEntry.debugCurrentCallbackStack = null;\r\n      return true;\r\n    }()");
     }
   };
-  (scroll_view.GridView.new = function(opts) {
-    let t0;
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[3] || CT.C3;
-    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let primary = opts && 'primary' in opts ? opts.primary : null;
-    let physics = opts && 'physics' in opts ? opts.physics : null;
-    let shrinkWrap = opts && 'shrinkWrap' in opts ? opts.shrinkWrap : false;
-    let padding = opts && 'padding' in opts ? opts.padding : null;
-    let gridDelegate = opts && 'gridDelegate' in opts ? opts.gridDelegate : null;
-    let addAutomaticKeepAlives = opts && 'addAutomaticKeepAlives' in opts ? opts.addAutomaticKeepAlives : true;
-    let addRepaintBoundaries = opts && 'addRepaintBoundaries' in opts ? opts.addRepaintBoundaries : true;
-    let addSemanticIndexes = opts && 'addSemanticIndexes' in opts ? opts.addSemanticIndexes : true;
-    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : null;
-    let children = opts && 'children' in opts ? opts.children : C[43] || CT.C43;
-    let semanticChildCount = opts && 'semanticChildCount' in opts ? opts.semanticChildCount : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[5] || CT.C5;
-    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[0] || CT.C0;
-    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[gridDelegate$] = gridDelegate;
-    if (!(gridDelegate !== null)) dart.assertFailed(null, I[1], 1743, 15, "gridDelegate != null");
-    this[childrenDelegate$0] = new sliver.SliverChildListDelegate.new(children, {addAutomaticKeepAlives: addAutomaticKeepAlives, addRepaintBoundaries: addRepaintBoundaries, addSemanticIndexes: addSemanticIndexes});
-    scroll_view.GridView.__proto__.new.call(this, {key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: (t0 = semanticChildCount, t0 == null ? children[$length] : t0), dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior, restorationId: restorationId, clipBehavior: clipBehavior, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scroll_view.GridView.prototype;
-  (scroll_view.GridView.builder = function(opts) {
-    let t0;
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[3] || CT.C3;
-    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let primary = opts && 'primary' in opts ? opts.primary : null;
-    let physics = opts && 'physics' in opts ? opts.physics : null;
-    let shrinkWrap = opts && 'shrinkWrap' in opts ? opts.shrinkWrap : false;
-    let padding = opts && 'padding' in opts ? opts.padding : null;
-    let gridDelegate = opts && 'gridDelegate' in opts ? opts.gridDelegate : null;
-    let itemBuilder = opts && 'itemBuilder' in opts ? opts.itemBuilder : null;
-    let itemCount = opts && 'itemCount' in opts ? opts.itemCount : null;
-    let addAutomaticKeepAlives = opts && 'addAutomaticKeepAlives' in opts ? opts.addAutomaticKeepAlives : true;
-    let addRepaintBoundaries = opts && 'addRepaintBoundaries' in opts ? opts.addRepaintBoundaries : true;
-    let addSemanticIndexes = opts && 'addSemanticIndexes' in opts ? opts.addSemanticIndexes : true;
-    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : null;
-    let semanticChildCount = opts && 'semanticChildCount' in opts ? opts.semanticChildCount : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[0] || CT.C0;
-    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[5] || CT.C5;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[gridDelegate$] = gridDelegate;
-    if (!(gridDelegate !== null)) dart.assertFailed(null, I[1], 1807, 15, "gridDelegate != null");
-    this[childrenDelegate$0] = new sliver.SliverChildBuilderDelegate.new(itemBuilder, {childCount: itemCount, addAutomaticKeepAlives: addAutomaticKeepAlives, addRepaintBoundaries: addRepaintBoundaries, addSemanticIndexes: addSemanticIndexes});
-    scroll_view.GridView.__proto__.new.call(this, {key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: (t0 = semanticChildCount, t0 == null ? itemCount : t0), dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior, restorationId: restorationId, clipBehavior: clipBehavior, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scroll_view.GridView.prototype;
-  (scroll_view.GridView.custom = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[3] || CT.C3;
-    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let primary = opts && 'primary' in opts ? opts.primary : null;
-    let physics = opts && 'physics' in opts ? opts.physics : null;
-    let shrinkWrap = opts && 'shrinkWrap' in opts ? opts.shrinkWrap : false;
-    let padding = opts && 'padding' in opts ? opts.padding : null;
-    let gridDelegate = opts && 'gridDelegate' in opts ? opts.gridDelegate : null;
-    let childrenDelegate = opts && 'childrenDelegate' in opts ? opts.childrenDelegate : null;
-    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : null;
-    let semanticChildCount = opts && 'semanticChildCount' in opts ? opts.semanticChildCount : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[0] || CT.C0;
-    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[5] || CT.C5;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[gridDelegate$] = gridDelegate;
-    this[childrenDelegate$0] = childrenDelegate;
-    if (!(gridDelegate !== null)) dart.assertFailed(null, I[1], 1856, 15, "gridDelegate != null");
-    if (!(childrenDelegate !== null)) dart.assertFailed(null, I[1], 1857, 15, "childrenDelegate != null");
-    scroll_view.GridView.__proto__.new.call(this, {key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: semanticChildCount, dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior, restorationId: restorationId, clipBehavior: clipBehavior, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scroll_view.GridView.prototype;
-  (scroll_view.GridView.count = function(opts) {
-    let t0;
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[3] || CT.C3;
-    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let primary = opts && 'primary' in opts ? opts.primary : null;
-    let physics = opts && 'physics' in opts ? opts.physics : null;
-    let shrinkWrap = opts && 'shrinkWrap' in opts ? opts.shrinkWrap : false;
-    let padding = opts && 'padding' in opts ? opts.padding : null;
-    let crossAxisCount = opts && 'crossAxisCount' in opts ? opts.crossAxisCount : null;
-    let mainAxisSpacing = opts && 'mainAxisSpacing' in opts ? opts.mainAxisSpacing : 0;
-    let crossAxisSpacing = opts && 'crossAxisSpacing' in opts ? opts.crossAxisSpacing : 0;
-    let childAspectRatio = opts && 'childAspectRatio' in opts ? opts.childAspectRatio : 1;
-    let addAutomaticKeepAlives = opts && 'addAutomaticKeepAlives' in opts ? opts.addAutomaticKeepAlives : true;
-    let addRepaintBoundaries = opts && 'addRepaintBoundaries' in opts ? opts.addRepaintBoundaries : true;
-    let addSemanticIndexes = opts && 'addSemanticIndexes' in opts ? opts.addSemanticIndexes : true;
-    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : null;
-    let children = opts && 'children' in opts ? opts.children : C[43] || CT.C43;
-    let semanticChildCount = opts && 'semanticChildCount' in opts ? opts.semanticChildCount : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[0] || CT.C0;
-    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[5] || CT.C5;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[gridDelegate$] = new sliver_grid.SliverGridDelegateWithFixedCrossAxisCount.new({crossAxisCount: crossAxisCount, mainAxisSpacing: mainAxisSpacing, crossAxisSpacing: crossAxisSpacing, childAspectRatio: childAspectRatio});
-    this[childrenDelegate$0] = new sliver.SliverChildListDelegate.new(children, {addAutomaticKeepAlives: addAutomaticKeepAlives, addRepaintBoundaries: addRepaintBoundaries, addSemanticIndexes: addSemanticIndexes});
-    scroll_view.GridView.__proto__.new.call(this, {key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: (t0 = semanticChildCount, t0 == null ? children[$length] : t0), dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior, restorationId: restorationId, clipBehavior: clipBehavior, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scroll_view.GridView.prototype;
-  (scroll_view.GridView.extent = function(opts) {
-    let t0;
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[3] || CT.C3;
-    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let primary = opts && 'primary' in opts ? opts.primary : null;
-    let physics = opts && 'physics' in opts ? opts.physics : null;
-    let shrinkWrap = opts && 'shrinkWrap' in opts ? opts.shrinkWrap : false;
-    let padding = opts && 'padding' in opts ? opts.padding : null;
-    let maxCrossAxisExtent = opts && 'maxCrossAxisExtent' in opts ? opts.maxCrossAxisExtent : null;
-    let mainAxisSpacing = opts && 'mainAxisSpacing' in opts ? opts.mainAxisSpacing : 0;
-    let crossAxisSpacing = opts && 'crossAxisSpacing' in opts ? opts.crossAxisSpacing : 0;
-    let childAspectRatio = opts && 'childAspectRatio' in opts ? opts.childAspectRatio : 1;
-    let addAutomaticKeepAlives = opts && 'addAutomaticKeepAlives' in opts ? opts.addAutomaticKeepAlives : true;
-    let addRepaintBoundaries = opts && 'addRepaintBoundaries' in opts ? opts.addRepaintBoundaries : true;
-    let addSemanticIndexes = opts && 'addSemanticIndexes' in opts ? opts.addSemanticIndexes : true;
-    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : null;
-    let children = opts && 'children' in opts ? opts.children : C[43] || CT.C43;
-    let semanticChildCount = opts && 'semanticChildCount' in opts ? opts.semanticChildCount : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[0] || CT.C0;
-    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[5] || CT.C5;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[gridDelegate$] = new sliver_grid.SliverGridDelegateWithMaxCrossAxisExtent.new({maxCrossAxisExtent: maxCrossAxisExtent, mainAxisSpacing: mainAxisSpacing, crossAxisSpacing: crossAxisSpacing, childAspectRatio: childAspectRatio});
-    this[childrenDelegate$0] = new sliver.SliverChildListDelegate.new(children, {addAutomaticKeepAlives: addAutomaticKeepAlives, addRepaintBoundaries: addRepaintBoundaries, addSemanticIndexes: addSemanticIndexes});
-    scroll_view.GridView.__proto__.new.call(this, {key: key, scrollDirection: scrollDirection, reverse: reverse, controller: controller, primary: primary, physics: physics, shrinkWrap: shrinkWrap, padding: padding, cacheExtent: cacheExtent, semanticChildCount: (t0 = semanticChildCount, t0 == null ? children[$length] : t0), dragStartBehavior: dragStartBehavior, keyboardDismissBehavior: keyboardDismissBehavior, restorationId: restorationId, clipBehavior: clipBehavior, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = scroll_view.GridView.prototype;
-  dart.addTypeTests(scroll_view.GridView);
-  dart.addTypeCaches(scroll_view.GridView);
-  dart.setMethodSignature(scroll_view.GridView, () => ({
-    __proto__: dart.getMethods(scroll_view.GridView.__proto__),
-    buildChildLayout: dart.fnType(framework.Widget, [framework.BuildContext])
+  (binding$.SchedulerBinding[dart.mixinNew] = function() {
+    this[_timingsCallbacks] = T$.JSArrayOfListOfFrameTimingTovoid().of([]);
+    this[_lifecycleState] = null;
+    this[schedulingStrategy] = C[6] || CT.C6;
+    this[_taskQueue] = new (T$.HeapPriorityQueueOf_TaskEntry()).new(C[7] || CT.C7);
+    this[_hasRequestedAnEventLoopCallback] = false;
+    this[_nextFrameCallbackId] = 0;
+    this[_transientCallbacks] = new (T$.IdentityMapOfint$_FrameCallbackEntry()).new();
+    this[_removedIds] = new (T$._IdentityHashSetOfint()).new();
+    this[_persistentCallbacks] = T$.JSArrayOfDurationTovoid().of([]);
+    this[_postFrameCallbacks] = T$.JSArrayOfDurationTovoid().of([]);
+    this[_nextFrameCompleter] = null;
+    this[_hasScheduledFrame] = false;
+    this[_schedulerPhase] = binding$.SchedulerPhase.idle;
+    this[_framesEnabled] = true;
+    this[_warmUpFrame] = false;
+    this[_firstRawTimeStampInEpoch] = null;
+    this[_epochStart] = core.Duration.zero;
+    this[_lastRawTimeStamp] = core.Duration.zero;
+    this[_currentFrameTimeStamp] = null;
+    this[_debugFrameNumber] = 0;
+    this[_debugBanner] = null;
+    this[_rescheduleAfterWarmUpFrame] = false;
+  }).prototype = binding$.SchedulerBinding.prototype;
+  dart.addTypeTests(binding$.SchedulerBinding);
+  dart.addTypeCaches(binding$.SchedulerBinding);
+  binding$.SchedulerBinding[dart.implements] = () => [binding.BindingBase];
+  dart.setMethodSignature(binding$.SchedulerBinding, () => ({
+    __proto__: dart.getMethods(binding$.SchedulerBinding.__proto__),
+    addTimingsCallback: dart.fnType(dart.void, [dart.fnType(dart.void, [core.List$(ui.FrameTiming)])]),
+    removeTimingsCallback: dart.fnType(dart.void, [dart.fnType(dart.void, [core.List$(ui.FrameTiming)])]),
+    [_executeTimingsCallbacks]: dart.fnType(dart.void, [core.List$(ui.FrameTiming)]),
+    handleAppLifecycleStateChanged: dart.fnType(dart.void, [ui.AppLifecycleState]),
+    scheduleTask: dart.gFnType(T => [async.Future$(T), [dart.fnType(T, []), priority$.Priority], {debugLabel: dart.nullable(core.String), flow: dart.nullable(developer.Flow)}, {}], T => [dart.nullable(core.Object)]),
+    [_ensureEventLoopCallback]: dart.fnType(dart.void, []),
+    [_runTasks]: dart.fnType(dart.void, []),
+    handleEventLoopCallback: dart.fnType(core.bool, []),
+    scheduleFrameCallback: dart.fnType(core.int, [dart.fnType(dart.void, [core.Duration])], {rescheduling: core.bool}, {}),
+    cancelFrameCallbackWithId: dart.fnType(dart.void, [core.int]),
+    debugAssertNoTransientCallbacks: dart.fnType(core.bool, [core.String]),
+    addPersistentFrameCallback: dart.fnType(dart.void, [dart.fnType(dart.void, [core.Duration])]),
+    addPostFrameCallback: dart.fnType(dart.void, [dart.fnType(dart.void, [core.Duration])]),
+    [_setFramesEnabledState]: dart.fnType(dart.void, [core.bool]),
+    ensureFrameCallbacksRegistered: dart.fnType(dart.void, []),
+    ensureVisualUpdate: dart.fnType(dart.void, []),
+    scheduleFrame: dart.fnType(dart.void, []),
+    scheduleForcedFrame: dart.fnType(dart.void, []),
+    scheduleWarmUpFrame: dart.fnType(dart.void, []),
+    resetEpoch: dart.fnType(dart.void, []),
+    [_adjustForEpoch]: dart.fnType(core.Duration, [core.Duration]),
+    [_handleBeginFrame]: dart.fnType(dart.void, [core.Duration]),
+    [_handleDrawFrame]: dart.fnType(dart.void, []),
+    handleBeginFrame: dart.fnType(dart.void, [dart.nullable(core.Duration)]),
+    handleDrawFrame: dart.fnType(dart.void, []),
+    [_profileFramePostEvent]: dart.fnType(dart.void, [core.int, ui.FrameTiming]),
+    [_invokeFrameCallback]: dart.fnType(dart.void, [dart.fnType(dart.void, [core.Duration]), core.Duration], [dart.nullable(core.StackTrace)])
   }));
-  dart.setLibraryUri(scroll_view.GridView, I[0]);
-  dart.setFieldSignature(scroll_view.GridView, () => ({
-    __proto__: dart.getFields(scroll_view.GridView.__proto__),
-    gridDelegate: dart.finalFieldType(sliver_grid.SliverGridDelegate),
-    childrenDelegate: dart.finalFieldType(sliver.SliverChildDelegate)
+  dart.setGetterSignature(binding$.SchedulerBinding, () => ({
+    __proto__: dart.getGetters(binding$.SchedulerBinding.__proto__),
+    lifecycleState: dart.nullable(ui.AppLifecycleState),
+    transientCallbackCount: core.int,
+    endOfFrame: async.Future$(dart.void),
+    hasScheduledFrame: core.bool,
+    schedulerPhase: binding$.SchedulerPhase,
+    framesEnabled: core.bool,
+    currentFrameTimeStamp: core.Duration,
+    currentSystemFrameTimeStamp: core.Duration
   }));
-  dart.trackLibraries("packages/flutter/src/widgets/scroll_view.dart", {
-    "package:flutter/src/widgets/scroll_view.dart": scroll_view
+  dart.setLibraryUri(binding$.SchedulerBinding, I[1]);
+  dart.setFieldSignature(binding$.SchedulerBinding, () => ({
+    __proto__: dart.getFields(binding$.SchedulerBinding.__proto__),
+    [_timingsCallbacks]: dart.finalFieldType(core.List$(dart.fnType(dart.void, [core.List$(ui.FrameTiming)]))),
+    [_lifecycleState]: dart.fieldType(dart.nullable(ui.AppLifecycleState)),
+    schedulingStrategy: dart.fieldType(dart.fnType(core.bool, [], {}, {priority: core.int, scheduler: binding$.SchedulerBinding})),
+    [_taskQueue]: dart.finalFieldType(priority_queue.PriorityQueue$(binding$._TaskEntry)),
+    [_hasRequestedAnEventLoopCallback]: dart.fieldType(core.bool),
+    [_nextFrameCallbackId]: dart.fieldType(core.int),
+    [_transientCallbacks]: dart.fieldType(core.Map$(core.int, binding$._FrameCallbackEntry)),
+    [_removedIds]: dart.finalFieldType(core.Set$(core.int)),
+    [_persistentCallbacks]: dart.finalFieldType(core.List$(dart.fnType(dart.void, [core.Duration]))),
+    [_postFrameCallbacks]: dart.finalFieldType(core.List$(dart.fnType(dart.void, [core.Duration]))),
+    [_nextFrameCompleter]: dart.fieldType(dart.nullable(async.Completer$(dart.void))),
+    [_hasScheduledFrame]: dart.fieldType(core.bool),
+    [_schedulerPhase]: dart.fieldType(binding$.SchedulerPhase),
+    [_framesEnabled]: dart.fieldType(core.bool),
+    [_warmUpFrame]: dart.fieldType(core.bool),
+    [_firstRawTimeStampInEpoch]: dart.fieldType(dart.nullable(core.Duration)),
+    [_epochStart]: dart.fieldType(core.Duration),
+    [_lastRawTimeStamp]: dart.fieldType(core.Duration),
+    [_currentFrameTimeStamp]: dart.fieldType(dart.nullable(core.Duration)),
+    [_debugFrameNumber]: dart.fieldType(core.int),
+    [_debugBanner]: dart.fieldType(dart.nullable(core.String)),
+    [_rescheduleAfterWarmUpFrame]: dart.fieldType(core.bool)
+  }));
+  dart.defineLazy(binding$.SchedulerBinding, {
+    /*binding$.SchedulerBinding._instance*/get _instance() {
+      return null;
+    },
+    set _instance(_) {}
+  }, false);
+  binding$.defaultSchedulingStrategy = function defaultSchedulingStrategy(opts) {
+    let priority = opts && 'priority' in opts ? opts.priority : null;
+    let scheduler = opts && 'scheduler' in opts ? opts.scheduler : null;
+    if (scheduler.transientCallbackCount > 0) return priority >= priority$.Priority.animation.value;
+    return true;
+  };
+  dart.copyProperties(binding$, {
+    get timeDilation() {
+      return binding$._timeDilation;
+    },
+    set timeDilation(value) {
+      let t4;
+      if (!(value > 0.0)) dart.assertFailed(null, I[0], 25, 10, "value > 0.0");
+      if (binding$._timeDilation === value) return;
+      t4 = binding$.SchedulerBinding.instance;
+      t4 == null ? null : t4.resetEpoch();
+      binding$._timeDilation = value;
+    }
+  });
+  dart.defineLazy(binding$, {
+    /*binding$._timeDilation*/get _timeDilation() {
+      return 1.0;
+    },
+    set _timeDilation(_) {}
+  }, false);
+  dart.trackLibraries("packages/flutter/src/scheduler/binding.dart", {
+    "package:flutter/src/scheduler/binding.dart": binding$
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["scroll_view.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/widgets/scroll_view.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["binding.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/scheduler/binding.dart.lib.js"}');
   // Exports:
   return {
-    src__widgets__scroll_view: scroll_view
+    src__scheduler__binding: binding$
   };
 }));
 
-//# sourceMappingURL=scroll_view.dart.lib.js.map
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+//# sourceMappingURL=binding.dart.lib.js.map

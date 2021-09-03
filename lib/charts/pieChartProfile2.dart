@@ -132,7 +132,7 @@ class PieChartProfileTwoState extends State {
                 : 65;
 
         final color0 = const Color(0xffff828a);
-        final color1 = const Color(0xff7dff9d);
+        final color1 = const Color(0xff0FE944);
 
 
 

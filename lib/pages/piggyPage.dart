@@ -35,16 +35,7 @@ class _PiggyPageState extends State<PiggyPage> {
                 ),
               ),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 25),
-              child: Text(
-                'Piggy saves the certain \npercentage of money from\nyour income.',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Color(0xff4F98A1),
-                ),
-              ),
-            ),
+            
             Container(
               margin: EdgeInsets.all(35),
               child: ElevatedButton(

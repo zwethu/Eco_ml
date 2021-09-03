@@ -120,8 +120,8 @@ class PieChartProfileState extends State {
         double value2 = 40;
         
 
-        final color0 = const Color(0xff3f5166);
-        final color1 = const Color(0xffff7733);
+        final color0 = const Color(0xffff828a);
+        final color1 = const Color(0xff0FE944);
 
 
         switch (i) {

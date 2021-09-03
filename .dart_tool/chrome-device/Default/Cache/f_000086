@@ -1,702 +1,369 @@
-define(['dart_sdk', 'packages/collection/src/algorithms.dart', 'packages/collection/src/utils.dart'], (function load__packages__collection__src__iterable_extensions_dart(dart_sdk, packages__collection__src__algorithms$46dart, packages__collection__src__utils$46dart) {
+define(['dart_sdk', 'packages/characters/src/grapheme_clusters/table.dart'], (function load__packages__characters__src__grapheme_clusters__breaks_dart(dart_sdk, packages__characters__src__grapheme_clusters__table$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const _interceptors = dart_sdk._interceptors;
-  const math = dart_sdk.math;
-  const _js_helper = dart_sdk._js_helper;
-  const collection = dart_sdk.collection;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const algorithms = packages__collection__src__algorithms$46dart.src__algorithms;
-  const utils = packages__collection__src__utils$46dart.src__utils;
-  var iterable_extensions = Object.create(dart.library);
-  var $iterator = dartx.iterator;
-  var $add = dartx.add;
-  var $_set = dartx._set;
-  var $where = dartx.where;
-  var $sort = dartx.sort;
-  var $compareTo = dartx.compareTo;
-  var $isEmpty = dartx.isEmpty;
-  var $last = dartx.last;
-  var $_get = dartx._get;
-  var $truncate = dartx.truncate;
-  var $remainder = dartx.remainder;
+  const table = packages__characters__src__grapheme_clusters__table$46dart.src__grapheme_clusters__table;
+  var breaks = Object.create(dart.library);
+  var $codeUnitAt = dartx.codeUnitAt;
+  var $toRadixString = dartx.toRadixString;
   dart._checkModuleNullSafetyMode(true);
-  var T$ = {
-    RandomN: () => (T$.RandomN = dart.constFn(dart.nullable(math.Random)))(),
-    TAndTToint: () => (T$.TAndTToint = dart.constFn(dart.gFnType(T => [core.int, [T, T]], T => [core.Comparable$(T)])))(),
-    ObjectN: () => (T$.ObjectN = dart.constFn(dart.nullable(core.Object)))()
-  };
   const CT = Object.create({
     _: () => (C, CT)
   });
-  dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.fn(utils.compareComparable, T$.TAndTToint());
+  var I = [
+    "package:characters/src/grapheme_clusters/breaks.dart",
+    "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/characters-1.1.0/lib/src/grapheme_clusters/breaks.dart"
+  ];
+  var base$ = dart.privateName(breaks, "Breaks.base");
+  var end$ = dart.privateName(breaks, "Breaks.end");
+  var cursor$ = dart.privateName(breaks, "Breaks.cursor");
+  var state$ = dart.privateName(breaks, "Breaks.state");
+  breaks.Breaks = class Breaks extends core.Object {
+    get base() {
+      return this[base$];
     }
-  }, false);
-  var C = [void 0];
-  iterable_extensions['IterableExtension|sample'] = function IterableExtension$124sample(T, $this, count, random = null) {
-    core.RangeError.checkNotNegative(count, "count");
-    let iterator = $this[$iterator];
-    let chosen = _interceptors.JSArray$(T).of([]);
-    for (let i = 0; i < count; i = i + 1) {
-      if (iterator.moveNext()) {
-        chosen[$add](iterator.current);
+    set base(value) {
+      super.base = value;
+    }
+    get end() {
+      return this[end$];
+    }
+    set end(value) {
+      super.end = value;
+    }
+    get cursor() {
+      return this[cursor$];
+    }
+    set cursor(value) {
+      this[cursor$] = value;
+    }
+    get state() {
+      return this[state$];
+    }
+    set state(value) {
+      this[state$] = value;
+    }
+    copy() {
+      return new breaks.Breaks.new(this.base, this.cursor, this.end, this.state);
+    }
+    nextBreak() {
+      let t0;
+      while (this.cursor < this.end) {
+        let breakAt = this.cursor;
+        let char = this.base[$codeUnitAt]((t0 = this.cursor, this.cursor = t0 + 1, t0));
+        if ((char & 64512) !== 55296) {
+          this.state = table.move(this.state, table.low(char));
+          if ((this.state & 1) === 0) {
+            return breakAt;
+          }
+          continue;
+        }
+        let category = 2;
+        if (this.cursor < this.end) {
+          let nextChar = this.base[$codeUnitAt](this.cursor);
+          if ((nextChar & 64512) === 56320) {
+            category = table.high(char, nextChar);
+            this.cursor = this.cursor + 1;
+          }
+        }
+        this.state = table.move(this.state, category);
+        if ((this.state & 1) === 0) {
+          return breakAt;
+        }
+      }
+      this.state = table.move(this.state, 15);
+      if ((this.state & 1) === 0) return this.cursor;
+      return -1;
+    }
+  };
+  (breaks.Breaks.new = function(base, cursor, end, state) {
+    this[base$] = base;
+    this[cursor$] = cursor;
+    this[end$] = end;
+    this[state$] = state;
+    ;
+  }).prototype = breaks.Breaks.prototype;
+  dart.addTypeTests(breaks.Breaks);
+  dart.addTypeCaches(breaks.Breaks);
+  dart.setMethodSignature(breaks.Breaks, () => ({
+    __proto__: dart.getMethods(breaks.Breaks.__proto__),
+    copy: dart.fnType(breaks.Breaks, []),
+    nextBreak: dart.fnType(core.int, [])
+  }));
+  dart.setLibraryUri(breaks.Breaks, I[0]);
+  dart.setFieldSignature(breaks.Breaks, () => ({
+    __proto__: dart.getFields(breaks.Breaks.__proto__),
+    base: dart.finalFieldType(core.String),
+    end: dart.finalFieldType(core.int),
+    cursor: dart.fieldType(core.int),
+    state: dart.fieldType(core.int)
+  }));
+  var base$0 = dart.privateName(breaks, "BackBreaks.base");
+  var start$ = dart.privateName(breaks, "BackBreaks.start");
+  var cursor$0 = dart.privateName(breaks, "BackBreaks.cursor");
+  var state$0 = dart.privateName(breaks, "BackBreaks.state");
+  var _lookAhead = dart.privateName(breaks, "_lookAhead");
+  breaks.BackBreaks = class BackBreaks extends core.Object {
+    get base() {
+      return this[base$0];
+    }
+    set base(value) {
+      super.base = value;
+    }
+    get start() {
+      return this[start$];
+    }
+    set start(value) {
+      super.start = value;
+    }
+    get cursor() {
+      return this[cursor$0];
+    }
+    set cursor(value) {
+      this[cursor$0] = value;
+    }
+    get state() {
+      return this[state$0];
+    }
+    set state(value) {
+      this[state$0] = value;
+    }
+    copy() {
+      return new breaks.BackBreaks.new(this.base, this.cursor, this.start, this.state);
+    }
+    nextBreak() {
+      while (this.cursor > this.start) {
+        let breakAt = this.cursor;
+        let char = this.base[$codeUnitAt](this.cursor = this.cursor - 1);
+        if ((char & 64512) !== 56320) {
+          this.state = table.moveBack(this.state, table.low(char));
+          if (this.state >= 208) this.state = this[_lookAhead](this.state);
+          if ((this.state & 1) === 0) {
+            return breakAt;
+          }
+          continue;
+        }
+        let category = 2;
+        if (this.cursor >= this.start) {
+          let prevChar = this.base[$codeUnitAt](this.cursor - 1);
+          if ((prevChar & 64512) === 55296) {
+            category = table.high(prevChar, char);
+            this.cursor = this.cursor - 1;
+          }
+        }
+        this.state = table.moveBack(this.state, category);
+        if (this.state >= 208) this.state = this[_lookAhead](this.state);
+        if ((this.state & 1) === 0) {
+          return breakAt;
+        }
+      }
+      this.state = table.moveBack(this.state, 15);
+      if (this.state >= 208) this.state = this[_lookAhead](this.state);
+      if ((this.state & 1) === 0) return this.cursor;
+      return -1;
+    }
+    [_lookAhead](state) {
+      return breaks.lookAhead(this.base, this.start, this.cursor, state);
+    }
+  };
+  (breaks.BackBreaks.new = function(base, cursor, start, state) {
+    this[base$0] = base;
+    this[cursor$0] = cursor;
+    this[start$] = start;
+    this[state$0] = state;
+    ;
+  }).prototype = breaks.BackBreaks.prototype;
+  dart.addTypeTests(breaks.BackBreaks);
+  dart.addTypeCaches(breaks.BackBreaks);
+  dart.setMethodSignature(breaks.BackBreaks, () => ({
+    __proto__: dart.getMethods(breaks.BackBreaks.__proto__),
+    copy: dart.fnType(breaks.BackBreaks, []),
+    nextBreak: dart.fnType(core.int, []),
+    [_lookAhead]: dart.fnType(core.int, [core.int])
+  }));
+  dart.setLibraryUri(breaks.BackBreaks, I[0]);
+  dart.setFieldSignature(breaks.BackBreaks, () => ({
+    __proto__: dart.getFields(breaks.BackBreaks.__proto__),
+    base: dart.finalFieldType(core.String),
+    start: dart.finalFieldType(core.int),
+    cursor: dart.fieldType(core.int),
+    state: dart.fieldType(core.int)
+  }));
+  breaks.lookAhead = function lookAhead(base, start, cursor, state) {
+    if (!(state >= 208)) dart.assertFailed(null, I[1], 156, 10, "state >= stateLookaheadMin");
+    if (state === 208) {
+      return breaks.lookAheadRegional(base, start, cursor);
+    }
+    if (state === 224) {
+      let prevPic = breaks.lookAheadPictorgraphicExtend(base, start, cursor);
+      if (prevPic >= 0) return (144 | 1) >>> 0;
+      return 64;
+    }
+    dart.throw(new core.StateError.new("Unexpected state: " + state[$toRadixString](16)));
+  };
+  breaks.lookAheadRegional = function lookAheadRegional(base, start, cursor) {
+    let count = 0;
+    let index = cursor;
+    while (index - 2 >= start) {
+      let tail = base[$codeUnitAt](index - 1);
+      if ((tail & 64512) !== 56320) break;
+      let lead = base[$codeUnitAt](index - 2);
+      if ((lead & 64512) !== 55296) break;
+      let category = table.high(lead, tail);
+      if (category !== 6) break;
+      index = index - 2;
+      count = (count ^ 1) >>> 0;
+    }
+    if (count === 0) {
+      return (192 | 1) >>> 0;
+    } else {
+      return 144;
+    }
+  };
+  breaks.lookAheadPictorgraphicExtend = function lookAheadPictorgraphicExtend(base, start, cursor) {
+    let index = cursor;
+    while (index > start) {
+      let char = base[$codeUnitAt](index = index - 1);
+      let prevChar = 0;
+      let category = 2;
+      if ((char & 64512) !== 56320) {
+        category = table.low(char);
+      } else if (index > start && ((prevChar = base[$codeUnitAt](index = index - 1)) & 64512) === 55296) {
+        category = table.high(prevChar, char);
       } else {
-        return chosen;
+        break;
       }
-    }
-    let index = count;
-    random == null ? random = math.Random.new() : null;
-    while (iterator.moveNext()) {
-      index = index + 1;
-      let position = random.nextInt(index);
-      if (position < count) chosen[$_set](position, iterator.current);
-    }
-    return chosen;
-  };
-  iterable_extensions['IterableExtension|get#sample'] = function IterableExtension$124get$35sample(T, $this) {
-    return dart.fn((count, random = null) => iterable_extensions['IterableExtension|sample'](T, $this, count, random), dart.fnType(core.List$(T), [core.int], [T$.RandomN()]));
-  };
-  iterable_extensions['IterableExtension|whereNot'] = function IterableExtension$124whereNot(T, $this, test) {
-    return $this[$where](dart.fn(element => !test(element), dart.fnType(core.bool, [T])));
-  };
-  iterable_extensions['IterableExtension|get#whereNot'] = function IterableExtension$124get$35whereNot(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|whereNot'](T, $this, test), dart.fnType(core.Iterable$(T), [dart.fnType(core.bool, [T])]));
-  };
-  iterable_extensions['IterableExtension|sorted'] = function IterableExtension$124sorted(T, $this, compare) {
-    let t6;
-    t6 = (() => {
-      let t5 = core.List$(T).of($this);
-      return t5;
-    })();
-    return (() => {
-      t6[$sort](compare);
-      return t6;
-    })();
-  };
-  iterable_extensions['IterableExtension|get#sorted'] = function IterableExtension$124get$35sorted(T, $this) {
-    return dart.fn(compare => iterable_extensions['IterableExtension|sorted'](T, $this, compare), dart.fnType(core.List$(T), [dart.fnType(core.int, [T, T])]));
-  };
-  iterable_extensions['IterableExtension|sortedBy'] = function IterableExtension$124sortedBy(T, K, $this, keyOf) {
-    let elements = (() => {
-      let t8 = core.List$(T).of($this);
-      return t8;
-    })();
-    algorithms.quickSortBy(T, K, elements, keyOf, dart.gbind(C[0] || CT.C0, K));
-    return elements;
-  };
-  iterable_extensions['IterableExtension|get#sortedBy'] = function IterableExtension$124get$35sortedBy(T, $this) {
-    return dart.fn((K, keyOf) => iterable_extensions['IterableExtension|sortedBy'](T, K, $this, keyOf), dart.gFnType(K => [core.List$(T), [dart.fnType(K, [T])]], K => {
-      var ComparableOfK = () => (ComparableOfK = dart.constFn(core.Comparable$(K)))();
-      return [ComparableOfK()];
-    }));
-  };
-  iterable_extensions['IterableExtension|sortedByCompare'] = function IterableExtension$124sortedByCompare(T, K, $this, keyOf, compare) {
-    let elements = (() => {
-      let t11 = core.List$(T).of($this);
-      return t11;
-    })();
-    algorithms.quickSortBy(T, K, elements, keyOf, compare);
-    return elements;
-  };
-  iterable_extensions['IterableExtension|get#sortedByCompare'] = function IterableExtension$124get$35sortedByCompare(T, $this) {
-    return dart.fn((K, keyOf, compare) => iterable_extensions['IterableExtension|sortedByCompare'](T, K, $this, keyOf, compare), dart.gFnType(K => {
-      var KAndKToint = () => (KAndKToint = dart.constFn(dart.fnType(core.int, [K, K])))();
-      return [core.List$(T), [dart.fnType(K, [T]), KAndKToint()]];
-    }, K => {
-      var KAndKToint = () => (KAndKToint = dart.constFn(dart.fnType(core.int, [K, K])))();
-      return [T$.ObjectN()];
-    }));
-  };
-  iterable_extensions['IterableExtension|isSorted'] = function IterableExtension$124isSorted(T, $this, compare) {
-    let iterator = $this[$iterator];
-    if (!iterator.moveNext()) return true;
-    let previousElement = iterator.current;
-    while (iterator.moveNext()) {
-      let element = iterator.current;
-      if (compare(previousElement, element) > 0) return false;
-      previousElement = element;
-    }
-    return true;
-  };
-  iterable_extensions['IterableExtension|get#isSorted'] = function IterableExtension$124get$35isSorted(T, $this) {
-    return dart.fn(compare => iterable_extensions['IterableExtension|isSorted'](T, $this, compare), dart.fnType(core.bool, [dart.fnType(core.int, [T, T])]));
-  };
-  iterable_extensions['IterableExtension|isSortedBy'] = function IterableExtension$124isSortedBy(T, K, $this, keyOf) {
-    let iterator = $this[$iterator];
-    if (!iterator.moveNext()) return true;
-    let previousKey = keyOf(iterator.current);
-    while (iterator.moveNext()) {
-      let key = keyOf(iterator.current);
-      if (previousKey[$compareTo](key) > 0) return false;
-      previousKey = key;
-    }
-    return true;
-  };
-  iterable_extensions['IterableExtension|get#isSortedBy'] = function IterableExtension$124get$35isSortedBy(T, $this) {
-    return dart.fn((K, keyOf) => iterable_extensions['IterableExtension|isSortedBy'](T, K, $this, keyOf), dart.gFnType(K => [core.bool, [dart.fnType(K, [T])]], K => {
-      var ComparableOfK = () => (ComparableOfK = dart.constFn(core.Comparable$(K)))();
-      return [ComparableOfK()];
-    }));
-  };
-  iterable_extensions['IterableExtension|isSortedByCompare'] = function IterableExtension$124isSortedByCompare(T, K, $this, keyOf, compare) {
-    let iterator = $this[$iterator];
-    if (!iterator.moveNext()) return true;
-    let previousKey = keyOf(iterator.current);
-    while (iterator.moveNext()) {
-      let key = keyOf(iterator.current);
-      if (compare(previousKey, key) > 0) return false;
-      previousKey = key;
-    }
-    return true;
-  };
-  iterable_extensions['IterableExtension|get#isSortedByCompare'] = function IterableExtension$124get$35isSortedByCompare(T, $this) {
-    return dart.fn((K, keyOf, compare) => iterable_extensions['IterableExtension|isSortedByCompare'](T, K, $this, keyOf, compare), dart.gFnType(K => {
-      var KAndKToint = () => (KAndKToint = dart.constFn(dart.fnType(core.int, [K, K])))();
-      return [core.bool, [dart.fnType(K, [T]), KAndKToint()]];
-    }, K => {
-      var KAndKToint = () => (KAndKToint = dart.constFn(dart.fnType(core.int, [K, K])))();
-      return [T$.ObjectN()];
-    }));
-  };
-  iterable_extensions['IterableExtension|forEachIndexed'] = function IterableExtension$124forEachIndexed(T, $this, action) {
-    let t20;
-    let index = 0;
-    for (let element of $this) {
-      action((t20 = index, index = t20 + 1, t20), element);
-    }
-  };
-  iterable_extensions['IterableExtension|get#forEachIndexed'] = function IterableExtension$124get$35forEachIndexed(T, $this) {
-    return dart.fn(action => iterable_extensions['IterableExtension|forEachIndexed'](T, $this, action), dart.fnType(dart.void, [dart.fnType(dart.void, [core.int, T])]));
-  };
-  iterable_extensions['IterableExtension|forEachWhile'] = function IterableExtension$124forEachWhile(T, $this, action) {
-    for (let element of $this) {
-      if (!action(element)) break;
-    }
-  };
-  iterable_extensions['IterableExtension|get#forEachWhile'] = function IterableExtension$124get$35forEachWhile(T, $this) {
-    return dart.fn(action => iterable_extensions['IterableExtension|forEachWhile'](T, $this, action), dart.fnType(dart.void, [dart.fnType(core.bool, [T])]));
-  };
-  iterable_extensions['IterableExtension|forEachIndexedWhile'] = function IterableExtension$124forEachIndexedWhile(T, $this, action) {
-    let t24;
-    let index = 0;
-    for (let element of $this) {
-      if (!action((t24 = index, index = t24 + 1, t24), element)) break;
-    }
-  };
-  iterable_extensions['IterableExtension|get#forEachIndexedWhile'] = function IterableExtension$124get$35forEachIndexedWhile(T, $this) {
-    return dart.fn(action => iterable_extensions['IterableExtension|forEachIndexedWhile'](T, $this, action), dart.fnType(dart.void, [dart.fnType(core.bool, [core.int, T])]));
-  };
-  iterable_extensions['IterableExtension|mapIndexed'] = function IterableExtension$124mapIndexed(T, R, $this, convert) {
-    return new (_js_helper.SyncIterable$(R)).new(function* IterableExtension$124mapIndexed() {
-      let t26;
-      let index = 0;
-      for (let element of $this) {
-        yield convert((t26 = index, index = t26 + 1, t26), element);
+      if (category === 7) {
+        return index;
       }
-    });
+      if (category !== 4) break;
+    }
+    return -1;
   };
-  iterable_extensions['IterableExtension|get#mapIndexed'] = function IterableExtension$124get$35mapIndexed(T, $this) {
-    return dart.fn((R, convert) => iterable_extensions['IterableExtension|mapIndexed'](T, R, $this, convert), dart.gFnType(R => {
-      var IterableOfR = () => (IterableOfR = dart.constFn(core.Iterable$(R)))();
-      return [IterableOfR(), [dart.fnType(R, [core.int, T])]];
-    }, R => {
-      var IterableOfR = () => (IterableOfR = dart.constFn(core.Iterable$(R)))();
-      return [T$.ObjectN()];
-    }));
-  };
-  iterable_extensions['IterableExtension|whereIndexed'] = function IterableExtension$124whereIndexed(T, $this, test) {
-    return new (_js_helper.SyncIterable$(T)).new(function* IterableExtension$124whereIndexed() {
-      let t28;
-      let index = 0;
-      for (let element of $this) {
-        if (test((t28 = index, index = t28 + 1, t28), element)) yield element;
+  breaks.isGraphemeClusterBoundary = function isGraphemeClusterBoundary(text, start, end, index) {
+    if (!(0 <= start)) dart.assertFailed(null, I[1], 237, 10, "0 <= start");
+    if (!(start <= index)) dart.assertFailed(null, I[1], 238, 10, "start <= index");
+    if (!(index <= end)) dart.assertFailed(null, I[1], 239, 10, "index <= end");
+    if (!(end <= text.length)) dart.assertFailed(null, I[1], 240, 10, "end <= text.length");
+    if (start < index && index < end) {
+      let char = text[$codeUnitAt](index);
+      let prevChar = text[$codeUnitAt](index - 1);
+      let catAfter = 2;
+      if ((char & 63488) !== 55296) {
+        catAfter = table.low(char);
+      } else if ((char & 64512) === 55296) {
+        if (index + 1 >= end) return true;
+        let nextChar = text[$codeUnitAt](index + 1);
+        if ((nextChar & 64512) !== 56320) return true;
+        catAfter = table.high(char, nextChar);
+      } else {
+        return (prevChar & 64512) !== 55296;
       }
-    });
-  };
-  iterable_extensions['IterableExtension|get#whereIndexed'] = function IterableExtension$124get$35whereIndexed(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|whereIndexed'](T, $this, test), dart.fnType(core.Iterable$(T), [dart.fnType(core.bool, [core.int, T])]));
-  };
-  iterable_extensions['IterableExtension|whereNotIndexed'] = function IterableExtension$124whereNotIndexed(T, $this, test) {
-    return new (_js_helper.SyncIterable$(T)).new(function* IterableExtension$124whereNotIndexed() {
-      let t30;
-      let index = 0;
-      for (let element of $this) {
-        if (!test((t30 = index, index = t30 + 1, t30), element)) yield element;
-      }
-    });
-  };
-  iterable_extensions['IterableExtension|get#whereNotIndexed'] = function IterableExtension$124get$35whereNotIndexed(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|whereNotIndexed'](T, $this, test), dart.fnType(core.Iterable$(T), [dart.fnType(core.bool, [core.int, T])]));
-  };
-  iterable_extensions['IterableExtension|get#expandIndexed'] = function IterableExtension$124get$35expandIndexed(T, $this) {
-    return dart.fn((R, expend) => iterable_extensions['IterableExtension|expandIndexed'](T, R, $this, expend), dart.gFnType(R => {
-      var IterableOfR = () => (IterableOfR = dart.constFn(core.Iterable$(R)))();
-      return [IterableOfR(), [dart.fnType(IterableOfR(), [core.int, T])]];
-    }, R => {
-      var IterableOfR = () => (IterableOfR = dart.constFn(core.Iterable$(R)))();
-      return [T$.ObjectN()];
-    }));
-  };
-  iterable_extensions['IterableExtension|expandIndexed'] = function IterableExtension$124expandIndexed(T, R, $this, expend) {
-    return new (_js_helper.SyncIterable$(R)).new(function* IterableExtension$124expandIndexed() {
-      let t33;
-      let index = 0;
-      for (let element of $this) {
-        yield* expend((t33 = index, index = t33 + 1, t33), element);
-      }
-    });
-  };
-  iterable_extensions['IterableExtension|reduceIndexed'] = function IterableExtension$124reduceIndexed(T, $this, combine) {
-    let t34;
-    let iterator = $this[$iterator];
-    if (!iterator.moveNext()) {
-      dart.throw(new core.StateError.new("no elements"));
-    }
-    let index = 1;
-    let result = iterator.current;
-    while (iterator.moveNext()) {
-      result = combine((t34 = index, index = t34 + 1, t34), result, iterator.current);
-    }
-    return result;
-  };
-  iterable_extensions['IterableExtension|get#reduceIndexed'] = function IterableExtension$124get$35reduceIndexed(T, $this) {
-    return dart.fn(combine => iterable_extensions['IterableExtension|reduceIndexed'](T, $this, combine), dart.fnType(T, [dart.fnType(T, [core.int, T, T])]));
-  };
-  iterable_extensions['IterableExtension|foldIndexed'] = function IterableExtension$124foldIndexed(T, R, $this, initialValue, combine) {
-    let t36;
-    let result = initialValue;
-    let index = 0;
-    for (let element of $this) {
-      result = combine((t36 = index, index = t36 + 1, t36), result, element);
-    }
-    return result;
-  };
-  iterable_extensions['IterableExtension|get#foldIndexed'] = function IterableExtension$124get$35foldIndexed(T, $this) {
-    return dart.fn((R, initialValue, combine) => iterable_extensions['IterableExtension|foldIndexed'](T, R, $this, initialValue, combine), dart.gFnType(R => [R, [R, dart.fnType(R, [core.int, R, T])]], R => [T$.ObjectN()]));
-  };
-  iterable_extensions['IterableExtension|firstWhereOrNull'] = function IterableExtension$124firstWhereOrNull(T, $this, test) {
-    for (let element of $this) {
-      if (test(element)) return element;
-    }
-    return null;
-  };
-  iterable_extensions['IterableExtension|get#firstWhereOrNull'] = function IterableExtension$124get$35firstWhereOrNull(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|firstWhereOrNull'](T, $this, test), dart.fnType(dart.nullable(T), [dart.fnType(core.bool, [T])]));
-  };
-  iterable_extensions['IterableExtension|firstWhereIndexedOrNull'] = function IterableExtension$124firstWhereIndexedOrNull(T, $this, test) {
-    let t40;
-    let index = 0;
-    for (let element of $this) {
-      if (test((t40 = index, index = t40 + 1, t40), element)) return element;
-    }
-    return null;
-  };
-  iterable_extensions['IterableExtension|get#firstWhereIndexedOrNull'] = function IterableExtension$124get$35firstWhereIndexedOrNull(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|firstWhereIndexedOrNull'](T, $this, test), dart.fnType(dart.nullable(T), [dart.fnType(core.bool, [core.int, T])]));
-  };
-  iterable_extensions['IterableExtension|get#firstOrNull'] = function IterableExtension$124get$35firstOrNull(T, $this) {
-    let iterator = $this[$iterator];
-    if (iterator.moveNext()) return iterator.current;
-    return null;
-  };
-  iterable_extensions['IterableExtension|lastWhereOrNull'] = function IterableExtension$124lastWhereOrNull(T, $this, test) {
-    let result = null;
-    for (let element of $this) {
-      if (test(element)) result = element;
-    }
-    return result;
-  };
-  iterable_extensions['IterableExtension|get#lastWhereOrNull'] = function IterableExtension$124get$35lastWhereOrNull(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|lastWhereOrNull'](T, $this, test), dart.fnType(dart.nullable(T), [dart.fnType(core.bool, [T])]));
-  };
-  iterable_extensions['IterableExtension|lastWhereIndexedOrNull'] = function IterableExtension$124lastWhereIndexedOrNull(T, $this, test) {
-    let t45;
-    let result = null;
-    let index = 0;
-    for (let element of $this) {
-      if (test((t45 = index, index = t45 + 1, t45), element)) result = element;
-    }
-    return result;
-  };
-  iterable_extensions['IterableExtension|get#lastWhereIndexedOrNull'] = function IterableExtension$124get$35lastWhereIndexedOrNull(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|lastWhereIndexedOrNull'](T, $this, test), dart.fnType(dart.nullable(T), [dart.fnType(core.bool, [core.int, T])]));
-  };
-  iterable_extensions['IterableExtension|get#lastOrNull'] = function IterableExtension$124get$35lastOrNull(T, $this) {
-    if ($this[$isEmpty]) return null;
-    return $this[$last];
-  };
-  iterable_extensions['IterableExtension|singleWhereOrNull'] = function IterableExtension$124singleWhereOrNull(T, $this, test) {
-    let result = null;
-    let found = false;
-    for (let element of $this) {
-      if (test(element)) {
-        if (!found) {
-          result = element;
-          found = true;
+      let catBefore = 2;
+      if ((prevChar & 64512) !== 56320) {
+        catBefore = table.low(prevChar);
+        index = index - 1;
+      } else {
+        index = index - 2;
+        if (start <= index) {
+          let prevPrevChar = text[$codeUnitAt](index);
+          if ((prevPrevChar & 64512) !== 55296) {
+            return true;
+          }
+          catBefore = table.high(prevPrevChar, prevChar);
         } else {
-          return null;
+          return true;
         }
       }
+      let state = table.moveBack(176, catAfter);
+      if (!(state < 208)) dart.assertFailed(null, I[1], 287, 12, "state < stateLookaheadMin");
+      state = table.moveBack(state, catBefore);
+      if (state >= 208) {
+        state = breaks.lookAhead(text, start, index, state);
+      }
+      return (state & 1) === 0;
     }
-    return result;
+    return start !== end;
   };
-  iterable_extensions['IterableExtension|get#singleWhereOrNull'] = function IterableExtension$124get$35singleWhereOrNull(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|singleWhereOrNull'](T, $this, test), dart.fnType(dart.nullable(T), [dart.fnType(core.bool, [T])]));
-  };
-  iterable_extensions['IterableExtension|singleWhereIndexedOrNull'] = function IterableExtension$124singleWhereIndexedOrNull(T, $this, test) {
-    let t50;
-    let result = null;
-    let found = false;
-    let index = 0;
-    for (let element of $this) {
-      if (test((t50 = index, index = t50 + 1, t50), element)) {
-        if (!found) {
-          result = element;
-          found = true;
-        } else {
-          return null;
+  breaks.previousBreak = function previousBreak(text, start, end, index) {
+    if (!(0 <= start)) dart.assertFailed(null, I[1], 301, 10, "0 <= start");
+    if (!(start <= index)) dart.assertFailed(null, I[1], 302, 10, "start <= index");
+    if (!(index <= end)) dart.assertFailed(null, I[1], 303, 10, "index <= end");
+    if (!(end <= text.length)) dart.assertFailed(null, I[1], 304, 10, "end <= text.length");
+    if (index === start || index === end) return index;
+    let indexBefore = index;
+    let nextChar = text[$codeUnitAt](index);
+    let category = 2;
+    if ((nextChar & 63488) !== 55296) {
+      category = table.low(nextChar);
+    } else if ((nextChar & 64512) === 55296) {
+      let indexAfter = index + 1;
+      if (indexAfter < end) {
+        let secondChar = text[$codeUnitAt](indexAfter);
+        if ((secondChar & 64512) === 56320) {
+          category = table.high(nextChar, secondChar);
         }
       }
-    }
-    return result;
-  };
-  iterable_extensions['IterableExtension|get#singleWhereIndexedOrNull'] = function IterableExtension$124get$35singleWhereIndexedOrNull(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|singleWhereIndexedOrNull'](T, $this, test), dart.fnType(dart.nullable(T), [dart.fnType(core.bool, [core.int, T])]));
-  };
-  iterable_extensions['IterableExtension|get#singleOrNull'] = function IterableExtension$124get$35singleOrNull(T, $this) {
-    let iterator = $this[$iterator];
-    if (iterator.moveNext()) {
-      let result = iterator.current;
-      if (!iterator.moveNext()) {
-        return result;
+    } else {
+      let prevChar = text[$codeUnitAt](index - 1);
+      if ((prevChar & 64512) === 55296) {
+        category = table.high(prevChar, nextChar);
+        indexBefore = indexBefore - 1;
       }
     }
-    return null;
+    return new breaks.BackBreaks.new(text, indexBefore, start, table.moveBack(176, category)).nextBreak();
   };
-  iterable_extensions['IterableExtension|groupFoldBy'] = function IterableExtension$124groupFoldBy(T, K, G, $this, keyOf, combine) {
-    let result = new (_js_helper.LinkedMap$(K, G)).new();
-    for (let element of $this) {
-      let key = keyOf(element);
-      result[$_set](key, combine(result[$_get](key), element));
-    }
-    return result;
-  };
-  iterable_extensions['IterableExtension|get#groupFoldBy'] = function IterableExtension$124get$35groupFoldBy(T, $this) {
-    return dart.fn((K, G, keyOf, combine) => iterable_extensions['IterableExtension|groupFoldBy'](T, K, G, $this, keyOf, combine), dart.gFnType((K, G) => {
-      var MapOfK$G = () => (MapOfK$G = dart.constFn(core.Map$(K, G)))();
-      var GN = () => (GN = dart.constFn(dart.nullable(G)))();
-      return [MapOfK$G(), [dart.fnType(K, [T]), dart.fnType(G, [GN(), T])]];
-    }, (K, G) => {
-      var MapOfK$G = () => (MapOfK$G = dart.constFn(core.Map$(K, G)))();
-      var GN = () => (GN = dart.constFn(dart.nullable(G)))();
-      return [T$.ObjectN(), T$.ObjectN()];
-    }));
-  };
-  iterable_extensions['IterableExtension|groupSetsBy'] = function IterableExtension$124groupSetsBy(T, K, $this, keyOf) {
-    let t58, t57, t56, t55, t55$;
-    let result = new (_js_helper.LinkedMap$(K, core.Set$(T))).new();
-    for (let element of $this) {
-      t55$ = (t55 = result, t56 = keyOf(element), t57 = t55[$_get](t56), t57 == null ? (t58 = collection.LinkedHashSet$(T).new(), t55[$_set](t56, t58), t58) : t57);
-      (() => {
-        t55$.add(element);
-        return t55$;
-      })();
-    }
-    return result;
-  };
-  iterable_extensions['IterableExtension|get#groupSetsBy'] = function IterableExtension$124get$35groupSetsBy(T, $this) {
-    return dart.fn((K, keyOf) => iterable_extensions['IterableExtension|groupSetsBy'](T, K, $this, keyOf), dart.gFnType(K => [core.Map$(K, core.Set$(T)), [dart.fnType(K, [T])]], K => [T$.ObjectN()]));
-  };
-  iterable_extensions['IterableExtension|groupListsBy'] = function IterableExtension$124groupListsBy(T, K, $this, keyOf) {
-    let t60, t59, t58, t57, t57$;
-    let result = new (_js_helper.LinkedMap$(K, core.List$(T))).new();
-    for (let element of $this) {
-      t57$ = (t57 = result, t58 = keyOf(element), t59 = t57[$_get](t58), t59 == null ? (t60 = _interceptors.JSArray$(T).of([]), t57[$_set](t58, t60), t60) : t59);
-      (() => {
-        t57$[$add](element);
-        return t57$;
-      })();
-    }
-    return result;
-  };
-  iterable_extensions['IterableExtension|get#groupListsBy'] = function IterableExtension$124get$35groupListsBy(T, $this) {
-    return dart.fn((K, keyOf) => iterable_extensions['IterableExtension|groupListsBy'](T, K, $this, keyOf), dart.gFnType(K => [core.Map$(K, core.List$(T)), [dart.fnType(K, [T])]], K => [T$.ObjectN()]));
-  };
-  iterable_extensions['IterableExtension|splitBefore'] = function IterableExtension$124splitBefore(T, $this, test) {
-    return iterable_extensions['IterableExtension|splitBeforeIndexed'](T, $this, dart.fn((_, element) => test(element), dart.fnType(core.bool, [core.int, T])));
-  };
-  iterable_extensions['IterableExtension|get#splitBefore'] = function IterableExtension$124get$35splitBefore(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|splitBefore'](T, $this, test), dart.fnType(core.Iterable$(core.List$(T)), [dart.fnType(core.bool, [T])]));
-  };
-  iterable_extensions['IterableExtension|splitAfter'] = function IterableExtension$124splitAfter(T, $this, test) {
-    return iterable_extensions['IterableExtension|splitAfterIndexed'](T, $this, dart.fn((_, element) => test(element), dart.fnType(core.bool, [core.int, T])));
-  };
-  iterable_extensions['IterableExtension|get#splitAfter'] = function IterableExtension$124get$35splitAfter(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|splitAfter'](T, $this, test), dart.fnType(core.Iterable$(core.List$(T)), [dart.fnType(core.bool, [T])]));
-  };
-  iterable_extensions['IterableExtension|get#splitBetween'] = function IterableExtension$124get$35splitBetween(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|splitBetween'](T, $this, test), dart.fnType(core.Iterable$(core.List$(T)), [dart.fnType(core.bool, [T, T])]));
-  };
-  iterable_extensions['IterableExtension|splitBetween'] = function IterableExtension$124splitBetween(T, $this, test) {
-    return iterable_extensions['IterableExtension|splitBetweenIndexed'](T, $this, dart.fn((_, first, second) => test(first, second), dart.fnType(core.bool, [core.int, T, T])));
-  };
-  iterable_extensions['IterableExtension|splitBeforeIndexed'] = function IterableExtension$124splitBeforeIndexed(T, $this, test) {
-    return new (_js_helper.SyncIterable$(core.List$(T))).new(function* IterableExtension$124splitBeforeIndexed() {
-      let t65;
-      let iterator = $this[$iterator];
-      if (!iterator.moveNext()) {
-        return;
+  breaks.nextBreak = function nextBreak(text, start, end, index) {
+    if (!(0 <= start)) dart.assertFailed(null, I[1], 335, 10, "0 <= start");
+    if (!(start <= index)) dart.assertFailed(null, I[1], 336, 10, "start <= index");
+    if (!(index <= end)) dart.assertFailed(null, I[1], 337, 10, "index <= end");
+    if (!(end <= text.length)) dart.assertFailed(null, I[1], 338, 10, "end <= text.length");
+    if (index === start || index === end) return index;
+    let indexBefore = index - 1;
+    let prevChar = text[$codeUnitAt](indexBefore);
+    let prevCategory = 2;
+    if ((prevChar & 63488) !== 55296) {
+      prevCategory = table.low(prevChar);
+    } else if ((prevChar & 64512) === 55296) {
+      let nextChar = text[$codeUnitAt](index);
+      if ((nextChar & 64512) === 56320) {
+        index = index + 1;
+        if (index === end) return end;
+        prevCategory = table.high(prevChar, nextChar);
       }
-      let index = 1;
-      let chunk = _interceptors.JSArray$(T).of([iterator.current]);
-      while (iterator.moveNext()) {
-        let element = iterator.current;
-        if (test((t65 = index, index = t65 + 1, t65), element)) {
-          yield chunk;
-          chunk = _interceptors.JSArray$(T).of([]);
-        }
-        chunk[$add](element);
+    } else if (indexBefore > start) {
+      let secondCharIndex = indexBefore - 1;
+      let secondChar = text[$codeUnitAt](secondCharIndex);
+      if ((secondChar & 64512) === 55296) {
+        indexBefore = secondCharIndex;
+        prevCategory = table.high(secondChar, prevChar);
       }
-      yield chunk;
-    });
-  };
-  iterable_extensions['IterableExtension|get#splitBeforeIndexed'] = function IterableExtension$124get$35splitBeforeIndexed(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|splitBeforeIndexed'](T, $this, test), dart.fnType(core.Iterable$(core.List$(T)), [dart.fnType(core.bool, [core.int, T])]));
-  };
-  iterable_extensions['IterableExtension|splitAfterIndexed'] = function IterableExtension$124splitAfterIndexed(T, $this, test) {
-    return new (_js_helper.SyncIterable$(core.List$(T))).new(function* IterableExtension$124splitAfterIndexed() {
-      let t67, t67$;
-      let index = 0;
-      let chunk = null;
-      for (let element of $this) {
-        (t67 = chunk, t67 == null ? chunk = _interceptors.JSArray$(T).of([]) : t67)[$add](element);
-        if (test((t67$ = index, index = t67$ + 1, t67$), element)) {
-          yield chunk;
-          chunk = null;
-        }
+    }
+    let state = 48;
+    if (prevCategory === 6) {
+      let prevState = breaks.lookAheadRegional(text, start, indexBefore);
+      if (prevState !== 144) {
+        state = 160;
       }
-      if (chunk != null) yield chunk;
-    });
-  };
-  iterable_extensions['IterableExtension|get#splitAfterIndexed'] = function IterableExtension$124get$35splitAfterIndexed(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|splitAfterIndexed'](T, $this, test), dart.fnType(core.Iterable$(core.List$(T)), [dart.fnType(core.bool, [core.int, T])]));
-  };
-  iterable_extensions['IterableExtension|splitBetweenIndexed'] = function IterableExtension$124splitBetweenIndexed(T, $this, test) {
-    return new (_js_helper.SyncIterable$(core.List$(T))).new(function* IterableExtension$124splitBetweenIndexed() {
-      let t69;
-      let iterator = $this[$iterator];
-      if (!iterator.moveNext()) return;
-      let previous = iterator.current;
-      let chunk = _interceptors.JSArray$(T).of([previous]);
-      let index = 1;
-      while (iterator.moveNext()) {
-        let element = iterator.current;
-        if (test((t69 = index, index = t69 + 1, t69), previous, element)) {
-          yield chunk;
-          chunk = _interceptors.JSArray$(T).of([]);
-        }
-        chunk[$add](element);
-        previous = element;
+    } else if (prevCategory === 1 || prevCategory === 4) {
+      let prevPic = breaks.lookAheadPictorgraphicExtend(text, start, indexBefore);
+      if (prevPic >= 0) {
+        state = prevCategory === 1 ? 144 : 128;
       }
-      yield chunk;
-    });
-  };
-  iterable_extensions['IterableExtension|get#splitBetweenIndexed'] = function IterableExtension$124get$35splitBetweenIndexed(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|splitBetweenIndexed'](T, $this, test), dart.fnType(core.Iterable$(core.List$(T)), [dart.fnType(core.bool, [core.int, T, T])]));
-  };
-  iterable_extensions['IterableExtension|none'] = function IterableExtension$124none(T, $this, test) {
-    for (let element of $this) {
-      if (test(element)) return false;
+    } else {
+      state = table.move(176, prevCategory);
     }
-    return true;
+    return new breaks.Breaks.new(text, index, text.length, state).nextBreak();
   };
-  iterable_extensions['IterableExtension|get#none'] = function IterableExtension$124get$35none(T, $this) {
-    return dart.fn(test => iterable_extensions['IterableExtension|none'](T, $this, test), dart.fnType(core.bool, [dart.fnType(core.bool, [T])]));
-  };
-  iterable_extensions['IterableNullableExtension|whereNotNull'] = function IterableNullableExtension$124whereNotNull(T, $this) {
-    return new (_js_helper.SyncIterable$(T)).new(function* IterableNullableExtension$124whereNotNull() {
-      for (let element of $this) {
-        if (element != null) yield element;
-      }
-    });
-  };
-  iterable_extensions['IterableNullableExtension|get#whereNotNull'] = function IterableNullableExtension$124get$35whereNotNull(T, $this) {
-    return dart.fn(() => iterable_extensions['IterableNullableExtension|whereNotNull'](T, $this), dart.fnType(core.Iterable$(T), []));
-  };
-  iterable_extensions['IterableNumberExtension|get#sum'] = function IterableNumberExtension$124get$35sum($this) {
-    let result = 0;
-    for (let value of $this) {
-      result = result + value;
-    }
-    return result;
-  };
-  iterable_extensions['IterableNumberExtension|get#average'] = function IterableNumberExtension$124get$35average($this) {
-    let result = 0.0;
-    let count = 0;
-    for (let value of $this) {
-      count = count + 1;
-      result = result + (value - result) / count;
-    }
-    if (count === 0) dart.throw(new core.StateError.new("No elements"));
-    return result;
-  };
-  iterable_extensions['IterableIntegerExtension|get#sum'] = function IterableIntegerExtension$124get$35sum($this) {
-    let result = 0;
-    for (let value of $this) {
-      result = result + value;
-    }
-    return result;
-  };
-  iterable_extensions['IterableIntegerExtension|get#average'] = function IterableIntegerExtension$124get$35average($this) {
-    let average = 0;
-    let remainder = 0;
-    let count = 0;
-    for (let value of $this) {
-      count = count + 1;
-      let delta = value - average + remainder;
-      average = average + (delta / count)[$truncate]();
-      remainder = delta[$remainder](count);
-    }
-    if (count === 0) dart.throw(new core.StateError.new("No elements"));
-    return average + remainder / count;
-  };
-  iterable_extensions['IterableDoubleExtension|get#sum'] = function IterableDoubleExtension$124get$35sum($this) {
-    let result = 0.0;
-    for (let value of $this) {
-      result = result + value;
-    }
-    return result;
-  };
-  iterable_extensions['IterableIterableExtension|get#flattened'] = function IterableIterableExtension$124get$35flattened(T, $this) {
-    return new (_js_helper.SyncIterable$(T)).new(function* IterableIterableExtension$124get$35flattened() {
-      for (let elements of $this) {
-        yield* elements;
-      }
-    });
-  };
-  iterable_extensions['IterableComparableExtension|get#minOrNull'] = function IterableComparableExtension$124get$35minOrNull(T, $this) {
-    let iterator = $this[$iterator];
-    if (iterator.moveNext()) {
-      let value = iterator.current;
-      while (iterator.moveNext()) {
-        let newValue = iterator.current;
-        if (value[$compareTo](newValue) > 0) {
-          value = newValue;
-        }
-      }
-      return value;
-    }
-    return null;
-  };
-  iterable_extensions['IterableComparableExtension|get#min'] = function IterableComparableExtension$124get$35min(T, $this) {
-    let iterator = $this[$iterator];
-    if (iterator.moveNext()) {
-      let value = iterator.current;
-      while (iterator.moveNext()) {
-        let newValue = iterator.current;
-        if (value[$compareTo](newValue) > 0) {
-          value = newValue;
-        }
-      }
-      return value;
-    }
-    dart.throw(new core.StateError.new("No element"));
-  };
-  iterable_extensions['IterableComparableExtension|get#maxOrNull'] = function IterableComparableExtension$124get$35maxOrNull(T, $this) {
-    let iterator = $this[$iterator];
-    if (iterator.moveNext()) {
-      let value = iterator.current;
-      while (iterator.moveNext()) {
-        let newValue = iterator.current;
-        if (value[$compareTo](newValue) < 0) {
-          value = newValue;
-        }
-      }
-      return value;
-    }
-    return null;
-  };
-  iterable_extensions['IterableComparableExtension|get#max'] = function IterableComparableExtension$124get$35max(T, $this) {
-    let iterator = $this[$iterator];
-    if (iterator.moveNext()) {
-      let value = iterator.current;
-      while (iterator.moveNext()) {
-        let newValue = iterator.current;
-        if (value[$compareTo](newValue) < 0) {
-          value = newValue;
-        }
-      }
-      return value;
-    }
-    dart.throw(new core.StateError.new("No element"));
-  };
-  iterable_extensions['IterableComparableExtension|sorted'] = function IterableComparableExtension$124sorted(T, $this, compare = null) {
-    let t86;
-    t86 = (() => {
-      let t85 = core.List$(T).of($this);
-      return t85;
-    })();
-    return (() => {
-      t86[$sort](compare);
-      return t86;
-    })();
-  };
-  iterable_extensions['IterableComparableExtension|get#sorted'] = function IterableComparableExtension$124get$35sorted(T, $this) {
-    return dart.fn((compare = null) => iterable_extensions['IterableComparableExtension|sorted'](T, $this, compare), dart.fnType(core.List$(T), [], [dart.nullable(dart.fnType(core.int, [T, T]))]));
-  };
-  iterable_extensions['IterableComparableExtension|isSorted'] = function IterableComparableExtension$124isSorted(T, $this, compare = null) {
-    if (compare != null) {
-      return iterable_extensions['IterableExtension|isSorted'](T, $this, compare);
-    }
-    let iterator = $this[$iterator];
-    if (!iterator.moveNext()) return true;
-    let previousElement = iterator.current;
-    while (iterator.moveNext()) {
-      let element = iterator.current;
-      if (previousElement[$compareTo](element) > 0) return false;
-      previousElement = element;
-    }
-    return true;
-  };
-  iterable_extensions['IterableComparableExtension|get#isSorted'] = function IterableComparableExtension$124get$35isSorted(T, $this) {
-    return dart.fn((compare = null) => iterable_extensions['IterableComparableExtension|isSorted'](T, $this, compare), dart.fnType(core.bool, [], [dart.nullable(dart.fnType(core.int, [T, T]))]));
-  };
-  iterable_extensions['ComparatorExtension|get#inverse'] = function ComparatorExtension$124get$35inverse(T, $this) {
-    return dart.fn((a, b) => $this(b, a), dart.fnType(core.int, [T, T]));
-  };
-  iterable_extensions['ComparatorExtension|compareBy'] = function ComparatorExtension$124compareBy(T, R, $this, keyOf) {
-    return dart.fn((a, b) => $this(keyOf(a), keyOf(b)), dart.fnType(core.int, [R, R]));
-  };
-  iterable_extensions['ComparatorExtension|get#compareBy'] = function ComparatorExtension$124get$35compareBy(T, $this) {
-    return dart.fn((R, keyOf) => iterable_extensions['ComparatorExtension|compareBy'](T, R, $this, keyOf), dart.gFnType(R => {
-      var RAndRToint = () => (RAndRToint = dart.constFn(dart.fnType(core.int, [R, R])))();
-      return [RAndRToint(), [dart.fnType(T, [R])]];
-    }, R => {
-      var RAndRToint = () => (RAndRToint = dart.constFn(dart.fnType(core.int, [R, R])))();
-      return [T$.ObjectN()];
-    }));
-  };
-  iterable_extensions['ComparatorExtension|then'] = function ComparatorExtension$124then(T, $this, tieBreaker) {
-    return dart.fn((a, b) => {
-      let result = $this(a, b);
-      if (result === 0) result = tieBreaker(a, b);
-      return result;
-    }, dart.fnType(core.int, [T, T]));
-  };
-  iterable_extensions['ComparatorExtension|get#then'] = function ComparatorExtension$124get$35then(T, $this) {
-    return dart.fn(tieBreaker => iterable_extensions['ComparatorExtension|then'](T, $this, tieBreaker), dart.fnType(dart.fnType(core.int, [T, T]), [dart.fnType(core.int, [T, T])]));
-  };
-  dart.trackLibraries("packages/collection/src/iterable_extensions.dart", {
-    "package:collection/src/iterable_extensions.dart": iterable_extensions
+  dart.trackLibraries("packages/characters/src/grapheme_clusters/breaks.dart", {
+    "package:characters/src/grapheme_clusters/breaks.dart": breaks
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["iterable_extensions.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/collection/src/iterable_extensions.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["breaks.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../packages/characters/src/grapheme_clusters/breaks.dart.lib.js"}');
   // Exports:
   return {
-    src__iterable_extensions: iterable_extensions
+    src__grapheme_clusters__breaks: breaks
   };
 }));
 
-//# sourceMappingURL=iterable_extensions.dart.lib.js.map
+//# sourceMappingURL=breaks.dart.lib.js.map

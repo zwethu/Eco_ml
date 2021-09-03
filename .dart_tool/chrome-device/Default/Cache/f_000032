@@ -1,1816 +1,386 @@
-<<<<<<< HEAD
-define(['dart_sdk', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/rendering/layout_helper.dart'], (function load__packages__flutter__src__rendering__stack_dart(dart_sdk, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__rendering__layout_helper$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__widgets__layout_builder_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__foundation__debug$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const math = dart_sdk.math;
+  const _js_helper = dart_sdk._js_helper;
   const ui = dart_sdk.ui;
-  const _interceptors = dart_sdk._interceptors;
-  const _internal = dart_sdk._internal;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const debug = packages__flutter__src__foundation__debug$46dart.src__foundation__debug;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const debug = packages__flutter__src__widgets__widget_span$46dart.src__widgets__debug;
   const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
-  const layer = packages__flutter__src__rendering__layer$46dart.src__rendering__layer;
-  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
-  const layout_helper = packages__flutter__src__rendering__layout_helper$46dart.src__rendering__layout_helper;
-  var stack = Object.create(dart.library);
-  var $toStringAsFixed = dartx.toStringAsFixed;
-  var $add = dartx.add;
-  var $isEmpty = dartx.isEmpty;
-  var $join = dartx.join;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  var layout_builder = Object.create(dart.library);
+  var $_equals = dartx._equals;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))(),
-    RenderBoxTodouble: () => (T.RenderBoxTodouble = dart.constFn(dart.fnType(core.double, [box.RenderBox])))(),
-    VoidTodouble: () => (T.VoidTodouble = dart.constFn(dart.fnType(core.double, [])))(),
-    doubleTodynamic: () => (T.doubleTodynamic = dart.constFn(dart.fnType(dart.dynamic, [core.double])))(),
-    RenderBoxAndBoxConstraintsToSize: () => (T.RenderBoxAndBoxConstraintsToSize = dart.constFn(dart.fnType(ui.Size, [box.RenderBox, box.BoxConstraints])))(),
-    DiagnosticsPropertyOfAlignmentGeometry: () => (T.DiagnosticsPropertyOfAlignmentGeometry = dart.constFn(diagnostics.DiagnosticsProperty$(alignment.AlignmentGeometry)))(),
-    EnumPropertyOfTextDirection: () => (T.EnumPropertyOfTextDirection = dart.constFn(diagnostics.EnumProperty$(ui.TextDirection)))(),
-    EnumPropertyOfStackFit: () => (T.EnumPropertyOfStackFit = dart.constFn(diagnostics.EnumProperty$(stack.StackFit)))(),
-    EnumPropertyOfClip: () => (T.EnumPropertyOfClip = dart.constFn(diagnostics.EnumProperty$(ui.Clip)))(),
-    OffsetN: () => (T.OffsetN = dart.constFn(dart.nullable(ui.Offset)))(),
-    BoxHitTestResultAndOffsetNTobool: () => (T.BoxHitTestResultAndOffsetNTobool = dart.constFn(dart.fnType(core.bool, [box.BoxHitTestResult, T.OffsetN()])))()
-=======
-define(['dart_sdk', 'packages/flutter/src/foundation/synchronous_future.dart', 'packages/flutter/src/painting/image_stream.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/foundation/object.dart', 'packages/flutter/src/painting/image_cache.dart', 'packages/flutter/src/painting/binding.dart', 'packages/flutter/src/services/system_channels.dart', 'packages/flutter/src/foundation/_platform_web.dart'], (function load__packages__flutter__src__painting___network_image_web_dart(dart_sdk, packages__flutter__src__foundation__synchronous_future$46dart, packages__flutter__src__painting__image_stream$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__foundation__object$46dart, packages__flutter__src__painting__image_cache$46dart, packages__flutter__src__painting__binding$46dart, packages__flutter__src__services__system_channels$46dart, packages__flutter__src__foundation___platform_web$46dart) {
-  'use strict';
-  const core = dart_sdk.core;
-  const async = dart_sdk.async;
-  const _interceptors = dart_sdk._interceptors;
-  const ui = dart_sdk.ui;
-  const _js_helper = dart_sdk._js_helper;
-  const typed_data = dart_sdk.typed_data;
-  const io = dart_sdk.io;
-  const dart = dart_sdk.dart;
-  const dartx = dart_sdk.dartx;
-  const synchronous_future = packages__flutter__src__foundation__synchronous_future$46dart.src__foundation__synchronous_future;
-  const image_stream = packages__flutter__src__painting__image_stream$46dart.src__painting__image_stream;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
-  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
-  const image_cache = packages__flutter__src__painting__image_cache$46dart.src__painting__image_cache;
-  const binding = packages__flutter__src__painting__binding$46dart.src__painting__binding;
-  const asset_bundle = packages__flutter__src__services__system_channels$46dart.src__services__asset_bundle;
-  const platform = packages__flutter__src__foundation___platform_web$46dart.src__foundation__platform;
-  var _network_image_web = Object.create(dart.library);
-  var image_provider = Object.create(dart.library);
-  var $runtimeType = dartx.runtimeType;
-  var $toStringAsFixed = dartx.toStringAsFixed;
-  var $_equals = dartx._equals;
-  var $buffer = dartx.buffer;
-  var $asUint8List = dartx.asUint8List;
-  var $lengthInBytes = dartx.lengthInBytes;
-  var $hashCode = dartx.hashCode;
-  dart._checkModuleNullSafetyMode(true);
-  var T$ = {
-    SynchronousFutureOfNetworkImage: () => (T$.SynchronousFutureOfNetworkImage = dart.constFn(synchronous_future.SynchronousFuture$(_network_image_web.NetworkImage)))(),
-    StreamControllerOfImageChunkEvent: () => (T$.StreamControllerOfImageChunkEvent = dart.constFn(async.StreamController$(image_stream.ImageChunkEvent)))(),
-    ImageProviderOfObject: () => (T$.ImageProviderOfObject = dart.constFn(image_provider.ImageProvider$(core.Object)))(),
-    DiagnosticsPropertyOfImageProviderOfObject: () => (T$.DiagnosticsPropertyOfImageProviderOfObject = dart.constFn(diagnostics.DiagnosticsProperty$(T$.ImageProviderOfObject())))(),
-    DiagnosticsPropertyOfNetworkImage: () => (T$.DiagnosticsPropertyOfNetworkImage = dart.constFn(diagnostics.DiagnosticsProperty$(_network_image_web.NetworkImage)))(),
-    JSArrayOfDiagnosticsNode: () => (T$.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
-    ListOfDiagnosticsNode: () => (T$.ListOfDiagnosticsNode = dart.constFn(core.List$(diagnostics.DiagnosticsNode)))(),
-    VoidToListOfDiagnosticsNode: () => (T$.VoidToListOfDiagnosticsNode = dart.constFn(dart.fnType(T$.ListOfDiagnosticsNode(), [])))(),
-    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
-    intAndintTovoid: () => (T$.intAndintTovoid = dart.constFn(dart.fnType(dart.void, [core.int, core.int])))(),
-    StackTraceN: () => (T$.StackTraceN = dart.constFn(dart.nullable(core.StackTrace)))(),
-    ObjectAndStackTraceNTovoid: () => (T$.ObjectAndStackTraceNTovoid = dart.constFn(dart.fnType(dart.void, [core.Object, T$.StackTraceN()])))(),
-    DiagnosticsPropertyOfImageConfiguration: () => (T$.DiagnosticsPropertyOfImageConfiguration = dart.constFn(diagnostics.DiagnosticsProperty$(image_provider.ImageConfiguration)))(),
-    SyncIterableOfDiagnosticsNode: () => (T$.SyncIterableOfDiagnosticsNode = dart.constFn(_js_helper.SyncIterable$(diagnostics.DiagnosticsNode)))(),
-    IterableOfDiagnosticsNode: () => (T$.IterableOfDiagnosticsNode = dart.constFn(core.Iterable$(diagnostics.DiagnosticsNode)))(),
-    VoidToIterableOfDiagnosticsNode: () => (T$.VoidToIterableOfDiagnosticsNode = dart.constFn(dart.fnType(T$.IterableOfDiagnosticsNode(), [])))(),
-    FutureOfvoid: () => (T$.FutureOfvoid = dart.constFn(async.Future$(dart.void)))(),
-    ImageCacheStatusN: () => (T$.ImageCacheStatusN = dart.constFn(dart.nullable(image_cache.ImageCacheStatus)))(),
-    CompleterOfImageCacheStatusN: () => (T$.CompleterOfImageCacheStatusN = dart.constFn(async.Completer$(T$.ImageCacheStatusN())))(),
-    ObjectAndStackTraceNToFutureOfvoid: () => (T$.ObjectAndStackTraceNToFutureOfvoid = dart.constFn(dart.fnType(T$.FutureOfvoid(), [core.Object, T$.StackTraceN()])))(),
-    ZoneAndZoneDelegateAndZone__Tovoid: () => (T$.ZoneAndZoneDelegateAndZone__Tovoid = dart.constFn(dart.fnType(dart.void, [async.Zone, async.ZoneDelegate, async.Zone, core.Object, core.StackTrace])))(),
-    VoidTovoid: () => (T$.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    VoidToImageStreamCompleter: () => (T$.VoidToImageStreamCompleter = dart.constFn(dart.fnType(image_stream.ImageStreamCompleter, [])))(),
-    DiagnosticsPropertyOfAssetBundleImageKey: () => (T$.DiagnosticsPropertyOfAssetBundleImageKey = dart.constFn(diagnostics.DiagnosticsProperty$(image_provider.AssetBundleImageKey)))(),
-    FutureOfCodec: () => (T$.FutureOfCodec = dart.constFn(async.Future$(ui.Codec)))(),
-    boolN: () => (T$.boolN = dart.constFn(dart.nullable(core.bool)))(),
-    intN: () => (T$.intN = dart.constFn(dart.nullable(core.int)))(),
-    Uint8List__ToFutureOfCodec: () => (T$.Uint8List__ToFutureOfCodec = dart.constFn(dart.fnType(T$.FutureOfCodec(), [typed_data.Uint8List], {allowUpscaling: T$.boolN(), cacheHeight: T$.intN(), cacheWidth: T$.intN()}, {})))(),
-    SynchronousFutureOf_SizeAwareCacheKey: () => (T$.SynchronousFutureOf_SizeAwareCacheKey = dart.constFn(synchronous_future.SynchronousFuture$(image_provider._SizeAwareCacheKey)))(),
-    ObjectToNull: () => (T$.ObjectToNull = dart.constFn(dart.fnType(core.Null, [core.Object])))(),
-    CompleterOf_SizeAwareCacheKey: () => (T$.CompleterOf_SizeAwareCacheKey = dart.constFn(async.Completer$(image_provider._SizeAwareCacheKey)))(),
-    SynchronousFutureOfFileImage: () => (T$.SynchronousFutureOfFileImage = dart.constFn(synchronous_future.SynchronousFuture$(image_provider.FileImage)))(),
-    SynchronousFutureOfMemoryImage: () => (T$.SynchronousFutureOfMemoryImage = dart.constFn(synchronous_future.SynchronousFuture$(image_provider.MemoryImage)))(),
-    SynchronousFutureOfAssetBundleImageKey: () => (T$.SynchronousFutureOfAssetBundleImageKey = dart.constFn(synchronous_future.SynchronousFuture$(image_provider.AssetBundleImageKey)))()
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+    SyncIterableOfDiagnosticsNode: () => (T.SyncIterableOfDiagnosticsNode = dart.constFn(_js_helper.SyncIterable$(diagnostics.DiagnosticsNode)))(),
+    IterableOfDiagnosticsNode: () => (T.IterableOfDiagnosticsNode = dart.constFn(core.Iterable$(diagnostics.DiagnosticsNode)))(),
+    VoidToIterableOfDiagnosticsNode: () => (T.VoidToIterableOfDiagnosticsNode = dart.constFn(dart.fnType(T.IterableOfDiagnosticsNode(), [])))(),
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
-  dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-<<<<<<< HEAD
-        __proto__: stack.RelativeRect.prototype,
-        [bottom$]: 0,
-        [right$]: 0,
-        [top$]: 0,
-        [left$]: 0
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: stack.StackFit.prototype,
-        [_name$]: "StackFit.loose",
-        index: 0
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: stack.StackFit.prototype,
-        [_name$]: "StackFit.expand",
-        index: 1
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: stack.StackFit.prototype,
-        [_name$]: "StackFit.passthrough",
-        index: 2
-      });
-    },
-    get C4() {
-      return C[4] = dart.constList([C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3], stack.StackFit);
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: stack.Overflow.prototype,
-        [_name$]: "Overflow.visible",
-        index: 0
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: stack.Overflow.prototype,
-        [_name$]: "Overflow.clip",
-        index: 1
-      });
-    },
-    get C7() {
-      return C[7] = dart.constList([C[5] || CT.C5, C[6] || CT.C6], stack.Overflow);
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [AlignmentDirectional_y]: -1,
-        [AlignmentDirectional_start]: -1
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: ui.Clip.prototype,
-        [_name]: "Clip.hardEdge",
-        index: 1
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: box.BoxConstraints.prototype,
-        [BoxConstraints_maxHeight]: 1 / 0,
-        [BoxConstraints_minHeight]: 0,
-        [BoxConstraints_maxWidth]: 1 / 0,
-        [BoxConstraints_minWidth]: 0
-      });
-    },
-    get C11() {
-      return C[11] = dart.fn(layout_helper.ChildLayoutHelper.dryLayoutChild, T.RenderBoxAndBoxConstraintsToSize());
-    },
-    get C12() {
-      return C[12] = dart.fn(layout_helper.ChildLayoutHelper.layoutChild, T.RenderBoxAndBoxConstraintsToSize());
-    }
-  }, false);
-  var C = Array(13).fill(void 0);
   var I = [
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/rendering/stack.dart",
-    "package:flutter/src/rendering/stack.dart"
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/layout_builder.dart",
+    "package:flutter/src/widgets/layout_builder.dart"
   ];
-  var left$ = dart.privateName(stack, "RelativeRect.left");
-  var top$ = dart.privateName(stack, "RelativeRect.top");
-  var right$ = dart.privateName(stack, "RelativeRect.right");
-  var bottom$ = dart.privateName(stack, "RelativeRect.bottom");
-  stack.RelativeRect = class RelativeRect extends core.Object {
-    get left() {
-      return this[left$];
-    }
-    set left(value) {
-      super.left = value;
-    }
-    get top() {
-      return this[top$];
-    }
-    set top(value) {
-      super.top = value;
-    }
-    get right() {
-      return this[right$];
-    }
-    set right(value) {
-      super.right = value;
-    }
-    get bottom() {
-      return this[bottom$];
-    }
-    set bottom(value) {
-      super.bottom = value;
-    }
-    static fromSize(rect, container) {
-      return new stack.RelativeRect.fromLTRB(rect.left, rect.top, container.width - rect.right, container.height - rect.bottom);
-    }
-    static fromRect(rect, container) {
-      return new stack.RelativeRect.fromLTRB(rect.left - container.left, rect.top - container.top, container.right - rect.right, container.bottom - rect.bottom);
-    }
-    get hasInsets() {
-      return this.left > 0.0 || this.top > 0.0 || this.right > 0.0 || this.bottom > 0.0;
-    }
-    shift(offset) {
-      return new stack.RelativeRect.fromLTRB(this.left + offset.dx, this.top + offset.dy, this.right - offset.dx, this.bottom - offset.dy);
-    }
-    inflate(delta) {
-      return new stack.RelativeRect.fromLTRB(this.left - delta, this.top - delta, this.right - delta, this.bottom - delta);
-    }
-    deflate(delta) {
-      return this.inflate(-delta);
-    }
-    intersect(other) {
-      return new stack.RelativeRect.fromLTRB(math.max(core.double, this.left, other.left), math.max(core.double, this.top, other.top), math.max(core.double, this.right, other.right), math.max(core.double, this.bottom, other.bottom));
-    }
-    toRect(container) {
-      return new ui.Rect.fromLTRB(this.left, this.top, container.width - this.right, container.height - this.bottom);
-    }
-    toSize(container) {
-      return new ui.Size.new(container.width - this.left - this.right, container.height - this.top - this.bottom);
-    }
-    static lerp(a, b, t) {
-      if (!(t !== null)) dart.assertFailed(null, I[0], 138, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return new stack.RelativeRect.fromLTRB(dart.nullCheck(b).left * t, b.top * t, b.right * t, b.bottom * t);
-      if (b == null) {
-        let k = 1.0 - t;
-        return new stack.RelativeRect.fromLTRB(dart.nullCheck(b).left * k, b.top * k, b.right * k, b.bottom * k);
+  var builder$ = dart.privateName(layout_builder, "ConstrainedLayoutBuilder.builder");
+  const _is_ConstrainedLayoutBuilder_default = Symbol('_is_ConstrainedLayoutBuilder_default');
+  layout_builder.ConstrainedLayoutBuilder$ = dart.generic(ConstraintType => {
+    var _LayoutBuilderElementOfConstraintType = () => (_LayoutBuilderElementOfConstraintType = dart.constFn(layout_builder._LayoutBuilderElement$(ConstraintType)))();
+    class ConstrainedLayoutBuilder extends framework.RenderObjectWidget {
+      get builder() {
+        return this[builder$];
       }
-      return new stack.RelativeRect.fromLTRB(dart.nullCheck(ui.lerpDouble(a.left, b.left, t)), dart.nullCheck(ui.lerpDouble(a.top, b.top, t)), dart.nullCheck(ui.lerpDouble(a.right, b.right, t)), dart.nullCheck(ui.lerpDouble(a.bottom, b.bottom, t)));
+      set builder(value) {
+        super.builder = value;
+      }
+      createElement() {
+        return new (_LayoutBuilderElementOfConstraintType()).new(this);
+      }
     }
-    _equals(other) {
-      if (other == null) return false;
-      if (this === other) return true;
-      return stack.RelativeRect.is(other) && other.left === this.left && other.top === this.top && other.right === this.right && other.bottom === this.bottom;
+    (ConstrainedLayoutBuilder.new = function(opts) {
+      let key = opts && 'key' in opts ? opts.key : null;
+      let builder = opts && 'builder' in opts ? opts.builder : null;
+      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+      this[builder$] = builder;
+      if (!(builder !== null)) dart.assertFailed(null, I[0], 43, 15, "builder != null");
+      ConstrainedLayoutBuilder.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+      ;
+    }).prototype = ConstrainedLayoutBuilder.prototype;
+    dart.addTypeTests(ConstrainedLayoutBuilder);
+    ConstrainedLayoutBuilder.prototype[_is_ConstrainedLayoutBuilder_default] = true;
+    dart.addTypeCaches(ConstrainedLayoutBuilder);
+    dart.setMethodSignature(ConstrainedLayoutBuilder, () => ({
+      __proto__: dart.getMethods(ConstrainedLayoutBuilder.__proto__),
+      createElement: dart.fnType(layout_builder._LayoutBuilderElement$(ConstraintType), [])
+    }));
+    dart.setLibraryUri(ConstrainedLayoutBuilder, I[1]);
+    dart.setFieldSignature(ConstrainedLayoutBuilder, () => ({
+      __proto__: dart.getFields(ConstrainedLayoutBuilder.__proto__),
+      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, ConstraintType]))
+    }));
+    return ConstrainedLayoutBuilder;
+  });
+  layout_builder.ConstrainedLayoutBuilder = layout_builder.ConstrainedLayoutBuilder$();
+  dart.addTypeTests(layout_builder.ConstrainedLayoutBuilder, _is_ConstrainedLayoutBuilder_default);
+  var _child = dart.privateName(layout_builder, "_child");
+  var _layout = dart.privateName(layout_builder, "_layout");
+  const _is__LayoutBuilderElement_default = Symbol('_is__LayoutBuilderElement_default');
+  layout_builder._LayoutBuilderElement$ = dart.generic(ConstraintType => {
+    var ConstrainedLayoutBuilderOfConstraintType = () => (ConstrainedLayoutBuilderOfConstraintType = dart.constFn(layout_builder.ConstrainedLayoutBuilder$(ConstraintType)))();
+    var RenderConstrainedLayoutBuilderOfConstraintType$RenderObject = () => (RenderConstrainedLayoutBuilderOfConstraintType$RenderObject = dart.constFn(layout_builder.RenderConstrainedLayoutBuilder$(ConstraintType, object.RenderObject)))();
+    var BuildContextAndConstraintTypeToWidget = () => (BuildContextAndConstraintTypeToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, ConstraintType])))();
+    class _LayoutBuilderElement extends framework.RenderObjectElement {
+      get widget() {
+        return ConstrainedLayoutBuilderOfConstraintType().as(super.widget);
+      }
+      get renderObject() {
+        return RenderConstrainedLayoutBuilderOfConstraintType$RenderObject().as(super.renderObject);
+      }
+      visitChildren(visitor) {
+        if (this[_child] != null) visitor(dart.nullCheck(this[_child]));
+      }
+      forgetChild(child) {
+        if (!child._equals(this[_child])) dart.assertFailed(null, I[0], 76, 12, "child == _child");
+        this[_child] = null;
+        super.forgetChild(child);
+      }
+      mount(parent, newSlot) {
+        super.mount(parent, newSlot);
+        this.renderObject.updateCallback(dart.bind(this, _layout));
+      }
+      update(newWidget) {
+        ConstrainedLayoutBuilderOfConstraintType().as(newWidget);
+        if (!!this.widget._equals(newWidget)) dart.assertFailed(null, I[0], 89, 12, "widget != newWidget");
+        super.update(newWidget);
+        if (!this.widget._equals(newWidget)) dart.assertFailed(null, I[0], 91, 12, "widget == newWidget");
+        this.renderObject.updateCallback(dart.bind(this, _layout));
+        this.renderObject.markNeedsBuild();
+      }
+      performRebuild() {
+        this.renderObject.markNeedsBuild();
+        super.performRebuild();
+      }
+      unmount() {
+        this.renderObject.updateCallback(null);
+        super.unmount();
+      }
+      [_layout](constraints) {
+        ConstraintType.as(constraints);
+        dart.nullCheck(this.owner).buildScope(this, dart.fn(() => {
+          let t1, t0;
+          let built = null;
+          try {
+            built = (t0 = this.widget, t1 = constraints, BuildContextAndConstraintTypeToWidget().as(t0.builder)(this, t1));
+            debug.debugWidgetBuilderValue(this.widget, built);
+          } catch (e$) {
+            let e = dart.getThrown(e$);
+            let stack = dart.stackTrace(e$);
+            if (core.Object.is(e)) {
+              built = framework.ErrorWidget.builder(layout_builder._debugReportException(new assertions.ErrorDescription.new("building " + dart.str(this.widget)), e, stack, {informationCollector: dart.fn(() => new (T.SyncIterableOfDiagnosticsNode()).new((function*() {
+                  yield new object.DiagnosticsDebugCreator.new(new framework.DebugCreator.new(this));
+                }).bind(this)), T.VoidToIterableOfDiagnosticsNode())}));
+            } else
+              throw e$;
+          }
+          try {
+            this[_child] = this.updateChild(this[_child], built, null);
+            if (!(this[_child] != null)) dart.assertFailed(null, I[0], 137, 16, "_child != null");
+          } catch (e$0) {
+            let e = dart.getThrown(e$0);
+            let stack = dart.stackTrace(e$0);
+            if (core.Object.is(e)) {
+              built = framework.ErrorWidget.builder(layout_builder._debugReportException(new assertions.ErrorDescription.new("building " + dart.str(this.widget)), e, stack, {informationCollector: dart.fn(() => new (T.SyncIterableOfDiagnosticsNode()).new((function*() {
+                  yield new object.DiagnosticsDebugCreator.new(new framework.DebugCreator.new(this));
+                }).bind(this)), T.VoidToIterableOfDiagnosticsNode())}));
+              this[_child] = this.updateChild(null, built, this.slot);
+            } else
+              throw e$0;
+          }
+        }, T.VoidTovoid()));
+      }
+      insertRenderObjectChild(child, slot) {
+        object.RenderObject.as(child);
+        let renderObject = this.renderObject;
+        if (!(slot == null)) dart.assertFailed(null, I[0], 157, 12, "slot == null");
+        if (!renderObject.debugValidateChild(child)) dart.assertFailed(null, I[0], 158, 12, "renderObject.debugValidateChild(child)");
+        renderObject.child = child;
+        if (!renderObject[$_equals](this.renderObject)) dart.assertFailed(null, I[0], 160, 12, "renderObject == this.renderObject");
+      }
+      moveRenderObjectChild(child, oldSlot, newSlot) {
+        object.RenderObject.as(child);
+        if (!false) dart.assertFailed(null, I[0], 165, 12, "false");
+      }
+      removeRenderObjectChild(child, slot) {
+        object.RenderObject.as(child);
+        let renderObject = this.renderObject;
+        if (!dart.equals(renderObject.child, child)) dart.assertFailed(null, I[0], 171, 12, "renderObject.child == child");
+        renderObject.child = null;
+        if (!renderObject[$_equals](this.renderObject)) dart.assertFailed(null, I[0], 173, 12, "renderObject == this.renderObject");
+      }
     }
-    get hashCode() {
-      return ui.hashValues(this.left, this.top, this.right, this.bottom);
-    }
-    toString() {
-      return "RelativeRect.fromLTRB(" + this.left[$toStringAsFixed](1) + ", " + this.top[$toStringAsFixed](1) + ", " + this.right[$toStringAsFixed](1) + ", " + this.bottom[$toStringAsFixed](1) + ")";
-    }
-  };
-  (stack.RelativeRect.fromLTRB = function(left, top, right, bottom) {
-    this[left$] = left;
-    this[top$] = top;
-    this[right$] = right;
-    this[bottom$] = bottom;
-    if (!(left !== null && top !== null && right !== null && bottom !== null)) dart.assertFailed(null, I[0], 29, 14, "left != null && top != null && right != null && bottom != null");
-    ;
-  }).prototype = stack.RelativeRect.prototype;
-  dart.addTypeTests(stack.RelativeRect);
-  dart.addTypeCaches(stack.RelativeRect);
-  dart.setMethodSignature(stack.RelativeRect, () => ({
-    __proto__: dart.getMethods(stack.RelativeRect.__proto__),
-    shift: dart.fnType(stack.RelativeRect, [ui.Offset]),
-    inflate: dart.fnType(stack.RelativeRect, [core.double]),
-    deflate: dart.fnType(stack.RelativeRect, [core.double]),
-    intersect: dart.fnType(stack.RelativeRect, [stack.RelativeRect]),
-    toRect: dart.fnType(ui.Rect, [ui.Rect]),
-    toSize: dart.fnType(ui.Size, [ui.Size])
-  }));
-  dart.setGetterSignature(stack.RelativeRect, () => ({
-    __proto__: dart.getGetters(stack.RelativeRect.__proto__),
-    hasInsets: core.bool
-  }));
-  dart.setLibraryUri(stack.RelativeRect, I[1]);
-  dart.setFieldSignature(stack.RelativeRect, () => ({
-    __proto__: dart.getFields(stack.RelativeRect.__proto__),
-    left: dart.finalFieldType(core.double),
-    top: dart.finalFieldType(core.double),
-    right: dart.finalFieldType(core.double),
-    bottom: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(stack.RelativeRect, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(stack.RelativeRect, ['hashCode']);
-  dart.defineLazy(stack.RelativeRect, {
-    /*stack.RelativeRect.fill*/get fill() {
-      return C[0] || CT.C0;
-    }
-  }, false);
-  var top = dart.privateName(stack, "StackParentData.top");
-  var right = dart.privateName(stack, "StackParentData.right");
-  var bottom = dart.privateName(stack, "StackParentData.bottom");
-  var left = dart.privateName(stack, "StackParentData.left");
-  var width = dart.privateName(stack, "StackParentData.width");
-  var height = dart.privateName(stack, "StackParentData.height");
-  stack.StackParentData = class StackParentData extends box.ContainerBoxParentData$(box.RenderBox) {
-    get top() {
-      return this[top];
-    }
-    set top(value) {
-      this[top] = value;
-    }
-    get right() {
-      return this[right];
-    }
-    set right(value) {
-      this[right] = value;
-    }
-    get bottom() {
-      return this[bottom];
-    }
-    set bottom(value) {
-      this[bottom] = value;
-    }
-    get left() {
-      return this[left];
-    }
-    set left(value) {
-      this[left] = value;
-    }
-    get width() {
-      return this[width];
-    }
-    set width(value) {
-      this[width] = value;
-    }
-    get height() {
-      return this[height];
-    }
-    set height(value) {
-      this[height] = value;
-    }
-    get rect() {
-      return new stack.RelativeRect.fromLTRB(dart.nullCheck(this.left), dart.nullCheck(this.top), dart.nullCheck(this.right), dart.nullCheck(this.bottom));
-    }
-    set rect(value) {
-      this.top = value.top;
-      this.right = value.right;
-      this.bottom = value.bottom;
-      this.left = value.left;
-    }
-    get isPositioned() {
-      return this.top != null || this.right != null || this.bottom != null || this.left != null || this.width != null || this.height != null;
-    }
-    toString() {
-      let values = (() => {
-        let t0 = T.JSArrayOfString().of([]);
-        if (this.top != null) t0[$add]("top=" + debug.debugFormatDouble(this.top));
-        if (this.right != null) t0[$add]("right=" + debug.debugFormatDouble(this.right));
-        if (this.bottom != null) t0[$add]("bottom=" + debug.debugFormatDouble(this.bottom));
-        if (this.left != null) t0[$add]("left=" + debug.debugFormatDouble(this.left));
-        if (this.width != null) t0[$add]("width=" + debug.debugFormatDouble(this.width));
-        if (this.height != null) t0[$add]("height=" + debug.debugFormatDouble(this.height));
-        return t0;
-      })();
-      if (values[$isEmpty]) values[$add]("not positioned");
-      values[$add](super.toString());
-      return values[$join]("; ");
-    }
-  };
-  (stack.StackParentData.new = function() {
-    this[top] = null;
-    this[right] = null;
-    this[bottom] = null;
-    this[left] = null;
-    this[width] = null;
-    this[height] = null;
-    stack.StackParentData.__proto__.new.call(this);
-    ;
-  }).prototype = stack.StackParentData.prototype;
-  dart.addTypeTests(stack.StackParentData);
-  dart.addTypeCaches(stack.StackParentData);
-  dart.setGetterSignature(stack.StackParentData, () => ({
-    __proto__: dart.getGetters(stack.StackParentData.__proto__),
-    rect: stack.RelativeRect,
-    isPositioned: core.bool
-  }));
-  dart.setSetterSignature(stack.StackParentData, () => ({
-    __proto__: dart.getSetters(stack.StackParentData.__proto__),
-    rect: stack.RelativeRect
-  }));
-  dart.setLibraryUri(stack.StackParentData, I[1]);
-  dart.setFieldSignature(stack.StackParentData, () => ({
-    __proto__: dart.getFields(stack.StackParentData.__proto__),
-    top: dart.fieldType(dart.nullable(core.double)),
-    right: dart.fieldType(dart.nullable(core.double)),
-    bottom: dart.fieldType(dart.nullable(core.double)),
-    left: dart.fieldType(dart.nullable(core.double)),
-    width: dart.fieldType(dart.nullable(core.double)),
-    height: dart.fieldType(dart.nullable(core.double))
-  }));
-  dart.defineExtensionMethods(stack.StackParentData, ['toString']);
-  var _name$ = dart.privateName(stack, "_name");
-  stack.StackFit = class StackFit extends core.Object {
-    toString() {
-      return this[_name$];
-    }
-  };
-  (stack.StackFit.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
-    ;
-  }).prototype = stack.StackFit.prototype;
-  dart.addTypeTests(stack.StackFit);
-  dart.addTypeCaches(stack.StackFit);
-  dart.setLibraryUri(stack.StackFit, I[1]);
-  dart.setFieldSignature(stack.StackFit, () => ({
-    __proto__: dart.getFields(stack.StackFit.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(stack.StackFit, ['toString']);
-  stack.StackFit.loose = C[1] || CT.C1;
-  stack.StackFit.expand = C[2] || CT.C2;
-  stack.StackFit.passthrough = C[3] || CT.C3;
-  stack.StackFit.values = C[4] || CT.C4;
-  stack.Overflow = class Overflow extends core.Object {
-    toString() {
-      return this[_name$];
-    }
-  };
-  (stack.Overflow.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
-    ;
-  }).prototype = stack.Overflow.prototype;
-  dart.addTypeTests(stack.Overflow);
-  dart.addTypeCaches(stack.Overflow);
-  dart.setLibraryUri(stack.Overflow, I[1]);
-  dart.setFieldSignature(stack.Overflow, () => ({
-    __proto__: dart.getFields(stack.Overflow.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(stack.Overflow, ['toString']);
-  stack.Overflow.visible = C[5] || CT.C5;
-  stack.Overflow.clip = C[6] || CT.C6;
-  stack.Overflow.values = C[7] || CT.C7;
-  var AlignmentDirectional_y = dart.privateName(alignment, "AlignmentDirectional.y");
-  var AlignmentDirectional_start = dart.privateName(alignment, "AlignmentDirectional.start");
-  var _name = dart.privateName(ui, "_name");
-  var _hasVisualOverflow = dart.privateName(stack, "_hasVisualOverflow");
-  var _resolvedAlignment = dart.privateName(stack, "_resolvedAlignment");
-  var _clipBehavior = dart.privateName(stack, "_clipBehavior");
-  var _clipRectLayer = dart.privateName(stack, "_clipRectLayer");
-  var _alignment = dart.privateName(stack, "_alignment");
-  var _textDirection = dart.privateName(stack, "_textDirection");
-  var _fit = dart.privateName(stack, "_fit");
-  var _resolve = dart.privateName(stack, "_resolve");
-  var _markNeedResolution = dart.privateName(stack, "_markNeedResolution");
-  var BoxConstraints_maxHeight = dart.privateName(box, "BoxConstraints.maxHeight");
-  var BoxConstraints_minHeight = dart.privateName(box, "BoxConstraints.minHeight");
-  var BoxConstraints_maxWidth = dart.privateName(box, "BoxConstraints.maxWidth");
-  var BoxConstraints_minWidth = dart.privateName(box, "BoxConstraints.minWidth");
-  var _computeSize = dart.privateName(stack, "_computeSize");
-  const RenderBox_ContainerRenderObjectMixin$36 = class RenderBox_ContainerRenderObjectMixin extends box.RenderBox {};
-  (RenderBox_ContainerRenderObjectMixin$36.new = function() {
-    object.ContainerRenderObjectMixin$(box.RenderBox, stack.StackParentData)[dart.mixinNew].call(this);
-    RenderBox_ContainerRenderObjectMixin$36.__proto__.new.call(this);
-  }).prototype = RenderBox_ContainerRenderObjectMixin$36.prototype;
-  dart.applyMixin(RenderBox_ContainerRenderObjectMixin$36, object.ContainerRenderObjectMixin$(box.RenderBox, stack.StackParentData));
-  const RenderBox_RenderBoxContainerDefaultsMixin$36 = class RenderBox_RenderBoxContainerDefaultsMixin extends RenderBox_ContainerRenderObjectMixin$36 {};
-  (RenderBox_RenderBoxContainerDefaultsMixin$36.new = function() {
-    RenderBox_RenderBoxContainerDefaultsMixin$36.__proto__.new.call(this);
-  }).prototype = RenderBox_RenderBoxContainerDefaultsMixin$36.prototype;
-  dart.applyMixin(RenderBox_RenderBoxContainerDefaultsMixin$36, box.RenderBoxContainerDefaultsMixin$(box.RenderBox, stack.StackParentData));
-  stack.RenderStack = class RenderStack extends RenderBox_RenderBoxContainerDefaultsMixin$36 {
-    setupParentData(child) {
-      box.RenderBox.as(child);
-      if (!stack.StackParentData.is(child.parentData)) child.parentData = new stack.StackParentData.new();
-    }
-    [_resolve]() {
-      if (this[_resolvedAlignment] != null) return;
-      this[_resolvedAlignment] = this.alignment.resolve(this.textDirection);
-    }
-    [_markNeedResolution]() {
-      this[_resolvedAlignment] = null;
-      this.markNeedsLayout();
-    }
-    get alignment() {
-      return this[_alignment];
-    }
-    set alignment(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[0], 389, 12, "value != null");
-      if (this[_alignment]._equals(value)) return;
-      this[_alignment] = value;
-      this[_markNeedResolution]();
-    }
-    get textDirection() {
-      return this[_textDirection];
-    }
-    set textDirection(value) {
-      if (this[_textDirection] == value) return;
-      this[_textDirection] = value;
-      this[_markNeedResolution]();
-    }
-    get fit() {
-      return this[_fit];
-    }
-    set fit(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[0], 417, 12, "value != null");
-      if (this[_fit] !== value) {
-        this[_fit] = value;
+    (_LayoutBuilderElement.new = function(widget) {
+      this[_child] = null;
+      _LayoutBuilderElement.__proto__.new.call(this, widget);
+      ;
+    }).prototype = _LayoutBuilderElement.prototype;
+    dart.addTypeTests(_LayoutBuilderElement);
+    _LayoutBuilderElement.prototype[_is__LayoutBuilderElement_default] = true;
+    dart.addTypeCaches(_LayoutBuilderElement);
+    dart.setMethodSignature(_LayoutBuilderElement, () => ({
+      __proto__: dart.getMethods(_LayoutBuilderElement.__proto__),
+      [_layout]: dart.fnType(dart.void, [dart.nullable(core.Object)])
+    }));
+    dart.setGetterSignature(_LayoutBuilderElement, () => ({
+      __proto__: dart.getGetters(_LayoutBuilderElement.__proto__),
+      widget: layout_builder.ConstrainedLayoutBuilder$(ConstraintType),
+      renderObject: layout_builder.RenderConstrainedLayoutBuilder$(ConstraintType, object.RenderObject)
+    }));
+    dart.setLibraryUri(_LayoutBuilderElement, I[1]);
+    dart.setFieldSignature(_LayoutBuilderElement, () => ({
+      __proto__: dart.getFields(_LayoutBuilderElement.__proto__),
+      [_child]: dart.fieldType(dart.nullable(framework.Element))
+    }));
+    return _LayoutBuilderElement;
+  });
+  layout_builder._LayoutBuilderElement = layout_builder._LayoutBuilderElement$();
+  dart.addTypeTests(layout_builder._LayoutBuilderElement, _is__LayoutBuilderElement_default);
+  var _callback = dart.privateName(layout_builder, "RenderConstrainedLayoutBuilder._callback");
+  var _needsBuild = dart.privateName(layout_builder, "RenderConstrainedLayoutBuilder._needsBuild");
+  var _previousConstraints = dart.privateName(layout_builder, "RenderConstrainedLayoutBuilder._previousConstraints");
+  var _callback$ = dart.privateName(layout_builder, "_callback");
+  var _needsBuild$ = dart.privateName(layout_builder, "_needsBuild");
+  var _previousConstraints$ = dart.privateName(layout_builder, "_previousConstraints");
+  const _is_RenderConstrainedLayoutBuilder_default = Symbol('_is_RenderConstrainedLayoutBuilder_default');
+  layout_builder.RenderConstrainedLayoutBuilder$ = dart.generic((ConstraintType, ChildType) => {
+    class RenderConstrainedLayoutBuilder extends object.RenderObjectWithChildMixin$(ChildType) {}
+    RenderConstrainedLayoutBuilder[dart.mixinOn] = RenderObjectWithChildMixin => class RenderConstrainedLayoutBuilder extends RenderObjectWithChildMixin {
+      get [_callback$]() {
+        return this[_callback];
+      }
+      set [_callback$](value) {
+        this[_callback] = value;
+      }
+      get [_needsBuild$]() {
+        return this[_needsBuild];
+      }
+      set [_needsBuild$](value) {
+        this[_needsBuild] = value;
+      }
+      get [_previousConstraints$]() {
+        return this[_previousConstraints];
+      }
+      set [_previousConstraints$](value) {
+        this[_previousConstraints] = value;
+      }
+      updateCallback(value) {
+        if (dart.equals(value, this[_callback$])) return;
+        this[_callback$] = value;
         this.markNeedsLayout();
       }
-    }
-    get clipBehavior() {
-      return this[_clipBehavior];
-    }
-    set clipBehavior(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[0], 430, 12, "value != null");
-      if (value !== this[_clipBehavior]) {
-        this[_clipBehavior] = value;
-        this.markNeedsPaint();
-        this.markNeedsSemanticsUpdate();
+      markNeedsBuild() {
+        this[_needsBuild$] = true;
+        this.markNeedsLayout();
       }
-    }
-    static getIntrinsicDimension(firstChild, mainChildSizeGetter) {
-      let extent = 0.0;
-      let child = firstChild;
-      while (child != null) {
-        let childParentData = stack.StackParentData.as(dart.nullCheck(child.parentData));
-        if (!childParentData.isPositioned) extent = math.max(core.double, extent, mainChildSizeGetter(child));
-        if (!dart.equals(child.parentData, childParentData)) dart.assertFailed(null, I[0], 446, 14, "child.parentData == childParentData");
-        child = childParentData.nextSibling;
+      rebuildIfNecessary() {
+        if (!(this[_callback$] != null)) dart.assertFailed(null, I[0], 221, 12, "_callback != null");
+        if (this[_needsBuild$] || !this.constraints[$_equals](this[_previousConstraints$])) {
+          this[_previousConstraints$] = this.constraints;
+          this[_needsBuild$] = false;
+          this.invokeLayoutCallback(ConstraintType, dart.nullCheck(this[_callback$]));
+        }
       }
-      return extent;
+    };
+    (RenderConstrainedLayoutBuilder[dart.mixinNew] = function() {
+      this[_callback] = null;
+      this[_needsBuild] = true;
+      this[_previousConstraints] = null;
+    }).prototype = RenderConstrainedLayoutBuilder.prototype;
+    dart.addTypeTests(RenderConstrainedLayoutBuilder);
+    RenderConstrainedLayoutBuilder.prototype[_is_RenderConstrainedLayoutBuilder_default] = true;
+    dart.addTypeCaches(RenderConstrainedLayoutBuilder);
+    RenderConstrainedLayoutBuilder[dart.implements] = () => [object.RenderObjectWithChildMixin$(ChildType)];
+    dart.setMethodSignature(RenderConstrainedLayoutBuilder, () => ({
+      __proto__: dart.getMethods(RenderConstrainedLayoutBuilder.__proto__),
+      updateCallback: dart.fnType(dart.void, [dart.nullable(dart.fnType(dart.void, [ConstraintType]))]),
+      markNeedsBuild: dart.fnType(dart.void, []),
+      rebuildIfNecessary: dart.fnType(dart.void, [])
+    }));
+    dart.setLibraryUri(RenderConstrainedLayoutBuilder, I[1]);
+    dart.setFieldSignature(RenderConstrainedLayoutBuilder, () => ({
+      __proto__: dart.getFields(RenderConstrainedLayoutBuilder.__proto__),
+      [_callback$]: dart.fieldType(dart.nullable(dart.fnType(dart.void, [ConstraintType]))),
+      [_needsBuild$]: dart.fieldType(core.bool),
+      [_previousConstraints$]: dart.fieldType(dart.nullable(object.Constraints))
+    }));
+    return RenderConstrainedLayoutBuilder;
+  });
+  layout_builder.RenderConstrainedLayoutBuilder = layout_builder.RenderConstrainedLayoutBuilder$();
+  dart.addTypeTests(layout_builder.RenderConstrainedLayoutBuilder, _is_RenderConstrainedLayoutBuilder_default);
+  layout_builder.LayoutBuilder = class LayoutBuilder extends layout_builder.ConstrainedLayoutBuilder$(box.BoxConstraints) {
+    get builder() {
+      return super.builder;
     }
+    createRenderObject(context) {
+      return new layout_builder._RenderLayoutBuilder.new();
+    }
+  };
+  (layout_builder.LayoutBuilder.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let builder = opts && 'builder' in opts ? opts.builder : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    if (!(builder !== null)) dart.assertFailed(null, I[0], 313, 15, "builder != null");
+    layout_builder.LayoutBuilder.__proto__.new.call(this, {key: key, builder: builder, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = layout_builder.LayoutBuilder.prototype;
+  dart.addTypeTests(layout_builder.LayoutBuilder);
+  dart.addTypeCaches(layout_builder.LayoutBuilder);
+  dart.setMethodSignature(layout_builder.LayoutBuilder, () => ({
+    __proto__: dart.getMethods(layout_builder.LayoutBuilder.__proto__),
+    createRenderObject: dart.fnType(layout_builder._RenderLayoutBuilder, [framework.BuildContext])
+  }));
+  dart.setGetterSignature(layout_builder.LayoutBuilder, () => ({
+    __proto__: dart.getGetters(layout_builder.LayoutBuilder.__proto__),
+    builder: dart.fnType(framework.Widget, [framework.BuildContext, box.BoxConstraints])
+  }));
+  dart.setLibraryUri(layout_builder.LayoutBuilder, I[1]);
+  var _debugThrowIfNotCheckingIntrinsics = dart.privateName(layout_builder, "_debugThrowIfNotCheckingIntrinsics");
+  const RenderBox_RenderObjectWithChildMixin$36 = class RenderBox_RenderObjectWithChildMixin extends box.RenderBox {};
+  (RenderBox_RenderObjectWithChildMixin$36.new = function() {
+    object.RenderObjectWithChildMixin$(box.RenderBox)[dart.mixinNew].call(this);
+    RenderBox_RenderObjectWithChildMixin$36.__proto__.new.call(this);
+  }).prototype = RenderBox_RenderObjectWithChildMixin$36.prototype;
+  dart.applyMixin(RenderBox_RenderObjectWithChildMixin$36, object.RenderObjectWithChildMixin$(box.RenderBox));
+  const RenderBox_RenderConstrainedLayoutBuilder$36 = class RenderBox_RenderConstrainedLayoutBuilder extends RenderBox_RenderObjectWithChildMixin$36 {};
+  (RenderBox_RenderConstrainedLayoutBuilder$36.new = function() {
+    layout_builder.RenderConstrainedLayoutBuilder$(box.BoxConstraints, box.RenderBox)[dart.mixinNew].call(this);
+    RenderBox_RenderConstrainedLayoutBuilder$36.__proto__.new.call(this);
+  }).prototype = RenderBox_RenderConstrainedLayoutBuilder$36.prototype;
+  dart.applyMixin(RenderBox_RenderConstrainedLayoutBuilder$36, layout_builder.RenderConstrainedLayoutBuilder$(box.BoxConstraints, box.RenderBox));
+  layout_builder._RenderLayoutBuilder = class _RenderLayoutBuilder extends RenderBox_RenderConstrainedLayoutBuilder$36 {
     computeMinIntrinsicWidth(height) {
-      return stack.RenderStack.getIntrinsicDimension(this.firstChild, dart.fn(child => child.getMinIntrinsicWidth(height), T.RenderBoxTodouble()));
+      if (!this[_debugThrowIfNotCheckingIntrinsics]()) dart.assertFailed(null, I[0], 326, 12, "_debugThrowIfNotCheckingIntrinsics()");
+      return 0.0;
     }
     computeMaxIntrinsicWidth(height) {
-      return stack.RenderStack.getIntrinsicDimension(this.firstChild, dart.fn(child => child.getMaxIntrinsicWidth(height), T.RenderBoxTodouble()));
+      if (!this[_debugThrowIfNotCheckingIntrinsics]()) dart.assertFailed(null, I[0], 332, 12, "_debugThrowIfNotCheckingIntrinsics()");
+      return 0.0;
     }
     computeMinIntrinsicHeight(width) {
-      return stack.RenderStack.getIntrinsicDimension(this.firstChild, dart.fn(child => child.getMinIntrinsicHeight(width), T.RenderBoxTodouble()));
+      if (!this[_debugThrowIfNotCheckingIntrinsics]()) dart.assertFailed(null, I[0], 338, 12, "_debugThrowIfNotCheckingIntrinsics()");
+      return 0.0;
     }
     computeMaxIntrinsicHeight(width) {
-      return stack.RenderStack.getIntrinsicDimension(this.firstChild, dart.fn(child => child.getMaxIntrinsicHeight(width), T.RenderBoxTodouble()));
-    }
-    computeDistanceToActualBaseline(baseline) {
-      return this.defaultComputeDistanceToHighestActualBaseline(baseline);
-    }
-    static layoutPositionedChild(child, childParentData, size, alignment) {
-      if (!childParentData.isPositioned) dart.assertFailed(null, I[0], 481, 12, "childParentData.isPositioned");
-      if (!dart.equals(child.parentData, childParentData)) dart.assertFailed(null, I[0], 482, 12, "child.parentData == childParentData");
-      let hasVisualOverflow = false;
-      let childConstraints = C[10] || CT.C10;
-      if (childParentData.left != null && childParentData.right != null)
-        childConstraints = childConstraints.tighten({width: size.width - dart.nullCheck(childParentData.right) - dart.nullCheck(childParentData.left)});
-      else if (childParentData.width != null) childConstraints = childConstraints.tighten({width: childParentData.width});
-      if (childParentData.top != null && childParentData.bottom != null)
-        childConstraints = childConstraints.tighten({height: size.height - dart.nullCheck(childParentData.bottom) - dart.nullCheck(childParentData.top)});
-      else if (childParentData.height != null) childConstraints = childConstraints.tighten({height: childParentData.height});
-      child.layout(childConstraints, {parentUsesSize: true});
-      let x = null;
-      function x$35get() {
-        let t2;
-        t2 = x;
-        return t2 == null ? dart.throw(new _internal.LateError.localNI("x")) : t2;
-      }
-      dart.fn(x$35get, T.VoidTodouble());
-      function x$35set(t3) {
-        if (x == null)
-          return x = t3;
-        else
-          dart.throw(new _internal.LateError.localAI("x"));
-      }
-      dart.fn(x$35set, T.doubleTodynamic());
-      if (childParentData.left != null) {
-        x$35set(dart.nullCheck(childParentData.left));
-      } else if (childParentData.right != null) {
-        x$35set(size.width - dart.nullCheck(childParentData.right) - child.size.width);
-      } else {
-        x$35set(alignment.alongOffset(ui.Offset.as(size['-'](child.size))).dx);
-      }
-      if (x$35get() < 0.0 || x$35get() + child.size.width > size.width) hasVisualOverflow = true;
-      let y = null;
-      function y$35get() {
-        let t6;
-        t6 = y;
-        return t6 == null ? dart.throw(new _internal.LateError.localNI("y")) : t6;
-      }
-      dart.fn(y$35get, T.VoidTodouble());
-      function y$35set(t7) {
-        if (y == null)
-          return y = t7;
-        else
-          dart.throw(new _internal.LateError.localAI("y"));
-      }
-      dart.fn(y$35set, T.doubleTodynamic());
-      if (childParentData.top != null) {
-        y$35set(dart.nullCheck(childParentData.top));
-      } else if (childParentData.bottom != null) {
-        y$35set(size.height - dart.nullCheck(childParentData.bottom) - child.size.height);
-      } else {
-        y$35set(alignment.alongOffset(ui.Offset.as(size['-'](child.size))).dy);
-      }
-      if (y$35get() < 0.0 || y$35get() + child.size.height > size.height) hasVisualOverflow = true;
-      childParentData.offset = new ui.Offset.new(x$35get(), y$35get());
-      return hasVisualOverflow;
+      if (!this[_debugThrowIfNotCheckingIntrinsics]()) dart.assertFailed(null, I[0], 344, 12, "_debugThrowIfNotCheckingIntrinsics()");
+      return 0.0;
     }
     computeDryLayout(constraints) {
-      return this[_computeSize]({constraints: constraints, layoutChild: C[11] || CT.C11});
-    }
-    [_computeSize](opts) {
-      let constraints = opts && 'constraints' in opts ? opts.constraints : null;
-      let layoutChild = opts && 'layoutChild' in opts ? opts.layoutChild : null;
-      this[_resolve]();
-      if (!(this[_resolvedAlignment] != null)) dart.assertFailed(null, I[0], 538, 12, "_resolvedAlignment != null");
-      let hasNonPositionedChildren = false;
-      if (this.childCount === 0) {
-        if (!constraints.biggest.isFinite) dart.assertFailed(null, I[0], 541, 14, "constraints.biggest.isFinite");
-        return constraints.biggest;
-      }
-      let width = constraints.minWidth;
-      let height = constraints.minHeight;
-      let nonPositionedConstraints = null;
-      if (!(this.fit !== null)) dart.assertFailed(null, I[0], 549, 12, "fit != null");
-      switch (this.fit) {
-        case C[1] || CT.C1:
-        {
-          nonPositionedConstraints = constraints.loosen();
-          break;
-        }
-        case C[2] || CT.C2:
-        {
-          nonPositionedConstraints = new box.BoxConstraints.tight(constraints.biggest);
-          break;
-        }
-        case C[3] || CT.C3:
-        {
-          nonPositionedConstraints = constraints;
-          break;
-        }
-      }
-      if (!(nonPositionedConstraints !== null)) dart.assertFailed(null, I[0], 561, 12, "nonPositionedConstraints != null");
-      let child = this.firstChild;
-      while (child != null) {
-        let childParentData = stack.StackParentData.as(dart.nullCheck(child.parentData));
-        if (!childParentData.isPositioned) {
-          hasNonPositionedChildren = true;
-          let childSize = layoutChild(child, nonPositionedConstraints);
-          width = math.max(core.double, width, childSize.width);
-          height = math.max(core.double, height, childSize.height);
-        }
-        child = childParentData.nextSibling;
-      }
-      let size = null;
-      if (hasNonPositionedChildren) {
-        size = new ui.Size.new(width, height);
-        if (!(size.width === constraints.constrainWidth(width))) dart.assertFailed(null, I[0], 582, 14, "size.width == constraints.constrainWidth(width)");
-        if (!(size.height === constraints.constrainHeight(height))) dart.assertFailed(null, I[0], 583, 14, "size.height == constraints.constrainHeight(height)");
-      } else {
-        size = constraints.biggest;
-      }
-      if (!size.isFinite) dart.assertFailed(null, I[0], 588, 12, "size.isFinite");
-      return size;
+      if (!this.debugCannotComputeDryLayout({reason: "Calculating the dry layout would require running the layout callback " + "speculatively, which might mutate the live render object tree."})) dart.assertFailed(null, I[0], 350, 12, "debugCannotComputeDryLayout(reason:\r\n      'Calculating the dry layout would require running the layout callback '\r\n      'speculatively, which might mutate the live render object tree.',\r\n    )");
+      return ui.Size.zero;
     }
     performLayout() {
       let constraints = this.constraints;
-      this[_hasVisualOverflow] = false;
-      this.size = this[_computeSize]({constraints: constraints, layoutChild: C[12] || CT.C12});
-      if (!(this[_resolvedAlignment] != null)) dart.assertFailed(null, I[0], 602, 12, "_resolvedAlignment != null");
-      let child = this.firstChild;
-      while (child != null) {
-        let childParentData = stack.StackParentData.as(dart.nullCheck(child.parentData));
-        if (!childParentData.isPositioned) {
-          childParentData.offset = dart.nullCheck(this[_resolvedAlignment]).alongOffset(ui.Offset.as(this.size['-'](child.size)));
-        } else {
-          this[_hasVisualOverflow] = stack.RenderStack.layoutPositionedChild(child, childParentData, this.size, dart.nullCheck(this[_resolvedAlignment])) || this[_hasVisualOverflow];
-        }
-        if (!dart.equals(child.parentData, childParentData)) dart.assertFailed(null, I[0], 613, 14, "child.parentData == childParentData");
-        child = childParentData.nextSibling;
+      this.rebuildIfNecessary();
+      if (this.child != null) {
+        dart.nullCheck(this.child).layout(constraints, {parentUsesSize: true});
+        this.size = constraints.constrain(dart.nullCheck(this.child).size);
+      } else {
+        this.size = constraints.biggest;
       }
     }
-    hitTestChildren(result, opts) {
-      let position = opts && 'position' in opts ? opts.position : null;
-      return this.defaultHitTestChildren(result, {position: position});
+    computeDistanceToActualBaseline(baseline) {
+      if (this.child != null) return dart.nullCheck(this.child).getDistanceToActualBaseline(baseline);
+      return super.computeDistanceToActualBaseline(baseline);
     }
-    paintStack(context, offset) {
-      this.defaultPaint(context, offset);
+    hitTestChildren(result, opts) {
+      let t2, t2$;
+      let position = opts && 'position' in opts ? opts.position : null;
+      t2$ = (t2 = this.child, t2 == null ? null : t2.hitTest(result, {position: position}));
+      return t2$ == null ? false : t2$;
     }
     paint(context, offset) {
-      if (this.clipBehavior !== ui.Clip.none && this[_hasVisualOverflow]) {
-        this[_clipRectLayer] = context.pushClipRect(this.needsCompositing, offset, ui.Offset.zero['&'](this.size), dart.bind(this, 'paintStack'), {clipBehavior: this.clipBehavior, oldLayer: this[_clipRectLayer]});
-      } else {
-        this[_clipRectLayer] = null;
-        this.paintStack(context, offset);
-      }
+      if (this.child != null) context.paintChild(dart.nullCheck(this.child), offset);
     }
-    describeApproximatePaintClip(child) {
-      object.RenderObject.as(child);
-      return this[_hasVisualOverflow] ? ui.Offset.zero['&'](this.size) : null;
-    }
-    debugFillProperties(properties) {
-      super.debugFillProperties(properties);
-      properties.add(new (T.DiagnosticsPropertyOfAlignmentGeometry()).new("alignment", this.alignment));
-      properties.add(new (T.EnumPropertyOfTextDirection()).new("textDirection", this.textDirection));
-      properties.add(new (T.EnumPropertyOfStackFit()).new("fit", this.fit));
-      properties.add(new (T.EnumPropertyOfClip()).new("clipBehavior", this.clipBehavior, {defaultValue: ui.Clip.hardEdge}));
+    [_debugThrowIfNotCheckingIntrinsics]() {
+      if (!dart.fn(() => {
+        if (!object.RenderObject.debugCheckingIntrinsics) {
+          dart.throw(assertions.FlutterError.new("LayoutBuilder does not support returning intrinsic dimensions.\n" + "Calculating the intrinsic dimensions would require running the layout " + "callback speculatively, which might mutate the live render object tree."));
+        }
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[0], 388, 12, "() {\r\n      if (!RenderObject.debugCheckingIntrinsics) {\r\n        throw FlutterError(\r\n          'LayoutBuilder does not support returning intrinsic dimensions.\\n'\r\n          'Calculating the intrinsic dimensions would require running the layout '\r\n          'callback speculatively, which might mutate the live render object tree.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
+      return true;
     }
   };
-  (stack.RenderStack.new = function(opts) {
-    let children = opts && 'children' in opts ? opts.children : null;
-    let alignment = opts && 'alignment' in opts ? opts.alignment : C[8] || CT.C8;
-    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-    let fit = opts && 'fit' in opts ? opts.fit : C[1] || CT.C1;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[9] || CT.C9;
-    this[_hasVisualOverflow] = false;
-    this[_resolvedAlignment] = null;
-    this[_clipBehavior] = ui.Clip.hardEdge;
-    this[_clipRectLayer] = null;
-    if (!(alignment !== null)) dart.assertFailed(null, I[0], 340, 15, "alignment != null");
-    if (!(fit !== null)) dart.assertFailed(null, I[0], 341, 15, "fit != null");
-    if (!(clipBehavior !== null)) dart.assertFailed(null, I[0], 342, 15, "clipBehavior != null");
-    this[_alignment] = alignment;
-    this[_textDirection] = textDirection;
-    this[_fit] = fit;
-    this[_clipBehavior] = clipBehavior;
-    stack.RenderStack.__proto__.new.call(this);
-    this.addAll(children);
-  }).prototype = stack.RenderStack.prototype;
-  dart.addTypeTests(stack.RenderStack);
-  dart.addTypeCaches(stack.RenderStack);
-  dart.setMethodSignature(stack.RenderStack, () => ({
-    __proto__: dart.getMethods(stack.RenderStack.__proto__),
-    [_resolve]: dart.fnType(dart.void, []),
-    [_markNeedResolution]: dart.fnType(dart.void, []),
-    [_computeSize]: dart.fnType(ui.Size, [], {}, {constraints: box.BoxConstraints, layoutChild: dart.fnType(ui.Size, [box.RenderBox, box.BoxConstraints])}),
-    paintStack: dart.fnType(dart.void, [object.PaintingContext, ui.Offset])
-  }));
-  dart.setGetterSignature(stack.RenderStack, () => ({
-    __proto__: dart.getGetters(stack.RenderStack.__proto__),
-    alignment: alignment.AlignmentGeometry,
-    textDirection: dart.nullable(ui.TextDirection),
-    fit: stack.StackFit,
-    clipBehavior: ui.Clip
-  }));
-  dart.setSetterSignature(stack.RenderStack, () => ({
-    __proto__: dart.getSetters(stack.RenderStack.__proto__),
-    alignment: alignment.AlignmentGeometry,
-    textDirection: dart.nullable(ui.TextDirection),
-    fit: stack.StackFit,
-    clipBehavior: ui.Clip
-  }));
-  dart.setLibraryUri(stack.RenderStack, I[1]);
-  dart.setFieldSignature(stack.RenderStack, () => ({
-    __proto__: dart.getFields(stack.RenderStack.__proto__),
-    [_hasVisualOverflow]: dart.fieldType(core.bool),
-    [_resolvedAlignment]: dart.fieldType(dart.nullable(alignment.Alignment)),
-    [_alignment]: dart.fieldType(alignment.AlignmentGeometry),
-    [_textDirection]: dart.fieldType(dart.nullable(ui.TextDirection)),
-    [_fit]: dart.fieldType(stack.StackFit),
-    [_clipBehavior]: dart.fieldType(ui.Clip),
-    [_clipRectLayer]: dart.fieldType(dart.nullable(layer.ClipRectLayer))
-  }));
-  var _index = dart.privateName(stack, "_index");
-  var _childAtIndex = dart.privateName(stack, "_childAtIndex");
-  stack.RenderIndexedStack = class RenderIndexedStack extends stack.RenderStack {
-    visitChildrenForSemantics(visitor) {
-      if (this.index != null && this.firstChild != null) visitor(this[_childAtIndex]());
-    }
-    get index() {
-      return this[_index];
-    }
-    set index(value) {
-      if (this[_index] != value) {
-        this[_index] = value;
-        this.markNeedsLayout();
-      }
-    }
-    [_childAtIndex]() {
-      if (!(this.index != null)) dart.assertFailed(null, I[0], 702, 12, "index != null");
-      let child = this.firstChild;
-      let i = 0;
-      while (child != null && i < dart.nullCheck(this.index)) {
-        let childParentData = stack.StackParentData.as(dart.nullCheck(child.parentData));
-        child = childParentData.nextSibling;
-        i = i + 1;
-      }
-      if (!(i === this.index)) dart.assertFailed(null, I[0], 710, 12, "i == index");
-      if (!(child != null)) dart.assertFailed(null, I[0], 711, 12, "child != null");
-      return dart.nullCheck(child);
-    }
-    hitTestChildren(result, opts) {
-      let position = opts && 'position' in opts ? opts.position : null;
-      if (this.firstChild == null || this.index == null) return false;
-      if (!(position !== null)) dart.assertFailed(null, I[0], 719, 12, "position != null");
-      let child = this[_childAtIndex]();
-      let childParentData = stack.StackParentData.as(dart.nullCheck(child.parentData));
-      return result.addWithPaintOffset({offset: childParentData.offset, position: position, hitTest: dart.fn((result, transformed) => {
-          if (!dart.equals(transformed, position['-'](childParentData.offset))) dart.assertFailed(null, I[0], 726, 16, "transformed == position - childParentData.offset");
-          return child.hitTest(result, {position: dart.nullCheck(transformed)});
-        }, T.BoxHitTestResultAndOffsetNTobool())});
-    }
-    paintStack(context, offset) {
-      if (this.firstChild == null || this.index == null) return;
-      let child = this[_childAtIndex]();
-      let childParentData = stack.StackParentData.as(dart.nullCheck(child.parentData));
-      context.paintChild(child, childParentData.offset['+'](offset));
-    }
-    debugFillProperties(properties) {
-      super.debugFillProperties(properties);
-      properties.add(new diagnostics.IntProperty.new("index", this.index));
-    }
-  };
-  (stack.RenderIndexedStack.new = function(opts) {
-    let children = opts && 'children' in opts ? opts.children : null;
-    let alignment = opts && 'alignment' in opts ? opts.alignment : C[8] || CT.C8;
-    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-    let index = opts && 'index' in opts ? opts.index : 0;
-    this[_index] = index;
-    stack.RenderIndexedStack.__proto__.new.call(this, {children: children, alignment: alignment, textDirection: textDirection});
+  (layout_builder._RenderLayoutBuilder.new = function() {
+    layout_builder._RenderLayoutBuilder.__proto__.new.call(this);
     ;
-  }).prototype = stack.RenderIndexedStack.prototype;
-  dart.addTypeTests(stack.RenderIndexedStack);
-  dart.addTypeCaches(stack.RenderIndexedStack);
-  dart.setMethodSignature(stack.RenderIndexedStack, () => ({
-    __proto__: dart.getMethods(stack.RenderIndexedStack.__proto__),
-    [_childAtIndex]: dart.fnType(box.RenderBox, [])
+  }).prototype = layout_builder._RenderLayoutBuilder.prototype;
+  dart.addTypeTests(layout_builder._RenderLayoutBuilder);
+  dart.addTypeCaches(layout_builder._RenderLayoutBuilder);
+  dart.setMethodSignature(layout_builder._RenderLayoutBuilder, () => ({
+    __proto__: dart.getMethods(layout_builder._RenderLayoutBuilder.__proto__),
+    [_debugThrowIfNotCheckingIntrinsics]: dart.fnType(core.bool, [])
   }));
-  dart.setGetterSignature(stack.RenderIndexedStack, () => ({
-    __proto__: dart.getGetters(stack.RenderIndexedStack.__proto__),
-    index: dart.nullable(core.int)
-  }));
-  dart.setSetterSignature(stack.RenderIndexedStack, () => ({
-    __proto__: dart.getSetters(stack.RenderIndexedStack.__proto__),
-    index: dart.nullable(core.int)
-  }));
-  dart.setLibraryUri(stack.RenderIndexedStack, I[1]);
-  dart.setFieldSignature(stack.RenderIndexedStack, () => ({
-    __proto__: dart.getFields(stack.RenderIndexedStack.__proto__),
-    [_index]: dart.fieldType(dart.nullable(core.int))
-  }));
-  dart.trackLibraries("packages/flutter/src/rendering/stack.dart", {
-    "package:flutter/src/rendering/stack.dart": stack
+  dart.setLibraryUri(layout_builder._RenderLayoutBuilder, I[1]);
+  layout_builder._debugReportException = function _debugReportException(context, exception, stack, opts) {
+    let informationCollector = opts && 'informationCollector' in opts ? opts.informationCollector : null;
+    let details = new assertions.FlutterErrorDetails.new({exception: exception, stack: stack, library: "widgets library", context: context, informationCollector: informationCollector});
+    assertions.FlutterError.reportError(details);
+    return details;
+  };
+  dart.trackLibraries("packages/flutter/src/widgets/layout_builder.dart", {
+    "package:flutter/src/widgets/layout_builder.dart": layout_builder
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["stack.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/rendering/stack.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["layout_builder.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/widgets/layout_builder.dart.lib.js"}');
   // Exports:
   return {
-    src__rendering__stack: stack
+    src__widgets__layout_builder: layout_builder
   };
 }));
 
-//# sourceMappingURL=stack.dart.lib.js.map
-=======
-        __proto__: image_provider.ImageConfiguration.prototype,
-        [ImageConfiguration_platform]: null,
-        [ImageConfiguration_size]: null,
-        [ImageConfiguration_textDirection]: null,
-        [ImageConfiguration_locale]: null,
-        [ImageConfiguration_devicePixelRatio]: null,
-        [ImageConfiguration_bundle]: null
-      });
-    }
-  }, false);
-  var C = [void 0];
-  var I = [
-    "file:///D:/DevTools/flutter/packages/flutter/lib/src/painting/_network_image_web.dart",
-    "file:///D:/DevTools/flutter/packages/flutter/lib/src/painting/image_provider.dart",
-    "package:flutter/src/painting/image_provider.dart",
-    "package:flutter/src/painting/_network_image_web.dart"
-  ];
-  var url$ = dart.privateName(_network_image_web, "NetworkImage.url");
-  var scale$ = dart.privateName(_network_image_web, "NetworkImage.scale");
-  var headers$ = dart.privateName(_network_image_web, "NetworkImage.headers");
-  var _loadAsync = dart.privateName(_network_image_web, "_loadAsync");
-  var _imageStreamInformationCollector = dart.privateName(_network_image_web, "_imageStreamInformationCollector");
-  var _createErrorHandlerAndKey = dart.privateName(image_provider, "_createErrorHandlerAndKey");
-  var ImageConfiguration_platform = dart.privateName(image_provider, "ImageConfiguration.platform");
-  var ImageConfiguration_size = dart.privateName(image_provider, "ImageConfiguration.size");
-  var ImageConfiguration_textDirection = dart.privateName(image_provider, "ImageConfiguration.textDirection");
-  var ImageConfiguration_locale = dart.privateName(image_provider, "ImageConfiguration.locale");
-  var ImageConfiguration_devicePixelRatio = dart.privateName(image_provider, "ImageConfiguration.devicePixelRatio");
-  var ImageConfiguration_bundle = dart.privateName(image_provider, "ImageConfiguration.bundle");
-  const _is_ImageProvider_default = Symbol('_is_ImageProvider_default');
-  image_provider.ImageProvider$ = dart.generic(T => {
-    var TAndFnTovoid = () => (TAndFnTovoid = dart.constFn(dart.fnType(dart.void, [T, T$.ObjectAndStackTraceNTovoid()])))();
-    var DiagnosticsPropertyOfT = () => (DiagnosticsPropertyOfT = dart.constFn(diagnostics.DiagnosticsProperty$(T)))();
-    var TN = () => (TN = dart.constFn(dart.nullable(T)))();
-    var TNAndObjectAndStackTraceNToFutureOfvoid = () => (TNAndObjectAndStackTraceNToFutureOfvoid = dart.constFn(dart.fnType(T$.FutureOfvoid(), [TN(), core.Object, T$.StackTraceN()])))();
-    var TToNull = () => (TToNull = dart.constFn(dart.fnType(core.Null, [T])))();
-    class ImageProvider extends core.Object {
-      resolve(configuration) {
-        if (!(configuration !== null)) dart.assertFailed(null, I[1], 325, 12, "configuration != null");
-        let stream = this.createStream(configuration);
-        this[_createErrorHandlerAndKey](configuration, dart.fn((key, errorHandler) => {
-          this.resolveStreamForKey(configuration, stream, key, errorHandler);
-        }, TAndFnTovoid()), dart.fn((key, exception, stack) => async.async(dart.void, (function*() {
-          yield null;
-          let imageCompleter = new image_provider._ErrorImageCompleter.new();
-          stream.setCompleter(imageCompleter);
-          let collector = null;
-          if (!dart.fn(() => {
-            collector = dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new((function*() {
-              yield new (T$.DiagnosticsPropertyOfImageProviderOfObject()).new("Image provider", this);
-              yield new (T$.DiagnosticsPropertyOfImageConfiguration()).new("Image configuration", configuration);
-              yield new (DiagnosticsPropertyOfT()).new("Image key", key, {defaultValue: null});
-            }).bind(this)), T$.VoidToIterableOfDiagnosticsNode());
-            return true;
-          }, T$.VoidTobool())()) dart.assertFailed(null, I[1], 339, 16, "() {\r\n          collector = () sync* {\r\n            yield DiagnosticsProperty<ImageProvider>('Image provider', this);\r\n            yield DiagnosticsProperty<ImageConfiguration>('Image configuration', configuration);\r\n            yield DiagnosticsProperty<T>('Image key', key, defaultValue: null);\r\n          };\r\n          return true;\r\n        }()");
-          imageCompleter.setError({exception: exception, stack: stack, context: new assertions.ErrorDescription.new("while resolving an image"), silent: true, informationCollector: collector});
-        }).bind(this)), TNAndObjectAndStackTraceNToFutureOfvoid()));
-        return stream;
-      }
-      createStream(configuration) {
-        return new image_stream.ImageStream.new();
-      }
-      obtainCacheStatus(opts) {
-        let configuration = opts && 'configuration' in opts ? opts.configuration : null;
-        let handleError = opts && 'handleError' in opts ? opts.handleError : null;
-        if (!(configuration !== null)) dart.assertFailed(null, I[1], 383, 12, "configuration != null");
-        let completer = T$.CompleterOfImageCacheStatusN().new();
-        this[_createErrorHandlerAndKey](configuration, dart.fn((key, innerHandleError) => {
-          completer.complete(dart.nullCheck(dart.nullCheck(binding.PaintingBinding.instance).imageCache).statusForKey(key));
-        }, TAndFnTovoid()), dart.fn((key, exception, stack) => async.async(dart.void, (function*() {
-          if (handleError != null) {
-            handleError(exception, stack);
-          } else {
-            let collector = null;
-            if (!dart.fn(() => {
-              collector = dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new((function*() {
-                yield new (T$.DiagnosticsPropertyOfImageProviderOfObject()).new("Image provider", this);
-                yield new (T$.DiagnosticsPropertyOfImageConfiguration()).new("Image configuration", configuration);
-                yield new (DiagnosticsPropertyOfT()).new("Image key", key, {defaultValue: null});
-              }).bind(this)), T$.VoidToIterableOfDiagnosticsNode());
-              return true;
-            }, T$.VoidTobool())()) dart.assertFailed(null, I[1], 395, 18, "() {\r\n            collector = () sync* {\r\n              yield DiagnosticsProperty<ImageProvider>('Image provider', this);\r\n              yield DiagnosticsProperty<ImageConfiguration>('Image configuration', configuration);\r\n              yield DiagnosticsProperty<T>('Image key', key, defaultValue: null);\r\n            };\r\n            return true;\r\n          }()");
-            assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({context: new assertions.ErrorDescription.new("while checking the cache location of an image"), informationCollector: collector, exception: exception, stack: stack}));
-            completer.complete(null);
-          }
-        }).bind(this)), TNAndObjectAndStackTraceNToFutureOfvoid()));
-        return completer.future;
-      }
-      [_createErrorHandlerAndKey](configuration, successCallback, errorCallback) {
-        let obtainedKey = null;
-        let didError = false;
-        function handleError(exception, stack) {
-          return async.async(dart.void, function* handleError() {
-            if (didError) {
-              return;
-            }
-            if (!didError) {
-              errorCallback(obtainedKey, exception, stack);
-            }
-            didError = true;
-          });
-        }
-        dart.fn(handleError, T$.ObjectAndStackTraceNToFutureOfvoid());
-        let dangerZone = async.Zone.current.fork({specification: new async._ZoneSpecification.new({handleUncaughtError: dart.fn((zone, delegate, parent, error, stackTrace) => {
-              handleError(error, stackTrace);
-            }, T$.ZoneAndZoneDelegateAndZone__Tovoid())})});
-        dangerZone.runGuarded(dart.fn(() => {
-          let key = null;
-          try {
-            key = this.obtainKey(configuration);
-          } catch (e) {
-            let error = dart.getThrown(e);
-            let stackTrace = dart.stackTrace(e);
-            if (core.Object.is(error)) {
-              handleError(error, stackTrace);
-              return;
-            } else
-              throw e;
-          }
-          key.then(dart.void, dart.fn(key => {
-            obtainedKey = key;
-            try {
-              successCallback(key, handleError);
-            } catch (e) {
-              let error = dart.getThrown(e);
-              let stackTrace = dart.stackTrace(e);
-              if (core.Object.is(error)) {
-                handleError(error, stackTrace);
-              } else
-                throw e;
-            }
-          }, TToNull())).catchError(handleError);
-        }, T$.VoidTovoid()));
-      }
-      resolveStreamForKey(configuration, stream, key, handleError) {
-        T.as(key);
-        if (stream.completer != null) {
-          let completer = dart.nullCheck(dart.nullCheck(binding.PaintingBinding.instance).imageCache).putIfAbsent(key, dart.fn(() => dart.nullCheck(stream.completer), T$.VoidToImageStreamCompleter()), {onError: handleError});
-          if (!(completer == stream.completer)) dart.assertFailed(null, I[1], 498, 14, "identical(completer, stream.completer)");
-          return;
-        }
-        let completer = dart.nullCheck(dart.nullCheck(binding.PaintingBinding.instance).imageCache).putIfAbsent(key, dart.fn(() => this.load(key, dart.bind(dart.nullCheck(binding.PaintingBinding.instance), 'instantiateImageCodec')), T$.VoidToImageStreamCompleter()), {onError: handleError});
-        if (completer != null) {
-          stream.setCompleter(completer);
-        }
-      }
-      evict(opts) {
-        let cache = opts && 'cache' in opts ? opts.cache : null;
-        let configuration = opts && 'configuration' in opts ? opts.configuration : C[0] || CT.C0;
-        return async.async(core.bool, (function* evict() {
-          cache == null ? cache = binding.imageCache : null;
-          let key = (yield this.obtainKey(configuration));
-          return dart.nullCheck(cache).evict(key);
-        }).bind(this));
-      }
-      toString() {
-        return object.objectRuntimeType(this, "ImageConfiguration") + "()";
-      }
-    }
-    (ImageProvider.new = function() {
-      ;
-    }).prototype = ImageProvider.prototype;
-    dart.addTypeTests(ImageProvider);
-    ImageProvider.prototype[_is_ImageProvider_default] = true;
-    dart.addTypeCaches(ImageProvider);
-    dart.setMethodSignature(ImageProvider, () => ({
-      __proto__: dart.getMethods(ImageProvider.__proto__),
-      resolve: dart.fnType(image_stream.ImageStream, [image_provider.ImageConfiguration]),
-      createStream: dart.fnType(image_stream.ImageStream, [image_provider.ImageConfiguration]),
-      obtainCacheStatus: dart.fnType(async.Future$(dart.nullable(image_cache.ImageCacheStatus)), [], {handleError: dart.nullable(dart.fnType(dart.void, [core.Object, dart.nullable(core.StackTrace)]))}, {configuration: image_provider.ImageConfiguration}),
-      [_createErrorHandlerAndKey]: dart.fnType(dart.void, [image_provider.ImageConfiguration, dart.fnType(dart.void, [T, dart.fnType(dart.void, [core.Object, dart.nullable(core.StackTrace)])]), dart.fnType(async.Future$(dart.void), [dart.nullable(T), core.Object, dart.nullable(core.StackTrace)])]),
-      resolveStreamForKey: dart.fnType(dart.void, [image_provider.ImageConfiguration, image_stream.ImageStream, dart.nullable(core.Object), dart.fnType(dart.void, [core.Object, dart.nullable(core.StackTrace)])]),
-      evict: dart.fnType(async.Future$(core.bool), [], {cache: dart.nullable(image_cache.ImageCache), configuration: image_provider.ImageConfiguration}, {})
-    }));
-    dart.setLibraryUri(ImageProvider, I[2]);
-    dart.defineExtensionMethods(ImageProvider, ['toString']);
-    return ImageProvider;
-  });
-  image_provider.ImageProvider = image_provider.ImageProvider$();
-  dart.addTypeTests(image_provider.ImageProvider, _is_ImageProvider_default);
-  image_provider.NetworkImage = class NetworkImage extends image_provider.ImageProvider {};
-  dart.addTypeTests(image_provider.NetworkImage);
-  dart.addTypeCaches(image_provider.NetworkImage);
-  dart.setLibraryUri(image_provider.NetworkImage, I[2]);
-  _network_image_web.NetworkImage = class NetworkImage extends image_provider.ImageProvider$(image_provider.NetworkImage) {
-    get url() {
-      return this[url$];
-    }
-    set url(value) {
-      super.url = value;
-    }
-    get scale() {
-      return this[scale$];
-    }
-    set scale(value) {
-      super.scale = value;
-    }
-    get headers() {
-      return this[headers$];
-    }
-    set headers(value) {
-      super.headers = value;
-    }
-    obtainKey(configuration) {
-      return new (T$.SynchronousFutureOfNetworkImage()).new(this);
-    }
-    load(key, decode) {
-      image_provider.NetworkImage.as(key);
-      let chunkEvents = T$.StreamControllerOfImageChunkEvent().new();
-      return new image_stream.MultiFrameImageStreamCompleter.new({chunkEvents: chunkEvents.stream, codec: this[_loadAsync](_network_image_web.NetworkImage.as(key), decode, chunkEvents), scale: key.scale, debugLabel: key.url, informationCollector: this[_imageStreamInformationCollector](key)});
-    }
-    [_imageStreamInformationCollector](key) {
-      let collector = null;
-      if (!dart.fn(() => {
-        collector = dart.fn(() => T$.JSArrayOfDiagnosticsNode().of([new (T$.DiagnosticsPropertyOfImageProviderOfObject()).new("Image provider", this), new (T$.DiagnosticsPropertyOfNetworkImage()).new("Image key", _network_image_web.NetworkImage.as(key))]), T$.VoidToListOfDiagnosticsNode());
-        return true;
-      }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 61, 12, "() {\r\n      collector = () {\r\n        return <DiagnosticsNode>[\r\n          DiagnosticsProperty<image_provider.ImageProvider>('Image provider', this),\r\n          DiagnosticsProperty<NetworkImage>('Image key', key as NetworkImage),\r\n        ];\r\n      };\r\n      return true;\r\n    }()");
-      return collector;
-    }
-    [_loadAsync](key, decode, chunkEvents) {
-      if (!key._equals(this)) dart.assertFailed(null, I[0], 84, 12, "key == this");
-      let resolved = core.Uri.base.resolve(key.url);
-      return ui.webOnlyInstantiateImageCodecFromUrl(resolved, {chunkCallback: dart.fn((bytes, total) => {
-          chunkEvents.add(new image_stream.ImageChunkEvent.new({cumulativeBytesLoaded: bytes, expectedTotalBytes: total}));
-        }, T$.intAndintTovoid())});
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (!other[$runtimeType]._equals(this[$runtimeType])) {
-        return false;
-      }
-      return _network_image_web.NetworkImage.is(other) && other.url === this.url && other.scale === this.scale;
-    }
-    get hashCode() {
-      return ui.hashValues(this.url, this.scale);
-    }
-    toString() {
-      return object.objectRuntimeType(this, "NetworkImage") + "(\"" + this.url + "\", scale: " + dart.str(this.scale) + ")";
-    }
-  };
-  (_network_image_web.NetworkImage.new = function(url, opts) {
-    let scale = opts && 'scale' in opts ? opts.scale : 1;
-    let headers = opts && 'headers' in opts ? opts.headers : null;
-    this[url$] = url;
-    this[scale$] = scale;
-    this[headers$] = headers;
-    if (!(url !== null)) dart.assertFailed(null, I[0], 25, 16, "url != null");
-    if (!(scale !== null)) dart.assertFailed(null, I[0], 26, 16, "scale != null");
-    _network_image_web.NetworkImage.__proto__.new.call(this);
-    ;
-  }).prototype = _network_image_web.NetworkImage.prototype;
-  dart.addTypeTests(_network_image_web.NetworkImage);
-  dart.addTypeCaches(_network_image_web.NetworkImage);
-  _network_image_web.NetworkImage[dart.implements] = () => [image_provider.NetworkImage];
-  dart.setMethodSignature(_network_image_web.NetworkImage, () => ({
-    __proto__: dart.getMethods(_network_image_web.NetworkImage.__proto__),
-    obtainKey: dart.fnType(async.Future$(_network_image_web.NetworkImage), [image_provider.ImageConfiguration]),
-    load: dart.fnType(image_stream.ImageStreamCompleter, [dart.nullable(core.Object), dart.fnType(async.Future$(ui.Codec), [typed_data.Uint8List], {allowUpscaling: core.bool, cacheHeight: dart.nullable(core.int), cacheWidth: dart.nullable(core.int)}, {})]),
-    [_imageStreamInformationCollector]: dart.fnType(dart.nullable(dart.fnType(core.Iterable$(diagnostics.DiagnosticsNode), [])), [image_provider.NetworkImage]),
-    [_loadAsync]: dart.fnType(async.Future$(ui.Codec), [_network_image_web.NetworkImage, dart.fnType(async.Future$(ui.Codec), [typed_data.Uint8List], {allowUpscaling: core.bool, cacheHeight: dart.nullable(core.int), cacheWidth: dart.nullable(core.int)}, {}), async.StreamController$(image_stream.ImageChunkEvent)])
-  }));
-  dart.setLibraryUri(_network_image_web.NetworkImage, I[3]);
-  dart.setFieldSignature(_network_image_web.NetworkImage, () => ({
-    __proto__: dart.getFields(_network_image_web.NetworkImage.__proto__),
-    url: dart.finalFieldType(core.String),
-    scale: dart.finalFieldType(core.double),
-    headers: dart.finalFieldType(dart.nullable(core.Map$(core.String, core.String)))
-  }));
-  dart.defineExtensionMethods(_network_image_web.NetworkImage, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(_network_image_web.NetworkImage, ['hashCode']);
-  const bundle$ = ImageConfiguration_bundle;
-  const devicePixelRatio$ = ImageConfiguration_devicePixelRatio;
-  const locale$ = ImageConfiguration_locale;
-  const textDirection$ = ImageConfiguration_textDirection;
-  const size$ = ImageConfiguration_size;
-  const platform$ = ImageConfiguration_platform;
-  image_provider.ImageConfiguration = class ImageConfiguration extends core.Object {
-    get bundle() {
-      return this[bundle$];
-    }
-    set bundle(value) {
-      super.bundle = value;
-    }
-    get devicePixelRatio() {
-      return this[devicePixelRatio$];
-    }
-    set devicePixelRatio(value) {
-      super.devicePixelRatio = value;
-    }
-    get locale() {
-      return this[locale$];
-    }
-    set locale(value) {
-      super.locale = value;
-    }
-    get textDirection() {
-      return this[textDirection$];
-    }
-    set textDirection(value) {
-      super.textDirection = value;
-    }
-    get size() {
-      return this[size$];
-    }
-    set size(value) {
-      super.size = value;
-    }
-    get platform() {
-      return this[platform$];
-    }
-    set platform(value) {
-      super.platform = value;
-    }
-    copyWith(opts) {
-      let t2, t2$, t2$0, t2$1, t2$2, t2$3;
-      let bundle = opts && 'bundle' in opts ? opts.bundle : null;
-      let devicePixelRatio = opts && 'devicePixelRatio' in opts ? opts.devicePixelRatio : null;
-      let locale = opts && 'locale' in opts ? opts.locale : null;
-      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-      let size = opts && 'size' in opts ? opts.size : null;
-      let platform = opts && 'platform' in opts ? opts.platform : null;
-      return new image_provider.ImageConfiguration.new({bundle: (t2 = bundle, t2 == null ? this.bundle : t2), devicePixelRatio: (t2$ = devicePixelRatio, t2$ == null ? this.devicePixelRatio : t2$), locale: (t2$0 = locale, t2$0 == null ? this.locale : t2$0), textDirection: (t2$1 = textDirection, t2$1 == null ? this.textDirection : t2$1), size: (t2$2 = size, t2$2 == null ? this.size : t2$2), platform: (t2$3 = platform, t2$3 == null ? this.platform : t2$3)});
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
-      return image_provider.ImageConfiguration.is(other) && dart.equals(other.bundle, this.bundle) && other.devicePixelRatio == this.devicePixelRatio && dart.equals(other.locale, this.locale) && other.textDirection == this.textDirection && dart.equals(other.size, this.size) && other.platform == this.platform;
-    }
-    get hashCode() {
-      return ui.hashValues(this.bundle, this.devicePixelRatio, this.locale, this.size, this.platform);
-    }
-    toString() {
-      let result = new core.StringBuffer.new();
-      result.write("ImageConfiguration(");
-      let hasArguments = false;
-      if (this.bundle != null) {
-        result.write("bundle: " + dart.str(this.bundle));
-        hasArguments = true;
-      }
-      if (this.devicePixelRatio != null) {
-        if (hasArguments) result.write(", ");
-        result.write("devicePixelRatio: " + dart.nullCheck(this.devicePixelRatio)[$toStringAsFixed](1));
-        hasArguments = true;
-      }
-      if (this.locale != null) {
-        if (hasArguments) result.write(", ");
-        result.write("locale: " + dart.str(this.locale));
-        hasArguments = true;
-      }
-      if (this.textDirection != null) {
-        if (hasArguments) result.write(", ");
-        result.write("textDirection: " + dart.str(this.textDirection));
-        hasArguments = true;
-      }
-      if (this.size != null) {
-        if (hasArguments) result.write(", ");
-        result.write("size: " + dart.str(this.size));
-        hasArguments = true;
-      }
-      if (this.platform != null) {
-        if (hasArguments) result.write(", ");
-        result.write("platform: " + diagnostics.describeEnum(dart.nullCheck(this.platform)));
-        hasArguments = true;
-      }
-      result.write(")");
-      return result.toString();
-    }
-  };
-  (image_provider.ImageConfiguration.new = function(opts) {
-    let bundle = opts && 'bundle' in opts ? opts.bundle : null;
-    let devicePixelRatio = opts && 'devicePixelRatio' in opts ? opts.devicePixelRatio : null;
-    let locale = opts && 'locale' in opts ? opts.locale : null;
-    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
-    let size = opts && 'size' in opts ? opts.size : null;
-    let platform = opts && 'platform' in opts ? opts.platform : null;
-    this[bundle$] = bundle;
-    this[devicePixelRatio$] = devicePixelRatio;
-    this[locale$] = locale;
-    this[textDirection$] = textDirection;
-    this[size$] = size;
-    this[platform$] = platform;
-    ;
-  }).prototype = image_provider.ImageConfiguration.prototype;
-  dart.addTypeTests(image_provider.ImageConfiguration);
-  dart.addTypeCaches(image_provider.ImageConfiguration);
-  dart.setMethodSignature(image_provider.ImageConfiguration, () => ({
-    __proto__: dart.getMethods(image_provider.ImageConfiguration.__proto__),
-    copyWith: dart.fnType(image_provider.ImageConfiguration, [], {bundle: dart.nullable(asset_bundle.AssetBundle), devicePixelRatio: dart.nullable(core.double), locale: dart.nullable(ui.Locale), platform: dart.nullable(platform.TargetPlatform), size: dart.nullable(ui.Size), textDirection: dart.nullable(ui.TextDirection)}, {})
-  }));
-  dart.setLibraryUri(image_provider.ImageConfiguration, I[2]);
-  dart.setFieldSignature(image_provider.ImageConfiguration, () => ({
-    __proto__: dart.getFields(image_provider.ImageConfiguration.__proto__),
-    bundle: dart.finalFieldType(dart.nullable(asset_bundle.AssetBundle)),
-    devicePixelRatio: dart.finalFieldType(dart.nullable(core.double)),
-    locale: dart.finalFieldType(dart.nullable(ui.Locale)),
-    textDirection: dart.finalFieldType(dart.nullable(ui.TextDirection)),
-    size: dart.finalFieldType(dart.nullable(ui.Size)),
-    platform: dart.finalFieldType(dart.nullable(platform.TargetPlatform))
-  }));
-  dart.defineExtensionMethods(image_provider.ImageConfiguration, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(image_provider.ImageConfiguration, ['hashCode']);
-  dart.defineLazy(image_provider.ImageConfiguration, {
-    /*image_provider.ImageConfiguration.empty*/get empty() {
-      return C[0] || CT.C0;
-    }
-  }, false);
-  var bundle$0 = dart.privateName(image_provider, "AssetBundleImageKey.bundle");
-  var name$ = dart.privateName(image_provider, "AssetBundleImageKey.name");
-  var scale$0 = dart.privateName(image_provider, "AssetBundleImageKey.scale");
-  image_provider.AssetBundleImageKey = class AssetBundleImageKey extends core.Object {
-    get bundle() {
-      return this[bundle$0];
-    }
-    set bundle(value) {
-      super.bundle = value;
-    }
-    get name() {
-      return this[name$];
-    }
-    set name(value) {
-      super.name = value;
-    }
-    get scale() {
-      return this[scale$0];
-    }
-    set scale(value) {
-      super.scale = value;
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
-      return image_provider.AssetBundleImageKey.is(other) && other.bundle[$_equals](this.bundle) && other.name === this.name && other.scale === this.scale;
-    }
-    get hashCode() {
-      return ui.hashValues(this.bundle, this.name, this.scale);
-    }
-    toString() {
-      return object.objectRuntimeType(this, "AssetBundleImageKey") + "(bundle: " + dart.str(this.bundle) + ", name: \"" + this.name + "\", scale: " + dart.str(this.scale) + ")";
-    }
-  };
-  (image_provider.AssetBundleImageKey.new = function(opts) {
-    let bundle = opts && 'bundle' in opts ? opts.bundle : null;
-    let name = opts && 'name' in opts ? opts.name : null;
-    let scale = opts && 'scale' in opts ? opts.scale : null;
-    this[bundle$0] = bundle;
-    this[name$] = name;
-    this[scale$0] = scale;
-    if (!(bundle !== null)) dart.assertFailed(null, I[1], 599, 15, "bundle != null");
-    if (!(name !== null)) dart.assertFailed(null, I[1], 600, 15, "name != null");
-    if (!(scale !== null)) dart.assertFailed(null, I[1], 601, 15, "scale != null");
-    ;
-  }).prototype = image_provider.AssetBundleImageKey.prototype;
-  dart.addTypeTests(image_provider.AssetBundleImageKey);
-  dart.addTypeCaches(image_provider.AssetBundleImageKey);
-  dart.setLibraryUri(image_provider.AssetBundleImageKey, I[2]);
-  dart.setFieldSignature(image_provider.AssetBundleImageKey, () => ({
-    __proto__: dart.getFields(image_provider.AssetBundleImageKey.__proto__),
-    bundle: dart.finalFieldType(asset_bundle.AssetBundle),
-    name: dart.finalFieldType(core.String),
-    scale: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(image_provider.AssetBundleImageKey, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(image_provider.AssetBundleImageKey, ['hashCode']);
-  var _loadAsync$ = dart.privateName(image_provider, "_loadAsync");
-  image_provider.AssetBundleImageProvider = class AssetBundleImageProvider extends image_provider.ImageProvider$(image_provider.AssetBundleImageKey) {
-    load(key, decode) {
-      image_provider.AssetBundleImageKey.as(key);
-      let collector = null;
-      if (!dart.fn(() => {
-        collector = dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new((function*() {
-          yield new (T$.DiagnosticsPropertyOfImageProviderOfObject()).new("Image provider", this);
-          yield new (T$.DiagnosticsPropertyOfAssetBundleImageKey()).new("Image key", key);
-        }).bind(this)), T$.VoidToIterableOfDiagnosticsNode());
-        return true;
-      }, T$.VoidTobool())()) dart.assertFailed(null, I[1], 647, 12, "() {\r\n      collector = () sync* {\r\n        yield DiagnosticsProperty<ImageProvider>('Image provider', this);\r\n        yield DiagnosticsProperty<AssetBundleImageKey>('Image key', key);\r\n      };\r\n      return true;\r\n    }()");
-      return new image_stream.MultiFrameImageStreamCompleter.new({codec: this[_loadAsync$](key, decode), scale: key.scale, debugLabel: key.name, informationCollector: collector});
-    }
-    [_loadAsync$](key, decode) {
-      return async.async(ui.Codec, function* _loadAsync() {
-        let data = null;
-        try {
-          data = (yield key.bundle.load(key.name));
-        } catch (e) {
-          let ex = dart.getThrown(e);
-          if (assertions.FlutterError.is(ex)) {
-            dart.nullCheck(dart.nullCheck(binding.PaintingBinding.instance).imageCache).evict(key);
-            dart.rethrow(e);
-          } else
-            throw e;
-        }
-        if (data == null) {
-          dart.nullCheck(dart.nullCheck(binding.PaintingBinding.instance).imageCache).evict(key);
-          dart.throw(new core.StateError.new("Unable to read data"));
-        }
-        return decode(data[$buffer][$asUint8List]());
-      });
-    }
-  };
-  (image_provider.AssetBundleImageProvider.new = function() {
-    image_provider.AssetBundleImageProvider.__proto__.new.call(this);
-    ;
-  }).prototype = image_provider.AssetBundleImageProvider.prototype;
-  dart.addTypeTests(image_provider.AssetBundleImageProvider);
-  dart.addTypeCaches(image_provider.AssetBundleImageProvider);
-  dart.setMethodSignature(image_provider.AssetBundleImageProvider, () => ({
-    __proto__: dart.getMethods(image_provider.AssetBundleImageProvider.__proto__),
-    load: dart.fnType(image_stream.ImageStreamCompleter, [dart.nullable(core.Object), dart.fnType(async.Future$(ui.Codec), [typed_data.Uint8List], {allowUpscaling: core.bool, cacheHeight: dart.nullable(core.int), cacheWidth: dart.nullable(core.int)}, {})]),
-    [_loadAsync$]: dart.fnType(async.Future$(ui.Codec), [image_provider.AssetBundleImageKey, dart.fnType(async.Future$(ui.Codec), [typed_data.Uint8List], {allowUpscaling: core.bool, cacheHeight: dart.nullable(core.int), cacheWidth: dart.nullable(core.int)}, {})])
-  }));
-  dart.setLibraryUri(image_provider.AssetBundleImageProvider, I[2]);
-  var providerCacheKey$ = dart.privateName(image_provider, "_SizeAwareCacheKey.providerCacheKey");
-  var width$ = dart.privateName(image_provider, "_SizeAwareCacheKey.width");
-  var height$ = dart.privateName(image_provider, "_SizeAwareCacheKey.height");
-  image_provider._SizeAwareCacheKey = class _SizeAwareCacheKey extends core.Object {
-    get providerCacheKey() {
-      return this[providerCacheKey$];
-    }
-    set providerCacheKey(value) {
-      super.providerCacheKey = value;
-    }
-    get width() {
-      return this[width$];
-    }
-    set width(value) {
-      super.width = value;
-    }
-    get height() {
-      return this[height$];
-    }
-    set height(value) {
-      super.height = value;
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
-      return image_provider._SizeAwareCacheKey.is(other) && other.providerCacheKey[$_equals](this.providerCacheKey) && other.width == this.width && other.height == this.height;
-    }
-    get hashCode() {
-      return ui.hashValues(this.providerCacheKey, this.width, this.height);
-    }
-  };
-  (image_provider._SizeAwareCacheKey.new = function(providerCacheKey, width, height) {
-    this[providerCacheKey$] = providerCacheKey;
-    this[width$] = width;
-    this[height$] = height;
-    ;
-  }).prototype = image_provider._SizeAwareCacheKey.prototype;
-  dart.addTypeTests(image_provider._SizeAwareCacheKey);
-  dart.addTypeCaches(image_provider._SizeAwareCacheKey);
-  dart.setLibraryUri(image_provider._SizeAwareCacheKey, I[2]);
-  dart.setFieldSignature(image_provider._SizeAwareCacheKey, () => ({
-    __proto__: dart.getFields(image_provider._SizeAwareCacheKey.__proto__),
-    providerCacheKey: dart.finalFieldType(core.Object),
-    width: dart.finalFieldType(dart.nullable(core.int)),
-    height: dart.finalFieldType(dart.nullable(core.int))
-  }));
-  dart.defineExtensionMethods(image_provider._SizeAwareCacheKey, ['_equals']);
-  dart.defineExtensionAccessors(image_provider._SizeAwareCacheKey, ['hashCode']);
-  var imageProvider$ = dart.privateName(image_provider, "ResizeImage.imageProvider");
-  var width$0 = dart.privateName(image_provider, "ResizeImage.width");
-  var height$0 = dart.privateName(image_provider, "ResizeImage.height");
-  var allowUpscaling$ = dart.privateName(image_provider, "ResizeImage.allowUpscaling");
-  image_provider.ResizeImage = class ResizeImage extends image_provider.ImageProvider$(image_provider._SizeAwareCacheKey) {
-    get imageProvider() {
-      return this[imageProvider$];
-    }
-    set imageProvider(value) {
-      super.imageProvider = value;
-    }
-    get width() {
-      return this[width$0];
-    }
-    set width(value) {
-      super.width = value;
-    }
-    get height() {
-      return this[height$0];
-    }
-    set height(value) {
-      super.height = value;
-    }
-    get allowUpscaling() {
-      return this[allowUpscaling$];
-    }
-    set allowUpscaling(value) {
-      super.allowUpscaling = value;
-    }
-    static resizeIfNeeded(cacheWidth, cacheHeight, provider) {
-      if (cacheWidth != null || cacheHeight != null) {
-        return new image_provider.ResizeImage.new(provider, {width: cacheWidth, height: cacheHeight});
-      }
-      return provider;
-    }
-    load(key, decode) {
-      image_provider._SizeAwareCacheKey.as(key);
-      const decodeResize = (bytes, opts) => {
-        let allowUpscaling = opts && 'allowUpscaling' in opts ? opts.allowUpscaling : null;
-        let cacheHeight = opts && 'cacheHeight' in opts ? opts.cacheHeight : null;
-        let cacheWidth = opts && 'cacheWidth' in opts ? opts.cacheWidth : null;
-        if (!(cacheWidth == null && cacheHeight == null && allowUpscaling == null)) dart.assertFailed("ResizeImage cannot be composed with another ImageProvider that applies " + "cacheWidth, cacheHeight, or allowUpscaling.", I[1], 765, 9, "cacheWidth == null && cacheHeight == null && allowUpscaling == null");
-        return decode(bytes, {cacheWidth: this.width, cacheHeight: this.height, allowUpscaling: this.allowUpscaling});
-      };
-      dart.fn(decodeResize, T$.Uint8List__ToFutureOfCodec());
-      let completer = this.imageProvider.load(key.providerCacheKey, decodeResize);
-      if (!false) {
-        completer.debugLabel = dart.str(completer.debugLabel) + " - Resized(" + dart.str(key.width) + "×" + dart.str(key.height) + ")";
-      }
-      return completer;
-    }
-    obtainKey(configuration) {
-      let completer = null;
-      let result = null;
-      this.imageProvider.obtainKey(configuration).then(core.Null, dart.fn(key => {
-        if (completer == null) {
-          result = new (T$.SynchronousFutureOf_SizeAwareCacheKey()).new(new image_provider._SizeAwareCacheKey.new(key, this.width, this.height));
-        } else {
-          completer.complete(new image_provider._SizeAwareCacheKey.new(key, this.width, this.height));
-        }
-      }, T$.ObjectToNull()));
-      if (result != null) {
-        return dart.nullCheck(result);
-      }
-      completer = T$.CompleterOf_SizeAwareCacheKey().new();
-      return completer.future;
-    }
-  };
-  (image_provider.ResizeImage.new = function(imageProvider, opts) {
-    let width = opts && 'width' in opts ? opts.width : null;
-    let height = opts && 'height' in opts ? opts.height : null;
-    let allowUpscaling = opts && 'allowUpscaling' in opts ? opts.allowUpscaling : false;
-    this[imageProvider$] = imageProvider;
-    this[width$0] = width;
-    this[height$0] = height;
-    this[allowUpscaling$] = allowUpscaling;
-    if (!(width != null || height != null)) dart.assertFailed(null, I[1], 728, 15, "width != null || height != null");
-    if (!(allowUpscaling !== null)) dart.assertFailed(null, I[1], 729, 15, "allowUpscaling != null");
-    image_provider.ResizeImage.__proto__.new.call(this);
-    ;
-  }).prototype = image_provider.ResizeImage.prototype;
-  dart.addTypeTests(image_provider.ResizeImage);
-  dart.addTypeCaches(image_provider.ResizeImage);
-  dart.setMethodSignature(image_provider.ResizeImage, () => ({
-    __proto__: dart.getMethods(image_provider.ResizeImage.__proto__),
-    load: dart.fnType(image_stream.ImageStreamCompleter, [dart.nullable(core.Object), dart.fnType(async.Future$(ui.Codec), [typed_data.Uint8List], {allowUpscaling: core.bool, cacheHeight: dart.nullable(core.int), cacheWidth: dart.nullable(core.int)}, {})]),
-    obtainKey: dart.fnType(async.Future$(image_provider._SizeAwareCacheKey), [image_provider.ImageConfiguration])
-  }));
-  dart.setLibraryUri(image_provider.ResizeImage, I[2]);
-  dart.setFieldSignature(image_provider.ResizeImage, () => ({
-    __proto__: dart.getFields(image_provider.ResizeImage.__proto__),
-    imageProvider: dart.finalFieldType(image_provider.ImageProvider$(core.Object)),
-    width: dart.finalFieldType(dart.nullable(core.int)),
-    height: dart.finalFieldType(dart.nullable(core.int)),
-    allowUpscaling: dart.finalFieldType(core.bool)
-  }));
-  var file$ = dart.privateName(image_provider, "FileImage.file");
-  var scale$1 = dart.privateName(image_provider, "FileImage.scale");
-  image_provider.FileImage = class FileImage extends image_provider.ImageProvider {
-    get file() {
-      return this[file$];
-    }
-    set file(value) {
-      super.file = value;
-    }
-    get scale() {
-      return this[scale$1];
-    }
-    set scale(value) {
-      super.scale = value;
-    }
-    obtainKey(configuration) {
-      return new (T$.SynchronousFutureOfFileImage()).new(this);
-    }
-    load(key, decode) {
-      image_provider.FileImage.as(key);
-      return new image_stream.MultiFrameImageStreamCompleter.new({codec: this[_loadAsync$](key, decode), scale: key.scale, debugLabel: key.file.path, informationCollector: dart.fn(() => new (T$.SyncIterableOfDiagnosticsNode()).new((function*() {
-          yield new assertions.ErrorDescription.new("Path: " + this.file.path);
-        }).bind(this)), T$.VoidToIterableOfDiagnosticsNode())});
-    }
-    [_loadAsync$](key, decode) {
-      return async.async(ui.Codec, (function* _loadAsync() {
-        if (!key._equals(this)) dart.assertFailed(null, I[1], 882, 12, "key == this");
-        let bytes = (yield this.file.readAsBytes());
-        if (bytes[$lengthInBytes] === 0) {
-          dart.nullCheck(dart.nullCheck(binding.PaintingBinding.instance).imageCache).evict(key);
-          dart.throw(new core.StateError.new(dart.str(this.file) + " is empty and cannot be loaded as an image."));
-        }
-        return decode(bytes);
-      }).bind(this));
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
-      return image_provider.FileImage.is(other) && other.file.path === this.file.path && other.scale === this.scale;
-    }
-    get hashCode() {
-      return ui.hashValues(this.file.path, this.scale);
-    }
-    toString() {
-      return object.objectRuntimeType(this, "FileImage") + "(\"" + this.file.path + "\", scale: " + dart.str(this.scale) + ")";
-    }
-  };
-  (image_provider.FileImage.new = function(file, opts) {
-    let scale = opts && 'scale' in opts ? opts.scale : 1;
-    this[file$] = file;
-    this[scale$1] = scale;
-    if (!(file !== null)) dart.assertFailed(null, I[1], 855, 14, "file != null");
-    if (!(scale !== null)) dart.assertFailed(null, I[1], 856, 14, "scale != null");
-    image_provider.FileImage.__proto__.new.call(this);
-    ;
-  }).prototype = image_provider.FileImage.prototype;
-  dart.addTypeTests(image_provider.FileImage);
-  dart.addTypeCaches(image_provider.FileImage);
-  dart.setMethodSignature(image_provider.FileImage, () => ({
-    __proto__: dart.getMethods(image_provider.FileImage.__proto__),
-    obtainKey: dart.fnType(async.Future$(image_provider.FileImage), [image_provider.ImageConfiguration]),
-    load: dart.fnType(image_stream.ImageStreamCompleter, [dart.nullable(core.Object), dart.fnType(async.Future$(ui.Codec), [typed_data.Uint8List], {allowUpscaling: core.bool, cacheHeight: dart.nullable(core.int), cacheWidth: dart.nullable(core.int)}, {})]),
-    [_loadAsync$]: dart.fnType(async.Future$(ui.Codec), [image_provider.FileImage, dart.fnType(async.Future$(ui.Codec), [typed_data.Uint8List], {allowUpscaling: core.bool, cacheHeight: dart.nullable(core.int), cacheWidth: dart.nullable(core.int)}, {})])
-  }));
-  dart.setLibraryUri(image_provider.FileImage, I[2]);
-  dart.setFieldSignature(image_provider.FileImage, () => ({
-    __proto__: dart.getFields(image_provider.FileImage.__proto__),
-    file: dart.finalFieldType(io.File),
-    scale: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(image_provider.FileImage, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(image_provider.FileImage, ['hashCode']);
-  var bytes$ = dart.privateName(image_provider, "MemoryImage.bytes");
-  var scale$2 = dart.privateName(image_provider, "MemoryImage.scale");
-  image_provider.MemoryImage = class MemoryImage extends image_provider.ImageProvider {
-    get bytes() {
-      return this[bytes$];
-    }
-    set bytes(value) {
-      super.bytes = value;
-    }
-    get scale() {
-      return this[scale$2];
-    }
-    set scale(value) {
-      super.scale = value;
-    }
-    obtainKey(configuration) {
-      return new (T$.SynchronousFutureOfMemoryImage()).new(this);
-    }
-    load(key, decode) {
-      image_provider.MemoryImage.as(key);
-      return new image_stream.MultiFrameImageStreamCompleter.new({codec: this[_loadAsync$](key, decode), scale: key.scale, debugLabel: "MemoryImage(" + diagnostics.describeIdentity(key.bytes) + ")"});
-    }
-    [_loadAsync$](key, decode) {
-      if (!key._equals(this)) dart.assertFailed(null, I[1], 965, 12, "key == this");
-      return decode(this.bytes);
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
-      return image_provider.MemoryImage.is(other) && other.bytes[$_equals](this.bytes) && other.scale === this.scale;
-    }
-    get hashCode() {
-      return ui.hashValues(this.bytes[$hashCode], this.scale);
-    }
-    toString() {
-      return object.objectRuntimeType(this, "MemoryImage") + "(" + diagnostics.describeIdentity(this.bytes) + ", scale: " + dart.str(this.scale) + ")";
-    }
-  };
-  (image_provider.MemoryImage.new = function(bytes, opts) {
-    let scale = opts && 'scale' in opts ? opts.scale : 1;
-    this[bytes$] = bytes;
-    this[scale$2] = scale;
-    if (!(bytes !== null)) dart.assertFailed(null, I[1], 929, 14, "bytes != null");
-    if (!(scale !== null)) dart.assertFailed(null, I[1], 930, 14, "scale != null");
-    image_provider.MemoryImage.__proto__.new.call(this);
-    ;
-  }).prototype = image_provider.MemoryImage.prototype;
-  dart.addTypeTests(image_provider.MemoryImage);
-  dart.addTypeCaches(image_provider.MemoryImage);
-  dart.setMethodSignature(image_provider.MemoryImage, () => ({
-    __proto__: dart.getMethods(image_provider.MemoryImage.__proto__),
-    obtainKey: dart.fnType(async.Future$(image_provider.MemoryImage), [image_provider.ImageConfiguration]),
-    load: dart.fnType(image_stream.ImageStreamCompleter, [dart.nullable(core.Object), dart.fnType(async.Future$(ui.Codec), [typed_data.Uint8List], {allowUpscaling: core.bool, cacheHeight: dart.nullable(core.int), cacheWidth: dart.nullable(core.int)}, {})]),
-    [_loadAsync$]: dart.fnType(async.Future$(ui.Codec), [image_provider.MemoryImage, dart.fnType(async.Future$(ui.Codec), [typed_data.Uint8List], {allowUpscaling: core.bool, cacheHeight: dart.nullable(core.int), cacheWidth: dart.nullable(core.int)}, {})])
-  }));
-  dart.setLibraryUri(image_provider.MemoryImage, I[2]);
-  dart.setFieldSignature(image_provider.MemoryImage, () => ({
-    __proto__: dart.getFields(image_provider.MemoryImage.__proto__),
-    bytes: dart.finalFieldType(typed_data.Uint8List),
-    scale: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(image_provider.MemoryImage, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(image_provider.MemoryImage, ['hashCode']);
-  var assetName$ = dart.privateName(image_provider, "ExactAssetImage.assetName");
-  var scale$3 = dart.privateName(image_provider, "ExactAssetImage.scale");
-  var bundle$1 = dart.privateName(image_provider, "ExactAssetImage.bundle");
-  var $package$ = dart.privateName(image_provider, "ExactAssetImage.package");
-  image_provider.ExactAssetImage = class ExactAssetImage extends image_provider.AssetBundleImageProvider {
-    get assetName() {
-      return this[assetName$];
-    }
-    set assetName(value) {
-      super.assetName = value;
-    }
-    get scale() {
-      return this[scale$3];
-    }
-    set scale(value) {
-      super.scale = value;
-    }
-    get bundle() {
-      return this[bundle$1];
-    }
-    set bundle(value) {
-      super.bundle = value;
-    }
-    get package() {
-      return this[$package$];
-    }
-    set package(value) {
-      super.package = value;
-    }
-    get keyName() {
-      return this.package == null ? this.assetName : "packages/" + dart.str(this.package) + "/" + this.assetName;
-    }
-    obtainKey(configuration) {
-      let t4, t4$;
-      return new (T$.SynchronousFutureOfAssetBundleImageKey()).new(new image_provider.AssetBundleImageKey.new({bundle: (t4$ = (t4 = this.bundle, t4 == null ? configuration.bundle : t4), t4$ == null ? asset_bundle.rootBundle : t4$), name: this.keyName, scale: this.scale}));
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
-      return image_provider.ExactAssetImage.is(other) && other.keyName === this.keyName && other.scale === this.scale && dart.equals(other.bundle, this.bundle);
-    }
-    get hashCode() {
-      return ui.hashValues(this.keyName, this.scale, this.bundle);
-    }
-    toString() {
-      return object.objectRuntimeType(this, "ExactAssetImage") + "(name: \"" + this.keyName + "\", scale: " + dart.str(this.scale) + ", bundle: " + dart.str(this.bundle) + ")";
-    }
-  };
-  (image_provider.ExactAssetImage.new = function(assetName, opts) {
-    let scale = opts && 'scale' in opts ? opts.scale : 1;
-    let bundle = opts && 'bundle' in opts ? opts.bundle : null;
-    let $package = opts && 'package' in opts ? opts.package : null;
-    this[assetName$] = assetName;
-    this[scale$3] = scale;
-    this[bundle$1] = bundle;
-    this[$package$] = $package;
-    if (!(assetName !== null)) dart.assertFailed(null, I[1], 1072, 15, "assetName != null");
-    if (!(scale !== null)) dart.assertFailed(null, I[1], 1073, 15, "scale != null");
-    image_provider.ExactAssetImage.__proto__.new.call(this);
-    ;
-  }).prototype = image_provider.ExactAssetImage.prototype;
-  dart.addTypeTests(image_provider.ExactAssetImage);
-  dart.addTypeCaches(image_provider.ExactAssetImage);
-  dart.setMethodSignature(image_provider.ExactAssetImage, () => ({
-    __proto__: dart.getMethods(image_provider.ExactAssetImage.__proto__),
-    obtainKey: dart.fnType(async.Future$(image_provider.AssetBundleImageKey), [image_provider.ImageConfiguration])
-  }));
-  dart.setGetterSignature(image_provider.ExactAssetImage, () => ({
-    __proto__: dart.getGetters(image_provider.ExactAssetImage.__proto__),
-    keyName: core.String
-  }));
-  dart.setLibraryUri(image_provider.ExactAssetImage, I[2]);
-  dart.setFieldSignature(image_provider.ExactAssetImage, () => ({
-    __proto__: dart.getFields(image_provider.ExactAssetImage.__proto__),
-    assetName: dart.finalFieldType(core.String),
-    scale: dart.finalFieldType(core.double),
-    bundle: dart.finalFieldType(dart.nullable(asset_bundle.AssetBundle)),
-    package: dart.finalFieldType(dart.nullable(core.String))
-  }));
-  dart.defineExtensionMethods(image_provider.ExactAssetImage, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(image_provider.ExactAssetImage, ['hashCode']);
-  image_provider._ErrorImageCompleter = class _ErrorImageCompleter extends image_stream.ImageStreamCompleter {
-    setError(opts) {
-      let context = opts && 'context' in opts ? opts.context : null;
-      let exception = opts && 'exception' in opts ? opts.exception : null;
-      let stack = opts && 'stack' in opts ? opts.stack : null;
-      let informationCollector = opts && 'informationCollector' in opts ? opts.informationCollector : null;
-      let silent = opts && 'silent' in opts ? opts.silent : false;
-      this.reportError({context: context, exception: exception, stack: stack, informationCollector: informationCollector, silent: silent});
-    }
-  };
-  (image_provider._ErrorImageCompleter.new = function() {
-    image_provider._ErrorImageCompleter.__proto__.new.call(this);
-    ;
-  }).prototype = image_provider._ErrorImageCompleter.prototype;
-  dart.addTypeTests(image_provider._ErrorImageCompleter);
-  dart.addTypeCaches(image_provider._ErrorImageCompleter);
-  dart.setMethodSignature(image_provider._ErrorImageCompleter, () => ({
-    __proto__: dart.getMethods(image_provider._ErrorImageCompleter.__proto__),
-    setError: dart.fnType(dart.void, [], {context: dart.nullable(diagnostics.DiagnosticsNode), informationCollector: dart.nullable(dart.fnType(core.Iterable$(diagnostics.DiagnosticsNode), [])), silent: core.bool, stack: dart.nullable(core.StackTrace)}, {exception: core.Object})
-  }));
-  dart.setLibraryUri(image_provider._ErrorImageCompleter, I[2]);
-  var statusCode$ = dart.privateName(image_provider, "NetworkImageLoadException.statusCode");
-  var uri$ = dart.privateName(image_provider, "NetworkImageLoadException.uri");
-  var _message = dart.privateName(image_provider, "_message");
-  image_provider.NetworkImageLoadException = class NetworkImageLoadException extends core.Object {
-    get statusCode() {
-      return this[statusCode$];
-    }
-    set statusCode(value) {
-      super.statusCode = value;
-    }
-    get uri() {
-      return this[uri$];
-    }
-    set uri(value) {
-      super.uri = value;
-    }
-    toString() {
-      return this[_message];
-    }
-  };
-  (image_provider.NetworkImageLoadException.new = function(opts) {
-    let statusCode = opts && 'statusCode' in opts ? opts.statusCode : null;
-    let uri = opts && 'uri' in opts ? opts.uri : null;
-    this[statusCode$] = statusCode;
-    this[uri$] = uri;
-    if (!(uri !== null)) dart.assertFailed(null, I[1], 1151, 16, "uri != null");
-    if (!(statusCode !== null)) dart.assertFailed(null, I[1], 1152, 16, "statusCode != null");
-    this[_message] = "HTTP request failed, statusCode: " + dart.str(statusCode) + ", " + dart.str(uri);
-    ;
-  }).prototype = image_provider.NetworkImageLoadException.prototype;
-  dart.addTypeTests(image_provider.NetworkImageLoadException);
-  dart.addTypeCaches(image_provider.NetworkImageLoadException);
-  image_provider.NetworkImageLoadException[dart.implements] = () => [core.Exception];
-  dart.setLibraryUri(image_provider.NetworkImageLoadException, I[2]);
-  dart.setFieldSignature(image_provider.NetworkImageLoadException, () => ({
-    __proto__: dart.getFields(image_provider.NetworkImageLoadException.__proto__),
-    statusCode: dart.finalFieldType(core.int),
-    [_message]: dart.finalFieldType(core.String),
-    uri: dart.finalFieldType(core.Uri)
-  }));
-  dart.defineExtensionMethods(image_provider.NetworkImageLoadException, ['toString']);
-  dart.setBaseClass(image_provider.NetworkImage, image_provider.ImageProvider$(image_provider.NetworkImage));
-  dart.setBaseClass(image_provider.FileImage, image_provider.ImageProvider$(image_provider.FileImage));
-  dart.setBaseClass(image_provider.MemoryImage, image_provider.ImageProvider$(image_provider.MemoryImage));
-  dart.trackLibraries("packages/flutter/src/painting/_network_image_web.dart", {
-    "package:flutter/src/painting/_network_image_web.dart": _network_image_web,
-    "package:flutter/src/painting/image_provider.dart": image_provider
-  }, {
-  }, '{"version":3,"sourceRoot":"","sources":["image_provider.dart","_network_image_web.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/painting/_network_image_web.dart.lib.js"}');
-  // Exports:
-  return {
-    src__painting___network_image_web: _network_image_web,
-    src__painting__image_provider: image_provider
-  };
-}));
-
-//# sourceMappingURL=_network_image_web.dart.lib.js.map
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+//# sourceMappingURL=layout_builder.dart.lib.js.map

@@ -1,2406 +1,475 @@
-<<<<<<< HEAD
-define(['dart_sdk', 'packages/flutter/src/gestures/recognizer.dart', 'packages/flutter/src/gestures/velocity_tracker.dart', 'packages/flutter/src/gestures/events.dart', 'packages/flutter/src/gestures/arena.dart', 'packages/vector_math/vector_math_64.dart', 'packages/flutter/src/gestures/drag_details.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__gestures__monodrag_dart(dart_sdk, packages__flutter__src__gestures__recognizer$46dart, packages__flutter__src__gestures__velocity_tracker$46dart, packages__flutter__src__gestures__events$46dart, packages__flutter__src__gestures__arena$46dart, packages__vector_math__vector_math_64$46dart, packages__flutter__src__gestures__drag_details$46dart, packages__flutter__src__foundation__debug$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/placeholder_span.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/rendering/stack.dart', 'packages/flutter/src/painting/strut_style.dart'], (function load__packages__flutter__src__rendering__debug_overflow_indicator_dart(dart_sdk, packages__flutter__src__painting__placeholder_span$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__rendering__stack$46dart, packages__flutter__src__painting__strut_style$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const _js_helper = dart_sdk._js_helper;
-  const collection = dart_sdk.collection;
-  const _internal = dart_sdk._internal;
   const ui = dart_sdk.ui;
-  const dart = dart_sdk.dart;
-  const dartx = dart_sdk.dartx;
-  const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
-  const velocity_tracker = packages__flutter__src__gestures__velocity_tracker$46dart.src__gestures__velocity_tracker;
-  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
-  const arena = packages__flutter__src__gestures__arena$46dart.src__gestures__arena;
-  const vector_math_64 = packages__vector_math__vector_math_64$46dart.vector_math_64;
-  const drag_details = packages__flutter__src__gestures__drag_details$46dart.src__gestures__drag_details;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  var monodrag = Object.create(dart.library);
-  var $_set = dartx._set;
-  var $_get = dartx._get;
-  var $sign = dartx.sign;
-  var $clear = dartx.clear;
-  var $abs = dartx.abs;
-  dart._checkModuleNullSafetyMode(true);
-  var T = {
-    PointerEventToVelocityTracker: () => (T.PointerEventToVelocityTracker = dart.constFn(dart.fnType(velocity_tracker.VelocityTracker, [events.PointerEvent])))(),
-    IdentityMapOfint$VelocityTracker: () => (T.IdentityMapOfint$VelocityTracker = dart.constFn(_js_helper.IdentityMap$(core.int, velocity_tracker.VelocityTracker)))(),
-    LinkedHashSetOfint: () => (T.LinkedHashSetOfint = dart.constFn(collection.LinkedHashSet$(core.int)))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    VoidToString: () => (T.VoidToString = dart.constFn(dart.fnType(core.String, [])))(),
-    EnumPropertyOfDragStartBehavior: () => (T.EnumPropertyOfDragStartBehavior = dart.constFn(diagnostics.EnumProperty$(recognizer.DragStartBehavior)))()
-=======
-define(['dart_sdk', 'packages/path/src/utils.dart', 'packages/path/src/path_exception.dart'], (function load__packages__path__src__path_set_dart(dart_sdk, packages__path__src__utils$46dart, packages__path__src__path_exception$46dart) {
-  'use strict';
-  const core = dart_sdk.core;
-  const collection = dart_sdk.collection;
   const _interceptors = dart_sdk._interceptors;
-  const math = dart_sdk.math;
+  const _js_helper = dart_sdk._js_helper;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const utils = packages__path__src__utils$46dart.src__utils;
-  const path_exception = packages__path__src__path_exception$46dart.src__path_exception;
-  var path_set = Object.create(dart.library);
-  var path_map = Object.create(dart.library);
-  var windows = Object.create(dart.library);
-  var url = Object.create(dart.library);
-  var parsed_path = Object.create(dart.library);
-  var posix = Object.create(dart.library);
-  var style$ = Object.create(dart.library);
-  var internal_style = Object.create(dart.library);
-  var context = Object.create(dart.library);
-  var path$ = Object.create(dart.library);
+  const text_painter = packages__flutter__src__painting__placeholder_span$46dart.src__painting__text_painter;
+  const text_span = packages__flutter__src__painting__placeholder_span$46dart.src__painting__text_span;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
+  const stack = packages__flutter__src__rendering__stack$46dart.src__rendering__stack;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
+  var debug_overflow_indicator = Object.create(dart.library);
   var $length = dartx.length;
-  var $iterator = dartx.iterator;
-  var $cast = dartx.cast;
-  var $addAll = dartx.addAll;
-  var $contains = dartx.contains;
-  var $isEmpty = dartx.isEmpty;
-  var $codeUnitAt = dartx.codeUnitAt;
-  var $indexOf = dartx.indexOf;
-  var $_get = dartx._get;
-  var $startsWith = dartx.startsWith;
-  var $replaceFirst = dartx.replaceFirst;
-  var $replaceAll = dartx.replaceAll;
-  var $split = dartx.split;
-  var $where = dartx.where;
-  var $last = dartx.last;
-  var $insert = dartx.insert;
+  var $toStringAsFixed = dartx.toStringAsFixed;
+  var $toStringAsPrecision = dartx.toStringAsPrecision;
   var $add = dartx.add;
-  var $first = dartx.first;
-  var $toLowerCase = dartx.toLowerCase;
-  var $substring = dartx.substring;
-  var $endsWith = dartx.endsWith;
+  var $isEmpty = dartx.isEmpty;
+  var $runtimeType = dartx.runtimeType;
   var $isNotEmpty = dartx.isNotEmpty;
-  var $removeLast = dartx.removeLast;
+  var $first = dartx.first;
+  var $last = dartx.last;
+  var $_get = dartx._get;
   var $_set = dartx._set;
-  var $insertAll = dartx.insertAll;
-  var $_equals = dartx._equals;
-  var $lastWhere = dartx.lastWhere;
-  var $whereType = dartx.whereType;
-  var $toList = dartx.toList;
-  var $codeUnits = dartx.codeUnits;
-  var $removeAt = dartx.removeAt;
-  var $take = dartx.take;
-  var $map = dartx.map;
   var $join = dartx.join;
+  var $times = dartx['*'];
+  var $truncate = dartx.truncate;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    StringN: () => (T.StringN = dart.constFn(dart.nullable(core.String)))(),
-    LinkedHashSetOfStringN: () => (T.LinkedHashSetOfStringN = dart.constFn(collection.LinkedHashSet$(T.StringN())))(),
-    StringNAndStringNTobool: () => (T.StringNAndStringNTobool = dart.constFn(dart.fnType(core.bool, [T.StringN(), T.StringN()])))(),
-    StringNToint: () => (T.StringNToint = dart.constFn(dart.fnType(core.int, [T.StringN()])))(),
-    dynamicTobool: () => (T.dynamicTobool = dart.constFn(dart.fnType(core.bool, [dart.dynamic])))(),
-    IterableOfStringN: () => (T.IterableOfStringN = dart.constFn(core.Iterable$(T.StringN())))(),
-    SetOfStringN: () => (T.SetOfStringN = dart.constFn(core.Set$(T.StringN())))(),
-    StringTobool: () => (T.StringTobool = dart.constFn(dart.fnType(core.bool, [core.String])))(),
+    ListOfTextPainter: () => (T.ListOfTextPainter = dart.constFn(core.List$(text_painter.TextPainter)))(),
+    JSArrayOf_OverflowRegionData: () => (T.JSArrayOf_OverflowRegionData = dart.constFn(_interceptors.JSArray$(debug_overflow_indicator._OverflowRegionData)))(),
+    JSArrayOfDiagnosticsNode: () => (T.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
     JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))(),
-    ListOfString: () => (T.ListOfString = dart.constFn(core.List$(core.String)))(),
-    StringNTobool: () => (T.StringNTobool = dart.constFn(dart.fnType(core.bool, [T.StringN()])))(),
-    VoidToNull: () => (T.VoidToNull = dart.constFn(dart.fnType(core.Null, [])))(),
-    JSArrayOfStringN: () => (T.JSArrayOfStringN = dart.constFn(_interceptors.JSArray$(T.StringN())))(),
-    StringNToString: () => (T.StringNToString = dart.constFn(dart.fnType(core.String, [T.StringN()])))()
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+    SyncIterableOfDiagnosticsNode: () => (T.SyncIterableOfDiagnosticsNode = dart.constFn(_js_helper.SyncIterable$(diagnostics.DiagnosticsNode)))(),
+    IterableOfDiagnosticsNode: () => (T.IterableOfDiagnosticsNode = dart.constFn(core.Iterable$(diagnostics.DiagnosticsNode)))(),
+    VoidToIterableOfDiagnosticsNode: () => (T.VoidToIterableOfDiagnosticsNode = dart.constFn(dart.fnType(T.IterableOfDiagnosticsNode(), [])))(),
+    TextSpanN: () => (T.TextSpanN = dart.constFn(dart.nullable(text_span.TextSpan)))(),
+    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    JSArrayOfColor: () => (T.JSArrayOfColor = dart.constFn(_interceptors.JSArray$(ui.Color)))(),
+    JSArrayOfdouble: () => (T.JSArrayOfdouble = dart.constFn(_interceptors.JSArray$(core.double)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
-<<<<<<< HEAD
       return C[0] = dart.const({
-        __proto__: monodrag._DragState.prototype,
-        [_name$]: "_DragState.ready",
+        __proto__: debug_overflow_indicator._OverflowSide.prototype,
+        [_name$]: "_OverflowSide.left",
         index: 0
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: monodrag._DragState.prototype,
-        [_name$]: "_DragState.possible",
+        __proto__: debug_overflow_indicator._OverflowSide.prototype,
+        [_name$]: "_OverflowSide.top",
         index: 1
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: monodrag._DragState.prototype,
-        [_name$]: "_DragState.accepted",
+        __proto__: debug_overflow_indicator._OverflowSide.prototype,
+        [_name$]: "_OverflowSide.bottom",
         index: 2
       });
     },
     get C3() {
-      return C[3] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2], monodrag._DragState);
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: recognizer.DragStartBehavior.prototype,
-        [_name]: "DragStartBehavior.start",
-        index: 1
-      });
-    },
-    get C5() {
-      return C[5] = dart.fn(monodrag.DragGestureRecognizer._defaultBuilder, T.PointerEventToVelocityTracker());
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: recognizer.DragStartBehavior.prototype,
-        [_name]: "DragStartBehavior.down",
-        index: 0
-      });
-    }
-  }, false);
-  var C = Array(7).fill(void 0);
-  var I = [
-    "package:flutter/src/gestures/monodrag.dart",
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/gestures/monodrag.dart"
-  ];
-  var _name$ = dart.privateName(monodrag, "_name");
-  monodrag._DragState = class _DragState extends core.Object {
-    toString() {
-      return this[_name$];
-    }
-  };
-  (monodrag._DragState.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
-    ;
-  }).prototype = monodrag._DragState.prototype;
-  dart.addTypeTests(monodrag._DragState);
-  dart.addTypeCaches(monodrag._DragState);
-  dart.setLibraryUri(monodrag._DragState, I[0]);
-  dart.setFieldSignature(monodrag._DragState, () => ({
-    __proto__: dart.getFields(monodrag._DragState.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(monodrag._DragState, ['toString']);
-  monodrag._DragState.ready = C[0] || CT.C0;
-  monodrag._DragState.possible = C[1] || CT.C1;
-  monodrag._DragState.accepted = C[2] || CT.C2;
-  monodrag._DragState.values = C[3] || CT.C3;
-  var dragStartBehavior$ = dart.privateName(monodrag, "DragGestureRecognizer.dragStartBehavior");
-  var onDown = dart.privateName(monodrag, "DragGestureRecognizer.onDown");
-  var onStart = dart.privateName(monodrag, "DragGestureRecognizer.onStart");
-  var onUpdate = dart.privateName(monodrag, "DragGestureRecognizer.onUpdate");
-  var onEnd = dart.privateName(monodrag, "DragGestureRecognizer.onEnd");
-  var onCancel = dart.privateName(monodrag, "DragGestureRecognizer.onCancel");
-  var minFlingDistance = dart.privateName(monodrag, "DragGestureRecognizer.minFlingDistance");
-  var minFlingVelocity = dart.privateName(monodrag, "DragGestureRecognizer.minFlingVelocity");
-  var maxFlingVelocity = dart.privateName(monodrag, "DragGestureRecognizer.maxFlingVelocity");
-  var velocityTrackerBuilder$ = dart.privateName(monodrag, "DragGestureRecognizer.velocityTrackerBuilder");
-  var _name = dart.privateName(recognizer, "_name");
-  var _state = dart.privateName(monodrag, "_state");
-  var __DragGestureRecognizer__initialPosition = dart.privateName(monodrag, "_#DragGestureRecognizer#_initialPosition");
-  var __DragGestureRecognizer__pendingDragOffset = dart.privateName(monodrag, "_#DragGestureRecognizer#_pendingDragOffset");
-  var _lastPendingEventTimestamp = dart.privateName(monodrag, "_lastPendingEventTimestamp");
-  var _initialButtons = dart.privateName(monodrag, "_initialButtons");
-  var _lastTransform = dart.privateName(monodrag, "_lastTransform");
-  var __DragGestureRecognizer__globalDistanceMoved = dart.privateName(monodrag, "_#DragGestureRecognizer#_globalDistanceMoved");
-  var _velocityTrackers = dart.privateName(monodrag, "_velocityTrackers");
-  var _acceptedActivePointers = dart.privateName(monodrag, "_acceptedActivePointers");
-  var _initialPosition = dart.privateName(monodrag, "_initialPosition");
-  var _pendingDragOffset = dart.privateName(monodrag, "_pendingDragOffset");
-  var _globalDistanceMoved = dart.privateName(monodrag, "_globalDistanceMoved");
-  var _checkDown = dart.privateName(monodrag, "_checkDown");
-  var _giveUpPointer = dart.privateName(monodrag, "_giveUpPointer");
-  var _getDeltaForDetails = dart.privateName(monodrag, "_getDeltaForDetails");
-  var _getPrimaryValueFromOffset = dart.privateName(monodrag, "_getPrimaryValueFromOffset");
-  var _checkUpdate = dart.privateName(monodrag, "_checkUpdate");
-  var _hasSufficientGlobalDistanceToAccept = dart.privateName(monodrag, "_hasSufficientGlobalDistanceToAccept");
-  var _checkStart = dart.privateName(monodrag, "_checkStart");
-  var _checkCancel = dart.privateName(monodrag, "_checkCancel");
-  var _checkEnd = dart.privateName(monodrag, "_checkEnd");
-  monodrag.DragGestureRecognizer = class DragGestureRecognizer extends recognizer.OneSequenceGestureRecognizer {
-    get dragStartBehavior() {
-      return this[dragStartBehavior$];
-    }
-    set dragStartBehavior(value) {
-      this[dragStartBehavior$] = value;
-    }
-    get onDown() {
-      return this[onDown];
-    }
-    set onDown(value) {
-      this[onDown] = value;
-    }
-    get onStart() {
-      return this[onStart];
-    }
-    set onStart(value) {
-      this[onStart] = value;
-    }
-    get onUpdate() {
-      return this[onUpdate];
-    }
-    set onUpdate(value) {
-      this[onUpdate] = value;
-    }
-    get onEnd() {
-      return this[onEnd];
-    }
-    set onEnd(value) {
-      this[onEnd] = value;
-    }
-    get onCancel() {
-      return this[onCancel];
-    }
-    set onCancel(value) {
-      this[onCancel] = value;
-    }
-    get minFlingDistance() {
-      return this[minFlingDistance];
-    }
-    set minFlingDistance(value) {
-      this[minFlingDistance] = value;
-    }
-    get minFlingVelocity() {
-      return this[minFlingVelocity];
-    }
-    set minFlingVelocity(value) {
-      this[minFlingVelocity] = value;
-    }
-    get maxFlingVelocity() {
-      return this[maxFlingVelocity];
-    }
-    set maxFlingVelocity(value) {
-      this[maxFlingVelocity] = value;
-    }
-    get velocityTrackerBuilder() {
-      return this[velocityTrackerBuilder$];
-    }
-    set velocityTrackerBuilder(value) {
-      this[velocityTrackerBuilder$] = value;
-    }
-    static _defaultBuilder(event) {
-      return new velocity_tracker.VelocityTracker.withKind(event.kind);
-    }
-    get [_initialPosition]() {
-      let t0;
-      t0 = this[__DragGestureRecognizer__initialPosition];
-      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_initialPosition")) : t0;
-    }
-    set [_initialPosition](t0) {
-      this[__DragGestureRecognizer__initialPosition] = t0;
-    }
-    get [_pendingDragOffset]() {
-      let t1;
-      t1 = this[__DragGestureRecognizer__pendingDragOffset];
-      return t1 == null ? dart.throw(new _internal.LateError.fieldNI("_pendingDragOffset")) : t1;
-    }
-    set [_pendingDragOffset](t1) {
-      this[__DragGestureRecognizer__pendingDragOffset] = t1;
-    }
-    get [_globalDistanceMoved]() {
-      let t2;
-      t2 = this[__DragGestureRecognizer__globalDistanceMoved];
-      return t2 == null ? dart.throw(new _internal.LateError.fieldNI("_globalDistanceMoved")) : t2;
-    }
-    set [_globalDistanceMoved](t2) {
-      this[__DragGestureRecognizer__globalDistanceMoved] = t2;
-    }
-    isPointerAllowed(event) {
-      if (this[_initialButtons] == null) {
-        switch (event.buttons) {
-          case 1:
-          {
-            if (this.onDown == null && this.onStart == null && this.onUpdate == null && this.onEnd == null && this.onCancel == null) return false;
-            break;
-          }
-          default:
-          {
-            return false;
-          }
-        }
-      } else {
-        if (event.buttons !== this[_initialButtons]) {
-          return false;
-        }
-      }
-      return super.isPointerAllowed(events.PointerDownEvent.as(event));
-    }
-    addAllowedPointer(event) {
-      let t3;
-      this.startTrackingPointer(event.pointer, event.transform);
-      this[_velocityTrackers][$_set](event.pointer, (t3 = event, this.velocityTrackerBuilder(t3)));
-      if (this[_state] === monodrag._DragState.ready) {
-        this[_state] = monodrag._DragState.possible;
-        this[_initialPosition] = new recognizer.OffsetPair.new({global: event.position, local: event.localPosition});
-        this[_initialButtons] = event.buttons;
-        this[_pendingDragOffset] = recognizer.OffsetPair.zero;
-        this[_globalDistanceMoved] = 0.0;
-        this[_lastPendingEventTimestamp] = event.timeStamp;
-        this[_lastTransform] = event.transform;
-        this[_checkDown]();
-      } else if (this[_state] === monodrag._DragState.accepted) {
-        this.resolve(arena.GestureDisposition.accepted);
-      }
-    }
-    handleEvent(event) {
-      let t3;
-      if (!(this[_state] !== monodrag._DragState.ready)) dart.assertFailed(null, I[1], 275, 12, "_state != _DragState.ready");
-      if (!event.synthesized && (events.PointerDownEvent.is(event) || events.PointerMoveEvent.is(event))) {
-        let tracker = dart.nullCheck(this[_velocityTrackers][$_get](event.pointer));
-        if (!(tracker !== null)) dart.assertFailed(null, I[1], 279, 14, "tracker != null");
-        tracker.addPosition(event.timeStamp, event.localPosition);
-      }
-      if (events.PointerMoveEvent.is(event)) {
-        if (event.buttons !== this[_initialButtons]) {
-          this[_giveUpPointer](event.pointer);
-          return;
-        }
-        if (this[_state] === monodrag._DragState.accepted) {
-          this[_checkUpdate]({sourceTimeStamp: event.timeStamp, delta: this[_getDeltaForDetails](event.localDelta), primaryDelta: this[_getPrimaryValueFromOffset](event.localDelta), globalPosition: event.position, localPosition: event.localPosition});
-        } else {
-          this[_pendingDragOffset] = this[_pendingDragOffset]['+'](new recognizer.OffsetPair.new({local: event.localDelta, global: event.delta}));
-          this[_lastPendingEventTimestamp] = event.timeStamp;
-          this[_lastTransform] = event.transform;
-          let movedLocally = this[_getDeltaForDetails](event.localDelta);
-          let localToGlobalTransform = event.transform == null ? null : vector_math_64.Matrix4.tryInvert(dart.nullCheck(event.transform));
-          this[_globalDistanceMoved] = this[_globalDistanceMoved] + events.PointerEvent.transformDeltaViaPositions({transform: localToGlobalTransform, untransformedDelta: movedLocally, untransformedEndPosition: event.localPosition}).distance * (t3 = this[_getPrimaryValueFromOffset](movedLocally), t3 == null ? 1.0 : t3)[$sign];
-          if (this[_hasSufficientGlobalDistanceToAccept](event.kind)) this.resolve(arena.GestureDisposition.accepted);
-        }
-      }
-      if (events.PointerUpEvent.is(event) || events.PointerCancelEvent.is(event)) {
-        this[_giveUpPointer](event.pointer);
-      }
-    }
-    acceptGesture(pointer) {
-      if (!!this[_acceptedActivePointers].contains(pointer)) dart.assertFailed(null, I[1], 320, 12, "!_acceptedActivePointers.contains(pointer)");
-      this[_acceptedActivePointers].add(pointer);
-      if (this[_state] !== monodrag._DragState.accepted) {
-        this[_state] = monodrag._DragState.accepted;
-        let delta = this[_pendingDragOffset];
-        let timestamp = dart.nullCheck(this[_lastPendingEventTimestamp]);
-        let transform = this[_lastTransform];
-        let localUpdateDelta = null;
-        switch (this.dragStartBehavior) {
-          case C[4] || CT.C4:
-          {
-            this[_initialPosition] = this[_initialPosition]['+'](delta);
-            localUpdateDelta = ui.Offset.zero;
-            break;
-          }
-          case C[6] || CT.C6:
-          {
-            localUpdateDelta = this[_getDeltaForDetails](delta.local);
-            break;
-          }
-        }
-        this[_pendingDragOffset] = recognizer.OffsetPair.zero;
-        this[_lastPendingEventTimestamp] = null;
-        this[_lastTransform] = null;
-        this[_checkStart](timestamp, pointer);
-        if (!localUpdateDelta._equals(ui.Offset.zero) && this.onUpdate != null) {
-          let localToGlobal = transform != null ? vector_math_64.Matrix4.tryInvert(transform) : null;
-          let correctedLocalPosition = this[_initialPosition].local['+'](localUpdateDelta);
-          let globalUpdateDelta = events.PointerEvent.transformDeltaViaPositions({untransformedEndPosition: correctedLocalPosition, untransformedDelta: localUpdateDelta, transform: localToGlobal});
-          let updateDelta = new recognizer.OffsetPair.new({local: localUpdateDelta, global: globalUpdateDelta});
-          let correctedPosition = this[_initialPosition]['+'](updateDelta);
-          this[_checkUpdate]({sourceTimeStamp: timestamp, delta: localUpdateDelta, primaryDelta: this[_getPrimaryValueFromOffset](localUpdateDelta), globalPosition: correctedPosition.global, localPosition: correctedPosition.local});
-        }
-      }
-    }
-    rejectGesture(pointer) {
-      this[_giveUpPointer](pointer);
-    }
-    didStopTrackingLastPointer(pointer) {
-      if (!(this[_state] !== monodrag._DragState.ready)) dart.assertFailed(null, I[1], 369, 12, "_state != _DragState.ready");
-      switch (this[_state]) {
-        case C[0] || CT.C0:
-        {
-          break;
-        }
-        case C[1] || CT.C1:
-        {
-          this.resolve(arena.GestureDisposition.rejected);
-          this[_checkCancel]();
-          break;
-        }
-        case C[2] || CT.C2:
-        {
-          this[_checkEnd](pointer);
-          break;
-        }
-      }
-      this[_velocityTrackers][$clear]();
-      this[_initialButtons] = null;
-      this[_state] = monodrag._DragState.ready;
-    }
-    [_giveUpPointer](pointer) {
-      this.stopTrackingPointer(pointer);
-      if (!this[_acceptedActivePointers].remove(pointer)) this.resolvePointer(pointer, arena.GestureDisposition.rejected);
-    }
-    [_checkDown]() {
-      if (!(this[_initialButtons] === 1)) dart.assertFailed(null, I[1], 397, 12, "_initialButtons == kPrimaryButton");
-      if (this.onDown != null) {
-        let details = new drag_details.DragDownDetails.new({globalPosition: this[_initialPosition].global, localPosition: this[_initialPosition].local});
-        this.invokeCallback(dart.void, "onDown", dart.fn(() => dart.nullCheck(this.onDown)(details), T.VoidTovoid()));
-      }
-    }
-    [_checkStart](timestamp, pointer) {
-      if (!(this[_initialButtons] === 1)) dart.assertFailed(null, I[1], 408, 12, "_initialButtons == kPrimaryButton");
-      if (this.onStart != null) {
-        let details = new drag_details.DragStartDetails.new({sourceTimeStamp: timestamp, globalPosition: this[_initialPosition].global, localPosition: this[_initialPosition].local, kind: this.getKindForPointer(pointer)});
-        this.invokeCallback(dart.void, "onStart", dart.fn(() => dart.nullCheck(this.onStart)(details), T.VoidTovoid()));
-      }
-    }
-    [_checkUpdate](opts) {
-      let sourceTimeStamp = opts && 'sourceTimeStamp' in opts ? opts.sourceTimeStamp : null;
-      let delta = opts && 'delta' in opts ? opts.delta : null;
-      let primaryDelta = opts && 'primaryDelta' in opts ? opts.primaryDelta : null;
-      let globalPosition = opts && 'globalPosition' in opts ? opts.globalPosition : null;
-      let localPosition = opts && 'localPosition' in opts ? opts.localPosition : null;
-      if (!(this[_initialButtons] === 1)) dart.assertFailed(null, I[1], 427, 12, "_initialButtons == kPrimaryButton");
-      if (this.onUpdate != null) {
-        let details = new drag_details.DragUpdateDetails.new({sourceTimeStamp: sourceTimeStamp, delta: delta, primaryDelta: primaryDelta, globalPosition: globalPosition, localPosition: localPosition});
-        this.invokeCallback(dart.void, "onUpdate", dart.fn(() => dart.nullCheck(this.onUpdate)(details), T.VoidTovoid()));
-      }
-    }
-    [_checkEnd](pointer) {
-      let t3, t3$;
-      if (!(this[_initialButtons] === 1)) dart.assertFailed(null, I[1], 441, 12, "_initialButtons == kPrimaryButton");
-      if (this.onEnd == null) return;
-      let tracker = dart.nullCheck(this[_velocityTrackers][$_get](pointer));
-      if (!(tracker !== null)) dart.assertFailed(null, I[1], 446, 12, "tracker != null");
-      let details = null;
-      let debugReport = null;
-      let estimate = tracker.getVelocityEstimate();
-      if (estimate != null && this.isFlingGesture(estimate, tracker.kind)) {
-        let velocity = new velocity_tracker.Velocity.new({pixelsPerSecond: estimate.pixelsPerSecond}).clampMagnitude((t3 = this.minFlingVelocity, t3 == null ? 50 : t3), (t3$ = this.maxFlingVelocity, t3$ == null ? 8000 : t3$));
-        details = new drag_details.DragEndDetails.new({velocity: velocity, primaryVelocity: this[_getPrimaryValueFromOffset](velocity.pixelsPerSecond)});
-        debugReport = dart.fn(() => dart.str(estimate) + "; fling at " + dart.str(velocity) + ".", T.VoidToString());
-      } else {
-        details = new drag_details.DragEndDetails.new({velocity: velocity_tracker.Velocity.zero, primaryVelocity: 0.0});
-        debugReport = dart.fn(() => {
-          if (estimate == null) return "Could not estimate velocity.";
-          return dart.str(estimate) + "; judged to not be a fling.";
-        }, T.VoidToString());
-      }
-      this.invokeCallback(dart.void, "onEnd", dart.fn(() => dart.nullCheck(this.onEnd)(details), T.VoidTovoid()), {debugReport: debugReport});
-    }
-    [_checkCancel]() {
-      if (!(this[_initialButtons] === 1)) dart.assertFailed(null, I[1], 477, 12, "_initialButtons == kPrimaryButton");
-      if (this.onCancel != null) this.invokeCallback(dart.void, "onCancel", dart.nullCheck(this.onCancel));
-    }
-    dispose() {
-      this[_velocityTrackers][$clear]();
-      super.dispose();
-    }
-    debugFillProperties(properties) {
-      super.debugFillProperties(properties);
-      properties.add(new (T.EnumPropertyOfDragStartBehavior()).new("start behavior", this.dragStartBehavior));
-    }
-  };
-  (monodrag.DragGestureRecognizer.new = function(opts) {
-    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
-    let kind = opts && 'kind' in opts ? opts.kind : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[4] || CT.C4;
-    let velocityTrackerBuilder = opts && 'velocityTrackerBuilder' in opts ? opts.velocityTrackerBuilder : C[5] || CT.C5;
-    this[onDown] = null;
-    this[onStart] = null;
-    this[onUpdate] = null;
-    this[onEnd] = null;
-    this[onCancel] = null;
-    this[minFlingDistance] = null;
-    this[minFlingVelocity] = null;
-    this[maxFlingVelocity] = null;
-    this[_state] = monodrag._DragState.ready;
-    this[__DragGestureRecognizer__initialPosition] = null;
-    this[__DragGestureRecognizer__pendingDragOffset] = null;
-    this[_lastPendingEventTimestamp] = null;
-    this[_initialButtons] = null;
-    this[_lastTransform] = null;
-    this[__DragGestureRecognizer__globalDistanceMoved] = null;
-    this[_velocityTrackers] = new (T.IdentityMapOfint$VelocityTracker()).new();
-    this[_acceptedActivePointers] = T.LinkedHashSetOfint().new();
-    this[dragStartBehavior$] = dragStartBehavior;
-    this[velocityTrackerBuilder$] = velocityTrackerBuilder;
-    if (!(dragStartBehavior !== null)) dart.assertFailed(null, I[1], 72, 15, "dragStartBehavior != null");
-    monodrag.DragGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
-    ;
-  }).prototype = monodrag.DragGestureRecognizer.prototype;
-  dart.addTypeTests(monodrag.DragGestureRecognizer);
-  dart.addTypeCaches(monodrag.DragGestureRecognizer);
-  dart.setMethodSignature(monodrag.DragGestureRecognizer, () => ({
-    __proto__: dart.getMethods(monodrag.DragGestureRecognizer.__proto__),
-    isPointerAllowed: dart.fnType(core.bool, [events.PointerEvent]),
-    addAllowedPointer: dart.fnType(dart.void, [events.PointerEvent]),
-    handleEvent: dart.fnType(dart.void, [events.PointerEvent]),
-    didStopTrackingLastPointer: dart.fnType(dart.void, [core.int]),
-    [_giveUpPointer]: dart.fnType(dart.void, [core.int]),
-    [_checkDown]: dart.fnType(dart.void, []),
-    [_checkStart]: dart.fnType(dart.void, [core.Duration, core.int]),
-    [_checkUpdate]: dart.fnType(dart.void, [], {localPosition: dart.nullable(ui.Offset), primaryDelta: dart.nullable(core.double), sourceTimeStamp: dart.nullable(core.Duration)}, {delta: ui.Offset, globalPosition: ui.Offset}),
-    [_checkEnd]: dart.fnType(dart.void, [core.int]),
-    [_checkCancel]: dart.fnType(dart.void, [])
-  }));
-  dart.setGetterSignature(monodrag.DragGestureRecognizer, () => ({
-    __proto__: dart.getGetters(monodrag.DragGestureRecognizer.__proto__),
-    [_initialPosition]: recognizer.OffsetPair,
-    [_pendingDragOffset]: recognizer.OffsetPair,
-    [_globalDistanceMoved]: core.double
-  }));
-  dart.setSetterSignature(monodrag.DragGestureRecognizer, () => ({
-    __proto__: dart.getSetters(monodrag.DragGestureRecognizer.__proto__),
-    [_initialPosition]: recognizer.OffsetPair,
-    [_pendingDragOffset]: recognizer.OffsetPair,
-    [_globalDistanceMoved]: core.double
-  }));
-  dart.setLibraryUri(monodrag.DragGestureRecognizer, I[0]);
-  dart.setFieldSignature(monodrag.DragGestureRecognizer, () => ({
-    __proto__: dart.getFields(monodrag.DragGestureRecognizer.__proto__),
-    dragStartBehavior: dart.fieldType(recognizer.DragStartBehavior),
-    onDown: dart.fieldType(dart.nullable(dart.fnType(dart.void, [drag_details.DragDownDetails]))),
-    onStart: dart.fieldType(dart.nullable(dart.fnType(dart.void, [drag_details.DragStartDetails]))),
-    onUpdate: dart.fieldType(dart.nullable(dart.fnType(dart.void, [drag_details.DragUpdateDetails]))),
-    onEnd: dart.fieldType(dart.nullable(dart.fnType(dart.void, [drag_details.DragEndDetails]))),
-    onCancel: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    minFlingDistance: dart.fieldType(dart.nullable(core.double)),
-    minFlingVelocity: dart.fieldType(dart.nullable(core.double)),
-    maxFlingVelocity: dart.fieldType(dart.nullable(core.double)),
-    velocityTrackerBuilder: dart.fieldType(dart.fnType(velocity_tracker.VelocityTracker, [events.PointerEvent])),
-    [_state]: dart.fieldType(monodrag._DragState),
-    [__DragGestureRecognizer__initialPosition]: dart.fieldType(dart.nullable(recognizer.OffsetPair)),
-    [__DragGestureRecognizer__pendingDragOffset]: dart.fieldType(dart.nullable(recognizer.OffsetPair)),
-    [_lastPendingEventTimestamp]: dart.fieldType(dart.nullable(core.Duration)),
-    [_initialButtons]: dart.fieldType(dart.nullable(core.int)),
-    [_lastTransform]: dart.fieldType(dart.nullable(vector_math_64.Matrix4)),
-    [__DragGestureRecognizer__globalDistanceMoved]: dart.fieldType(dart.nullable(core.double)),
-    [_velocityTrackers]: dart.finalFieldType(core.Map$(core.int, velocity_tracker.VelocityTracker)),
-    [_acceptedActivePointers]: dart.finalFieldType(core.Set$(core.int))
-  }));
-  monodrag.VerticalDragGestureRecognizer = class VerticalDragGestureRecognizer extends monodrag.DragGestureRecognizer {
-    isFlingGesture(estimate, kind) {
-      let t3, t3$;
-      let minVelocity = (t3 = this.minFlingVelocity, t3 == null ? 50 : t3);
-      let minDistance = (t3$ = this.minFlingDistance, t3$ == null ? events.computeHitSlop(kind) : t3$);
-      return estimate.pixelsPerSecond.dy[$abs]() > minVelocity && estimate.offset.dy[$abs]() > minDistance;
-    }
-    [_hasSufficientGlobalDistanceToAccept](pointerDeviceKind) {
-      return this[_globalDistanceMoved][$abs]() > events.computeHitSlop(pointerDeviceKind);
-    }
-    [_getDeltaForDetails](delta) {
-      return new ui.Offset.new(0.0, delta.dy);
-    }
-    [_getPrimaryValueFromOffset](value) {
-      return value.dy;
-    }
-    get debugDescription() {
-      return "vertical drag";
-    }
-  };
-  (monodrag.VerticalDragGestureRecognizer.new = function(opts) {
-    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
-    let kind = opts && 'kind' in opts ? opts.kind : null;
-    monodrag.VerticalDragGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
-    ;
-  }).prototype = monodrag.VerticalDragGestureRecognizer.prototype;
-  dart.addTypeTests(monodrag.VerticalDragGestureRecognizer);
-  dart.addTypeCaches(monodrag.VerticalDragGestureRecognizer);
-  dart.setMethodSignature(monodrag.VerticalDragGestureRecognizer, () => ({
-    __proto__: dart.getMethods(monodrag.VerticalDragGestureRecognizer.__proto__),
-    isFlingGesture: dart.fnType(core.bool, [velocity_tracker.VelocityEstimate, ui.PointerDeviceKind]),
-    [_hasSufficientGlobalDistanceToAccept]: dart.fnType(core.bool, [ui.PointerDeviceKind]),
-    [_getDeltaForDetails]: dart.fnType(ui.Offset, [ui.Offset]),
-    [_getPrimaryValueFromOffset]: dart.fnType(core.double, [ui.Offset])
-  }));
-  dart.setGetterSignature(monodrag.VerticalDragGestureRecognizer, () => ({
-    __proto__: dart.getGetters(monodrag.VerticalDragGestureRecognizer.__proto__),
-    debugDescription: core.String
-  }));
-  dart.setLibraryUri(monodrag.VerticalDragGestureRecognizer, I[0]);
-  monodrag.HorizontalDragGestureRecognizer = class HorizontalDragGestureRecognizer extends monodrag.DragGestureRecognizer {
-    isFlingGesture(estimate, kind) {
-      let t3, t3$;
-      let minVelocity = (t3 = this.minFlingVelocity, t3 == null ? 50 : t3);
-      let minDistance = (t3$ = this.minFlingDistance, t3$ == null ? events.computeHitSlop(kind) : t3$);
-      return estimate.pixelsPerSecond.dx[$abs]() > minVelocity && estimate.offset.dx[$abs]() > minDistance;
-    }
-    [_hasSufficientGlobalDistanceToAccept](pointerDeviceKind) {
-      return this[_globalDistanceMoved][$abs]() > events.computeHitSlop(pointerDeviceKind);
-    }
-    [_getDeltaForDetails](delta) {
-      return new ui.Offset.new(delta.dx, 0.0);
-    }
-    [_getPrimaryValueFromOffset](value) {
-      return value.dx;
-    }
-    get debugDescription() {
-      return "horizontal drag";
-    }
-  };
-  (monodrag.HorizontalDragGestureRecognizer.new = function(opts) {
-    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
-    let kind = opts && 'kind' in opts ? opts.kind : null;
-    monodrag.HorizontalDragGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
-    ;
-  }).prototype = monodrag.HorizontalDragGestureRecognizer.prototype;
-  dart.addTypeTests(monodrag.HorizontalDragGestureRecognizer);
-  dart.addTypeCaches(monodrag.HorizontalDragGestureRecognizer);
-  dart.setMethodSignature(monodrag.HorizontalDragGestureRecognizer, () => ({
-    __proto__: dart.getMethods(monodrag.HorizontalDragGestureRecognizer.__proto__),
-    isFlingGesture: dart.fnType(core.bool, [velocity_tracker.VelocityEstimate, ui.PointerDeviceKind]),
-    [_hasSufficientGlobalDistanceToAccept]: dart.fnType(core.bool, [ui.PointerDeviceKind]),
-    [_getDeltaForDetails]: dart.fnType(ui.Offset, [ui.Offset]),
-    [_getPrimaryValueFromOffset]: dart.fnType(core.double, [ui.Offset])
-  }));
-  dart.setGetterSignature(monodrag.HorizontalDragGestureRecognizer, () => ({
-    __proto__: dart.getGetters(monodrag.HorizontalDragGestureRecognizer.__proto__),
-    debugDescription: core.String
-  }));
-  dart.setLibraryUri(monodrag.HorizontalDragGestureRecognizer, I[0]);
-  monodrag.PanGestureRecognizer = class PanGestureRecognizer extends monodrag.DragGestureRecognizer {
-    isFlingGesture(estimate, kind) {
-      let t3, t3$;
-      let minVelocity = (t3 = this.minFlingVelocity, t3 == null ? 50 : t3);
-      let minDistance = (t3$ = this.minFlingDistance, t3$ == null ? events.computeHitSlop(kind) : t3$);
-      return estimate.pixelsPerSecond.distanceSquared > minVelocity * minVelocity && estimate.offset.distanceSquared > minDistance * minDistance;
-    }
-    [_hasSufficientGlobalDistanceToAccept](pointerDeviceKind) {
-      return this[_globalDistanceMoved][$abs]() > events.computePanSlop(pointerDeviceKind);
-    }
-    [_getDeltaForDetails](delta) {
-      return delta;
-    }
-    [_getPrimaryValueFromOffset](value) {
-      return null;
-    }
-    get debugDescription() {
-      return "pan";
-    }
-  };
-  (monodrag.PanGestureRecognizer.new = function(opts) {
-    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
-    monodrag.PanGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner});
-    ;
-  }).prototype = monodrag.PanGestureRecognizer.prototype;
-  dart.addTypeTests(monodrag.PanGestureRecognizer);
-  dart.addTypeCaches(monodrag.PanGestureRecognizer);
-  dart.setMethodSignature(monodrag.PanGestureRecognizer, () => ({
-    __proto__: dart.getMethods(monodrag.PanGestureRecognizer.__proto__),
-    isFlingGesture: dart.fnType(core.bool, [velocity_tracker.VelocityEstimate, ui.PointerDeviceKind]),
-    [_hasSufficientGlobalDistanceToAccept]: dart.fnType(core.bool, [ui.PointerDeviceKind]),
-    [_getDeltaForDetails]: dart.fnType(ui.Offset, [ui.Offset]),
-    [_getPrimaryValueFromOffset]: dart.fnType(dart.nullable(core.double), [ui.Offset])
-  }));
-  dart.setGetterSignature(monodrag.PanGestureRecognizer, () => ({
-    __proto__: dart.getGetters(monodrag.PanGestureRecognizer.__proto__),
-    debugDescription: core.String
-  }));
-  dart.setLibraryUri(monodrag.PanGestureRecognizer, I[0]);
-  dart.trackLibraries("packages/flutter/src/gestures/monodrag.dart", {
-    "package:flutter/src/gestures/monodrag.dart": monodrag
-  }, {
-  }, '{"version":3,"sourceRoot":"","sources":["monodrag.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAkBA;;6CAJK;;;;EAIL;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA8EoB;;;;;;IAYO;;;;;;IAiBC;;;;;;IAYC;;;;;;IAaH;;;;;;IAOG;;;;;;IAOnB;;;;;;IAOA;;;;;;IAKA;;;;;;IAwBsB;;;;;;2BA9HsB;AAAU,YAAgB,+CAAS,AAAM,KAAD;IAAM;;;AAiIlF;;IAAgB;;AAAhB;IAAgB;;;AAChB;;IAAkB;;AAAlB;IAAkB;;;AAWtB;;IAAoB;;AAApB;IAAoB;qBAgBG;AACjC,UAAI,AAAgB;AAClB,gBAAQ,AAAM,KAAD;;;AAET,gBAAI,AAAO,uBACP,AAAQ,wBACR,AAAS,yBACT,AAAM,sBACN,AAAS,uBACX,MAAO;AACT;;;;AAEA,kBAAO;;;;AAIX,YAAI,AAAM,KAAD,aAAY;AACnB,gBAAO;;;AAGX,YAAa,wBAAuB,2BAAN,KAAK;IACrC;sBAGoC;;AACkB,MAApD,0BAAqB,AAAM,KAAD,UAAU,AAAM,KAAD;AACuB,MAAhE,AAAiB,+BAAC,AAAM,KAAD,gBAAmC,KAAK,EAA5B,AAAsB;AACzD,UAAI,AAAO,iBAAc;AACK,QAA5B,eAAoB;AAC6D,QAAjF,yBAAmB,uCAAmB,AAAM,KAAD,kBAAkB,AAAM,KAAD;AACnC,QAA/B,wBAAkB,AAAM,KAAD;AACa,QAApC,2BAAgC;AACN,QAA1B,6BAAuB;AACqB,QAA5C,mCAA6B,AAAM,KAAD;AACF,QAAhC,uBAAiB,AAAM,KAAD;AACV,QAAZ;YACK,KAAI,AAAO,iBAAc;AACM,QAApC,aAA2B;;IAE/B;gBAG8B;;AAC5B,YAAO,AAAO,iBAAc;AAC5B,WAAK,AAAM,KAAD,iBACI,2BAAN,KAAK,KAA8B,2BAAN,KAAK;AAClB,sBAA0C,eAAhC,AAAiB,+BAAC,AAAM,KAAD;AACvD,cAAO,AAAQ,OAAD;AAC2C,QAAzD,AAAQ,OAAD,aAAa,AAAM,KAAD,YAAY,AAAM,KAAD;;AAG5C,UAAU,2BAAN,KAAK;AACP,YAAI,AAAM,KAAD,aAAY;AACU,UAA7B,qBAAe,AAAM,KAAD;AACpB;;AAEF,YAAI,AAAO,iBAAc;AAOtB,UAND,qCACmB,AAAM,KAAD,mBACf,0BAAoB,AAAM,KAAD,4BAClB,iCAA2B,AAAM,KAAD,8BAC9B,AAAM,KAAD,0BACN,AAAM,KAAD;;AAGwD,UAA9E,2BAAA,AAAmB,8BAAG,sCAAkB,AAAM,KAAD,qBAAqB,AAAM,KAAD;AAC3B,UAA5C,mCAA6B,AAAM,KAAD;AACF,UAAhC,uBAAiB,AAAM,KAAD;AACT,6BAAe,0BAAoB,AAAM,KAAD;AACtC,uCAAyB,AAAM,AAAU,KAAX,qBAAqB,OAAe,iCAAyB,eAAf,AAAM,KAAD;AAK/B,UAJjE,6BAAA,AAAqB,6BAAgB,AAInC,AAAS,2DAHE,sBAAsB,sBACb,YAAY,4BACN,AAAM,KAAD,4BAC4B,CAAN,KAAzC,iCAA2B,YAAY,GAAvC,aAA4C;AAC1D,cAAI,2CAAqC,AAAM,KAAD,QAC5C,AAAoC,aAAT;;;AAGjC,UAAU,yBAAN,KAAK,KAA4B,6BAAN,KAAK;AACL,QAA7B,qBAAe,AAAM,KAAD;;IAExB;kBAKuB;AACrB,WAAO,CAAC,AAAwB,uCAAS,OAAO;AACZ,MAApC,AAAwB,kCAAI,OAAO;AACnC,UAAI,iBAAqB;AACK,QAA5B,eAAoB;AACH,oBAAQ;AACV,wBAAsC,eAA1B;AACZ,wBAAY;AACd;AACb,gBAAQ;;;AAEuC,YAA3C,yBAAmB,AAAiB,4BAAE,KAAK;AACb,YAA9B,mBAA0B;AAC1B;;;;AAEmD,YAAnD,mBAAmB,0BAAoB,AAAM,KAAD;AAC5C;;;AAEgC,QAApC,2BAAgC;AACC,QAAjC,mCAA6B;AACR,QAArB,uBAAiB;AACc,QAA/B,kBAAY,SAAS,EAAE,OAAO;AAC9B,aAAI,gBAAgB,SAAW,mBAAQ;AACtB,8BAAgB,AAAU,SAAD,WAAmB,iCAAU,SAAS,IAAI;AACrE,uCAAyB,AAAiB,AAAM,kCAAE,gBAAgB;AAClE,kCAAiC,0EAClB,sBAAsB,sBAC5B,gBAAgB,aACzB,aAAa;AAET,4BAAc,sCAAkB,gBAAgB,UAAU,iBAAiB;AAC3E,kCAAoB,AAAiB,4BAAE,WAAW;AAOlE,UAND,qCACmB,SAAS,SACnB,gBAAgB,gBACT,iCAA2B,gBAAgB,mBACzC,AAAkB,iBAAD,wBAClB,AAAkB,iBAAD;;;IAIxC;kBAGuB;AACE,MAAvB,qBAAe,OAAO;IACxB;+BAGoC;AAClC,YAAO,AAAO,iBAAc;AAC5B,cAAO;;;AAEH;;;;AAGoC,UAApC,aAA2B;AACb,UAAd;AACA;;;;AAGkB,UAAlB,gBAAU,OAAO;AACjB;;;AAEqB,MAAzB,AAAkB;AACI,MAAtB,wBAAkB;AACO,MAAzB,eAAoB;IACtB;qBAEwB;AACM,MAA5B,yBAAoB,OAAO;AAG3B,WAAK,AAAwB,qCAAO,OAAO,GACzC,AAAoD,oBAArC,OAAO,EAAqB;IAC/C;;AAGE,YAAO,AAAgB;AACvB,UAAI;AACoB,sBAAU,sDACd,AAAiB,8CAClB,AAAiB;AAEoB,QAAtD,+BAAqB,UAAU,cAAY,AAAC,eAAP,aAAQ,OAAO;;IAExD;kBAE0B,WAAe;AACvC,YAAO,AAAgB;AACvB,UAAI;AACqB,sBAAU,wDACd,SAAS,kBACV,AAAiB,8CAClB,AAAiB,oCAC1B,uBAAkB,OAAO;AAEuB,QAAxD,+BAAqB,WAAW,cAAa,AAAC,eAAR,cAAS,OAAO;;IAE1D;;UAGY;UACM;UACR;UACQ;UACR;AAER,YAAO,AAAgB;AACvB,UAAI;AACsB,sBAAU,yDACf,eAAe,SACzB,KAAK,gBACE,YAAY,kBACV,cAAc,iBACf,aAAa;AAE4B,QAA1D,+BAAqB,YAAY,cAAc,AAAC,eAAT,eAAU,OAAO;;IAE5D;gBAEmB;;AACjB,YAAO,AAAgB;AACvB,UAAI,AAAM,oBACR;AAEoB,oBAAoC,eAA1B,AAAiB,+BAAC,OAAO;AACzD,YAAO,AAAQ,OAAD;AAEO;AACG;AAEA,qBAAW,AAAQ,OAAD;AAC1C,UAAI,QAAQ,YAAY,oBAAe,QAAQ,EAAE,AAAQ,OAAD;AACvC,uBAAW,AACvB,oDADiD,AAAS,QAAD,mCACzB,4BAAjB,wBAAwD,6BAAjB;AAIxD,QAHD,UAAU,+CACE,QAAQ,mBACD,iCAA2B,AAAS,QAAD;AAIrD,QAFD,cAAc,cAC2B,SAA9B,QAAQ,6BAAY,QAAQ;;AAMtC,QAHD,UAAU,+CACW,iDACF;AAMlB,QAJD,cAAc;AACZ,cAAI,AAAS,QAAD,UACV,MAAO;AACT,gBAA6C,UAApC,QAAQ;;;AAGyD,MAA9E,+BAAqB,SAAS,cAAW,AAAC,eAAN,YAAO,OAAO,kCAAgB,WAAW;IAC/E;;AAGE,YAAO,AAAgB;AACvB,UAAI,uBACF,AAA2C,+BAAtB,YAAoB,eAAR;IACrC;;AAI2B,MAAzB,AAAkB;AACH,MAAT;IACR;wBAEqD;AACd,MAA/B,0BAAoB,UAAU;AACgD,MAApF,AAAW,UAAD,KAAK,8CAAgC,kBAAkB;IACnE;;;QAvaU;QACW;QACd;QACA;IAsCkB;IAiBC;IAYC;IAaH;IAOG;IAOnB;IAOA;IAKA;IA0BG,eAAoB;qDACf;uDACA;IACN;IAGL;IACI;yDAMG;IAaoB,0BAA0C;IAuF3D,gCAA+B;IAtPvC;IACA;UACK,AAAkB,iBAAD;AACxB,yEAAkB,UAAU,QAAQ,IAAI;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;mBAybT,UAA4B;;AAClD,yBAA+B,4BAAjB;AACd,yBAA+B,6BAAjB,cAAoB,sBAAe,IAAI;AAClE,YAAO,AAAS,AAAgB,AAAG,AAAM,AAAc,SAAxC,8BAA4B,WAAW,IAAI,AAAS,AAAO,AAAG,AAAM,QAAjB,qBAAmB,WAAW;IAClG;2CAG4D;AAC1D,YAAO,AAAqB,AAAM,sCAAE,sBAAe,iBAAiB;IACtE;0BAGkC;AAAU,+BAAO,KAAK,AAAM,KAAD;IAAI;iCAGxB;AAAU,YAAA,AAAM,MAAD;IAAG;;AAG5B;IAAe;;;QAvBpC;QACW;AAChB,iFAAkB,UAAU,QAAQ,IAAI;;EAAC;;;;;;;;;;;;;;;;mBA4CT,UAA4B;;AAClD,yBAA+B,4BAAjB;AACd,yBAA+B,6BAAjB,cAAoB,sBAAe,IAAI;AAClE,YAAO,AAAS,AAAgB,AAAG,AAAM,AAAc,SAAxC,8BAA4B,WAAW,IAAI,AAAS,AAAO,AAAG,AAAM,QAAjB,qBAAmB,WAAW;IAClG;2CAG4D;AAC1D,YAAO,AAAqB,AAAM,sCAAE,sBAAe,iBAAiB;IACtE;0BAGkC;AAAU,+BAAO,AAAM,KAAD,KAAK;IAAI;iCAGxB;AAAU,YAAA,AAAM,MAAD;IAAG;;AAG5B;IAAiB;;;QAvBtC;QACW;AAChB,mFAAkB,UAAU,QAAQ,IAAI;;EAAC;;;;;;;;;;;;;;;;mBAsCT,UAA4B;;AAClD,yBAA+B,4BAAjB;AACd,yBAA+B,6BAAjB,cAAoB,sBAAe,IAAI;AAClE,YAAO,AAAS,AAAgB,AAAgB,AAC5C,SADW,mCAAmC,AAAY,WAAD,GAAG,WAAW,IACpE,AAAS,AAAO,AAAgB,QAAxB,0BAA0B,AAAY,WAAD,GAAG,WAAW;IACpE;2CAG4D;AAC1D,YAAO,AAAqB,AAAM,sCAAE,sBAAe,iBAAiB;IACtE;0BAGkC;AAAU,kBAAK;;iCAGP;AAAU;IAAI;;AAGzB;IAAK;;;QAtBL;AAAgB,wEAAkB,UAAU;;EAAC","file":"../../../../../../../packages/flutter/src/gestures/monodrag.dart.lib.js"}');
-  // Exports:
-  return {
-    src__gestures__monodrag: monodrag
-  };
-}));
-
-//# sourceMappingURL=monodrag.dart.lib.js.map
-=======
-      return C[0] = dart.constList(["/", "\\"], core.String);
-    },
-    get C1() {
-      return C[1] = dart.constList(["/"], core.String);
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: context._PathDirection.prototype,
-        [name$1]: "above root"
-      });
-    },
-    get C3() {
       return C[3] = dart.const({
-        __proto__: context._PathDirection.prototype,
-        [name$1]: "at root"
+        __proto__: debug_overflow_indicator._OverflowSide.prototype,
+        [_name$]: "_OverflowSide.right",
+        index: 3
       });
     },
     get C4() {
-      return C[4] = dart.const({
-        __proto__: context._PathDirection.prototype,
-        [name$1]: "reaches root"
-      });
+      return C[4] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3], debug_overflow_indicator._OverflowSide);
     },
     get C5() {
       return C[5] = dart.const({
-        __proto__: context._PathDirection.prototype,
-        [name$1]: "below root"
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 0,
+        [OffsetBase__dx]: 0
       });
     },
     get C6() {
       return C[6] = dart.const({
-        __proto__: context._PathRelation.prototype,
-        [name$2]: "within"
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 0,
+        [OffsetBase__dx]: 8.5
       });
     },
     get C7() {
       return C[7] = dart.const({
-        __proto__: context._PathRelation.prototype,
-        [name$2]: "equal"
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 1,
+        [OffsetBase__dx]: 0
       });
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: context._PathRelation.prototype,
-        [name$2]: "different"
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 8.5,
+        [OffsetBase__dx]: 0
       });
     },
     get C9() {
       return C[9] = dart.const({
-        __proto__: context._PathRelation.prototype,
-        [name$2]: "inconclusive"
+        __proto__: ui.Color.prototype,
+        [Color_value]: 3204448256.0
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 3221225216.0
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: ui.FontWeight.prototype,
+        [FontWeight_index]: 7
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4287627264.0
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: text_style.TextStyle.prototype,
+        [TextStyle_fontFeatures]: null,
+        [TextStyle_shadows]: null,
+        [TextStyle_debugLabel]: null,
+        [TextStyle_decorationThickness]: null,
+        [TextStyle_decorationStyle]: null,
+        [TextStyle_decorationColor]: null,
+        [TextStyle_decoration]: null,
+        [TextStyle_background]: null,
+        [TextStyle_foreground]: null,
+        [TextStyle_locale]: null,
+        [TextStyle_leadingDistribution]: null,
+        [TextStyle_height]: null,
+        [TextStyle_textBaseline]: null,
+        [TextStyle_wordSpacing]: null,
+        [TextStyle_letterSpacing]: null,
+        [TextStyle_fontStyle]: null,
+        [TextStyle_fontWeight]: C[12] || CT.C12,
+        [TextStyle_fontSize]: 7.5,
+        [TextStyle__package]: null,
+        [TextStyle__fontFamilyFallback]: null,
+        [TextStyle_fontFamily]: null,
+        [TextStyle_backgroundColor]: null,
+        [TextStyle_color]: C[13] || CT.C13,
+        [TextStyle_inherit]: true
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 10,
+        [OffsetBase__dx]: 10
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294967295.0
       });
     }
   }, false);
-  var C = Array(10).fill(void 0);
+  var C = Array(16).fill(void 0);
   var I = [
-    "package:path/src/path_set.dart",
-    "package:path/src/path_map.dart",
-    "package:path/src/style.dart",
-    "package:path/src/internal_style.dart",
-    "package:path/src/style/windows.dart",
-    "package:path/src/style/url.dart",
-    "package:path/src/parsed_path.dart",
-    "package:path/src/style/posix.dart",
-    "package:path/src/context.dart",
-    "file:///D:/DevTools/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0/lib/path.dart"
+    "package:flutter/src/rendering/debug_overflow_indicator.dart",
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/rendering/debug_overflow_indicator.dart"
   ];
-  var _inner = dart.privateName(path_set, "_inner");
-  path_set.PathSet = class PathSet extends collection.IterableBase$(dart.nullable(core.String)) {
-    static _create(context) {
-      context == null ? context = path$.context : null;
-      return T.LinkedHashSetOfStringN().new({equals: dart.fn((path1, path2) => {
-          if (path1 == null) return path2 == null;
-          if (path2 == null) return false;
-          return dart.nullCheck(context).equals(path1, path2);
-        }, T.StringNAndStringNTobool()), hashCode: dart.fn(path => path == null ? 0 : dart.nullCheck(context).hash(path), T.StringNToint()), isValidKey: dart.fn(path => typeof path == 'string' || path == null, T.dynamicTobool())});
-    }
-    get iterator() {
-      return this[_inner].iterator;
-    }
-    get length() {
-      return this[_inner][$length];
-    }
-    add(value) {
-      T.StringN().as(value);
-      return this[_inner].add(value);
-    }
-    addAll(elements) {
-      T.IterableOfStringN().as(elements);
-      return this[_inner].addAll(elements);
-    }
-    cast(T) {
-      return this[_inner].cast(T);
-    }
-    clear() {
-      return this[_inner].clear();
-    }
-    contains(element) {
-      return this[_inner].contains(element);
-    }
-    containsAll(other) {
-      return this[_inner].containsAll(other);
-    }
-    difference(other) {
-      return this[_inner].difference(other);
-    }
-    intersection(other) {
-      return this[_inner].intersection(other);
-    }
-    lookup(element) {
-      return this[_inner].lookup(element);
-    }
-    remove(value) {
-      return this[_inner].remove(value);
-    }
-    removeAll(elements) {
-      return this[_inner].removeAll(elements);
-    }
-    removeWhere(test) {
-      return this[_inner].removeWhere(test);
-    }
-    retainAll(elements) {
-      return this[_inner].retainAll(elements);
-    }
-    retainWhere(test) {
-      return this[_inner].retainWhere(test);
-    }
-    union(other) {
-      T.SetOfStringN().as(other);
-      return this[_inner].union(other);
-    }
-    toSet() {
-      return this[_inner].toSet();
-    }
-  };
-  (path_set.PathSet.new = function(opts) {
-    let context = opts && 'context' in opts ? opts.context : null;
-    this[_inner] = path_set.PathSet._create(context);
-    path_set.PathSet.__proto__.new.call(this);
-    ;
-  }).prototype = path_set.PathSet.prototype;
-  (path_set.PathSet.of = function(other, opts) {
-    let t0;
-    let context = opts && 'context' in opts ? opts.context : null;
-    this[_inner] = (t0 = path_set.PathSet._create(context), (() => {
-      t0.addAll(other);
-      return t0;
-    })());
-    path_set.PathSet.__proto__.new.call(this);
-    ;
-  }).prototype = path_set.PathSet.prototype;
-  dart.addTypeTests(path_set.PathSet);
-  dart.addTypeCaches(path_set.PathSet);
-  path_set.PathSet[dart.implements] = () => [core.Set$(dart.nullable(core.String))];
-  dart.setMethodSignature(path_set.PathSet, () => ({
-    __proto__: dart.getMethods(path_set.PathSet.__proto__),
-    add: dart.fnType(core.bool, [dart.nullable(core.Object)]),
-    addAll: dart.fnType(dart.void, [dart.nullable(core.Object)]),
-    cast: dart.gFnType(T => [core.Set$(T), []], T => [dart.nullable(core.Object)]),
-    [$cast]: dart.gFnType(T => [core.Set$(T), []], T => [dart.nullable(core.Object)]),
-    clear: dart.fnType(dart.void, []),
-    containsAll: dart.fnType(core.bool, [core.Iterable$(dart.nullable(core.Object))]),
-    difference: dart.fnType(core.Set$(dart.nullable(core.String)), [core.Set$(dart.nullable(core.Object))]),
-    intersection: dart.fnType(core.Set$(dart.nullable(core.String)), [core.Set$(dart.nullable(core.Object))]),
-    lookup: dart.fnType(dart.nullable(core.String), [dart.nullable(core.Object)]),
-    remove: dart.fnType(core.bool, [dart.nullable(core.Object)]),
-    removeAll: dart.fnType(dart.void, [core.Iterable$(dart.nullable(core.Object))]),
-    removeWhere: dart.fnType(dart.void, [dart.fnType(core.bool, [dart.nullable(core.String)])]),
-    retainAll: dart.fnType(dart.void, [core.Iterable$(dart.nullable(core.Object))]),
-    retainWhere: dart.fnType(dart.void, [dart.fnType(core.bool, [dart.nullable(core.String)])]),
-    union: dart.fnType(core.Set$(dart.nullable(core.String)), [dart.nullable(core.Object)])
-  }));
-  dart.setGetterSignature(path_set.PathSet, () => ({
-    __proto__: dart.getGetters(path_set.PathSet.__proto__),
-    iterator: core.Iterator$(dart.nullable(core.String)),
-    [$iterator]: core.Iterator$(dart.nullable(core.String))
-  }));
-  dart.setLibraryUri(path_set.PathSet, I[0]);
-  dart.setFieldSignature(path_set.PathSet, () => ({
-    __proto__: dart.getFields(path_set.PathSet.__proto__),
-    [_inner]: dart.finalFieldType(core.Set$(dart.nullable(core.String)))
-  }));
-  dart.defineExtensionMethods(path_set.PathSet, ['cast', 'contains', 'toSet']);
-  dart.defineExtensionAccessors(path_set.PathSet, ['iterator', 'length']);
-  const _is_PathMap_default = Symbol('_is_PathMap_default');
-  path_map.PathMap$ = dart.generic(V => {
-    class PathMap extends collection.MapView$(dart.nullable(core.String), V) {
-      static _create(V, context) {
-        context == null ? context = path$.context : null;
-        return collection.LinkedHashMap$(T.StringN(), V).new({equals: dart.fn((path1, path2) => {
-            if (path1 == null) return path2 == null;
-            if (path2 == null) return false;
-            return dart.nullCheck(context).equals(path1, path2);
-          }, T.StringNAndStringNTobool()), hashCode: dart.fn(path => path == null ? 0 : dart.nullCheck(context).hash(path), T.StringNToint()), isValidKey: dart.fn(path => typeof path == 'string' || path == null, T.dynamicTobool())});
-      }
-    }
-    (PathMap.new = function(opts) {
-      let context = opts && 'context' in opts ? opts.context : null;
-      PathMap.__proto__.new.call(this, path_map.PathMap._create(V, context));
-      ;
-    }).prototype = PathMap.prototype;
-    (PathMap.of = function(other, opts) {
-      let t0;
-      let context = opts && 'context' in opts ? opts.context : null;
-      PathMap.__proto__.new.call(this, (t0 = path_map.PathMap._create(V, context), (() => {
-        t0[$addAll](other);
-        return t0;
-      })()));
-      ;
-    }).prototype = PathMap.prototype;
-    dart.addTypeTests(PathMap);
-    PathMap.prototype[_is_PathMap_default] = true;
-    dart.addTypeCaches(PathMap);
-    dart.setLibraryUri(PathMap, I[1]);
-    return PathMap;
-  });
-  path_map.PathMap = path_map.PathMap$();
-  dart.addTypeTests(path_map.PathMap, _is_PathMap_default);
-  var name = dart.privateName(windows, "WindowsStyle.name");
-  var separator = dart.privateName(windows, "WindowsStyle.separator");
-  var separators = dart.privateName(windows, "WindowsStyle.separators");
-  var separatorPattern = dart.privateName(windows, "WindowsStyle.separatorPattern");
-  var needsSeparatorPattern = dart.privateName(windows, "WindowsStyle.needsSeparatorPattern");
-  var rootPattern = dart.privateName(windows, "WindowsStyle.rootPattern");
-  var relativeRootPattern = dart.privateName(windows, "WindowsStyle.relativeRootPattern");
-  style$.Style = class Style extends core.Object {
-    static _getPlatformStyle() {
-      if (core.Uri.base.scheme !== "file") return style$.Style.url;
-      if (!core.Uri.base.path[$endsWith]("/")) return style$.Style.url;
-      if (core._Uri.new({path: "a/b"}).toFilePath() === "a\\b") return style$.Style.windows;
-      return style$.Style.posix;
-    }
-    get context() {
-      return context.Context.new({style: this});
-    }
+  var _name$ = dart.privateName(debug_overflow_indicator, "_name");
+  debug_overflow_indicator._OverflowSide = class _OverflowSide extends core.Object {
     toString() {
-      return this.name;
+      return this[_name$];
     }
   };
-  (style$.Style.new = function() {
+  (debug_overflow_indicator._OverflowSide.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
     ;
-  }).prototype = style$.Style.prototype;
-  dart.addTypeTests(style$.Style);
-  dart.addTypeCaches(style$.Style);
-  dart.setGetterSignature(style$.Style, () => ({
-    __proto__: dart.getGetters(style$.Style.__proto__),
-    context: context.Context
+  }).prototype = debug_overflow_indicator._OverflowSide.prototype;
+  dart.addTypeTests(debug_overflow_indicator._OverflowSide);
+  dart.addTypeCaches(debug_overflow_indicator._OverflowSide);
+  dart.setLibraryUri(debug_overflow_indicator._OverflowSide, I[0]);
+  dart.setFieldSignature(debug_overflow_indicator._OverflowSide, () => ({
+    __proto__: dart.getFields(debug_overflow_indicator._OverflowSide.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.setLibraryUri(style$.Style, I[2]);
-  dart.defineExtensionMethods(style$.Style, ['toString']);
-  dart.defineLazy(style$.Style, {
-    /*style$.Style.posix*/get posix() {
-      return new posix.PosixStyle.new();
-    },
-    /*style$.Style.windows*/get windows() {
-      return new windows.WindowsStyle.new();
-    },
-    /*style$.Style.url*/get url() {
-      return new url.UrlStyle.new();
-    },
-    /*style$.Style.platform*/get platform() {
-      return style$.Style._getPlatformStyle();
+  dart.defineExtensionMethods(debug_overflow_indicator._OverflowSide, ['toString']);
+  debug_overflow_indicator._OverflowSide.left = C[0] || CT.C0;
+  debug_overflow_indicator._OverflowSide.top = C[1] || CT.C1;
+  debug_overflow_indicator._OverflowSide.bottom = C[2] || CT.C2;
+  debug_overflow_indicator._OverflowSide.right = C[3] || CT.C3;
+  debug_overflow_indicator._OverflowSide.values = C[4] || CT.C4;
+  var rect$ = dart.privateName(debug_overflow_indicator, "_OverflowRegionData.rect");
+  var label$ = dart.privateName(debug_overflow_indicator, "_OverflowRegionData.label");
+  var labelOffset$ = dart.privateName(debug_overflow_indicator, "_OverflowRegionData.labelOffset");
+  var rotation$ = dart.privateName(debug_overflow_indicator, "_OverflowRegionData.rotation");
+  var side$ = dart.privateName(debug_overflow_indicator, "_OverflowRegionData.side");
+  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
+  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
+  debug_overflow_indicator._OverflowRegionData = class _OverflowRegionData extends core.Object {
+    get rect() {
+      return this[rect$];
     }
-  }, false);
-  internal_style.InternalStyle = class InternalStyle extends style$.Style {
-    getRoot(path) {
-      let length = this.rootLength(path);
-      if (length > 0) return path[$substring](0, length);
-      return this.isRootRelative(path) ? path[$_get](0) : null;
+    set rect(value) {
+      super.rect = value;
     }
-    relativePathToUri(path) {
-      let segments = this.context.split(path);
-      if (this.isSeparator(path[$codeUnitAt](path.length - 1))) segments[$add]("");
-      return core._Uri.new({pathSegments: segments});
+    get label() {
+      return this[label$];
     }
-    codeUnitsEqual(codeUnit1, codeUnit2) {
-      return codeUnit1 === codeUnit2;
+    set label(value) {
+      super.label = value;
     }
-    pathsEqual(path1, path2) {
-      return path1 === path2;
+    get labelOffset() {
+      return this[labelOffset$];
     }
-    canonicalizeCodeUnit(codeUnit) {
-      return codeUnit;
+    set labelOffset(value) {
+      super.labelOffset = value;
     }
-    canonicalizePart(part) {
-      return part;
+    get rotation() {
+      return this[rotation$];
+    }
+    set rotation(value) {
+      super.rotation = value;
+    }
+    get side() {
+      return this[side$];
+    }
+    set side(value) {
+      super.side = value;
     }
   };
-  (internal_style.InternalStyle.new = function() {
+  (debug_overflow_indicator._OverflowRegionData.new = function(opts) {
+    let rect = opts && 'rect' in opts ? opts.rect : null;
+    let label = opts && 'label' in opts ? opts.label : "";
+    let labelOffset = opts && 'labelOffset' in opts ? opts.labelOffset : C[5] || CT.C5;
+    let rotation = opts && 'rotation' in opts ? opts.rotation : 0;
+    let side = opts && 'side' in opts ? opts.side : null;
+    this[rect$] = rect;
+    this[label$] = label;
+    this[labelOffset$] = labelOffset;
+    this[rotation$] = rotation;
+    this[side$] = side;
     ;
-  }).prototype = internal_style.InternalStyle.prototype;
-  dart.addTypeTests(internal_style.InternalStyle);
-  dart.addTypeCaches(internal_style.InternalStyle);
-  dart.setMethodSignature(internal_style.InternalStyle, () => ({
-    __proto__: dart.getMethods(internal_style.InternalStyle.__proto__),
-    getRoot: dart.fnType(dart.nullable(core.String), [core.String]),
-    relativePathToUri: dart.fnType(core.Uri, [core.String]),
-    codeUnitsEqual: dart.fnType(core.bool, [core.int, core.int]),
-    pathsEqual: dart.fnType(core.bool, [core.String, core.String]),
-    canonicalizeCodeUnit: dart.fnType(core.int, [core.int]),
-    canonicalizePart: dart.fnType(core.String, [core.String])
+  }).prototype = debug_overflow_indicator._OverflowRegionData.prototype;
+  dart.addTypeTests(debug_overflow_indicator._OverflowRegionData);
+  dart.addTypeCaches(debug_overflow_indicator._OverflowRegionData);
+  dart.setLibraryUri(debug_overflow_indicator._OverflowRegionData, I[0]);
+  dart.setFieldSignature(debug_overflow_indicator._OverflowRegionData, () => ({
+    __proto__: dart.getFields(debug_overflow_indicator._OverflowRegionData.__proto__),
+    rect: dart.finalFieldType(ui.Rect),
+    label: dart.finalFieldType(core.String),
+    labelOffset: dart.finalFieldType(ui.Offset),
+    rotation: dart.finalFieldType(core.double),
+    side: dart.finalFieldType(debug_overflow_indicator._OverflowSide)
   }));
-  dart.setLibraryUri(internal_style.InternalStyle, I[3]);
-  windows.WindowsStyle = class WindowsStyle extends internal_style.InternalStyle {
-    get name() {
-      return this[name];
-    }
-    set name(value) {
-      super.name = value;
-    }
-    get separator() {
-      return this[separator];
-    }
-    set separator(value) {
-      super.separator = value;
-    }
-    get separators() {
-      return this[separators];
-    }
-    set separators(value) {
-      super.separators = value;
-    }
-    get separatorPattern() {
-      return this[separatorPattern];
-    }
-    set separatorPattern(value) {
-      super.separatorPattern = value;
-    }
-    get needsSeparatorPattern() {
-      return this[needsSeparatorPattern];
-    }
-    set needsSeparatorPattern(value) {
-      super.needsSeparatorPattern = value;
-    }
-    get rootPattern() {
-      return this[rootPattern];
-    }
-    set rootPattern(value) {
-      super.rootPattern = value;
-    }
-    get relativeRootPattern() {
-      return this[relativeRootPattern];
-    }
-    set relativeRootPattern(value) {
-      super.relativeRootPattern = value;
-    }
-    containsSeparator(path) {
-      return path[$contains]("/");
-    }
-    isSeparator(codeUnit) {
-      return codeUnit === 47 || codeUnit === 92;
-    }
-    needsSeparator(path) {
-      if (path[$isEmpty]) return false;
-      return !this.isSeparator(path[$codeUnitAt](path.length - 1));
-    }
-    rootLength(path, opts) {
-      let withDrive = opts && 'withDrive' in opts ? opts.withDrive : false;
-      if (path[$isEmpty]) return 0;
-      if (path[$codeUnitAt](0) === 47) return 1;
-      if (path[$codeUnitAt](0) === 92) {
-        if (path.length < 2 || path[$codeUnitAt](1) !== 92) return 1;
-        let index = path[$indexOf]("\\", 2);
-        if (index > 0) {
-          index = path[$indexOf]("\\", index + 1);
-          if (index > 0) return index;
-        }
-        return path.length;
-      }
-      if (path.length < 3) return 0;
-      if (!utils.isAlphabetic(path[$codeUnitAt](0))) return 0;
-      if (path[$codeUnitAt](1) !== 58) return 0;
-      if (!this.isSeparator(path[$codeUnitAt](2))) return 0;
-      return 3;
-    }
-    isRootRelative(path) {
-      return this.rootLength(path) === 1;
-    }
-    getRelativeRoot(path) {
-      let length = this.rootLength(path);
-      if (length === 1) return path[$_get](0);
-      return null;
-    }
-    pathFromUri(uri) {
-      if (uri.scheme !== "" && uri.scheme !== "file") {
-        dart.throw(new core.ArgumentError.new("Uri " + dart.str(uri) + " must have scheme 'file:'."));
-      }
-      let path = uri.path;
-      if (uri.host === "") {
-        if (path.length >= 3 && path[$startsWith]("/") && utils.isDriveLetter(path, 1)) {
-          path = path[$replaceFirst]("/", "");
-        }
+  var _indicatorLabel = dart.privateName(debug_overflow_indicator, "_indicatorLabel");
+  var _overflowReportNeeded = dart.privateName(debug_overflow_indicator, "_overflowReportNeeded");
+  var _formatPixels = dart.privateName(debug_overflow_indicator, "_formatPixels");
+  var _calculateOverflowRegions = dart.privateName(debug_overflow_indicator, "_calculateOverflowRegions");
+  var _reportOverflow = dart.privateName(debug_overflow_indicator, "_reportOverflow");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var TextStyle_fontFeatures = dart.privateName(text_style, "TextStyle.fontFeatures");
+  var TextStyle_shadows = dart.privateName(text_style, "TextStyle.shadows");
+  var TextStyle_debugLabel = dart.privateName(text_style, "TextStyle.debugLabel");
+  var TextStyle_decorationThickness = dart.privateName(text_style, "TextStyle.decorationThickness");
+  var TextStyle_decorationStyle = dart.privateName(text_style, "TextStyle.decorationStyle");
+  var TextStyle_decorationColor = dart.privateName(text_style, "TextStyle.decorationColor");
+  var TextStyle_decoration = dart.privateName(text_style, "TextStyle.decoration");
+  var TextStyle_background = dart.privateName(text_style, "TextStyle.background");
+  var TextStyle_foreground = dart.privateName(text_style, "TextStyle.foreground");
+  var TextStyle_locale = dart.privateName(text_style, "TextStyle.locale");
+  var TextStyle_leadingDistribution = dart.privateName(text_style, "TextStyle.leadingDistribution");
+  var TextStyle_height = dart.privateName(text_style, "TextStyle.height");
+  var TextStyle_textBaseline = dart.privateName(text_style, "TextStyle.textBaseline");
+  var TextStyle_wordSpacing = dart.privateName(text_style, "TextStyle.wordSpacing");
+  var TextStyle_letterSpacing = dart.privateName(text_style, "TextStyle.letterSpacing");
+  var TextStyle_fontStyle = dart.privateName(text_style, "TextStyle.fontStyle");
+  var FontWeight_index = dart.privateName(ui, "FontWeight.index");
+  var TextStyle_fontWeight = dart.privateName(text_style, "TextStyle.fontWeight");
+  var TextStyle_fontSize = dart.privateName(text_style, "TextStyle.fontSize");
+  var TextStyle__package = dart.privateName(text_style, "TextStyle._package");
+  var TextStyle__fontFamilyFallback = dart.privateName(text_style, "TextStyle._fontFamilyFallback");
+  var TextStyle_fontFamily = dart.privateName(text_style, "TextStyle.fontFamily");
+  var TextStyle_backgroundColor = dart.privateName(text_style, "TextStyle.backgroundColor");
+  var TextStyle_color = dart.privateName(text_style, "TextStyle.color");
+  var TextStyle_inherit = dart.privateName(text_style, "TextStyle.inherit");
+  debug_overflow_indicator.DebugOverflowIndicatorMixin = class DebugOverflowIndicatorMixin extends object.RenderObject {};
+  debug_overflow_indicator.DebugOverflowIndicatorMixin[dart.mixinOn] = RenderObject => class DebugOverflowIndicatorMixin extends RenderObject {
+    [_formatPixels](value) {
+      if (!(value > 0.0)) dart.assertFailed(null, I[1], 122, 12, "value > 0.0");
+      let pixels = null;
+      if (value > 10.0) {
+        pixels = value[$toStringAsFixed](0);
+      } else if (value > 1.0) {
+        pixels = value[$toStringAsFixed](1);
       } else {
-        path = "\\\\" + uri.host + path;
+        pixels = value[$toStringAsPrecision](3);
       }
-      return core.Uri.decodeComponent(path[$replaceAll]("/", "\\"));
+      return pixels;
     }
-    absolutePathToUri(path) {
-      let parsed = parsed_path.ParsedPath.parse(path, this);
-      if (dart.nullCheck(parsed.root)[$startsWith]("\\\\")) {
-        let rootParts = dart.nullCheck(parsed.root)[$split]("\\")[$where](dart.fn(part => part !== "", T.StringTobool()));
-        parsed.parts[$insert](0, rootParts[$last]);
-        if (parsed.hasTrailingSeparator) {
-          parsed.parts[$add]("");
-        }
-        return core._Uri.new({scheme: "file", host: rootParts[$first], pathSegments: parsed.parts});
-      } else {
-        if (parsed.parts[$isEmpty] || parsed.hasTrailingSeparator) {
-          parsed.parts[$add]("");
-        }
-        parsed.parts[$insert](0, dart.nullCheck(parsed.root)[$replaceAll]("/", "")[$replaceAll]("\\", ""));
-        return core._Uri.new({scheme: "file", pathSegments: parsed.parts});
+    [_calculateOverflowRegions](overflow, containerRect) {
+      let regions = T.JSArrayOf_OverflowRegionData().of([]);
+      if (overflow.left > 0.0) {
+        let markerRect = new ui.Rect.fromLTWH(0.0, 0.0, containerRect.width * 0.1, containerRect.height);
+        regions[$add](new debug_overflow_indicator._OverflowRegionData.new({rect: markerRect, label: "LEFT OVERFLOWED BY " + this[_formatPixels](overflow.left) + " PIXELS", labelOffset: markerRect.centerLeft['+'](C[6] || CT.C6), rotation: 3.141592653589793 / 2.0, side: debug_overflow_indicator._OverflowSide.left}));
       }
-    }
-    codeUnitsEqual(codeUnit1, codeUnit2) {
-      if (codeUnit1 === codeUnit2) return true;
-      if (codeUnit1 === 47) return codeUnit2 === 92;
-      if (codeUnit1 === 92) return codeUnit2 === 47;
-      if ((codeUnit1 ^ codeUnit2) >>> 0 !== 32) return false;
-      let upperCase1 = (codeUnit1 | 32) >>> 0;
-      return upperCase1 >= 97 && upperCase1 <= 122;
-    }
-    pathsEqual(path1, path2) {
-      if (path1 === path2) return true;
-      if (path1.length !== path2.length) return false;
-      for (let i = 0; i < path1.length; i = i + 1) {
-        if (!this.codeUnitsEqual(path1[$codeUnitAt](i), path2[$codeUnitAt](i))) {
-          return false;
-        }
+      if (overflow.right > 0.0) {
+        let markerRect = new ui.Rect.fromLTWH(containerRect.width * (1.0 - 0.1), 0.0, containerRect.width * 0.1, containerRect.height);
+        regions[$add](new debug_overflow_indicator._OverflowRegionData.new({rect: markerRect, label: "RIGHT OVERFLOWED BY " + this[_formatPixels](overflow.right) + " PIXELS", labelOffset: markerRect.centerRight['-'](C[6] || CT.C6), rotation: -3.141592653589793 / 2.0, side: debug_overflow_indicator._OverflowSide.right}));
       }
-      return true;
-    }
-    canonicalizeCodeUnit(codeUnit) {
-      if (codeUnit === 47) return 92;
-      if (codeUnit < 65) return codeUnit;
-      if (codeUnit > 90) return codeUnit;
-      return (codeUnit | 32) >>> 0;
-    }
-    canonicalizePart(part) {
-      return part[$toLowerCase]();
-    }
-  };
-  (windows.WindowsStyle.new = function() {
-    this[name] = "windows";
-    this[separator] = "\\";
-    this[separators] = C[0] || CT.C0;
-    this[separatorPattern] = core.RegExp.new("[/\\\\]");
-    this[needsSeparatorPattern] = core.RegExp.new("[^/\\\\]$");
-    this[rootPattern] = core.RegExp.new("^(\\\\\\\\[^\\\\]+\\\\[^\\\\/]+|[a-zA-Z]:[/\\\\])");
-    this[relativeRootPattern] = core.RegExp.new("^[/\\\\](?![/\\\\])");
-    ;
-  }).prototype = windows.WindowsStyle.prototype;
-  dart.addTypeTests(windows.WindowsStyle);
-  dart.addTypeCaches(windows.WindowsStyle);
-  dart.setMethodSignature(windows.WindowsStyle, () => ({
-    __proto__: dart.getMethods(windows.WindowsStyle.__proto__),
-    containsSeparator: dart.fnType(core.bool, [core.String]),
-    isSeparator: dart.fnType(core.bool, [core.int]),
-    needsSeparator: dart.fnType(core.bool, [core.String]),
-    rootLength: dart.fnType(core.int, [core.String], {withDrive: core.bool}, {}),
-    isRootRelative: dart.fnType(core.bool, [core.String]),
-    getRelativeRoot: dart.fnType(dart.nullable(core.String), [core.String]),
-    pathFromUri: dart.fnType(core.String, [core.Uri]),
-    absolutePathToUri: dart.fnType(core.Uri, [core.String])
-  }));
-  dart.setLibraryUri(windows.WindowsStyle, I[4]);
-  dart.setFieldSignature(windows.WindowsStyle, () => ({
-    __proto__: dart.getFields(windows.WindowsStyle.__proto__),
-    name: dart.finalFieldType(core.String),
-    separator: dart.finalFieldType(core.String),
-    separators: dart.finalFieldType(core.List$(core.String)),
-    separatorPattern: dart.finalFieldType(core.Pattern),
-    needsSeparatorPattern: dart.finalFieldType(core.Pattern),
-    rootPattern: dart.finalFieldType(core.Pattern),
-    relativeRootPattern: dart.finalFieldType(dart.nullable(core.Pattern))
-  }));
-  dart.defineLazy(windows, {
-    /*windows._asciiCaseBit*/get _asciiCaseBit() {
-      return 32;
-    }
-  }, false);
-  var name$ = dart.privateName(url, "UrlStyle.name");
-  var separator$ = dart.privateName(url, "UrlStyle.separator");
-  var separators$ = dart.privateName(url, "UrlStyle.separators");
-  var separatorPattern$ = dart.privateName(url, "UrlStyle.separatorPattern");
-  var needsSeparatorPattern$ = dart.privateName(url, "UrlStyle.needsSeparatorPattern");
-  var rootPattern$ = dart.privateName(url, "UrlStyle.rootPattern");
-  var relativeRootPattern$ = dart.privateName(url, "UrlStyle.relativeRootPattern");
-  url.UrlStyle = class UrlStyle extends internal_style.InternalStyle {
-    get name() {
-      return this[name$];
-    }
-    set name(value) {
-      super.name = value;
-    }
-    get separator() {
-      return this[separator$];
-    }
-    set separator(value) {
-      super.separator = value;
-    }
-    get separators() {
-      return this[separators$];
-    }
-    set separators(value) {
-      super.separators = value;
-    }
-    get separatorPattern() {
-      return this[separatorPattern$];
-    }
-    set separatorPattern(value) {
-      super.separatorPattern = value;
-    }
-    get needsSeparatorPattern() {
-      return this[needsSeparatorPattern$];
-    }
-    set needsSeparatorPattern(value) {
-      super.needsSeparatorPattern = value;
-    }
-    get rootPattern() {
-      return this[rootPattern$];
-    }
-    set rootPattern(value) {
-      super.rootPattern = value;
-    }
-    get relativeRootPattern() {
-      return this[relativeRootPattern$];
-    }
-    set relativeRootPattern(value) {
-      super.relativeRootPattern = value;
-    }
-    containsSeparator(path) {
-      return path[$contains]("/");
-    }
-    isSeparator(codeUnit) {
-      return codeUnit === 47;
-    }
-    needsSeparator(path) {
-      if (path[$isEmpty]) return false;
-      if (!this.isSeparator(path[$codeUnitAt](path.length - 1))) return true;
-      return path[$endsWith]("://") && this.rootLength(path) === path.length;
-    }
-    rootLength(path, opts) {
-      let withDrive = opts && 'withDrive' in opts ? opts.withDrive : false;
-      if (path[$isEmpty]) return 0;
-      if (this.isSeparator(path[$codeUnitAt](0))) return 1;
-      for (let i = 0; i < path.length; i = i + 1) {
-        let codeUnit = path[$codeUnitAt](i);
-        if (this.isSeparator(codeUnit)) return 0;
-        if (codeUnit === 58) {
-          if (i === 0) return 0;
-          if (path[$startsWith]("//", i + 1)) i = i + 3;
-          let index = path[$indexOf]("/", i);
-          if (index <= 0) return path.length;
-          if (!withDrive || path.length < index + 3) return index;
-          if (!path[$startsWith]("file://")) return index;
-          if (!utils.isDriveLetter(path, index + 1)) return index;
-          return path.length === index + 3 ? index + 3 : index + 4;
-        }
+      if (overflow.top > 0.0) {
+        let markerRect = new ui.Rect.fromLTWH(0.0, 0.0, containerRect.width, containerRect.height * 0.1);
+        regions[$add](new debug_overflow_indicator._OverflowRegionData.new({rect: markerRect, label: "TOP OVERFLOWED BY " + this[_formatPixels](overflow.top) + " PIXELS", labelOffset: markerRect.topCenter['+'](C[7] || CT.C7), rotation: 0.0, side: debug_overflow_indicator._OverflowSide.top}));
       }
-      return 0;
-    }
-    isRootRelative(path) {
-      return path[$isNotEmpty] && this.isSeparator(path[$codeUnitAt](0));
-    }
-    getRelativeRoot(path) {
-      return this.isRootRelative(path) ? "/" : null;
-    }
-    pathFromUri(uri) {
-      return uri.toString();
-    }
-    relativePathToUri(path) {
-      return core.Uri.parse(path);
-    }
-    absolutePathToUri(path) {
-      return core.Uri.parse(path);
-    }
-  };
-  (url.UrlStyle.new = function() {
-    this[name$] = "url";
-    this[separator$] = "/";
-    this[separators$] = C[1] || CT.C1;
-    this[separatorPattern$] = core.RegExp.new("/");
-    this[needsSeparatorPattern$] = core.RegExp.new("(^[a-zA-Z][-+.a-zA-Z\\d]*://|[^/])$");
-    this[rootPattern$] = core.RegExp.new("[a-zA-Z][-+.a-zA-Z\\d]*://[^/]*");
-    this[relativeRootPattern$] = core.RegExp.new("^/");
-    ;
-  }).prototype = url.UrlStyle.prototype;
-  dart.addTypeTests(url.UrlStyle);
-  dart.addTypeCaches(url.UrlStyle);
-  dart.setMethodSignature(url.UrlStyle, () => ({
-    __proto__: dart.getMethods(url.UrlStyle.__proto__),
-    containsSeparator: dart.fnType(core.bool, [core.String]),
-    isSeparator: dart.fnType(core.bool, [core.int]),
-    needsSeparator: dart.fnType(core.bool, [core.String]),
-    rootLength: dart.fnType(core.int, [core.String], {withDrive: core.bool}, {}),
-    isRootRelative: dart.fnType(core.bool, [core.String]),
-    getRelativeRoot: dart.fnType(dart.nullable(core.String), [core.String]),
-    pathFromUri: dart.fnType(core.String, [core.Uri]),
-    absolutePathToUri: dart.fnType(core.Uri, [core.String])
-  }));
-  dart.setLibraryUri(url.UrlStyle, I[5]);
-  dart.setFieldSignature(url.UrlStyle, () => ({
-    __proto__: dart.getFields(url.UrlStyle.__proto__),
-    name: dart.finalFieldType(core.String),
-    separator: dart.finalFieldType(core.String),
-    separators: dart.finalFieldType(core.List$(core.String)),
-    separatorPattern: dart.finalFieldType(core.Pattern),
-    needsSeparatorPattern: dart.finalFieldType(core.Pattern),
-    rootPattern: dart.finalFieldType(core.Pattern),
-    relativeRootPattern: dart.finalFieldType(dart.nullable(core.Pattern))
-  }));
-  var style$0 = dart.privateName(parsed_path, "ParsedPath.style");
-  var root$ = dart.privateName(parsed_path, "ParsedPath.root");
-  var isRootRelative$ = dart.privateName(parsed_path, "ParsedPath.isRootRelative");
-  var parts$ = dart.privateName(parsed_path, "ParsedPath.parts");
-  var separators$0 = dart.privateName(parsed_path, "ParsedPath.separators");
-  var _splitExtension = dart.privateName(parsed_path, "_splitExtension");
-  var _kthLastIndexOf = dart.privateName(parsed_path, "_kthLastIndexOf");
-  parsed_path.ParsedPath = class ParsedPath extends core.Object {
-    get style() {
-      return this[style$0];
-    }
-    set style(value) {
-      this[style$0] = value;
-    }
-    get root() {
-      return this[root$];
-    }
-    set root(value) {
-      this[root$] = value;
-    }
-    get isRootRelative() {
-      return this[isRootRelative$];
-    }
-    set isRootRelative(value) {
-      this[isRootRelative$] = value;
-    }
-    get parts() {
-      return this[parts$];
-    }
-    set parts(value) {
-      this[parts$] = value;
-    }
-    get separators() {
-      return this[separators$0];
-    }
-    set separators(value) {
-      this[separators$0] = value;
-    }
-    extension(level = 1) {
-      return this[_splitExtension](level)[$_get](1);
-    }
-    get isAbsolute() {
-      return this.root != null;
-    }
-    static parse(path, style) {
-      let root = style.getRoot(path);
-      let isRootRelative = style.isRootRelative(path);
-      if (root != null) path = path[$substring](root.length);
-      let parts = T.JSArrayOfString().of([]);
-      let separators = T.JSArrayOfString().of([]);
-      let start = 0;
-      if (path[$isNotEmpty] && style.isSeparator(path[$codeUnitAt](0))) {
-        separators[$add](path[$_get](0));
-        start = 1;
-      } else {
-        separators[$add]("");
+      if (overflow.bottom > 0.0) {
+        let markerRect = new ui.Rect.fromLTWH(0.0, containerRect.height * (1.0 - 0.1), containerRect.width, containerRect.height * 0.1);
+        regions[$add](new debug_overflow_indicator._OverflowRegionData.new({rect: markerRect, label: "BOTTOM OVERFLOWED BY " + this[_formatPixels](overflow.bottom) + " PIXELS", labelOffset: markerRect.bottomCenter['-'](C[8] || CT.C8), rotation: 0.0, side: debug_overflow_indicator._OverflowSide.bottom}));
       }
-      for (let i = start; i < path.length; i = i + 1) {
-        if (style.isSeparator(path[$codeUnitAt](i))) {
-          parts[$add](path[$substring](start, i));
-          separators[$add](path[$_get](i));
-          start = i + 1;
-        }
+      return regions;
+    }
+    [_reportOverflow](overflow, overflowHints) {
+      overflowHints == null ? overflowHints = T.JSArrayOfDiagnosticsNode().of([]) : null;
+      if (overflowHints[$isEmpty]) {
+        overflowHints[$add](new assertions.ErrorDescription.new("The edge of the " + dart.str(this[$runtimeType]) + " that is " + "overflowing has been marked in the rendering with a yellow and black " + "striped pattern. This is usually caused by the contents being too big " + "for the " + dart.str(this[$runtimeType]) + "."));
+        overflowHints[$add](new assertions.ErrorHint.new("This is considered an error condition because it indicates that there " + "is content that cannot be seen. If the content is legitimately bigger " + "than the available space, consider clipping it with a ClipRect widget " + "before putting it in the " + dart.str(this[$runtimeType]) + ", or using a scrollable " + "container, like a ListView."));
       }
-      if (start < path.length) {
-        parts[$add](path[$substring](start));
-        separators[$add]("");
-      }
-      return new parsed_path.ParsedPath.__(style, root, isRootRelative, parts, separators);
-    }
-    get basename() {
-      let t0;
-      let copy = this.clone();
-      copy.removeTrailingSeparators();
-      if (copy.parts[$isEmpty]) {
-        t0 = this.root;
-        return t0 == null ? "" : t0;
-      }
-      return copy.parts[$last];
-    }
-    get basenameWithoutExtension() {
-      return this[_splitExtension]()[$_get](0);
-    }
-    get hasTrailingSeparator() {
-      return this.parts[$isNotEmpty] && (this.parts[$last] === "" || this.separators[$last] !== "");
-    }
-    removeTrailingSeparators() {
-      while (this.parts[$isNotEmpty] && this.parts[$last] === "") {
-        this.parts[$removeLast]();
-        this.separators[$removeLast]();
-      }
-      if (this.separators[$isNotEmpty]) this.separators[$_set](this.separators[$length] - 1, "");
-    }
-    normalize(opts) {
-      let canonicalize = opts && 'canonicalize' in opts ? opts.canonicalize : false;
-      let leadingDoubles = 0;
-      let newParts = T.JSArrayOfString().of([]);
-      for (let part of this.parts) {
-        if (part === "." || part === "") {
-        } else if (part === "..") {
-          if (newParts[$isNotEmpty]) {
-            newParts[$removeLast]();
-          } else {
-            leadingDoubles = leadingDoubles + 1;
-          }
-        } else {
-          newParts[$add](canonicalize ? this.style.canonicalizePart(part) : part);
-        }
-      }
-      if (!this.isAbsolute) {
-        newParts[$insertAll](0, T.ListOfString().filled(leadingDoubles, ".."));
-      }
-      if (newParts[$isEmpty] && !this.isAbsolute) {
-        newParts[$add](".");
-      }
-      this.parts = newParts;
-      this.separators = T.ListOfString().filled(newParts[$length] + 1, this.style.separator, {growable: true});
-      if (!this.isAbsolute || newParts[$isEmpty] || !this.style.needsSeparator(dart.nullCheck(this.root))) {
-        this.separators[$_set](0, "");
-      }
-      if (this.root != null && this.style[$_equals](style$.Style.windows)) {
-        if (canonicalize) this.root = dart.nullCheck(this.root)[$toLowerCase]();
-        this.root = dart.nullCheck(this.root)[$replaceAll]("/", "\\");
-      }
-      this.removeTrailingSeparators();
-    }
-    toString() {
-      let builder = new core.StringBuffer.new();
-      if (this.root != null) builder.write(this.root);
-      for (let i = 0; i < this.parts[$length]; i = i + 1) {
-        builder.write(this.separators[$_get](i));
-        builder.write(this.parts[$_get](i));
-      }
-      builder.write(this.separators[$last]);
-      return builder.toString();
-    }
-    [_kthLastIndexOf](path, character, k) {
-      let count = 0;
-      let leftMostIndexedCharacter = 0;
-      for (let index = path.length - 1; index >= 0; index = index - 1) {
-        if (path[$_get](index) === character) {
-          leftMostIndexedCharacter = index;
-          count = count + 1;
-          if (count === k) {
-            return index;
-          }
-        }
-      }
-      return leftMostIndexedCharacter;
-    }
-    [_splitExtension](level = 1) {
-      if (level <= 0) {
-        dart.throw(new core.RangeError.value(level, "level", "level's value must be greater than 0"));
-      }
-      let file = this.parts[$cast](T.StringN())[$lastWhere](dart.fn(p => p !== "", T.StringNTobool()), {orElse: dart.fn(() => null, T.VoidToNull())});
-      if (file == null) return T.JSArrayOfString().of(["", ""]);
-      if (file === "..") return T.JSArrayOfString().of(["..", ""]);
-      let lastDot = this[_kthLastIndexOf](file, ".", level);
-      if (lastDot <= 0) return T.JSArrayOfString().of([file, ""]);
-      return T.JSArrayOfString().of([file[$substring](0, lastDot), file[$substring](lastDot)]);
-    }
-    clone() {
-      return new parsed_path.ParsedPath.__(this.style, this.root, this.isRootRelative, T.ListOfString().from(this.parts), T.ListOfString().from(this.separators));
-    }
-  };
-  (parsed_path.ParsedPath.__ = function(style, root, isRootRelative, parts, separators) {
-    this[style$0] = style;
-    this[root$] = root;
-    this[isRootRelative$] = isRootRelative;
-    this[parts$] = parts;
-    this[separators$0] = separators;
-    ;
-  }).prototype = parsed_path.ParsedPath.prototype;
-  dart.addTypeTests(parsed_path.ParsedPath);
-  dart.addTypeCaches(parsed_path.ParsedPath);
-  dart.setMethodSignature(parsed_path.ParsedPath, () => ({
-    __proto__: dart.getMethods(parsed_path.ParsedPath.__proto__),
-    extension: dart.fnType(core.String, [], [core.int]),
-    removeTrailingSeparators: dart.fnType(dart.void, []),
-    normalize: dart.fnType(dart.void, [], {canonicalize: core.bool}, {}),
-    [_kthLastIndexOf]: dart.fnType(core.int, [core.String, core.String, core.int]),
-    [_splitExtension]: dart.fnType(core.List$(core.String), [], [core.int]),
-    clone: dart.fnType(parsed_path.ParsedPath, [])
-  }));
-  dart.setGetterSignature(parsed_path.ParsedPath, () => ({
-    __proto__: dart.getGetters(parsed_path.ParsedPath.__proto__),
-    isAbsolute: core.bool,
-    basename: core.String,
-    basenameWithoutExtension: core.String,
-    hasTrailingSeparator: core.bool
-  }));
-  dart.setLibraryUri(parsed_path.ParsedPath, I[6]);
-  dart.setFieldSignature(parsed_path.ParsedPath, () => ({
-    __proto__: dart.getFields(parsed_path.ParsedPath.__proto__),
-    style: dart.fieldType(internal_style.InternalStyle),
-    root: dart.fieldType(dart.nullable(core.String)),
-    isRootRelative: dart.fieldType(core.bool),
-    parts: dart.fieldType(core.List$(core.String)),
-    separators: dart.fieldType(core.List$(core.String))
-  }));
-  dart.defineExtensionMethods(parsed_path.ParsedPath, ['toString']);
-  var name$0 = dart.privateName(posix, "PosixStyle.name");
-  var separator$0 = dart.privateName(posix, "PosixStyle.separator");
-  var separators$1 = dart.privateName(posix, "PosixStyle.separators");
-  var separatorPattern$0 = dart.privateName(posix, "PosixStyle.separatorPattern");
-  var needsSeparatorPattern$0 = dart.privateName(posix, "PosixStyle.needsSeparatorPattern");
-  var rootPattern$0 = dart.privateName(posix, "PosixStyle.rootPattern");
-  var relativeRootPattern$0 = dart.privateName(posix, "PosixStyle.relativeRootPattern");
-  posix.PosixStyle = class PosixStyle extends internal_style.InternalStyle {
-    get name() {
-      return this[name$0];
-    }
-    set name(value) {
-      super.name = value;
-    }
-    get separator() {
-      return this[separator$0];
-    }
-    set separator(value) {
-      super.separator = value;
-    }
-    get separators() {
-      return this[separators$1];
-    }
-    set separators(value) {
-      super.separators = value;
-    }
-    get separatorPattern() {
-      return this[separatorPattern$0];
-    }
-    set separatorPattern(value) {
-      super.separatorPattern = value;
-    }
-    get needsSeparatorPattern() {
-      return this[needsSeparatorPattern$0];
-    }
-    set needsSeparatorPattern(value) {
-      super.needsSeparatorPattern = value;
-    }
-    get rootPattern() {
-      return this[rootPattern$0];
-    }
-    set rootPattern(value) {
-      super.rootPattern = value;
-    }
-    get relativeRootPattern() {
-      return this[relativeRootPattern$0];
-    }
-    set relativeRootPattern(value) {
-      super.relativeRootPattern = value;
-    }
-    containsSeparator(path) {
-      return path[$contains]("/");
-    }
-    isSeparator(codeUnit) {
-      return codeUnit === 47;
-    }
-    needsSeparator(path) {
-      return path[$isNotEmpty] && !this.isSeparator(path[$codeUnitAt](path.length - 1));
-    }
-    rootLength(path, opts) {
-      let withDrive = opts && 'withDrive' in opts ? opts.withDrive : false;
-      if (path[$isNotEmpty] && this.isSeparator(path[$codeUnitAt](0))) return 1;
-      return 0;
-    }
-    isRootRelative(path) {
-      return false;
-    }
-    getRelativeRoot(path) {
-      return null;
-    }
-    pathFromUri(uri) {
-      if (uri.scheme === "" || uri.scheme === "file") {
-        return core.Uri.decodeComponent(uri.path);
-      }
-      dart.throw(new core.ArgumentError.new("Uri " + dart.str(uri) + " must have scheme 'file:'."));
-    }
-    absolutePathToUri(path) {
-      let parsed = parsed_path.ParsedPath.parse(path, this);
-      if (parsed.parts[$isEmpty]) {
-        parsed.parts[$addAll](T.JSArrayOfString().of(["", ""]));
-      } else if (parsed.hasTrailingSeparator) {
-        parsed.parts[$add]("");
-      }
-      return core._Uri.new({scheme: "file", pathSegments: parsed.parts});
-    }
-  };
-  (posix.PosixStyle.new = function() {
-    this[name$0] = "posix";
-    this[separator$0] = "/";
-    this[separators$1] = C[1] || CT.C1;
-    this[separatorPattern$0] = core.RegExp.new("/");
-    this[needsSeparatorPattern$0] = core.RegExp.new("[^/]$");
-    this[rootPattern$0] = core.RegExp.new("^/");
-    this[relativeRootPattern$0] = null;
-    ;
-  }).prototype = posix.PosixStyle.prototype;
-  dart.addTypeTests(posix.PosixStyle);
-  dart.addTypeCaches(posix.PosixStyle);
-  dart.setMethodSignature(posix.PosixStyle, () => ({
-    __proto__: dart.getMethods(posix.PosixStyle.__proto__),
-    containsSeparator: dart.fnType(core.bool, [core.String]),
-    isSeparator: dart.fnType(core.bool, [core.int]),
-    needsSeparator: dart.fnType(core.bool, [core.String]),
-    rootLength: dart.fnType(core.int, [core.String], {withDrive: core.bool}, {}),
-    isRootRelative: dart.fnType(core.bool, [core.String]),
-    getRelativeRoot: dart.fnType(dart.nullable(core.String), [core.String]),
-    pathFromUri: dart.fnType(core.String, [core.Uri]),
-    absolutePathToUri: dart.fnType(core.Uri, [core.String])
-  }));
-  dart.setLibraryUri(posix.PosixStyle, I[7]);
-  dart.setFieldSignature(posix.PosixStyle, () => ({
-    __proto__: dart.getFields(posix.PosixStyle.__proto__),
-    name: dart.finalFieldType(core.String),
-    separator: dart.finalFieldType(core.String),
-    separators: dart.finalFieldType(core.List$(core.String)),
-    separatorPattern: dart.finalFieldType(core.Pattern),
-    needsSeparatorPattern: dart.finalFieldType(core.Pattern),
-    rootPattern: dart.finalFieldType(core.Pattern),
-    relativeRootPattern: dart.finalFieldType(dart.nullable(core.Pattern))
-  }));
-  var style$1 = dart.privateName(context, "Context.style");
-  var _current$ = dart.privateName(context, "_current");
-  var _parse = dart.privateName(context, "_parse");
-  var _needsNormalization = dart.privateName(context, "_needsNormalization");
-  var _isWithinOrEquals = dart.privateName(context, "_isWithinOrEquals");
-  var _isWithinOrEqualsFast = dart.privateName(context, "_isWithinOrEqualsFast");
-  var _pathDirection = dart.privateName(context, "_pathDirection");
-  var _hashFast = dart.privateName(context, "_hashFast");
-  context.Context = class Context extends core.Object {
-    get style() {
-      return this[style$1];
-    }
-    set style(value) {
-      super.style = value;
-    }
-    static new(opts) {
-      let style = opts && 'style' in opts ? opts.style : null;
-      let current = opts && 'current' in opts ? opts.current : null;
-      if (current == null) {
-        if (style == null) {
-          current = path$.current;
-        } else {
-          current = ".";
-        }
-      }
-      if (style == null) {
-        style = style$.Style.platform;
-      } else if (!internal_style.InternalStyle.is(style)) {
-        dart.throw(new core.ArgumentError.new("Only styles defined by the path package are " + "allowed."));
-      }
-      return new context.Context.__(internal_style.InternalStyle.as(style), current);
-    }
-    get current() {
-      let t0;
-      t0 = this[_current$];
-      return t0 == null ? path$.current : t0;
-    }
-    get separator() {
-      return this.style.separator;
-    }
-    absolute(part1, part2 = null, part3 = null, part4 = null, part5 = null, part6 = null, part7 = null) {
-      context._validateArgList("absolute", T.JSArrayOfStringN().of([part1, part2, part3, part4, part5, part6, part7]));
-      if (part2 == null && this.isAbsolute(part1) && !this.isRootRelative(part1)) {
-        return part1;
-      }
-      return this.join(this.current, part1, part2, part3, part4, part5, part6, part7);
-    }
-    basename(path) {
-      return this[_parse](path).basename;
-    }
-    basenameWithoutExtension(path) {
-      return this[_parse](path).basenameWithoutExtension;
-    }
-    dirname(path) {
-      let t0, t0$;
-      let parsed = this[_parse](path);
-      parsed.removeTrailingSeparators();
-      if (parsed.parts[$isEmpty]) {
-        t0 = parsed.root;
-        return t0 == null ? "." : t0;
-      }
-      if (parsed.parts[$length] === 1) {
-        t0$ = parsed.root;
-        return t0$ == null ? "." : t0$;
-      }
-      parsed.parts[$removeLast]();
-      parsed.separators[$removeLast]();
-      parsed.removeTrailingSeparators();
-      return parsed.toString();
-    }
-    extension(path, level = 1) {
-      return this[_parse](path).extension(level);
-    }
-    rootPrefix(path) {
-      return path[$substring](0, this.style.rootLength(path));
-    }
-    isAbsolute(path) {
-      return this.style.rootLength(path) > 0;
-    }
-    isRelative(path) {
-      return !this.isAbsolute(path);
-    }
-    isRootRelative(path) {
-      return this.style.isRootRelative(path);
-    }
-    join(part1, part2 = null, part3 = null, part4 = null, part5 = null, part6 = null, part7 = null, part8 = null) {
-      let parts = T.JSArrayOfStringN().of([part1, part2, part3, part4, part5, part6, part7, part8]);
-      context._validateArgList("join", parts);
-      return this.joinAll(parts[$whereType](core.String));
-    }
-    joinAll(parts) {
-      let buffer = new core.StringBuffer.new();
-      let needsSeparator = false;
-      let isAbsoluteAndNotRootRelative = false;
-      let iter = parts[$where](dart.fn(part => part !== "", T.StringTobool()));
-      for (let part of iter) {
-        if (this.isRootRelative(part) && isAbsoluteAndNotRootRelative) {
-          let parsed = this[_parse](part);
-          let path = buffer.toString();
-          parsed.root = path[$substring](0, this.style.rootLength(path, {withDrive: true}));
-          if (this.style.needsSeparator(dart.nullCheck(parsed.root))) {
-            parsed.separators[$_set](0, this.style.separator);
-          }
-          buffer.clear();
-          buffer.write(parsed.toString());
-        } else if (this.isAbsolute(part)) {
-          isAbsoluteAndNotRootRelative = !this.isRootRelative(part);
-          buffer.clear();
-          buffer.write(part);
-        } else {
-          if (part[$isNotEmpty] && this.style.containsSeparator(part[$_get](0))) {
-          } else if (needsSeparator) {
-            buffer.write(this.separator);
-          }
-          buffer.write(part);
-        }
-        needsSeparator = this.style.needsSeparator(part);
-      }
-      return buffer.toString();
-    }
-    split(path) {
-      let parsed = this[_parse](path);
-      parsed.parts = parsed.parts[$where](dart.fn(part => part[$isNotEmpty], T.StringTobool()))[$toList]();
-      if (parsed.root != null) parsed.parts[$insert](0, dart.nullCheck(parsed.root));
-      return parsed.parts;
-    }
-    canonicalize(path) {
-      path = this.absolute(path);
-      if (!this.style[$_equals](style$.Style.windows) && !this[_needsNormalization](path)) return path;
-      let parsed = this[_parse](path);
-      parsed.normalize({canonicalize: true});
-      return parsed.toString();
-    }
-    normalize(path) {
-      if (!this[_needsNormalization](path)) return path;
-      let parsed = this[_parse](path);
-      parsed.normalize();
-      return parsed.toString();
-    }
-    [_needsNormalization](path) {
-      let start = 0;
-      let codeUnits = path[$codeUnits];
-      let previousPrevious = null;
-      let previous = null;
-      let root = this.style.rootLength(path);
-      if (root !== 0) {
-        start = root;
-        previous = 47;
-        if (this.style[$_equals](style$.Style.windows)) {
-          for (let i = 0; i < root; i = i + 1) {
-            if (codeUnits[$_get](i) === 47) return true;
-          }
-        }
-      }
-      for (let i = start; i < codeUnits[$length]; i = i + 1) {
-        let codeUnit = codeUnits[$_get](i);
-        if (this.style.isSeparator(codeUnit)) {
-          if (this.style[$_equals](style$.Style.windows) && codeUnit === 47) return true;
-          if (previous != null && this.style.isSeparator(previous)) return true;
-          if (previous === 46 && (previousPrevious == null || previousPrevious === 46 || this.style.isSeparator(previousPrevious))) {
-            return true;
-          }
-        }
-        previousPrevious = previous;
-        previous = codeUnit;
-      }
-      if (previous == null) return true;
-      if (this.style.isSeparator(previous)) return true;
-      if (previous === 46 && (previousPrevious == null || this.style.isSeparator(previousPrevious) || previousPrevious === 46)) {
-        return true;
-      }
-      return false;
-    }
-    relative(path, opts) {
-      let t0, t0$, t0$0;
-      let from = opts && 'from' in opts ? opts.from : null;
-      if (from == null && this.isRelative(path)) return this.normalize(path);
-      from = from == null ? this.current : this.absolute(from);
-      if (this.isRelative(from) && this.isAbsolute(path)) {
-        return this.normalize(path);
-      }
-      if (this.isRelative(path) || this.isRootRelative(path)) {
-        path = this.absolute(path);
-      }
-      if (this.isRelative(path) && this.isAbsolute(from)) {
-        dart.throw(new path_exception.PathException.new("Unable to find a path to \"" + path + "\" from \"" + dart.str(from) + "\"."));
-      }
-      let fromParsed = (t0 = this[_parse](from), (() => {
-        t0.normalize();
+      let overflows = (() => {
+        let t0 = T.JSArrayOfString().of([]);
+        if (overflow.left > 0.0) t0[$add](this[_formatPixels](overflow.left) + " pixels on the left");
+        if (overflow.top > 0.0) t0[$add](this[_formatPixels](overflow.top) + " pixels on the top");
+        if (overflow.bottom > 0.0) t0[$add](this[_formatPixels](overflow.bottom) + " pixels on the bottom");
+        if (overflow.right > 0.0) t0[$add](this[_formatPixels](overflow.right) + " pixels on the right");
         return t0;
-      })());
-      let pathParsed = (t0$ = this[_parse](path), (() => {
-        t0$.normalize();
-        return t0$;
-      })());
-      if (fromParsed.parts[$isNotEmpty] && fromParsed.parts[$_get](0) === ".") {
-        return pathParsed.toString();
-      }
-      if (fromParsed.root != pathParsed.root && (fromParsed.root == null || pathParsed.root == null || !this.style.pathsEqual(dart.nullCheck(fromParsed.root), dart.nullCheck(pathParsed.root)))) {
-        return pathParsed.toString();
-      }
-      while (fromParsed.parts[$isNotEmpty] && pathParsed.parts[$isNotEmpty] && this.style.pathsEqual(fromParsed.parts[$_get](0), pathParsed.parts[$_get](0))) {
-        fromParsed.parts[$removeAt](0);
-        fromParsed.separators[$removeAt](1);
-        pathParsed.parts[$removeAt](0);
-        pathParsed.separators[$removeAt](1);
-      }
-      if (fromParsed.parts[$isNotEmpty] && fromParsed.parts[$_get](0) === "..") {
-        dart.throw(new path_exception.PathException.new("Unable to find a path to \"" + path + "\" from \"" + dart.str(from) + "\"."));
-      }
-      pathParsed.parts[$insertAll](0, T.ListOfString().filled(fromParsed.parts[$length], ".."));
-      pathParsed.separators[$_set](0, "");
-      pathParsed.separators[$insertAll](1, T.ListOfString().filled(fromParsed.parts[$length], this.style.separator));
-      if (pathParsed.parts[$isEmpty]) return ".";
-      if (pathParsed.parts[$length] > 1 && pathParsed.parts[$last] === ".") {
-        pathParsed.parts[$removeLast]();
-        t0$0 = pathParsed.separators;
-        (() => {
-          t0$0[$removeLast]();
-          t0$0[$removeLast]();
-          t0$0[$add]("");
-          return t0$0;
-        })();
-      }
-      pathParsed.root = "";
-      pathParsed.removeTrailingSeparators();
-      return pathParsed.toString();
-    }
-    isWithin(parent, child) {
-      return this[_isWithinOrEquals](parent, child)[$_equals](context._PathRelation.within);
-    }
-    equals(path1, path2) {
-      return this[_isWithinOrEquals](path1, path2)[$_equals](context._PathRelation.equal);
-    }
-    [_isWithinOrEquals](parent, child) {
-      let parentIsAbsolute = this.isAbsolute(parent);
-      let childIsAbsolute = this.isAbsolute(child);
-      if (parentIsAbsolute && !childIsAbsolute) {
-        child = this.absolute(child);
-        if (this.style.isRootRelative(parent)) parent = this.absolute(parent);
-      } else if (childIsAbsolute && !parentIsAbsolute) {
-        parent = this.absolute(parent);
-        if (this.style.isRootRelative(child)) child = this.absolute(child);
-      } else if (childIsAbsolute && parentIsAbsolute) {
-        let childIsRootRelative = this.style.isRootRelative(child);
-        let parentIsRootRelative = this.style.isRootRelative(parent);
-        if (childIsRootRelative && !parentIsRootRelative) {
-          child = this.absolute(child);
-        } else if (parentIsRootRelative && !childIsRootRelative) {
-          parent = this.absolute(parent);
-        }
-      }
-      let result = this[_isWithinOrEqualsFast](parent, child);
-      if (!result[$_equals](context._PathRelation.inconclusive)) return result;
-      let relative = null;
-      try {
-        relative = this.relative(child, {from: parent});
-      } catch (e) {
-        let _ = dart.getThrown(e);
-        if (path_exception.PathException.is(_)) {
-          return context._PathRelation.different;
-        } else
-          throw e;
-      }
-      if (!this.isRelative(relative)) return context._PathRelation.different;
-      if (relative === ".") return context._PathRelation.equal;
-      if (relative === "..") return context._PathRelation.different;
-      return relative.length >= 3 && relative[$startsWith]("..") && this.style.isSeparator(relative[$codeUnitAt](2)) ? context._PathRelation.different : context._PathRelation.within;
-    }
-    [_isWithinOrEqualsFast](parent, child) {
-      if (parent === ".") parent = "";
-      let parentRootLength = this.style.rootLength(parent);
-      let childRootLength = this.style.rootLength(child);
-      if (parentRootLength !== childRootLength) return context._PathRelation.different;
-      for (let i = 0; i < parentRootLength; i = i + 1) {
-        let parentCodeUnit = parent[$codeUnitAt](i);
-        let childCodeUnit = child[$codeUnitAt](i);
-        if (!this.style.codeUnitsEqual(parentCodeUnit, childCodeUnit)) {
-          return context._PathRelation.different;
-        }
-      }
-      let lastCodeUnit = 47;
-      let lastParentSeparator = null;
-      let parentIndex = parentRootLength;
-      let childIndex = childRootLength;
-      while (parentIndex < parent.length && childIndex < child.length) {
-        let parentCodeUnit = parent[$codeUnitAt](parentIndex);
-        let childCodeUnit = child[$codeUnitAt](childIndex);
-        if (this.style.codeUnitsEqual(parentCodeUnit, childCodeUnit)) {
-          if (this.style.isSeparator(parentCodeUnit)) {
-            lastParentSeparator = parentIndex;
-          }
-          lastCodeUnit = parentCodeUnit;
-          parentIndex = parentIndex + 1;
-          childIndex = childIndex + 1;
-          continue;
-        }
-        if (this.style.isSeparator(parentCodeUnit) && this.style.isSeparator(lastCodeUnit)) {
-          lastParentSeparator = parentIndex;
-          parentIndex = parentIndex + 1;
-          continue;
-        } else if (this.style.isSeparator(childCodeUnit) && this.style.isSeparator(lastCodeUnit)) {
-          childIndex = childIndex + 1;
-          continue;
-        }
-        if (parentCodeUnit === 46 && this.style.isSeparator(lastCodeUnit)) {
-          parentIndex = parentIndex + 1;
-          if (parentIndex === parent.length) break;
-          parentCodeUnit = parent[$codeUnitAt](parentIndex);
-          if (this.style.isSeparator(parentCodeUnit)) {
-            lastParentSeparator = parentIndex;
-            parentIndex = parentIndex + 1;
-            continue;
-          }
-          if (parentCodeUnit === 46) {
-            parentIndex = parentIndex + 1;
-            if (parentIndex === parent.length || this.style.isSeparator(parent[$codeUnitAt](parentIndex))) {
-              return context._PathRelation.inconclusive;
-            }
-          }
-        }
-        if (childCodeUnit === 46 && this.style.isSeparator(lastCodeUnit)) {
-          childIndex = childIndex + 1;
-          if (childIndex === child.length) break;
-          childCodeUnit = child[$codeUnitAt](childIndex);
-          if (this.style.isSeparator(childCodeUnit)) {
-            childIndex = childIndex + 1;
-            continue;
-          }
-          if (childCodeUnit === 46) {
-            childIndex = childIndex + 1;
-            if (childIndex === child.length || this.style.isSeparator(child[$codeUnitAt](childIndex))) {
-              return context._PathRelation.inconclusive;
-            }
-          }
-        }
-        let childDirection = this[_pathDirection](child, childIndex);
-        if (!childDirection[$_equals](context._PathDirection.belowRoot)) {
-          return context._PathRelation.inconclusive;
-        }
-        let parentDirection = this[_pathDirection](parent, parentIndex);
-        if (!parentDirection[$_equals](context._PathDirection.belowRoot)) {
-          return context._PathRelation.inconclusive;
-        }
-        return context._PathRelation.different;
-      }
-      if (childIndex === child.length) {
-        if (parentIndex === parent.length || this.style.isSeparator(parent[$codeUnitAt](parentIndex))) {
-          lastParentSeparator = parentIndex;
-        } else {
-          lastParentSeparator == null ? lastParentSeparator = math.max(core.int, 0, parentRootLength - 1) : null;
-        }
-        let direction = this[_pathDirection](parent, lastParentSeparator);
-        if (direction[$_equals](context._PathDirection.atRoot)) return context._PathRelation.equal;
-        return direction[$_equals](context._PathDirection.aboveRoot) ? context._PathRelation.inconclusive : context._PathRelation.different;
-      }
-      let direction = this[_pathDirection](child, childIndex);
-      if (direction[$_equals](context._PathDirection.atRoot)) return context._PathRelation.equal;
-      if (direction[$_equals](context._PathDirection.aboveRoot)) {
-        return context._PathRelation.inconclusive;
-      }
-      return this.style.isSeparator(child[$codeUnitAt](childIndex)) || this.style.isSeparator(lastCodeUnit) ? context._PathRelation.within : context._PathRelation.different;
-    }
-    [_pathDirection](path, index) {
-      let depth = 0;
-      let reachedRoot = false;
-      let i = index;
-      while (i < path.length) {
-        while (i < path.length && this.style.isSeparator(path[$codeUnitAt](i))) {
-          i = i + 1;
-        }
-        if (i === path.length) break;
-        let start = i;
-        while (i < path.length && !this.style.isSeparator(path[$codeUnitAt](i))) {
-          i = i + 1;
-        }
-        if (i - start === 1 && path[$codeUnitAt](start) === 46) {
-        } else if (i - start === 2 && path[$codeUnitAt](start) === 46 && path[$codeUnitAt](start + 1) === 46) {
-          depth = depth - 1;
-          if (depth < 0) break;
-          if (depth === 0) reachedRoot = true;
-        } else {
-          depth = depth + 1;
-        }
-        if (i === path.length) break;
-        i = i + 1;
-      }
-      if (depth < 0) return context._PathDirection.aboveRoot;
-      if (depth === 0) return context._PathDirection.atRoot;
-      if (reachedRoot) return context._PathDirection.reachesRoot;
-      return context._PathDirection.belowRoot;
-    }
-    hash(path) {
-      path = this.absolute(path);
-      let result = this[_hashFast](path);
-      if (result != null) return result;
-      let parsed = this[_parse](path);
-      parsed.normalize();
-      return dart.nullCheck(this[_hashFast](parsed.toString()));
-    }
-    [_hashFast](path) {
-      let hash = 4603;
-      let beginning = true;
-      let wasSeparator = true;
-      for (let i = 0; i < path.length; i = i + 1) {
-        let codeUnit = this.style.canonicalizeCodeUnit(path[$codeUnitAt](i));
-        if (this.style.isSeparator(codeUnit)) {
-          wasSeparator = true;
-          continue;
-        }
-        if (codeUnit === 46 && wasSeparator) {
-          if (i + 1 === path.length) break;
-          let next = path[$codeUnitAt](i + 1);
-          if (this.style.isSeparator(next)) continue;
-          if (!beginning && next === 46 && (i + 2 === path.length || this.style.isSeparator(path[$codeUnitAt](i + 2)))) {
-            return null;
-          }
-        }
-        hash = hash & 67108863;
-        hash = hash * 33;
-        hash = (hash ^ codeUnit) >>> 0;
-        wasSeparator = false;
-        beginning = false;
-      }
-      return hash;
-    }
-    withoutExtension(path) {
-      let parsed = this[_parse](path);
-      for (let i = parsed.parts[$length] - 1; i >= 0; i = i - 1) {
-        if (parsed.parts[$_get](i)[$isNotEmpty]) {
-          parsed.parts[$_set](i, parsed.basenameWithoutExtension);
+      })();
+      let overflowText = "";
+      if (!overflows[$isNotEmpty]) dart.assertFailed("Somehow " + dart.str(this[$runtimeType]) + " didn't actually overflow like it thought it did.", I[1], 227, 12, "overflows.isNotEmpty");
+      switch (overflows[$length]) {
+        case 1:
+        {
+          overflowText = overflows[$first];
           break;
         }
+        case 2:
+        {
+          overflowText = overflows[$first] + " and " + overflows[$last];
+          break;
+        }
+        default:
+        {
+          overflows[$_set](overflows[$length] - 1, "and " + overflows[$_get](overflows[$length] - 1));
+          overflowText = overflows[$join](", ");
+        }
       }
-      return parsed.toString();
+      assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: assertions.FlutterError.new("A " + dart.str(this[$runtimeType]) + " overflowed by " + overflowText + "."), library: "rendering library", context: new assertions.ErrorDescription.new("during layout"), informationCollector: dart.fn(() => new (T.SyncIterableOfDiagnosticsNode()).new((function*() {
+          if (this.debugCreator != null) yield new object.DiagnosticsDebugCreator.new(dart.nullCheck(this.debugCreator));
+          yield* dart.nullCheck(overflowHints);
+          yield this.describeForError("The specific " + dart.str(this[$runtimeType]) + " in question is");
+          yield diagnostics.DiagnosticsNode.message("◢◤"[$times]((100 / 2)[$truncate]()), {allowWrap: false});
+        }).bind(this)), T.VoidToIterableOfDiagnosticsNode())}));
     }
-    setExtension(path, extension) {
-      return this.withoutExtension(path) + extension;
-    }
-    fromUri(uri) {
-      return this.style.pathFromUri(context._parseUri(uri));
-    }
-    toUri(path) {
-      if (this.isRelative(path)) {
-        return this.style.relativePathToUri(path);
-      } else {
-        return this.style.absolutePathToUri(this.join(this.current, path));
+    paintOverflowIndicator(context, offset, containerRect, childRect, opts) {
+      let t1;
+      let overflowHints = opts && 'overflowHints' in opts ? opts.overflowHints : null;
+      let overflow = stack.RelativeRect.fromRect(containerRect, childRect);
+      if (overflow.left <= 0.0 && overflow.right <= 0.0 && overflow.top <= 0.0 && overflow.bottom <= 0.0) {
+        return;
+      }
+      let overflowRegions = this[_calculateOverflowRegions](overflow, containerRect);
+      for (let region of overflowRegions) {
+        context.canvas.drawRect(region.rect.shift(offset), debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorPaint);
+        let textSpan = T.TextSpanN().as(this[_indicatorLabel][$_get](region.side.index).text);
+        if ((t1 = textSpan, t1 == null ? null : t1.text) !== region.label) {
+          this[_indicatorLabel][$_get](region.side.index).text = new text_span.TextSpan.new({text: region.label, style: debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorTextStyle});
+          this[_indicatorLabel][$_get](region.side.index).layout();
+        }
+        let labelOffset = region.labelOffset['+'](offset);
+        let centerOffset = new ui.Offset.new(-this[_indicatorLabel][$_get](region.side.index).width / 2.0, 0.0);
+        let textBackgroundRect = centerOffset['&'](this[_indicatorLabel][$_get](region.side.index).size);
+        context.canvas.save();
+        context.canvas.translate(labelOffset.dx, labelOffset.dy);
+        context.canvas.rotate(region.rotation);
+        context.canvas.drawRect(textBackgroundRect, debug_overflow_indicator.DebugOverflowIndicatorMixin._labelBackgroundPaint);
+        this[_indicatorLabel][$_get](region.side.index).paint(context.canvas, centerOffset);
+        context.canvas.restore();
+      }
+      if (this[_overflowReportNeeded]) {
+        this[_overflowReportNeeded] = false;
+        this[_reportOverflow](overflow, overflowHints);
       }
     }
-    prettyUri(uri) {
-      let typedUri = context._parseUri(uri);
-      if (typedUri.scheme === "file" && this.style[$_equals](style$.Style.url)) {
-        return typedUri.toString();
-      } else if (typedUri.scheme !== "file" && typedUri.scheme !== "" && !this.style[$_equals](style$.Style.url)) {
-        return typedUri.toString();
-      }
-      let path = this.normalize(this.fromUri(typedUri));
-      let rel = this.relative(path);
-      return this.split(rel)[$length] > this.split(path)[$length] ? path : rel;
-    }
-    [_parse](path) {
-      return parsed_path.ParsedPath.parse(path, this.style);
+    reassemble() {
+      super.reassemble();
+      if (!dart.fn(() => {
+        this[_overflowReportNeeded] = true;
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 315, 12, "() {\r\n      _overflowReportNeeded = true;\r\n      return true;\r\n    }()");
     }
   };
-  (context.Context._internal = function() {
-    this[style$1] = internal_style.InternalStyle.as(style$.Style.platform);
-    this[_current$] = null;
-    ;
-  }).prototype = context.Context.prototype;
-  (context.Context.__ = function(style, _current) {
-    this[style$1] = style;
-    this[_current$] = _current;
-    ;
-  }).prototype = context.Context.prototype;
-  dart.addTypeTests(context.Context);
-  dart.addTypeCaches(context.Context);
-  dart.setMethodSignature(context.Context, () => ({
-    __proto__: dart.getMethods(context.Context.__proto__),
-    absolute: dart.fnType(core.String, [core.String], [dart.nullable(core.String), dart.nullable(core.String), dart.nullable(core.String), dart.nullable(core.String), dart.nullable(core.String), dart.nullable(core.String)]),
-    basename: dart.fnType(core.String, [core.String]),
-    basenameWithoutExtension: dart.fnType(core.String, [core.String]),
-    dirname: dart.fnType(core.String, [core.String]),
-    extension: dart.fnType(core.String, [core.String], [core.int]),
-    rootPrefix: dart.fnType(core.String, [core.String]),
-    isAbsolute: dart.fnType(core.bool, [core.String]),
-    isRelative: dart.fnType(core.bool, [core.String]),
-    isRootRelative: dart.fnType(core.bool, [core.String]),
-    join: dart.fnType(core.String, [core.String], [dart.nullable(core.String), dart.nullable(core.String), dart.nullable(core.String), dart.nullable(core.String), dart.nullable(core.String), dart.nullable(core.String), dart.nullable(core.String)]),
-    joinAll: dart.fnType(core.String, [core.Iterable$(core.String)]),
-    split: dart.fnType(core.List$(core.String), [core.String]),
-    canonicalize: dart.fnType(core.String, [core.String]),
-    normalize: dart.fnType(core.String, [core.String]),
-    [_needsNormalization]: dart.fnType(core.bool, [core.String]),
-    relative: dart.fnType(core.String, [core.String], {from: dart.nullable(core.String)}, {}),
-    isWithin: dart.fnType(core.bool, [core.String, core.String]),
-    equals: dart.fnType(core.bool, [core.String, core.String]),
-    [_isWithinOrEquals]: dart.fnType(context._PathRelation, [core.String, core.String]),
-    [_isWithinOrEqualsFast]: dart.fnType(context._PathRelation, [core.String, core.String]),
-    [_pathDirection]: dart.fnType(context._PathDirection, [core.String, core.int]),
-    hash: dart.fnType(core.int, [core.String]),
-    [_hashFast]: dart.fnType(dart.nullable(core.int), [core.String]),
-    withoutExtension: dart.fnType(core.String, [core.String]),
-    setExtension: dart.fnType(core.String, [core.String, core.String]),
-    fromUri: dart.fnType(core.String, [dart.dynamic]),
-    toUri: dart.fnType(core.Uri, [core.String]),
-    prettyUri: dart.fnType(core.String, [dart.dynamic]),
-    [_parse]: dart.fnType(parsed_path.ParsedPath, [core.String])
+  (debug_overflow_indicator.DebugOverflowIndicatorMixin[dart.mixinNew] = function() {
+    this[_indicatorLabel] = T.ListOfTextPainter().filled(debug_overflow_indicator._OverflowSide.values[$length], new text_painter.TextPainter.new({textDirection: ui.TextDirection.ltr}));
+    this[_overflowReportNeeded] = true;
+  }).prototype = debug_overflow_indicator.DebugOverflowIndicatorMixin.prototype;
+  dart.addTypeTests(debug_overflow_indicator.DebugOverflowIndicatorMixin);
+  dart.addTypeCaches(debug_overflow_indicator.DebugOverflowIndicatorMixin);
+  debug_overflow_indicator.DebugOverflowIndicatorMixin[dart.implements] = () => [object.RenderObject];
+  dart.setMethodSignature(debug_overflow_indicator.DebugOverflowIndicatorMixin, () => ({
+    __proto__: dart.getMethods(debug_overflow_indicator.DebugOverflowIndicatorMixin.__proto__),
+    [_formatPixels]: dart.fnType(core.String, [core.double]),
+    [_calculateOverflowRegions]: dart.fnType(core.List$(debug_overflow_indicator._OverflowRegionData), [stack.RelativeRect, ui.Rect]),
+    [_reportOverflow]: dart.fnType(dart.void, [stack.RelativeRect, dart.nullable(core.List$(diagnostics.DiagnosticsNode))]),
+    paintOverflowIndicator: dart.fnType(dart.void, [object.PaintingContext, ui.Offset, ui.Rect, ui.Rect], {overflowHints: dart.nullable(core.List$(diagnostics.DiagnosticsNode))}, {})
   }));
-  dart.setGetterSignature(context.Context, () => ({
-    __proto__: dart.getGetters(context.Context.__proto__),
-    current: core.String,
-    separator: core.String
+  dart.setLibraryUri(debug_overflow_indicator.DebugOverflowIndicatorMixin, I[0]);
+  dart.setFieldSignature(debug_overflow_indicator.DebugOverflowIndicatorMixin, () => ({
+    __proto__: dart.getFields(debug_overflow_indicator.DebugOverflowIndicatorMixin.__proto__),
+    [_indicatorLabel]: dart.finalFieldType(core.List$(text_painter.TextPainter)),
+    [_overflowReportNeeded]: dart.fieldType(core.bool)
   }));
-  dart.setLibraryUri(context.Context, I[8]);
-  dart.setFieldSignature(context.Context, () => ({
-    __proto__: dart.getFields(context.Context.__proto__),
-    style: dart.finalFieldType(internal_style.InternalStyle),
-    [_current$]: dart.finalFieldType(dart.nullable(core.String))
-  }));
-  var name$1 = dart.privateName(context, "_PathDirection.name");
-  context._PathDirection = class _PathDirection extends core.Object {
-    get name() {
-      return this[name$1];
-    }
-    set name(value) {
-      super.name = value;
-    }
-    toString() {
-      return this.name;
-    }
-  };
-  (context._PathDirection.new = function(name) {
-    this[name$1] = name;
-    ;
-  }).prototype = context._PathDirection.prototype;
-  dart.addTypeTests(context._PathDirection);
-  dart.addTypeCaches(context._PathDirection);
-  dart.setLibraryUri(context._PathDirection, I[8]);
-  dart.setFieldSignature(context._PathDirection, () => ({
-    __proto__: dart.getFields(context._PathDirection.__proto__),
-    name: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(context._PathDirection, ['toString']);
-  dart.defineLazy(context._PathDirection, {
-    /*context._PathDirection.aboveRoot*/get aboveRoot() {
-      return C[2] || CT.C2;
-    },
-    /*context._PathDirection.atRoot*/get atRoot() {
-      return C[3] || CT.C3;
-    },
-    /*context._PathDirection.reachesRoot*/get reachesRoot() {
-      return C[4] || CT.C4;
-    },
-    /*context._PathDirection.belowRoot*/get belowRoot() {
-      return C[5] || CT.C5;
-    }
-  }, false);
-  var name$2 = dart.privateName(context, "_PathRelation.name");
-  context._PathRelation = class _PathRelation extends core.Object {
-    get name() {
-      return this[name$2];
-    }
-    set name(value) {
-      super.name = value;
-    }
-    toString() {
-      return this.name;
-    }
-  };
-  (context._PathRelation.new = function(name) {
-    this[name$2] = name;
-    ;
-  }).prototype = context._PathRelation.prototype;
-  dart.addTypeTests(context._PathRelation);
-  dart.addTypeCaches(context._PathRelation);
-  dart.setLibraryUri(context._PathRelation, I[8]);
-  dart.setFieldSignature(context._PathRelation, () => ({
-    __proto__: dart.getFields(context._PathRelation.__proto__),
-    name: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(context._PathRelation, ['toString']);
-  dart.defineLazy(context._PathRelation, {
-    /*context._PathRelation.within*/get within() {
-      return C[6] || CT.C6;
-    },
-    /*context._PathRelation.equal*/get equal() {
-      return C[7] || CT.C7;
-    },
-    /*context._PathRelation.different*/get different() {
-      return C[8] || CT.C8;
-    },
-    /*context._PathRelation.inconclusive*/get inconclusive() {
+  dart.defineLazy(debug_overflow_indicator.DebugOverflowIndicatorMixin, {
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._black*/get _black() {
       return C[9] || CT.C9;
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._yellow*/get _yellow() {
+      return C[10] || CT.C10;
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorFraction*/get _indicatorFraction() {
+      return 0.1;
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorFontSizePixels*/get _indicatorFontSizePixels() {
+      return 7.5;
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorLabelPaddingPixels*/get _indicatorLabelPaddingPixels() {
+      return 1;
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorTextStyle*/get _indicatorTextStyle() {
+      return C[11] || CT.C11;
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._indicatorPaint*/get _indicatorPaint() {
+      let t1;
+      return t1 = ui.Paint.new(), (() => {
+        t1.shader = ui.Gradient.linear(ui.Offset.zero, C[14] || CT.C14, T.JSArrayOfColor().of([debug_overflow_indicator.DebugOverflowIndicatorMixin._black, debug_overflow_indicator.DebugOverflowIndicatorMixin._yellow, debug_overflow_indicator.DebugOverflowIndicatorMixin._yellow, debug_overflow_indicator.DebugOverflowIndicatorMixin._black]), T.JSArrayOfdouble().of([0.25, 0.25, 0.75, 0.75]), ui.TileMode.repeated);
+        return t1;
+      })();
+    },
+    /*debug_overflow_indicator.DebugOverflowIndicatorMixin._labelBackgroundPaint*/get _labelBackgroundPaint() {
+      let t1;
+      return t1 = ui.Paint.new(), (() => {
+        t1.color = C[15] || CT.C15;
+        return t1;
+      })();
     }
   }, false);
-  context.createInternal = function createInternal() {
-    return new context.Context._internal();
-  };
-  context._parseUri = function _parseUri(uri) {
-    if (typeof uri == 'string') return core.Uri.parse(uri);
-    if (core.Uri.is(uri)) return uri;
-    dart.throw(new core.ArgumentError.value(uri, "uri", "Value must be a String or a Uri"));
-  };
-  context._validateArgList = function _validateArgList(method, args) {
-    for (let i = 1; i < args[$length]; i = i + 1) {
-      if (args[$_get](i) == null || args[$_get](i - 1) != null) continue;
-      let numArgs = null;
-      for (let t1 = numArgs = args[$length]; numArgs >= 1; numArgs = numArgs - 1) {
-        if (args[$_get](numArgs - 1) != null) break;
-      }
-      let message = new core.StringBuffer.new();
-      message.write(method + "(");
-      message.write(args[$take](numArgs)[$map](core.String, dart.fn(arg => arg == null ? "null" : "\"" + dart.str(arg) + "\"", T.StringNToString()))[$join](", "));
-      message.write("): part " + dart.str(i - 1) + " was null, but part " + dart.str(i) + " was not.");
-      dart.throw(new core.ArgumentError.new(message.toString()));
-    }
-  };
-  path$.absolute = function absolute(part1, part2 = null, part3 = null, part4 = null, part5 = null, part6 = null, part7 = null) {
-    return path$.context.absolute(part1, part2, part3, part4, part5, part6, part7);
-  };
-  path$.basename = function basename(path) {
-    return path$.context.basename(path);
-  };
-  path$.basenameWithoutExtension = function basenameWithoutExtension(path) {
-    return path$.context.basenameWithoutExtension(path);
-  };
-  path$.dirname = function dirname(path) {
-    return path$.context.dirname(path);
-  };
-  path$.extension = function extension(path, level = 1) {
-    return path$.context.extension(path, level);
-  };
-  path$.rootPrefix = function rootPrefix(path) {
-    return path$.context.rootPrefix(path);
-  };
-  path$.isAbsolute = function isAbsolute(path) {
-    return path$.context.isAbsolute(path);
-  };
-  path$.isRelative = function isRelative(path) {
-    return path$.context.isRelative(path);
-  };
-  path$.isRootRelative = function isRootRelative(path) {
-    return path$.context.isRootRelative(path);
-  };
-  path$.join = function join(part1, part2 = null, part3 = null, part4 = null, part5 = null, part6 = null, part7 = null, part8 = null) {
-    return path$.context.join(part1, part2, part3, part4, part5, part6, part7, part8);
-  };
-  path$.joinAll = function joinAll(parts) {
-    return path$.context.joinAll(parts);
-  };
-  path$.split = function split(path) {
-    return path$.context.split(path);
-  };
-  path$.canonicalize = function canonicalize(path) {
-    return path$.context.canonicalize(path);
-  };
-  path$.normalize = function normalize(path) {
-    return path$.context.normalize(path);
-  };
-  path$.relative = function relative(path, opts) {
-    let from = opts && 'from' in opts ? opts.from : null;
-    return path$.context.relative(path, {from: from});
-  };
-  path$.isWithin = function isWithin(parent, child) {
-    return path$.context.isWithin(parent, child);
-  };
-  path$.equals = function equals(path1, path2) {
-    return path$.context.equals(path1, path2);
-  };
-  path$.hash = function hash(path) {
-    return path$.context.hash(path);
-  };
-  path$.withoutExtension = function withoutExtension(path) {
-    return path$.context.withoutExtension(path);
-  };
-  path$.setExtension = function setExtension(path, extension) {
-    return path$.context.setExtension(path, extension);
-  };
-  path$.fromUri = function fromUri(uri) {
-    return path$.context.fromUri(uri);
-  };
-  path$.toUri = function toUri(path) {
-    return path$.context.toUri(path);
-  };
-  path$.prettyUri = function prettyUri(uri) {
-    return path$.context.prettyUri(uri);
-  };
-  dart.copyProperties(path$, {
-    get style() {
-      return path$.context.style;
-    },
-    get current() {
-      let uri = null;
-      try {
-        uri = core.Uri.base;
-      } catch (e) {
-        let ex = dart.getThrown(e);
-        if (core.Exception.is(ex)) {
-          if (path$._current != null) return dart.nullCheck(path$._current);
-          dart.rethrow(e);
-        } else
-          throw e;
-      }
-      if (uri._equals(path$._currentUriBase)) return dart.nullCheck(path$._current);
-      path$._currentUriBase = uri;
-      if (style$.Style.platform[$_equals](style$.Style.url)) {
-        path$._current = uri.resolve(".").toString();
-      } else {
-        let path = uri.toFilePath();
-        let lastIndex = path.length - 1;
-        if (!(path[$_get](lastIndex) === "/" || path[$_get](lastIndex) === "\\")) dart.assertFailed(null, I[9], 91, 12, "path[lastIndex] == '/' || path[lastIndex] == '\\\\'");
-        path$._current = lastIndex === 0 ? path : path[$substring](0, lastIndex);
-      }
-      return dart.nullCheck(path$._current);
-    },
-    get separator() {
-      return path$.context.separator;
-    }
-  });
-  dart.defineLazy(path$, {
-    /*path$.posix*/get posix() {
-      return context.Context.new({style: style$.Style.posix});
-    },
-    /*path$.windows*/get windows() {
-      return context.Context.new({style: style$.Style.windows});
-    },
-    /*path$.url*/get url() {
-      return context.Context.new({style: style$.Style.url});
-    },
-    /*path$.context*/get context() {
-      return context.createInternal();
-    },
-    /*path$._currentUriBase*/get _currentUriBase() {
-      return null;
-    },
-    set _currentUriBase(_) {},
-    /*path$._current*/get _current() {
-      return null;
-    },
-    set _current(_) {}
-  }, false);
-  dart.trackLibraries("packages/path/src/path_set.dart", {
-    "package:path/src/path_set.dart": path_set,
-    "package:path/src/path_map.dart": path_map,
-    "package:path/src/style/windows.dart": windows,
-    "package:path/src/style/url.dart": url,
-    "package:path/src/parsed_path.dart": parsed_path,
-    "package:path/src/style/posix.dart": posix,
-    "package:path/src/style.dart": style$,
-    "package:path/src/internal_style.dart": internal_style,
-    "package:path/src/context.dart": context,
-    "package:path/path.dart": path$
+  dart.trackLibraries("packages/flutter/src/rendering/debug_overflow_indicator.dart", {
+    "package:flutter/src/rendering/debug_overflow_indicator.dart": debug_overflow_indicator
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["path_set.dart","path_map.dart","style.dart","internal_style.dart","style/windows.dart","style/url.dart","parsed_path.dart","style/posix.dart","context.dart","../path.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/path/src/path_set.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["debug_overflow_indicator.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/rendering/debug_overflow_indicator.dart.lib.js"}');
   // Exports:
   return {
-    src__path_set: path_set,
-    src__path_map: path_map,
-    src__style__windows: windows,
-    src__style__url: url,
-    src__parsed_path: parsed_path,
-    src__style__posix: posix,
-    src__style: style$,
-    src__internal_style: internal_style,
-    src__context: context,
-    path: path$
+    src__rendering__debug_overflow_indicator: debug_overflow_indicator
   };
 }));
 
-//# sourceMappingURL=path_set.dart.lib.js.map
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+//# sourceMappingURL=debug_overflow_indicator.dart.lib.js.map

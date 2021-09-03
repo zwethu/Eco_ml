@@ -22,7 +22,7 @@ class _ReportPageState extends State<ReportPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                  margin: EdgeInsets.symmetric(vertical: 15,horizontal: 10),
                   child: TabBar(
                     labelColor: Colors.black,
                     unselectedLabelColor: Color(0xffADADAD),

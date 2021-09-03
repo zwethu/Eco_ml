@@ -1,1207 +1,1058 @@
-<<<<<<< HEAD
-define(['dart_sdk', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/painting/box_fit.dart', 'packages/flutter/src/foundation/object.dart', 'packages/flutter/src/painting/_network_image_web.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/painting/image_stream.dart', 'packages/flutter/src/painting/debug.dart', 'packages/flutter/src/scheduler/binding.dart'], (function load__packages__flutter__src__painting__decoration_image_dart(dart_sdk, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__painting__box_fit$46dart, packages__flutter__src__foundation__object$46dart, packages__flutter__src__painting___network_image_web$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__painting__image_stream$46dart, packages__flutter__src__painting__debug$46dart, packages__flutter__src__scheduler__binding$46dart) {
+define(['dart_sdk', 'packages/http/src/byte_stream.dart', 'packages/http/src/utils.dart', 'packages/http/src/boundary_characters.dart', 'packages/http_parser/src/media_type.dart', 'packages/pedantic/pedantic.dart', 'packages/http/src/exception.dart'], (function load__packages__http__src__multipart_request_dart(dart_sdk, packages__http__src__byte_stream$46dart, packages__http__src__utils$46dart, packages__http__src__boundary_characters$46dart, packages__http_parser__src__media_type$46dart, packages__pedantic__pedantic$46dart, packages__http__src__exception$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
-  const _interceptors = dart_sdk._interceptors;
-  const collection = dart_sdk.collection;
-  const _engine = dart_sdk._engine;
-  const developer = dart_sdk.developer;
   const _js_helper = dart_sdk._js_helper;
+  const _interceptors = dart_sdk._interceptors;
+  const convert = dart_sdk.convert;
+  const async = dart_sdk.async;
+  const collection = dart_sdk.collection;
+  const math = dart_sdk.math;
+  const html = dart_sdk.html;
+  const typed_data = dart_sdk.typed_data;
+  const _native_typed_data = dart_sdk._native_typed_data;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
-  const box_fit = packages__flutter__src__painting__box_fit$46dart.src__painting__box_fit;
-  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
-  const image_provider = packages__flutter__src__painting___network_image_web$46dart.src__painting__image_provider;
-  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const image_stream = packages__flutter__src__painting__image_stream$46dart.src__painting__image_stream;
-  const debug = packages__flutter__src__painting__debug$46dart.src__painting__debug;
-  const binding = packages__flutter__src__scheduler__binding$46dart.src__scheduler__binding;
-  var decoration_image = Object.create(dart.library);
-  var $runtimeType = dartx.runtimeType;
-  var $_equals = dartx._equals;
-  var $add = dartx.add;
-  var $join = dartx.join;
-  var $isNotEmpty = dartx.isNotEmpty;
-  var $toDouble = dartx.toDouble;
-  var $truncate = dartx.truncate;
-  var $toInt = dartx.toInt;
-  var $_get = dartx._get;
+  const byte_stream = packages__http__src__byte_stream$46dart.src__byte_stream;
+  const utils = packages__http__src__utils$46dart.src__utils;
+  const boundary_characters = packages__http__src__boundary_characters$46dart.src__boundary_characters;
+  const media_type = packages__http_parser__src__media_type$46dart.src__media_type;
+  const pedantic = packages__pedantic__pedantic$46dart.pedantic;
+  const exception = packages__http__src__exception$46dart.src__exception;
+  var multipart_request = Object.create(dart.library);
+  var multipart_file_stub = Object.create(dart.library);
+  var multipart_file = Object.create(dart.library);
+  var streamed_request = Object.create(dart.library);
+  var browser_client = Object.create(dart.library);
+  var response$ = Object.create(dart.library);
+  var request$ = Object.create(dart.library);
+  var streamed_response = Object.create(dart.library);
+  var base_response = Object.create(dart.library);
+  var base_request = Object.create(dart.library);
+  var base_client = Object.create(dart.library);
+  var client$ = Object.create(dart.library);
+  var http = Object.create(dart.library);
+  var $length = dartx.length;
+  var $forEach = dartx.forEach;
   var $_set = dartx._set;
-  var $values = dartx.values;
-  var $toSet = dartx.toSet;
-  var $isEmpty = dartx.isEmpty;
-  var $floor = dartx.floor;
-  var $ceil = dartx.ceil;
+  var $entries = dartx.entries;
+  var $replaceAll = dartx.replaceAll;
+  var $_get = dartx._get;
+  var $toLowerCase = dartx.toLowerCase;
+  var $hashCode = dartx.hashCode;
+  var $responseType = dartx.responseType;
+  var $onLoad = dartx.onLoad;
+  var $response = dartx.response;
+  var $asUint8List = dartx.asUint8List;
+  var $responseHeaders = dartx.responseHeaders;
+  var $onError = dartx.onError;
+  var $addAll = dartx.addAll;
+  var $cast = dartx.cast;
+  var $containsKey = dartx.containsKey;
+  var $remove = dartx.remove;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))(),
-    DiagnosticsPropertyOfDecorationImage: () => (T.DiagnosticsPropertyOfDecorationImage = dart.constFn(diagnostics.DiagnosticsProperty$(decoration_image.DecorationImage)))(),
-    DiagnosticsPropertyOfImageConfiguration: () => (T.DiagnosticsPropertyOfImageConfiguration = dart.constFn(diagnostics.DiagnosticsProperty$(image_provider.ImageConfiguration)))(),
-    JSArrayOfDiagnosticsNode: () => (T.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
-    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
-    LinkedHashSetOfImageSizeInfo: () => (T.LinkedHashSetOfImageSizeInfo = dart.constFn(collection.LinkedHashSet$(debug.ImageSizeInfo)))(),
-    IdentityMapOfString$Object: () => (T.IdentityMapOfString$Object = dart.constFn(_js_helper.IdentityMap$(core.String, core.Object)))(),
-    IdentityMapOfString$ImageSizeInfo: () => (T.IdentityMapOfString$ImageSizeInfo = dart.constFn(_js_helper.IdentityMap$(core.String, debug.ImageSizeInfo)))(),
-    DurationTovoid: () => (T.DurationTovoid = dart.constFn(dart.fnType(dart.void, [core.Duration])))(),
-    SyncIterableOfRect: () => (T.SyncIterableOfRect = dart.constFn(_js_helper.SyncIterable$(ui.Rect)))()
+    IdentityMapOfString$String: () => (T.IdentityMapOfString$String = dart.constFn(_js_helper.IdentityMap$(core.String, core.String)))(),
+    JSArrayOfMultipartFile: () => (T.JSArrayOfMultipartFile = dart.constFn(_interceptors.JSArray$(multipart_file.MultipartFile)))(),
+    StringAndStringTovoid: () => (T.StringAndStringTovoid = dart.constFn(dart.fnType(dart.void, [core.String, core.String])))(),
+    ListOfint: () => (T.ListOfint = dart.constFn(core.List$(core.int)))(),
+    _AsyncStarImplOfListOfint: () => (T._AsyncStarImplOfListOfint = dart.constFn(async._AsyncStarImpl$(T.ListOfint())))(),
+    intToint: () => (T.intToint = dart.constFn(dart.fnType(core.int, [core.int])))(),
+    LinkedHashMapOfString$String: () => (T.LinkedHashMapOfString$String = dart.constFn(collection.LinkedHashMap$(core.String, core.String)))(),
+    StringAndStringTobool: () => (T.StringAndStringTobool = dart.constFn(dart.fnType(core.bool, [core.String, core.String])))(),
+    StringToint: () => (T.StringToint = dart.constFn(dart.fnType(core.int, [core.String])))(),
+    _EmptyStreamOfListOfint: () => (T._EmptyStreamOfListOfint = dart.constFn(async._EmptyStream$(T.ListOfint())))(),
+    StreamControllerOfListOfint: () => (T.StreamControllerOfListOfint = dart.constFn(async.StreamController$(T.ListOfint())))(),
+    LinkedHashSetOfHttpRequest: () => (T.LinkedHashSetOfHttpRequest = dart.constFn(collection.LinkedHashSet$(html.HttpRequest)))(),
+    CompleterOfStreamedResponse: () => (T.CompleterOfStreamedResponse = dart.constFn(async.Completer$(streamed_response.StreamedResponse)))(),
+    ProgressEventToNull: () => (T.ProgressEventToNull = dart.constFn(dart.fnType(core.Null, [html.ProgressEvent])))(),
+    FutureOfResponse: () => (T.FutureOfResponse = dart.constFn(async.Future$(response$.Response)))(),
+    ClientToFutureOfResponse: () => (T.ClientToFutureOfResponse = dart.constFn(dart.fnType(T.FutureOfResponse(), [client$.Client])))(),
+    FutureOfString: () => (T.FutureOfString = dart.constFn(async.Future$(core.String)))(),
+    ClientToFutureOfString: () => (T.ClientToFutureOfString = dart.constFn(dart.fnType(T.FutureOfString(), [client$.Client])))(),
+    FutureOfUint8List: () => (T.FutureOfUint8List = dart.constFn(async.Future$(typed_data.Uint8List)))(),
+    ClientToFutureOfUint8List: () => (T.ClientToFutureOfUint8List = dart.constFn(dart.fnType(T.FutureOfUint8List(), [client$.Client])))()
   };
-=======
-define(['dart_sdk', 'packages/flutter/src/foundation/object.dart'], (function load__packages__flutter__src__painting__alignment_dart(dart_sdk, packages__flutter__src__foundation__object$46dart) {
-  'use strict';
-  const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
-  const dart = dart_sdk.dart;
-  const dartx = dart_sdk.dartx;
-  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
-  var alignment = Object.create(dart.library);
-  var $truncate = dartx.truncate;
-  var $toDouble = dartx.toDouble;
-  var $modulo = dartx['%'];
-  var $toStringAsFixed = dartx.toStringAsFixed;
-  var $runtimeType = dartx.runtimeType;
-  dart._checkModuleNullSafetyMode(true);
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.const({
-<<<<<<< HEAD
-        __proto__: decoration_image.ImageRepeat.prototype,
-        [_name$]: "ImageRepeat.repeat",
-        index: 0
-=======
-        __proto__: alignment.Alignment.prototype,
-        [y$]: -1,
-        [x$]: -1
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+      return C[0] = dart.constList([13, 10], core.int);
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: T._EmptyStreamOfListOfint().prototype
       });
     },
     get C1() {
       return C[1] = dart.const({
-<<<<<<< HEAD
-        __proto__: decoration_image.ImageRepeat.prototype,
-        [_name$]: "ImageRepeat.repeatX",
-        index: 1
-=======
-        __proto__: alignment.Alignment.prototype,
-        [y$]: -1,
-        [x$]: 0
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-<<<<<<< HEAD
-        __proto__: decoration_image.ImageRepeat.prototype,
-        [_name$]: "ImageRepeat.repeatY",
-        index: 2
-=======
-        __proto__: alignment.Alignment.prototype,
-        [y$]: -1,
-        [x$]: 1
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+        __proto__: byte_stream.ByteStream.prototype,
+        [StreamView__stream]: C[2] || CT.C2
       });
     },
     get C3() {
-      return C[3] = dart.const({
-<<<<<<< HEAD
-        __proto__: decoration_image.ImageRepeat.prototype,
-        [_name$]: "ImageRepeat.noRepeat",
-        index: 3
-      });
-    },
-    get C4() {
-      return C[4] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3], decoration_image.ImageRepeat);
-=======
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 0,
-        [x$]: -1
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 0,
-        [x$]: 0
-      });
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-<<<<<<< HEAD
-        [Alignment_y]: 0,
-        [Alignment_x]: 0
-=======
-        [y$]: 0,
-        [x$]: 1
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-<<<<<<< HEAD
-        __proto__: ui.FilterQuality.prototype,
-        [_name]: "FilterQuality.low",
-        index: 1
-      });
-    },
-    get C8() {
-      return C[8] = dart.constList([-1, 0, 0, 0, 255, 0, -1, 0, 0, 255, 0, 0, -1, 0, 255, 0, 0, 0, 1, 0], core.double);
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: _engine._CkMatrixColorFilter.prototype,
-        [_CkMatrixColorFilter_matrix]: C[8] || CT.C8
-      });
+      return C[3] = dart.constMap(core.String, core.String, []);
     }
   }, false);
-  var C = Array(9).fill(void 0);
+  var C = Array(4).fill(void 0);
   var I = [
-    "package:flutter/src/painting/decoration_image.dart",
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/painting/decoration_image.dart"
+    "package:http/src/base_request.dart",
+    "package:http/src/multipart_request.dart",
+    "package:http/src/multipart_file.dart",
+    "package:http/src/streamed_request.dart",
+    "package:http/src/base_client.dart",
+    "package:http/src/browser_client.dart",
+    "package:http/src/base_response.dart",
+    "package:http/src/response.dart",
+    "package:http/src/request.dart",
+    "package:http/src/streamed_response.dart",
+    "package:http/src/client.dart"
   ];
-  var _name$ = dart.privateName(decoration_image, "_name");
-  decoration_image.ImageRepeat = class ImageRepeat extends core.Object {
-    toString() {
-      return this[_name$];
+  var fields = dart.privateName(multipart_request, "MultipartRequest.fields");
+  var files = dart.privateName(multipart_request, "MultipartRequest.files");
+  var _headerForField = dart.privateName(multipart_request, "_headerForField");
+  var _headerForFile = dart.privateName(multipart_request, "_headerForFile");
+  var _boundaryString = dart.privateName(multipart_request, "_boundaryString");
+  var _finalize = dart.privateName(multipart_request, "_finalize");
+  var _browserEncode = dart.privateName(multipart_request, "_browserEncode");
+  var method$ = dart.privateName(base_request, "BaseRequest.method");
+  var url$ = dart.privateName(base_request, "BaseRequest.url");
+  var headers = dart.privateName(base_request, "BaseRequest.headers");
+  var _contentLength = dart.privateName(base_request, "_contentLength");
+  var _persistentConnection = dart.privateName(base_request, "_persistentConnection");
+  var _followRedirects = dart.privateName(base_request, "_followRedirects");
+  var _maxRedirects = dart.privateName(base_request, "_maxRedirects");
+  var _finalized = dart.privateName(base_request, "_finalized");
+  var _checkFinalized = dart.privateName(base_request, "_checkFinalized");
+  var StreamView__stream = dart.privateName(async, "StreamView._stream");
+  base_request.BaseRequest = class BaseRequest extends core.Object {
+    get method() {
+      return this[method$];
     }
-  };
-  (decoration_image.ImageRepeat.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
-    ;
-  }).prototype = decoration_image.ImageRepeat.prototype;
-  dart.addTypeTests(decoration_image.ImageRepeat);
-  dart.addTypeCaches(decoration_image.ImageRepeat);
-  dart.setLibraryUri(decoration_image.ImageRepeat, I[0]);
-  dart.setFieldSignature(decoration_image.ImageRepeat, () => ({
-    __proto__: dart.getFields(decoration_image.ImageRepeat.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(decoration_image.ImageRepeat, ['toString']);
-  decoration_image.ImageRepeat.repeat = C[0] || CT.C0;
-  decoration_image.ImageRepeat.repeatX = C[1] || CT.C1;
-  decoration_image.ImageRepeat.repeatY = C[2] || CT.C2;
-  decoration_image.ImageRepeat.noRepeat = C[3] || CT.C3;
-  decoration_image.ImageRepeat.values = C[4] || CT.C4;
-  var image$ = dart.privateName(decoration_image, "DecorationImage.image");
-  var onError$ = dart.privateName(decoration_image, "DecorationImage.onError");
-  var colorFilter$ = dart.privateName(decoration_image, "DecorationImage.colorFilter");
-  var fit$ = dart.privateName(decoration_image, "DecorationImage.fit");
-  var alignment$ = dart.privateName(decoration_image, "DecorationImage.alignment");
-  var centerSlice$ = dart.privateName(decoration_image, "DecorationImage.centerSlice");
-  var repeat$ = dart.privateName(decoration_image, "DecorationImage.repeat");
-  var matchTextDirection$ = dart.privateName(decoration_image, "DecorationImage.matchTextDirection");
-  var scale$ = dart.privateName(decoration_image, "DecorationImage.scale");
-  var Alignment_y = dart.privateName(alignment, "Alignment.y");
-  var Alignment_x = dart.privateName(alignment, "Alignment.x");
-  decoration_image.DecorationImage = class DecorationImage extends core.Object {
-    get image() {
-      return this[image$];
+    set method(value) {
+      super.method = value;
     }
-    set image(value) {
-      super.image = value;
+    get url() {
+      return this[url$];
     }
-    get onError() {
-      return this[onError$];
+    set url(value) {
+      super.url = value;
     }
-    set onError(value) {
-      super.onError = value;
+    get headers() {
+      return this[headers];
     }
-    get colorFilter() {
-      return this[colorFilter$];
+    set headers(value) {
+      super.headers = value;
     }
-    set colorFilter(value) {
-      super.colorFilter = value;
+    get contentLength() {
+      return this[_contentLength];
     }
-    get fit() {
-      return this[fit$];
+    set contentLength(value) {
+      if (value != null && dart.notNull(value) < 0) {
+        dart.throw(new core.ArgumentError.new("Invalid content length " + dart.str(value) + "."));
+      }
+      this[_checkFinalized]();
+      this[_contentLength] = value;
     }
-    set fit(value) {
-      super.fit = value;
+    get persistentConnection() {
+      return this[_persistentConnection];
     }
-    get alignment() {
-      return this[alignment$];
+    set persistentConnection(value) {
+      this[_checkFinalized]();
+      this[_persistentConnection] = value;
     }
-    set alignment(value) {
-      super.alignment = value;
+    get followRedirects() {
+      return this[_followRedirects];
     }
-    get centerSlice() {
-      return this[centerSlice$];
+    set followRedirects(value) {
+      this[_checkFinalized]();
+      this[_followRedirects] = value;
     }
-    set centerSlice(value) {
-      super.centerSlice = value;
+    get maxRedirects() {
+      return this[_maxRedirects];
     }
-    get repeat() {
-      return this[repeat$];
+    set maxRedirects(value) {
+      this[_checkFinalized]();
+      this[_maxRedirects] = value;
     }
-    set repeat(value) {
-      super.repeat = value;
+    get finalized() {
+      return this[_finalized];
     }
-    get matchTextDirection() {
-      return this[matchTextDirection$];
+    static _validateMethod(method) {
+      if (!base_request.BaseRequest._tokenRE.hasMatch(method)) {
+        dart.throw(new core.ArgumentError.value(method, "method", "Not a valid method"));
+      }
+      return method;
     }
-    set matchTextDirection(value) {
-      super.matchTextDirection = value;
+    finalize() {
+      if (this.finalized) dart.throw(new core.StateError.new("Can't finalize a finalized Request."));
+      this[_finalized] = true;
+      return C[1] || CT.C1;
     }
-    get scale() {
-      return this[scale$];
+    send() {
+      return async.async(streamed_response.StreamedResponse, (function* send() {
+        let client = client$.Client.new();
+        try {
+          let response = (yield client.send(this));
+          let stream = utils.onDone(T.ListOfint(), response.stream, dart.bind(client, 'close'));
+          return new streamed_response.StreamedResponse.new(new byte_stream.ByteStream.new(stream), response.statusCode, {contentLength: response.contentLength, request: response.request, headers: response.headers, isRedirect: response.isRedirect, persistentConnection: response.persistentConnection, reasonPhrase: response.reasonPhrase});
+        } catch (e) {
+          let _ = dart.getThrown(e);
+          if (core.Object.is(_)) {
+            client.close();
+            dart.rethrow(e);
+          } else
+            throw e;
+        }
+      }).bind(this));
     }
-    set scale(value) {
-      super.scale = value;
-    }
-    createPainter(onChanged) {
-      if (!(onChanged !== null)) dart.assertFailed(null, I[1], 150, 12, "onChanged != null");
-      return new decoration_image.DecorationImagePainter.__(this, onChanged);
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (this === other) return true;
-      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
-      return decoration_image.DecorationImage.is(other) && other.image[$_equals](this.image) && dart.equals(other.colorFilter, this.colorFilter) && other.fit == this.fit && other.alignment._equals(this.alignment) && dart.equals(other.centerSlice, this.centerSlice) && other.repeat === this.repeat && other.matchTextDirection === this.matchTextDirection && other.scale === this.scale;
-    }
-    get hashCode() {
-      return ui.hashValues(this.image, this.colorFilter, this.fit, this.alignment, this.centerSlice, this.repeat, this.matchTextDirection, this.scale);
+    [_checkFinalized]() {
+      if (!this.finalized) return;
+      dart.throw(new core.StateError.new("Can't modify a finalized Request."));
     }
     toString() {
-      let properties = (() => {
-        let t0 = T.JSArrayOfString().of([dart.str(this.image)]);
-        if (this.colorFilter != null) t0[$add](dart.str(this.colorFilter));
-        if (this.fit != null && !(this.fit === box_fit.BoxFit.fill && this.centerSlice != null) && !(this.fit === box_fit.BoxFit.scaleDown && this.centerSlice == null)) t0[$add](dart.str(this.fit));
-        t0[$add](dart.str(this.alignment));
-        if (this.centerSlice != null) t0[$add]("centerSlice: " + dart.str(this.centerSlice));
-        if (this.repeat !== decoration_image.ImageRepeat.noRepeat) t0[$add](dart.str(this.repeat));
-        if (this.matchTextDirection) t0[$add]("match text direction");
-        t0[$add]("scale: " + dart.str(this.scale));
-        return t0;
-      })();
-      return object.objectRuntimeType(this, "DecorationImage") + "(" + properties[$join](", ") + ")";
+      return this.method + " " + dart.str(this.url);
     }
   };
-  (decoration_image.DecorationImage.new = function(opts) {
-    let image = opts && 'image' in opts ? opts.image : null;
-    let onError = opts && 'onError' in opts ? opts.onError : null;
-    let colorFilter = opts && 'colorFilter' in opts ? opts.colorFilter : null;
-    let fit = opts && 'fit' in opts ? opts.fit : null;
-    let alignment = opts && 'alignment' in opts ? opts.alignment : C[5] || CT.C5;
-    let centerSlice = opts && 'centerSlice' in opts ? opts.centerSlice : null;
-    let repeat = opts && 'repeat' in opts ? opts.repeat : C[3] || CT.C3;
-    let matchTextDirection = opts && 'matchTextDirection' in opts ? opts.matchTextDirection : false;
-    let scale = opts && 'scale' in opts ? opts.scale : 1;
-    this[image$] = image;
-    this[onError$] = onError;
-    this[colorFilter$] = colorFilter;
-    this[fit$] = fit;
-    this[alignment$] = alignment;
-    this[centerSlice$] = centerSlice;
-    this[repeat$] = repeat;
-    this[matchTextDirection$] = matchTextDirection;
-    this[scale$] = scale;
-    if (!(image !== null)) dart.assertFailed(null, I[1], 55, 15, "image != null");
-    if (!(alignment !== null)) dart.assertFailed(null, I[1], 56, 15, "alignment != null");
-    if (!(repeat !== null)) dart.assertFailed(null, I[1], 57, 15, "repeat != null");
-    if (!(matchTextDirection !== null)) dart.assertFailed(null, I[1], 58, 15, "matchTextDirection != null");
-    if (!(scale !== null)) dart.assertFailed(null, I[1], 59, 15, "scale != null");
+  (base_request.BaseRequest.new = function(method, url) {
+    this[_contentLength] = null;
+    this[_persistentConnection] = true;
+    this[_followRedirects] = true;
+    this[_maxRedirects] = 5;
+    this[_finalized] = false;
+    this[url$] = url;
+    this[method$] = base_request.BaseRequest._validateMethod(method);
+    this[headers] = T.LinkedHashMapOfString$String().new({equals: dart.fn((key1, key2) => key1[$toLowerCase]() === key2[$toLowerCase](), T.StringAndStringTobool()), hashCode: dart.fn(key => key[$toLowerCase]()[$hashCode], T.StringToint())});
     ;
-  }).prototype = decoration_image.DecorationImage.prototype;
-  dart.addTypeTests(decoration_image.DecorationImage);
-  dart.addTypeCaches(decoration_image.DecorationImage);
-  dart.setMethodSignature(decoration_image.DecorationImage, () => ({
-    __proto__: dart.getMethods(decoration_image.DecorationImage.__proto__),
-    createPainter: dart.fnType(decoration_image.DecorationImagePainter, [dart.fnType(dart.void, [])])
+  }).prototype = base_request.BaseRequest.prototype;
+  dart.addTypeTests(base_request.BaseRequest);
+  dart.addTypeCaches(base_request.BaseRequest);
+  dart.setMethodSignature(base_request.BaseRequest, () => ({
+    __proto__: dart.getMethods(base_request.BaseRequest.__proto__),
+    finalize: dart.fnType(byte_stream.ByteStream, []),
+    send: dart.fnType(async.Future$(streamed_response.StreamedResponse), []),
+    [_checkFinalized]: dart.fnType(dart.void, [])
   }));
-  dart.setLibraryUri(decoration_image.DecorationImage, I[0]);
-  dart.setFieldSignature(decoration_image.DecorationImage, () => ({
-    __proto__: dart.getFields(decoration_image.DecorationImage.__proto__),
-    image: dart.finalFieldType(image_provider.ImageProvider$(core.Object)),
-    onError: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [core.Object, dart.nullable(core.StackTrace)]))),
-    colorFilter: dart.finalFieldType(dart.nullable(ui.ColorFilter)),
-    fit: dart.finalFieldType(dart.nullable(box_fit.BoxFit)),
-    alignment: dart.finalFieldType(alignment.AlignmentGeometry),
-    centerSlice: dart.finalFieldType(dart.nullable(ui.Rect)),
-    repeat: dart.finalFieldType(decoration_image.ImageRepeat),
-    matchTextDirection: dart.finalFieldType(core.bool),
-    scale: dart.finalFieldType(core.double)
+  dart.setGetterSignature(base_request.BaseRequest, () => ({
+    __proto__: dart.getGetters(base_request.BaseRequest.__proto__),
+    contentLength: dart.nullable(core.int),
+    persistentConnection: core.bool,
+    followRedirects: core.bool,
+    maxRedirects: core.int,
+    finalized: core.bool
   }));
-  dart.defineExtensionMethods(decoration_image.DecorationImage, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(decoration_image.DecorationImage, ['hashCode']);
-  var _imageStream = dart.privateName(decoration_image, "_imageStream");
-  var _image = dart.privateName(decoration_image, "_image");
-  var _details$ = dart.privateName(decoration_image, "_details");
-  var _onChanged$ = dart.privateName(decoration_image, "_onChanged");
-  var _handleImage = dart.privateName(decoration_image, "_handleImage");
-  decoration_image.DecorationImagePainter = class DecorationImagePainter extends core.Object {
-    paint(canvas, rect, clipPath, configuration) {
-      let t1, t1$;
-      if (!(canvas !== null)) dart.assertFailed(null, I[1], 232, 12, "canvas != null");
-      if (!(rect !== null)) dart.assertFailed(null, I[1], 233, 12, "rect != null");
-      if (!(configuration !== null)) dart.assertFailed(null, I[1], 234, 12, "configuration != null");
-      let flipHorizontally = false;
-      if (this[_details$].matchTextDirection) {
-        if (!dart.fn(() => {
-          if (configuration.textDirection == null) {
-            dart.throw(new assertions.FlutterError.fromParts(T.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("DecorationImage.matchTextDirection can only be used when a TextDirection is available."), new assertions.ErrorDescription.new("When DecorationImagePainter.paint() was called, there was no text direction provided " + "in the ImageConfiguration object to match."), new (T.DiagnosticsPropertyOfDecorationImage()).new("The DecorationImage was", this[_details$], {style: diagnostics.DiagnosticsTreeStyle.errorProperty}), new (T.DiagnosticsPropertyOfImageConfiguration()).new("The ImageConfiguration was", configuration, {style: diagnostics.DiagnosticsTreeStyle.errorProperty})])));
+  dart.setSetterSignature(base_request.BaseRequest, () => ({
+    __proto__: dart.getSetters(base_request.BaseRequest.__proto__),
+    contentLength: dart.nullable(core.int),
+    persistentConnection: core.bool,
+    followRedirects: core.bool,
+    maxRedirects: core.int
+  }));
+  dart.setLibraryUri(base_request.BaseRequest, I[0]);
+  dart.setFieldSignature(base_request.BaseRequest, () => ({
+    __proto__: dart.getFields(base_request.BaseRequest.__proto__),
+    method: dart.finalFieldType(core.String),
+    url: dart.finalFieldType(core.Uri),
+    [_contentLength]: dart.fieldType(dart.nullable(core.int)),
+    [_persistentConnection]: dart.fieldType(core.bool),
+    [_followRedirects]: dart.fieldType(core.bool),
+    [_maxRedirects]: dart.fieldType(core.int),
+    headers: dart.finalFieldType(core.Map$(core.String, core.String)),
+    [_finalized]: dart.fieldType(core.bool)
+  }));
+  dart.defineExtensionMethods(base_request.BaseRequest, ['toString']);
+  dart.defineLazy(base_request.BaseRequest, {
+    /*base_request.BaseRequest._tokenRE*/get _tokenRE() {
+      return core.RegExp.new("^[\\w!#%&'*+\\-.^`|~]+$");
+    }
+  }, false);
+  multipart_request.MultipartRequest = class MultipartRequest extends base_request.BaseRequest {
+    get fields() {
+      return this[fields];
+    }
+    set fields(value) {
+      super.fields = value;
+    }
+    get files() {
+      return this[files];
+    }
+    set files(value) {
+      super.files = value;
+    }
+    get contentLength() {
+      let length = 0;
+      this.fields[$forEach](dart.fn((name, value) => {
+        length = length + ("--".length + 70 + "\r\n".length + convert.utf8.encode(this[_headerForField](name, value))[$length] + convert.utf8.encode(value)[$length] + "\r\n".length);
+      }, T.StringAndStringTovoid()));
+      for (let file of this.files) {
+        length = length + ("--".length + 70 + "\r\n".length + convert.utf8.encode(this[_headerForFile](file))[$length] + file.length + "\r\n".length);
+      }
+      return length + "--".length + 70 + "--\r\n".length;
+    }
+    set contentLength(value) {
+      dart.throw(new core.UnsupportedError.new("Cannot set the contentLength property of " + "multipart requests."));
+    }
+    finalize() {
+      let boundary = this[_boundaryString]();
+      this.headers[$_set]("content-type", "multipart/form-data; boundary=" + boundary);
+      super.finalize();
+      return new byte_stream.ByteStream.new(this[_finalize](boundary));
+    }
+    [_finalize](boundary) {
+      return new (T._AsyncStarImplOfListOfint()).new((function* _finalize(stream) {
+        let line = C[0] || CT.C0;
+        let separator = convert.utf8.encode("--" + boundary + "\r\n");
+        let close = convert.utf8.encode("--" + boundary + "--\r\n");
+        for (let field of this.fields[$entries]) {
+          if (stream.add(separator)) return;
+          yield;
+          if (stream.add(convert.utf8.encode(this[_headerForField](field.key, field.value)))) return;
+          yield;
+          if (stream.add(convert.utf8.encode(field.value))) return;
+          yield;
+          if (stream.add(line)) return;
+          yield;
+        }
+        for (let file of this.files) {
+          if (stream.add(separator)) return;
+          yield;
+          if (stream.add(convert.utf8.encode(this[_headerForFile](file)))) return;
+          yield;
+          if (stream.addStream(file.finalize())) return;
+          yield;
+          if (stream.add(line)) return;
+          yield;
+        }
+        if (stream.add(close)) return;
+        yield;
+      }).bind(this)).stream;
+    }
+    [_headerForField](name, value) {
+      let header = "content-disposition: form-data; name=\"" + this[_browserEncode](name) + "\"";
+      if (!utils.isPlainAscii(value)) {
+        header = header + "\r\n" + "content-type: text/plain; charset=utf-8\r\n" + "content-transfer-encoding: binary";
+      }
+      return header + "\r\n\r\n";
+    }
+    [_headerForFile](file) {
+      let header = "content-type: " + dart.str(file.contentType) + "\r\n" + "content-disposition: form-data; name=\"" + this[_browserEncode](file.field) + "\"";
+      if (file.filename != null) {
+        header = header + "; filename=\"" + this[_browserEncode](dart.nullCheck(file.filename)) + "\"";
+      }
+      return header + "\r\n\r\n";
+    }
+    [_browserEncode](value) {
+      return value[$replaceAll](multipart_request._newlineRegExp, "%0D%0A")[$replaceAll]("\"", "%22");
+    }
+    [_boundaryString]() {
+      let prefix = "dart-http-boundary-";
+      let list = T.ListOfint().generate(70 - prefix.length, dart.fn(index => boundary_characters.boundaryCharacters[$_get](multipart_request.MultipartRequest._random.nextInt(boundary_characters.boundaryCharacters[$length])), T.intToint()), {growable: false});
+      return prefix + core.String.fromCharCodes(list);
+    }
+  };
+  (multipart_request.MultipartRequest.new = function(method, url) {
+    this[fields] = new (T.IdentityMapOfString$String()).new();
+    this[files] = T.JSArrayOfMultipartFile().of([]);
+    multipart_request.MultipartRequest.__proto__.new.call(this, method, url);
+    ;
+  }).prototype = multipart_request.MultipartRequest.prototype;
+  dart.addTypeTests(multipart_request.MultipartRequest);
+  dart.addTypeCaches(multipart_request.MultipartRequest);
+  dart.setMethodSignature(multipart_request.MultipartRequest, () => ({
+    __proto__: dart.getMethods(multipart_request.MultipartRequest.__proto__),
+    [_finalize]: dart.fnType(async.Stream$(core.List$(core.int)), [core.String]),
+    [_headerForField]: dart.fnType(core.String, [core.String, core.String]),
+    [_headerForFile]: dart.fnType(core.String, [multipart_file.MultipartFile]),
+    [_browserEncode]: dart.fnType(core.String, [core.String]),
+    [_boundaryString]: dart.fnType(core.String, [])
+  }));
+  dart.setGetterSignature(multipart_request.MultipartRequest, () => ({
+    __proto__: dart.getGetters(multipart_request.MultipartRequest.__proto__),
+    contentLength: core.int
+  }));
+  dart.setLibraryUri(multipart_request.MultipartRequest, I[1]);
+  dart.setFieldSignature(multipart_request.MultipartRequest, () => ({
+    __proto__: dart.getFields(multipart_request.MultipartRequest.__proto__),
+    fields: dart.finalFieldType(core.Map$(core.String, core.String)),
+    files: dart.finalFieldType(core.List$(multipart_file.MultipartFile))
+  }));
+  dart.defineLazy(multipart_request.MultipartRequest, {
+    /*multipart_request.MultipartRequest._boundaryLength*/get _boundaryLength() {
+      return 70;
+    },
+    /*multipart_request.MultipartRequest._random*/get _random() {
+      return math.Random.new();
+    }
+  }, false);
+  dart.defineLazy(multipart_request, {
+    /*multipart_request._newlineRegExp*/get _newlineRegExp() {
+      return core.RegExp.new("\\r\\n|\\r|\\n");
+    }
+  }, false);
+  multipart_file_stub.multipartFileFromPath = function multipartFileFromPath(field, filePath, opts) {
+    let filename = opts && 'filename' in opts ? opts.filename : null;
+    let contentType = opts && 'contentType' in opts ? opts.contentType : null;
+    return dart.throw(new core.UnsupportedError.new("MultipartFile is only supported where dart:io is available."));
+  };
+  var field$ = dart.privateName(multipart_file, "MultipartFile.field");
+  var length$ = dart.privateName(multipart_file, "MultipartFile.length");
+  var filename$ = dart.privateName(multipart_file, "MultipartFile.filename");
+  var contentType$ = dart.privateName(multipart_file, "MultipartFile.contentType");
+  var _isFinalized = dart.privateName(multipart_file, "_isFinalized");
+  var _stream = dart.privateName(multipart_file, "_stream");
+  multipart_file.MultipartFile = class MultipartFile extends core.Object {
+    get field() {
+      return this[field$];
+    }
+    set field(value) {
+      super.field = value;
+    }
+    get length() {
+      return this[length$];
+    }
+    set length(value) {
+      super.length = value;
+    }
+    get filename() {
+      return this[filename$];
+    }
+    set filename(value) {
+      super.filename = value;
+    }
+    get contentType() {
+      return this[contentType$];
+    }
+    set contentType(value) {
+      super.contentType = value;
+    }
+    get isFinalized() {
+      return this[_isFinalized];
+    }
+    static fromBytes(field, value, opts) {
+      let filename = opts && 'filename' in opts ? opts.filename : null;
+      let contentType = opts && 'contentType' in opts ? opts.contentType : null;
+      let stream = byte_stream.ByteStream.fromBytes(value);
+      return new multipart_file.MultipartFile.new(field, stream, value[$length], {filename: filename, contentType: contentType});
+    }
+    static fromString(field, value, opts) {
+      let filename = opts && 'filename' in opts ? opts.filename : null;
+      let contentType = opts && 'contentType' in opts ? opts.contentType : null;
+      contentType == null ? contentType = new media_type.MediaType.new("text", "plain") : null;
+      let encoding = utils.encodingForCharset(contentType.parameters[$_get]("charset"), convert.utf8);
+      contentType = contentType.change({parameters: new (T.IdentityMapOfString$String()).from(["charset", encoding.name])});
+      return multipart_file.MultipartFile.fromBytes(field, encoding.encode(value), {filename: filename, contentType: contentType});
+    }
+    static fromPath(field, filePath, opts) {
+      let filename = opts && 'filename' in opts ? opts.filename : null;
+      let contentType = opts && 'contentType' in opts ? opts.contentType : null;
+      return multipart_file_stub.multipartFileFromPath(field, filePath, {filename: filename, contentType: contentType});
+    }
+    finalize() {
+      if (this.isFinalized) {
+        dart.throw(new core.StateError.new("Can't finalize a finalized MultipartFile."));
+      }
+      this[_isFinalized] = true;
+      return this[_stream];
+    }
+  };
+  (multipart_file.MultipartFile.new = function(field, stream, length, opts) {
+    let t1;
+    let filename = opts && 'filename' in opts ? opts.filename : null;
+    let contentType = opts && 'contentType' in opts ? opts.contentType : null;
+    this[_isFinalized] = false;
+    this[field$] = field;
+    this[length$] = length;
+    this[filename$] = filename;
+    this[_stream] = utils.toByteStream(stream);
+    this[contentType$] = (t1 = contentType, t1 == null ? new media_type.MediaType.new("application", "octet-stream") : t1);
+    ;
+  }).prototype = multipart_file.MultipartFile.prototype;
+  dart.addTypeTests(multipart_file.MultipartFile);
+  dart.addTypeCaches(multipart_file.MultipartFile);
+  dart.setMethodSignature(multipart_file.MultipartFile, () => ({
+    __proto__: dart.getMethods(multipart_file.MultipartFile.__proto__),
+    finalize: dart.fnType(byte_stream.ByteStream, [])
+  }));
+  dart.setGetterSignature(multipart_file.MultipartFile, () => ({
+    __proto__: dart.getGetters(multipart_file.MultipartFile.__proto__),
+    isFinalized: core.bool
+  }));
+  dart.setLibraryUri(multipart_file.MultipartFile, I[2]);
+  dart.setFieldSignature(multipart_file.MultipartFile, () => ({
+    __proto__: dart.getFields(multipart_file.MultipartFile.__proto__),
+    field: dart.finalFieldType(core.String),
+    length: dart.finalFieldType(core.int),
+    filename: dart.finalFieldType(dart.nullable(core.String)),
+    contentType: dart.finalFieldType(media_type.MediaType),
+    [_stream]: dart.finalFieldType(byte_stream.ByteStream),
+    [_isFinalized]: dart.fieldType(core.bool)
+  }));
+  var _controller = dart.privateName(streamed_request, "_controller");
+  streamed_request.StreamedRequest = class StreamedRequest extends base_request.BaseRequest {
+    get sink() {
+      return this[_controller].sink;
+    }
+    finalize() {
+      super.finalize();
+      return new byte_stream.ByteStream.new(this[_controller].stream);
+    }
+  };
+  (streamed_request.StreamedRequest.new = function(method, url) {
+    this[_controller] = T.StreamControllerOfListOfint().new({sync: true});
+    streamed_request.StreamedRequest.__proto__.new.call(this, method, url);
+    ;
+  }).prototype = streamed_request.StreamedRequest.prototype;
+  dart.addTypeTests(streamed_request.StreamedRequest);
+  dart.addTypeCaches(streamed_request.StreamedRequest);
+  dart.setGetterSignature(streamed_request.StreamedRequest, () => ({
+    __proto__: dart.getGetters(streamed_request.StreamedRequest.__proto__),
+    sink: async.EventSink$(core.List$(core.int))
+  }));
+  dart.setLibraryUri(streamed_request.StreamedRequest, I[3]);
+  dart.setFieldSignature(streamed_request.StreamedRequest, () => ({
+    __proto__: dart.getFields(streamed_request.StreamedRequest.__proto__),
+    [_controller]: dart.finalFieldType(async.StreamController$(core.List$(core.int)))
+  }));
+  var withCredentials = dart.privateName(browser_client, "BrowserClient.withCredentials");
+  var _xhrs = dart.privateName(browser_client, "_xhrs");
+  var _sendUnstreamed = dart.privateName(base_client, "_sendUnstreamed");
+  var _checkResponseSuccess = dart.privateName(base_client, "_checkResponseSuccess");
+  base_client.BaseClient = class BaseClient extends core.Object {
+    head(url, opts) {
+      let headers = opts && 'headers' in opts ? opts.headers : null;
+      return this[_sendUnstreamed]("HEAD", url, headers);
+    }
+    get(url, opts) {
+      let headers = opts && 'headers' in opts ? opts.headers : null;
+      return this[_sendUnstreamed]("GET", url, headers);
+    }
+    post(url, opts) {
+      let headers = opts && 'headers' in opts ? opts.headers : null;
+      let body = opts && 'body' in opts ? opts.body : null;
+      let encoding = opts && 'encoding' in opts ? opts.encoding : null;
+      return this[_sendUnstreamed]("POST", url, headers, body, encoding);
+    }
+    put(url, opts) {
+      let headers = opts && 'headers' in opts ? opts.headers : null;
+      let body = opts && 'body' in opts ? opts.body : null;
+      let encoding = opts && 'encoding' in opts ? opts.encoding : null;
+      return this[_sendUnstreamed]("PUT", url, headers, body, encoding);
+    }
+    patch(url, opts) {
+      let headers = opts && 'headers' in opts ? opts.headers : null;
+      let body = opts && 'body' in opts ? opts.body : null;
+      let encoding = opts && 'encoding' in opts ? opts.encoding : null;
+      return this[_sendUnstreamed]("PATCH", url, headers, body, encoding);
+    }
+    delete(url, opts) {
+      let headers = opts && 'headers' in opts ? opts.headers : null;
+      let body = opts && 'body' in opts ? opts.body : null;
+      let encoding = opts && 'encoding' in opts ? opts.encoding : null;
+      return this[_sendUnstreamed]("DELETE", url, headers, body, encoding);
+    }
+    read(url, opts) {
+      let headers = opts && 'headers' in opts ? opts.headers : null;
+      return async.async(core.String, (function* read() {
+        let response = (yield this.get(url, {headers: headers}));
+        this[_checkResponseSuccess](url, response);
+        return response.body;
+      }).bind(this));
+    }
+    readBytes(url, opts) {
+      let headers = opts && 'headers' in opts ? opts.headers : null;
+      return async.async(typed_data.Uint8List, (function* readBytes() {
+        let response = (yield this.get(url, {headers: headers}));
+        this[_checkResponseSuccess](url, response);
+        return response.bodyBytes;
+      }).bind(this));
+    }
+    [_sendUnstreamed](method, url, headers, body = null, encoding = null) {
+      return async.async(response$.Response, (function* _sendUnstreamed() {
+        let request = new request$.Request.new(method, url);
+        if (headers != null) request.headers[$addAll](headers);
+        if (encoding != null) request.encoding = encoding;
+        if (body != null) {
+          if (typeof body == 'string') {
+            request.body = body;
+          } else if (core.List.is(body)) {
+            request.bodyBytes = body[$cast](core.int);
+          } else if (core.Map.is(body)) {
+            request.bodyFields = body[$cast](core.String, core.String);
+          } else {
+            dart.throw(new core.ArgumentError.new("Invalid request body \"" + dart.str(body) + "\"."));
           }
-          return true;
-        }, T.VoidTobool())()) dart.assertFailed(null, I[1], 238, 14, "() {\r\n        // We check this first so that the assert will fire immediately, not just\r\n        // when the image is ready.\r\n        if (configuration.textDirection == null) {\r\n          throw FlutterError.fromParts(<DiagnosticsNode>[\r\n            ErrorSummary('DecorationImage.matchTextDirection can only be used when a TextDirection is available.'),\r\n            ErrorDescription(\r\n              'When DecorationImagePainter.paint() was called, there was no text direction provided '\r\n              'in the ImageConfiguration object to match.',\r\n            ),\r\n            DiagnosticsProperty<DecorationImage>('The DecorationImage was', _details, style: DiagnosticsTreeStyle.errorProperty),\r\n            DiagnosticsProperty<ImageConfiguration>('The ImageConfiguration was', configuration, style: DiagnosticsTreeStyle.errorProperty),\r\n          ]);\r\n        }\r\n        return true;\r\n      }()");
-        if (configuration.textDirection === ui.TextDirection.rtl) flipHorizontally = true;
-      }
-      let newImageStream = this[_details$].image.resolve(configuration);
-      if (!newImageStream.key[$_equals]((t1 = this[_imageStream], t1 == null ? null : t1.key))) {
-        let listener = new image_stream.ImageStreamListener.new(dart.bind(this, _handleImage), {onError: this[_details$].onError});
-        t1$ = this[_imageStream];
-        t1$ == null ? null : t1$.removeListener(listener);
-        this[_imageStream] = newImageStream;
-        dart.nullCheck(this[_imageStream]).addListener(listener);
-      }
-      if (this[_image] == null) return;
-      if (clipPath != null) {
-        canvas.save();
-        canvas.clipPath(clipPath);
-      }
-      decoration_image.paintImage({canvas: canvas, rect: rect, image: dart.nullCheck(this[_image]).image, debugImageLabel: dart.nullCheck(this[_image]).debugLabel, scale: this[_details$].scale * dart.nullCheck(this[_image]).scale, colorFilter: this[_details$].colorFilter, fit: this[_details$].fit, alignment: this[_details$].alignment.resolve(configuration.textDirection), centerSlice: this[_details$].centerSlice, repeat: this[_details$].repeat, flipHorizontally: flipHorizontally, filterQuality: ui.FilterQuality.low});
-      if (clipPath != null) canvas.restore();
+        }
+        return response$.Response.fromStream(yield this.send(request));
+      }).bind(this));
     }
-    [_handleImage](value, synchronousCall) {
-      let t1;
-      if (dart.equals(this[_image], value)) return;
-      if (this[_image] != null && dart.nullCheck(this[_image]).isCloneOf(value)) {
-        value.dispose();
-        return;
+    [_checkResponseSuccess](url, response) {
+      if (response.statusCode < 400) return;
+      let message = "Request to " + dart.str(url) + " failed with status " + dart.str(response.statusCode);
+      if (response.reasonPhrase != null) {
+        message = message + ": " + dart.str(response.reasonPhrase);
       }
-      t1 = this[_image];
-      t1 == null ? null : t1.dispose();
-      this[_image] = value;
-      if (!(this[_onChanged$] !== null)) dart.assertFailed(null, I[1], 304, 12, "_onChanged != null");
-      if (!synchronousCall) this[_onChanged$]();
+      dart.throw(new exception.ClientException.new(message + ".", url));
     }
-    dispose() {
-      let t1, t1$;
-      t1 = this[_imageStream];
-      t1 == null ? null : t1.removeListener(new image_stream.ImageStreamListener.new(dart.bind(this, _handleImage), {onError: this[_details$].onError}));
-      t1$ = this[_image];
-      t1$ == null ? null : t1$.dispose();
-      this[_image] = null;
-    }
-    toString() {
-      return object.objectRuntimeType(this, "DecorationImagePainter") + "(stream: " + dart.str(this[_imageStream]) + ", image: " + dart.str(this[_image]) + ") for " + dart.str(this[_details$]);
+    close() {
     }
   };
-  (decoration_image.DecorationImagePainter.__ = function(_details, _onChanged) {
-    this[_imageStream] = null;
-    this[_image] = null;
-    this[_details$] = _details;
-    this[_onChanged$] = _onChanged;
-    if (!(_details !== null)) dart.assertFailed(null, I[1], 209, 69, "_details != null");
+  (base_client.BaseClient.new = function() {
     ;
-  }).prototype = decoration_image.DecorationImagePainter.prototype;
-  dart.addTypeTests(decoration_image.DecorationImagePainter);
-  dart.addTypeCaches(decoration_image.DecorationImagePainter);
-  dart.setMethodSignature(decoration_image.DecorationImagePainter, () => ({
-    __proto__: dart.getMethods(decoration_image.DecorationImagePainter.__proto__),
-    paint: dart.fnType(dart.void, [ui.Canvas, ui.Rect, dart.nullable(ui.Path), image_provider.ImageConfiguration]),
-    [_handleImage]: dart.fnType(dart.void, [image_stream.ImageInfo, core.bool]),
-    dispose: dart.fnType(dart.void, [])
+  }).prototype = base_client.BaseClient.prototype;
+  dart.addTypeTests(base_client.BaseClient);
+  dart.addTypeCaches(base_client.BaseClient);
+  base_client.BaseClient[dart.implements] = () => [client$.Client];
+  dart.setMethodSignature(base_client.BaseClient, () => ({
+    __proto__: dart.getMethods(base_client.BaseClient.__proto__),
+    head: dart.fnType(async.Future$(response$.Response), [core.Uri], {headers: dart.nullable(core.Map$(core.String, core.String))}, {}),
+    get: dart.fnType(async.Future$(response$.Response), [core.Uri], {headers: dart.nullable(core.Map$(core.String, core.String))}, {}),
+    post: dart.fnType(async.Future$(response$.Response), [core.Uri], {body: dart.nullable(core.Object), encoding: dart.nullable(convert.Encoding), headers: dart.nullable(core.Map$(core.String, core.String))}, {}),
+    put: dart.fnType(async.Future$(response$.Response), [core.Uri], {body: dart.nullable(core.Object), encoding: dart.nullable(convert.Encoding), headers: dart.nullable(core.Map$(core.String, core.String))}, {}),
+    patch: dart.fnType(async.Future$(response$.Response), [core.Uri], {body: dart.nullable(core.Object), encoding: dart.nullable(convert.Encoding), headers: dart.nullable(core.Map$(core.String, core.String))}, {}),
+    delete: dart.fnType(async.Future$(response$.Response), [core.Uri], {body: dart.nullable(core.Object), encoding: dart.nullable(convert.Encoding), headers: dart.nullable(core.Map$(core.String, core.String))}, {}),
+    read: dart.fnType(async.Future$(core.String), [core.Uri], {headers: dart.nullable(core.Map$(core.String, core.String))}, {}),
+    readBytes: dart.fnType(async.Future$(typed_data.Uint8List), [core.Uri], {headers: dart.nullable(core.Map$(core.String, core.String))}, {}),
+    [_sendUnstreamed]: dart.fnType(async.Future$(response$.Response), [core.String, core.Uri, dart.nullable(core.Map$(core.String, core.String))], [dart.dynamic, dart.nullable(convert.Encoding)]),
+    [_checkResponseSuccess]: dart.fnType(dart.void, [core.Uri, response$.Response]),
+    close: dart.fnType(dart.void, [])
   }));
-  dart.setLibraryUri(decoration_image.DecorationImagePainter, I[0]);
-  dart.setFieldSignature(decoration_image.DecorationImagePainter, () => ({
-    __proto__: dart.getFields(decoration_image.DecorationImagePainter.__proto__),
-    [_details$]: dart.finalFieldType(decoration_image.DecorationImage),
-    [_onChanged$]: dart.finalFieldType(dart.fnType(dart.void, [])),
-    [_imageStream]: dart.fieldType(dart.nullable(image_stream.ImageStream)),
-    [_image]: dart.fieldType(dart.nullable(image_stream.ImageInfo))
-  }));
-  dart.defineExtensionMethods(decoration_image.DecorationImagePainter, ['toString']);
-  var _name = dart.privateName(ui, "_name");
-  var _CkMatrixColorFilter_matrix = dart.privateName(_engine, "_CkMatrixColorFilter.matrix");
-  decoration_image.debugFlushLastFrameImageSizeInfo = function debugFlushLastFrameImageSizeInfo() {
-    if (!dart.fn(() => {
-      decoration_image._lastFrameImageSizeInfo = T.LinkedHashSetOfImageSizeInfo().new();
-      return true;
-    }, T.VoidTobool())()) dart.assertFailed(null, I[1], 343, 10, "() {\r\n    _lastFrameImageSizeInfo = <ImageSizeInfo>{};\r\n    return true;\r\n  }()");
-  };
-  decoration_image.paintImage = function paintImage(opts) {
-    let t1, t1$, t1$0, t1$1, t1$2;
-    let canvas = opts && 'canvas' in opts ? opts.canvas : null;
-    let rect = opts && 'rect' in opts ? opts.rect : null;
-    let image = opts && 'image' in opts ? opts.image : null;
-    let debugImageLabel = opts && 'debugImageLabel' in opts ? opts.debugImageLabel : null;
-    let scale = opts && 'scale' in opts ? opts.scale : 1;
-    let colorFilter = opts && 'colorFilter' in opts ? opts.colorFilter : null;
-    let fit = opts && 'fit' in opts ? opts.fit : null;
-    let alignment = opts && 'alignment' in opts ? opts.alignment : C[5] || CT.C5;
-    let centerSlice = opts && 'centerSlice' in opts ? opts.centerSlice : null;
-    let repeat = opts && 'repeat' in opts ? opts.repeat : C[3] || CT.C3;
-    let flipHorizontally = opts && 'flipHorizontally' in opts ? opts.flipHorizontally : false;
-    let invertColors = opts && 'invertColors' in opts ? opts.invertColors : false;
-    let filterQuality = opts && 'filterQuality' in opts ? opts.filterQuality : C[6] || CT.C6;
-    let isAntiAlias = opts && 'isAntiAlias' in opts ? opts.isAntiAlias : false;
-    if (!(canvas !== null)) dart.assertFailed(null, I[1], 433, 10, "canvas != null");
-    if (!(image !== null)) dart.assertFailed(null, I[1], 434, 10, "image != null");
-    if (!(alignment !== null)) dart.assertFailed(null, I[1], 435, 10, "alignment != null");
-    if (!(repeat !== null)) dart.assertFailed(null, I[1], 436, 10, "repeat != null");
-    if (!(flipHorizontally !== null)) dart.assertFailed(null, I[1], 437, 10, "flipHorizontally != null");
-    if (!(isAntiAlias !== null)) dart.assertFailed(null, I[1], 438, 10, "isAntiAlias != null");
-    if (!dart.test((t1$ = (t1 = image.debugGetOpenHandleStackTraces(), t1 == null ? null : t1[$isNotEmpty]), t1$ == null ? true : t1$))) dart.assertFailed("Cannot paint an image that is disposed.\n" + "The caller of paintImage is expected to wait to dispose the image until " + "after painting has completed.", I[1], 440, 5, "image.debugGetOpenHandleStackTraces()?.isNotEmpty ?? true");
-    if (rect.isEmpty) return;
-    let outputSize = rect.size;
-    let inputSize = new ui.Size.new(image.width[$toDouble](), image.height[$toDouble]());
-    let sliceBorder = null;
-    if (centerSlice != null) {
-      sliceBorder = ui.Offset.as(inputSize['/'](scale)['-'](centerSlice.size));
-      outputSize = ui.Size.as(outputSize['-'](sliceBorder));
-      inputSize = ui.Size.as(inputSize['-'](sliceBorder['*'](scale)));
+  dart.setLibraryUri(base_client.BaseClient, I[4]);
+  browser_client.BrowserClient = class BrowserClient extends base_client.BaseClient {
+    get withCredentials() {
+      return this[withCredentials];
     }
-    fit == null ? fit = centerSlice == null ? box_fit.BoxFit.scaleDown : box_fit.BoxFit.fill : null;
-    if (!(centerSlice == null || fit !== box_fit.BoxFit.none && fit !== box_fit.BoxFit.cover)) dart.assertFailed(null, I[1], 456, 10, "centerSlice == null || (fit != BoxFit.none && fit != BoxFit.cover)");
-    let fittedSizes = box_fit.applyBoxFit(fit, inputSize['/'](scale), outputSize);
-    let sourceSize = fittedSizes.source['*'](scale);
-    let destinationSize = fittedSizes.destination;
-    if (centerSlice != null) {
-      outputSize = outputSize['+'](dart.nullCheck(sliceBorder));
-      destinationSize = destinationSize['+'](sliceBorder);
-      if (!sourceSize._equals(inputSize)) dart.assertFailed("centerSlice was used with a BoxFit that does not guarantee that the image is fully visible.", I[1], 465, 12, "sourceSize == inputSize");
+    set withCredentials(value) {
+      this[withCredentials] = value;
     }
-    if (repeat !== decoration_image.ImageRepeat.noRepeat && destinationSize._equals(outputSize)) {
-      repeat = decoration_image.ImageRepeat.noRepeat;
-    }
-    let paint = (t1$0 = ui.Paint.new(), (() => {
-      t1$0.isAntiAlias = isAntiAlias;
-      return t1$0;
-    })());
-    if (colorFilter != null) paint.colorFilter = colorFilter;
-    paint.filterQuality = filterQuality;
-    paint.invertColors = invertColors;
-    let halfWidthDelta = (outputSize.width - destinationSize.width) / 2.0;
-    let halfHeightDelta = (outputSize.height - destinationSize.height) / 2.0;
-    let dx = halfWidthDelta + (flipHorizontally ? -alignment.x : alignment.x) * halfWidthDelta;
-    let dy = halfHeightDelta + alignment.y * halfHeightDelta;
-    let destinationPosition = rect.topLeft.translate(dx, dy);
-    let destinationRect = destinationPosition['&'](destinationSize);
-    let invertedCanvas = false;
-    if (!false) {
-      let sizeInfo = new debug.ImageSizeInfo.new({source: (t1$1 = debugImageLabel, t1$1 == null ? "<Unknown Image(" + dart.str(image.width) + "×" + dart.str(image.height) + ")>" : t1$1), imageSize: new ui.Size.new(image.width[$toDouble](), image.height[$toDouble]()), displaySize: outputSize});
-      if (!dart.fn(() => {
+    send(request) {
+      return async.async(streamed_response.StreamedResponse, (function* send() {
         let t1;
-        if (debug.debugInvertOversizedImages && sizeInfo.decodedSizeInBytes > sizeInfo.displaySizeInBytes + debug.debugImageOverheadAllowance) {
-          let overheadInKilobytes = ((sizeInfo.decodedSizeInBytes - sizeInfo.displaySizeInBytes) / 1024)[$truncate]();
-          let outputWidth = outputSize.width[$toInt]();
-          let outputHeight = outputSize.height[$toInt]();
-          assertions.FlutterError.reportError(new assertions.FlutterErrorDetails.new({exception: "Image " + dart.str(debugImageLabel) + " has a display size of " + dart.str(outputWidth) + "×" + dart.str(outputHeight) + " but a decode size of " + dart.str(image.width) + "×" + dart.str(image.height) + ", which uses an additional " + dart.str(overheadInKilobytes) + "KB.\n\n" + "Consider resizing the asset ahead of time, supplying a cacheWidth " + "parameter of " + dart.str(outputWidth) + ", a cacheHeight parameter of " + dart.str(outputHeight) + ", or using a ResizeImage.", library: "painting library", context: new assertions.ErrorDescription.new("while painting an image")}));
-          canvas.saveLayer(destinationRect, (t1 = ui.Paint.new(), (() => {
-            t1.colorFilter = C[7] || CT.C7;
-            return t1;
-          })()));
-          let dy = -(rect.top + rect.height / 2.0);
-          canvas.translate(0.0, -dy);
-          canvas.scale(1.0, -1.0);
-          canvas.translate(0.0, dy);
-          invertedCanvas = true;
+        let bytes = (yield request.finalize().toBytes());
+        let xhr = html.HttpRequest.new();
+        this[_xhrs].add(xhr);
+        t1 = xhr;
+        (() => {
+          t1.open(request.method, dart.str(request.url), {async: true});
+          t1[$responseType] = "arraybuffer";
+          t1.withCredentials = this.withCredentials;
+          return t1;
+        })();
+        request.headers[$forEach](dart.bind(xhr, 'setRequestHeader'));
+        let completer = T.CompleterOfStreamedResponse().new();
+        pedantic.unawaited(xhr[$onLoad].first.then(dart.void, dart.fn(_ => {
+          let body = typed_data.ByteBuffer.as(xhr[$response])[$asUint8List]();
+          completer.complete(new streamed_response.StreamedResponse.new(byte_stream.ByteStream.fromBytes(body), dart.nullCheck(xhr.status), {contentLength: body[$length], request: request, headers: xhr[$responseHeaders], reasonPhrase: xhr.statusText}));
+        }, T.ProgressEventToNull())));
+        pedantic.unawaited(xhr[$onError].first.then(dart.void, dart.fn(_ => {
+          completer.completeError(new exception.ClientException.new("XMLHttpRequest error.", request.url), core.StackTrace.current);
+        }, T.ProgressEventToNull())));
+        xhr.send(bytes);
+        try {
+          return yield completer.future;
+        } finally {
+          this[_xhrs].remove(xhr);
         }
-        return true;
-      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 495, 12, "() {\r\n      if (debugInvertOversizedImages &&\r\n          sizeInfo.decodedSizeInBytes > sizeInfo.displaySizeInBytes + debugImageOverheadAllowance) {\r\n        final int overheadInKilobytes = (sizeInfo.decodedSizeInBytes - sizeInfo.displaySizeInBytes) ~/ 1024;\r\n        final int outputWidth = outputSize.width.toInt();\r\n        final int outputHeight = outputSize.height.toInt();\r\n        FlutterError.reportError(FlutterErrorDetails(\r\n          exception: 'Image $debugImageLabel has a display size of '\r\n            '$outputWidth×$outputHeight but a decode size of '\r\n            '${image.width}×${image.height}, which uses an additional '\r\n            '${overheadInKilobytes}KB.\\n\\n'\r\n            'Consider resizing the asset ahead of time, supplying a cacheWidth '\r\n            'parameter of $outputWidth, a cacheHeight parameter of '\r\n            '$outputHeight, or using a ResizeImage.',\r\n          library: 'painting library',\r\n          context: ErrorDescription('while painting an image'),\r\n        ));\r\n        // Invert the colors of the canvas.\r\n        canvas.saveLayer(\r\n          destinationRect,\r\n          Paint()..colorFilter = const ColorFilter.matrix(<double>[\r\n            -1,  0,  0, 0, 255,\r\n             0, -1,  0, 0, 255,\r\n             0,  0, -1, 0, 255,\r\n             0,  0,  0, 1,   0,\r\n          ]),\r\n        );\r\n        // Flip the canvas vertically.\r\n        final double dy = -(rect.top + rect.height / 2.0);\r\n        canvas.translate(0.0, -dy);\r\n        canvas.scale(1.0, -1.0);\r\n        canvas.translate(0.0, dy);\r\n        invertedCanvas = true;\r\n      }\r\n      return true;\r\n    }()");
-      if (!decoration_image._lastFrameImageSizeInfo.contains(sizeInfo)) {
-        let existingSizeInfo = decoration_image._pendingImageSizeInfo[$_get](sizeInfo.source);
-        if (existingSizeInfo == null || existingSizeInfo.displaySizeInBytes < sizeInfo.displaySizeInBytes) {
-          decoration_image._pendingImageSizeInfo[$_set](dart.nullCheck(sizeInfo.source), sizeInfo);
-        }
-        t1$2 = debug.debugOnPaintImage;
-        t1$2 == null ? null : t1$2(sizeInfo);
-        dart.nullCheck(binding.SchedulerBinding.instance).addPostFrameCallback(dart.fn(timeStamp => {
-          decoration_image._lastFrameImageSizeInfo = decoration_image._pendingImageSizeInfo[$values][$toSet]();
-          if (decoration_image._pendingImageSizeInfo[$isEmpty]) {
-            return;
-          }
-          developer.postEvent("Flutter.ImageSizesForFrame", (() => {
-            let t1 = new (T.IdentityMapOfString$Object()).new();
-            for (let imageSizeInfo of decoration_image._pendingImageSizeInfo[$values])
-              t1[$_set](dart.nullCheck(imageSizeInfo.source), imageSizeInfo.toJson());
-            return t1;
-          })());
-          decoration_image._pendingImageSizeInfo = new (T.IdentityMapOfString$ImageSizeInfo()).new();
-        }, T.DurationTovoid()));
-      }
+      }).bind(this));
     }
-    let needSave = centerSlice != null || repeat !== decoration_image.ImageRepeat.noRepeat || flipHorizontally;
-    if (needSave) canvas.save();
-    if (repeat !== decoration_image.ImageRepeat.noRepeat) canvas.clipRect(rect);
-    if (flipHorizontally) {
-      let dx = -(rect.left + rect.width / 2.0);
-      canvas.translate(-dx, 0.0);
-      canvas.scale(-1.0, 1.0);
-      canvas.translate(dx, 0.0);
-    }
-    if (centerSlice == null) {
-      let sourceRect = alignment.inscribe(sourceSize, ui.Offset.zero['&'](inputSize));
-      if (repeat === decoration_image.ImageRepeat.noRepeat) {
-        canvas.drawImageRect(image, sourceRect, destinationRect, paint);
-      } else {
-        for (let tileRect of decoration_image._generateImageTileRects(rect, destinationRect, repeat))
-          canvas.drawImageRect(image, sourceRect, tileRect, paint);
+    close() {
+      for (let xhr of this[_xhrs]) {
+        xhr.abort();
       }
-    } else {
-      canvas.scale(1 / scale);
-      if (repeat === decoration_image.ImageRepeat.noRepeat) {
-        canvas.drawImageNine(image, decoration_image._scaleRect(centerSlice, scale), decoration_image._scaleRect(destinationRect, scale), paint);
-      } else {
-        for (let tileRect of decoration_image._generateImageTileRects(rect, destinationRect, repeat))
-          canvas.drawImageNine(image, decoration_image._scaleRect(centerSlice, scale), decoration_image._scaleRect(tileRect, scale), paint);
-      }
-    }
-    if (needSave) canvas.restore();
-    if (invertedCanvas) {
-      canvas.restore();
     }
   };
-  decoration_image._generateImageTileRects = function _generateImageTileRects(outputRect, fundamentalRect, repeat) {
-    return new (T.SyncIterableOfRect()).new(function* _generateImageTileRects() {
-      let startX = 0;
-      let startY = 0;
-      let stopX = 0;
-      let stopY = 0;
-      let strideX = fundamentalRect.width;
-      let strideY = fundamentalRect.height;
-      if (repeat === decoration_image.ImageRepeat.repeat || repeat === decoration_image.ImageRepeat.repeatX) {
-        startX = ((outputRect.left - fundamentalRect.left) / strideX)[$floor]();
-        stopX = ((outputRect.right - fundamentalRect.right) / strideX)[$ceil]();
+  (browser_client.BrowserClient.new = function() {
+    this[_xhrs] = T.LinkedHashSetOfHttpRequest().new();
+    this[withCredentials] = false;
+    ;
+  }).prototype = browser_client.BrowserClient.prototype;
+  dart.addTypeTests(browser_client.BrowserClient);
+  dart.addTypeCaches(browser_client.BrowserClient);
+  dart.setMethodSignature(browser_client.BrowserClient, () => ({
+    __proto__: dart.getMethods(browser_client.BrowserClient.__proto__),
+    send: dart.fnType(async.Future$(streamed_response.StreamedResponse), [base_request.BaseRequest])
+  }));
+  dart.setLibraryUri(browser_client.BrowserClient, I[5]);
+  dart.setFieldSignature(browser_client.BrowserClient, () => ({
+    __proto__: dart.getFields(browser_client.BrowserClient.__proto__),
+    [_xhrs]: dart.finalFieldType(core.Set$(html.HttpRequest)),
+    withCredentials: dart.fieldType(core.bool)
+  }));
+  browser_client.createClient = function createClient() {
+    return new browser_client.BrowserClient.new();
+  };
+  var bodyBytes$ = dart.privateName(response$, "Response.bodyBytes");
+  var request$0 = dart.privateName(base_response, "BaseResponse.request");
+  var statusCode$ = dart.privateName(base_response, "BaseResponse.statusCode");
+  var reasonPhrase$ = dart.privateName(base_response, "BaseResponse.reasonPhrase");
+  var contentLength$ = dart.privateName(base_response, "BaseResponse.contentLength");
+  var headers$ = dart.privateName(base_response, "BaseResponse.headers");
+  var isRedirect$ = dart.privateName(base_response, "BaseResponse.isRedirect");
+  var persistentConnection$ = dart.privateName(base_response, "BaseResponse.persistentConnection");
+  base_response.BaseResponse = class BaseResponse extends core.Object {
+    get request() {
+      return this[request$0];
+    }
+    set request(value) {
+      super.request = value;
+    }
+    get statusCode() {
+      return this[statusCode$];
+    }
+    set statusCode(value) {
+      super.statusCode = value;
+    }
+    get reasonPhrase() {
+      return this[reasonPhrase$];
+    }
+    set reasonPhrase(value) {
+      super.reasonPhrase = value;
+    }
+    get contentLength() {
+      return this[contentLength$];
+    }
+    set contentLength(value) {
+      super.contentLength = value;
+    }
+    get headers() {
+      return this[headers$];
+    }
+    set headers(value) {
+      super.headers = value;
+    }
+    get isRedirect() {
+      return this[isRedirect$];
+    }
+    set isRedirect(value) {
+      super.isRedirect = value;
+    }
+    get persistentConnection() {
+      return this[persistentConnection$];
+    }
+    set persistentConnection(value) {
+      super.persistentConnection = value;
+    }
+  };
+  (base_response.BaseResponse.new = function(statusCode, opts) {
+    let contentLength = opts && 'contentLength' in opts ? opts.contentLength : null;
+    let request = opts && 'request' in opts ? opts.request : null;
+    let headers = opts && 'headers' in opts ? opts.headers : C[3] || CT.C3;
+    let isRedirect = opts && 'isRedirect' in opts ? opts.isRedirect : false;
+    let persistentConnection = opts && 'persistentConnection' in opts ? opts.persistentConnection : true;
+    let reasonPhrase = opts && 'reasonPhrase' in opts ? opts.reasonPhrase : null;
+    this[statusCode$] = statusCode;
+    this[contentLength$] = contentLength;
+    this[request$0] = request;
+    this[headers$] = headers;
+    this[isRedirect$] = isRedirect;
+    this[persistentConnection$] = persistentConnection;
+    this[reasonPhrase$] = reasonPhrase;
+    if (this.statusCode < 100) {
+      dart.throw(new core.ArgumentError.new("Invalid status code " + dart.str(this.statusCode) + "."));
+    } else if (this.contentLength != null && dart.nullCheck(this.contentLength) < 0) {
+      dart.throw(new core.ArgumentError.new("Invalid content length " + dart.str(this.contentLength) + "."));
+    }
+  }).prototype = base_response.BaseResponse.prototype;
+  dart.addTypeTests(base_response.BaseResponse);
+  dart.addTypeCaches(base_response.BaseResponse);
+  dart.setLibraryUri(base_response.BaseResponse, I[6]);
+  dart.setFieldSignature(base_response.BaseResponse, () => ({
+    __proto__: dart.getFields(base_response.BaseResponse.__proto__),
+    request: dart.finalFieldType(dart.nullable(base_request.BaseRequest)),
+    statusCode: dart.finalFieldType(core.int),
+    reasonPhrase: dart.finalFieldType(dart.nullable(core.String)),
+    contentLength: dart.finalFieldType(dart.nullable(core.int)),
+    headers: dart.finalFieldType(core.Map$(core.String, core.String)),
+    isRedirect: dart.finalFieldType(core.bool),
+    persistentConnection: dart.finalFieldType(core.bool)
+  }));
+  response$.Response = class Response extends base_response.BaseResponse {
+    get bodyBytes() {
+      return this[bodyBytes$];
+    }
+    set bodyBytes(value) {
+      super.bodyBytes = value;
+    }
+    get body() {
+      return response$._encodingForHeaders(this.headers).decode(this.bodyBytes);
+    }
+    static fromStream(response) {
+      return async.async(response$.Response, function* fromStream() {
+        let body = (yield response.stream.toBytes());
+        return new response$.Response.bytes(body, response.statusCode, {request: response.request, headers: response.headers, isRedirect: response.isRedirect, persistentConnection: response.persistentConnection, reasonPhrase: response.reasonPhrase});
+      });
+    }
+  };
+  (response$.Response.new = function(body, statusCode, opts) {
+    let request = opts && 'request' in opts ? opts.request : null;
+    let headers = opts && 'headers' in opts ? opts.headers : C[3] || CT.C3;
+    let isRedirect = opts && 'isRedirect' in opts ? opts.isRedirect : false;
+    let persistentConnection = opts && 'persistentConnection' in opts ? opts.persistentConnection : true;
+    let reasonPhrase = opts && 'reasonPhrase' in opts ? opts.reasonPhrase : null;
+    response$.Response.bytes.call(this, response$._encodingForHeaders(headers).encode(body), statusCode, {request: request, headers: headers, isRedirect: isRedirect, persistentConnection: persistentConnection, reasonPhrase: reasonPhrase});
+  }).prototype = response$.Response.prototype;
+  (response$.Response.bytes = function(bodyBytes, statusCode, opts) {
+    let request = opts && 'request' in opts ? opts.request : null;
+    let headers = opts && 'headers' in opts ? opts.headers : C[3] || CT.C3;
+    let isRedirect = opts && 'isRedirect' in opts ? opts.isRedirect : false;
+    let persistentConnection = opts && 'persistentConnection' in opts ? opts.persistentConnection : true;
+    let reasonPhrase = opts && 'reasonPhrase' in opts ? opts.reasonPhrase : null;
+    this[bodyBytes$] = utils.toUint8List(bodyBytes);
+    response$.Response.__proto__.new.call(this, statusCode, {contentLength: bodyBytes[$length], request: request, headers: headers, isRedirect: isRedirect, persistentConnection: persistentConnection, reasonPhrase: reasonPhrase});
+    ;
+  }).prototype = response$.Response.prototype;
+  dart.addTypeTests(response$.Response);
+  dart.addTypeCaches(response$.Response);
+  dart.setGetterSignature(response$.Response, () => ({
+    __proto__: dart.getGetters(response$.Response.__proto__),
+    body: core.String
+  }));
+  dart.setLibraryUri(response$.Response, I[7]);
+  dart.setFieldSignature(response$.Response, () => ({
+    __proto__: dart.getFields(response$.Response.__proto__),
+    bodyBytes: dart.finalFieldType(typed_data.Uint8List)
+  }));
+  response$._encodingForHeaders = function _encodingForHeaders(headers) {
+    return utils.encodingForCharset(response$._contentTypeForHeaders(headers).parameters[$_get]("charset"));
+  };
+  response$._contentTypeForHeaders = function _contentTypeForHeaders(headers) {
+    let contentType = headers[$_get]("content-type");
+    if (contentType != null) return media_type.MediaType.parse(contentType);
+    return new media_type.MediaType.new("application", "octet-stream");
+  };
+  var _defaultEncoding = dart.privateName(request$, "_defaultEncoding");
+  var _bodyBytes = dart.privateName(request$, "_bodyBytes");
+  var _contentType = dart.privateName(request$, "_contentType");
+  var _checkFinalized$ = dart.privateName(request$, "_checkFinalized");
+  request$.Request = class Request extends base_request.BaseRequest {
+    get contentLength() {
+      return this.bodyBytes[$length];
+    }
+    set contentLength(value) {
+      dart.throw(new core.UnsupportedError.new("Cannot set the contentLength property of " + "non-streaming Request objects."));
+    }
+    get encoding() {
+      if (this[_contentType] == null || !dart.nullCheck(this[_contentType]).parameters[$containsKey]("charset")) {
+        return this[_defaultEncoding];
       }
-      if (repeat === decoration_image.ImageRepeat.repeat || repeat === decoration_image.ImageRepeat.repeatY) {
-        startY = ((outputRect.top - fundamentalRect.top) / strideY)[$floor]();
-        stopY = ((outputRect.bottom - fundamentalRect.bottom) / strideY)[$ceil]();
+      return utils.requiredEncodingForCharset(dart.nullCheck(dart.nullCheck(this[_contentType]).parameters[$_get]("charset")));
+    }
+    set encoding(value) {
+      this[_checkFinalized$]();
+      this[_defaultEncoding] = value;
+      let contentType = this[_contentType];
+      if (contentType == null) return;
+      this[_contentType] = contentType.change({parameters: new (T.IdentityMapOfString$String()).from(["charset", value.name])});
+    }
+    get bodyBytes() {
+      return this[_bodyBytes];
+    }
+    set bodyBytes(value) {
+      this[_checkFinalized$]();
+      this[_bodyBytes] = utils.toUint8List(value);
+    }
+    get body() {
+      return this.encoding.decode(this.bodyBytes);
+    }
+    set body(value) {
+      this.bodyBytes = this.encoding.encode(value);
+      let contentType = this[_contentType];
+      if (contentType == null) {
+        this[_contentType] = new media_type.MediaType.new("text", "plain", new (T.IdentityMapOfString$String()).from(["charset", this.encoding.name]));
+      } else if (!contentType.parameters[$containsKey]("charset")) {
+        this[_contentType] = contentType.change({parameters: new (T.IdentityMapOfString$String()).from(["charset", this.encoding.name])});
       }
-      for (let i = startX; i <= stopX; i = i + 1) {
-        for (let j = startY; j <= stopY; j = j + 1)
-          yield fundamentalRect.shift(new ui.Offset.new(i * strideX, j * strideY));
+    }
+    get bodyFields() {
+      let contentType = this[_contentType];
+      if (contentType == null || contentType.mimeType !== "application/x-www-form-urlencoded") {
+        dart.throw(new core.StateError.new("Cannot access the body fields of a Request without " + "content-type \"application/x-www-form-urlencoded\"."));
+      }
+      return core.Uri.splitQueryString(this.body, {encoding: this.encoding});
+    }
+    set bodyFields(fields) {
+      let contentType = this[_contentType];
+      if (contentType == null) {
+        this[_contentType] = new media_type.MediaType.new("application", "x-www-form-urlencoded");
+      } else if (contentType.mimeType !== "application/x-www-form-urlencoded") {
+        dart.throw(new core.StateError.new("Cannot set the body fields of a Request with " + "content-type \"" + contentType.mimeType + "\"."));
+      }
+      this.body = utils.mapToQuery(fields, {encoding: this.encoding});
+    }
+    finalize() {
+      super.finalize();
+      return byte_stream.ByteStream.fromBytes(this.bodyBytes);
+    }
+    get [_contentType]() {
+      let contentType = this.headers[$_get]("content-type");
+      if (contentType == null) return null;
+      return media_type.MediaType.parse(contentType);
+    }
+    set [_contentType](value) {
+      if (value == null) {
+        this.headers[$remove]("content-type");
+      } else {
+        this.headers[$_set]("content-type", dart.toString(value));
+      }
+    }
+    [_checkFinalized$]() {
+      if (!this.finalized) return;
+      dart.throw(new core.StateError.new("Can't modify a finalized Request."));
+    }
+  };
+  (request$.Request.new = function(method, url) {
+    this[_defaultEncoding] = convert.utf8;
+    this[_bodyBytes] = _native_typed_data.NativeUint8List.new(0);
+    request$.Request.__proto__.new.call(this, method, url);
+    ;
+  }).prototype = request$.Request.prototype;
+  dart.addTypeTests(request$.Request);
+  dart.addTypeCaches(request$.Request);
+  dart.setMethodSignature(request$.Request, () => ({
+    __proto__: dart.getMethods(request$.Request.__proto__),
+    [_checkFinalized$]: dart.fnType(dart.void, [])
+  }));
+  dart.setGetterSignature(request$.Request, () => ({
+    __proto__: dart.getGetters(request$.Request.__proto__),
+    contentLength: core.int,
+    encoding: convert.Encoding,
+    bodyBytes: typed_data.Uint8List,
+    body: core.String,
+    bodyFields: core.Map$(core.String, core.String),
+    [_contentType]: dart.nullable(media_type.MediaType)
+  }));
+  dart.setSetterSignature(request$.Request, () => ({
+    __proto__: dart.getSetters(request$.Request.__proto__),
+    encoding: convert.Encoding,
+    bodyBytes: core.List$(core.int),
+    body: core.String,
+    bodyFields: core.Map$(core.String, core.String),
+    [_contentType]: dart.nullable(media_type.MediaType)
+  }));
+  dart.setLibraryUri(request$.Request, I[8]);
+  dart.setFieldSignature(request$.Request, () => ({
+    __proto__: dart.getFields(request$.Request.__proto__),
+    [_defaultEncoding]: dart.fieldType(convert.Encoding),
+    [_bodyBytes]: dart.fieldType(typed_data.Uint8List)
+  }));
+  var stream$ = dart.privateName(streamed_response, "StreamedResponse.stream");
+  streamed_response.StreamedResponse = class StreamedResponse extends base_response.BaseResponse {
+    get stream() {
+      return this[stream$];
+    }
+    set stream(value) {
+      super.stream = value;
+    }
+  };
+  (streamed_response.StreamedResponse.new = function(stream, statusCode, opts) {
+    let contentLength = opts && 'contentLength' in opts ? opts.contentLength : null;
+    let request = opts && 'request' in opts ? opts.request : null;
+    let headers = opts && 'headers' in opts ? opts.headers : C[3] || CT.C3;
+    let isRedirect = opts && 'isRedirect' in opts ? opts.isRedirect : false;
+    let persistentConnection = opts && 'persistentConnection' in opts ? opts.persistentConnection : true;
+    let reasonPhrase = opts && 'reasonPhrase' in opts ? opts.reasonPhrase : null;
+    this[stream$] = utils.toByteStream(stream);
+    streamed_response.StreamedResponse.__proto__.new.call(this, statusCode, {contentLength: contentLength, request: request, headers: headers, isRedirect: isRedirect, persistentConnection: persistentConnection, reasonPhrase: reasonPhrase});
+    ;
+  }).prototype = streamed_response.StreamedResponse.prototype;
+  dart.addTypeTests(streamed_response.StreamedResponse);
+  dart.addTypeCaches(streamed_response.StreamedResponse);
+  dart.setLibraryUri(streamed_response.StreamedResponse, I[9]);
+  dart.setFieldSignature(streamed_response.StreamedResponse, () => ({
+    __proto__: dart.getFields(streamed_response.StreamedResponse.__proto__),
+    stream: dart.finalFieldType(byte_stream.ByteStream)
+  }));
+  client$.Client = class Client extends core.Object {
+    static new() {
+      return browser_client.createClient();
+    }
+  };
+  (client$.Client[dart.mixinNew] = function() {
+  }).prototype = client$.Client.prototype;
+  dart.addTypeTests(client$.Client);
+  dart.addTypeCaches(client$.Client);
+  dart.setLibraryUri(client$.Client, I[10]);
+  http.head = function head(url, opts) {
+    let headers = opts && 'headers' in opts ? opts.headers : null;
+    return http._withClient(response$.Response, dart.fn(client => client.head(url, {headers: headers}), T.ClientToFutureOfResponse()));
+  };
+  http.get = function get(url, opts) {
+    let headers = opts && 'headers' in opts ? opts.headers : null;
+    return http._withClient(response$.Response, dart.fn(client => client.get(url, {headers: headers}), T.ClientToFutureOfResponse()));
+  };
+  http.post = function post(url, opts) {
+    let headers = opts && 'headers' in opts ? opts.headers : null;
+    let body = opts && 'body' in opts ? opts.body : null;
+    let encoding = opts && 'encoding' in opts ? opts.encoding : null;
+    return http._withClient(response$.Response, dart.fn(client => client.post(url, {headers: headers, body: body, encoding: encoding}), T.ClientToFutureOfResponse()));
+  };
+  http.put = function put(url, opts) {
+    let headers = opts && 'headers' in opts ? opts.headers : null;
+    let body = opts && 'body' in opts ? opts.body : null;
+    let encoding = opts && 'encoding' in opts ? opts.encoding : null;
+    return http._withClient(response$.Response, dart.fn(client => client.put(url, {headers: headers, body: body, encoding: encoding}), T.ClientToFutureOfResponse()));
+  };
+  http.patch = function patch(url, opts) {
+    let headers = opts && 'headers' in opts ? opts.headers : null;
+    let body = opts && 'body' in opts ? opts.body : null;
+    let encoding = opts && 'encoding' in opts ? opts.encoding : null;
+    return http._withClient(response$.Response, dart.fn(client => client.patch(url, {headers: headers, body: body, encoding: encoding}), T.ClientToFutureOfResponse()));
+  };
+  http.delete = function $delete(url, opts) {
+    let headers = opts && 'headers' in opts ? opts.headers : null;
+    let body = opts && 'body' in opts ? opts.body : null;
+    let encoding = opts && 'encoding' in opts ? opts.encoding : null;
+    return http._withClient(response$.Response, dart.fn(client => client.delete(url, {headers: headers, body: body, encoding: encoding}), T.ClientToFutureOfResponse()));
+  };
+  http.read = function read(url, opts) {
+    let headers = opts && 'headers' in opts ? opts.headers : null;
+    return http._withClient(core.String, dart.fn(client => client.read(url, {headers: headers}), T.ClientToFutureOfString()));
+  };
+  http.readBytes = function readBytes(url, opts) {
+    let headers = opts && 'headers' in opts ? opts.headers : null;
+    return http._withClient(typed_data.Uint8List, dart.fn(client => client.readBytes(url, {headers: headers}), T.ClientToFutureOfUint8List()));
+  };
+  http._withClient = function _withClient(T, fn) {
+    return async.async(T, function* _withClient() {
+      let client = client$.Client.new();
+      try {
+        return yield fn(client);
+      } finally {
+        client.close();
       }
     });
   };
-  decoration_image._scaleRect = function _scaleRect(rect, scale) {
-    return new ui.Rect.fromLTRB(rect.left * scale, rect.top * scale, rect.right * scale, rect.bottom * scale);
-  };
-  dart.defineLazy(decoration_image, {
-    /*decoration_image._pendingImageSizeInfo*/get _pendingImageSizeInfo() {
-      return new (T.IdentityMapOfString$ImageSizeInfo()).new();
-    },
-    set _pendingImageSizeInfo(_) {},
-    /*decoration_image._lastFrameImageSizeInfo*/get _lastFrameImageSizeInfo() {
-      return T.LinkedHashSetOfImageSizeInfo().new();
-    },
-    set _lastFrameImageSizeInfo(_) {}
-  }, false);
-  dart.trackLibraries("packages/flutter/src/painting/decoration_image.dart", {
-    "package:flutter/src/painting/decoration_image.dart": decoration_image
+  dart.trackLibraries("packages/http/src/multipart_request.dart", {
+    "package:http/src/multipart_request.dart": multipart_request,
+    "package:http/src/multipart_file_stub.dart": multipart_file_stub,
+    "package:http/src/multipart_file.dart": multipart_file,
+    "package:http/src/streamed_request.dart": streamed_request,
+    "package:http/src/browser_client.dart": browser_client,
+    "package:http/src/response.dart": response$,
+    "package:http/src/request.dart": request$,
+    "package:http/src/streamed_response.dart": streamed_response,
+    "package:http/src/base_response.dart": base_response,
+    "package:http/src/base_request.dart": base_request,
+    "package:http/src/base_client.dart": base_client,
+    "package:http/src/client.dart": client$,
+    "package:http/http.dart": http
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["decoration_image.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/painting/decoration_image.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["base_request.dart","multipart_request.dart","multipart_file_stub.dart","multipart_file.dart","streamed_request.dart","base_client.dart","browser_client.dart","base_response.dart","response.dart","request.dart","streamed_response.dart","client.dart","../http.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/http/src/multipart_request.dart.lib.js"}');
   // Exports:
   return {
-    src__painting__decoration_image: decoration_image
+    src__multipart_request: multipart_request,
+    src__multipart_file_stub: multipart_file_stub,
+    src__multipart_file: multipart_file,
+    src__streamed_request: streamed_request,
+    src__browser_client: browser_client,
+    src__response: response$,
+    src__request: request$,
+    src__streamed_response: streamed_response,
+    src__base_response: base_response,
+    src__base_request: base_request,
+    src__base_client: base_client,
+    src__client: client$,
+    http: http
   };
 }));
 
-//# sourceMappingURL=decoration_image.dart.lib.js.map
-=======
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 1,
-        [x$]: -1
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 1,
-        [x$]: 0
-      });
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: alignment.Alignment.prototype,
-        [y$]: 1,
-        [x$]: 1
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name]: "TextDirection.rtl",
-        index: 0
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name]: "TextDirection.ltr",
-        index: 1
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: -1,
-        [start$]: -1
-      });
-    },
-    get C12() {
-      return C[12] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: -1,
-        [start$]: 0
-      });
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: -1,
-        [start$]: 1
-      });
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 0,
-        [start$]: -1
-      });
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 0,
-        [start$]: 0
-      });
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 0,
-        [start$]: 1
-      });
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 1,
-        [start$]: -1
-      });
-    },
-    get C18() {
-      return C[18] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 1,
-        [start$]: 0
-      });
-    },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: alignment.AlignmentDirectional.prototype,
-        [y$0]: 1,
-        [start$]: 1
-      });
-    },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: alignment.TextAlignVertical.prototype,
-        [y$1]: -1
-      });
-    },
-    get C21() {
-      return C[21] = dart.const({
-        __proto__: alignment.TextAlignVertical.prototype,
-        [y$1]: 0
-      });
-    },
-    get C22() {
-      return C[22] = dart.const({
-        __proto__: alignment.TextAlignVertical.prototype,
-        [y$1]: 1
-      });
-    }
-  }, false);
-  var C = Array(23).fill(void 0);
-  var I = [
-    "file:///D:/DevTools/flutter/packages/flutter/lib/src/painting/alignment.dart",
-    "package:flutter/src/painting/alignment.dart"
-  ];
-  var _x = dart.privateName(alignment, "_x");
-  var _start = dart.privateName(alignment, "_start");
-  var _y = dart.privateName(alignment, "_y");
-  alignment.AlignmentGeometry = class AlignmentGeometry extends core.Object {
-    add(other) {
-      return new alignment._MixedAlignment.new(this[_x] + other[_x], this[_start] + other[_start], this[_y] + other[_y]);
-    }
-    static lerp(a, b, t) {
-      if (!(t !== null)) dart.assertFailed(null, I[0], 91, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return dart.nullCheck(b)['*'](t);
-      if (b == null) return a['*'](1.0 - t);
-      if (alignment.Alignment.is(a) && alignment.Alignment.is(b)) return alignment.Alignment.lerp(a, b, t);
-      if (alignment.AlignmentDirectional.is(a) && alignment.AlignmentDirectional.is(b)) return alignment.AlignmentDirectional.lerp(a, b, t);
-      return new alignment._MixedAlignment.new(dart.nullCheck(ui.lerpDouble(a[_x], b[_x], t)), dart.nullCheck(ui.lerpDouble(a[_start], b[_start], t)), dart.nullCheck(ui.lerpDouble(a[_y], b[_y], t)));
-    }
-    toString() {
-      if (this[_start] === 0.0) return alignment.Alignment._stringify(this[_x], this[_y]);
-      if (this[_x] === 0.0) return alignment.AlignmentDirectional._stringify(this[_start], this[_y]);
-      return alignment.Alignment._stringify(this[_x], this[_y]) + " + " + alignment.AlignmentDirectional._stringify(this[_start], 0.0);
-    }
-    _equals(other) {
-      if (other == null) return false;
-      return alignment.AlignmentGeometry.is(other) && other[_x] === this[_x] && other[_start] === this[_start] && other[_y] === this[_y];
-    }
-    get hashCode() {
-      return ui.hashValues(this[_x], this[_start], this[_y]);
-    }
-  };
-  (alignment.AlignmentGeometry.new = function() {
-    ;
-  }).prototype = alignment.AlignmentGeometry.prototype;
-  dart.addTypeTests(alignment.AlignmentGeometry);
-  dart.addTypeCaches(alignment.AlignmentGeometry);
-  dart.setMethodSignature(alignment.AlignmentGeometry, () => ({
-    __proto__: dart.getMethods(alignment.AlignmentGeometry.__proto__),
-    add: dart.fnType(alignment.AlignmentGeometry, [alignment.AlignmentGeometry])
-  }));
-  dart.setLibraryUri(alignment.AlignmentGeometry, I[1]);
-  dart.defineExtensionMethods(alignment.AlignmentGeometry, ['toString', '_equals']);
-  dart.defineExtensionAccessors(alignment.AlignmentGeometry, ['hashCode']);
-  var x$ = dart.privateName(alignment, "Alignment.x");
-  var y$ = dart.privateName(alignment, "Alignment.y");
-  alignment.Alignment = class Alignment extends alignment.AlignmentGeometry {
-    get x() {
-      return this[x$];
-    }
-    set x(value) {
-      super.x = value;
-    }
-    get y() {
-      return this[y$];
-    }
-    set y(value) {
-      super.y = value;
-    }
-    get [_x]() {
-      return this.x;
-    }
-    get [_start]() {
-      return 0.0;
-    }
-    get [_y]() {
-      return this.y;
-    }
-    add(other) {
-      if (alignment.Alignment.is(other)) return this['+'](other);
-      return super.add(other);
-    }
-    ['-'](other) {
-      return new alignment.Alignment.new(this.x - other.x, this.y - other.y);
-    }
-    ['+'](other) {
-      return new alignment.Alignment.new(this.x + other.x, this.y + other.y);
-    }
-    _negate() {
-      return new alignment.Alignment.new(-this.x, -this.y);
-    }
-    ['*'](other) {
-      return new alignment.Alignment.new(this.x * other, this.y * other);
-    }
-    ['/'](other) {
-      return new alignment.Alignment.new(this.x / other, this.y / other);
-    }
-    ['~/'](other) {
-      return new alignment.Alignment.new((this.x / other)[$truncate]()[$toDouble](), (this.y / other)[$truncate]()[$toDouble]());
-    }
-    ['%'](other) {
-      return new alignment.Alignment.new(this.x[$modulo](other), this.y[$modulo](other));
-    }
-    alongOffset(other) {
-      let centerX = other.dx / 2.0;
-      let centerY = other.dy / 2.0;
-      return new ui.Offset.new(centerX + this.x * centerX, centerY + this.y * centerY);
-    }
-    alongSize(other) {
-      let centerX = other.width / 2.0;
-      let centerY = other.height / 2.0;
-      return new ui.Offset.new(centerX + this.x * centerX, centerY + this.y * centerY);
-    }
-    withinRect(rect) {
-      let halfWidth = rect.width / 2.0;
-      let halfHeight = rect.height / 2.0;
-      return new ui.Offset.new(rect.left + halfWidth + this.x * halfWidth, rect.top + halfHeight + this.y * halfHeight);
-    }
-    inscribe(size, rect) {
-      let halfWidthDelta = (rect.width - size.width) / 2.0;
-      let halfHeightDelta = (rect.height - size.height) / 2.0;
-      return new ui.Rect.fromLTWH(rect.left + halfWidthDelta + this.x * halfWidthDelta, rect.top + halfHeightDelta + this.y * halfHeightDelta, size.width, size.height);
-    }
-    static lerp(a, b, t) {
-      if (!(t !== null)) dart.assertFailed(null, I[0], 336, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return new alignment.Alignment.new(dart.nullCheck(ui.lerpDouble(0.0, dart.nullCheck(b).x, t)), dart.nullCheck(ui.lerpDouble(0.0, b.y, t)));
-      if (b == null) return new alignment.Alignment.new(dart.nullCheck(ui.lerpDouble(a.x, 0.0, t)), dart.nullCheck(ui.lerpDouble(a.y, 0.0, t)));
-      return new alignment.Alignment.new(dart.nullCheck(ui.lerpDouble(a.x, b.x, t)), dart.nullCheck(ui.lerpDouble(a.y, b.y, t)));
-    }
-    resolve(direction) {
-      return this;
-    }
-    static _stringify(x, y) {
-      if (x === -1.0 && y === -1.0) return "Alignment.topLeft";
-      if (x === 0.0 && y === -1.0) return "Alignment.topCenter";
-      if (x === 1.0 && y === -1.0) return "Alignment.topRight";
-      if (x === -1.0 && y === 0.0) return "Alignment.centerLeft";
-      if (x === 0.0 && y === 0.0) return "Alignment.center";
-      if (x === 1.0 && y === 0.0) return "Alignment.centerRight";
-      if (x === -1.0 && y === 1.0) return "Alignment.bottomLeft";
-      if (x === 0.0 && y === 1.0) return "Alignment.bottomCenter";
-      if (x === 1.0 && y === 1.0) return "Alignment.bottomRight";
-      return "Alignment(" + x[$toStringAsFixed](1) + ", " + y[$toStringAsFixed](1) + ")";
-    }
-    toString() {
-      return alignment.Alignment._stringify(this.x, this.y);
-    }
-  };
-  (alignment.Alignment.new = function(x, y) {
-    this[x$] = x;
-    this[y$] = y;
-    if (!(x !== null)) dart.assertFailed(null, I[0], 186, 14, "x != null");
-    if (!(y !== null)) dart.assertFailed(null, I[0], 187, 14, "y != null");
-    alignment.Alignment.__proto__.new.call(this);
-    ;
-  }).prototype = alignment.Alignment.prototype;
-  dart.addTypeTests(alignment.Alignment);
-  dart.addTypeCaches(alignment.Alignment);
-  dart.setMethodSignature(alignment.Alignment, () => ({
-    __proto__: dart.getMethods(alignment.Alignment.__proto__),
-    '-': dart.fnType(alignment.Alignment, [alignment.Alignment]),
-    '+': dart.fnType(alignment.Alignment, [alignment.Alignment]),
-    _negate: dart.fnType(alignment.Alignment, []),
-    '*': dart.fnType(alignment.Alignment, [core.double]),
-    '/': dart.fnType(alignment.Alignment, [core.double]),
-    '~/': dart.fnType(alignment.Alignment, [core.double]),
-    '%': dart.fnType(alignment.Alignment, [core.double]),
-    alongOffset: dart.fnType(ui.Offset, [ui.Offset]),
-    alongSize: dart.fnType(ui.Offset, [ui.Size]),
-    withinRect: dart.fnType(ui.Offset, [ui.Rect]),
-    inscribe: dart.fnType(ui.Rect, [ui.Size, ui.Rect]),
-    resolve: dart.fnType(alignment.Alignment, [dart.nullable(ui.TextDirection)])
-  }));
-  dart.setGetterSignature(alignment.Alignment, () => ({
-    __proto__: dart.getGetters(alignment.Alignment.__proto__),
-    [_x]: core.double,
-    [_start]: core.double,
-    [_y]: core.double
-  }));
-  dart.setLibraryUri(alignment.Alignment, I[1]);
-  dart.setFieldSignature(alignment.Alignment, () => ({
-    __proto__: dart.getFields(alignment.Alignment.__proto__),
-    x: dart.finalFieldType(core.double),
-    y: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(alignment.Alignment, ['toString']);
-  dart.defineLazy(alignment.Alignment, {
-    /*alignment.Alignment.topLeft*/get topLeft() {
-      return C[0] || CT.C0;
-    },
-    /*alignment.Alignment.topCenter*/get topCenter() {
-      return C[1] || CT.C1;
-    },
-    /*alignment.Alignment.topRight*/get topRight() {
-      return C[2] || CT.C2;
-    },
-    /*alignment.Alignment.centerLeft*/get centerLeft() {
-      return C[3] || CT.C3;
-    },
-    /*alignment.Alignment.center*/get center() {
-      return C[4] || CT.C4;
-    },
-    /*alignment.Alignment.centerRight*/get centerRight() {
-      return C[5] || CT.C5;
-    },
-    /*alignment.Alignment.bottomLeft*/get bottomLeft() {
-      return C[6] || CT.C6;
-    },
-    /*alignment.Alignment.bottomCenter*/get bottomCenter() {
-      return C[7] || CT.C7;
-    },
-    /*alignment.Alignment.bottomRight*/get bottomRight() {
-      return C[8] || CT.C8;
-    }
-  }, false);
-  var start$ = dart.privateName(alignment, "AlignmentDirectional.start");
-  var y$0 = dart.privateName(alignment, "AlignmentDirectional.y");
-  var _name = dart.privateName(ui, "_name");
-  alignment.AlignmentDirectional = class AlignmentDirectional extends alignment.AlignmentGeometry {
-    get start() {
-      return this[start$];
-    }
-    set start(value) {
-      super.start = value;
-    }
-    get y() {
-      return this[y$0];
-    }
-    set y(value) {
-      super.y = value;
-    }
-    get [_x]() {
-      return 0.0;
-    }
-    get [_start]() {
-      return this.start;
-    }
-    get [_y]() {
-      return this.y;
-    }
-    add(other) {
-      if (alignment.AlignmentDirectional.is(other)) return this['+'](other);
-      return super.add(other);
-    }
-    ['-'](other) {
-      return new alignment.AlignmentDirectional.new(this.start - other.start, this.y - other.y);
-    }
-    ['+'](other) {
-      return new alignment.AlignmentDirectional.new(this.start + other.start, this.y + other.y);
-    }
-    _negate() {
-      return new alignment.AlignmentDirectional.new(-this.start, -this.y);
-    }
-    ['*'](other) {
-      return new alignment.AlignmentDirectional.new(this.start * other, this.y * other);
-    }
-    ['/'](other) {
-      return new alignment.AlignmentDirectional.new(this.start / other, this.y / other);
-    }
-    ['~/'](other) {
-      return new alignment.AlignmentDirectional.new((this.start / other)[$truncate]()[$toDouble](), (this.y / other)[$truncate]()[$toDouble]());
-    }
-    ['%'](other) {
-      return new alignment.AlignmentDirectional.new(this.start[$modulo](other), this.y[$modulo](other));
-    }
-    static lerp(a, b, t) {
-      if (!(t !== null)) dart.assertFailed(null, I[0], 517, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return new alignment.AlignmentDirectional.new(dart.nullCheck(ui.lerpDouble(0.0, dart.nullCheck(b).start, t)), dart.nullCheck(ui.lerpDouble(0.0, b.y, t)));
-      if (b == null) return new alignment.AlignmentDirectional.new(dart.nullCheck(ui.lerpDouble(a.start, 0.0, t)), dart.nullCheck(ui.lerpDouble(a.y, 0.0, t)));
-      return new alignment.AlignmentDirectional.new(dart.nullCheck(ui.lerpDouble(a.start, b.start, t)), dart.nullCheck(ui.lerpDouble(a.y, b.y, t)));
-    }
-    resolve(direction) {
-      if (!(direction != null)) dart.assertFailed("Cannot resolve " + dart.str(this[$runtimeType]) + " without a TextDirection.", I[0], 529, 12, "direction != null");
-      switch (dart.nullCheck(direction)) {
-        case C[9] || CT.C9:
-        {
-          return new alignment.Alignment.new(-this.start, this.y);
-        }
-        case C[10] || CT.C10:
-        {
-          return new alignment.Alignment.new(this.start, this.y);
-        }
-      }
-    }
-    static _stringify(start, y) {
-      if (start === -1.0 && y === -1.0) return "AlignmentDirectional.topStart";
-      if (start === 0.0 && y === -1.0) return "AlignmentDirectional.topCenter";
-      if (start === 1.0 && y === -1.0) return "AlignmentDirectional.topEnd";
-      if (start === -1.0 && y === 0.0) return "AlignmentDirectional.centerStart";
-      if (start === 0.0 && y === 0.0) return "AlignmentDirectional.center";
-      if (start === 1.0 && y === 0.0) return "AlignmentDirectional.centerEnd";
-      if (start === -1.0 && y === 1.0) return "AlignmentDirectional.bottomStart";
-      if (start === 0.0 && y === 1.0) return "AlignmentDirectional.bottomCenter";
-      if (start === 1.0 && y === 1.0) return "AlignmentDirectional.bottomEnd";
-      return "AlignmentDirectional(" + start[$toStringAsFixed](1) + ", " + y[$toStringAsFixed](1) + ")";
-    }
-    toString() {
-      return alignment.AlignmentDirectional._stringify(this.start, this.y);
-    }
-  };
-  (alignment.AlignmentDirectional.new = function(start, y) {
-    this[start$] = start;
-    this[y$0] = y;
-    if (!(start !== null)) dart.assertFailed(null, I[0], 392, 14, "start != null");
-    if (!(y !== null)) dart.assertFailed(null, I[0], 393, 14, "y != null");
-    alignment.AlignmentDirectional.__proto__.new.call(this);
-    ;
-  }).prototype = alignment.AlignmentDirectional.prototype;
-  dart.addTypeTests(alignment.AlignmentDirectional);
-  dart.addTypeCaches(alignment.AlignmentDirectional);
-  dart.setMethodSignature(alignment.AlignmentDirectional, () => ({
-    __proto__: dart.getMethods(alignment.AlignmentDirectional.__proto__),
-    '-': dart.fnType(alignment.AlignmentDirectional, [alignment.AlignmentDirectional]),
-    '+': dart.fnType(alignment.AlignmentDirectional, [alignment.AlignmentDirectional]),
-    _negate: dart.fnType(alignment.AlignmentDirectional, []),
-    '*': dart.fnType(alignment.AlignmentDirectional, [core.double]),
-    '/': dart.fnType(alignment.AlignmentDirectional, [core.double]),
-    '~/': dart.fnType(alignment.AlignmentDirectional, [core.double]),
-    '%': dart.fnType(alignment.AlignmentDirectional, [core.double]),
-    resolve: dart.fnType(alignment.Alignment, [dart.nullable(ui.TextDirection)])
-  }));
-  dart.setGetterSignature(alignment.AlignmentDirectional, () => ({
-    __proto__: dart.getGetters(alignment.AlignmentDirectional.__proto__),
-    [_x]: core.double,
-    [_start]: core.double,
-    [_y]: core.double
-  }));
-  dart.setLibraryUri(alignment.AlignmentDirectional, I[1]);
-  dart.setFieldSignature(alignment.AlignmentDirectional, () => ({
-    __proto__: dart.getFields(alignment.AlignmentDirectional.__proto__),
-    start: dart.finalFieldType(core.double),
-    y: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(alignment.AlignmentDirectional, ['toString']);
-  dart.defineLazy(alignment.AlignmentDirectional, {
-    /*alignment.AlignmentDirectional.topStart*/get topStart() {
-      return C[11] || CT.C11;
-    },
-    /*alignment.AlignmentDirectional.topCenter*/get topCenter() {
-      return C[12] || CT.C12;
-    },
-    /*alignment.AlignmentDirectional.topEnd*/get topEnd() {
-      return C[13] || CT.C13;
-    },
-    /*alignment.AlignmentDirectional.centerStart*/get centerStart() {
-      return C[14] || CT.C14;
-    },
-    /*alignment.AlignmentDirectional.center*/get center() {
-      return C[15] || CT.C15;
-    },
-    /*alignment.AlignmentDirectional.centerEnd*/get centerEnd() {
-      return C[16] || CT.C16;
-    },
-    /*alignment.AlignmentDirectional.bottomStart*/get bottomStart() {
-      return C[17] || CT.C17;
-    },
-    /*alignment.AlignmentDirectional.bottomCenter*/get bottomCenter() {
-      return C[18] || CT.C18;
-    },
-    /*alignment.AlignmentDirectional.bottomEnd*/get bottomEnd() {
-      return C[19] || CT.C19;
-    }
-  }, false);
-  var _x$ = dart.privateName(alignment, "_MixedAlignment._x");
-  var _start$ = dart.privateName(alignment, "_MixedAlignment._start");
-  var _y$ = dart.privateName(alignment, "_MixedAlignment._y");
-  alignment._MixedAlignment = class _MixedAlignment extends alignment.AlignmentGeometry {
-    get [_x]() {
-      return this[_x$];
-    }
-    set [_x](value) {
-      super[_x] = value;
-    }
-    get [_start]() {
-      return this[_start$];
-    }
-    set [_start](value) {
-      super[_start] = value;
-    }
-    get [_y]() {
-      return this[_y$];
-    }
-    set [_y](value) {
-      super[_y] = value;
-    }
-    _negate() {
-      return new alignment._MixedAlignment.new(-this[_x], -this[_start], -this[_y]);
-    }
-    ['*'](other) {
-      return new alignment._MixedAlignment.new(this[_x] * other, this[_start] * other, this[_y] * other);
-    }
-    ['/'](other) {
-      return new alignment._MixedAlignment.new(this[_x] / other, this[_start] / other, this[_y] / other);
-    }
-    ['~/'](other) {
-      return new alignment._MixedAlignment.new((this[_x] / other)[$truncate]()[$toDouble](), (this[_start] / other)[$truncate]()[$toDouble](), (this[_y] / other)[$truncate]()[$toDouble]());
-    }
-    ['%'](other) {
-      return new alignment._MixedAlignment.new(this[_x][$modulo](other), this[_start][$modulo](other), this[_y][$modulo](other));
-    }
-    resolve(direction) {
-      if (!(direction != null)) dart.assertFailed("Cannot resolve " + dart.str(this[$runtimeType]) + " without a TextDirection.", I[0], 624, 12, "direction != null");
-      switch (dart.nullCheck(direction)) {
-        case C[9] || CT.C9:
-        {
-          return new alignment.Alignment.new(this[_x] - this[_start], this[_y]);
-        }
-        case C[10] || CT.C10:
-        {
-          return new alignment.Alignment.new(this[_x] + this[_start], this[_y]);
-        }
-      }
-    }
-  };
-  (alignment._MixedAlignment.new = function(_x, _start, _y) {
-    this[_x$] = _x;
-    this[_start$] = _start;
-    this[_y$] = _y;
-    alignment._MixedAlignment.__proto__.new.call(this);
-    ;
-  }).prototype = alignment._MixedAlignment.prototype;
-  dart.addTypeTests(alignment._MixedAlignment);
-  dart.addTypeCaches(alignment._MixedAlignment);
-  dart.setMethodSignature(alignment._MixedAlignment, () => ({
-    __proto__: dart.getMethods(alignment._MixedAlignment.__proto__),
-    _negate: dart.fnType(alignment._MixedAlignment, []),
-    '*': dart.fnType(alignment._MixedAlignment, [core.double]),
-    '/': dart.fnType(alignment._MixedAlignment, [core.double]),
-    '~/': dart.fnType(alignment._MixedAlignment, [core.double]),
-    '%': dart.fnType(alignment._MixedAlignment, [core.double]),
-    resolve: dart.fnType(alignment.Alignment, [dart.nullable(ui.TextDirection)])
-  }));
-  dart.setLibraryUri(alignment._MixedAlignment, I[1]);
-  dart.setFieldSignature(alignment._MixedAlignment, () => ({
-    __proto__: dart.getFields(alignment._MixedAlignment.__proto__),
-    [_x]: dart.finalFieldType(core.double),
-    [_start]: dart.finalFieldType(core.double),
-    [_y]: dart.finalFieldType(core.double)
-  }));
-  var y$1 = dart.privateName(alignment, "TextAlignVertical.y");
-  alignment.TextAlignVertical = class TextAlignVertical extends core.Object {
-    get y() {
-      return this[y$1];
-    }
-    set y(value) {
-      super.y = value;
-    }
-    toString() {
-      return object.objectRuntimeType(this, "TextAlignVertical") + "(y: " + dart.str(this.y) + ")";
-    }
-  };
-  (alignment.TextAlignVertical.new = function(opts) {
-    let y = opts && 'y' in opts ? opts.y : null;
-    this[y$1] = y;
-    if (!(y !== null)) dart.assertFailed(null, I[0], 653, 15, "y != null");
-    if (!(y >= -1.0 && y <= 1.0)) dart.assertFailed(null, I[0], 654, 15, "y >= -1.0 && y <= 1.0");
-    ;
-  }).prototype = alignment.TextAlignVertical.prototype;
-  dart.addTypeTests(alignment.TextAlignVertical);
-  dart.addTypeCaches(alignment.TextAlignVertical);
-  dart.setLibraryUri(alignment.TextAlignVertical, I[1]);
-  dart.setFieldSignature(alignment.TextAlignVertical, () => ({
-    __proto__: dart.getFields(alignment.TextAlignVertical.__proto__),
-    y: dart.finalFieldType(core.double)
-  }));
-  dart.defineExtensionMethods(alignment.TextAlignVertical, ['toString']);
-  dart.defineLazy(alignment.TextAlignVertical, {
-    /*alignment.TextAlignVertical.top*/get top() {
-      return C[20] || CT.C20;
-    },
-    /*alignment.TextAlignVertical.center*/get center() {
-      return C[21] || CT.C21;
-    },
-    /*alignment.TextAlignVertical.bottom*/get bottom() {
-      return C[22] || CT.C22;
-    }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/painting/alignment.dart", {
-    "package:flutter/src/painting/alignment.dart": alignment
-  }, {
-  }, '{"version":3,"sourceRoot":"","sources":["alignment.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/painting/alignment.dart.lib.js"}');
-  // Exports:
-  return {
-    src__painting__alignment: alignment
-  };
-}));
-
-//# sourceMappingURL=alignment.dart.lib.js.map
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+//# sourceMappingURL=multipart_request.dart.lib.js.map
