@@ -1,1493 +1,430 @@
-<<<<<<< HEAD
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/material/card.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/fl_chart/src/chart/scatter_chart/scatter_chart_painter.dart', 'packages/flutter/src/painting/placeholder_span.dart', 'packages/fl_chart/src/chart/base/base_chart/fl_touch_event.dart'], (function load__packages__eco_ml__charts__barChart_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__material__card$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__strut_style$46dart, packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart, packages__flutter__src__painting__placeholder_span$46dart, packages__fl_chart__src__chart__base__base_chart__fl_touch_event$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/painting/decoration_image.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/painting/colors.dart', 'packages/flutter/src/painting/box_fit.dart'], (function load__packages__flutter__src__rendering__image_dart(dart_sdk, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__painting__decoration_image$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__painting__colors$46dart, packages__flutter__src__painting__box_fit$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
-  const _interceptors = dart_sdk._interceptors;
+  const _engine = dart_sdk._engine;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const card = packages__flutter__src__material__card$46dart.src__material__card;
-  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
-  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
-  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
-  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
-  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
-  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
-  const bar_chart = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__bar_chart__bar_chart;
-  const bar_chart_data = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__bar_chart__bar_chart_data;
-  const axis_chart_data = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__base__axis_chart__axis_chart_data;
-  const base_chart_data = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__base__base_chart__base_chart_data;
-  const text_span = packages__flutter__src__painting__placeholder_span$46dart.src__painting__text_span;
-  const fl_touch_event = packages__fl_chart__src__chart__base__base_chart__fl_touch_event$46dart.src__chart__base__base_chart__fl_touch_event;
-  var barChart = Object.create(dart.library);
-  var $toInt = dartx.toInt;
-  var $toString = dartx.toString;
-  dart._checkModuleNullSafetyMode(true);
-  var T = {
-    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
-    JSArrayOfTextSpan: () => (T.JSArrayOfTextSpan = dart.constFn(_interceptors.JSArray$(text_span.TextSpan)))(),
-    BarChartGroupDataAndintAndBarChartRodData__ToBarTooltipItem: () => (T.BarChartGroupDataAndintAndBarChartRodData__ToBarTooltipItem = dart.constFn(dart.fnType(bar_chart_data.BarTooltipItem, [bar_chart_data.BarChartGroupData, core.int, bar_chart_data.BarChartRodData, core.int])))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    BarTouchResponseN: () => (T.BarTouchResponseN = dart.constFn(dart.nullable(bar_chart_data.BarTouchResponse)))(),
-    FlTouchEventAndBarTouchResponseNTovoid: () => (T.FlTouchEventAndBarTouchResponseNTovoid = dart.constFn(dart.fnType(dart.void, [fl_touch_event.FlTouchEvent, T.BarTouchResponseN()])))(),
-    BuildContextAnddoubleToTextStyle: () => (T.BuildContextAnddoubleToTextStyle = dart.constFn(dart.fnType(text_style.TextStyle, [framework.BuildContext, core.double])))(),
-    doubleToString: () => (T.doubleToString = dart.constFn(dart.fnType(core.String, [core.double])))(),
-    JSArrayOfColor: () => (T.JSArrayOfColor = dart.constFn(_interceptors.JSArray$(ui.Color)))(),
-    JSArrayOfBarChartRodData: () => (T.JSArrayOfBarChartRodData = dart.constFn(_interceptors.JSArray$(bar_chart_data.BarChartRodData)))(),
-    ListOfBarChartGroupData: () => (T.ListOfBarChartGroupData = dart.constFn(core.List$(bar_chart_data.BarChartGroupData)))(),
-    intToBarChartGroupData: () => (T.intToBarChartGroupData = dart.constFn(dart.fnType(bar_chart_data.BarChartGroupData, [core.int])))()
-=======
-define(['dart_sdk', 'packages/flutter/src/painting/image_stream.dart', 'packages/flutter/src/foundation/object.dart', 'packages/flutter/src/scheduler/binding.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__painting__image_cache_dart(dart_sdk, packages__flutter__src__painting__image_stream$46dart, packages__flutter__src__foundation__object$46dart, packages__flutter__src__scheduler__binding$46dart, packages__flutter__src__foundation__debug$46dart) {
-  'use strict';
-  const core = dart_sdk.core;
-  const _js_helper = dart_sdk._js_helper;
-  const developer = dart_sdk.developer;
-  const _interceptors = dart_sdk._interceptors;
-  const ui = dart_sdk.ui;
-  const _internal = dart_sdk._internal;
-  const dart = dart_sdk.dart;
-  const dartx = dart_sdk.dartx;
-  const image_stream = packages__flutter__src__painting__image_stream$46dart.src__painting__image_stream;
-  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
-  const binding = packages__flutter__src__scheduler__binding$46dart.src__scheduler__binding;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const decoration_image = packages__flutter__src__painting__decoration_image$46dart.src__painting__decoration_image;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
   const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  var image_cache = Object.create(dart.library);
-  var $length = dartx.length;
-  var $values = dartx.values;
-  var $clear = dartx.clear;
-  var $remove = dartx.remove;
-  var $_set = dartx._set;
-  var $putIfAbsent = dartx.putIfAbsent;
-  var $toString = dartx.toString;
-  var $_get = dartx._get;
-  var $containsKey = dartx.containsKey;
-  var $first = dartx.first;
-  var $keys = dartx.keys;
-  var $runtimeType = dartx.runtimeType;
+  const colors = packages__flutter__src__painting__colors$46dart.src__painting__colors;
+  const box_fit = packages__flutter__src__painting__box_fit$46dart.src__painting__box_fit;
+  var image$ = Object.create(dart.library);
+  var $toDouble = dartx.toDouble;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    LinkedMapOfObject$_PendingImage: () => (T.LinkedMapOfObject$_PendingImage = dart.constFn(_js_helper.LinkedMap$(core.Object, image_cache._PendingImage)))(),
-    LinkedMapOfObject$_CachedImage: () => (T.LinkedMapOfObject$_CachedImage = dart.constFn(_js_helper.LinkedMap$(core.Object, image_cache._CachedImage)))(),
-    LinkedMapOfObject$_LiveImage: () => (T.LinkedMapOfObject$_LiveImage = dart.constFn(_js_helper.LinkedMap$(core.Object, image_cache._LiveImage)))(),
-    IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    VoidTo_LiveImage: () => (T.VoidTo_LiveImage = dart.constFn(dart.fnType(image_cache._LiveImage, [])))(),
-    ImageInfoN: () => (T.ImageInfoN = dart.constFn(dart.nullable(image_stream.ImageInfo)))(),
-    ImageInfoNAndboolTovoid: () => (T.ImageInfoNAndboolTovoid = dart.constFn(dart.fnType(dart.void, [T.ImageInfoN(), core.bool])))(),
-    JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))(),
-    DurationTovoid: () => (T.DurationTovoid = dart.constFn(dart.fnType(dart.void, [core.Duration])))()
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+    DiagnosticsPropertyOfImage: () => (T.DiagnosticsPropertyOfImage = dart.constFn(diagnostics.DiagnosticsProperty$(ui.Image)))(),
+    EnumPropertyOfBlendMode: () => (T.EnumPropertyOfBlendMode = dart.constFn(diagnostics.EnumProperty$(ui.BlendMode)))(),
+    EnumPropertyOfBoxFit: () => (T.EnumPropertyOfBoxFit = dart.constFn(diagnostics.EnumProperty$(box_fit.BoxFit)))(),
+    DiagnosticsPropertyOfAlignmentGeometry: () => (T.DiagnosticsPropertyOfAlignmentGeometry = dart.constFn(diagnostics.DiagnosticsProperty$(alignment.AlignmentGeometry)))(),
+    EnumPropertyOfImageRepeat: () => (T.EnumPropertyOfImageRepeat = dart.constFn(diagnostics.EnumProperty$(decoration_image.ImageRepeat)))(),
+    DiagnosticsPropertyOfRect: () => (T.DiagnosticsPropertyOfRect = dart.constFn(diagnostics.DiagnosticsProperty$(ui.Rect)))(),
+    EnumPropertyOfTextDirection: () => (T.EnumPropertyOfTextDirection = dart.constFn(diagnostics.EnumProperty$(ui.TextDirection)))(),
+    DiagnosticsPropertyOfbool: () => (T.DiagnosticsPropertyOfbool = dart.constFn(diagnostics.DiagnosticsProperty$(core.bool)))(),
+    EnumPropertyOfFilterQuality: () => (T.EnumPropertyOfFilterQuality = dart.constFn(diagnostics.EnumProperty$(ui.FilterQuality)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
-<<<<<<< HEAD
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4283694551.0
+        __proto__: alignment.Alignment.prototype,
+        [Alignment_y]: 0,
+        [Alignment_x]: 0
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4294951118.0
+        __proto__: decoration_image.ImageRepeat.prototype,
+        [_name]: "ImageRepeat.noRepeat",
+        index: 3
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: edge_insets.EdgeInsets.prototype,
-        [EdgeInsets_bottom]: 10,
-        [EdgeInsets_right]: 10,
-        [EdgeInsets_top]: 10,
-        [EdgeInsets_left]: 10
+        __proto__: ui.FilterQuality.prototype,
+        [_name$]: "FilterQuality.low",
+        index: 1
       });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "margin",
-        [_Location_column]: 29,
-        [_Location_line]: 47,
-        [_Location_file]: null
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 29,
-        [_Location_line]: 48,
-        [_Location_file]: null
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 29,
-        [_Location_line]: 49,
-        [_Location_file]: null
-      });
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "decoration",
-        [_Location_column]: 29,
-        [_Location_line]: 50,
-        [_Location_file]: null
-      });
-    },
-    get C4() {
-      return C[4] = dart.constList([C[5] || CT.C5, C[6] || CT.C6, C[7] || CT.C7, C[8] || CT.C8], widget_inspector._Location);
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[4] || CT.C4,
-        [_Location_name]: null,
-        [_Location_column]: 27,
-        [_Location_line]: 46,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 32,
-        [_Location_line]: 54,
-        [_Location_file]: null
-      });
-    },
-    get C12() {
-      return C[12] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "style",
-        [_Location_column]: 31,
-        [_Location_line]: 55,
-        [_Location_file]: null
-      });
-    },
-    get C10() {
-      return C[10] = dart.constList([C[11] || CT.C11, C[12] || CT.C12], widget_inspector._Location);
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[10] || CT.C10,
-        [_Location_name]: null,
-        [_Location_column]: 27,
-        [_Location_line]: 54,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 25,
-        [_Location_line]: 45,
-        [_Location_file]: null
-      });
-    },
-    get C14() {
-      return C[14] = dart.constList([C[15] || CT.C15], widget_inspector._Location);
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[14] || CT.C14,
-        [_Location_name]: null,
-        [_Location_column]: 23,
-        [_Location_line]: 44,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C18() {
-      return C[18] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 25,
-        [_Location_line]: 62,
-        [_Location_file]: null
-      });
-    },
-    get C17() {
-      return C[17] = dart.constList([C[18] || CT.C18], widget_inspector._Location);
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[17] || CT.C17,
-        [_Location_name]: null,
-        [_Location_column]: 23,
-        [_Location_line]: 61,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C21() {
-      return C[21] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "margin",
-        [_Location_column]: 29,
-        [_Location_line]: 67,
-        [_Location_file]: null
-      });
-    },
-    get C22() {
-      return C[22] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 29,
-        [_Location_line]: 68,
-        [_Location_file]: null
-      });
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 29,
-        [_Location_line]: 69,
-        [_Location_file]: null
-      });
-    },
-    get C24() {
-      return C[24] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "decoration",
-        [_Location_column]: 29,
-        [_Location_line]: 70,
-        [_Location_file]: null
-      });
-    },
-    get C20() {
-      return C[20] = dart.constList([C[21] || CT.C21, C[22] || CT.C22, C[23] || CT.C23, C[24] || CT.C24], widget_inspector._Location);
-    },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[20] || CT.C20,
-        [_Location_name]: null,
-        [_Location_column]: 27,
-        [_Location_line]: 66,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C27() {
-      return C[27] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 32,
-        [_Location_line]: 74,
-        [_Location_file]: null
-      });
-    },
-    get C28() {
-      return C[28] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "style",
-        [_Location_column]: 31,
-        [_Location_line]: 75,
-        [_Location_file]: null
-      });
-    },
-    get C26() {
-      return C[26] = dart.constList([C[27] || CT.C27, C[28] || CT.C28], widget_inspector._Location);
-    },
-    get C25() {
-      return C[25] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[26] || CT.C26,
-        [_Location_name]: null,
-        [_Location_column]: 27,
-        [_Location_line]: 74,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C31() {
-      return C[31] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 25,
-        [_Location_line]: 65,
-        [_Location_file]: null
-      });
-    },
-    get C30() {
-      return C[30] = dart.constList([C[31] || CT.C31], widget_inspector._Location);
-    },
-    get C29() {
-      return C[29] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[30] || CT.C30,
-        [_Location_name]: null,
-        [_Location_column]: 23,
-        [_Location_line]: 64,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C34() {
-      return C[34] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 21,
-        [_Location_line]: 43,
-        [_Location_file]: null
-      });
-    },
-    get C33() {
-      return C[33] = dart.constList([C[34] || CT.C34], widget_inspector._Location);
-    },
-    get C32() {
-      return C[32] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[33] || CT.C33,
-        [_Location_name]: null,
-        [_Location_column]: 26,
-        [_Location_line]: 42,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C37() {
-      return C[37] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 19,
-        [_Location_line]: 41,
-        [_Location_file]: null
-      });
-    },
-    get C38() {
-      return C[38] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 42,
-        [_Location_file]: null
-      });
-    },
-    get C36() {
-      return C[36] = dart.constList([C[37] || CT.C37, C[38] || CT.C38], widget_inspector._Location);
-    },
-    get C35() {
-      return C[35] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[36] || CT.C36,
-        [_Location_name]: null,
-        [_Location_column]: 17,
-        [_Location_line]: 40,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C40() {
-      return C[40] = dart.const({
-        __proto__: ui.FontWeight.prototype,
-        [FontWeight_index]: 6
-      });
-    },
-    get C41() {
-      return C[41] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4283406497.0
-      });
-    },
-    get C39() {
-      return C[39] = dart.const({
-        __proto__: text_style.TextStyle.prototype,
-        [TextStyle_fontFeatures]: null,
-        [TextStyle_shadows]: null,
-        [TextStyle_debugLabel]: null,
-        [TextStyle_decorationThickness]: null,
-        [TextStyle_decorationStyle]: null,
-        [TextStyle_decorationColor]: null,
-        [TextStyle_decoration]: null,
-        [TextStyle_background]: null,
-        [TextStyle_foreground]: null,
-        [TextStyle_locale]: null,
-        [TextStyle_leadingDistribution]: null,
-        [TextStyle_height]: null,
-        [TextStyle_textBaseline]: null,
-        [TextStyle_wordSpacing]: null,
-        [TextStyle_letterSpacing]: null,
-        [TextStyle_fontStyle]: null,
-        [TextStyle_fontWeight]: C[40] || CT.C40,
-        [TextStyle_fontSize]: 14,
-        [TextStyle__package]: null,
-        [TextStyle__fontFamilyFallback]: null,
-        [TextStyle_fontFamily]: null,
-        [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: C[41] || CT.C41,
-        [TextStyle_inherit]: true
-      });
-    },
-    get C44() {
-      return C[44] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 21,
-        [_Location_line]: 86,
-        [_Location_file]: null
-      });
-    },
-    get C43() {
-      return C[43] = dart.constList([C[44] || CT.C44], widget_inspector._Location);
-    },
-    get C42() {
-      return C[42] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[43] || CT.C43,
-        [_Location_name]: null,
-        [_Location_column]: 26,
-        [_Location_line]: 85,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C47() {
-      return C[47] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 85,
-        [_Location_file]: null
-      });
-    },
-    get C46() {
-      return C[46] = dart.constList([C[47] || CT.C47], widget_inspector._Location);
-    },
-    get C45() {
-      return C[45] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[46] || CT.C46,
-        [_Location_name]: null,
-        [_Location_column]: 17,
-        [_Location_line]: 84,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C50() {
-      return C[50] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "crossAxisAlignment",
-        [_Location_column]: 15,
-        [_Location_line]: 36,
-        [_Location_file]: null
-      });
-    },
-    get C51() {
-      return C[51] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "mainAxisAlignment",
-        [_Location_column]: 15,
-        [_Location_line]: 37,
-        [_Location_file]: null
-      });
-    },
-    get C52() {
-      return C[52] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "mainAxisSize",
-        [_Location_column]: 15,
-        [_Location_line]: 38,
-        [_Location_file]: null
-      });
-    },
-    get C53() {
-      return C[53] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 15,
-        [_Location_line]: 39,
-        [_Location_file]: null
-      });
-    },
-    get C49() {
-      return C[49] = dart.constList([C[50] || CT.C50, C[51] || CT.C51, C[52] || CT.C52, C[53] || CT.C53], widget_inspector._Location);
-    },
-    get C48() {
-      return C[48] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[49] || CT.C49,
-        [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 35,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C56() {
-      return C[56] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 13,
-        [_Location_line]: 34,
-        [_Location_file]: null
-      });
-    },
-    get C57() {
-      return C[57] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 13,
-        [_Location_line]: 35,
-        [_Location_file]: null
-      });
-    },
-    get C55() {
-      return C[55] = dart.constList([C[56] || CT.C56, C[57] || CT.C57], widget_inspector._Location);
-    },
-    get C54() {
-      return C[54] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[55] || CT.C55,
-        [_Location_name]: null,
-        [_Location_column]: 18,
-        [_Location_line]: 33,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C60() {
-      return C[60] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "elevation",
-        [_Location_column]: 11,
-        [_Location_line]: 28,
-        [_Location_file]: null
-      });
-    },
-    get C61() {
-      return C[61] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "shadowColor",
-        [_Location_column]: 11,
-        [_Location_line]: 29,
-        [_Location_file]: null
-      });
-    },
-    get C62() {
-      return C[62] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "shape",
-        [_Location_column]: 11,
-        [_Location_line]: 30,
-        [_Location_file]: null
-      });
-    },
-    get C63() {
-      return C[63] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 11,
-        [_Location_line]: 32,
-        [_Location_file]: null
-      });
-    },
-    get C64() {
-      return C[64] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 33,
-        [_Location_file]: null
-      });
-    },
-    get C59() {
-      return C[59] = dart.constList([C[60] || CT.C60, C[61] || CT.C61, C[62] || CT.C62, C[63] || CT.C63, C[64] || CT.C64], widget_inspector._Location);
-    },
-    get C58() {
-      return C[58] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[59] || CT.C59,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 27,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C67() {
-      return C[67] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 9,
-        [_Location_line]: 26,
-        [_Location_file]: null
-      });
-    },
-    get C68() {
-      return C[68] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 27,
-        [_Location_file]: null
-      });
-    },
-    get C66() {
-      return C[66] = dart.constList([C[67] || CT.C67, C[68] || CT.C68], widget_inspector._Location);
-    },
-    get C65() {
-      return C[65] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[66] || CT.C66,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 25,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C71() {
-      return C[71] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "aspectRatio",
-        [_Location_column]: 7,
-        [_Location_line]: 24,
-        [_Location_file]: null
-      });
-    },
-    get C72() {
-      return C[72] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 25,
-        [_Location_file]: null
-      });
-    },
-    get C70() {
-      return C[70] = dart.constList([C[71] || CT.C71, C[72] || CT.C72], widget_inspector._Location);
-    },
-    get C69() {
-      return C[69] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[70] || CT.C70,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 23,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
-      });
-    },
-    get C73() {
-      return C[73] = dart.constList([], core.int);
     }
   }, false);
-  var C = Array(74).fill(void 0);
-  var I = ["package:eco_ml/charts/barChart.dart"];
-  barChart.BarChartSample2 = class BarChartSample2 extends framework.StatefulWidget {
-    createState() {
-      return new barChart.BarChartSample2State.new();
+  var C = Array(3).fill(void 0);
+  var I = [
+    "file:///D:/DevTools/flutter/packages/flutter/lib/src/rendering/image.dart",
+    "package:flutter/src/rendering/image.dart"
+  ];
+  var debugImageLabel$ = dart.privateName(image$, "RenderImage.debugImageLabel");
+  var Alignment_y = dart.privateName(alignment, "Alignment.y");
+  var Alignment_x = dart.privateName(alignment, "Alignment.x");
+  var _name = dart.privateName(decoration_image, "_name");
+  var _name$ = dart.privateName(ui, "_name");
+  var _resolvedAlignment = dart.privateName(image$, "_resolvedAlignment");
+  var _flipHorizontally = dart.privateName(image$, "_flipHorizontally");
+  var _colorFilter = dart.privateName(image$, "_colorFilter");
+  var _image = dart.privateName(image$, "_image");
+  var _width = dart.privateName(image$, "_width");
+  var _height = dart.privateName(image$, "_height");
+  var _scale = dart.privateName(image$, "_scale");
+  var _color = dart.privateName(image$, "_color");
+  var _colorBlendMode = dart.privateName(image$, "_colorBlendMode");
+  var _fit = dart.privateName(image$, "_fit");
+  var _alignment = dart.privateName(image$, "_alignment");
+  var _repeat = dart.privateName(image$, "_repeat");
+  var _centerSlice = dart.privateName(image$, "_centerSlice");
+  var _matchTextDirection = dart.privateName(image$, "_matchTextDirection");
+  var _invertColors = dart.privateName(image$, "_invertColors");
+  var _textDirection = dart.privateName(image$, "_textDirection");
+  var _isAntiAlias = dart.privateName(image$, "_isAntiAlias");
+  var _filterQuality = dart.privateName(image$, "_filterQuality");
+  var _updateColorFilter = dart.privateName(image$, "_updateColorFilter");
+  var _resolve = dart.privateName(image$, "_resolve");
+  var _markNeedResolution = dart.privateName(image$, "_markNeedResolution");
+  var _sizeForConstraints = dart.privateName(image$, "_sizeForConstraints");
+  image$.RenderImage = class RenderImage extends box.RenderBox {
+    get debugImageLabel() {
+      return this[debugImageLabel$];
     }
-  };
-  (barChart.BarChartSample2.new = function(opts) {
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    barChart.BarChartSample2.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = barChart.BarChartSample2.prototype;
-  dart.addTypeTests(barChart.BarChartSample2);
-  dart.addTypeCaches(barChart.BarChartSample2);
-  dart.setMethodSignature(barChart.BarChartSample2, () => ({
-    __proto__: dart.getMethods(barChart.BarChartSample2.__proto__),
-    createState: dart.fnType(framework.State$(framework.StatefulWidget), [])
-  }));
-  dart.setLibraryUri(barChart.BarChartSample2, I[0]);
-  var leftBarColor = dart.privateName(barChart, "BarChartSample2State.leftBarColor");
-  var rightBarColor = dart.privateName(barChart, "BarChartSample2State.rightBarColor");
-  var width = dart.privateName(barChart, "BarChartSample2State.width");
-  var touchedIndex = dart.privateName(barChart, "BarChartSample2State.touchedIndex");
-  var Color_value = dart.privateName(ui, "Color.value");
-  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
-  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
-  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
-  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  var TextStyle_fontFeatures = dart.privateName(text_style, "TextStyle.fontFeatures");
-  var TextStyle_shadows = dart.privateName(text_style, "TextStyle.shadows");
-  var TextStyle_debugLabel = dart.privateName(text_style, "TextStyle.debugLabel");
-  var TextStyle_decorationThickness = dart.privateName(text_style, "TextStyle.decorationThickness");
-  var TextStyle_decorationStyle = dart.privateName(text_style, "TextStyle.decorationStyle");
-  var TextStyle_decorationColor = dart.privateName(text_style, "TextStyle.decorationColor");
-  var TextStyle_decoration = dart.privateName(text_style, "TextStyle.decoration");
-  var TextStyle_background = dart.privateName(text_style, "TextStyle.background");
-  var TextStyle_foreground = dart.privateName(text_style, "TextStyle.foreground");
-  var TextStyle_locale = dart.privateName(text_style, "TextStyle.locale");
-  var TextStyle_leadingDistribution = dart.privateName(text_style, "TextStyle.leadingDistribution");
-  var TextStyle_height = dart.privateName(text_style, "TextStyle.height");
-  var TextStyle_textBaseline = dart.privateName(text_style, "TextStyle.textBaseline");
-  var TextStyle_wordSpacing = dart.privateName(text_style, "TextStyle.wordSpacing");
-  var TextStyle_letterSpacing = dart.privateName(text_style, "TextStyle.letterSpacing");
-  var TextStyle_fontStyle = dart.privateName(text_style, "TextStyle.fontStyle");
-  var FontWeight_index = dart.privateName(ui, "FontWeight.index");
-  var TextStyle_fontWeight = dart.privateName(text_style, "TextStyle.fontWeight");
-  var TextStyle_fontSize = dart.privateName(text_style, "TextStyle.fontSize");
-  var TextStyle__package = dart.privateName(text_style, "TextStyle._package");
-  var TextStyle__fontFamilyFallback = dart.privateName(text_style, "TextStyle._fontFamilyFallback");
-  var TextStyle_fontFamily = dart.privateName(text_style, "TextStyle.fontFamily");
-  var TextStyle_backgroundColor = dart.privateName(text_style, "TextStyle.backgroundColor");
-  var TextStyle_color = dart.privateName(text_style, "TextStyle.color");
-  var TextStyle_inherit = dart.privateName(text_style, "TextStyle.inherit");
-  barChart.BarChartSample2State = class BarChartSample2State extends framework.State$(barChart.BarChartSample2) {
-    get leftBarColor() {
-      return this[leftBarColor];
+    set debugImageLabel(value) {
+      this[debugImageLabel$] = value;
     }
-    set leftBarColor(value) {
-      super.leftBarColor = value;
+    [_resolve]() {
+      if (this[_resolvedAlignment] != null) return;
+      this[_resolvedAlignment] = this.alignment.resolve(this.textDirection);
+      this[_flipHorizontally] = this.matchTextDirection && this.textDirection === ui.TextDirection.rtl;
     }
-    get rightBarColor() {
-      return this[rightBarColor];
+    [_markNeedResolution]() {
+      this[_resolvedAlignment] = null;
+      this[_flipHorizontally] = null;
+      this.markNeedsPaint();
     }
-    set rightBarColor(value) {
-      super.rightBarColor = value;
+    get image() {
+      return this[_image];
+    }
+    set image(value) {
+      let t0;
+      if (dart.equals(value, this[_image])) {
+        return;
+      }
+      if (value != null && this[_image] != null && value.isCloneOf(dart.nullCheck(this[_image]))) {
+        value.dispose();
+        return;
+      }
+      t0 = this[_image];
+      t0 == null ? null : t0.dispose();
+      this[_image] = value;
+      this.markNeedsPaint();
+      if (this[_width] == null || this[_height] == null) this.markNeedsLayout();
     }
     get width() {
-      return this[width];
+      return this[_width];
     }
     set width(value) {
-      super.width = value;
+      if (value == this[_width]) return;
+      this[_width] = value;
+      this.markNeedsLayout();
     }
-    get touchedIndex() {
-      return this[touchedIndex];
+    get height() {
+      return this[_height];
     }
-    set touchedIndex(value) {
-      this[touchedIndex] = value;
+    set height(value) {
+      if (value == this[_height]) return;
+      this[_height] = value;
+      this.markNeedsLayout();
     }
-    initState() {
-      super.initState();
+    get scale() {
+      return this[_scale];
     }
-    build(context) {
-      return new basic.AspectRatio.new({aspectRatio: 3 / 2, child: new container.Container.new({padding: new edge_insets.EdgeInsets.all(20.0), child: new card.Card.new({elevation: 5.0, shadowColor: colors.Colors.grey, shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(20.0)}), color: colors.Colors.white, child: new basic.Padding.new({padding: C[2] || CT.C2, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.stretch, mainAxisAlignment: flex.MainAxisAlignment.start, mainAxisSize: flex.MainAxisSize.max, children: T.JSArrayOfWidget().of([new container.Container.new({padding: new edge_insets.EdgeInsets.only({left: 15.0, top: 10.0}), child: new basic.Column.new({children: T.JSArrayOfWidget().of([new basic.Row.new({children: T.JSArrayOfWidget().of([new container.Container.new({margin: new edge_insets.EdgeInsets.only({right: 10.0}), height: 10.0, width: 10.0, decoration: new box_decoration.BoxDecoration.new({borderRadius: new border_radius.BorderRadius.circular(300.0), color: new ui.Color.new(4283694551)}), $creationLocationd_0dea112b090073317d4: C[3] || CT.C3}), new text.Text.new("Income", {style: new text_style.TextStyle.new({color: new ui.Color.new(4283406497), fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[9] || CT.C9})]), $creationLocationd_0dea112b090073317d4: C[13] || CT.C13}), new basic.SizedBox.new({height: 1.0, $creationLocationd_0dea112b090073317d4: C[16] || CT.C16}), new basic.Row.new({children: T.JSArrayOfWidget().of([new container.Container.new({margin: new edge_insets.EdgeInsets.only({right: 10.0}), height: 10.0, width: 10.0, decoration: new box_decoration.BoxDecoration.new({borderRadius: new border_radius.BorderRadius.circular(300.0), color: new ui.Color.new(4294951118)}), $creationLocationd_0dea112b090073317d4: C[19] || CT.C19}), new text.Text.new("Expense", {style: new text_style.TextStyle.new({color: new ui.Color.new(4283406497), fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[25] || CT.C25})]), $creationLocationd_0dea112b090073317d4: C[29] || CT.C29})]), $creationLocationd_0dea112b090073317d4: C[32] || CT.C32}), $creationLocationd_0dea112b090073317d4: C[35] || CT.C35}), new basic.Expanded.new({child: new bar_chart.BarChart.new(new bar_chart_data.BarChartData.new({maxY: 20.0, barTouchData: new bar_chart_data.BarTouchData.new({touchTooltipData: new bar_chart_data.BarTouchTooltipData.new({tooltipBgColor: colors.Colors.transparent, getTooltipItem: dart.fn((group, groupIndex, rod, rodIndex) => {
-                            let weekDay = null;
-                            switch (group.x[$toInt]()) {
-                              case 0:
-                              {
-                                weekDay = "Monday";
-                                break;
-                              }
-                              case 1:
-                              {
-                                weekDay = "Tuesday";
-                                break;
-                              }
-                              case 2:
-                              {
-                                weekDay = "Wednesday";
-                                break;
-                              }
-                              case 3:
-                              {
-                                weekDay = "Thursday";
-                                break;
-                              }
-                              case 4:
-                              {
-                                weekDay = "Friday";
-                                break;
-                              }
-                              case 5:
-                              {
-                                weekDay = "Saturday";
-                                break;
-                              }
-                              case 6:
-                              {
-                                weekDay = "Sunday";
-                                break;
-                              }
-                              default:
-                              {
-                                dart.throw(new core.Error.new());
-                              }
-                            }
-                            return new bar_chart_data.BarTooltipItem.new(weekDay + "\n", new text_style.TextStyle.new({color: colors.Colors.white, fontSize: 15.0}), {children: T.JSArrayOfTextSpan().of([new text_span.TextSpan.new({text: (rod.y - 1)[$toString](), style: new text_style.TextStyle.new({color: colors.Colors.yellow, fontSize: 14.0, fontWeight: ui.FontWeight.w500})})])});
-                          }, T.BarChartGroupDataAndintAndBarChartRodData__ToBarTooltipItem())}), touchCallback: dart.fn((event, barTouchResponse) => {
-                          this.setState(dart.fn(() => {
-                            if (!event.isInterestedForInteractions || barTouchResponse == null || barTouchResponse.spot == null) {
-                              this.touchedIndex = -1;
-                              return;
-                            }
-                            this.touchedIndex = dart.nullCheck(barTouchResponse.spot).touchedBarGroupIndex;
-                          }, T.VoidTovoid()));
-                        }, T.FlTouchEventAndBarTouchResponseNTovoid())}), titlesData: new axis_chart_data.FlTitlesData.new({show: true, rightTitles: new axis_chart_data.SideTitles.new({showTitles: false}), topTitles: new axis_chart_data.SideTitles.new({showTitles: false}), bottomTitles: new axis_chart_data.SideTitles.new({showTitles: true, getTextStyles: dart.fn((context, value) => C[39] || CT.C39, T.BuildContextAnddoubleToTextStyle()), margin: 5.0, getTitles: dart.fn(value => {
-                            switch (value[$toInt]()) {
-                              case 0:
-                              {
-                                return "Mon";
-                              }
-                              case 1:
-                              {
-                                return "Tue";
-                              }
-                              case 2:
-                              {
-                                return "Wed";
-                              }
-                              case 3:
-                              {
-                                return "Thu";
-                              }
-                              case 4:
-                              {
-                                return "Fri";
-                              }
-                              case 5:
-                              {
-                                return "Sat";
-                              }
-                              case 6:
-                              {
-                                return "Sun";
-                              }
-                              default:
-                              {
-                                return "";
-                              }
-                            }
-                          }, T.doubleToString())}), leftTitles: new axis_chart_data.SideTitles.new({showTitles: false})}), borderData: new base_chart_data.FlBorderData.new({show: false}), barGroups: this.showingGroups(), gridData: new axis_chart_data.FlGridData.new({show: false})}), {$creationLocationd_0dea112b090073317d4: C[42] || CT.C42}), $creationLocationd_0dea112b090073317d4: C[45] || CT.C45})]), $creationLocationd_0dea112b090073317d4: C[48] || CT.C48}), $creationLocationd_0dea112b090073317d4: C[54] || CT.C54}), $creationLocationd_0dea112b090073317d4: C[58] || CT.C58}), $creationLocationd_0dea112b090073317d4: C[65] || CT.C65}), $creationLocationd_0dea112b090073317d4: C[69] || CT.C69});
+    set scale(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[0], 139, 12, "value != null");
+      if (value === this[_scale]) return;
+      this[_scale] = value;
+      this.markNeedsLayout();
     }
-    makeGroupData(x, y1, y2, opts) {
-      let isTouched = opts && 'isTouched' in opts ? opts.isTouched : false;
-      let showTooltips = opts && 'showTooltips' in opts ? opts.showTooltips : C[73] || CT.C73;
-      return new bar_chart_data.BarChartGroupData.new({barsSpace: 4.0, x: x, barRods: T.JSArrayOfBarChartRodData().of([new bar_chart_data.BarChartRodData.new({y: isTouched ? y1 + 1 : y1, colors: T.JSArrayOfColor().of([this.leftBarColor]), width: this.width}), new bar_chart_data.BarChartRodData.new({y: isTouched ? y2 + 1 : y2, colors: T.JSArrayOfColor().of([this.rightBarColor]), width: this.width})])});
+    [_updateColorFilter]() {
+      let t0;
+      if (this[_color] == null)
+        this[_colorFilter] = null;
+      else
+        this[_colorFilter] = new _engine._CkBlendModeColorFilter.new(dart.nullCheck(this[_color]), (t0 = this[_colorBlendMode], t0 == null ? ui.BlendMode.srcIn : t0));
     }
-    showingGroups() {
-      return T.ListOfBarChartGroupData().generate(7, dart.fn(i => {
-        switch (i) {
-          case 0:
-          {
-            return this.makeGroupData(0, 5.0, 12.0, {isTouched: i === this.touchedIndex});
-          }
-          case 1:
-          {
-            return this.makeGroupData(1, 16.0, 12.0, {isTouched: i === this.touchedIndex});
-          }
-          case 2:
-          {
-            return this.makeGroupData(2, 18.0, 5.0, {isTouched: i === this.touchedIndex});
-          }
-          case 3:
-          {
-            return this.makeGroupData(3, 20.0, 16.0, {isTouched: i === this.touchedIndex});
-          }
-          case 4:
-          {
-            return this.makeGroupData(4, 17.0, 6.0, {isTouched: i === this.touchedIndex});
-          }
-          case 5:
-          {
-            return this.makeGroupData(5, 19.0, 1.5, {isTouched: i === this.touchedIndex});
-          }
-          case 6:
-          {
-            return this.makeGroupData(6, 10.0, 1.5, {isTouched: i === this.touchedIndex});
-          }
-          default:
-          {
-            return dart.throw(new core.Error.new());
-          }
-        }
-      }, T.intToBarChartGroupData()));
+    get color() {
+      return this[_color];
+    }
+    set color(value) {
+      if (dart.equals(value, this[_color])) return;
+      this[_color] = value;
+      this[_updateColorFilter]();
+      this.markNeedsPaint();
+    }
+    get filterQuality() {
+      return this[_filterQuality];
+    }
+    set filterQuality(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[0], 173, 12, "value != null");
+      if (value === this[_filterQuality]) return;
+      this[_filterQuality] = value;
+      this.markNeedsPaint();
+    }
+    get colorBlendMode() {
+      return this[_colorBlendMode];
+    }
+    set colorBlendMode(value) {
+      if (value == this[_colorBlendMode]) return;
+      this[_colorBlendMode] = value;
+      this[_updateColorFilter]();
+      this.markNeedsPaint();
+    }
+    get fit() {
+      return this[_fit];
+    }
+    set fit(value) {
+      if (value == this[_fit]) return;
+      this[_fit] = value;
+      this.markNeedsPaint();
+    }
+    get alignment() {
+      return this[_alignment];
+    }
+    set alignment(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[0], 219, 12, "value != null");
+      if (value._equals(this[_alignment])) return;
+      this[_alignment] = value;
+      this[_markNeedResolution]();
+    }
+    get repeat() {
+      return this[_repeat];
+    }
+    set repeat(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[0], 230, 12, "value != null");
+      if (value === this[_repeat]) return;
+      this[_repeat] = value;
+      this.markNeedsPaint();
+    }
+    get centerSlice() {
+      return this[_centerSlice];
+    }
+    set centerSlice(value) {
+      if (dart.equals(value, this[_centerSlice])) return;
+      this[_centerSlice] = value;
+      this.markNeedsPaint();
+    }
+    get invertColors() {
+      return this[_invertColors];
+    }
+    set invertColors(value) {
+      if (value === this[_invertColors]) return;
+      this[_invertColors] = value;
+      this.markNeedsPaint();
+    }
+    get matchTextDirection() {
+      return this[_matchTextDirection];
+    }
+    set matchTextDirection(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[0], 284, 12, "value != null");
+      if (value === this[_matchTextDirection]) return;
+      this[_matchTextDirection] = value;
+      this[_markNeedResolution]();
+    }
+    get textDirection() {
+      return this[_textDirection];
+    }
+    set textDirection(value) {
+      if (this[_textDirection] == value) return;
+      this[_textDirection] = value;
+      this[_markNeedResolution]();
+    }
+    get isAntiAlias() {
+      return this[_isAntiAlias];
+    }
+    set isAntiAlias(value) {
+      if (this[_isAntiAlias] === value) {
+        return;
+      }
+      if (!(value !== null)) dart.assertFailed(null, I[0], 314, 12, "value != null");
+      this[_isAntiAlias] = value;
+      this.markNeedsPaint();
+    }
+    [_sizeForConstraints](constraints) {
+      constraints = new box.BoxConstraints.tightFor({width: this[_width], height: this[_height]}).enforce(constraints);
+      if (this[_image] == null) return constraints.smallest;
+      return constraints.constrainSizeAndAttemptToPreserveAspectRatio(new ui.Size.new(dart.nullCheck(this[_image]).width[$toDouble]() / this[_scale], dart.nullCheck(this[_image]).height[$toDouble]() / this[_scale]));
+    }
+    computeMinIntrinsicWidth(height) {
+      if (!(height >= 0.0)) dart.assertFailed(null, I[0], 345, 12, "height >= 0.0");
+      if (this[_width] == null && this[_height] == null) return 0.0;
+      return this[_sizeForConstraints](new box.BoxConstraints.tightForFinite({height: height})).width;
+    }
+    computeMaxIntrinsicWidth(height) {
+      if (!(height >= 0.0)) dart.assertFailed(null, I[0], 353, 12, "height >= 0.0");
+      return this[_sizeForConstraints](new box.BoxConstraints.tightForFinite({height: height})).width;
+    }
+    computeMinIntrinsicHeight(width) {
+      if (!(width >= 0.0)) dart.assertFailed(null, I[0], 359, 12, "width >= 0.0");
+      if (this[_width] == null && this[_height] == null) return 0.0;
+      return this[_sizeForConstraints](new box.BoxConstraints.tightForFinite({width: width})).height;
+    }
+    computeMaxIntrinsicHeight(width) {
+      if (!(width >= 0.0)) dart.assertFailed(null, I[0], 367, 12, "width >= 0.0");
+      return this[_sizeForConstraints](new box.BoxConstraints.tightForFinite({width: width})).height;
+    }
+    hitTestSelf(position) {
+      return true;
+    }
+    computeDryLayout(constraints) {
+      return this[_sizeForConstraints](constraints);
+    }
+    performLayout() {
+      this.size = this[_sizeForConstraints](this.constraints);
+    }
+    paint(context, offset) {
+      if (this[_image] == null) return;
+      this[_resolve]();
+      if (!(this[_resolvedAlignment] != null)) dart.assertFailed(null, I[0], 389, 12, "_resolvedAlignment != null");
+      if (!(this[_flipHorizontally] != null)) dart.assertFailed(null, I[0], 390, 12, "_flipHorizontally != null");
+      decoration_image.paintImage({canvas: context.canvas, rect: offset['&'](this.size), image: dart.nullCheck(this[_image]), debugImageLabel: this.debugImageLabel, scale: this[_scale], colorFilter: this[_colorFilter], fit: this[_fit], alignment: dart.nullCheck(this[_resolvedAlignment]), centerSlice: this[_centerSlice], repeat: this[_repeat], flipHorizontally: dart.nullCheck(this[_flipHorizontally]), invertColors: this.invertColors, filterQuality: this[_filterQuality], isAntiAlias: this[_isAntiAlias]});
+    }
+    debugFillProperties(properties) {
+      super.debugFillProperties(properties);
+      properties.add(new (T.DiagnosticsPropertyOfImage()).new("image", this.image));
+      properties.add(new diagnostics.DoubleProperty.new("width", this.width, {defaultValue: null}));
+      properties.add(new diagnostics.DoubleProperty.new("height", this.height, {defaultValue: null}));
+      properties.add(new diagnostics.DoubleProperty.new("scale", this.scale, {defaultValue: 1.0}));
+      properties.add(new colors.ColorProperty.new("color", this.color, {defaultValue: null}));
+      properties.add(new (T.EnumPropertyOfBlendMode()).new("colorBlendMode", this.colorBlendMode, {defaultValue: null}));
+      properties.add(new (T.EnumPropertyOfBoxFit()).new("fit", this.fit, {defaultValue: null}));
+      properties.add(new (T.DiagnosticsPropertyOfAlignmentGeometry()).new("alignment", this.alignment, {defaultValue: null}));
+      properties.add(new (T.EnumPropertyOfImageRepeat()).new("repeat", this.repeat, {defaultValue: decoration_image.ImageRepeat.noRepeat}));
+      properties.add(new (T.DiagnosticsPropertyOfRect()).new("centerSlice", this.centerSlice, {defaultValue: null}));
+      properties.add(new diagnostics.FlagProperty.new("matchTextDirection", {value: this.matchTextDirection, ifTrue: "match text direction"}));
+      properties.add(new (T.EnumPropertyOfTextDirection()).new("textDirection", this.textDirection, {defaultValue: null}));
+      properties.add(new (T.DiagnosticsPropertyOfbool()).new("invertColors", this.invertColors));
+      properties.add(new (T.EnumPropertyOfFilterQuality()).new("filterQuality", this.filterQuality));
     }
   };
-  (barChart.BarChartSample2State.new = function() {
-    this[leftBarColor] = C[0] || CT.C0;
-    this[rightBarColor] = C[1] || CT.C1;
-    this[width] = 10.0;
-    this[touchedIndex] = -1;
-    barChart.BarChartSample2State.__proto__.new.call(this);
-    ;
-  }).prototype = barChart.BarChartSample2State.prototype;
-  dart.addTypeTests(barChart.BarChartSample2State);
-  dart.addTypeCaches(barChart.BarChartSample2State);
-  dart.setMethodSignature(barChart.BarChartSample2State, () => ({
-    __proto__: dart.getMethods(barChart.BarChartSample2State.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext]),
-    makeGroupData: dart.fnType(bar_chart_data.BarChartGroupData, [core.int, core.double, core.double], {isTouched: core.bool, showTooltips: core.List$(core.int)}, {}),
-    showingGroups: dart.fnType(core.List$(bar_chart_data.BarChartGroupData), [])
+  (image$.RenderImage.new = function(opts) {
+    let image = opts && 'image' in opts ? opts.image : null;
+    let debugImageLabel = opts && 'debugImageLabel' in opts ? opts.debugImageLabel : null;
+    let width = opts && 'width' in opts ? opts.width : null;
+    let height = opts && 'height' in opts ? opts.height : null;
+    let scale = opts && 'scale' in opts ? opts.scale : 1;
+    let color = opts && 'color' in opts ? opts.color : null;
+    let colorBlendMode = opts && 'colorBlendMode' in opts ? opts.colorBlendMode : null;
+    let fit = opts && 'fit' in opts ? opts.fit : null;
+    let alignment = opts && 'alignment' in opts ? opts.alignment : C[0] || CT.C0;
+    let repeat = opts && 'repeat' in opts ? opts.repeat : C[1] || CT.C1;
+    let centerSlice = opts && 'centerSlice' in opts ? opts.centerSlice : null;
+    let matchTextDirection = opts && 'matchTextDirection' in opts ? opts.matchTextDirection : false;
+    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+    let invertColors = opts && 'invertColors' in opts ? opts.invertColors : false;
+    let isAntiAlias = opts && 'isAntiAlias' in opts ? opts.isAntiAlias : false;
+    let filterQuality = opts && 'filterQuality' in opts ? opts.filterQuality : C[2] || CT.C2;
+    this[_resolvedAlignment] = null;
+    this[_flipHorizontally] = null;
+    this[_colorFilter] = null;
+    this[debugImageLabel$] = debugImageLabel;
+    if (!(scale !== null)) dart.assertFailed(null, I[0], 44, 15, "scale != null");
+    if (!(repeat !== null)) dart.assertFailed(null, I[0], 45, 15, "repeat != null");
+    if (!(alignment !== null)) dart.assertFailed(null, I[0], 46, 15, "alignment != null");
+    if (!(filterQuality !== null)) dart.assertFailed(null, I[0], 47, 15, "filterQuality != null");
+    if (!(matchTextDirection !== null)) dart.assertFailed(null, I[0], 48, 15, "matchTextDirection != null");
+    if (!(isAntiAlias !== null)) dart.assertFailed(null, I[0], 49, 15, "isAntiAlias != null");
+    this[_image] = image;
+    this[_width] = width;
+    this[_height] = height;
+    this[_scale] = scale;
+    this[_color] = color;
+    this[_colorBlendMode] = colorBlendMode;
+    this[_fit] = fit;
+    this[_alignment] = alignment;
+    this[_repeat] = repeat;
+    this[_centerSlice] = centerSlice;
+    this[_matchTextDirection] = matchTextDirection;
+    this[_invertColors] = invertColors;
+    this[_textDirection] = textDirection;
+    this[_isAntiAlias] = isAntiAlias;
+    this[_filterQuality] = filterQuality;
+    image$.RenderImage.__proto__.new.call(this);
+    this[_updateColorFilter]();
+  }).prototype = image$.RenderImage.prototype;
+  dart.addTypeTests(image$.RenderImage);
+  dart.addTypeCaches(image$.RenderImage);
+  dart.setMethodSignature(image$.RenderImage, () => ({
+    __proto__: dart.getMethods(image$.RenderImage.__proto__),
+    [_resolve]: dart.fnType(dart.void, []),
+    [_markNeedResolution]: dart.fnType(dart.void, []),
+    [_updateColorFilter]: dart.fnType(dart.void, []),
+    [_sizeForConstraints]: dart.fnType(ui.Size, [box.BoxConstraints])
   }));
-  dart.setLibraryUri(barChart.BarChartSample2State, I[0]);
-  dart.setFieldSignature(barChart.BarChartSample2State, () => ({
-    __proto__: dart.getFields(barChart.BarChartSample2State.__proto__),
-    leftBarColor: dart.finalFieldType(ui.Color),
-    rightBarColor: dart.finalFieldType(ui.Color),
-    width: dart.finalFieldType(core.double),
-    touchedIndex: dart.fieldType(core.int)
+  dart.setGetterSignature(image$.RenderImage, () => ({
+    __proto__: dart.getGetters(image$.RenderImage.__proto__),
+    image: dart.nullable(ui.Image),
+    width: dart.nullable(core.double),
+    height: dart.nullable(core.double),
+    scale: core.double,
+    color: dart.nullable(ui.Color),
+    filterQuality: ui.FilterQuality,
+    colorBlendMode: dart.nullable(ui.BlendMode),
+    fit: dart.nullable(box_fit.BoxFit),
+    alignment: alignment.AlignmentGeometry,
+    repeat: decoration_image.ImageRepeat,
+    centerSlice: dart.nullable(ui.Rect),
+    invertColors: core.bool,
+    matchTextDirection: core.bool,
+    textDirection: dart.nullable(ui.TextDirection),
+    isAntiAlias: core.bool
   }));
-  dart.trackLibraries("packages/eco_ml/charts/barChart.dart", {
-    "package:eco_ml/charts/barChart.dart": barChart
+  dart.setSetterSignature(image$.RenderImage, () => ({
+    __proto__: dart.getSetters(image$.RenderImage.__proto__),
+    image: dart.nullable(ui.Image),
+    width: dart.nullable(core.double),
+    height: dart.nullable(core.double),
+    scale: core.double,
+    color: dart.nullable(ui.Color),
+    filterQuality: ui.FilterQuality,
+    colorBlendMode: dart.nullable(ui.BlendMode),
+    fit: dart.nullable(box_fit.BoxFit),
+    alignment: alignment.AlignmentGeometry,
+    repeat: decoration_image.ImageRepeat,
+    centerSlice: dart.nullable(ui.Rect),
+    invertColors: core.bool,
+    matchTextDirection: core.bool,
+    textDirection: dart.nullable(ui.TextDirection),
+    isAntiAlias: core.bool
+  }));
+  dart.setLibraryUri(image$.RenderImage, I[1]);
+  dart.setFieldSignature(image$.RenderImage, () => ({
+    __proto__: dart.getFields(image$.RenderImage.__proto__),
+    [_resolvedAlignment]: dart.fieldType(dart.nullable(alignment.Alignment)),
+    [_flipHorizontally]: dart.fieldType(dart.nullable(core.bool)),
+    [_image]: dart.fieldType(dart.nullable(ui.Image)),
+    debugImageLabel: dart.fieldType(dart.nullable(core.String)),
+    [_width]: dart.fieldType(dart.nullable(core.double)),
+    [_height]: dart.fieldType(dart.nullable(core.double)),
+    [_scale]: dart.fieldType(core.double),
+    [_colorFilter]: dart.fieldType(dart.nullable(ui.ColorFilter)),
+    [_color]: dart.fieldType(dart.nullable(ui.Color)),
+    [_filterQuality]: dart.fieldType(ui.FilterQuality),
+    [_colorBlendMode]: dart.fieldType(dart.nullable(ui.BlendMode)),
+    [_fit]: dart.fieldType(dart.nullable(box_fit.BoxFit)),
+    [_alignment]: dart.fieldType(alignment.AlignmentGeometry),
+    [_repeat]: dart.fieldType(decoration_image.ImageRepeat),
+    [_centerSlice]: dart.fieldType(dart.nullable(ui.Rect)),
+    [_invertColors]: dart.fieldType(core.bool),
+    [_matchTextDirection]: dart.fieldType(core.bool),
+    [_textDirection]: dart.fieldType(dart.nullable(ui.TextDirection)),
+    [_isAntiAlias]: dart.fieldType(core.bool)
+  }));
+  dart.trackLibraries("packages/flutter/src/rendering/image.dart", {
+    "package:flutter/src/rendering/image.dart": image$
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["barChart.dart"],"names":[],"mappings":"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","file":"../../../../../packages/eco_ml/charts/barChart.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["image.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/rendering/image.dart.lib.js"}');
   // Exports:
   return {
-    charts__barChart: barChart
+    src__rendering__image: image$
   };
 }));
 
-//# sourceMappingURL=barChart.dart.lib.js.map
-=======
-  var I = [
-    "file:///D:/DevTools/flutter/packages/flutter/lib/src/painting/image_cache.dart",
-    "package:flutter/src/painting/image_cache.dart"
-  ];
-  var _pendingImages = dart.privateName(image_cache, "_pendingImages");
-  var _cache = dart.privateName(image_cache, "_cache");
-  var _liveImages = dart.privateName(image_cache, "_liveImages");
-  var _maximumSize = dart.privateName(image_cache, "_maximumSize");
-  var _maximumSizeBytes = dart.privateName(image_cache, "_maximumSizeBytes");
-  var _currentSizeBytes = dart.privateName(image_cache, "_currentSizeBytes");
-  var _checkCacheSize = dart.privateName(image_cache, "_checkCacheSize");
-  var _touch = dart.privateName(image_cache, "_touch");
-  var _trackLiveImage = dart.privateName(image_cache, "_trackLiveImage");
-  image_cache.ImageCache = class ImageCache extends core.Object {
-    get maximumSize() {
-      return this[_maximumSize];
-    }
-    set maximumSize(value) {
-      let t0;
-      if (!(value !== null)) dart.assertFailed(null, I[0], 103, 12, "value != null");
-      if (!(value >= 0)) dart.assertFailed(null, I[0], 104, 12, "value >= 0");
-      if (value === this.maximumSize) return;
-      let timelineTask = null;
-      if (!false) {
-        timelineTask = (t0 = new developer.TimelineTask.new(), (() => {
-          t0.start("ImageCache.setMaximumSize", {arguments: new (T.IdentityMapOfString$dynamic()).from(["value", value])});
-          return t0;
-        })());
-      }
-      this[_maximumSize] = value;
-      if (this.maximumSize === 0) {
-        this.clear();
-      } else {
-        this[_checkCacheSize](timelineTask);
-      }
-      if (!false) {
-        dart.nullCheck(timelineTask).finish();
-      }
-    }
-    get currentSize() {
-      return this[_cache][$length];
-    }
-    get maximumSizeBytes() {
-      return this[_maximumSizeBytes];
-    }
-    set maximumSizeBytes(value) {
-      let t0;
-      if (!(value !== null)) dart.assertFailed(null, I[0], 142, 12, "value != null");
-      if (!(value >= 0)) dart.assertFailed(null, I[0], 143, 12, "value >= 0");
-      if (value === this[_maximumSizeBytes]) return;
-      let timelineTask = null;
-      if (!false) {
-        timelineTask = (t0 = new developer.TimelineTask.new(), (() => {
-          t0.start("ImageCache.setMaximumSizeBytes", {arguments: new (T.IdentityMapOfString$dynamic()).from(["value", value])});
-          return t0;
-        })());
-      }
-      this[_maximumSizeBytes] = value;
-      if (this[_maximumSizeBytes] === 0) {
-        this.clear();
-      } else {
-        this[_checkCacheSize](timelineTask);
-      }
-      if (!false) {
-        dart.nullCheck(timelineTask).finish();
-      }
-    }
-    get currentSizeBytes() {
-      return this[_currentSizeBytes];
-    }
-    clear() {
-      if (!false) {
-        developer.Timeline.instantSync("ImageCache.clear", {arguments: new (T.IdentityMapOfString$dynamic()).from(["pendingImages", this[_pendingImages][$length], "keepAliveImages", this[_cache][$length], "liveImages", this[_liveImages][$length], "currentSizeInBytes", this[_currentSizeBytes]])});
-      }
-      for (let image of this[_cache][$values]) {
-        image.dispose();
-      }
-      this[_cache][$clear]();
-      this[_pendingImages][$clear]();
-      this[_currentSizeBytes] = 0;
-    }
-    evict(key, opts) {
-      let t0;
-      let includeLive = opts && 'includeLive' in opts ? opts.includeLive : true;
-      if (!(includeLive !== null)) dart.assertFailed(null, I[0], 239, 12, "includeLive != null");
-      if (includeLive) {
-        let image = this[_liveImages][$remove](key);
-        t0 = image;
-        t0 == null ? null : t0.dispose();
-      }
-      let pendingImage = this[_pendingImages][$remove](key);
-      if (pendingImage != null) {
-        if (!false) {
-          developer.Timeline.instantSync("ImageCache.evict", {arguments: new (T.IdentityMapOfString$dynamic()).from(["type", "pending"])});
-        }
-        pendingImage.removeListener();
-        return true;
-      }
-      let image = this[_cache][$remove](key);
-      if (image != null) {
-        if (!false) {
-          developer.Timeline.instantSync("ImageCache.evict", {arguments: new (T.IdentityMapOfString$dynamic()).from(["type", "keepAlive", "sizeInBytes", image.sizeBytes])});
-        }
-        this[_currentSizeBytes] = this[_currentSizeBytes] - dart.nullCheck(image.sizeBytes);
-        image.dispose();
-        return true;
-      }
-      if (!false) {
-        developer.Timeline.instantSync("ImageCache.evict", {arguments: new (T.IdentityMapOfString$dynamic()).from(["type", "miss"])});
-      }
-      return false;
-    }
-    [_touch](key, image, timelineTask) {
-      if (!(timelineTask != null)) dart.assertFailed(null, I[0], 285, 12, "timelineTask != null");
-      if (image.sizeBytes != null && dart.nullCheck(image.sizeBytes) <= this.maximumSizeBytes && this.maximumSize > 0) {
-        this[_currentSizeBytes] = this[_currentSizeBytes] + dart.nullCheck(image.sizeBytes);
-        this[_cache][$_set](key, image);
-        this[_checkCacheSize](timelineTask);
-      } else {
-        image.dispose();
-      }
-    }
-    [_trackLiveImage](key, completer, sizeBytes) {
-      let t0;
-      t0 = this[_liveImages][$putIfAbsent](key, dart.fn(() => new image_cache._LiveImage.new(completer, dart.fn(() => {
-        this[_liveImages][$remove](key);
-      }, T.VoidTovoid())), T.VoidTo_LiveImage()));
-      t0.sizeBytes == null ? t0.sizeBytes = sizeBytes : null;
-    }
-    putIfAbsent(key, loader, opts) {
-      let t0, t0$, t1;
-      let onError = opts && 'onError' in opts ? opts.onError : null;
-      if (!(key !== null)) dart.assertFailed(null, I[0], 323, 12, "key != null");
-      if (!(loader !== null)) dart.assertFailed(null, I[0], 324, 12, "loader != null");
-      let timelineTask = null;
-      let listenerTask = null;
-      if (!false) {
-        timelineTask = (t0 = new developer.TimelineTask.new(), (() => {
-          t0.start("ImageCache.putIfAbsent", {arguments: new (T.IdentityMapOfString$dynamic()).from(["key", key[$toString]()])});
-          return t0;
-        })());
-      }
-      let result = (t0$ = this[_pendingImages][$_get](key), t0$ == null ? null : t0$.completer);
-      if (result != null) {
-        if (!false) {
-          dart.nullCheck(timelineTask).finish({arguments: new (T.IdentityMapOfString$dynamic()).from(["result", "pending"])});
-        }
-        return result;
-      }
-      let image = this[_cache][$remove](key);
-      if (image != null) {
-        if (!false) {
-          dart.nullCheck(timelineTask).finish({arguments: new (T.IdentityMapOfString$dynamic()).from(["result", "keepAlive"])});
-        }
-        this[_trackLiveImage](key, image.completer, image.sizeBytes);
-        this[_cache][$_set](key, image);
-        return image.completer;
-      }
-      let liveImage = this[_liveImages][$_get](key);
-      if (liveImage != null) {
-        this[_touch](key, new image_cache._CachedImage.new(liveImage.completer, {sizeBytes: liveImage.sizeBytes}), timelineTask);
-        if (!false) {
-          dart.nullCheck(timelineTask).finish({arguments: new (T.IdentityMapOfString$dynamic()).from(["result", "keepAlive"])});
-        }
-        return liveImage.completer;
-      }
-      try {
-        result = loader();
-        this[_trackLiveImage](key, result, null);
-      } catch (e) {
-        let error = dart.getThrown(e);
-        let stackTrace = dart.stackTrace(e);
-        if (core.Object.is(error)) {
-          if (!false) {
-            dart.nullCheck(timelineTask).finish({arguments: new (T.IdentityMapOfString$dynamic()).from(["result", "error", "error", error[$toString](), "stackTrace", stackTrace.toString()])});
-          }
-          if (onError != null) {
-            onError(error, stackTrace);
-            return null;
-          } else {
-            dart.rethrow(e);
-          }
-        } else
-          throw e;
-      }
-      if (!false) {
-        listenerTask = (t1 = new developer.TimelineTask.new({parent: timelineTask}), (() => {
-          t1.start("listener");
-          return t1;
-        })());
-      }
-      let listenedOnce = false;
-      let untrackedPendingImage = null;
-      const listener = (info, syncCall) => {
-        let t1;
-        let sizeBytes = null;
-        if (info != null) {
-          sizeBytes = info.image.height * info.image.width * 4;
-          info.dispose();
-        }
-        let image = new image_cache._CachedImage.new(dart.nullCheck(result), {sizeBytes: sizeBytes});
-        this[_trackLiveImage](key, result, sizeBytes);
-        if (untrackedPendingImage == null) {
-          this[_touch](key, image, listenerTask);
-        } else {
-          image.dispose();
-        }
-        let pendingImage = (t1 = untrackedPendingImage, t1 == null ? this[_pendingImages][$remove](key) : t1);
-        if (pendingImage != null) {
-          pendingImage.removeListener();
-        }
-        if (!false && !listenedOnce) {
-          dart.nullCheck(listenerTask).finish({arguments: new (T.IdentityMapOfString$dynamic()).from(["syncCall", syncCall, "sizeInBytes", sizeBytes])});
-          dart.nullCheck(timelineTask).finish({arguments: new (T.IdentityMapOfString$dynamic()).from(["currentSizeBytes", this.currentSizeBytes, "currentSize", this.currentSize])});
-        }
-        listenedOnce = true;
-      };
-      dart.fn(listener, T.ImageInfoNAndboolTovoid());
-      let streamListener = new image_stream.ImageStreamListener.new(listener);
-      if (this.maximumSize > 0 && this.maximumSizeBytes > 0) {
-        this[_pendingImages][$_set](key, new image_cache._PendingImage.new(result, streamListener));
-      } else {
-        untrackedPendingImage = new image_cache._PendingImage.new(result, streamListener);
-      }
-      result.addListener(streamListener);
-      return result;
-    }
-    statusForKey(key) {
-      return new image_cache.ImageCacheStatus.__({pending: this[_pendingImages][$containsKey](key), keepAlive: this[_cache][$containsKey](key), live: this[_liveImages][$containsKey](key)});
-    }
-    containsKey(key) {
-      return this[_pendingImages][$_get](key) != null || this[_cache][$_get](key) != null;
-    }
-    get liveImageCount() {
-      return this[_liveImages][$length];
-    }
-    get pendingImageCount() {
-      return this[_pendingImages][$length];
-    }
-    clearLiveImages() {
-      for (let image of this[_liveImages][$values]) {
-        image.dispose();
-      }
-      this[_liveImages][$clear]();
-    }
-    [_checkCacheSize](timelineTask) {
-      let t1;
-      let finishArgs = new (T.IdentityMapOfString$dynamic()).new();
-      let checkCacheTask = null;
-      if (!false) {
-        checkCacheTask = (t1 = new developer.TimelineTask.new({parent: timelineTask}), (() => {
-          t1.start("checkCacheSize");
-          return t1;
-        })());
-        finishArgs[$_set]("evictedKeys", T.JSArrayOfString().of([]));
-        finishArgs[$_set]("currentSize", this.currentSize);
-        finishArgs[$_set]("currentSizeBytes", this.currentSizeBytes);
-      }
-      while (this[_currentSizeBytes] > this[_maximumSizeBytes] || this[_cache][$length] > this[_maximumSize]) {
-        let key = this[_cache][$keys][$first];
-        let image = dart.nullCheck(this[_cache][$_get](key));
-        this[_currentSizeBytes] = this[_currentSizeBytes] - dart.nullCheck(image.sizeBytes);
-        image.dispose();
-        this[_cache][$remove](key);
-        if (!false) {
-          dart.dsend(finishArgs[$_get]("evictedKeys"), 'add', [key[$toString]()]);
-        }
-      }
-      if (!false) {
-        finishArgs[$_set]("endSize", this.currentSize);
-        finishArgs[$_set]("endSizeBytes", this.currentSizeBytes);
-        dart.nullCheck(checkCacheTask).finish({arguments: finishArgs});
-      }
-      if (!(this[_currentSizeBytes] >= 0)) dart.assertFailed(null, I[0], 528, 12, "_currentSizeBytes >= 0");
-      if (!(this[_cache][$length] <= this.maximumSize)) dart.assertFailed(null, I[0], 529, 12, "_cache.length <= maximumSize");
-      if (!(this[_currentSizeBytes] <= this.maximumSizeBytes)) dart.assertFailed(null, I[0], 530, 12, "_currentSizeBytes <= maximumSizeBytes");
-    }
-  };
-  (image_cache.ImageCache.new = function() {
-    this[_pendingImages] = new (T.LinkedMapOfObject$_PendingImage()).new();
-    this[_cache] = new (T.LinkedMapOfObject$_CachedImage()).new();
-    this[_liveImages] = new (T.LinkedMapOfObject$_LiveImage()).new();
-    this[_maximumSize] = 1000;
-    this[_maximumSizeBytes] = 104857600;
-    this[_currentSizeBytes] = 0;
-    ;
-  }).prototype = image_cache.ImageCache.prototype;
-  dart.addTypeTests(image_cache.ImageCache);
-  dart.addTypeCaches(image_cache.ImageCache);
-  dart.setMethodSignature(image_cache.ImageCache, () => ({
-    __proto__: dart.getMethods(image_cache.ImageCache.__proto__),
-    clear: dart.fnType(dart.void, []),
-    evict: dart.fnType(core.bool, [core.Object], {includeLive: core.bool}, {}),
-    [_touch]: dart.fnType(dart.void, [core.Object, image_cache._CachedImage, dart.nullable(developer.TimelineTask)]),
-    [_trackLiveImage]: dart.fnType(dart.void, [core.Object, image_stream.ImageStreamCompleter, dart.nullable(core.int)]),
-    putIfAbsent: dart.fnType(dart.nullable(image_stream.ImageStreamCompleter), [core.Object, dart.fnType(image_stream.ImageStreamCompleter, [])], {onError: dart.nullable(dart.fnType(dart.void, [core.Object, dart.nullable(core.StackTrace)]))}, {}),
-    statusForKey: dart.fnType(image_cache.ImageCacheStatus, [core.Object]),
-    containsKey: dart.fnType(core.bool, [core.Object]),
-    clearLiveImages: dart.fnType(dart.void, []),
-    [_checkCacheSize]: dart.fnType(dart.void, [dart.nullable(developer.TimelineTask)])
-  }));
-  dart.setGetterSignature(image_cache.ImageCache, () => ({
-    __proto__: dart.getGetters(image_cache.ImageCache.__proto__),
-    maximumSize: core.int,
-    currentSize: core.int,
-    maximumSizeBytes: core.int,
-    currentSizeBytes: core.int,
-    liveImageCount: core.int,
-    pendingImageCount: core.int
-  }));
-  dart.setSetterSignature(image_cache.ImageCache, () => ({
-    __proto__: dart.getSetters(image_cache.ImageCache.__proto__),
-    maximumSize: core.int,
-    maximumSizeBytes: core.int
-  }));
-  dart.setLibraryUri(image_cache.ImageCache, I[1]);
-  dart.setFieldSignature(image_cache.ImageCache, () => ({
-    __proto__: dart.getFields(image_cache.ImageCache.__proto__),
-    [_pendingImages]: dart.finalFieldType(core.Map$(core.Object, image_cache._PendingImage)),
-    [_cache]: dart.finalFieldType(core.Map$(core.Object, image_cache._CachedImage)),
-    [_liveImages]: dart.finalFieldType(core.Map$(core.Object, image_cache._LiveImage)),
-    [_maximumSize]: dart.fieldType(core.int),
-    [_maximumSizeBytes]: dart.fieldType(core.int),
-    [_currentSizeBytes]: dart.fieldType(core.int)
-  }));
-  var pending$ = dart.privateName(image_cache, "ImageCacheStatus.pending");
-  var keepAlive$ = dart.privateName(image_cache, "ImageCacheStatus.keepAlive");
-  var live$ = dart.privateName(image_cache, "ImageCacheStatus.live");
-  image_cache.ImageCacheStatus = class ImageCacheStatus extends core.Object {
-    get pending() {
-      return this[pending$];
-    }
-    set pending(value) {
-      super.pending = value;
-    }
-    get keepAlive() {
-      return this[keepAlive$];
-    }
-    set keepAlive(value) {
-      super.keepAlive = value;
-    }
-    get live() {
-      return this[live$];
-    }
-    set live(value) {
-      super.live = value;
-    }
-    get tracked() {
-      return this.pending || this.keepAlive || this.live;
-    }
-    get untracked() {
-      return !this.pending && !this.keepAlive && !this.live;
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (!other[$runtimeType]._equals(this[$runtimeType])) {
-        return false;
-      }
-      return image_cache.ImageCacheStatus.is(other) && other.pending === this.pending && other.keepAlive === this.keepAlive && other.live === this.live;
-    }
-    get hashCode() {
-      return ui.hashValues(this.pending, this.keepAlive, this.live);
-    }
-    toString() {
-      return object.objectRuntimeType(this, "ImageCacheStatus") + "(pending: " + dart.str(this.pending) + ", live: " + dart.str(this.live) + ", keepAlive: " + dart.str(this.keepAlive) + ")";
-    }
-  };
-  (image_cache.ImageCacheStatus.__ = function(opts) {
-    let pending = opts && 'pending' in opts ? opts.pending : false;
-    let keepAlive = opts && 'keepAlive' in opts ? opts.keepAlive : false;
-    let live = opts && 'live' in opts ? opts.live : false;
-    this[pending$] = pending;
-    this[keepAlive$] = keepAlive;
-    this[live$] = live;
-    if (!(!pending || !keepAlive)) dart.assertFailed(null, I[0], 557, 15, "!pending || !keepAlive");
-    ;
-  }).prototype = image_cache.ImageCacheStatus.prototype;
-  dart.addTypeTests(image_cache.ImageCacheStatus);
-  dart.addTypeCaches(image_cache.ImageCacheStatus);
-  dart.setGetterSignature(image_cache.ImageCacheStatus, () => ({
-    __proto__: dart.getGetters(image_cache.ImageCacheStatus.__proto__),
-    tracked: core.bool,
-    untracked: core.bool
-  }));
-  dart.setLibraryUri(image_cache.ImageCacheStatus, I[1]);
-  dart.setFieldSignature(image_cache.ImageCacheStatus, () => ({
-    __proto__: dart.getFields(image_cache.ImageCacheStatus.__proto__),
-    pending: dart.finalFieldType(core.bool),
-    keepAlive: dart.finalFieldType(core.bool),
-    live: dart.finalFieldType(core.bool)
-  }));
-  dart.defineExtensionMethods(image_cache.ImageCacheStatus, ['_equals', 'toString']);
-  dart.defineExtensionAccessors(image_cache.ImageCacheStatus, ['hashCode']);
-  image_cache._CachedImageBase = class _CachedImageBase extends core.Object {
-    dispose() {
-      if (!(this.handle != null)) dart.assertFailed(null, I[0], 622, 12, "handle != null");
-      dart.nullCheck(binding.SchedulerBinding.instance).addPostFrameCallback(dart.fn(timeStamp => {
-        let t1;
-        if (!(this.handle != null)) dart.assertFailed(null, I[0], 626, 14, "handle != null");
-        t1 = this.handle;
-        t1 == null ? null : t1.dispose();
-        this.handle = null;
-      }, T.DurationTovoid()));
-    }
-  };
-  (image_cache._CachedImageBase.new = function(completer, opts) {
-    let sizeBytes = opts && 'sizeBytes' in opts ? opts.sizeBytes : null;
-    this.completer = completer;
-    this.sizeBytes = sizeBytes;
-    if (!(completer !== null)) dart.assertFailed(null, I[0], 613, 15, "completer != null");
-    this.handle = completer.keepAlive();
-    ;
-  }).prototype = image_cache._CachedImageBase.prototype;
-  dart.addTypeTests(image_cache._CachedImageBase);
-  dart.addTypeCaches(image_cache._CachedImageBase);
-  dart.setMethodSignature(image_cache._CachedImageBase, () => ({
-    __proto__: dart.getMethods(image_cache._CachedImageBase.__proto__),
-    dispose: dart.fnType(dart.void, [])
-  }));
-  dart.setLibraryUri(image_cache._CachedImageBase, I[1]);
-  dart.setFieldSignature(image_cache._CachedImageBase, () => ({
-    __proto__: dart.getFields(image_cache._CachedImageBase.__proto__),
-    completer: dart.finalFieldType(image_stream.ImageStreamCompleter),
-    sizeBytes: dart.fieldType(dart.nullable(core.int)),
-    handle: dart.fieldType(dart.nullable(image_stream.ImageStreamCompleterHandle))
-  }));
-  image_cache._CachedImage = class _CachedImage extends image_cache._CachedImageBase {};
-  (image_cache._CachedImage.new = function(completer, opts) {
-    let sizeBytes = opts && 'sizeBytes' in opts ? opts.sizeBytes : null;
-    image_cache._CachedImage.__proto__.new.call(this, completer, {sizeBytes: sizeBytes});
-    ;
-  }).prototype = image_cache._CachedImage.prototype;
-  dart.addTypeTests(image_cache._CachedImage);
-  dart.addTypeCaches(image_cache._CachedImage);
-  dart.setLibraryUri(image_cache._CachedImage, I[1]);
-  var ___LiveImage__handleRemove = dart.privateName(image_cache, "_#_LiveImage#_handleRemove");
-  var _handleRemove = dart.privateName(image_cache, "_handleRemove");
-  image_cache._LiveImage = class _LiveImage extends image_cache._CachedImageBase {
-    get [_handleRemove]() {
-      let t1;
-      t1 = this[___LiveImage__handleRemove];
-      return t1 == null ? dart.throw(new _internal.LateError.fieldNI("_handleRemove")) : t1;
-    }
-    set [_handleRemove](t1) {
-      this[___LiveImage__handleRemove] = t1;
-    }
-    dispose() {
-      this.completer.removeOnLastListenerRemovedCallback(this[_handleRemove]);
-      super.dispose();
-    }
-    toString() {
-      return diagnostics.describeIdentity(this);
-    }
-  };
-  (image_cache._LiveImage.new = function(completer, handleRemove, opts) {
-    let sizeBytes = opts && 'sizeBytes' in opts ? opts.sizeBytes : null;
-    this[___LiveImage__handleRemove] = null;
-    image_cache._LiveImage.__proto__.new.call(this, completer, {sizeBytes: sizeBytes});
-    this[_handleRemove] = dart.fn(() => {
-      handleRemove();
-      this.dispose();
-    }, T.VoidTovoid());
-    completer.addOnLastListenerRemovedCallback(this[_handleRemove]);
-  }).prototype = image_cache._LiveImage.prototype;
-  dart.addTypeTests(image_cache._LiveImage);
-  dart.addTypeCaches(image_cache._LiveImage);
-  dart.setGetterSignature(image_cache._LiveImage, () => ({
-    __proto__: dart.getGetters(image_cache._LiveImage.__proto__),
-    [_handleRemove]: dart.fnType(dart.void, [])
-  }));
-  dart.setSetterSignature(image_cache._LiveImage, () => ({
-    __proto__: dart.getSetters(image_cache._LiveImage.__proto__),
-    [_handleRemove]: dart.fnType(dart.void, [])
-  }));
-  dart.setLibraryUri(image_cache._LiveImage, I[1]);
-  dart.setFieldSignature(image_cache._LiveImage, () => ({
-    __proto__: dart.getFields(image_cache._LiveImage.__proto__),
-    [___LiveImage__handleRemove]: dart.fieldType(dart.nullable(dart.fnType(dart.void, [])))
-  }));
-  dart.defineExtensionMethods(image_cache._LiveImage, ['toString']);
-  image_cache._PendingImage = class _PendingImage extends core.Object {
-    removeListener() {
-      this.completer.removeListener(this.listener);
-    }
-  };
-  (image_cache._PendingImage.new = function(completer, listener) {
-    this.completer = completer;
-    this.listener = listener;
-    ;
-  }).prototype = image_cache._PendingImage.prototype;
-  dart.addTypeTests(image_cache._PendingImage);
-  dart.addTypeCaches(image_cache._PendingImage);
-  dart.setMethodSignature(image_cache._PendingImage, () => ({
-    __proto__: dart.getMethods(image_cache._PendingImage.__proto__),
-    removeListener: dart.fnType(dart.void, [])
-  }));
-  dart.setLibraryUri(image_cache._PendingImage, I[1]);
-  dart.setFieldSignature(image_cache._PendingImage, () => ({
-    __proto__: dart.getFields(image_cache._PendingImage.__proto__),
-    completer: dart.finalFieldType(image_stream.ImageStreamCompleter),
-    listener: dart.finalFieldType(image_stream.ImageStreamListener)
-  }));
-  dart.defineLazy(image_cache, {
-    /*image_cache._kDefaultSize*/get _kDefaultSize() {
-      return 1000;
-    },
-    /*image_cache._kDefaultSizeBytes*/get _kDefaultSizeBytes() {
-      return 104857600;
-    }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/painting/image_cache.dart", {
-    "package:flutter/src/painting/image_cache.dart": image_cache
-  }, {
-  }, '{"version":3,"sourceRoot":"","sources":["image_cache.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/painting/image_cache.dart.lib.js"}');
-  // Exports:
-  return {
-    src__painting__image_cache: image_cache
-  };
-}));
-
-//# sourceMappingURL=image_cache.dart.lib.js.map
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+//# sourceMappingURL=image.dart.lib.js.map

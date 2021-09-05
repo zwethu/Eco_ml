@@ -1,749 +1,365 @@
-<<<<<<< HEAD
-define(['dart_sdk', 'packages/flutter/src/material/icon_button.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/painting/border_radius.dart'], (function load__packages__flutter__src__material__card_dart(dart_sdk, packages__flutter__src__material__icon_button$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__borders$46dart, packages__flutter__src__painting__border_radius$46dart) {
+define(['dart_sdk', 'packages/flutter/src/foundation/object.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/foundation/change_notifier.dart', 'packages/vector_math/vector_math_64.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__rendering__flow_dart(dart_sdk, packages__flutter__src__foundation__object$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__foundation__change_notifier$46dart, packages__vector_math__vector_math_64$46dart, packages__flutter__src__foundation__debug$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
-  const dart = dart_sdk.dart;
-  const dartx = dart_sdk.dartx;
-  const theme$ = packages__flutter__src__material__icon_button$46dart.src__material__theme;
-  const card_theme = packages__flutter__src__material__icon_button$46dart.src__material__card_theme;
-  const material = packages__flutter__src__material__icon_button$46dart.src__material__material;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
-  var card = Object.create(dart.library);
-  dart._checkModuleNullSafetyMode(true);
-=======
-define(['dart_sdk', 'packages/flutter/src/gestures/debug.dart', 'packages/flutter/src/foundation/print.dart'], (function load__packages__flutter__src__gestures__arena_dart(dart_sdk, packages__flutter__src__gestures__debug$46dart, packages__flutter__src__foundation__print$46dart) {
-  'use strict';
-  const core = dart_sdk.core;
   const _interceptors = dart_sdk._interceptors;
-  const _js_helper = dart_sdk._js_helper;
-  const async = dart_sdk.async;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const debug = packages__flutter__src__gestures__debug$46dart.src__gestures__debug;
-  const print = packages__flutter__src__foundation__print$46dart.src__foundation__print;
-  var arena = Object.create(dart.library);
-  var $add = dartx.add;
-  var $isEmpty = dartx.isEmpty;
+  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const object$ = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
+  const layer = packages__flutter__src__rendering__layer$46dart.src__rendering__layer;
+  const change_notifier = packages__flutter__src__foundation__change_notifier$46dart.src__foundation__change_notifier;
+  const vector_math_64 = packages__vector_math__vector_math_64$46dart.vector_math_64;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  var flow = Object.create(dart.library);
   var $_equals = dartx._equals;
-  var $map = dartx.map;
-  var $join = dartx.join;
-  var $putIfAbsent = dartx.putIfAbsent;
-  var $_get = dartx._get;
-  var $remove = dartx.remove;
-  var $isNotEmpty = dartx.isNotEmpty;
-  var $first = dartx.first;
+  var $runtimeType = dartx.runtimeType;
+  var $isFinite = dartx.isFinite;
+  var $clear = dartx.clear;
+  var $add = dartx.add;
   var $length = dartx.length;
-  var $contains = dartx.contains;
-  var $containsKey = dartx.containsKey;
-  var $toString = dartx.toString;
-  var $padRight = dartx.padRight;
+  var $_get = dartx._get;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    JSArrayOfGestureArenaMember: () => (T.JSArrayOfGestureArenaMember = dart.constFn(_interceptors.JSArray$(arena.GestureArenaMember)))(),
-    GestureArenaMemberToString: () => (T.GestureArenaMemberToString = dart.constFn(dart.fnType(core.String, [arena.GestureArenaMember])))(),
-    IdentityMapOfint$_GestureArena: () => (T.IdentityMapOfint$_GestureArena = dart.constFn(_js_helper.IdentityMap$(core.int, arena._GestureArena)))(),
-    VoidTo_GestureArena: () => (T.VoidTo_GestureArena = dart.constFn(dart.fnType(arena._GestureArena, [])))(),
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))()
+    JSArrayOfRenderBox: () => (T.JSArrayOfRenderBox = dart.constFn(_interceptors.JSArray$(box.RenderBox)))(),
+    JSArrayOfint: () => (T.JSArrayOfint = dart.constFn(_interceptors.JSArray$(core.int)))(),
+    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    PaintingContextAndOffsetTovoid: () => (T.PaintingContextAndOffsetTovoid = dart.constFn(dart.fnType(dart.void, [object$.PaintingContext, ui.Offset])))(),
+    OffsetN: () => (T.OffsetN = dart.constFn(dart.nullable(ui.Offset)))(),
+    BoxHitTestResultAndOffsetNTobool: () => (T.BoxHitTestResultAndOffsetNTobool = dart.constFn(dart.fnType(core.bool, [box.BoxHitTestResult, T.OffsetN()])))()
   };
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-<<<<<<< HEAD
-        __proto__: edge_insets.EdgeInsets.prototype,
-        [EdgeInsets_bottom]: 4,
-        [EdgeInsets_right]: 4,
-        [EdgeInsets_top]: 4,
-        [EdgeInsets_left]: 4
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: borders.BorderStyle.prototype,
-        [_name]: "BorderStyle.none",
-        index: 0
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278190080.0
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: borders.BorderSide.prototype,
-        [BorderSide_style]: C[3] || CT.C3,
-        [BorderSide_width]: 0,
-        [BorderSide_color]: C[4] || CT.C4
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: ui.Radius.prototype,
-        [Radius_y]: 4,
-        [Radius_x]: 4
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: border_radius.BorderRadius.prototype,
-        [BorderRadius_bottomRight]: C[6] || CT.C6,
-        [BorderRadius_bottomLeft]: C[6] || CT.C6,
-        [BorderRadius_topRight]: C[6] || CT.C6,
-        [BorderRadius_topLeft]: C[6] || CT.C6
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: rounded_rectangle_border.RoundedRectangleBorder.prototype,
-        [OutlinedBorder_side]: C[2] || CT.C2,
-        [RoundedRectangleBorder_borderRadius]: C[5] || CT.C5
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "explicitChildNodes",
-        [_Location_column]: 13,
-        [_Location_line]: 213,
-        [_Location_file]: null
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 13,
-        [_Location_line]: 214,
-        [_Location_file]: null
-      });
-    },
-    get C8() {
-      return C[8] = dart.constList([C[9] || CT.C9, C[10] || CT.C10], widget_inspector._Location);
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[8] || CT.C8,
-        [_Location_name]: null,
-        [_Location_column]: 18,
-        [_Location_line]: 212,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/material/card.dart"
-      });
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "type",
-        [_Location_column]: 11,
-        [_Location_line]: 203,
-        [_Location_file]: null
-      });
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "shadowColor",
-        [_Location_column]: 11,
-        [_Location_line]: 204,
-        [_Location_file]: null
-      });
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 11,
-        [_Location_line]: 205,
-        [_Location_file]: null
-      });
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "elevation",
-        [_Location_column]: 11,
-        [_Location_line]: 206,
-        [_Location_file]: null
-      });
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "shape",
-        [_Location_column]: 11,
-        [_Location_line]: 207,
-        [_Location_file]: null
-      });
-    },
-    get C18() {
-      return C[18] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "borderOnForeground",
-        [_Location_column]: 11,
-        [_Location_line]: 210,
-        [_Location_file]: null
-      });
-    },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "clipBehavior",
-        [_Location_column]: 11,
-        [_Location_line]: 211,
-        [_Location_file]: null
-      });
-    },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 212,
-        [_Location_file]: null
-      });
-    },
-    get C12() {
-      return C[12] = dart.constList([C[13] || CT.C13, C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17, C[18] || CT.C18, C[19] || CT.C19, C[20] || CT.C20], widget_inspector._Location);
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[12] || CT.C12,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 202,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/material/card.dart"
-      });
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "margin",
-        [_Location_column]: 9,
-        [_Location_line]: 201,
-        [_Location_file]: null
-      });
-    },
-    get C24() {
-      return C[24] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 202,
-        [_Location_file]: null
-      });
-    },
-    get C22() {
-      return C[22] = dart.constList([C[23] || CT.C23, C[24] || CT.C24], widget_inspector._Location);
-    },
-    get C21() {
-      return C[21] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[22] || CT.C22,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 200,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/material/card.dart"
-      });
-    },
-    get C27() {
-      return C[27] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "container",
-        [_Location_column]: 7,
-        [_Location_line]: 199,
-        [_Location_file]: null
-      });
-    },
-    get C28() {
-      return C[28] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 200,
-        [_Location_file]: null
-      });
-    },
-    get C26() {
-      return C[26] = dart.constList([C[27] || CT.C27, C[28] || CT.C28], widget_inspector._Location);
-    },
-    get C25() {
-      return C[25] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[26] || CT.C26,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 198,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/material/card.dart"
-      });
-    }
-  }, false);
-  var C = Array(29).fill(void 0);
-  var I = [
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/material/card.dart",
-    "package:flutter/src/material/card.dart"
-  ];
-  var color$ = dart.privateName(card, "Card.color");
-  var shadowColor$ = dart.privateName(card, "Card.shadowColor");
-  var elevation$ = dart.privateName(card, "Card.elevation");
-  var shape$ = dart.privateName(card, "Card.shape");
-  var borderOnForeground$ = dart.privateName(card, "Card.borderOnForeground");
-  var clipBehavior$ = dart.privateName(card, "Card.clipBehavior");
-  var margin$ = dart.privateName(card, "Card.margin");
-  var semanticContainer$ = dart.privateName(card, "Card.semanticContainer");
-  var child$ = dart.privateName(card, "Card.child");
-  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
-  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
-  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
-  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
-  var _name = dart.privateName(borders, "_name");
-  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
-  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
-  var Color_value = dart.privateName(ui, "Color.value");
-  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
-  var OutlinedBorder_side = dart.privateName(borders, "OutlinedBorder.side");
-  var Radius_y = dart.privateName(ui, "Radius.y");
-  var Radius_x = dart.privateName(ui, "Radius.x");
-  var BorderRadius_bottomRight = dart.privateName(border_radius, "BorderRadius.bottomRight");
-  var BorderRadius_bottomLeft = dart.privateName(border_radius, "BorderRadius.bottomLeft");
-  var BorderRadius_topRight = dart.privateName(border_radius, "BorderRadius.topRight");
-  var BorderRadius_topLeft = dart.privateName(border_radius, "BorderRadius.topLeft");
-  var RoundedRectangleBorder_borderRadius = dart.privateName(rounded_rectangle_border, "RoundedRectangleBorder.borderRadius");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  card.Card = class Card extends framework.StatelessWidget {
-    get color() {
-      return this[color$];
-    }
-    set color(value) {
-      super.color = value;
-    }
-    get shadowColor() {
-      return this[shadowColor$];
-    }
-    set shadowColor(value) {
-      super.shadowColor = value;
-    }
-    get elevation() {
-      return this[elevation$];
-    }
-    set elevation(value) {
-      super.elevation = value;
-    }
-    get shape() {
-      return this[shape$];
-    }
-    set shape(value) {
-      super.shape = value;
-    }
-    get borderOnForeground() {
-      return this[borderOnForeground$];
-    }
-    set borderOnForeground(value) {
-      super.borderOnForeground = value;
-    }
-    get clipBehavior() {
-      return this[clipBehavior$];
-    }
-    set clipBehavior(value) {
-      super.clipBehavior = value;
-    }
-    get margin() {
-      return this[margin$];
-    }
-    set margin(value) {
-      super.margin = value;
-    }
-    get semanticContainer() {
-      return this[semanticContainer$];
-    }
-    set semanticContainer(value) {
-      super.semanticContainer = value;
-    }
-    get child() {
-      return this[child$];
-    }
-    set child(value) {
-      super.child = value;
-    }
-    build(context) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6, t0$7, t0$8, t0$9;
-      let theme = theme$.Theme.of(context);
-      let cardTheme = card_theme.CardTheme.of(context);
-      return new basic.Semantics.new({container: this.semanticContainer, child: new container.Container.new({margin: (t0$ = (t0 = this.margin, t0 == null ? cardTheme.margin : t0), t0$ == null ? C[0] || CT.C0 : t0$), child: new material.Material.new({type: material.MaterialType.card, shadowColor: (t0$1 = (t0$0 = this.shadowColor, t0$0 == null ? cardTheme.shadowColor : t0$0), t0$1 == null ? theme.shadowColor : t0$1), color: (t0$3 = (t0$2 = this.color, t0$2 == null ? cardTheme.color : t0$2), t0$3 == null ? theme.cardColor : t0$3), elevation: (t0$5 = (t0$4 = this.elevation, t0$4 == null ? cardTheme.elevation : t0$4), t0$5 == null ? 1 : t0$5), shape: (t0$7 = (t0$6 = this.shape, t0$6 == null ? cardTheme.shape : t0$6), t0$7 == null ? C[1] || CT.C1 : t0$7), borderOnForeground: this.borderOnForeground, clipBehavior: (t0$9 = (t0$8 = this.clipBehavior, t0$8 == null ? cardTheme.clipBehavior : t0$8), t0$9 == null ? ui.Clip.none : t0$9), child: new basic.Semantics.new({explicitChildNodes: !this.semanticContainer, child: this.child, $creationLocationd_0dea112b090073317d4: C[7] || CT.C7}), $creationLocationd_0dea112b090073317d4: C[11] || CT.C11}), $creationLocationd_0dea112b090073317d4: C[21] || CT.C21}), $creationLocationd_0dea112b090073317d4: C[25] || CT.C25});
-    }
-  };
-  (card.Card.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let color = opts && 'color' in opts ? opts.color : null;
-    let shadowColor = opts && 'shadowColor' in opts ? opts.shadowColor : null;
-    let elevation = opts && 'elevation' in opts ? opts.elevation : null;
-    let shape = opts && 'shape' in opts ? opts.shape : null;
-    let borderOnForeground = opts && 'borderOnForeground' in opts ? opts.borderOnForeground : true;
-    let margin = opts && 'margin' in opts ? opts.margin : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    let semanticContainer = opts && 'semanticContainer' in opts ? opts.semanticContainer : true;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[color$] = color;
-    this[shadowColor$] = shadowColor;
-    this[elevation$] = elevation;
-    this[shape$] = shape;
-    this[borderOnForeground$] = borderOnForeground;
-    this[margin$] = margin;
-    this[clipBehavior$] = clipBehavior;
-    this[child$] = child;
-    this[semanticContainer$] = semanticContainer;
-    if (!(elevation == null || dart.notNull(elevation) >= 0.0)) dart.assertFailed(null, I[0], 115, 15, "elevation == null || elevation >= 0.0");
-    if (!(borderOnForeground !== null)) dart.assertFailed(null, I[0], 116, 15, "borderOnForeground != null");
-    card.Card.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = card.Card.prototype;
-  dart.addTypeTests(card.Card);
-  dart.addTypeCaches(card.Card);
-  dart.setMethodSignature(card.Card, () => ({
-    __proto__: dart.getMethods(card.Card.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
-  }));
-  dart.setLibraryUri(card.Card, I[1]);
-  dart.setFieldSignature(card.Card, () => ({
-    __proto__: dart.getFields(card.Card.__proto__),
-    color: dart.finalFieldType(dart.nullable(ui.Color)),
-    shadowColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    elevation: dart.finalFieldType(dart.nullable(core.double)),
-    shape: dart.finalFieldType(dart.nullable(borders.ShapeBorder)),
-    borderOnForeground: dart.finalFieldType(core.bool),
-    clipBehavior: dart.finalFieldType(dart.nullable(ui.Clip)),
-    margin: dart.finalFieldType(dart.nullable(edge_insets.EdgeInsetsGeometry)),
-    semanticContainer: dart.finalFieldType(core.bool),
-    child: dart.finalFieldType(dart.nullable(framework.Widget))
-  }));
-  dart.defineLazy(card.Card, {
-    /*card.Card._defaultElevation*/get _defaultElevation() {
-      return 1;
-    }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/material/card.dart", {
-    "package:flutter/src/material/card.dart": card
-  }, {
-  }, '{"version":3,"sourceRoot":"","sources":["card.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA4He;;;;;;IAOA;;;;;;IASC;;;;;;IASK;;;;;;IAMR;;;;;;IAMC;;;;;;IASc;;;;;;IAaf;;;;;;IAKG;;;;;;UAKY;;AACR,kBAAc,gBAAG,OAAO;AACxB,sBAAsB,wBAAG,OAAO;AAEhD,YAAO,qCACM,+BACJ,sCAC8B,OAApB,kBAAP,aAAU,AAAU,SAAD,eAAZ,2CACR,iCACc,0CAC+B,QAAzB,yBAAZ,eAAe,AAAU,SAAD,sBAAZ,eAA4B,AAAM,KAAD,8BAC1B,QAAnB,mBAAN,eAAS,AAAU,SAAD,gBAAZ,eAAsB,AAAM,KAAD,gCACI,QAAvB,uBAAV,eAAa,AAAU,SAAD,oBAAZ,kCACW,QAAnB,mBAAN,eAAS,AAAU,SAAD,gBAAZ,0DAGO,wCACiC,QAA1B,0BAAb,eAAgB,AAAU,SAAD,uBAAZ,eAAkC,6BACtD,6CACe,CAAC,+BACd;IAKjB;;;QAlHO;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;;IARA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;UACK,AAAU,AAAQ,SAAT,YAAsB,aAAV,SAAS,KAAI;UAClC,AAAmB,kBAAD;AACzB,6CAAW,GAAG;;EAAC;;;;;;;;;;;;;;;;;;;;;MA0EA,2BAAiB","file":"../../../../../../../packages/flutter/src/material/card.dart.lib.js"}');
-  // Exports:
-  return {
-    src__material__card: card
-  };
-}));
-
-//# sourceMappingURL=card.dart.lib.js.map
-=======
-        __proto__: arena.GestureDisposition.prototype,
-        [_name$]: "GestureDisposition.accepted",
-        index: 0
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: arena.GestureDisposition.prototype,
-        [_name$]: "GestureDisposition.rejected",
+        __proto__: ui.Clip.prototype,
+        [_name]: "Clip.hardEdge",
         index: 1
       });
-    },
-    get C2() {
-      return C[2] = dart.constList([C[0] || CT.C0, C[1] || CT.C1], arena.GestureDisposition);
     }
   }, false);
-  var C = Array(3).fill(void 0);
+  var C = [void 0];
   var I = [
-    "package:flutter/src/gestures/arena.dart",
-    "file:///D:/DevTools/flutter/packages/flutter/lib/src/gestures/arena.dart"
+    "package:flutter/src/rendering/flow.dart",
+    "file:///D:/DevTools/flutter/packages/flutter/lib/src/rendering/flow.dart"
   ];
-  var _name$ = dart.privateName(arena, "_name");
-  arena.GestureDisposition = class GestureDisposition extends core.Object {
-    toString() {
-      return this[_name$];
+  flow.FlowPaintingContext = class FlowPaintingContext extends core.Object {};
+  (flow.FlowPaintingContext.new = function() {
+    ;
+  }).prototype = flow.FlowPaintingContext.prototype;
+  dart.addTypeTests(flow.FlowPaintingContext);
+  dart.addTypeCaches(flow.FlowPaintingContext);
+  dart.setLibraryUri(flow.FlowPaintingContext, I[0]);
+  var _repaint = dart.privateName(flow, "FlowDelegate._repaint");
+  var _repaint$ = dart.privateName(flow, "_repaint");
+  flow.FlowDelegate = class FlowDelegate extends core.Object {
+    get [_repaint$]() {
+      return this[_repaint];
     }
-  };
-  (arena.GestureDisposition.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
-    ;
-  }).prototype = arena.GestureDisposition.prototype;
-  dart.addTypeTests(arena.GestureDisposition);
-  dart.addTypeCaches(arena.GestureDisposition);
-  dart.setLibraryUri(arena.GestureDisposition, I[0]);
-  dart.setFieldSignature(arena.GestureDisposition, () => ({
-    __proto__: dart.getFields(arena.GestureDisposition.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(arena.GestureDisposition, ['toString']);
-  arena.GestureDisposition.accepted = C[0] || CT.C0;
-  arena.GestureDisposition.rejected = C[1] || CT.C1;
-  arena.GestureDisposition.values = C[2] || CT.C2;
-  arena.GestureArenaMember = class GestureArenaMember extends core.Object {};
-  (arena.GestureArenaMember.new = function() {
-    ;
-  }).prototype = arena.GestureArenaMember.prototype;
-  dart.addTypeTests(arena.GestureArenaMember);
-  dart.addTypeCaches(arena.GestureArenaMember);
-  dart.setLibraryUri(arena.GestureArenaMember, I[0]);
-  var _arena$ = dart.privateName(arena, "_arena");
-  var _pointer$ = dart.privateName(arena, "_pointer");
-  var _member$ = dart.privateName(arena, "_member");
-  var _resolve = dart.privateName(arena, "_resolve");
-  arena.GestureArenaEntry = class GestureArenaEntry extends core.Object {
-    resolve(disposition) {
-      this[_arena$][_resolve](this[_pointer$], this[_member$], disposition);
+    set [_repaint$](value) {
+      super[_repaint$] = value;
     }
-  };
-  (arena.GestureArenaEntry.__ = function(_arena, _pointer, _member) {
-    this[_arena$] = _arena;
-    this[_pointer$] = _pointer;
-    this[_member$] = _member;
-    ;
-  }).prototype = arena.GestureArenaEntry.prototype;
-  dart.addTypeTests(arena.GestureArenaEntry);
-  dart.addTypeCaches(arena.GestureArenaEntry);
-  dart.setMethodSignature(arena.GestureArenaEntry, () => ({
-    __proto__: dart.getMethods(arena.GestureArenaEntry.__proto__),
-    resolve: dart.fnType(dart.void, [arena.GestureDisposition])
-  }));
-  dart.setLibraryUri(arena.GestureArenaEntry, I[0]);
-  dart.setFieldSignature(arena.GestureArenaEntry, () => ({
-    __proto__: dart.getFields(arena.GestureArenaEntry.__proto__),
-    [_arena$]: dart.finalFieldType(arena.GestureArenaManager),
-    [_pointer$]: dart.finalFieldType(core.int),
-    [_member$]: dart.finalFieldType(arena.GestureArenaMember)
-  }));
-  arena._GestureArena = class _GestureArena extends core.Object {
-    add(member) {
-      if (!this.isOpen) dart.assertFailed(null, I[1], 70, 12, "isOpen");
-      this.members[$add](member);
+    getSize(constraints) {
+      return constraints.biggest;
+    }
+    getConstraintsForChild(i, constraints) {
+      return constraints;
+    }
+    shouldRelayout(oldDelegate) {
+      flow.FlowDelegate.as(oldDelegate);
+      return false;
     }
     toString() {
-      let buffer = new core.StringBuffer.new();
-      if (this.members[$isEmpty]) {
-        buffer.write("<empty>");
-      } else {
-        buffer.write(this.members[$map](core.String, dart.fn(member => {
-          if (member[$_equals](this.eagerWinner)) return dart.str(member) + " (eager winner)";
-          return dart.str(member);
-        }, T.GestureArenaMemberToString()))[$join](", "));
-      }
-      if (this.isOpen) buffer.write(" [open]");
-      if (this.isHeld) buffer.write(" [held]");
-      if (this.hasPendingSweep) buffer.write(" [hasPendingSweep]");
-      return buffer.toString();
+      return object.objectRuntimeType(this, "FlowDelegate");
     }
   };
-  (arena._GestureArena.new = function() {
-    this.members = T.JSArrayOfGestureArenaMember().of([]);
-    this.isOpen = true;
-    this.isHeld = false;
-    this.hasPendingSweep = false;
-    this.eagerWinner = null;
+  (flow.FlowDelegate.new = function(opts) {
+    let repaint = opts && 'repaint' in opts ? opts.repaint : null;
+    this[_repaint] = repaint;
     ;
-  }).prototype = arena._GestureArena.prototype;
-  dart.addTypeTests(arena._GestureArena);
-  dart.addTypeCaches(arena._GestureArena);
-  dart.setMethodSignature(arena._GestureArena, () => ({
-    __proto__: dart.getMethods(arena._GestureArena.__proto__),
-    add: dart.fnType(dart.void, [arena.GestureArenaMember])
+  }).prototype = flow.FlowDelegate.prototype;
+  dart.addTypeTests(flow.FlowDelegate);
+  dart.addTypeCaches(flow.FlowDelegate);
+  dart.setMethodSignature(flow.FlowDelegate, () => ({
+    __proto__: dart.getMethods(flow.FlowDelegate.__proto__),
+    getSize: dart.fnType(ui.Size, [box.BoxConstraints]),
+    getConstraintsForChild: dart.fnType(box.BoxConstraints, [core.int, box.BoxConstraints]),
+    shouldRelayout: dart.fnType(core.bool, [dart.nullable(core.Object)])
   }));
-  dart.setLibraryUri(arena._GestureArena, I[0]);
-  dart.setFieldSignature(arena._GestureArena, () => ({
-    __proto__: dart.getFields(arena._GestureArena.__proto__),
-    members: dart.finalFieldType(core.List$(arena.GestureArenaMember)),
-    isOpen: dart.fieldType(core.bool),
-    isHeld: dart.fieldType(core.bool),
-    hasPendingSweep: dart.fieldType(core.bool),
-    eagerWinner: dart.fieldType(dart.nullable(arena.GestureArenaMember))
+  dart.setLibraryUri(flow.FlowDelegate, I[0]);
+  dart.setFieldSignature(flow.FlowDelegate, () => ({
+    __proto__: dart.getFields(flow.FlowDelegate.__proto__),
+    [_repaint$]: dart.finalFieldType(dart.nullable(change_notifier.Listenable))
   }));
-  dart.defineExtensionMethods(arena._GestureArena, ['toString']);
-  var _arenas = dart.privateName(arena, "_arenas");
-  var _debugLogDiagnostic = dart.privateName(arena, "_debugLogDiagnostic");
-  var _tryToResolveArena = dart.privateName(arena, "_tryToResolveArena");
-  var _resolveInFavorOf = dart.privateName(arena, "_resolveInFavorOf");
-  var _resolveByDefault = dart.privateName(arena, "_resolveByDefault");
-  arena.GestureArenaManager = class GestureArenaManager extends core.Object {
-    add(pointer, member) {
-      let state = this[_arenas][$putIfAbsent](pointer, dart.fn(() => {
-        if (!this[_debugLogDiagnostic](pointer, "★ Opening new gesture arena.")) dart.assertFailed(null, I[1], 109, 14, "_debugLogDiagnostic(pointer, '★ Opening new gesture arena.')");
-        return new arena._GestureArena.new();
-      }, T.VoidTo_GestureArena()));
-      state.add(member);
-      if (!this[_debugLogDiagnostic](pointer, "Adding: " + dart.str(member))) dart.assertFailed(null, I[1], 113, 12, "_debugLogDiagnostic(pointer, 'Adding: $member')");
-      return new arena.GestureArenaEntry.__(this, pointer, member);
+  dart.defineExtensionMethods(flow.FlowDelegate, ['toString']);
+  var _transform = dart.privateName(flow, "_transform");
+  flow.FlowParentData = class FlowParentData extends box.ContainerBoxParentData$(box.RenderBox) {};
+  (flow.FlowParentData.new = function() {
+    this[_transform] = null;
+    flow.FlowParentData.__proto__.new.call(this);
+    ;
+  }).prototype = flow.FlowParentData.prototype;
+  dart.addTypeTests(flow.FlowParentData);
+  dart.addTypeCaches(flow.FlowParentData);
+  dart.setLibraryUri(flow.FlowParentData, I[0]);
+  dart.setFieldSignature(flow.FlowParentData, () => ({
+    __proto__: dart.getFields(flow.FlowParentData.__proto__),
+    [_transform]: dart.fieldType(dart.nullable(vector_math_64.Matrix4))
+  }));
+  var _name = dart.privateName(ui, "_name");
+  var _clipBehavior = dart.privateName(flow, "_clipBehavior");
+  var _randomAccessChildren = dart.privateName(flow, "_randomAccessChildren");
+  var _lastPaintOrder = dart.privateName(flow, "_lastPaintOrder");
+  var _paintingContext = dart.privateName(flow, "_paintingContext");
+  var _paintingOffset = dart.privateName(flow, "_paintingOffset");
+  var _clipRectLayer = dart.privateName(flow, "_clipRectLayer");
+  var _delegate = dart.privateName(flow, "_delegate");
+  var _getSize = dart.privateName(flow, "_getSize");
+  var _paintWithDelegate = dart.privateName(flow, "_paintWithDelegate");
+  const RenderBox_ContainerRenderObjectMixin$36 = class RenderBox_ContainerRenderObjectMixin extends box.RenderBox {};
+  (RenderBox_ContainerRenderObjectMixin$36.new = function() {
+    object$.ContainerRenderObjectMixin$(box.RenderBox, flow.FlowParentData)[dart.mixinNew].call(this);
+    RenderBox_ContainerRenderObjectMixin$36.__proto__.new.call(this);
+  }).prototype = RenderBox_ContainerRenderObjectMixin$36.prototype;
+  dart.applyMixin(RenderBox_ContainerRenderObjectMixin$36, object$.ContainerRenderObjectMixin$(box.RenderBox, flow.FlowParentData));
+  const RenderBox_RenderBoxContainerDefaultsMixin$36 = class RenderBox_RenderBoxContainerDefaultsMixin extends RenderBox_ContainerRenderObjectMixin$36 {};
+  (RenderBox_RenderBoxContainerDefaultsMixin$36.new = function() {
+    RenderBox_RenderBoxContainerDefaultsMixin$36.__proto__.new.call(this);
+  }).prototype = RenderBox_RenderBoxContainerDefaultsMixin$36.prototype;
+  dart.applyMixin(RenderBox_RenderBoxContainerDefaultsMixin$36, box.RenderBoxContainerDefaultsMixin$(box.RenderBox, flow.FlowParentData));
+  flow.RenderFlow = class RenderFlow extends RenderBox_RenderBoxContainerDefaultsMixin$36 {
+    setupParentData(child) {
+      box.RenderBox.as(child);
+      let childParentData = child.parentData;
+      if (flow.FlowParentData.is(childParentData))
+        childParentData[_transform] = null;
+      else
+        child.parentData = new flow.FlowParentData.new();
     }
-    close(pointer) {
-      let state = this[_arenas][$_get](pointer);
-      if (state == null) return;
-      state.isOpen = false;
-      if (!this[_debugLogDiagnostic](pointer, "Closing", state)) dart.assertFailed(null, I[1], 125, 12, "_debugLogDiagnostic(pointer, 'Closing', state)");
-      this[_tryToResolveArena](pointer, state);
+    get delegate() {
+      return this[_delegate];
     }
-    sweep(pointer) {
-      let state = this[_arenas][$_get](pointer);
-      if (state == null) return;
-      if (!!state.isOpen) dart.assertFailed(null, I[1], 146, 12, "!state.isOpen");
-      if (state.isHeld) {
-        state.hasPendingSweep = true;
-        if (!this[_debugLogDiagnostic](pointer, "Delaying sweep", state)) dart.assertFailed(null, I[1], 149, 14, "_debugLogDiagnostic(pointer, 'Delaying sweep', state)");
-        return;
+    set delegate(newDelegate) {
+      let t0, t0$;
+      if (!(newDelegate !== null)) dart.assertFailed(null, I[1], 211, 12, "newDelegate != null");
+      if (this[_delegate][$_equals](newDelegate)) return;
+      let oldDelegate = this[_delegate];
+      this[_delegate] = newDelegate;
+      if (!newDelegate[$runtimeType]._equals(oldDelegate[$runtimeType]) || newDelegate.shouldRelayout(oldDelegate))
+        this.markNeedsLayout();
+      else if (newDelegate.shouldRepaint(oldDelegate)) this.markNeedsPaint();
+      if (this.attached) {
+        t0 = oldDelegate[_repaint$];
+        t0 == null ? null : t0.removeListener(dart.bind(this, 'markNeedsPaint'));
+        t0$ = newDelegate[_repaint$];
+        t0$ == null ? null : t0$.addListener(dart.bind(this, 'markNeedsPaint'));
       }
-      if (!this[_debugLogDiagnostic](pointer, "Sweeping", state)) dart.assertFailed(null, I[1], 152, 12, "_debugLogDiagnostic(pointer, 'Sweeping', state)");
-      this[_arenas][$remove](pointer);
-      if (state.members[$isNotEmpty]) {
-        if (!this[_debugLogDiagnostic](pointer, "Winner: " + dart.str(state.members[$first]))) dart.assertFailed(null, I[1], 156, 14, "_debugLogDiagnostic(pointer, 'Winner: ${state.members.first}')");
-        state.members[$first].acceptGesture(pointer);
-        for (let i = 1; i < state.members[$length]; i = i + 1)
-          state.members[$_get](i).rejectGesture(pointer);
+    }
+    get clipBehavior() {
+      return this[_clipBehavior];
+    }
+    set clipBehavior(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[1], 234, 12, "value != null");
+      if (value !== this[_clipBehavior]) {
+        this[_clipBehavior] = value;
+        this.markNeedsPaint();
+        this.markNeedsSemanticsUpdate();
       }
     }
-    hold(pointer) {
-      let state = this[_arenas][$_get](pointer);
-      if (state == null) return;
-      state.isHeld = true;
-      if (!this[_debugLogDiagnostic](pointer, "Holding", state)) dart.assertFailed(null, I[1], 181, 12, "_debugLogDiagnostic(pointer, 'Holding', state)");
-    }
-    release(pointer) {
-      let state = this[_arenas][$_get](pointer);
-      if (state == null) return;
-      state.isHeld = false;
-      if (!this[_debugLogDiagnostic](pointer, "Releasing", state)) dart.assertFailed(null, I[1], 198, 12, "_debugLogDiagnostic(pointer, 'Releasing', state)");
-      if (state.hasPendingSweep) this.sweep(pointer);
-    }
-    [_resolve](pointer, member, disposition) {
+    attach(owner) {
       let t0;
-      let state = this[_arenas][$_get](pointer);
-      if (state == null) return;
-      if (!this[_debugLogDiagnostic](pointer, (disposition === arena.GestureDisposition.accepted ? "Accepting" : "Rejecting") + ": " + dart.str(member))) dart.assertFailed(null, I[1], 210, 12, "_debugLogDiagnostic(pointer, '${ disposition == GestureDisposition.accepted ? \"Accepting\" : \"Rejecting\" }: $member')");
-      if (!state.members[$contains](member)) dart.assertFailed(null, I[1], 211, 12, "state.members.contains(member)");
-      if (disposition === arena.GestureDisposition.rejected) {
-        state.members[$remove](member);
-        member.rejectGesture(pointer);
-        if (!state.isOpen) this[_tryToResolveArena](pointer, state);
-      } else {
-        if (!(disposition === arena.GestureDisposition.accepted)) dart.assertFailed(null, I[1], 218, 14, "disposition == GestureDisposition.accepted");
-        if (state.isOpen) {
-          t0 = state;
-          t0.eagerWinner == null ? t0.eagerWinner = member : null;
-        } else {
-          if (!this[_debugLogDiagnostic](pointer, "Self-declared winner: " + dart.str(member))) dart.assertFailed(null, I[1], 222, 16, "_debugLogDiagnostic(pointer, 'Self-declared winner: $member')");
-          this[_resolveInFavorOf](pointer, state, member);
-        }
-      }
+      object$.PipelineOwner.as(owner);
+      super.attach(owner);
+      t0 = this[_delegate][_repaint$];
+      t0 == null ? null : t0.addListener(dart.bind(this, 'markNeedsPaint'));
     }
-    [_tryToResolveArena](pointer, state) {
-      if (!dart.equals(this[_arenas][$_get](pointer), state)) dart.assertFailed(null, I[1], 229, 12, "_arenas[pointer] == state");
-      if (!!state.isOpen) dart.assertFailed(null, I[1], 230, 12, "!state.isOpen");
-      if (state.members[$length] === 1) {
-        async.scheduleMicrotask(dart.fn(() => this[_resolveByDefault](pointer, state), T.VoidTovoid()));
-      } else if (state.members[$isEmpty]) {
-        this[_arenas][$remove](pointer);
-        if (!this[_debugLogDiagnostic](pointer, "Arena empty.")) dart.assertFailed(null, I[1], 235, 14, "_debugLogDiagnostic(pointer, 'Arena empty.')");
-      } else if (state.eagerWinner != null) {
-        if (!this[_debugLogDiagnostic](pointer, "Eager winner: " + dart.str(state.eagerWinner))) dart.assertFailed(null, I[1], 237, 14, "_debugLogDiagnostic(pointer, 'Eager winner: ${state.eagerWinner}')");
-        this[_resolveInFavorOf](pointer, state, dart.nullCheck(state.eagerWinner));
-      }
+    detach() {
+      let t0;
+      t0 = this[_delegate][_repaint$];
+      t0 == null ? null : t0.removeListener(dart.bind(this, 'markNeedsPaint'));
+      super.detach();
     }
-    [_resolveByDefault](pointer, state) {
-      if (!this[_arenas][$containsKey](pointer)) return;
-      if (!dart.equals(this[_arenas][$_get](pointer), state)) dart.assertFailed(null, I[1], 245, 12, "_arenas[pointer] == state");
-      if (!!state.isOpen) dart.assertFailed(null, I[1], 246, 12, "!state.isOpen");
-      let members = state.members;
-      if (!(members[$length] === 1)) dart.assertFailed(null, I[1], 248, 12, "members.length == 1");
-      this[_arenas][$remove](pointer);
-      if (!this[_debugLogDiagnostic](pointer, "Default winner: " + dart.str(state.members[$first]))) dart.assertFailed(null, I[1], 250, 12, "_debugLogDiagnostic(pointer, 'Default winner: ${state.members.first}')");
-      state.members[$first].acceptGesture(pointer);
+    [_getSize](constraints) {
+      if (!constraints.debugAssertIsValid()) dart.assertFailed(null, I[1], 255, 12, "constraints.debugAssertIsValid()");
+      return constraints.constrain(this[_delegate].getSize(constraints));
     }
-    [_resolveInFavorOf](pointer, state, member) {
-      if (!state[$_equals](this[_arenas][$_get](pointer))) dart.assertFailed(null, I[1], 255, 12, "state == _arenas[pointer]");
-      if (!(state !== null)) dart.assertFailed(null, I[1], 256, 12, "state != null");
-      if (!(state.eagerWinner == null || dart.equals(state.eagerWinner, member))) dart.assertFailed(null, I[1], 257, 12, "state.eagerWinner == null || state.eagerWinner == member");
-      if (!!state.isOpen) dart.assertFailed(null, I[1], 258, 12, "!state.isOpen");
-      this[_arenas][$remove](pointer);
-      for (let rejectedMember of state.members) {
-        if (!rejectedMember[$_equals](member)) rejectedMember.rejectGesture(pointer);
-      }
-      member.acceptGesture(pointer);
-    }
-    [_debugLogDiagnostic](pointer, message, state = null) {
-      if (!dart.fn(() => {
-        let t0;
-        if (debug.debugPrintGestureArenaDiagnostics) {
-          let count = (t0 = state, t0 == null ? null : t0.members[$length]);
-          let s = count !== 1 ? "s" : "";
-          print.debugPrint("Gesture arena " + pointer[$toString]()[$padRight](4) + " ❙ " + message + (count != null ? " with " + dart.str(count) + " member" + s + "." : ""));
-        }
-        return true;
-      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 268, 12, "() {\r\n      if (debugPrintGestureArenaDiagnostics) {\r\n        final int? count = state?.members.length;\r\n        final String s = count != 1 ? 's' : '';\r\n        debugPrint('Gesture arena ${pointer.toString().padRight(4)} ❙ $message${ count != null ? \" with $count member$s.\" : \"\"}');\r\n      }\r\n      return true;\r\n    }()");
+    get isRepaintBoundary() {
       return true;
     }
+    computeMinIntrinsicWidth(height) {
+      let width = this[_getSize](new box.BoxConstraints.tightForFinite({height: height})).width;
+      if (width[$isFinite]) return width;
+      return 0.0;
+    }
+    computeMaxIntrinsicWidth(height) {
+      let width = this[_getSize](new box.BoxConstraints.tightForFinite({height: height})).width;
+      if (width[$isFinite]) return width;
+      return 0.0;
+    }
+    computeMinIntrinsicHeight(width) {
+      let height = this[_getSize](new box.BoxConstraints.tightForFinite({width: width})).height;
+      if (height[$isFinite]) return height;
+      return 0.0;
+    }
+    computeMaxIntrinsicHeight(width) {
+      let height = this[_getSize](new box.BoxConstraints.tightForFinite({width: width})).height;
+      if (height[$isFinite]) return height;
+      return 0.0;
+    }
+    computeDryLayout(constraints) {
+      return this[_getSize](constraints);
+    }
+    performLayout() {
+      let constraints = this.constraints;
+      this.size = this[_getSize](constraints);
+      let i = 0;
+      this[_randomAccessChildren][$clear]();
+      let child = this.firstChild;
+      while (child != null) {
+        this[_randomAccessChildren][$add](child);
+        let innerConstraints = this[_delegate].getConstraintsForChild(i, constraints);
+        child.layout(innerConstraints, {parentUsesSize: true});
+        let childParentData = flow.FlowParentData.as(dart.nullCheck(child.parentData));
+        childParentData.offset = ui.Offset.zero;
+        child = childParentData.nextSibling;
+        i = i + 1;
+      }
+    }
+    getChildSize(i) {
+      if (i < 0 || i >= this[_randomAccessChildren][$length]) return null;
+      return this[_randomAccessChildren][$_get](i).size;
+    }
+    paintChild(i, opts) {
+      let transform = opts && 'transform' in opts ? opts.transform : null;
+      let opacity = opts && 'opacity' in opts ? opts.opacity : 1;
+      transform == null ? transform = vector_math_64.Matrix4.identity() : null;
+      let child = this[_randomAccessChildren][$_get](i);
+      let childParentData = flow.FlowParentData.as(dart.nullCheck(child.parentData));
+      if (!dart.fn(() => {
+        if (childParentData[_transform] != null) {
+          dart.throw(assertions.FlutterError.new("Cannot call paintChild twice for the same child.\n" + "The flow delegate of type " + dart.str(this[_delegate][$runtimeType]) + " attempted to " + "paint child " + dart.str(i) + " multiple times, which is not permitted."));
+        }
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 343, 12, "() {\r\n      if (childParentData._transform != null) {\r\n        throw FlutterError(\r\n          'Cannot call paintChild twice for the same child.\\n'\r\n          'The flow delegate of type ${_delegate.runtimeType} attempted to '\r\n          'paint child $i multiple times, which is not permitted.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
+      this[_lastPaintOrder][$add](i);
+      childParentData[_transform] = transform;
+      if (opacity === 0.0) return;
+      function painter(context, offset) {
+        context.paintChild(child, offset);
+      }
+      dart.fn(painter, T.PaintingContextAndOffsetTovoid());
+      if (opacity === 1.0) {
+        dart.nullCheck(this[_paintingContext]).pushTransform(this.needsCompositing, dart.nullCheck(this[_paintingOffset]), transform, painter);
+      } else {
+        dart.nullCheck(this[_paintingContext]).pushOpacity(dart.nullCheck(this[_paintingOffset]), ui.Color.getAlphaFromOpacity(opacity), dart.fn((context, offset) => {
+          context.pushTransform(this.needsCompositing, offset, dart.nullCheck(transform), painter);
+        }, T.PaintingContextAndOffsetTovoid()));
+      }
+    }
+    [_paintWithDelegate](context, offset) {
+      this[_lastPaintOrder][$clear]();
+      this[_paintingContext] = context;
+      this[_paintingOffset] = offset;
+      for (let child of this[_randomAccessChildren]) {
+        let childParentData = flow.FlowParentData.as(dart.nullCheck(child.parentData));
+        childParentData[_transform] = null;
+      }
+      try {
+        this[_delegate].paintChildren(this);
+      } finally {
+        this[_paintingContext] = null;
+        this[_paintingOffset] = null;
+      }
+    }
+    paint(context, offset) {
+      if (this.clipBehavior === ui.Clip.none) {
+        this[_clipRectLayer] = null;
+        this[_paintWithDelegate](context, offset);
+      } else {
+        this[_clipRectLayer] = context.pushClipRect(this.needsCompositing, offset, ui.Offset.zero['&'](this.size), dart.bind(this, _paintWithDelegate), {clipBehavior: this.clipBehavior, oldLayer: this[_clipRectLayer]});
+      }
+    }
+    hitTestChildren(result, opts) {
+      let position = opts && 'position' in opts ? opts.position : null;
+      let children = this.getChildrenAsList();
+      for (let i = this[_lastPaintOrder][$length] - 1; i >= 0; i = i - 1) {
+        let childIndex = this[_lastPaintOrder][$_get](i);
+        if (childIndex >= children[$length]) continue;
+        let child = children[$_get](childIndex);
+        let childParentData = flow.FlowParentData.as(dart.nullCheck(child.parentData));
+        let transform = childParentData[_transform];
+        if (transform == null) continue;
+        let absorbed = result.addWithPaintTransform({transform: transform, position: position, hitTest: dart.fn((result, position) => child.hitTest(result, {position: dart.nullCheck(position)}), T.BoxHitTestResultAndOffsetNTobool())});
+        if (absorbed) return true;
+      }
+      return false;
+    }
+    applyPaintTransform(child, transform) {
+      box.RenderBox.as(child);
+      let childParentData = flow.FlowParentData.as(dart.nullCheck(child.parentData));
+      if (childParentData[_transform] != null) transform.multiply(dart.nullCheck(childParentData[_transform]));
+      super.applyPaintTransform(child, transform);
+    }
   };
-  (arena.GestureArenaManager.new = function() {
-    this[_arenas] = new (T.IdentityMapOfint$_GestureArena()).new();
-    ;
-  }).prototype = arena.GestureArenaManager.prototype;
-  dart.addTypeTests(arena.GestureArenaManager);
-  dart.addTypeCaches(arena.GestureArenaManager);
-  dart.setMethodSignature(arena.GestureArenaManager, () => ({
-    __proto__: dart.getMethods(arena.GestureArenaManager.__proto__),
-    add: dart.fnType(arena.GestureArenaEntry, [core.int, arena.GestureArenaMember]),
-    close: dart.fnType(dart.void, [core.int]),
-    sweep: dart.fnType(dart.void, [core.int]),
-    hold: dart.fnType(dart.void, [core.int]),
-    release: dart.fnType(dart.void, [core.int]),
-    [_resolve]: dart.fnType(dart.void, [core.int, arena.GestureArenaMember, arena.GestureDisposition]),
-    [_tryToResolveArena]: dart.fnType(dart.void, [core.int, arena._GestureArena]),
-    [_resolveByDefault]: dart.fnType(dart.void, [core.int, arena._GestureArena]),
-    [_resolveInFavorOf]: dart.fnType(dart.void, [core.int, arena._GestureArena, arena.GestureArenaMember]),
-    [_debugLogDiagnostic]: dart.fnType(core.bool, [core.int, core.String], [dart.nullable(arena._GestureArena)])
+  (flow.RenderFlow.new = function(opts) {
+    let children = opts && 'children' in opts ? opts.children : null;
+    let delegate = opts && 'delegate' in opts ? opts.delegate : null;
+    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[0] || CT.C0;
+    this[_clipBehavior] = ui.Clip.hardEdge;
+    this[_randomAccessChildren] = T.JSArrayOfRenderBox().of([]);
+    this[_lastPaintOrder] = T.JSArrayOfint().of([]);
+    this[_paintingContext] = null;
+    this[_paintingOffset] = null;
+    this[_clipRectLayer] = null;
+    if (!(delegate !== null)) dart.assertFailed(null, I[1], 186, 15, "delegate != null");
+    if (!(clipBehavior !== null)) dart.assertFailed(null, I[1], 187, 15, "clipBehavior != null");
+    this[_delegate] = delegate;
+    this[_clipBehavior] = clipBehavior;
+    flow.RenderFlow.__proto__.new.call(this);
+    this.addAll(children);
+  }).prototype = flow.RenderFlow.prototype;
+  dart.addTypeTests(flow.RenderFlow);
+  dart.addTypeCaches(flow.RenderFlow);
+  flow.RenderFlow[dart.implements] = () => [flow.FlowPaintingContext];
+  dart.setMethodSignature(flow.RenderFlow, () => ({
+    __proto__: dart.getMethods(flow.RenderFlow.__proto__),
+    [_getSize]: dart.fnType(ui.Size, [box.BoxConstraints]),
+    getChildSize: dart.fnType(dart.nullable(ui.Size), [core.int]),
+    paintChild: dart.fnType(dart.void, [core.int], {opacity: core.double, transform: dart.nullable(vector_math_64.Matrix4)}, {}),
+    [_paintWithDelegate]: dart.fnType(dart.void, [object$.PaintingContext, ui.Offset])
   }));
-  dart.setLibraryUri(arena.GestureArenaManager, I[0]);
-  dart.setFieldSignature(arena.GestureArenaManager, () => ({
-    __proto__: dart.getFields(arena.GestureArenaManager.__proto__),
-    [_arenas]: dart.finalFieldType(core.Map$(core.int, arena._GestureArena))
+  dart.setGetterSignature(flow.RenderFlow, () => ({
+    __proto__: dart.getGetters(flow.RenderFlow.__proto__),
+    delegate: flow.FlowDelegate,
+    clipBehavior: ui.Clip
   }));
-  dart.trackLibraries("packages/flutter/src/gestures/arena.dart", {
-    "package:flutter/src/gestures/arena.dart": arena
+  dart.setSetterSignature(flow.RenderFlow, () => ({
+    __proto__: dart.getSetters(flow.RenderFlow.__proto__),
+    delegate: flow.FlowDelegate,
+    clipBehavior: ui.Clip
+  }));
+  dart.setLibraryUri(flow.RenderFlow, I[0]);
+  dart.setFieldSignature(flow.RenderFlow, () => ({
+    __proto__: dart.getFields(flow.RenderFlow.__proto__),
+    [_delegate]: dart.fieldType(flow.FlowDelegate),
+    [_clipBehavior]: dart.fieldType(ui.Clip),
+    [_randomAccessChildren]: dart.finalFieldType(core.List$(box.RenderBox)),
+    [_lastPaintOrder]: dart.finalFieldType(core.List$(core.int)),
+    [_paintingContext]: dart.fieldType(dart.nullable(object$.PaintingContext)),
+    [_paintingOffset]: dart.fieldType(dart.nullable(ui.Offset)),
+    [_clipRectLayer]: dart.fieldType(dart.nullable(layer.ClipRectLayer))
+  }));
+  dart.trackLibraries("packages/flutter/src/rendering/flow.dart", {
+    "package:flutter/src/rendering/flow.dart": flow
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["arena.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/gestures/arena.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["flow.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/rendering/flow.dart.lib.js"}');
   // Exports:
   return {
-    src__gestures__arena: arena
+    src__rendering__flow: flow
   };
 }));
 
-//# sourceMappingURL=arena.dart.lib.js.map
->>>>>>> 75a5b68328961ba989f4b72e23f0c2c5b16d7dc4
+//# sourceMappingURL=flow.dart.lib.js.map

@@ -81,6 +81,10 @@ class BarChartSample2State extends State<BarChartSample2> {
                     ],
                   ),
                 ),
+                 SizedBox(
+                        height: 10,
+                      ),
+
                 Expanded(
                   child: BarChart(
                     BarChartData(
@@ -118,14 +122,14 @@ class BarChartSample2State extends State<BarChartSample2> {
                               return BarTooltipItem(
                                 weekDay + '\n',
                                 TextStyle(
-                                  color: Colors.white,
+                                  color: Color(0xff4F98A1),
                                   fontSize: 15,
                                 ),
                                 children: <TextSpan>[
                                   TextSpan(
                                     text: (rod.y - 1).toString(),
                                     style: TextStyle(
-                                      color: Colors.yellow,
+                                      color: Colors.blue.shade900,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
                                     ),
