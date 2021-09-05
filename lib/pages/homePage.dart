@@ -27,12 +27,13 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           toolbarHeight: 70,
           title: Container(
             child: Text(
               "Yuya's Wallet",
               style: TextStyle(
-                fontSize: 25,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -41,9 +42,9 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Color(0xff4F98A1),
           actions: [
             TextButton.icon(
-              onPressed: (){
+              onPressed: () {
                 navigateToProfile(context);
-                currentIndex=2;
+                currentIndex = 2;
               },
               icon: CircleAvatar(
                 backgroundImage: AssetImage('assets/images/avator.jpeg'),
@@ -60,49 +61,49 @@ class _HomePageState extends State<HomePage> {
           children: pages,
         ),
         bottomNavigationBar: BottomNavigationBar(
-            elevation: 4,
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.white,
-            selectedItemColor: Color(0xff4F98A1),
-            unselectedItemColor: Color(0xffB8ADAD),
-            iconSize: 35,
-            selectedFontSize: 20,
-            unselectedFontSize: 20,
-            currentIndex: currentIndex,
-            onTap: (index) => setState(() => currentIndex = index),
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.account_balance_wallet_rounded),
-                label: 'Wallet',
-                
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.signal_cellular_alt_rounded),
-                label: 'Report',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.savings_rounded),
-                label: 'P Bank',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings_rounded),
-                label: 'Settings',
-              ),
-            ],
-          ),
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: Color(0xff72ADB4),
-            onPressed: () => navigateToCategories(context),
-            child: Icon(Icons.edit_rounded),
-          ),
+          elevation: 4,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.white,
+          selectedItemColor: Color(0xff4F98A1),
+          unselectedItemColor: Color(0xffB8ADAD),
+          iconSize: 35,
+          selectedFontSize: 20,
+          unselectedFontSize: 20,
+          currentIndex: currentIndex,
+          onTap: (index) => setState(() => currentIndex = index),
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.account_balance_wallet_rounded),
+              label: 'Wallet',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.signal_cellular_alt_rounded),
+              label: 'Report',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.savings_rounded),
+              label: 'P Bank',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings_rounded),
+              label: 'Settings',
+            ),
+          ],
         ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Color(0xff72ADB4),
+          onPressed: () => navigateToCategories(context),
+          child: Icon(Icons.edit_rounded),
+        ),
+      ),
     );
   }
 }
 
-void navigateToProfile(BuildContext context){
+void navigateToProfile(BuildContext context) {
   AutoRouter.of(context).push(ProfileRoute());
 }
-void navigateToCategories(BuildContext context){
+
+void navigateToCategories(BuildContext context) {
   AutoRouter.of(context).push(CategoriesRoute());
 }

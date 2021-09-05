@@ -1,6 +1,11 @@
+export 'bankPage.dart';
+export 'categories.dart';
 export 'homePage.dart';
+export 'onboardPage.dart';
+export 'piggyHomePage.dart';
+export 'piggyPage.dart';
 export 'profilePage.dart';
 export 'reportPage.dart';
+export 'settingPage.dart';
+export 'splashPage.dart';
 export 'walletPage.dart';
-export 'piggyPage.dart';
-export 'categories.dart';

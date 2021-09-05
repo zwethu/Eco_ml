@@ -87,6 +87,8 @@ class BarChartSample2State extends State<BarChartSample2> {
                       maxY: 20,
                       barTouchData: BarTouchData(
                         touchTooltipData: BarTouchTooltipData(
+                            tooltipMargin: 5.0,
+                            tooltipPadding: EdgeInsets.all(0),
                             tooltipBgColor: Colors.transparent,
                             getTooltipItem: (group, groupIndex, rod, rodIndex) {
                               String weekDay;
@@ -125,7 +127,7 @@ class BarChartSample2State extends State<BarChartSample2> {
                                   TextSpan(
                                     text: (rod.y - 1).toString(),
                                     style: TextStyle(
-                                      color: Colors.yellow,
+                                      color: Colors.white,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
                                     ),

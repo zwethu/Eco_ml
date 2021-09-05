@@ -18,11 +18,10 @@ class _SettingPageState extends State<SettingPage> {
               color: Color(0xff4F98A1),
             ),
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(15),
-              topRight: Radius.circular(15),
-               bottomLeft: Radius.circular(15),
-                    bottomRight: Radius.circular(15)
-            ),
+                topLeft: Radius.circular(15),
+                topRight: Radius.circular(15),
+                bottomLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15)),
           ),
           width: MediaQuery.of(context).size.width / 1.2,
           height: 360,
@@ -34,7 +33,6 @@ class _SettingPageState extends State<SettingPage> {
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15),
-                   
                   ),
                 ),
                 width: MediaQuery.of(context).size.width / 1.2,
@@ -43,18 +41,21 @@ class _SettingPageState extends State<SettingPage> {
               ),
               Container(
                 height: 50,
-                padding: EdgeInsets.symmetric(vertical: 3,horizontal: 15),
+                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Edit Username',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      'Edit Username',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                    Icon(
+                      Icons.edit_rounded,
+                      size: 30,
                     ),
-                    Icon(Icons.edit_rounded,
-                    size: 30,),
                   ],
                 ),
               ),
@@ -63,75 +64,90 @@ class _SettingPageState extends State<SettingPage> {
               ),
               Container(
                 height: 50,
-                padding: EdgeInsets.symmetric(vertical: 3,horizontal: 15),
+                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Edit Profile Picture',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      'Edit Profile Picture',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                    Icon(
+                      Icons.photo_camera_rounded,
+                      size: 30,
                     ),
-                    Icon(Icons.photo_camera_rounded,
-                    size: 30,),
                   ],
                 ),
               ),
               Divider(
                 color: Color(0xff4F98A1),
-              ),Container(
+              ),
+              Container(
                 height: 50,
-                padding: EdgeInsets.symmetric(vertical: 3,horizontal: 15),
+                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Edit Saving %',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      'Edit Saving %',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                    Icon(
+                      Icons.savings_rounded,
+                      size: 30,
                     ),
-                    Icon(Icons.savings_rounded,
-                    size: 30,),
                   ],
                 ),
               ),
               Divider(
                 color: Color(0xff4F98A1),
-              ),Container(
+              ),
+              Container(
                 height: 50,
-                padding: EdgeInsets.symmetric(vertical: 3,horizontal: 15),
+                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Reset Data',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      'Reset Data',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                    Icon(
+                      Icons.restart_alt_rounded,
+                      size: 30,
                     ),
-                    Icon(Icons.restart_alt_rounded,
-                    size: 30,),
                   ],
                 ),
               ),
               Divider(
                 color: Color(0xff4F98A1),
-              ),Container(
+              ),
+              Container(
                 height: 60,
-                padding: EdgeInsets.symmetric(vertical: 3,horizontal: 15),
+                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Theme:',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      'Theme:',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                    Icon(
+                      Icons.edit_rounded,
+                      size: 30,
                     ),
-                    Icon(Icons.edit_rounded,
-                    size: 30,),
                   ],
                 ),
               ),

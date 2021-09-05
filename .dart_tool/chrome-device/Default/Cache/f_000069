@@ -1,430 +1,504 @@
-define(['dart_sdk', 'packages/flutter/src/services/text_input.dart', 'packages/flutter/src/foundation/_platform_web.dart', 'packages/characters/src/characters_impl.dart', 'packages/characters/src/extensions.dart', 'packages/flutter/src/services/text_editing.dart'], (function load__packages__flutter__src__services__text_formatter_dart(dart_sdk, packages__flutter__src__services__text_input$46dart, packages__flutter__src__foundation___platform_web$46dart, packages__characters__src__characters_impl$46dart, packages__characters__src__extensions$46dart, packages__flutter__src__services__text_editing$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/border_radius.dart'], (function load__packages__flutter__src__material__input_border_dart(dart_sdk, packages__flutter__src__painting__borders$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__border_radius$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const math = dart_sdk.math;
   const ui = dart_sdk.ui;
+  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const text_input = packages__flutter__src__services__text_input$46dart.src__services__text_input;
-  const platform$ = packages__flutter__src__foundation___platform_web$46dart.src__foundation__platform;
-  const characters_impl = packages__characters__src__characters_impl$46dart.src__characters_impl;
-  const extensions = packages__characters__src__extensions$46dart.src__extensions;
-  const text_editing = packages__flutter__src__services__text_editing$46dart.src__services__text_editing;
-  var text_formatter = Object.create(dart.library);
-  var $isNotEmpty = dartx.isNotEmpty;
-  var $splitMapJoin = dartx.splitMapJoin;
-  var $length = dartx.length;
-  var $substring = dartx.substring;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  var input_border = Object.create(dart.library);
+  var $runtimeType = dartx.runtimeType;
+  var $clamp = dartx.clamp;
   dart._checkModuleNullSafetyMode(true);
-  var T = {
-    MatchToString: () => (T.MatchToString = dart.constFn(dart.fnType(core.String, [core.Match])))(),
-    StringToString: () => (T.StringToString = dart.constFn(dart.fnType(core.String, [core.String])))()
-  };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: text_formatter.MaxLengthEnforcement.prototype,
-        [_name$]: "MaxLengthEnforcement.none",
-        index: 0
-      });
-    },
     get C1() {
       return C[1] = dart.const({
-        __proto__: text_formatter.MaxLengthEnforcement.prototype,
-        [_name$]: "MaxLengthEnforcement.enforced",
-        index: 1
+        __proto__: borders.BorderStyle.prototype,
+        [_name]: "BorderStyle.none",
+        index: 0
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: text_formatter.MaxLengthEnforcement.prototype,
-        [_name$]: "MaxLengthEnforcement.truncateAfterCompositionEnds",
-        index: 2
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
+      });
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: borders.BorderSide.prototype,
+        [BorderSide_style]: C[1] || CT.C1,
+        [BorderSide_width]: 0,
+        [BorderSide_color]: C[2] || CT.C2
       });
     },
     get C3() {
-      return C[3] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2], text_formatter.MaxLengthEnforcement);
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.android",
-        index: 0
+      return C[3] = dart.const({
+        __proto__: input_border._NoInputBorder.prototype,
+        [borderSide$]: C[0] || CT.C0
       });
     },
     get C5() {
       return C[5] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.windows",
-        index: 5
+        __proto__: borders.BorderStyle.prototype,
+        [_name]: "BorderStyle.solid",
+        index: 1
       });
     },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.iOS",
-        index: 2
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: borders.BorderSide.prototype,
+        [BorderSide_style]: C[5] || CT.C5,
+        [BorderSide_width]: 1,
+        [BorderSide_color]: C[2] || CT.C2
       });
     },
     get C7() {
       return C[7] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.macOS",
-        index: 4
+        __proto__: ui.Radius.prototype,
+        [Radius_y]: 0,
+        [Radius_x]: 0
       });
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.linux",
-        index: 3
+        __proto__: ui.Radius.prototype,
+        [Radius_y]: 4,
+        [Radius_x]: 4
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: border_radius.BorderRadius.prototype,
+        [BorderRadius_bottomRight]: C[7] || CT.C7,
+        [BorderRadius_bottomLeft]: C[7] || CT.C7,
+        [BorderRadius_topRight]: C[8] || CT.C8,
+        [BorderRadius_topLeft]: C[8] || CT.C8
       });
     },
     get C9() {
       return C[9] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.fuchsia",
-        index: 1
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: ui.TextAffinity.prototype,
-        [_name$0]: "TextAffinity.downstream",
-        index: 1
+        __proto__: border_radius.BorderRadius.prototype,
+        [BorderRadius_bottomRight]: C[8] || CT.C8,
+        [BorderRadius_bottomLeft]: C[8] || CT.C8,
+        [BorderRadius_topRight]: C[8] || CT.C8,
+        [BorderRadius_topLeft]: C[8] || CT.C8
       });
     },
     get C10() {
       return C[10] = dart.const({
-        __proto__: text_editing.TextSelection.prototype,
-        [TextRange_end]: -1,
-        [TextRange_start]: -1,
-        [TextSelection_isDirectional]: false,
-        [TextSelection_affinity]: C[11] || CT.C11,
-        [TextSelection_extentOffset]: -1,
-        [TextSelection_baseOffset]: -1
+        __proto__: ui.TextDirection.prototype,
+        [_name$]: "TextDirection.rtl",
+        index: 0
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: ui.TextDirection.prototype,
+        [_name$]: "TextDirection.ltr",
+        index: 1
       });
     }
   }, false);
   var C = Array(12).fill(void 0);
   var I = [
-    "package:flutter/src/services/text_formatter.dart",
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/services/text_formatter.dart"
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/material/input_border.dart",
+    "package:flutter/src/material/input_border.dart"
   ];
-  var _name$ = dart.privateName(text_formatter, "_name");
-  text_formatter.MaxLengthEnforcement = class MaxLengthEnforcement extends core.Object {
-    toString() {
-      return this[_name$];
+  var borderSide$ = dart.privateName(input_border, "InputBorder.borderSide");
+  var _name = dart.privateName(borders, "_name");
+  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
+  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
+  input_border.InputBorder = class InputBorder extends borders.ShapeBorder {
+    get borderSide() {
+      return this[borderSide$];
+    }
+    set borderSide(value) {
+      super.borderSide = value;
     }
   };
-  (text_formatter.MaxLengthEnforcement.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
+  (input_border.InputBorder.new = function(opts) {
+    let borderSide = opts && 'borderSide' in opts ? opts.borderSide : C[0] || CT.C0;
+    this[borderSide$] = borderSide;
+    if (!(borderSide !== null)) dart.assertFailed(null, I[0], 39, 15, "borderSide != null");
+    input_border.InputBorder.__proto__.new.call(this);
     ;
-  }).prototype = text_formatter.MaxLengthEnforcement.prototype;
-  dart.addTypeTests(text_formatter.MaxLengthEnforcement);
-  dart.addTypeCaches(text_formatter.MaxLengthEnforcement);
-  dart.setLibraryUri(text_formatter.MaxLengthEnforcement, I[0]);
-  dart.setFieldSignature(text_formatter.MaxLengthEnforcement, () => ({
-    __proto__: dart.getFields(text_formatter.MaxLengthEnforcement.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
+  }).prototype = input_border.InputBorder.prototype;
+  dart.addTypeTests(input_border.InputBorder);
+  dart.addTypeCaches(input_border.InputBorder);
+  dart.setLibraryUri(input_border.InputBorder, I[1]);
+  dart.setFieldSignature(input_border.InputBorder, () => ({
+    __proto__: dart.getFields(input_border.InputBorder.__proto__),
+    borderSide: dart.finalFieldType(borders.BorderSide)
   }));
-  dart.defineExtensionMethods(text_formatter.MaxLengthEnforcement, ['toString']);
-  text_formatter.MaxLengthEnforcement.none = C[0] || CT.C0;
-  text_formatter.MaxLengthEnforcement.enforced = C[1] || CT.C1;
-  text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds = C[2] || CT.C2;
-  text_formatter.MaxLengthEnforcement.values = C[3] || CT.C3;
-  text_formatter.TextInputFormatter = class TextInputFormatter extends core.Object {
-    static withFunction(formatFunction) {
-      return new text_formatter._SimpleTextInputFormatter.new(formatFunction);
-    }
-  };
-  (text_formatter.TextInputFormatter.new = function() {
-    ;
-  }).prototype = text_formatter.TextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.TextInputFormatter);
-  dart.addTypeCaches(text_formatter.TextInputFormatter);
-  dart.setLibraryUri(text_formatter.TextInputFormatter, I[0]);
-  text_formatter._SimpleTextInputFormatter = class _SimpleTextInputFormatter extends text_formatter.TextInputFormatter {
-    formatEditUpdate(oldValue, newValue) {
-      let t1, t0;
-      t0 = oldValue;
-      t1 = newValue;
-      return this.formatFunction(t0, t1);
-    }
-  };
-  (text_formatter._SimpleTextInputFormatter.new = function(formatFunction) {
-    this.formatFunction = formatFunction;
-    if (!(formatFunction !== null)) dart.assertFailed(null, I[1], 111, 14, "formatFunction != null");
-    ;
-  }).prototype = text_formatter._SimpleTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter._SimpleTextInputFormatter);
-  dart.addTypeCaches(text_formatter._SimpleTextInputFormatter);
-  dart.setMethodSignature(text_formatter._SimpleTextInputFormatter, () => ({
-    __proto__: dart.getMethods(text_formatter._SimpleTextInputFormatter.__proto__),
-    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
-  }));
-  dart.setLibraryUri(text_formatter._SimpleTextInputFormatter, I[0]);
-  dart.setFieldSignature(text_formatter._SimpleTextInputFormatter, () => ({
-    __proto__: dart.getFields(text_formatter._SimpleTextInputFormatter.__proto__),
-    formatFunction: dart.finalFieldType(dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue]))
-  }));
-  var filterPattern$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.filterPattern");
-  var allow$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.allow");
-  var replacementString$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.replacementString");
-  text_formatter.FilteringTextInputFormatter = class FilteringTextInputFormatter extends text_formatter.TextInputFormatter {
-    get filterPattern() {
-      return this[filterPattern$];
-    }
-    set filterPattern(value) {
-      super.filterPattern = value;
-    }
-    get allow() {
-      return this[allow$];
-    }
-    set allow(value) {
-      super.allow = value;
-    }
-    get replacementString() {
-      return this[replacementString$];
-    }
-    set replacementString(value) {
-      super.replacementString = value;
-    }
-    formatEditUpdate(oldValue, newValue) {
-      return text_formatter._selectionAwareTextManipulation(newValue, dart.fn(substring => substring[$splitMapJoin](this.filterPattern, {onMatch: !this.allow ? dart.fn(match => this.replacementString, T.MatchToString()) : null, onNonMatch: this.allow ? dart.fn(nonMatch => nonMatch[$isNotEmpty] ? this.replacementString : "", T.StringToString()) : null}), T.StringToString()));
-    }
-  };
-  (text_formatter.FilteringTextInputFormatter.new = function(filterPattern, opts) {
-    let allow = opts && 'allow' in opts ? opts.allow : null;
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    this[filterPattern$] = filterPattern;
-    this[allow$] = allow;
-    this[replacementString$] = replacementString;
-    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 153, 15, "filterPattern != null");
-    if (!(allow !== null)) dart.assertFailed(null, I[1], 154, 15, "allow != null");
-    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 155, 15, "replacementString != null");
-    ;
-  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
-  (text_formatter.FilteringTextInputFormatter.allow = function(filterPattern, opts) {
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    this[filterPattern$] = filterPattern;
-    this[replacementString$] = replacementString;
-    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 164, 15, "filterPattern != null");
-    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 165, 15, "replacementString != null");
-    this[allow$] = true;
-    ;
-  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
-  (text_formatter.FilteringTextInputFormatter.deny = function(filterPattern, opts) {
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    this[filterPattern$] = filterPattern;
-    this[replacementString$] = replacementString;
-    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 175, 15, "filterPattern != null");
-    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 176, 15, "replacementString != null");
-    this[allow$] = false;
-    ;
-  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.FilteringTextInputFormatter);
-  dart.addTypeCaches(text_formatter.FilteringTextInputFormatter);
-  dart.setMethodSignature(text_formatter.FilteringTextInputFormatter, () => ({
-    __proto__: dart.getMethods(text_formatter.FilteringTextInputFormatter.__proto__),
-    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
-  }));
-  dart.setLibraryUri(text_formatter.FilteringTextInputFormatter, I[0]);
-  dart.setFieldSignature(text_formatter.FilteringTextInputFormatter, () => ({
-    __proto__: dart.getFields(text_formatter.FilteringTextInputFormatter.__proto__),
-    filterPattern: dart.finalFieldType(core.Pattern),
-    allow: dart.finalFieldType(core.bool),
-    replacementString: dart.finalFieldType(core.String)
-  }));
-  dart.defineLazy(text_formatter.FilteringTextInputFormatter, {
-    /*text_formatter.FilteringTextInputFormatter.singleLineFormatter*/get singleLineFormatter() {
-      return new text_formatter.FilteringTextInputFormatter.deny("\n");
-    },
-    /*text_formatter.FilteringTextInputFormatter.digitsOnly*/get digitsOnly() {
-      return new text_formatter.FilteringTextInputFormatter.allow(core.RegExp.new("[0-9]"));
+  dart.defineLazy(input_border.InputBorder, {
+    /*input_border.InputBorder.none*/get none() {
+      return C[3] || CT.C3;
     }
   }, false);
-  text_formatter.BlacklistingTextInputFormatter = class BlacklistingTextInputFormatter extends text_formatter.FilteringTextInputFormatter {
-    get blacklistedPattern() {
-      return this.filterPattern;
+  input_border._NoInputBorder = class _NoInputBorder extends input_border.InputBorder {
+    copyWith(opts) {
+      let borderSide = opts && 'borderSide' in opts ? opts.borderSide : null;
+      return C[3] || CT.C3;
     }
-  };
-  (text_formatter.BlacklistingTextInputFormatter.new = function(blacklistedPattern, opts) {
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    text_formatter.BlacklistingTextInputFormatter.__proto__.deny.call(this, blacklistedPattern, {replacementString: replacementString});
-    ;
-  }).prototype = text_formatter.BlacklistingTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.BlacklistingTextInputFormatter);
-  dart.addTypeCaches(text_formatter.BlacklistingTextInputFormatter);
-  dart.setGetterSignature(text_formatter.BlacklistingTextInputFormatter, () => ({
-    __proto__: dart.getGetters(text_formatter.BlacklistingTextInputFormatter.__proto__),
-    blacklistedPattern: core.Pattern
-  }));
-  dart.setLibraryUri(text_formatter.BlacklistingTextInputFormatter, I[0]);
-  dart.defineLazy(text_formatter.BlacklistingTextInputFormatter, {
-    /*text_formatter.BlacklistingTextInputFormatter.singleLineFormatter*/get singleLineFormatter() {
-      return new text_formatter.BlacklistingTextInputFormatter.new(core.RegExp.new("\\n"));
+    get isOutline() {
+      return false;
     }
-  }, false);
-  text_formatter.WhitelistingTextInputFormatter = class WhitelistingTextInputFormatter extends text_formatter.FilteringTextInputFormatter {
-    get whitelistedPattern() {
-      return this.filterPattern;
+    get dimensions() {
+      return edge_insets.EdgeInsets.zero;
     }
-  };
-  (text_formatter.WhitelistingTextInputFormatter.new = function(whitelistedPattern) {
-    if (!(whitelistedPattern !== null)) dart.assertFailed(null, I[1], 329, 14, "whitelistedPattern != null");
-    text_formatter.WhitelistingTextInputFormatter.__proto__.allow.call(this, whitelistedPattern);
-    ;
-  }).prototype = text_formatter.WhitelistingTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.WhitelistingTextInputFormatter);
-  dart.addTypeCaches(text_formatter.WhitelistingTextInputFormatter);
-  dart.setGetterSignature(text_formatter.WhitelistingTextInputFormatter, () => ({
-    __proto__: dart.getGetters(text_formatter.WhitelistingTextInputFormatter.__proto__),
-    whitelistedPattern: core.Pattern
-  }));
-  dart.setLibraryUri(text_formatter.WhitelistingTextInputFormatter, I[0]);
-  dart.defineLazy(text_formatter.WhitelistingTextInputFormatter, {
-    /*text_formatter.WhitelistingTextInputFormatter.digitsOnly*/get digitsOnly() {
-      return new text_formatter.WhitelistingTextInputFormatter.new(core.RegExp.new("\\d+"));
+    scale(t) {
+      return C[3] || CT.C3;
     }
-  }, false);
-  var maxLength$ = dart.privateName(text_formatter, "LengthLimitingTextInputFormatter.maxLength");
-  var maxLengthEnforcement$ = dart.privateName(text_formatter, "LengthLimitingTextInputFormatter.maxLengthEnforcement");
-  var _name = dart.privateName(platform$, "_name");
-  text_formatter.LengthLimitingTextInputFormatter = class LengthLimitingTextInputFormatter extends text_formatter.TextInputFormatter {
-    get maxLength() {
-      return this[maxLength$];
-    }
-    set maxLength(value) {
-      super.maxLength = value;
-    }
-    get maxLengthEnforcement() {
-      return this[maxLengthEnforcement$];
-    }
-    set maxLengthEnforcement(value) {
-      super.maxLengthEnforcement = value;
-    }
-    static getDefaultMaxLengthEnforcement(platform = null) {
+    getInnerPath(rect, opts) {
       let t0;
-      if (true) {
-        return text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds;
-      } else {
-        switch (t0 = platform, t0 == null ? platform$.defaultTargetPlatform : t0) {
-          case C[4] || CT.C4:
-          case C[5] || CT.C5:
-          {
-            return text_formatter.MaxLengthEnforcement.enforced;
-          }
-          case C[6] || CT.C6:
-          case C[7] || CT.C7:
-          case C[8] || CT.C8:
-          case C[9] || CT.C9:
-          {
-            return text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds;
-          }
-        }
-      }
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      t0 = ui.Path.new();
+      return (() => {
+        t0.addRect(rect);
+        return t0;
+      })();
     }
-    static truncate(value, maxLength) {
-      let iterator = new characters_impl.StringCharacterRange.new(value.text);
-      if (extensions['StringCharacters|get#characters'](value.text)[$length] > maxLength) {
-        iterator.expandNext(maxLength);
-      }
-      let truncated = iterator.current;
-      return new text_input.TextEditingValue.new({text: truncated, selection: value.selection.copyWith({baseOffset: math.min(core.int, value.selection.start, truncated.length), extentOffset: math.min(core.int, value.selection.end, truncated.length)}), composing: !value.composing.isCollapsed && truncated.length > value.composing.start ? new ui.TextRange.new({start: value.composing.start, end: math.min(core.int, value.composing.end, truncated.length)}) : ui.TextRange.empty});
-    }
-    formatEditUpdate(oldValue, newValue) {
+    getOuterPath(rect, opts) {
       let t0;
-      let maxLength = this.maxLength;
-      if (maxLength == null || maxLength === -1 || extensions['StringCharacters|get#characters'](newValue.text)[$length] <= dart.notNull(maxLength)) {
-        return newValue;
-      }
-      if (!(dart.notNull(maxLength) > 0)) dart.assertFailed(null, I[1], 497, 12, "maxLength > 0");
-      switch (t0 = this.maxLengthEnforcement, t0 == null ? text_formatter.LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement() : t0) {
-        case C[0] || CT.C0:
-        {
-          return newValue;
-        }
-        case C[1] || CT.C1:
-        {
-          if (extensions['StringCharacters|get#characters'](oldValue.text)[$length] === maxLength && oldValue.selection.isCollapsed) {
-            return oldValue;
-          }
-          return text_formatter.LengthLimitingTextInputFormatter.truncate(newValue, maxLength);
-        }
-        case C[2] || CT.C2:
-        {
-          if (extensions['StringCharacters|get#characters'](oldValue.text)[$length] === maxLength && !oldValue.composing.isValid) {
-            return oldValue;
-          }
-          if (newValue.composing.isValid) {
-            return newValue;
-          }
-          return text_formatter.LengthLimitingTextInputFormatter.truncate(newValue, maxLength);
-        }
-      }
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      t0 = ui.Path.new();
+      return (() => {
+        t0.addRect(rect);
+        return t0;
+      })();
+    }
+    paint(canvas, rect, opts) {
+      let gapStart = opts && 'gapStart' in opts ? opts.gapStart : null;
+      let gapExtent = opts && 'gapExtent' in opts ? opts.gapExtent : 0;
+      let gapPercentage = opts && 'gapPercentage' in opts ? opts.gapPercentage : 0;
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
     }
   };
-  (text_formatter.LengthLimitingTextInputFormatter.new = function(maxLength, opts) {
-    let maxLengthEnforcement = opts && 'maxLengthEnforcement' in opts ? opts.maxLengthEnforcement : null;
-    this[maxLength$] = maxLength;
-    this[maxLengthEnforcement$] = maxLengthEnforcement;
-    if (!(maxLength == null || maxLength === -1 || dart.notNull(maxLength) > 0)) dart.assertFailed(null, I[1], 371, 15, "maxLength == null || maxLength == -1 || maxLength > 0");
+  (input_border._NoInputBorder.new = function() {
+    input_border._NoInputBorder.__proto__.new.call(this, {borderSide: borders.BorderSide.none});
     ;
-  }).prototype = text_formatter.LengthLimitingTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.LengthLimitingTextInputFormatter);
-  dart.addTypeCaches(text_formatter.LengthLimitingTextInputFormatter);
-  dart.setMethodSignature(text_formatter.LengthLimitingTextInputFormatter, () => ({
-    __proto__: dart.getMethods(text_formatter.LengthLimitingTextInputFormatter.__proto__),
-    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
+  }).prototype = input_border._NoInputBorder.prototype;
+  dart.addTypeTests(input_border._NoInputBorder);
+  dart.addTypeCaches(input_border._NoInputBorder);
+  dart.setMethodSignature(input_border._NoInputBorder, () => ({
+    __proto__: dart.getMethods(input_border._NoInputBorder.__proto__),
+    copyWith: dart.fnType(input_border._NoInputBorder, [], {borderSide: dart.nullable(borders.BorderSide)}, {}),
+    scale: dart.fnType(input_border._NoInputBorder, [core.double]),
+    getInnerPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
+    getOuterPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
+    paint: dart.fnType(dart.void, [ui.Canvas, ui.Rect], {gapExtent: core.double, gapPercentage: core.double, gapStart: dart.nullable(core.double), textDirection: dart.nullable(ui.TextDirection)}, {})
   }));
-  dart.setLibraryUri(text_formatter.LengthLimitingTextInputFormatter, I[0]);
-  dart.setFieldSignature(text_formatter.LengthLimitingTextInputFormatter, () => ({
-    __proto__: dart.getFields(text_formatter.LengthLimitingTextInputFormatter.__proto__),
-    maxLength: dart.finalFieldType(dart.nullable(core.int)),
-    maxLengthEnforcement: dart.finalFieldType(dart.nullable(text_formatter.MaxLengthEnforcement))
+  dart.setGetterSignature(input_border._NoInputBorder, () => ({
+    __proto__: dart.getGetters(input_border._NoInputBorder.__proto__),
+    isOutline: core.bool,
+    dimensions: edge_insets.EdgeInsetsGeometry
   }));
-  var TextRange_end = dart.privateName(ui, "TextRange.end");
-  var TextRange_start = dart.privateName(ui, "TextRange.start");
-  var TextSelection_isDirectional = dart.privateName(text_editing, "TextSelection.isDirectional");
-  var _name$0 = dart.privateName(ui, "_name");
-  var TextSelection_affinity = dart.privateName(text_editing, "TextSelection.affinity");
-  var TextSelection_extentOffset = dart.privateName(text_editing, "TextSelection.extentOffset");
-  var TextSelection_baseOffset = dart.privateName(text_editing, "TextSelection.baseOffset");
-  text_formatter._selectionAwareTextManipulation = function _selectionAwareTextManipulation(value, substringManipulation) {
-    let t0;
-    let selectionStartIndex = value.selection.start;
-    let selectionEndIndex = value.selection.end;
-    let manipulatedText = null;
-    let manipulatedSelection = null;
-    if (selectionStartIndex < 0 || selectionEndIndex < 0) {
-      manipulatedText = substringManipulation(value.text);
-    } else {
-      let beforeSelection = substringManipulation(value.text[$substring](0, selectionStartIndex));
-      let inSelection = substringManipulation(value.text[$substring](selectionStartIndex, selectionEndIndex));
-      let afterSelection = substringManipulation(value.text[$substring](selectionEndIndex));
-      manipulatedText = beforeSelection + inSelection + afterSelection;
-      if (value.selection.baseOffset > value.selection.extentOffset) {
-        manipulatedSelection = value.selection.copyWith({baseOffset: beforeSelection.length + inSelection.length, extentOffset: beforeSelection.length});
+  dart.setLibraryUri(input_border._NoInputBorder, I[1]);
+  var borderRadius$ = dart.privateName(input_border, "UnderlineInputBorder.borderRadius");
+  var Radius_y = dart.privateName(ui, "Radius.y");
+  var Radius_x = dart.privateName(ui, "Radius.x");
+  var BorderRadius_bottomRight = dart.privateName(border_radius, "BorderRadius.bottomRight");
+  var BorderRadius_bottomLeft = dart.privateName(border_radius, "BorderRadius.bottomLeft");
+  var BorderRadius_topRight = dart.privateName(border_radius, "BorderRadius.topRight");
+  var BorderRadius_topLeft = dart.privateName(border_radius, "BorderRadius.topLeft");
+  input_border.UnderlineInputBorder = class UnderlineInputBorder extends input_border.InputBorder {
+    get borderRadius() {
+      return this[borderRadius$];
+    }
+    set borderRadius(value) {
+      super.borderRadius = value;
+    }
+    get isOutline() {
+      return false;
+    }
+    copyWith(opts) {
+      let t0, t0$;
+      let borderSide = opts && 'borderSide' in opts ? opts.borderSide : null;
+      let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : null;
+      return new input_border.UnderlineInputBorder.new({borderSide: (t0 = borderSide, t0 == null ? this.borderSide : t0), borderRadius: (t0$ = borderRadius, t0$ == null ? this.borderRadius : t0$)});
+    }
+    get dimensions() {
+      return new edge_insets.EdgeInsets.only({bottom: this.borderSide.width});
+    }
+    scale(t) {
+      return new input_border.UnderlineInputBorder.new({borderSide: this.borderSide.scale(t)});
+    }
+    getInnerPath(rect, opts) {
+      let t0;
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      t0 = ui.Path.new();
+      return (() => {
+        t0.addRect(new ui.Rect.fromLTWH(rect.left, rect.top, rect.width, math.max(core.double, 0.0, rect.height - this.borderSide.width)));
+        return t0;
+      })();
+    }
+    getOuterPath(rect, opts) {
+      let t0;
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      t0 = ui.Path.new();
+      return (() => {
+        t0.addRRect(this.borderRadius.resolve(textDirection).toRRect(rect));
+        return t0;
+      })();
+    }
+    lerpFrom(a, t) {
+      if (input_border.UnderlineInputBorder.is(a)) {
+        return new input_border.UnderlineInputBorder.new({borderSide: borders.BorderSide.lerp(a.borderSide, this.borderSide, t), borderRadius: dart.nullCheck(border_radius.BorderRadius.lerp(a.borderRadius, this.borderRadius, t))});
+      }
+      return super.lerpFrom(a, t);
+    }
+    lerpTo(b, t) {
+      if (input_border.UnderlineInputBorder.is(b)) {
+        return new input_border.UnderlineInputBorder.new({borderSide: borders.BorderSide.lerp(this.borderSide, b.borderSide, t), borderRadius: dart.nullCheck(border_radius.BorderRadius.lerp(this.borderRadius, b.borderRadius, t))});
+      }
+      return super.lerpTo(b, t);
+    }
+    paint(canvas, rect, opts) {
+      let gapStart = opts && 'gapStart' in opts ? opts.gapStart : null;
+      let gapExtent = opts && 'gapExtent' in opts ? opts.gapExtent : 0;
+      let gapPercentage = opts && 'gapPercentage' in opts ? opts.gapPercentage : 0;
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      if (!this.borderRadius.bottomLeft._equals(ui.Radius.zero) || !this.borderRadius.bottomRight._equals(ui.Radius.zero)) canvas.clipPath(this.getOuterPath(rect, {textDirection: textDirection}));
+      canvas.drawLine(rect.bottomLeft, rect.bottomRight, this.borderSide.toPaint());
+    }
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
+      return input_border.InputBorder.is(other) && other.borderSide._equals(this.borderSide);
+    }
+    get hashCode() {
+      return this.borderSide.hashCode;
+    }
+  };
+  (input_border.UnderlineInputBorder.new = function(opts) {
+    let borderSide = opts && 'borderSide' in opts ? opts.borderSide : C[4] || CT.C4;
+    let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : C[6] || CT.C6;
+    this[borderRadius$] = borderRadius;
+    if (!(borderRadius !== null)) dart.assertFailed(null, I[0], 151, 15, "borderRadius != null");
+    input_border.UnderlineInputBorder.__proto__.new.call(this, {borderSide: borderSide});
+    ;
+  }).prototype = input_border.UnderlineInputBorder.prototype;
+  dart.addTypeTests(input_border.UnderlineInputBorder);
+  dart.addTypeCaches(input_border.UnderlineInputBorder);
+  dart.setMethodSignature(input_border.UnderlineInputBorder, () => ({
+    __proto__: dart.getMethods(input_border.UnderlineInputBorder.__proto__),
+    copyWith: dart.fnType(input_border.UnderlineInputBorder, [], {borderRadius: dart.nullable(border_radius.BorderRadius), borderSide: dart.nullable(borders.BorderSide)}, {}),
+    scale: dart.fnType(input_border.UnderlineInputBorder, [core.double]),
+    getInnerPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
+    getOuterPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
+    paint: dart.fnType(dart.void, [ui.Canvas, ui.Rect], {gapExtent: core.double, gapPercentage: core.double, gapStart: dart.nullable(core.double), textDirection: dart.nullable(ui.TextDirection)}, {})
+  }));
+  dart.setGetterSignature(input_border.UnderlineInputBorder, () => ({
+    __proto__: dart.getGetters(input_border.UnderlineInputBorder.__proto__),
+    isOutline: core.bool,
+    dimensions: edge_insets.EdgeInsetsGeometry
+  }));
+  dart.setLibraryUri(input_border.UnderlineInputBorder, I[1]);
+  dart.setFieldSignature(input_border.UnderlineInputBorder, () => ({
+    __proto__: dart.getFields(input_border.UnderlineInputBorder.__proto__),
+    borderRadius: dart.finalFieldType(border_radius.BorderRadius)
+  }));
+  dart.defineExtensionMethods(input_border.UnderlineInputBorder, ['_equals']);
+  dart.defineExtensionAccessors(input_border.UnderlineInputBorder, ['hashCode']);
+  var gapPadding$ = dart.privateName(input_border, "OutlineInputBorder.gapPadding");
+  var borderRadius$0 = dart.privateName(input_border, "OutlineInputBorder.borderRadius");
+  var _gapBorderPath = dart.privateName(input_border, "_gapBorderPath");
+  var _name$ = dart.privateName(ui, "_name");
+  input_border.OutlineInputBorder = class OutlineInputBorder extends input_border.InputBorder {
+    get gapPadding() {
+      return this[gapPadding$];
+    }
+    set gapPadding(value) {
+      super.gapPadding = value;
+    }
+    get borderRadius() {
+      return this[borderRadius$0];
+    }
+    set borderRadius(value) {
+      super.borderRadius = value;
+    }
+    static _cornersAreCircular(borderRadius) {
+      return borderRadius.topLeft.x === borderRadius.topLeft.y && borderRadius.bottomLeft.x === borderRadius.bottomLeft.y && borderRadius.topRight.x === borderRadius.topRight.y && borderRadius.bottomRight.x === borderRadius.bottomRight.y;
+    }
+    get isOutline() {
+      return true;
+    }
+    copyWith(opts) {
+      let t0, t0$, t0$0;
+      let borderSide = opts && 'borderSide' in opts ? opts.borderSide : null;
+      let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : null;
+      let gapPadding = opts && 'gapPadding' in opts ? opts.gapPadding : null;
+      return new input_border.OutlineInputBorder.new({borderSide: (t0 = borderSide, t0 == null ? this.borderSide : t0), borderRadius: (t0$ = borderRadius, t0$ == null ? this.borderRadius : t0$), gapPadding: (t0$0 = gapPadding, t0$0 == null ? this.gapPadding : t0$0)});
+    }
+    get dimensions() {
+      return new edge_insets.EdgeInsets.all(this.borderSide.width);
+    }
+    scale(t) {
+      return new input_border.OutlineInputBorder.new({borderSide: this.borderSide.scale(t), borderRadius: this.borderRadius['*'](t), gapPadding: this.gapPadding * t});
+    }
+    lerpFrom(a, t) {
+      if (input_border.OutlineInputBorder.is(a)) {
+        let outline = a;
+        return new input_border.OutlineInputBorder.new({borderRadius: dart.nullCheck(border_radius.BorderRadius.lerp(outline.borderRadius, this.borderRadius, t)), borderSide: borders.BorderSide.lerp(outline.borderSide, this.borderSide, t), gapPadding: outline.gapPadding});
+      }
+      return super.lerpFrom(a, t);
+    }
+    lerpTo(b, t) {
+      if (input_border.OutlineInputBorder.is(b)) {
+        let outline = b;
+        return new input_border.OutlineInputBorder.new({borderRadius: dart.nullCheck(border_radius.BorderRadius.lerp(this.borderRadius, outline.borderRadius, t)), borderSide: borders.BorderSide.lerp(this.borderSide, outline.borderSide, t), gapPadding: outline.gapPadding});
+      }
+      return super.lerpTo(b, t);
+    }
+    getInnerPath(rect, opts) {
+      let t0;
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      t0 = ui.Path.new();
+      return (() => {
+        t0.addRRect(this.borderRadius.resolve(textDirection).toRRect(rect).deflate(this.borderSide.width));
+        return t0;
+      })();
+    }
+    getOuterPath(rect, opts) {
+      let t0;
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      t0 = ui.Path.new();
+      return (() => {
+        t0.addRRect(this.borderRadius.resolve(textDirection).toRRect(rect));
+        return t0;
+      })();
+    }
+    [_gapBorderPath](canvas, center, start, extent) {
+      let t0, t0$, t0$0;
+      let scaledRRect = center.scaleRadii();
+      let tlCorner = new ui.Rect.fromLTWH(scaledRRect.left, scaledRRect.top, scaledRRect.tlRadiusX * 2.0, scaledRRect.tlRadiusY * 2.0);
+      let trCorner = new ui.Rect.fromLTWH(scaledRRect.right - scaledRRect.trRadiusX * 2.0, scaledRRect.top, scaledRRect.trRadiusX * 2.0, scaledRRect.trRadiusY * 2.0);
+      let brCorner = new ui.Rect.fromLTWH(scaledRRect.right - scaledRRect.brRadiusX * 2.0, scaledRRect.bottom - scaledRRect.brRadiusY * 2.0, scaledRRect.brRadiusX * 2.0, scaledRRect.brRadiusY * 2.0);
+      let blCorner = new ui.Rect.fromLTWH(scaledRRect.left, scaledRRect.bottom - scaledRRect.blRadiusY * 2.0, scaledRRect.blRadiusX * 2.0, scaledRRect.blRadiusX * 2.0);
+      let tlCornerArcSweep = start < scaledRRect.tlRadiusX ? math.asin((start / scaledRRect.tlRadiusX)[$clamp](-1.0, 1.0)) : 3.141592653589793 / 2.0;
+      let path = (t0 = ui.Path.new(), (() => {
+        t0.addArc(tlCorner, 3.141592653589793, tlCornerArcSweep);
+        t0.moveTo(scaledRRect.left + scaledRRect.tlRadiusX, scaledRRect.top);
+        return t0;
+      })());
+      if (start > scaledRRect.tlRadiusX) path.lineTo(scaledRRect.left + start, scaledRRect.top);
+      if (start + extent < scaledRRect.width - scaledRRect.trRadiusX) {
+        t0$ = path;
+        (() => {
+          t0$.relativeMoveTo(extent, 0.0);
+          t0$.lineTo(scaledRRect.right - scaledRRect.trRadiusX, scaledRRect.top);
+          t0$.addArc(trCorner, 4.71238898038469, 1.5707963267948966);
+          return t0$;
+        })();
+      } else if (start + extent < scaledRRect.width) {
+        let dx = scaledRRect.width - (start + extent);
+        let sweep = math.acos(dx / scaledRRect.trRadiusX);
+        path.addArc(trCorner, 4.71238898038469 + sweep, 1.5707963267948966 - sweep);
+      }
+      t0$0 = path;
+      return (() => {
+        t0$0.moveTo(scaledRRect.right, scaledRRect.top + scaledRRect.trRadiusY);
+        t0$0.lineTo(scaledRRect.right, scaledRRect.bottom - scaledRRect.brRadiusY);
+        t0$0.addArc(brCorner, 0.0, 1.5707963267948966);
+        t0$0.lineTo(scaledRRect.left + scaledRRect.blRadiusX, scaledRRect.bottom);
+        t0$0.addArc(blCorner, 3.141592653589793 / 2.0, 1.5707963267948966);
+        t0$0.lineTo(scaledRRect.left, scaledRRect.top + scaledRRect.tlRadiusY);
+        return t0$0;
+      })();
+    }
+    paint(canvas, rect, opts) {
+      let gapStart = opts && 'gapStart' in opts ? opts.gapStart : null;
+      let gapExtent = opts && 'gapExtent' in opts ? opts.gapExtent : 0;
+      let gapPercentage = opts && 'gapPercentage' in opts ? opts.gapPercentage : 0;
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      if (!(gapExtent !== null)) dart.assertFailed(null, I[0], 469, 12, "gapExtent != null");
+      if (!(gapPercentage >= 0.0 && gapPercentage <= 1.0)) dart.assertFailed(null, I[0], 470, 12, "gapPercentage >= 0.0 && gapPercentage <= 1.0");
+      if (!input_border.OutlineInputBorder._cornersAreCircular(this.borderRadius)) dart.assertFailed(null, I[0], 471, 12, "_cornersAreCircular(borderRadius)");
+      let paint = this.borderSide.toPaint();
+      let outer = this.borderRadius.toRRect(rect);
+      let center = outer.deflate(this.borderSide.width / 2.0);
+      if (gapStart == null || gapExtent <= 0.0 || gapPercentage === 0.0) {
+        canvas.drawRRect(center, paint);
       } else {
-        manipulatedSelection = value.selection.copyWith({baseOffset: beforeSelection.length, extentOffset: beforeSelection.length + inSelection.length});
+        let extent = dart.nullCheck(ui.lerpDouble(0.0, gapExtent + this.gapPadding * 2.0, gapPercentage));
+        switch (dart.nullCheck(textDirection)) {
+          case C[10] || CT.C10:
+          {
+            let path = this[_gapBorderPath](canvas, center, math.max(core.double, 0.0, dart.notNull(gapStart) + this.gapPadding - extent), extent);
+            canvas.drawPath(path, paint);
+            break;
+          }
+          case C[11] || CT.C11:
+          {
+            let path = this[_gapBorderPath](canvas, center, math.max(core.double, 0.0, dart.notNull(gapStart) - this.gapPadding), extent);
+            canvas.drawPath(path, paint);
+            break;
+          }
+        }
       }
     }
-    return new text_input.TextEditingValue.new({text: manipulatedText, selection: (t0 = manipulatedSelection, t0 == null ? C[10] || CT.C10 : t0), composing: manipulatedText === value.text ? value.composing : ui.TextRange.empty});
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
+      return input_border.OutlineInputBorder.is(other) && other.borderSide._equals(this.borderSide) && other.borderRadius._equals(this.borderRadius) && other.gapPadding === this.gapPadding;
+    }
+    get hashCode() {
+      return ui.hashValues(this.borderSide, this.borderRadius, this.gapPadding);
+    }
   };
-  dart.trackLibraries("packages/flutter/src/services/text_formatter.dart", {
-    "package:flutter/src/services/text_formatter.dart": text_formatter
+  (input_border.OutlineInputBorder.new = function(opts) {
+    let borderSide = opts && 'borderSide' in opts ? opts.borderSide : C[4] || CT.C4;
+    let borderRadius = opts && 'borderRadius' in opts ? opts.borderRadius : C[9] || CT.C9;
+    let gapPadding = opts && 'gapPadding' in opts ? opts.gapPadding : 4;
+    this[borderRadius$0] = borderRadius;
+    this[gapPadding$] = gapPadding;
+    if (!(borderRadius !== null)) dart.assertFailed(null, I[0], 290, 15, "borderRadius != null");
+    if (!(gapPadding !== null && gapPadding >= 0.0)) dart.assertFailed(null, I[0], 291, 15, "gapPadding != null && gapPadding >= 0.0");
+    input_border.OutlineInputBorder.__proto__.new.call(this, {borderSide: borderSide});
+    ;
+  }).prototype = input_border.OutlineInputBorder.prototype;
+  dart.addTypeTests(input_border.OutlineInputBorder);
+  dart.addTypeCaches(input_border.OutlineInputBorder);
+  dart.setMethodSignature(input_border.OutlineInputBorder, () => ({
+    __proto__: dart.getMethods(input_border.OutlineInputBorder.__proto__),
+    copyWith: dart.fnType(input_border.OutlineInputBorder, [], {borderRadius: dart.nullable(border_radius.BorderRadius), borderSide: dart.nullable(borders.BorderSide), gapPadding: dart.nullable(core.double)}, {}),
+    scale: dart.fnType(input_border.OutlineInputBorder, [core.double]),
+    getInnerPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
+    getOuterPath: dart.fnType(ui.Path, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
+    [_gapBorderPath]: dart.fnType(ui.Path, [ui.Canvas, ui.RRect, core.double, core.double]),
+    paint: dart.fnType(dart.void, [ui.Canvas, ui.Rect], {gapExtent: core.double, gapPercentage: core.double, gapStart: dart.nullable(core.double), textDirection: dart.nullable(ui.TextDirection)}, {})
+  }));
+  dart.setGetterSignature(input_border.OutlineInputBorder, () => ({
+    __proto__: dart.getGetters(input_border.OutlineInputBorder.__proto__),
+    isOutline: core.bool,
+    dimensions: edge_insets.EdgeInsetsGeometry
+  }));
+  dart.setLibraryUri(input_border.OutlineInputBorder, I[1]);
+  dart.setFieldSignature(input_border.OutlineInputBorder, () => ({
+    __proto__: dart.getFields(input_border.OutlineInputBorder.__proto__),
+    gapPadding: dart.finalFieldType(core.double),
+    borderRadius: dart.finalFieldType(border_radius.BorderRadius)
+  }));
+  dart.defineExtensionMethods(input_border.OutlineInputBorder, ['_equals']);
+  dart.defineExtensionAccessors(input_border.OutlineInputBorder, ['hashCode']);
+  dart.trackLibraries("packages/flutter/src/material/input_border.dart", {
+    "package:flutter/src/material/input_border.dart": input_border
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["text_formatter.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/services/text_formatter.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["input_border.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/material/input_border.dart.lib.js"}');
   // Exports:
   return {
-    src__services__text_formatter: text_formatter
+    src__material__input_border: input_border
   };
 }));
 
-//# sourceMappingURL=text_formatter.dart.lib.js.map
+//# sourceMappingURL=input_border.dart.lib.js.map

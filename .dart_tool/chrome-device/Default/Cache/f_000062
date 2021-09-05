@@ -1,35 +1,46 @@
-define(['dart_sdk', 'packages/flutter/src/gestures/binding.dart', 'packages/flutter/src/gestures/events.dart', 'packages/vector_math/vector_math_64.dart', 'packages/flutter/src/gestures/arena.dart', 'packages/flutter/src/gestures/tap.dart', 'packages/flutter/src/gestures/constants.dart', 'packages/flutter/src/gestures/recognizer.dart'], (function load__packages__flutter__src__gestures__multitap_dart(dart_sdk, packages__flutter__src__gestures__binding$46dart, packages__flutter__src__gestures__events$46dart, packages__vector_math__vector_math_64$46dart, packages__flutter__src__gestures__arena$46dart, packages__flutter__src__gestures__tap$46dart, packages__flutter__src__gestures__constants$46dart, packages__flutter__src__gestures__recognizer$46dart) {
+define(['dart_sdk', 'packages/flutter/src/gestures/recognizer.dart', 'packages/flutter/src/rendering/proxy_box.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/gestures/drag_details.dart', 'packages/flutter/src/gestures/velocity_tracker.dart', 'packages/flutter/src/animation/curves.dart'], (function load__packages__flutter__src__widgets__dismissible_dart(dart_sdk, packages__flutter__src__gestures__recognizer$46dart, packages__flutter__src__rendering__proxy_box$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__gestures__drag_details$46dart, packages__flutter__src__gestures__velocity_tracker$46dart, packages__flutter__src__animation__curves$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const async = dart_sdk.async;
   const ui = dart_sdk.ui;
-  const _js_helper = dart_sdk._js_helper;
+  const _internal = dart_sdk._internal;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const binding = packages__flutter__src__gestures__binding$46dart.src__gestures__binding;
-  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
-  const vector_math_64 = packages__vector_math__vector_math_64$46dart.vector_math_64;
-  const arena = packages__flutter__src__gestures__arena$46dart.src__gestures__arena;
-  const tap = packages__flutter__src__gestures__tap$46dart.src__gestures__tap;
-  const constants = packages__flutter__src__gestures__constants$46dart.src__gestures__constants;
   const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
-  var multitap = Object.create(dart.library);
-  var $_set = dartx._set;
+  const proxy_box = packages__flutter__src__rendering__proxy_box$46dart.src__rendering__proxy_box;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const debug = packages__flutter__src__widgets__widget_span$46dart.src__widgets__debug;
+  const transitions = packages__flutter__src__widgets__widget_span$46dart.src__widgets__transitions;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const gesture_detector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__gesture_detector;
+  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
+  const automatic_keep_alive = packages__flutter__src__widgets__widget_span$46dart.src__widgets__automatic_keep_alive;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
+  const tween = packages__flutter__src__animation__listener_helpers$46dart.src__animation__tween;
+  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  const drag_details = packages__flutter__src__gestures__drag_details$46dart.src__gestures__drag_details;
+  const velocity_tracker = packages__flutter__src__gestures__velocity_tracker$46dart.src__gestures__velocity_tracker;
+  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
+  var dismissible = Object.create(dart.library);
+  var $sign = dartx.sign;
+  var $abs = dartx.abs;
   var $_get = dartx._get;
-  var $remove = dartx.remove;
-  var $_equals = dartx._equals;
-  var $isEmpty = dartx.isEmpty;
-  var $isNotEmpty = dartx.isNotEmpty;
-  var $values = dartx.values;
-  var $toList = dartx.toList;
-  var $forEach = dartx.forEach;
-  var $containsKey = dartx.containsKey;
+  var $add = dartx.add;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    IdentityMapOfint$_TapTracker: () => (T.IdentityMapOfint$_TapTracker = dart.constFn(_js_helper.IdentityMap$(core.int, multitap._TapTracker)))(),
     VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    IdentityMapOfint$_TapGesture: () => (T.IdentityMapOfint$_TapGesture = dart.constFn(_js_helper.IdentityMap$(core.int, multitap._TapGesture)))(),
-    ListOf_TapGesture: () => (T.ListOf_TapGesture = dart.constFn(core.List$(multitap._TapGesture)))()
+    TweenOfOffset: () => (T.TweenOfOffset = dart.constFn(tween.Tween$(ui.Offset)))(),
+    boolN: () => (T.boolN = dart.constFn(dart.nullable(core.bool)))(),
+    AnimationStatusTovoid: () => (T.AnimationStatusTovoid = dart.constFn(dart.fnType(dart.void, [animation.AnimationStatus])))(),
+    TweenOfdouble: () => (T.TweenOfdouble = dart.constFn(tween.Tween$(core.double)))(),
+    JSArrayOfDiagnosticsNode: () => (T.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
+    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -37,543 +48,1134 @@ define(['dart_sdk', 'packages/flutter/src/gestures/binding.dart', 'packages/flut
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
+        __proto__: dismissible.DismissDirection.prototype,
+        [_name$]: "DismissDirection.vertical",
+        index: 0
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: dismissible.DismissDirection.prototype,
+        [_name$]: "DismissDirection.horizontal",
+        index: 1
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: dismissible.DismissDirection.prototype,
+        [_name$]: "DismissDirection.endToStart",
+        index: 2
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: dismissible.DismissDirection.prototype,
+        [_name$]: "DismissDirection.startToEnd",
+        index: 3
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: dismissible.DismissDirection.prototype,
+        [_name$]: "DismissDirection.up",
+        index: 4
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: dismissible.DismissDirection.prototype,
+        [_name$]: "DismissDirection.down",
+        index: 5
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: dismissible.DismissDirection.prototype,
+        [_name$]: "DismissDirection.none",
+        index: 6
+      });
+    },
+    get C7() {
+      return C[7] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5, C[6] || CT.C6], dismissible.DismissDirection);
+    },
+    get C8() {
+      return C[8] = dart.const({
         __proto__: core.Duration.prototype,
-        [Duration__duration]: 0
+        [Duration__duration]: 300000
+      });
+    },
+    get C9() {
+      return C[9] = dart.constMap(dismissible.DismissDirection, core.double, []);
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 200000
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: recognizer.DragStartBehavior.prototype,
+        [_name]: "DragStartBehavior.start",
+        index: 1
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: proxy_box.HitTestBehavior.prototype,
+        [_name$0]: "HitTestBehavior.opaque",
+        index: 1
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: basic_types.Axis.prototype,
+        [_name$1]: "Axis.horizontal",
+        index: 0
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: basic_types.Axis.prototype,
+        [_name$1]: "Axis.vertical",
+        index: 1
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: dismissible._FlingGestureKind.prototype,
+        [_name$]: "_FlingGestureKind.none",
+        index: 0
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: dismissible._FlingGestureKind.prototype,
+        [_name$]: "_FlingGestureKind.forward",
+        index: 1
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: dismissible._FlingGestureKind.prototype,
+        [_name$]: "_FlingGestureKind.reverse",
+        index: 2
+      });
+    },
+    get C18() {
+      return C[18] = dart.constList([C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17], dismissible._FlingGestureKind);
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: ui.TextDirection.prototype,
+        [_name$2]: "TextDirection.rtl",
+        index: 0
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: ui.TextDirection.prototype,
+        [_name$2]: "TextDirection.ltr",
+        index: 1
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 11,
+        [_Location_line]: 585,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 11,
+        [_Location_line]: 586,
+        [_Location_file]: null
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 587,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.constList([C[23] || CT.C23, C[24] || CT.C24, C[25] || CT.C25], widget_inspector._Location);
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[22] || CT.C22,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 584,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "sizeFactor",
+        [_Location_column]: 9,
+        [_Location_line]: 582,
+        [_Location_file]: null
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "axis",
+        [_Location_column]: 9,
+        [_Location_line]: 583,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 584,
+        [_Location_file]: null
+      });
+    },
+    get C27() {
+      return C[27] = dart.constList([C[28] || CT.C28, C[29] || CT.C29, C[30] || CT.C30], widget_inspector._Location);
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[27] || CT.C27,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 581,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "position",
+        [_Location_column]: 7,
+        [_Location_line]: 593,
+        [_Location_file]: null
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 594,
+        [_Location_file]: null
+      });
+    },
+    get C32() {
+      return C[32] = dart.constList([C[33] || CT.C33, C[34] || CT.C34], widget_inspector._Location);
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[32] || CT.C32,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 592,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "clipper",
+        [_Location_column]: 15,
+        [_Location_line]: 602,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 15,
+        [_Location_line]: 606,
+        [_Location_file]: null
+      });
+    },
+    get C36() {
+      return C[36] = dart.constList([C[37] || CT.C37, C[38] || CT.C38], widget_inspector._Location);
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[36] || CT.C36,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 601,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 601,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.constList([C[41] || CT.C41], widget_inspector._Location);
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[40] || CT.C40,
+        [_Location_name]: null,
+        [_Location_column]: 22,
+        [_Location_line]: 600,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 23,
+        [_Location_line]: 598,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.constList([C[44] || CT.C44], widget_inspector._Location);
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[43] || CT.C43,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 598,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
+      });
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onHorizontalDragStart",
+        [_Location_column]: 7,
+        [_Location_line]: 614,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onHorizontalDragUpdate",
+        [_Location_column]: 7,
+        [_Location_line]: 615,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onHorizontalDragEnd",
+        [_Location_column]: 7,
+        [_Location_line]: 616,
+        [_Location_file]: null
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onVerticalDragStart",
+        [_Location_column]: 7,
+        [_Location_line]: 617,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onVerticalDragUpdate",
+        [_Location_column]: 7,
+        [_Location_line]: 618,
+        [_Location_file]: null
+      });
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onVerticalDragEnd",
+        [_Location_column]: 7,
+        [_Location_line]: 619,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "behavior",
+        [_Location_column]: 7,
+        [_Location_line]: 620,
+        [_Location_file]: null
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 621,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "dragStartBehavior",
+        [_Location_column]: 7,
+        [_Location_line]: 622,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.constList([C[47] || CT.C47, C[48] || CT.C48, C[49] || CT.C49, C[50] || CT.C50, C[51] || CT.C51, C[52] || CT.C52, C[53] || CT.C53, C[54] || CT.C54, C[55] || CT.C55], widget_inspector._Location);
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[46] || CT.C46,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 613,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [Cubic_d]: 1,
+        [Cubic_c]: 0.25,
+        [Cubic_b]: 0.1,
+        [Cubic_a]: 0.25
+      });
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: curves.Interval.prototype,
+        [Interval_curve]: C[57] || CT.C57,
+        [Interval_end]: 1,
+        [Interval_begin]: 0.4
       });
     }
   }, false);
-  var C = [void 0];
+  var C = Array(58).fill(void 0);
   var I = [
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/gestures/multitap.dart",
-    "package:flutter/src/gestures/multitap.dart"
+    "package:flutter/src/widgets/dismissible.dart",
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
   ];
-  var _timeout = dart.privateName(multitap, "_timeout");
-  var _onTimeout = dart.privateName(multitap, "_onTimeout");
-  multitap._CountdownZoned = class _CountdownZoned extends core.Object {
-    get timeout() {
-      return this[_timeout];
-    }
-    [_onTimeout]() {
-      this[_timeout] = true;
+  var _name$ = dart.privateName(dismissible, "_name");
+  dismissible.DismissDirection = class DismissDirection extends core.Object {
+    toString() {
+      return this[_name$];
     }
   };
-  (multitap._CountdownZoned.new = function(opts) {
-    let duration = opts && 'duration' in opts ? opts.duration : null;
-    this[_timeout] = false;
-    if (!(duration !== null)) dart.assertFailed(null, I[0], 43, 17, "duration != null");
-    async.Timer.new(duration, dart.bind(this, _onTimeout));
-  }).prototype = multitap._CountdownZoned.prototype;
-  dart.addTypeTests(multitap._CountdownZoned);
-  dart.addTypeCaches(multitap._CountdownZoned);
-  dart.setMethodSignature(multitap._CountdownZoned, () => ({
-    __proto__: dart.getMethods(multitap._CountdownZoned.__proto__),
-    [_onTimeout]: dart.fnType(dart.void, [])
-  }));
-  dart.setGetterSignature(multitap._CountdownZoned, () => ({
-    __proto__: dart.getGetters(multitap._CountdownZoned.__proto__),
-    timeout: core.bool
-  }));
-  dart.setLibraryUri(multitap._CountdownZoned, I[1]);
-  dart.setFieldSignature(multitap._CountdownZoned, () => ({
-    __proto__: dart.getFields(multitap._CountdownZoned.__proto__),
-    [_timeout]: dart.fieldType(core.bool)
-  }));
-  var _isTrackingPointer = dart.privateName(multitap, "_isTrackingPointer");
-  var _initialGlobalPosition = dart.privateName(multitap, "_initialGlobalPosition");
-  var _doubleTapMinTimeCountdown = dart.privateName(multitap, "_doubleTapMinTimeCountdown");
-  multitap._TapTracker = class _TapTracker extends core.Object {
-    startTrackingPointer(route, transform) {
-      if (!this[_isTrackingPointer]) {
-        this[_isTrackingPointer] = true;
-        dart.nullCheck(binding.GestureBinding.instance).pointerRouter.addRoute(this.pointer, route, transform);
-      }
-    }
-    stopTrackingPointer(route) {
-      if (this[_isTrackingPointer]) {
-        this[_isTrackingPointer] = false;
-        dart.nullCheck(binding.GestureBinding.instance).pointerRouter.removeRoute(this.pointer, route);
-      }
-    }
-    isWithinGlobalTolerance(event, tolerance) {
-      let offset = event.position['-'](this[_initialGlobalPosition]);
-      return offset.distance <= tolerance;
-    }
-    hasElapsedMinTime() {
-      return this[_doubleTapMinTimeCountdown].timeout;
-    }
-    hasSameButton(event) {
-      return event.buttons === this.initialButtons;
-    }
-  };
-  (multitap._TapTracker.new = function(opts) {
-    let event = opts && 'event' in opts ? opts.event : null;
-    let entry = opts && 'entry' in opts ? opts.entry : null;
-    let doubleTapMinTime = opts && 'doubleTapMinTime' in opts ? opts.doubleTapMinTime : null;
-    this[_isTrackingPointer] = false;
-    this.entry = entry;
-    if (!(doubleTapMinTime !== null)) dart.assertFailed(null, I[0], 63, 15, "doubleTapMinTime != null");
-    if (!(event !== null)) dart.assertFailed(null, I[0], 64, 15, "event != null");
-    if (!(event.buttons !== null)) dart.assertFailed(null, I[0], 65, 15, "event.buttons != null");
-    this.pointer = event.pointer;
-    this[_initialGlobalPosition] = event.position;
-    this.initialButtons = event.buttons;
-    this[_doubleTapMinTimeCountdown] = new multitap._CountdownZoned.new({duration: doubleTapMinTime});
+  (dismissible.DismissDirection.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
     ;
-  }).prototype = multitap._TapTracker.prototype;
-  dart.addTypeTests(multitap._TapTracker);
-  dart.addTypeCaches(multitap._TapTracker);
-  dart.setMethodSignature(multitap._TapTracker, () => ({
-    __proto__: dart.getMethods(multitap._TapTracker.__proto__),
-    startTrackingPointer: dart.fnType(dart.void, [dart.fnType(dart.void, [events.PointerEvent]), dart.nullable(vector_math_64.Matrix4)]),
-    stopTrackingPointer: dart.fnType(dart.void, [dart.fnType(dart.void, [events.PointerEvent])]),
-    isWithinGlobalTolerance: dart.fnType(core.bool, [events.PointerEvent, core.double]),
-    hasElapsedMinTime: dart.fnType(core.bool, []),
-    hasSameButton: dart.fnType(core.bool, [events.PointerDownEvent])
+  }).prototype = dismissible.DismissDirection.prototype;
+  dart.addTypeTests(dismissible.DismissDirection);
+  dart.addTypeCaches(dismissible.DismissDirection);
+  dart.setLibraryUri(dismissible.DismissDirection, I[0]);
+  dart.setFieldSignature(dismissible.DismissDirection, () => ({
+    __proto__: dart.getFields(dismissible.DismissDirection.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
   }));
-  dart.setLibraryUri(multitap._TapTracker, I[1]);
-  dart.setFieldSignature(multitap._TapTracker, () => ({
-    __proto__: dart.getFields(multitap._TapTracker.__proto__),
-    pointer: dart.finalFieldType(core.int),
-    entry: dart.finalFieldType(arena.GestureArenaEntry),
-    [_initialGlobalPosition]: dart.finalFieldType(ui.Offset),
-    initialButtons: dart.finalFieldType(core.int),
-    [_doubleTapMinTimeCountdown]: dart.finalFieldType(multitap._CountdownZoned),
-    [_isTrackingPointer]: dart.fieldType(core.bool)
+  dart.defineExtensionMethods(dismissible.DismissDirection, ['toString']);
+  dismissible.DismissDirection.vertical = C[0] || CT.C0;
+  dismissible.DismissDirection.horizontal = C[1] || CT.C1;
+  dismissible.DismissDirection.endToStart = C[2] || CT.C2;
+  dismissible.DismissDirection.startToEnd = C[3] || CT.C3;
+  dismissible.DismissDirection.up = C[4] || CT.C4;
+  dismissible.DismissDirection.down = C[5] || CT.C5;
+  dismissible.DismissDirection.none = C[6] || CT.C6;
+  dismissible.DismissDirection.values = C[7] || CT.C7;
+  var child$ = dart.privateName(dismissible, "Dismissible.child");
+  var background$ = dart.privateName(dismissible, "Dismissible.background");
+  var secondaryBackground$ = dart.privateName(dismissible, "Dismissible.secondaryBackground");
+  var confirmDismiss$ = dart.privateName(dismissible, "Dismissible.confirmDismiss");
+  var onResize$ = dart.privateName(dismissible, "Dismissible.onResize");
+  var onDismissed$ = dart.privateName(dismissible, "Dismissible.onDismissed");
+  var direction$ = dart.privateName(dismissible, "Dismissible.direction");
+  var resizeDuration$ = dart.privateName(dismissible, "Dismissible.resizeDuration");
+  var dismissThresholds$ = dart.privateName(dismissible, "Dismissible.dismissThresholds");
+  var movementDuration$ = dart.privateName(dismissible, "Dismissible.movementDuration");
+  var crossAxisEndOffset$ = dart.privateName(dismissible, "Dismissible.crossAxisEndOffset");
+  var dragStartBehavior$ = dart.privateName(dismissible, "Dismissible.dragStartBehavior");
+  var behavior$ = dart.privateName(dismissible, "Dismissible.behavior");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var _name = dart.privateName(recognizer, "_name");
+  var _name$0 = dart.privateName(proxy_box, "_name");
+  dismissible.Dismissible = class Dismissible extends framework.StatefulWidget {
+    get child() {
+      return this[child$];
+    }
+    set child(value) {
+      super.child = value;
+    }
+    get background() {
+      return this[background$];
+    }
+    set background(value) {
+      super.background = value;
+    }
+    get secondaryBackground() {
+      return this[secondaryBackground$];
+    }
+    set secondaryBackground(value) {
+      super.secondaryBackground = value;
+    }
+    get confirmDismiss() {
+      return this[confirmDismiss$];
+    }
+    set confirmDismiss(value) {
+      super.confirmDismiss = value;
+    }
+    get onResize() {
+      return this[onResize$];
+    }
+    set onResize(value) {
+      super.onResize = value;
+    }
+    get onDismissed() {
+      return this[onDismissed$];
+    }
+    set onDismissed(value) {
+      super.onDismissed = value;
+    }
+    get direction() {
+      return this[direction$];
+    }
+    set direction(value) {
+      super.direction = value;
+    }
+    get resizeDuration() {
+      return this[resizeDuration$];
+    }
+    set resizeDuration(value) {
+      super.resizeDuration = value;
+    }
+    get dismissThresholds() {
+      return this[dismissThresholds$];
+    }
+    set dismissThresholds(value) {
+      super.dismissThresholds = value;
+    }
+    get movementDuration() {
+      return this[movementDuration$];
+    }
+    set movementDuration(value) {
+      super.movementDuration = value;
+    }
+    get crossAxisEndOffset() {
+      return this[crossAxisEndOffset$];
+    }
+    set crossAxisEndOffset(value) {
+      super.crossAxisEndOffset = value;
+    }
+    get dragStartBehavior() {
+      return this[dragStartBehavior$];
+    }
+    set dragStartBehavior(value) {
+      super.dragStartBehavior = value;
+    }
+    get behavior() {
+      return this[behavior$];
+    }
+    set behavior(value) {
+      super.behavior = value;
+    }
+    createState() {
+      return new dismissible._DismissibleState.new();
+    }
+  };
+  (dismissible.Dismissible.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let background = opts && 'background' in opts ? opts.background : null;
+    let secondaryBackground = opts && 'secondaryBackground' in opts ? opts.secondaryBackground : null;
+    let confirmDismiss = opts && 'confirmDismiss' in opts ? opts.confirmDismiss : null;
+    let onResize = opts && 'onResize' in opts ? opts.onResize : null;
+    let onDismissed = opts && 'onDismissed' in opts ? opts.onDismissed : null;
+    let direction = opts && 'direction' in opts ? opts.direction : C[1] || CT.C1;
+    let resizeDuration = opts && 'resizeDuration' in opts ? opts.resizeDuration : C[8] || CT.C8;
+    let dismissThresholds = opts && 'dismissThresholds' in opts ? opts.dismissThresholds : C[9] || CT.C9;
+    let movementDuration = opts && 'movementDuration' in opts ? opts.movementDuration : C[10] || CT.C10;
+    let crossAxisEndOffset = opts && 'crossAxisEndOffset' in opts ? opts.crossAxisEndOffset : 0;
+    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[11] || CT.C11;
+    let behavior = opts && 'behavior' in opts ? opts.behavior : C[12] || CT.C12;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[child$] = child;
+    this[background$] = background;
+    this[secondaryBackground$] = secondaryBackground;
+    this[confirmDismiss$] = confirmDismiss;
+    this[onResize$] = onResize;
+    this[onDismissed$] = onDismissed;
+    this[direction$] = direction;
+    this[resizeDuration$] = resizeDuration;
+    this[dismissThresholds$] = dismissThresholds;
+    this[movementDuration$] = movementDuration;
+    this[crossAxisEndOffset$] = crossAxisEndOffset;
+    this[dragStartBehavior$] = dragStartBehavior;
+    this[behavior$] = behavior;
+    if (!(key !== null)) dart.assertFailed(null, I[1], 138, 15, "key != null");
+    if (!(secondaryBackground == null || background != null)) dart.assertFailed(null, I[1], 139, 15, "secondaryBackground == null || background != null");
+    if (!(dragStartBehavior !== null)) dart.assertFailed(null, I[1], 140, 15, "dragStartBehavior != null");
+    dismissible.Dismissible.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = dismissible.Dismissible.prototype;
+  dart.addTypeTests(dismissible.Dismissible);
+  dart.addTypeCaches(dismissible.Dismissible);
+  dart.setMethodSignature(dismissible.Dismissible, () => ({
+    __proto__: dart.getMethods(dismissible.Dismissible.__proto__),
+    createState: dart.fnType(dismissible._DismissibleState, [])
   }));
-  var onDoubleTapDown = dart.privateName(multitap, "DoubleTapGestureRecognizer.onDoubleTapDown");
-  var onDoubleTap = dart.privateName(multitap, "DoubleTapGestureRecognizer.onDoubleTap");
-  var onDoubleTapCancel = dart.privateName(multitap, "DoubleTapGestureRecognizer.onDoubleTapCancel");
-  var _doubleTapTimer = dart.privateName(multitap, "_doubleTapTimer");
-  var _firstTap = dart.privateName(multitap, "_firstTap");
-  var _trackers = dart.privateName(multitap, "_trackers");
-  var _reset = dart.privateName(multitap, "_reset");
-  var _trackTap = dart.privateName(multitap, "_trackTap");
-  var _stopDoubleTapTimer = dart.privateName(multitap, "_stopDoubleTapTimer");
-  var _handleEvent = dart.privateName(multitap, "_handleEvent");
-  var _registerFirstTap = dart.privateName(multitap, "_registerFirstTap");
-  var _registerSecondTap = dart.privateName(multitap, "_registerSecondTap");
-  var _reject = dart.privateName(multitap, "_reject");
-  var _freezeTracker = dart.privateName(multitap, "_freezeTracker");
-  var _checkCancel = dart.privateName(multitap, "_checkCancel");
-  var _clearTrackers = dart.privateName(multitap, "_clearTrackers");
-  var _startDoubleTapTimer = dart.privateName(multitap, "_startDoubleTapTimer");
-  var _checkUp = dart.privateName(multitap, "_checkUp");
-  multitap.DoubleTapGestureRecognizer = class DoubleTapGestureRecognizer extends recognizer.GestureRecognizer {
-    get onDoubleTapDown() {
-      return this[onDoubleTapDown];
+  dart.setLibraryUri(dismissible.Dismissible, I[0]);
+  dart.setFieldSignature(dismissible.Dismissible, () => ({
+    __proto__: dart.getFields(dismissible.Dismissible.__proto__),
+    child: dart.finalFieldType(framework.Widget),
+    background: dart.finalFieldType(dart.nullable(framework.Widget)),
+    secondaryBackground: dart.finalFieldType(dart.nullable(framework.Widget)),
+    confirmDismiss: dart.finalFieldType(dart.nullable(dart.fnType(async.Future$(dart.nullable(core.bool)), [dismissible.DismissDirection]))),
+    onResize: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, []))),
+    onDismissed: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [dismissible.DismissDirection]))),
+    direction: dart.finalFieldType(dismissible.DismissDirection),
+    resizeDuration: dart.finalFieldType(dart.nullable(core.Duration)),
+    dismissThresholds: dart.finalFieldType(core.Map$(dismissible.DismissDirection, core.double)),
+    movementDuration: dart.finalFieldType(core.Duration),
+    crossAxisEndOffset: dart.finalFieldType(core.double),
+    dragStartBehavior: dart.finalFieldType(recognizer.DragStartBehavior),
+    behavior: dart.finalFieldType(proxy_box.HitTestBehavior)
+  }));
+  var _name$1 = dart.privateName(basic_types, "_name");
+  dismissible._DismissibleClipper = class _DismissibleClipper extends proxy_box.CustomClipper$(ui.Rect) {
+    getClip(size) {
+      if (!(this.axis !== null)) dart.assertFailed(null, I[1], 251, 12, "axis != null");
+      switch (this.axis) {
+        case C[13] || CT.C13:
+        {
+          let offset = this.moveAnimation.value.dx * size.width;
+          if (offset < 0) return new ui.Rect.fromLTRB(size.width + offset, 0.0, size.width, size.height);
+          return new ui.Rect.fromLTRB(0.0, 0.0, offset, size.height);
+        }
+        case C[14] || CT.C14:
+        {
+          let offset = this.moveAnimation.value.dy * size.height;
+          if (offset < 0) return new ui.Rect.fromLTRB(0.0, size.height + offset, size.width, size.height);
+          return new ui.Rect.fromLTRB(0.0, 0.0, size.width, offset);
+        }
+      }
     }
-    set onDoubleTapDown(value) {
-      this[onDoubleTapDown] = value;
+    getApproximateClipRect(size) {
+      return this.getClip(size);
     }
-    get onDoubleTap() {
-      return this[onDoubleTap];
+    shouldReclip(oldClipper) {
+      dismissible._DismissibleClipper.as(oldClipper);
+      return oldClipper.axis !== this.axis || !oldClipper.moveAnimation.value._equals(this.moveAnimation.value);
     }
-    set onDoubleTap(value) {
-      this[onDoubleTap] = value;
+  };
+  (dismissible._DismissibleClipper.new = function(opts) {
+    let axis = opts && 'axis' in opts ? opts.axis : null;
+    let moveAnimation = opts && 'moveAnimation' in opts ? opts.moveAnimation : null;
+    this.axis = axis;
+    this.moveAnimation = moveAnimation;
+    if (!(axis !== null)) dart.assertFailed(null, I[1], 242, 15, "axis != null");
+    if (!(moveAnimation !== null)) dart.assertFailed(null, I[1], 243, 15, "moveAnimation != null");
+    dismissible._DismissibleClipper.__proto__.new.call(this, {reclip: moveAnimation});
+    ;
+  }).prototype = dismissible._DismissibleClipper.prototype;
+  dart.addTypeTests(dismissible._DismissibleClipper);
+  dart.addTypeCaches(dismissible._DismissibleClipper);
+  dart.setMethodSignature(dismissible._DismissibleClipper, () => ({
+    __proto__: dart.getMethods(dismissible._DismissibleClipper.__proto__),
+    getClip: dart.fnType(ui.Rect, [ui.Size]),
+    shouldReclip: dart.fnType(core.bool, [dart.nullable(core.Object)])
+  }));
+  dart.setLibraryUri(dismissible._DismissibleClipper, I[0]);
+  dart.setFieldSignature(dismissible._DismissibleClipper, () => ({
+    __proto__: dart.getFields(dismissible._DismissibleClipper.__proto__),
+    axis: dart.finalFieldType(basic_types.Axis),
+    moveAnimation: dart.finalFieldType(animation.Animation$(ui.Offset))
+  }));
+  dismissible._FlingGestureKind = class _FlingGestureKind extends core.Object {
+    toString() {
+      return this[_name$];
     }
-    get onDoubleTapCancel() {
-      return this[onDoubleTapCancel];
+  };
+  (dismissible._FlingGestureKind.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = dismissible._FlingGestureKind.prototype;
+  dart.addTypeTests(dismissible._FlingGestureKind);
+  dart.addTypeCaches(dismissible._FlingGestureKind);
+  dart.setLibraryUri(dismissible._FlingGestureKind, I[0]);
+  dart.setFieldSignature(dismissible._FlingGestureKind, () => ({
+    __proto__: dart.getFields(dismissible._FlingGestureKind.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(dismissible._FlingGestureKind, ['toString']);
+  dismissible._FlingGestureKind.none = C[15] || CT.C15;
+  dismissible._FlingGestureKind.forward = C[16] || CT.C16;
+  dismissible._FlingGestureKind.reverse = C[17] || CT.C17;
+  dismissible._FlingGestureKind.values = C[18] || CT.C18;
+  var _moveController = dart.privateName(dismissible, "_moveController");
+  var ___DismissibleState__moveAnimation = dart.privateName(dismissible, "_#_DismissibleState#_moveAnimation");
+  var _resizeController = dart.privateName(dismissible, "_resizeController");
+  var _resizeAnimation = dart.privateName(dismissible, "_resizeAnimation");
+  var _dragExtent = dart.privateName(dismissible, "_dragExtent");
+  var _dragUnderway = dart.privateName(dismissible, "_dragUnderway");
+  var _sizePriorToCollapse = dart.privateName(dismissible, "_sizePriorToCollapse");
+  var _handleDismissStatusChanged = dart.privateName(dismissible, "_handleDismissStatusChanged");
+  var _updateMoveAnimation = dart.privateName(dismissible, "_updateMoveAnimation");
+  var _moveAnimation = dart.privateName(dismissible, "_moveAnimation");
+  var _directionIsXAxis = dart.privateName(dismissible, "_directionIsXAxis");
+  var _name$2 = dart.privateName(ui, "_name");
+  var _extentToDirection = dart.privateName(dismissible, "_extentToDirection");
+  var _dismissDirection = dart.privateName(dismissible, "_dismissDirection");
+  var _isActive = dart.privateName(dismissible, "_isActive");
+  var _overallDragAxisExtent = dart.privateName(dismissible, "_overallDragAxisExtent");
+  var _handleDragStart = dart.privateName(dismissible, "_handleDragStart");
+  var _handleDragUpdate = dart.privateName(dismissible, "_handleDragUpdate");
+  var _describeFlingGesture = dart.privateName(dismissible, "_describeFlingGesture");
+  var _confirmStartResizeAnimation = dart.privateName(dismissible, "_confirmStartResizeAnimation");
+  var _startResizeAnimation = dart.privateName(dismissible, "_startResizeAnimation");
+  var _handleDragEnd = dart.privateName(dismissible, "_handleDragEnd");
+  var _handleResizeProgressChanged = dart.privateName(dismissible, "_handleResizeProgressChanged");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  const State_TickerProviderStateMixin$36 = class State_TickerProviderStateMixin extends framework.State$(dismissible.Dismissible) {};
+  (State_TickerProviderStateMixin$36.new = function() {
+    ticker_provider.TickerProviderStateMixin$(dismissible.Dismissible)[dart.mixinNew].call(this);
+    State_TickerProviderStateMixin$36.__proto__.new.call(this);
+  }).prototype = State_TickerProviderStateMixin$36.prototype;
+  dart.applyMixin(State_TickerProviderStateMixin$36, ticker_provider.TickerProviderStateMixin$(dismissible.Dismissible));
+  const State_AutomaticKeepAliveClientMixin$36 = class State_AutomaticKeepAliveClientMixin extends State_TickerProviderStateMixin$36 {};
+  (State_AutomaticKeepAliveClientMixin$36.new = function() {
+    automatic_keep_alive.AutomaticKeepAliveClientMixin$(dismissible.Dismissible)[dart.mixinNew].call(this);
+    State_AutomaticKeepAliveClientMixin$36.__proto__.new.call(this);
+  }).prototype = State_AutomaticKeepAliveClientMixin$36.prototype;
+  dart.applyMixin(State_AutomaticKeepAliveClientMixin$36, automatic_keep_alive.AutomaticKeepAliveClientMixin$(dismissible.Dismissible));
+  dismissible._DismissibleState = class _DismissibleState extends State_AutomaticKeepAliveClientMixin$36 {
+    initState() {
+      let t0;
+      super.initState();
+      this[_moveController] = (t0 = new animation_controller.AnimationController.new({duration: this.widget.movementDuration, vsync: this}), (() => {
+        t0.addStatusListener(dart.bind(this, _handleDismissStatusChanged));
+        return t0;
+      })());
+      this[_updateMoveAnimation]();
     }
-    set onDoubleTapCancel(value) {
-      this[onDoubleTapCancel] = value;
+    get [_moveAnimation]() {
+      let t0;
+      t0 = this[___DismissibleState__moveAnimation];
+      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_moveAnimation")) : t0;
     }
-    isPointerAllowed(event) {
-      if (this[_firstTap] == null) {
-        switch (event.buttons) {
-          case 1:
+    set [_moveAnimation](t0) {
+      this[___DismissibleState__moveAnimation] = t0;
+    }
+    get wantKeepAlive() {
+      let t1, t1$;
+      return (t1 = this[_moveController], t1 == null ? null : t1.isAnimating) === true || (t1$ = this[_resizeController], t1$ == null ? null : t1$.isAnimating) === true;
+    }
+    dispose() {
+      let t1;
+      dart.nullCheck(this[_moveController]).dispose();
+      t1 = this[_resizeController];
+      t1 == null ? null : t1.dispose();
+      super.dispose();
+    }
+    get [_directionIsXAxis]() {
+      return this.widget.direction === dismissible.DismissDirection.horizontal || this.widget.direction === dismissible.DismissDirection.endToStart || this.widget.direction === dismissible.DismissDirection.startToEnd;
+    }
+    [_extentToDirection](extent) {
+      if (extent === 0.0) return dismissible.DismissDirection.none;
+      if (this[_directionIsXAxis]) {
+        switch (basic.Directionality.of(this.context)) {
+          case C[19] || CT.C19:
           {
-            if (this.onDoubleTapDown == null && this.onDoubleTap == null && this.onDoubleTapCancel == null) return false;
+            return extent < 0 ? dismissible.DismissDirection.startToEnd : dismissible.DismissDirection.endToStart;
+          }
+          case C[20] || CT.C20:
+          {
+            return extent > 0 ? dismissible.DismissDirection.startToEnd : dismissible.DismissDirection.endToStart;
+          }
+        }
+      }
+      return extent > 0 ? dismissible.DismissDirection.down : dismissible.DismissDirection.up;
+    }
+    get [_dismissDirection]() {
+      return this[_extentToDirection](this[_dragExtent]);
+    }
+    get [_isActive]() {
+      return this[_dragUnderway] || dart.nullCheck(this[_moveController]).isAnimating;
+    }
+    get [_overallDragAxisExtent]() {
+      let size = dart.nullCheck(this.context.size);
+      return this[_directionIsXAxis] ? size.width : size.height;
+    }
+    [_handleDragStart](details) {
+      this[_dragUnderway] = true;
+      if (dart.nullCheck(this[_moveController]).isAnimating) {
+        this[_dragExtent] = dart.nullCheck(this[_moveController]).value * this[_overallDragAxisExtent] * this[_dragExtent][$sign];
+        dart.nullCheck(this[_moveController]).stop();
+      } else {
+        this[_dragExtent] = 0.0;
+        dart.nullCheck(this[_moveController]).value = 0.0;
+      }
+      this.setState(dart.fn(() => {
+        this[_updateMoveAnimation]();
+      }, T.VoidTovoid()));
+    }
+    [_handleDragUpdate](details) {
+      if (!this[_isActive] || dart.nullCheck(this[_moveController]).isAnimating) return;
+      let delta = dart.nullCheck(details.primaryDelta);
+      let oldDragExtent = this[_dragExtent];
+      switch (this.widget.direction) {
+        case C[1] || CT.C1:
+        case C[0] || CT.C0:
+        {
+          this[_dragExtent] = this[_dragExtent] + delta;
+          break;
+        }
+        case C[4] || CT.C4:
+        {
+          if (this[_dragExtent] + delta < 0) this[_dragExtent] = this[_dragExtent] + delta;
+          break;
+        }
+        case C[5] || CT.C5:
+        {
+          if (this[_dragExtent] + delta > 0) this[_dragExtent] = this[_dragExtent] + delta;
+          break;
+        }
+        case C[2] || CT.C2:
+        {
+          switch (basic.Directionality.of(this.context)) {
+            case C[19] || CT.C19:
+            {
+              if (this[_dragExtent] + delta > 0) this[_dragExtent] = this[_dragExtent] + delta;
+              break;
+            }
+            case C[20] || CT.C20:
+            {
+              if (this[_dragExtent] + delta < 0) this[_dragExtent] = this[_dragExtent] + delta;
+              break;
+            }
+          }
+          break;
+        }
+        case C[3] || CT.C3:
+        {
+          switch (basic.Directionality.of(this.context)) {
+            case C[19] || CT.C19:
+            {
+              if (this[_dragExtent] + delta < 0) this[_dragExtent] = this[_dragExtent] + delta;
+              break;
+            }
+            case C[20] || CT.C20:
+            {
+              if (this[_dragExtent] + delta > 0) this[_dragExtent] = this[_dragExtent] + delta;
+              break;
+            }
+          }
+          break;
+        }
+        case C[6] || CT.C6:
+        {
+          this[_dragExtent] = 0.0;
+          break;
+        }
+      }
+      if (oldDragExtent[$sign] !== this[_dragExtent][$sign]) {
+        this.setState(dart.fn(() => {
+          this[_updateMoveAnimation]();
+        }, T.VoidTovoid()));
+      }
+      if (!dart.nullCheck(this[_moveController]).isAnimating) {
+        dart.nullCheck(this[_moveController]).value = this[_dragExtent][$abs]() / this[_overallDragAxisExtent];
+      }
+    }
+    [_updateMoveAnimation]() {
+      let end = this[_dragExtent][$sign];
+      this[_moveAnimation] = dart.nullCheck(this[_moveController]).drive(ui.Offset, new (T.TweenOfOffset()).new({begin: ui.Offset.zero, end: this[_directionIsXAxis] ? new ui.Offset.new(end, this.widget.crossAxisEndOffset) : new ui.Offset.new(this.widget.crossAxisEndOffset, end)}));
+    }
+    [_describeFlingGesture](velocity) {
+      if (!(this.widget.direction !== null)) dart.assertFailed(null, I[1], 427, 12, "widget.direction != null");
+      if (this[_dragExtent] === 0.0) {
+        return dismissible._FlingGestureKind.none;
+      }
+      let vx = velocity.pixelsPerSecond.dx;
+      let vy = velocity.pixelsPerSecond.dy;
+      let flingDirection = null;
+      if (this[_directionIsXAxis]) {
+        if (vx[$abs]() - vy[$abs]() < 400 || vx[$abs]() < 700) return dismissible._FlingGestureKind.none;
+        if (!(vx !== 0.0)) dart.assertFailed(null, I[1], 443, 14, "vx != 0.0");
+        flingDirection = this[_extentToDirection](vx);
+      } else {
+        if (vy[$abs]() - vx[$abs]() < 400 || vy[$abs]() < 700) return dismissible._FlingGestureKind.none;
+        if (!(vy !== 0.0)) dart.assertFailed(null, I[1], 448, 14, "vy != 0.0");
+        flingDirection = this[_extentToDirection](vy);
+      }
+      if (!(this[_dismissDirection] !== null)) dart.assertFailed(null, I[1], 451, 12, "_dismissDirection != null");
+      if (flingDirection === this[_dismissDirection]) return dismissible._FlingGestureKind.forward;
+      return dismissible._FlingGestureKind.reverse;
+    }
+    [_handleDragEnd](details) {
+      return async.async(dart.void, (function* _handleDragEnd() {
+        let t1, t1$;
+        if (!this[_isActive] || dart.nullCheck(this[_moveController]).isAnimating) return;
+        this[_dragUnderway] = false;
+        if (dart.nullCheck(this[_moveController]).isCompleted && (yield this[_confirmStartResizeAnimation]()) === true) {
+          this[_startResizeAnimation]();
+          return;
+        }
+        let flingVelocity = this[_directionIsXAxis] ? details.velocity.pixelsPerSecond.dx : details.velocity.pixelsPerSecond.dy;
+        switch (this[_describeFlingGesture](details.velocity)) {
+          case C[16] || CT.C16:
+          {
+            if (!(this[_dragExtent] !== 0.0)) dart.assertFailed(null, I[1], 468, 16, "_dragExtent != 0.0");
+            if (!!dart.nullCheck(this[_moveController]).isDismissed) dart.assertFailed(null, I[1], 469, 16, "!_moveController!.isDismissed");
+            if (dart.notNull((t1 = this.widget.dismissThresholds[$_get](this[_dismissDirection]), t1 == null ? 0.4 : t1)) >= 1.0) {
+              dart.nullCheck(this[_moveController]).reverse();
+              break;
+            }
+            this[_dragExtent] = flingVelocity[$sign];
+            dart.nullCheck(this[_moveController]).fling({velocity: flingVelocity[$abs]() * 0.0033333333333333335});
             break;
           }
-          default:
+          case C[17] || CT.C17:
           {
-            return false;
+            if (!(this[_dragExtent] !== 0.0)) dart.assertFailed(null, I[1], 478, 16, "_dragExtent != 0.0");
+            if (!!dart.nullCheck(this[_moveController]).isDismissed) dart.assertFailed(null, I[1], 479, 16, "!_moveController!.isDismissed");
+            this[_dragExtent] = flingVelocity[$sign];
+            dart.nullCheck(this[_moveController]).fling({velocity: -flingVelocity[$abs]() * 0.0033333333333333335});
+            break;
+          }
+          case C[15] || CT.C15:
+          {
+            if (!dart.nullCheck(this[_moveController]).isDismissed) {
+              if (dart.nullCheck(this[_moveController]).value > dart.notNull((t1$ = this.widget.dismissThresholds[$_get](this[_dismissDirection]), t1$ == null ? 0.4 : t1$))) {
+                dart.nullCheck(this[_moveController]).forward();
+              } else {
+                dart.nullCheck(this[_moveController]).reverse();
+              }
+            }
+            break;
           }
         }
-      }
-      return super.isPointerAllowed(event);
+      }).bind(this));
     }
-    addAllowedPointer(event) {
-      if (this[_firstTap] != null) {
-        if (!dart.nullCheck(this[_firstTap]).isWithinGlobalTolerance(event, 100)) {
-          return;
-        } else if (!dart.nullCheck(this[_firstTap]).hasElapsedMinTime() || !dart.nullCheck(this[_firstTap]).hasSameButton(event)) {
-          this[_reset]();
-          return this[_trackTap](event);
-        } else if (this.onDoubleTapDown != null) {
-          let details = new tap.TapDownDetails.new({globalPosition: event.position, localPosition: event.localPosition, kind: this.getKindForPointer(event.pointer)});
-          this.invokeCallback(dart.void, "onDoubleTapDown", dart.fn(() => dart.nullCheck(this.onDoubleTapDown)(details), T.VoidTovoid()));
+    [_handleDismissStatusChanged](status) {
+      return async.async(dart.void, (function* _handleDismissStatusChanged() {
+        if (status === animation.AnimationStatus.completed && !this[_dragUnderway]) {
+          if ((yield this[_confirmStartResizeAnimation]()) === true)
+            this[_startResizeAnimation]();
+          else
+            dart.nullCheck(this[_moveController]).reverse();
         }
-      }
-      this[_trackTap](event);
+        this.updateKeepAlive();
+      }).bind(this));
     }
-    [_trackTap](event) {
-      this[_stopDoubleTapTimer]();
-      let tracker = new multitap._TapTracker.new({event: event, entry: dart.nullCheck(binding.GestureBinding.instance).gestureArena.add(event.pointer, this), doubleTapMinTime: constants.kDoubleTapMinTime});
-      this[_trackers][$_set](event.pointer, tracker);
-      tracker.startTrackingPointer(dart.bind(this, _handleEvent), event.transform);
-    }
-    [_handleEvent](event) {
-      let tracker = dart.nullCheck(this[_trackers][$_get](event.pointer));
-      if (events.PointerUpEvent.is(event)) {
-        if (this[_firstTap] == null)
-          this[_registerFirstTap](tracker);
-        else
-          this[_registerSecondTap](tracker);
-      } else if (events.PointerMoveEvent.is(event)) {
-        if (!tracker.isWithinGlobalTolerance(event, 18)) this[_reject](tracker);
-      } else if (events.PointerCancelEvent.is(event)) {
-        this[_reject](tracker);
-      }
-    }
-    acceptGesture(pointer) {
-    }
-    rejectGesture(pointer) {
-      let tracker = this[_trackers][$_get](pointer);
-      if (tracker == null && this[_firstTap] != null && dart.nullCheck(this[_firstTap]).pointer === pointer) tracker = this[_firstTap];
-      if (tracker != null) this[_reject](tracker);
-    }
-    [_reject](tracker) {
-      this[_trackers][$remove](tracker.pointer);
-      tracker.entry.resolve(arena.GestureDisposition.rejected);
-      this[_freezeTracker](tracker);
-      if (this[_firstTap] != null) {
-        if (tracker[$_equals](this[_firstTap])) {
-          this[_reset]();
-        } else {
-          this[_checkCancel]();
-          if (this[_trackers][$isEmpty]) this[_reset]();
+    [_confirmStartResizeAnimation]() {
+      return async.async(T.boolN(), (function* _confirmStartResizeAnimation() {
+        if (this.widget.confirmDismiss != null) {
+          let direction = this[_dismissDirection];
+          return dart.nullCheck(this.widget.confirmDismiss)(direction);
         }
+        return true;
+      }).bind(this));
+    }
+    [_startResizeAnimation]() {
+      let t1;
+      if (!(this[_moveController] != null)) dart.assertFailed(null, I[1], 514, 12, "_moveController != null");
+      if (!dart.nullCheck(this[_moveController]).isCompleted) dart.assertFailed(null, I[1], 515, 12, "_moveController!.isCompleted");
+      if (!(this[_resizeController] == null)) dart.assertFailed(null, I[1], 516, 12, "_resizeController == null");
+      if (!(this[_sizePriorToCollapse] == null)) dart.assertFailed(null, I[1], 517, 12, "_sizePriorToCollapse == null");
+      if (this.widget.resizeDuration == null) {
+        if (this.widget.onDismissed != null) {
+          let direction = this[_dismissDirection];
+          dart.nullCheck(this.widget.onDismissed)(direction);
+        }
+      } else {
+        this[_resizeController] = (t1 = new animation_controller.AnimationController.new({duration: this.widget.resizeDuration, vsync: this}), (() => {
+          t1.addListener(dart.bind(this, _handleResizeProgressChanged));
+          t1.addStatusListener(dart.fn(status => this.updateKeepAlive(), T.AnimationStatusTovoid()));
+          return t1;
+        })());
+        dart.nullCheck(this[_resizeController]).forward();
+        this.setState(dart.fn(() => {
+          this[_sizePriorToCollapse] = this.context.size;
+          this[_resizeAnimation] = dart.nullCheck(this[_resizeController]).drive(core.double, new tween.CurveTween.new({curve: dismissible._kResizeTimeCurve})).drive(core.double, new (T.TweenOfdouble()).new({begin: 1.0, end: 0.0}));
+        }, T.VoidTovoid()));
       }
     }
-    dispose() {
-      this[_reset]();
-      super.dispose();
-    }
-    [_reset]() {
-      this[_stopDoubleTapTimer]();
-      if (this[_firstTap] != null) {
-        if (this[_trackers][$isNotEmpty]) this[_checkCancel]();
-        let tracker = dart.nullCheck(this[_firstTap]);
-        this[_firstTap] = null;
-        this[_reject](tracker);
-        dart.nullCheck(binding.GestureBinding.instance).gestureArena.release(tracker.pointer);
-      }
-      this[_clearTrackers]();
-    }
-    [_registerFirstTap](tracker) {
-      this[_startDoubleTapTimer]();
-      dart.nullCheck(binding.GestureBinding.instance).gestureArena.hold(tracker.pointer);
-      this[_freezeTracker](tracker);
-      this[_trackers][$remove](tracker.pointer);
-      this[_clearTrackers]();
-      this[_firstTap] = tracker;
-    }
-    [_registerSecondTap](tracker) {
-      dart.nullCheck(this[_firstTap]).entry.resolve(arena.GestureDisposition.accepted);
-      tracker.entry.resolve(arena.GestureDisposition.accepted);
-      this[_freezeTracker](tracker);
-      this[_trackers][$remove](tracker.pointer);
-      this[_checkUp](tracker.initialButtons);
-      this[_reset]();
-    }
-    [_clearTrackers]() {
-      this[_trackers][$values][$toList]()[$forEach](dart.bind(this, _reject));
-      if (!this[_trackers][$isEmpty]) dart.assertFailed(null, I[0], 332, 12, "_trackers.isEmpty");
-    }
-    [_freezeTracker](tracker) {
-      tracker.stopTrackingPointer(dart.bind(this, _handleEvent));
-    }
-    [_startDoubleTapTimer]() {
-      this[_doubleTapTimer] == null ? this[_doubleTapTimer] = async.Timer.new(constants.kDoubleTapTimeout, dart.bind(this, _reset)) : null;
-    }
-    [_stopDoubleTapTimer]() {
-      if (this[_doubleTapTimer] != null) {
-        dart.nullCheck(this[_doubleTapTimer]).cancel();
-        this[_doubleTapTimer] = null;
+    [_handleResizeProgressChanged]() {
+      let t1, t1$;
+      if (dart.nullCheck(this[_resizeController]).isCompleted) {
+        t1 = this.widget.onDismissed;
+        t1 == null ? null : t1(this[_dismissDirection]);
+      } else {
+        t1$ = this.widget.onResize;
+        t1$ == null ? null : t1$();
       }
     }
-    [_checkUp](buttons) {
-      if (!(buttons === 1)) dart.assertFailed(null, I[0], 351, 12, "buttons == kPrimaryButton");
-      if (this.onDoubleTap != null) this.invokeCallback(dart.void, "onDoubleTap", dart.nullCheck(this.onDoubleTap));
-    }
-    [_checkCancel]() {
-      if (this.onDoubleTapCancel != null) this.invokeCallback(dart.void, "onDoubleTapCancel", dart.nullCheck(this.onDoubleTapCancel));
-    }
-    get debugDescription() {
-      return "double tap";
+    build(context) {
+      super.build(context);
+      if (!(!this[_directionIsXAxis] || debug.debugCheckHasDirectionality(context))) dart.assertFailed(null, I[1], 556, 12, "!_directionIsXAxis || debugCheckHasDirectionality(context)");
+      let background = this.widget.background;
+      if (this.widget.secondaryBackground != null) {
+        let direction = this[_dismissDirection];
+        if (direction === dismissible.DismissDirection.endToStart || direction === dismissible.DismissDirection.up) background = this.widget.secondaryBackground;
+      }
+      if (this[_resizeAnimation] != null) {
+        if (!dart.fn(() => {
+          if (dart.nullCheck(this[_resizeAnimation]).status !== animation.AnimationStatus.forward) {
+            if (!(dart.nullCheck(this[_resizeAnimation]).status === animation.AnimationStatus.completed)) dart.assertFailed(null, I[1], 569, 18, "_resizeAnimation!.status == AnimationStatus.completed");
+            dart.throw(new assertions.FlutterError.fromParts(T.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("A dismissed Dismissible widget is still part of the tree."), new assertions.ErrorHint.new("Make sure to implement the onDismissed handler and to immediately remove the Dismissible " + "widget from the application once that handler has fired.")])));
+          }
+          return true;
+        }, T.VoidTobool())()) dart.assertFailed(null, I[1], 567, 14, "() {\r\n        if (_resizeAnimation!.status != AnimationStatus.forward) {\r\n          assert(_resizeAnimation!.status == AnimationStatus.completed);\r\n          throw FlutterError.fromParts(<DiagnosticsNode>[\r\n            ErrorSummary('A dismissed Dismissible widget is still part of the tree.'),\r\n            ErrorHint(\r\n              'Make sure to implement the onDismissed handler and to immediately remove the Dismissible '\r\n              'widget from the application once that handler has fired.',\r\n            ),\r\n          ]);\r\n        }\r\n        return true;\r\n      }()");
+        return new transitions.SizeTransition.new({sizeFactor: dart.nullCheck(this[_resizeAnimation]), axis: this[_directionIsXAxis] ? basic_types.Axis.vertical : basic_types.Axis.horizontal, child: new basic.SizedBox.new({width: dart.nullCheck(this[_sizePriorToCollapse]).width, height: dart.nullCheck(this[_sizePriorToCollapse]).height, child: background, $creationLocationd_0dea112b090073317d4: C[21] || CT.C21}), $creationLocationd_0dea112b090073317d4: C[26] || CT.C26});
+      }
+      let content = new transitions.SlideTransition.new({position: this[_moveAnimation], child: this.widget.child, $creationLocationd_0dea112b090073317d4: C[31] || CT.C31});
+      if (background != null) {
+        content = new basic.Stack.new({children: (() => {
+            let t1 = T.JSArrayOfWidget().of([]);
+            if (!this[_moveAnimation].isDismissed) t1[$add](new basic.Positioned.fill({child: new basic.ClipRect.new({clipper: new dismissible._DismissibleClipper.new({axis: this[_directionIsXAxis] ? basic_types.Axis.horizontal : basic_types.Axis.vertical, moveAnimation: this[_moveAnimation]}), child: background, $creationLocationd_0dea112b090073317d4: C[35] || CT.C35}), $creationLocationd_0dea112b090073317d4: C[39] || CT.C39}));
+            t1[$add](content);
+            return t1;
+          })(), $creationLocationd_0dea112b090073317d4: C[42] || CT.C42});
+      }
+      return new gesture_detector.GestureDetector.new({onHorizontalDragStart: this[_directionIsXAxis] ? dart.bind(this, _handleDragStart) : null, onHorizontalDragUpdate: this[_directionIsXAxis] ? dart.bind(this, _handleDragUpdate) : null, onHorizontalDragEnd: this[_directionIsXAxis] ? dart.bind(this, _handleDragEnd) : null, onVerticalDragStart: this[_directionIsXAxis] ? null : dart.bind(this, _handleDragStart), onVerticalDragUpdate: this[_directionIsXAxis] ? null : dart.bind(this, _handleDragUpdate), onVerticalDragEnd: this[_directionIsXAxis] ? null : dart.bind(this, _handleDragEnd), behavior: this.widget.behavior, child: content, dragStartBehavior: this.widget.dragStartBehavior, $creationLocationd_0dea112b090073317d4: C[45] || CT.C45});
     }
   };
-  (multitap.DoubleTapGestureRecognizer.new = function(opts) {
-    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
-    let kind = opts && 'kind' in opts ? opts.kind : null;
-    this[onDoubleTapDown] = null;
-    this[onDoubleTap] = null;
-    this[onDoubleTapCancel] = null;
-    this[_doubleTapTimer] = null;
-    this[_firstTap] = null;
-    this[_trackers] = new (T.IdentityMapOfint$_TapTracker()).new();
-    multitap.DoubleTapGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
+  (dismissible._DismissibleState.new = function() {
+    this[_moveController] = null;
+    this[___DismissibleState__moveAnimation] = null;
+    this[_resizeController] = null;
+    this[_resizeAnimation] = null;
+    this[_dragExtent] = 0.0;
+    this[_dragUnderway] = false;
+    this[_sizePriorToCollapse] = null;
+    dismissible._DismissibleState.__proto__.new.call(this);
     ;
-  }).prototype = multitap.DoubleTapGestureRecognizer.prototype;
-  dart.addTypeTests(multitap.DoubleTapGestureRecognizer);
-  dart.addTypeCaches(multitap.DoubleTapGestureRecognizer);
-  dart.setMethodSignature(multitap.DoubleTapGestureRecognizer, () => ({
-    __proto__: dart.getMethods(multitap.DoubleTapGestureRecognizer.__proto__),
-    [_trackTap]: dart.fnType(dart.void, [events.PointerDownEvent]),
-    [_handleEvent]: dart.fnType(dart.void, [events.PointerEvent]),
-    acceptGesture: dart.fnType(dart.void, [core.int]),
-    rejectGesture: dart.fnType(dart.void, [core.int]),
-    [_reject]: dart.fnType(dart.void, [multitap._TapTracker]),
-    [_reset]: dart.fnType(dart.void, []),
-    [_registerFirstTap]: dart.fnType(dart.void, [multitap._TapTracker]),
-    [_registerSecondTap]: dart.fnType(dart.void, [multitap._TapTracker]),
-    [_clearTrackers]: dart.fnType(dart.void, []),
-    [_freezeTracker]: dart.fnType(dart.void, [multitap._TapTracker]),
-    [_startDoubleTapTimer]: dart.fnType(dart.void, []),
-    [_stopDoubleTapTimer]: dart.fnType(dart.void, []),
-    [_checkUp]: dart.fnType(dart.void, [core.int]),
-    [_checkCancel]: dart.fnType(dart.void, [])
+  }).prototype = dismissible._DismissibleState.prototype;
+  dart.addTypeTests(dismissible._DismissibleState);
+  dart.addTypeCaches(dismissible._DismissibleState);
+  dart.setMethodSignature(dismissible._DismissibleState, () => ({
+    __proto__: dart.getMethods(dismissible._DismissibleState.__proto__),
+    [_extentToDirection]: dart.fnType(dismissible.DismissDirection, [core.double]),
+    [_handleDragStart]: dart.fnType(dart.void, [drag_details.DragStartDetails]),
+    [_handleDragUpdate]: dart.fnType(dart.void, [drag_details.DragUpdateDetails]),
+    [_updateMoveAnimation]: dart.fnType(dart.void, []),
+    [_describeFlingGesture]: dart.fnType(dismissible._FlingGestureKind, [velocity_tracker.Velocity]),
+    [_handleDragEnd]: dart.fnType(async.Future$(dart.void), [drag_details.DragEndDetails]),
+    [_handleDismissStatusChanged]: dart.fnType(async.Future$(dart.void), [animation.AnimationStatus]),
+    [_confirmStartResizeAnimation]: dart.fnType(async.Future$(dart.nullable(core.bool)), []),
+    [_startResizeAnimation]: dart.fnType(dart.void, []),
+    [_handleResizeProgressChanged]: dart.fnType(dart.void, [])
   }));
-  dart.setGetterSignature(multitap.DoubleTapGestureRecognizer, () => ({
-    __proto__: dart.getGetters(multitap.DoubleTapGestureRecognizer.__proto__),
-    debugDescription: core.String
+  dart.setGetterSignature(dismissible._DismissibleState, () => ({
+    __proto__: dart.getGetters(dismissible._DismissibleState.__proto__),
+    [_moveAnimation]: animation.Animation$(ui.Offset),
+    wantKeepAlive: core.bool,
+    [_directionIsXAxis]: core.bool,
+    [_dismissDirection]: dismissible.DismissDirection,
+    [_isActive]: core.bool,
+    [_overallDragAxisExtent]: core.double
   }));
-  dart.setLibraryUri(multitap.DoubleTapGestureRecognizer, I[1]);
-  dart.setFieldSignature(multitap.DoubleTapGestureRecognizer, () => ({
-    __proto__: dart.getFields(multitap.DoubleTapGestureRecognizer.__proto__),
-    onDoubleTapDown: dart.fieldType(dart.nullable(dart.fnType(dart.void, [tap.TapDownDetails]))),
-    onDoubleTap: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onDoubleTapCancel: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    [_doubleTapTimer]: dart.fieldType(dart.nullable(async.Timer)),
-    [_firstTap]: dart.fieldType(dart.nullable(multitap._TapTracker)),
-    [_trackers]: dart.finalFieldType(core.Map$(core.int, multitap._TapTracker))
+  dart.setSetterSignature(dismissible._DismissibleState, () => ({
+    __proto__: dart.getSetters(dismissible._DismissibleState.__proto__),
+    [_moveAnimation]: animation.Animation$(ui.Offset)
   }));
-  var _wonArena = dart.privateName(multitap, "_wonArena");
-  var _timer = dart.privateName(multitap, "_timer");
-  var _finalPosition = dart.privateName(multitap, "_finalPosition");
-  var _lastPosition = dart.privateName(multitap, "_lastPosition");
-  var _dispatchLongTap = dart.privateName(multitap, "_dispatchLongTap");
-  var _check = dart.privateName(multitap, "_check");
-  var _dispatchCancel = dart.privateName(multitap, "_dispatchCancel");
-  var _dispatchTap = dart.privateName(multitap, "_dispatchTap");
-  multitap._TapGesture = class _TapGesture extends multitap._TapTracker {
-    handleEvent(event) {
-      if (!(event.pointer === this.pointer)) dart.assertFailed(null, I[0], 398, 12, "event.pointer == pointer");
-      if (events.PointerMoveEvent.is(event)) {
-        if (!this.isWithinGlobalTolerance(event, events.computeHitSlop(event.kind)))
-          this.cancel();
-        else
-          this[_lastPosition] = recognizer.OffsetPair.fromEventPosition(event);
-      } else if (events.PointerCancelEvent.is(event)) {
-        this.cancel();
-      } else if (events.PointerUpEvent.is(event)) {
-        this.stopTrackingPointer(dart.bind(this, 'handleEvent'));
-        this[_finalPosition] = recognizer.OffsetPair.fromEventPosition(event);
-        this[_check]();
-      }
-    }
-    stopTrackingPointer(route) {
-      let t0;
-      t0 = this[_timer];
-      t0 == null ? null : t0.cancel();
-      this[_timer] = null;
-      super.stopTrackingPointer(route);
-    }
-    accept() {
-      this[_wonArena] = true;
-      this[_check]();
-    }
-    reject() {
-      this.stopTrackingPointer(dart.bind(this, 'handleEvent'));
-      this.gestureRecognizer[_dispatchCancel](this.pointer);
-    }
-    cancel() {
-      if (this[_wonArena])
-        this.reject();
-      else
-        this.entry.resolve(arena.GestureDisposition.rejected);
-    }
-    [_check]() {
-      if (this[_wonArena] && this[_finalPosition] != null) this.gestureRecognizer[_dispatchTap](this.pointer, dart.nullCheck(this[_finalPosition]));
-    }
-  };
-  (multitap._TapGesture.new = function(opts) {
-    let gestureRecognizer = opts && 'gestureRecognizer' in opts ? opts.gestureRecognizer : null;
-    let event = opts && 'event' in opts ? opts.event : null;
-    let longTapDelay = opts && 'longTapDelay' in opts ? opts.longTapDelay : null;
-    this[_wonArena] = false;
-    this[_timer] = null;
-    this[_finalPosition] = null;
-    this.gestureRecognizer = gestureRecognizer;
-    this[_lastPosition] = recognizer.OffsetPair.fromEventPosition(event);
-    multitap._TapGesture.__proto__.new.call(this, {event: events.PointerDownEvent.as(event), entry: dart.nullCheck(binding.GestureBinding.instance).gestureArena.add(event.pointer, gestureRecognizer), doubleTapMinTime: constants.kDoubleTapMinTime});
-    this.startTrackingPointer(dart.bind(this, 'handleEvent'), event.transform);
-    if (longTapDelay['>'](core.Duration.zero)) {
-      this[_timer] = async.Timer.new(longTapDelay, dart.fn(() => {
-        this[_timer] = null;
-        this.gestureRecognizer[_dispatchLongTap](event.pointer, this[_lastPosition]);
-      }, T.VoidTovoid()));
-    }
-  }).prototype = multitap._TapGesture.prototype;
-  dart.addTypeTests(multitap._TapGesture);
-  dart.addTypeCaches(multitap._TapGesture);
-  dart.setMethodSignature(multitap._TapGesture, () => ({
-    __proto__: dart.getMethods(multitap._TapGesture.__proto__),
-    handleEvent: dart.fnType(dart.void, [events.PointerEvent]),
-    accept: dart.fnType(dart.void, []),
-    reject: dart.fnType(dart.void, []),
-    cancel: dart.fnType(dart.void, []),
-    [_check]: dart.fnType(dart.void, [])
+  dart.setLibraryUri(dismissible._DismissibleState, I[0]);
+  dart.setFieldSignature(dismissible._DismissibleState, () => ({
+    __proto__: dart.getFields(dismissible._DismissibleState.__proto__),
+    [_moveController]: dart.fieldType(dart.nullable(animation_controller.AnimationController)),
+    [___DismissibleState__moveAnimation]: dart.fieldType(dart.nullable(animation.Animation$(ui.Offset))),
+    [_resizeController]: dart.fieldType(dart.nullable(animation_controller.AnimationController)),
+    [_resizeAnimation]: dart.fieldType(dart.nullable(animation.Animation$(core.double))),
+    [_dragExtent]: dart.fieldType(core.double),
+    [_dragUnderway]: dart.fieldType(core.bool),
+    [_sizePriorToCollapse]: dart.fieldType(dart.nullable(ui.Size))
   }));
-  dart.setLibraryUri(multitap._TapGesture, I[1]);
-  dart.setFieldSignature(multitap._TapGesture, () => ({
-    __proto__: dart.getFields(multitap._TapGesture.__proto__),
-    gestureRecognizer: dart.finalFieldType(multitap.MultiTapGestureRecognizer),
-    [_wonArena]: dart.fieldType(core.bool),
-    [_timer]: dart.fieldType(dart.nullable(async.Timer)),
-    [_lastPosition]: dart.fieldType(recognizer.OffsetPair),
-    [_finalPosition]: dart.fieldType(dart.nullable(recognizer.OffsetPair))
-  }));
-  var onTapDown = dart.privateName(multitap, "MultiTapGestureRecognizer.onTapDown");
-  var onTapUp = dart.privateName(multitap, "MultiTapGestureRecognizer.onTapUp");
-  var onTap = dart.privateName(multitap, "MultiTapGestureRecognizer.onTap");
-  var onTapCancel = dart.privateName(multitap, "MultiTapGestureRecognizer.onTapCancel");
-  var longTapDelay$ = dart.privateName(multitap, "MultiTapGestureRecognizer.longTapDelay");
-  var onLongTapDown = dart.privateName(multitap, "MultiTapGestureRecognizer.onLongTapDown");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  var _gestureMap = dart.privateName(multitap, "_gestureMap");
-  multitap.MultiTapGestureRecognizer = class MultiTapGestureRecognizer extends recognizer.GestureRecognizer {
-    get onTapDown() {
-      return this[onTapDown];
+  var Cubic_d = dart.privateName(curves, "Cubic.d");
+  var Cubic_c = dart.privateName(curves, "Cubic.c");
+  var Cubic_b = dart.privateName(curves, "Cubic.b");
+  var Cubic_a = dart.privateName(curves, "Cubic.a");
+  var Interval_curve = dart.privateName(curves, "Interval.curve");
+  var Interval_end = dart.privateName(curves, "Interval.end");
+  var Interval_begin = dart.privateName(curves, "Interval.begin");
+  dart.defineLazy(dismissible, {
+    /*dismissible._kResizeTimeCurve*/get _kResizeTimeCurve() {
+      return C[56] || CT.C56;
+    },
+    /*dismissible._kMinFlingVelocity*/get _kMinFlingVelocity() {
+      return 700;
+    },
+    /*dismissible._kMinFlingVelocityDelta*/get _kMinFlingVelocityDelta() {
+      return 400;
+    },
+    /*dismissible._kFlingVelocityScale*/get _kFlingVelocityScale() {
+      return 0.0033333333333333335;
+    },
+    /*dismissible._kDismissThreshold*/get _kDismissThreshold() {
+      return 0.4;
     }
-    set onTapDown(value) {
-      this[onTapDown] = value;
-    }
-    get onTapUp() {
-      return this[onTapUp];
-    }
-    set onTapUp(value) {
-      this[onTapUp] = value;
-    }
-    get onTap() {
-      return this[onTap];
-    }
-    set onTap(value) {
-      this[onTap] = value;
-    }
-    get onTapCancel() {
-      return this[onTapCancel];
-    }
-    set onTapCancel(value) {
-      this[onTapCancel] = value;
-    }
-    get longTapDelay() {
-      return this[longTapDelay$];
-    }
-    set longTapDelay(value) {
-      this[longTapDelay$] = value;
-    }
-    get onLongTapDown() {
-      return this[onLongTapDown];
-    }
-    set onLongTapDown(value) {
-      this[onLongTapDown] = value;
-    }
-    addAllowedPointer(event) {
-      if (!!this[_gestureMap][$containsKey](event.pointer)) dart.assertFailed(null, I[0], 491, 12, "!_gestureMap.containsKey(event.pointer)");
-      this[_gestureMap][$_set](event.pointer, new multitap._TapGesture.new({gestureRecognizer: this, event: event, longTapDelay: this.longTapDelay}));
-      if (this.onTapDown != null) this.invokeCallback(dart.void, "onTapDown", dart.fn(() => {
-        dart.nullCheck(this.onTapDown)(event.pointer, new tap.TapDownDetails.new({globalPosition: event.position, localPosition: event.localPosition, kind: event.kind}));
-      }, T.VoidTovoid()));
-    }
-    acceptGesture(pointer) {
-      if (!this[_gestureMap][$containsKey](pointer)) dart.assertFailed(null, I[0], 509, 12, "_gestureMap.containsKey(pointer)");
-      dart.nullCheck(this[_gestureMap][$_get](pointer)).accept();
-    }
-    rejectGesture(pointer) {
-      if (!this[_gestureMap][$containsKey](pointer)) dart.assertFailed(null, I[0], 515, 12, "_gestureMap.containsKey(pointer)");
-      dart.nullCheck(this[_gestureMap][$_get](pointer)).reject();
-      if (!!this[_gestureMap][$containsKey](pointer)) dart.assertFailed(null, I[0], 517, 12, "!_gestureMap.containsKey(pointer)");
-    }
-    [_dispatchCancel](pointer) {
-      if (!this[_gestureMap][$containsKey](pointer)) dart.assertFailed(null, I[0], 521, 12, "_gestureMap.containsKey(pointer)");
-      this[_gestureMap][$remove](pointer);
-      if (this.onTapCancel != null) this.invokeCallback(dart.void, "onTapCancel", dart.fn(() => dart.nullCheck(this.onTapCancel)(pointer), T.VoidTovoid()));
-    }
-    [_dispatchTap](pointer, position) {
-      if (!this[_gestureMap][$containsKey](pointer)) dart.assertFailed(null, I[0], 528, 12, "_gestureMap.containsKey(pointer)");
-      this[_gestureMap][$remove](pointer);
-      if (this.onTapUp != null) this.invokeCallback(dart.void, "onTapUp", dart.fn(() => {
-        dart.nullCheck(this.onTapUp)(pointer, new tap.TapUpDetails.new({kind: this.getKindForPointer(pointer), localPosition: position.local, globalPosition: position.global}));
-      }, T.VoidTovoid()));
-      if (this.onTap != null) this.invokeCallback(dart.void, "onTap", dart.fn(() => dart.nullCheck(this.onTap)(pointer), T.VoidTovoid()));
-    }
-    [_dispatchLongTap](pointer, lastPosition) {
-      if (!this[_gestureMap][$containsKey](pointer)) dart.assertFailed(null, I[0], 543, 12, "_gestureMap.containsKey(pointer)");
-      if (this.onLongTapDown != null) this.invokeCallback(dart.void, "onLongTapDown", dart.fn(() => {
-        dart.nullCheck(this.onLongTapDown)(pointer, new tap.TapDownDetails.new({globalPosition: lastPosition.global, localPosition: lastPosition.local, kind: this.getKindForPointer(pointer)}));
-      }, T.VoidTovoid()));
-    }
-    dispose() {
-      let localGestures = T.ListOf_TapGesture().from(this[_gestureMap][$values]);
-      for (let gesture of localGestures)
-        gesture.cancel();
-      if (!this[_gestureMap][$isEmpty]) dart.assertFailed(null, I[0], 563, 12, "_gestureMap.isEmpty");
-      super.dispose();
-    }
-    get debugDescription() {
-      return "multitap";
-    }
-  };
-  (multitap.MultiTapGestureRecognizer.new = function(opts) {
-    let longTapDelay = opts && 'longTapDelay' in opts ? opts.longTapDelay : C[0] || CT.C0;
-    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
-    let kind = opts && 'kind' in opts ? opts.kind : null;
-    this[onTapDown] = null;
-    this[onTapUp] = null;
-    this[onTap] = null;
-    this[onTapCancel] = null;
-    this[onLongTapDown] = null;
-    this[_gestureMap] = new (T.IdentityMapOfint$_TapGesture()).new();
-    this[longTapDelay$] = longTapDelay;
-    multitap.MultiTapGestureRecognizer.__proto__.new.call(this, {debugOwner: debugOwner, kind: kind});
-    ;
-  }).prototype = multitap.MultiTapGestureRecognizer.prototype;
-  dart.addTypeTests(multitap.MultiTapGestureRecognizer);
-  dart.addTypeCaches(multitap.MultiTapGestureRecognizer);
-  dart.setMethodSignature(multitap.MultiTapGestureRecognizer, () => ({
-    __proto__: dart.getMethods(multitap.MultiTapGestureRecognizer.__proto__),
-    addAllowedPointer: dart.fnType(dart.void, [events.PointerEvent]),
-    acceptGesture: dart.fnType(dart.void, [core.int]),
-    rejectGesture: dart.fnType(dart.void, [core.int]),
-    [_dispatchCancel]: dart.fnType(dart.void, [core.int]),
-    [_dispatchTap]: dart.fnType(dart.void, [core.int, recognizer.OffsetPair]),
-    [_dispatchLongTap]: dart.fnType(dart.void, [core.int, recognizer.OffsetPair])
-  }));
-  dart.setGetterSignature(multitap.MultiTapGestureRecognizer, () => ({
-    __proto__: dart.getGetters(multitap.MultiTapGestureRecognizer.__proto__),
-    debugDescription: core.String
-  }));
-  dart.setLibraryUri(multitap.MultiTapGestureRecognizer, I[1]);
-  dart.setFieldSignature(multitap.MultiTapGestureRecognizer, () => ({
-    __proto__: dart.getFields(multitap.MultiTapGestureRecognizer.__proto__),
-    onTapDown: dart.fieldType(dart.nullable(dart.fnType(dart.void, [core.int, tap.TapDownDetails]))),
-    onTapUp: dart.fieldType(dart.nullable(dart.fnType(dart.void, [core.int, tap.TapUpDetails]))),
-    onTap: dart.fieldType(dart.nullable(dart.fnType(dart.void, [core.int]))),
-    onTapCancel: dart.fieldType(dart.nullable(dart.fnType(dart.void, [core.int]))),
-    longTapDelay: dart.fieldType(core.Duration),
-    onLongTapDown: dart.fieldType(dart.nullable(dart.fnType(dart.void, [core.int, tap.TapDownDetails]))),
-    [_gestureMap]: dart.finalFieldType(core.Map$(core.int, multitap._TapGesture))
-  }));
-  dart.trackLibraries("packages/flutter/src/gestures/multitap.dart", {
-    "package:flutter/src/gestures/multitap.dart": multitap
+  }, false);
+  dart.trackLibraries("packages/flutter/src/widgets/dismissible.dart", {
+    "package:flutter/src/widgets/dismissible.dart": dismissible
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["multitap.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/gestures/multitap.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["dismissible.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/widgets/dismissible.dart.lib.js"}');
   // Exports:
   return {
-    src__gestures__multitap: multitap
+    src__widgets__dismissible: dismissible
   };
 }));
 
-//# sourceMappingURL=multitap.dart.lib.js.map
+//# sourceMappingURL=dismissible.dart.lib.js.map

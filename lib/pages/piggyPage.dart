@@ -1,3 +1,8 @@
+
+
+import 'package:auto_route/auto_route.dart';
+
+import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
 
 class PiggyPage extends StatefulWidget {
@@ -34,8 +39,7 @@ class _PiggyPageState extends State<PiggyPage> {
                   color: Color(0xff4F98A1),
                 ),
               ),
-            ),
-            
+            ),     
             Container(
               margin: EdgeInsets.all(35),
               child: ElevatedButton(
@@ -47,7 +51,9 @@ class _PiggyPageState extends State<PiggyPage> {
                 ),
                 backgroundColor: MaterialStateProperty.all(Color(0xff72ADB4)),
               ),
-              onPressed: () => null,
+              onPressed: () {
+                navigateToPiggyHomePage(context);
+              },
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 10,horizontal: 5),
                 child: Text(
@@ -65,3 +71,8 @@ class _PiggyPageState extends State<PiggyPage> {
     );
   }
 }
+
+void navigateToPiggyHomePage(context) {
+  AutoRouter.of(context).push(PiggyHomeRoute());
+}
+

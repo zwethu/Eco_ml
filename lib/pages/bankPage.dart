@@ -49,25 +49,25 @@ class _BankPageState extends State<BankPage> {
           Container(
             margin: EdgeInsets.all(35),
             child: ElevatedButton(
-            style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                backgroundColor: MaterialStateProperty.all(Color(0xff72ADB4)),
+              ),
+              onPressed: () => navigateToPiggyBank(context),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                child: Text(
+                  "Let's started saving!",
+                  style: TextStyle(
+                    fontSize: 30,
+                  ),
                 ),
               ),
-              backgroundColor: MaterialStateProperty.all(Color(0xff72ADB4)),
             ),
-            onPressed: () => navigateToPiggyBank(context),
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 5),
-              child: Text(
-                "Let's started saving!",
-                style: TextStyle(
-                  fontSize: 30,
-                ),
-              ),
-            ),
-          ),
           ),
         ],
       ),
@@ -75,6 +75,7 @@ class _BankPageState extends State<BankPage> {
   }
 }
 
-void navigateToPiggyBank(BuildContext context){
+void navigateToPiggyBank(context) {
   AutoRouter.of(context).push(PiggyRoute());
 }
+
