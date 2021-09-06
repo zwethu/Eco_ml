@@ -5,11 +5,10 @@ import 'package:eco_ml/route/router.gr.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-void main() async{
+Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
-  Hive.registerAdapter(DatabaseAdapter());
-  await Hive.openBox<Database>('database');
+  Hive.registerAdapter(UserNameAdapter());
   runApp(MyApp());
 }
 
