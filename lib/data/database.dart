@@ -22,7 +22,9 @@ class TotalAmount extends HiveObject{
 class IconData {
   @HiveField(0)
   final int id;
-  IconData(this.id);
+  @HiveField(1)
+  final bool isIncome;
+  IconData(this.id,this.isIncome);
 }
 
 
