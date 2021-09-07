@@ -9,6 +9,10 @@ Future main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(UserNameAdapter());
+  Hive.registerAdapter(TotalAmountAdapter());
+  Hive.openBox('username');
+  Hive.openBox('amount');
+  Hive.openBox('id');
   runApp(MyApp());
 }
 

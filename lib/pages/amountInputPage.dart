@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:eco_ml/data/database.dart';
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -11,9 +12,9 @@ class AmountInputPage extends StatefulWidget {
 }
 
 class _AmountInputPageState extends State<AmountInputPage> {
-  String name = '';
+  final amountBox = Hive.openBox('amount');
   TextEditingController amountController = TextEditingController();
- 
+  
 
   @override
   void initState() {
@@ -22,8 +23,14 @@ class _AmountInputPageState extends State<AmountInputPage> {
   }
 
   @override
+  void dispose() {
+   Hive.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final dataName = Hive.box('database').getAt(0);
+    final dataName = Hive.box('username').get(0);
     return Scaffold(
         body: Container(
       width: MediaQuery.of(context).size.width,
@@ -47,6 +54,7 @@ class _AmountInputPageState extends State<AmountInputPage> {
           Container(
             padding: EdgeInsets.fromLTRB(40, 50, 40, 50),
             child: TextField(
+              autofocus: true,
               textCapitalization: TextCapitalization.sentences,
               controller: amountController,
               decoration: InputDecoration(
@@ -77,7 +85,7 @@ class _AmountInputPageState extends State<AmountInputPage> {
                         ),
                         onPressed: () => amountController.clear()),
               ),
-              keyboardType: TextInputType.name,
+              keyboardType: TextInputType.number,
               textInputAction: TextInputAction.done,
               cursorColor: Colors.grey,
               cursorHeight: 32,
@@ -100,6 +108,8 @@ class _AmountInputPageState extends State<AmountInputPage> {
               ),
               onPressed: () {
                 navigateToHome(context);
+                final data = TotalAmount(double.parse(amountController.text),false);
+                addAmount(data);
               },
               child: Container(
                 margin: EdgeInsets.symmetric(vertical: 0, horizontal: 60),
@@ -123,4 +133,8 @@ class _AmountInputPageState extends State<AmountInputPage> {
 
 void navigateToHome(context) {
   AutoRouter.of(context).push(HomeRoute());
+}
+
+void addAmount(TotalAmount totalAmount){
+  Hive.box('amount').put(0, totalAmount);
 }

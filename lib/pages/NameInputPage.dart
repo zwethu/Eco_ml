@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/data/database.dart';
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -13,18 +14,21 @@ class NameInputPage extends StatefulWidget {
 }
 
 class _NameInputPageState extends State<NameInputPage> {
-  String name = '';
-  var nameBox = Hive.openBox('database');
+  final nameBox = Hive.box('username');
 
   TextEditingController nameController = TextEditingController();
-  void addData(UserName database) {
-    Hive.box('database').put(0, database);
-  }
+ 
 
   @override
   void initState() {
     super.initState();
     nameController.addListener(() => setState(() {}));
+  }
+  
+  @override
+  void dispose() {
+   Hive.close();
+    super.dispose();
   }
 
   @override
@@ -52,6 +56,7 @@ class _NameInputPageState extends State<NameInputPage> {
           Container(
             padding: EdgeInsets.fromLTRB(40, 50, 40, 50),
             child: TextField(
+              autofocus: true,
               textCapitalization: TextCapitalization.sentences,
               controller: nameController,
               decoration: InputDecoration(
@@ -104,7 +109,7 @@ class _NameInputPageState extends State<NameInputPage> {
                 backgroundColor: MaterialStateProperty.all(Color(0xffE3A5AA)),
               ),
               onPressed: () {
-                final newData = UserName()..username=nameController.text.toString();
+                final newData = UserName(nameController.text.toString());
                 addData(newData);
                 newData.save();
                 navigateToAmountInputPage(context);
@@ -132,3 +137,8 @@ class _NameInputPageState extends State<NameInputPage> {
 void navigateToAmountInputPage(context) {
   AutoRouter.of(context).push(AmountInputRoute());
 }
+
+ void addData(UserName database) {
+    Hive.box('username').put(0, database);
+  }
+

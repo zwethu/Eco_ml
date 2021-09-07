@@ -18,60 +18,57 @@ class _ProfilePageState extends State<ProfilePage> {
         elevation: 0,
         backgroundColor: Color(0xff4F98A1),
       ),
-      body: Container(
-        child: ListView(
-          scrollDirection: Axis.vertical,
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/profile.png'),
-                  fit: BoxFit.fill,
-                ),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Container(
+            height: 800,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/profile.png'),
+                fit: BoxFit.fill,
               ),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Column(
-                      children: [
-                        CircleAvatar(
-                          radius: 30,
-                          backgroundImage:
-                              AssetImage('assets/images/avator.jpeg'),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('Name :',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xff4F98A1))),
-                            Text(' Yuya',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Color(0xff4F98A1)))
-                          ],
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    PieChartProfile(),
-                    PieChartProfileTwo()
-                  ]),
             ),
-          ],
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 30,
+                        backgroundImage:
+                            AssetImage('assets/images/avator.jpeg'),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Name :',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff4F98A1))),
+                          Text(' Yuya',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff4F98A1)))
+                        ],
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  PieChartProfile(),
+                  PieChartProfileTwo()
+                ]),
+          ),
         ),
       ),
     );

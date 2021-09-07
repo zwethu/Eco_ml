@@ -39,24 +39,28 @@ class _SettingPageState extends State<SettingPage> {
                 height: 20,
                 child: Text(''),
               ),
-              Container(
-                height: 50,
-                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Edit Username',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+              GestureDetector(
+               
+                
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Edit Username',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Icon(
-                      Icons.edit_rounded,
-                      size: 30,
-                    ),
-                  ],
+                      Icon(
+                        Icons.edit_rounded,
+                        size: 30,
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Divider(

@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/pages/NameInputPage.dart';
 import 'package:eco_ml/pages/amountInputPage.dart';
 import 'package:eco_ml/pages/pages.dart';
+import 'package:eco_ml/pages/transactionPage.dart';
   
 // @CupertinoAutoRouter    
 // @AdaptiveAutoRouter    
@@ -20,6 +21,7 @@ import 'package:eco_ml/pages/pages.dart';
     AutoRoute(page: PiggyHomePage), 
     AutoRoute(page: NameInputPage),
     AutoRoute(page: AmountInputPage),
+    AutoRoute(page: TransactionPage),
       ],  
 )    
 class $MyAppRouter{}

@@ -1,5 +1,9 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:hive/hive.dart';
+
 
 class WalletPage extends StatefulWidget {
   const WalletPage({Key? key}) : super(key: key);
@@ -9,8 +13,10 @@ class WalletPage extends StatefulWidget {
 }
 
 class _WalletPageState extends State<WalletPage> {
+  
   @override
   Widget build(BuildContext context) {
+    final amount = Hive.box('amount').get(0);
     return ListView(
       children: [
         Container(
@@ -56,7 +62,7 @@ class _WalletPageState extends State<WalletPage> {
                     Container(
                       alignment: Alignment.bottomRight,
                       child: Text(
-                        '100000 Ks',
+                        '${amount.amount} Ks',
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,

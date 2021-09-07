@@ -10,6 +10,7 @@ import 'package:flutter/material.dart' as _i2;
 import '../pages/amountInputPage.dart' as _i5;
 import '../pages/NameInputPage.dart' as _i4;
 import '../pages/pages.dart' as _i3;
+import '../pages/transactionPage.dart' as _i6;
 
 class MyAppRouter extends _i1.RootStackRouter {
   MyAppRouter([_i2.GlobalKey<_i2.NavigatorState>? navigatorKey])
@@ -68,6 +69,11 @@ class MyAppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return const _i5.AmountInputPage();
+        }),
+    TransactionRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i6.TransactionPage();
         })
   };
 
@@ -82,7 +88,8 @@ class MyAppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(PiggyRoute.name, path: '/piggy-page'),
         _i1.RouteConfig(PiggyHomeRoute.name, path: '/piggy-home-page'),
         _i1.RouteConfig(NameInputRoute.name, path: '/name-input-page'),
-        _i1.RouteConfig(AmountInputRoute.name, path: '/amount-input-page')
+        _i1.RouteConfig(AmountInputRoute.name, path: '/amount-input-page'),
+        _i1.RouteConfig(TransactionRoute.name, path: '/transaction-page')
       ];
 }
 
@@ -152,4 +159,10 @@ class AmountInputRoute extends _i1.PageRouteInfo {
   const AmountInputRoute() : super(name, path: '/amount-input-page');
 
   static const String name = 'AmountInputRoute';
+}
+
+class TransactionRoute extends _i1.PageRouteInfo {
+  const TransactionRoute() : super(name, path: '/transaction-page');
+
+  static const String name = 'TransactionRoute';
 }

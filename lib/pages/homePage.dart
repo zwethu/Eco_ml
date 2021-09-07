@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:eco_ml/data/database.dart';
 import 'package:eco_ml/pages/bankPage.dart';
 import 'package:eco_ml/pages/pages.dart';
 import 'package:eco_ml/pages/settingPage.dart';
 import 'package:eco_ml/pages/walletPage.dart';
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,6 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
+  final username = Hive.box('username').getAt(0) as UserName;
   final pages = [
     WalletPage(),
     ReportPage(),
@@ -31,7 +34,7 @@ class _HomePageState extends State<HomePage> {
           toolbarHeight: 70,
           title: Container(
             child: Text(
-              "Yuya's Wallet",
+              "${username.username}'s Wallet",
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

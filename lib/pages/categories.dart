@@ -1,6 +1,10 @@
+
+import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/data/incomeData.dart';
 import 'package:eco_ml/data/outcomeData.dart';
+import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class CategoriesPage extends StatefulWidget {
   const CategoriesPage({Key? key}) : super(key: key);
@@ -11,7 +15,7 @@ class CategoriesPage extends StatefulWidget {
 
 class _CategoriesPageState extends State<CategoriesPage>
     with SingleTickerProviderStateMixin {
-      
+  final box = Hive.box('id');
   late TabController _tabController;
   int activeIndex =0;
   bool change = false;
@@ -95,24 +99,31 @@ class _CategoriesPageState extends State<CategoriesPage>
                         itemCount: 21,
                         itemBuilder: (BuildContext context, int index) {
                           return Center(
-                            child: Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Colors.grey.shade300,
+                            child: GestureDetector(
+                              child: Container(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: Colors.grey.shade300,
+                                      ),
+                                      child: Icon(
+                                        outcomeData[index].iconName,
+                                        size: 25,
+                                      ),
                                     ),
-                                    child: Icon(
-                                      outcomeData[index].iconName,
-                                      size: 25,
-                                    ),
-                                  ),
-                                  Text(outcomeData[index].title),
-                                ],
+                                    Text(outcomeData[index].title),
+                                  ],
+                                ),
                               ),
+                              onTap: (){
+                                navigateToTransaction(context);
+                                box.put(0, index);
+                                print(box.get(0));
+                              }
                             ),
                           );
                         },
@@ -165,3 +176,10 @@ class _CategoriesPageState extends State<CategoriesPage>
     );
   }
 }
+
+void navigateToTransaction(BuildContext context) {
+  AutoRouter.of(context).push(TransactionRoute());
+}
+
+
+
