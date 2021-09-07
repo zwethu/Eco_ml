@@ -11,8 +11,8 @@ class TransactionPage extends StatefulWidget {
 }
 
 class _TransactionPageState extends State<TransactionPage> {
-  final i = Hive.box('id').get(0);
-  
+  final int id = Hive.box('id').get(0);
+  final bool check = Hive.box('id').get(1);
   final TextEditingController customController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -34,15 +34,24 @@ class _TransactionPageState extends State<TransactionPage> {
                     Container(
                       child: Row(
                         children: [
-                          Icon(
-                            outcomeData[i].iconName,
-                            size: 25,
+                          Container(
+                            height: 40,
+                            width: 40,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: check?incomeData[id].colorName:outcomeData[id].colorName,
+                            ),
+                            child: Icon(
+                              check?incomeData[id].iconName:outcomeData[id].iconName,
+                              color: Colors.white,
+                              size: 25,
+                            ),
                           ),
                           SizedBox(
                             width: 20,
                           ),
                           Text(
-                            outcomeData[i].title,
+                            check ? incomeData[id].title : outcomeData[id].title,
                             style: TextStyle(
                               fontSize: 25,
                             ),
@@ -53,10 +62,7 @@ class _TransactionPageState extends State<TransactionPage> {
                     Container(
                       child: Row(
                         children: [
-                          Icon(
-                            incomeData[1].iconName,
-                            size: 25,
-                          ),
+                          
                           SizedBox(
                             width: 20,
                           ),

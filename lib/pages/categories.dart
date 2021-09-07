@@ -1,4 +1,3 @@
-
 import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/data/incomeData.dart';
 import 'package:eco_ml/data/outcomeData.dart';
@@ -17,8 +16,7 @@ class _CategoriesPageState extends State<CategoriesPage>
     with SingleTickerProviderStateMixin {
   final box = Hive.box('id');
   late TabController _tabController;
-  int activeIndex =0;
-  bool change = false;
+  int activeIndex = 0;
 
   @override
   void initState() {
@@ -52,35 +50,44 @@ class _CategoriesPageState extends State<CategoriesPage>
             children: [
               // give the ta
               //b bar a height [can change height to preferred height]
-                Container(
-                  height: 45,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: TabBar(
-                    controller: _tabController,
-                    // give the indicator a decoration (color and border radius)
-                    indicator: BoxDecoration(
-                      borderRadius: activeIndex == 0? BorderRadius.only(topLeft: Radius.circular(20),bottomLeft: Radius.circular(20),):
-                      BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20),),
-                      color: activeIndex ==0? Color(0xffFFC0CE):Color(0xff9FEACF),
-                    ),
-                    isScrollable: false,
-                    labelColor: Colors.black,
-                    unselectedLabelColor: Colors.black,
-                    tabs: [
-                      // first tab [you can add an icon using the icon property]
-                      Tab(
-                        text: 'Expense',
-                      ),
-    
-                      // second tab [you can add an icon using the icon property]
-                      Tab(
-                        text: 'Income',
-                      ),
-                    ],
-                  ),
+              Container(
+                height: 45,
+                decoration: BoxDecoration(
+                  color: Colors.white,
                 ),
+                child: TabBar(
+                  controller: _tabController,
+                  // give the indicator a decoration (color and border radius)
+                  indicator: BoxDecoration(
+                    borderRadius: activeIndex == 0
+                        ? BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
+                          )
+                        : BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
+                    color: activeIndex == 0
+                        ? Color(0xffFFC0CE)
+                        : Color(0xff9FEACF),
+                  ),
+                  isScrollable: false,
+                  labelColor: Colors.black,
+                  unselectedLabelColor: Colors.black,
+                  tabs: [
+                    // first tab [you can add an icon using the icon property]
+                    Tab(
+                      text: 'Expense',
+                    ),
+
+                    // second tab [you can add an icon using the icon property]
+                    Tab(
+                      text: 'Income',
+                    ),
+                  ],
+                ),
+              ),
               // tab bar view here
               Expanded(
                 child: TabBarView(
@@ -90,7 +97,7 @@ class _CategoriesPageState extends State<CategoriesPage>
                     Container(
                       margin: EdgeInsets.only(top: 20),
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height/1.5,
+                      height: MediaQuery.of(context).size.height / 1.5,
                       child: GridView.builder(
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
@@ -98,8 +105,7 @@ class _CategoriesPageState extends State<CategoriesPage>
                         ),
                         itemCount: 21,
                         itemBuilder: (BuildContext context, int index) {
-                          return Center(
-                            child: GestureDetector(
+                          return GestureDetector(
                               child: Container(
                                 child: Column(
                                   children: [
@@ -111,7 +117,9 @@ class _CategoriesPageState extends State<CategoriesPage>
                                         color: Colors.grey.shade300,
                                       ),
                                       child: Icon(
-                                        outcomeData[index].iconName,
+                                        activeIndex == 0
+                                            ? outcomeData[index].iconName
+                                            : incomeData[index].iconName,
                                         size: 25,
                                       ),
                                     ),
@@ -119,22 +127,21 @@ class _CategoriesPageState extends State<CategoriesPage>
                                   ],
                                 ),
                               ),
-                              onTap: (){
+                              onTap: () {
                                 navigateToTransaction(context);
                                 box.put(0, index);
-                                print(box.get(0));
-                              }
-                            ),
-                          );
+                                box.put(1, false);
+                                
+                              });
                         },
                       ),
                     ),
-    
+
                     // second tab bar view widget
-                     Container(
+                    Container(
                       margin: EdgeInsets.only(top: 20),
                       width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height/1.5,
+                      height: MediaQuery.of(context).size.height / 1.5,
                       child: GridView.builder(
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
@@ -142,7 +149,7 @@ class _CategoriesPageState extends State<CategoriesPage>
                         ),
                         itemCount: 10,
                         itemBuilder: (BuildContext context, int index) {
-                          return Center(
+                          return GestureDetector(
                             child: Container(
                               child: Column(
                                 children: [
@@ -162,6 +169,12 @@ class _CategoriesPageState extends State<CategoriesPage>
                                 ],
                               ),
                             ),
+                            onTap: (){
+                              navigateToTransaction(context);
+                              box.put(0, index);
+                              box.put(1, true);
+                              print(box.get(0));
+                            },
                           );
                         },
                       ),
@@ -180,6 +193,3 @@ class _CategoriesPageState extends State<CategoriesPage>
 void navigateToTransaction(BuildContext context) {
   AutoRouter.of(context).push(TransactionRoute());
 }
-
-
-

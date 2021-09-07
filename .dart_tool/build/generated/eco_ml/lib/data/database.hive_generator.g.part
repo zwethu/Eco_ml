@@ -85,15 +85,18 @@ class IconDataAdapter extends TypeAdapter<IconData> {
     };
     return IconData(
       fields[0] as int,
+      fields[1] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, IconData obj) {
     writer
-      ..writeByte(1)
+      ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.id);
+      ..write(obj.id)
+      ..writeByte(1)
+      ..write(obj.isIncome);
   }
 
   @override
