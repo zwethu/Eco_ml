@@ -26,6 +26,7 @@ class _TransactionPageState extends State<TransactionPage> {
             width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.all(25),
             child: Column(
+              
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
