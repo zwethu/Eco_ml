@@ -1,9 +1,7 @@
-
-
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hive/hive.dart';
-
 
 class WalletPage extends StatefulWidget {
   const WalletPage({Key? key}) : super(key: key);
@@ -13,7 +11,12 @@ class WalletPage extends StatefulWidget {
 }
 
 class _WalletPageState extends State<WalletPage> {
-  
+  @override
+  void dispose() {
+    // Hive.close();
+    super.dispose();
+  }
+  final data = Hive.box('transactions');
   @override
   Widget build(BuildContext context) {
     final amount = Hive.box('amount').get(0);
@@ -31,10 +34,9 @@ class _WalletPageState extends State<WalletPage> {
               Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.white,Color(0xffF9E7EB)]),
-                  
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Colors.white, Color(0xffF9E7EB)]),
                   borderRadius: BorderRadius.circular(30),
                   boxShadow: [
                     BoxShadow(
@@ -55,6 +57,7 @@ class _WalletPageState extends State<WalletPage> {
                         'Total Balance',
                         style: TextStyle(
                           fontSize: 24,
+                          fontWeight: FontWeight.bold,
                           color: Color(0xff201A3C),
                         ),
                       ),
@@ -157,7 +160,7 @@ class _WalletPageState extends State<WalletPage> {
                           ),
                         ),
                         Container(
-                         padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
+                          padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
                           child: Text(
                             '125000 Ks',
                             style: TextStyle(
@@ -187,13 +190,7 @@ class _WalletPageState extends State<WalletPage> {
                       margin: EdgeInsets.all(20),
                       alignment: Alignment.topLeft,
                       width: MediaQuery.of(context).size.width,
-                      child: Text('Transactions',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xff4F98A1)
-                        ),
-                      ),
+                      child: Text(''),
                     ),
                   ],
                 ),

@@ -1,16 +1,27 @@
-define(['dart_sdk', 'packages/flutter/src/services/mouse_cursor.dart', 'packages/flutter/src/painting/borders.dart'], (function load__packages__flutter__src__material__material_state_dart(dart_sdk, packages__flutter__src__services__mouse_cursor$46dart, packages__flutter__src__painting__borders$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/cupertino/text_theme.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/services/haptic_feedback.dart'], (function load__packages__flutter__src__cupertino__scrollbar_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__cupertino__text_theme$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__services__haptic_feedback$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
-  const collection = dart_sdk.collection;
+  const _internal = dart_sdk._internal;
+  const async = dart_sdk.async;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const mouse_cursor = packages__flutter__src__services__mouse_cursor$46dart.src__services__mouse_cursor;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  var material_state = Object.create(dart.library);
+  const scroll_notification = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_notification;
+  const scrollbar = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scrollbar;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
+  const colors = packages__flutter__src__cupertino__text_theme$46dart.src__cupertino__colors;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const haptic_feedback = packages__flutter__src__services__haptic_feedback$46dart.src__services__haptic_feedback;
+  var scrollbar$ = Object.create(dart.library);
+  var $abs = dartx.abs;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    LinkedHashSetOfMaterialState: () => (T.LinkedHashSetOfMaterialState = dart.constFn(collection.LinkedHashSet$(material_state.MaterialState)))()
+    ScrollNotificationTobool: () => (T.ScrollNotificationTobool = dart.constFn(dart.fnType(core.bool, [scroll_notification.ScrollNotification])))(),
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    FutureOfvoid: () => (T.FutureOfvoid = dart.constFn(async.Future$(dart.void)))(),
+    voidToFutureOfvoid: () => (T.voidToFutureOfvoid = dart.constFn(dart.fnType(T.FutureOfvoid(), [dart.void])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -18,404 +29,325 @@ define(['dart_sdk', 'packages/flutter/src/services/mouse_cursor.dart', 'packages
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: material_state.MaterialState.prototype,
-        [_name$]: "MaterialState.hovered",
-        index: 0
+        __proto__: ui.Radius.prototype,
+        [Radius_y]: 1.5,
+        [Radius_x]: 1.5
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: material_state.MaterialState.prototype,
-        [_name$]: "MaterialState.focused",
-        index: 1
+        __proto__: ui.Radius.prototype,
+        [Radius_y]: 4,
+        [Radius_x]: 4
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: material_state.MaterialState.prototype,
-        [_name$]: "MaterialState.pressed",
-        index: 2
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 100000
       });
     },
     get C3() {
-      return C[3] = dart.const({
-        __proto__: material_state.MaterialState.prototype,
-        [_name$]: "MaterialState.dragged",
-        index: 3
-      });
+      return C[3] = dart.fn(scroll_notification.defaultScrollNotificationPredicate, T.ScrollNotificationTobool());
     },
     get C4() {
       return C[4] = dart.const({
-        __proto__: material_state.MaterialState.prototype,
-        [_name$]: "MaterialState.selected",
-        index: 4
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.vertical",
+        index: 1
       });
     },
     get C5() {
       return C[5] = dart.const({
-        __proto__: material_state.MaterialState.prototype,
-        [_name$]: "MaterialState.disabled",
-        index: 5
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.horizontal",
+        index: 0
       });
     },
     get C6() {
       return C[6] = dart.const({
-        __proto__: material_state.MaterialState.prototype,
-        [_name$]: "MaterialState.error",
-        index: 6
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 1200000
       });
     },
     get C7() {
-      return C[7] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5, C[6] || CT.C6], material_state.MaterialState);
-    },
-    get C8() {
-      return C[8] = dart.constSet(material_state.MaterialState, []);
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: mouse_cursor.SystemMouseCursor.prototype,
-        [SystemMouseCursor_kind]: "basic"
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: mouse_cursor.SystemMouseCursor.prototype,
-        [SystemMouseCursor_kind]: "click"
+      return C[7] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 250000
       });
     },
     get C9() {
       return C[9] = dart.const({
-        __proto__: material_state._EnabledAndDisabledMouseCursor.prototype,
-        [_EnabledAndDisabledMouseCursor_name]: "clickable",
-        [_EnabledAndDisabledMouseCursor_disabledCursor]: C[10] || CT.C10,
-        [_EnabledAndDisabledMouseCursor_enabledCursor]: C[11] || CT.C11
+        __proto__: ui.Color.prototype,
+        [Color_value]: 2164260863.0
       });
     },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: mouse_cursor.SystemMouseCursor.prototype,
-        [SystemMouseCursor_kind]: "text"
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 1493172224
       });
     },
-    get C12() {
-      return C[12] = dart.const({
-        __proto__: material_state._EnabledAndDisabledMouseCursor.prototype,
-        [_EnabledAndDisabledMouseCursor_name]: "textable",
-        [_EnabledAndDisabledMouseCursor_disabledCursor]: C[10] || CT.C10,
-        [_EnabledAndDisabledMouseCursor_enabledCursor]: C[13] || CT.C13
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: colors.CupertinoDynamicColor.prototype,
+        [Color_value]: 0,
+        [CupertinoDynamicColor_darkHighContrastElevatedColor]: C[9] || CT.C9,
+        [CupertinoDynamicColor_highContrastElevatedColor]: C[10] || CT.C10,
+        [CupertinoDynamicColor_darkElevatedColor]: C[9] || CT.C9,
+        [CupertinoDynamicColor_elevatedColor]: C[10] || CT.C10,
+        [CupertinoDynamicColor_darkHighContrastColor]: C[9] || CT.C9,
+        [CupertinoDynamicColor_highContrastColor]: C[10] || CT.C10,
+        [CupertinoDynamicColor_darkColor]: C[9] || CT.C9,
+        [CupertinoDynamicColor_color]: C[10] || CT.C10,
+        [CupertinoDynamicColor__debugResolveContext]: null,
+        [CupertinoDynamicColor__debugLabel]: null,
+        [CupertinoDynamicColor__effectiveColor]: C[10] || CT.C10
       });
     }
   }, false);
-  var C = Array(14).fill(void 0);
-  var I = ["package:flutter/src/material/material_state.dart"];
-  var _name$ = dart.privateName(material_state, "_name");
-  material_state.MaterialState = class MaterialState extends core.Object {
-    toString() {
-      return this[_name$];
+  var C = Array(11).fill(void 0);
+  var I = [
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/scrollbar.dart",
+    "package:flutter/src/cupertino/scrollbar.dart"
+  ];
+  var thicknessWhileDragging$ = dart.privateName(scrollbar$, "CupertinoScrollbar.thicknessWhileDragging");
+  var radiusWhileDragging$ = dart.privateName(scrollbar$, "CupertinoScrollbar.radiusWhileDragging");
+  var Radius_y = dart.privateName(ui, "Radius.y");
+  var Radius_x = dart.privateName(ui, "Radius.x");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
+  scrollbar$.CupertinoScrollbar = class CupertinoScrollbar extends scrollbar.RawScrollbar {
+    get thicknessWhileDragging() {
+      return this[thicknessWhileDragging$];
+    }
+    set thicknessWhileDragging(value) {
+      super.thicknessWhileDragging = value;
+    }
+    get radiusWhileDragging() {
+      return this[radiusWhileDragging$];
+    }
+    set radiusWhileDragging(value) {
+      super.radiusWhileDragging = value;
+    }
+    createState() {
+      return new scrollbar$._CupertinoScrollbarState.new();
     }
   };
-  (material_state.MaterialState.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
+  (scrollbar$.CupertinoScrollbar.new = function(opts) {
+    let t0;
+    let key = opts && 'key' in opts ? opts.key : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let controller = opts && 'controller' in opts ? opts.controller : null;
+    let isAlwaysShown = opts && 'isAlwaysShown' in opts ? opts.isAlwaysShown : false;
+    let thickness = opts && 'thickness' in opts ? opts.thickness : 3;
+    let thicknessWhileDragging = opts && 'thicknessWhileDragging' in opts ? opts.thicknessWhileDragging : 8;
+    let radius = opts && 'radius' in opts ? opts.radius : C[0] || CT.C0;
+    let radiusWhileDragging = opts && 'radiusWhileDragging' in opts ? opts.radiusWhileDragging : C[1] || CT.C1;
+    let notificationPredicate = opts && 'notificationPredicate' in opts ? opts.notificationPredicate : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[thicknessWhileDragging$] = thicknessWhileDragging;
+    this[radiusWhileDragging$] = radiusWhileDragging;
+    if (!(thickness !== null)) dart.assertFailed(null, I[0], 65, 15, "thickness != null");
+    if (!(thickness < 1 / 0)) dart.assertFailed(null, I[0], 66, 15, "thickness < double.infinity");
+    if (!(thicknessWhileDragging !== null)) dart.assertFailed(null, I[0], 67, 15, "thicknessWhileDragging != null");
+    if (!(thicknessWhileDragging < 1 / 0)) dart.assertFailed(null, I[0], 68, 15, "thicknessWhileDragging < double.infinity");
+    if (!(radius !== null)) dart.assertFailed(null, I[0], 69, 15, "radius != null");
+    if (!(radiusWhileDragging !== null)) dart.assertFailed(null, I[0], 70, 15, "radiusWhileDragging != null");
+    scrollbar$.CupertinoScrollbar.__proto__.new.call(this, {key: key, child: child, controller: controller, isAlwaysShown: isAlwaysShown, thickness: thickness, radius: radius, fadeDuration: scrollbar$._kScrollbarFadeDuration, timeToFade: scrollbar$._kScrollbarTimeToFade, pressDuration: C[2] || CT.C2, notificationPredicate: (t0 = notificationPredicate, t0 == null ? C[3] || CT.C3 : t0), $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
     ;
-  }).prototype = material_state.MaterialState.prototype;
-  dart.addTypeTests(material_state.MaterialState);
-  dart.addTypeCaches(material_state.MaterialState);
-  dart.setLibraryUri(material_state.MaterialState, I[0]);
-  dart.setFieldSignature(material_state.MaterialState, () => ({
-    __proto__: dart.getFields(material_state.MaterialState.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
+  }).prototype = scrollbar$.CupertinoScrollbar.prototype;
+  dart.addTypeTests(scrollbar$.CupertinoScrollbar);
+  dart.addTypeCaches(scrollbar$.CupertinoScrollbar);
+  dart.setMethodSignature(scrollbar$.CupertinoScrollbar, () => ({
+    __proto__: dart.getMethods(scrollbar$.CupertinoScrollbar.__proto__),
+    createState: dart.fnType(scrollbar$._CupertinoScrollbarState, [])
   }));
-  dart.defineExtensionMethods(material_state.MaterialState, ['toString']);
-  material_state.MaterialState.hovered = C[0] || CT.C0;
-  material_state.MaterialState.focused = C[1] || CT.C1;
-  material_state.MaterialState.pressed = C[2] || CT.C2;
-  material_state.MaterialState.dragged = C[3] || CT.C3;
-  material_state.MaterialState.selected = C[4] || CT.C4;
-  material_state.MaterialState.disabled = C[5] || CT.C5;
-  material_state.MaterialState.error = C[6] || CT.C6;
-  material_state.MaterialState.values = C[7] || CT.C7;
-  material_state.MaterialStateColor = class MaterialStateColor extends ui.Color {
-    static resolveWith(callback) {
-      return new material_state._MaterialStateColor.new(callback);
+  dart.setLibraryUri(scrollbar$.CupertinoScrollbar, I[1]);
+  dart.setFieldSignature(scrollbar$.CupertinoScrollbar, () => ({
+    __proto__: dart.getFields(scrollbar$.CupertinoScrollbar.__proto__),
+    thicknessWhileDragging: dart.finalFieldType(core.double),
+    radiusWhileDragging: dart.finalFieldType(ui.Radius)
+  }));
+  dart.defineLazy(scrollbar$.CupertinoScrollbar, {
+    /*scrollbar$.CupertinoScrollbar.defaultThickness*/get defaultThickness() {
+      return 3;
+    },
+    /*scrollbar$.CupertinoScrollbar.defaultThicknessWhileDragging*/get defaultThicknessWhileDragging() {
+      return 8;
+    },
+    /*scrollbar$.CupertinoScrollbar.defaultRadius*/get defaultRadius() {
+      return C[0] || CT.C0;
+    },
+    /*scrollbar$.CupertinoScrollbar.defaultRadiusWhileDragging*/get defaultRadiusWhileDragging() {
+      return C[1] || CT.C1;
     }
-  };
-  (material_state.MaterialStateColor.new = function(defaultValue) {
-    material_state.MaterialStateColor.__proto__.new.call(this, defaultValue);
-    ;
-  }).prototype = material_state.MaterialStateColor.prototype;
-  dart.addTypeTests(material_state.MaterialStateColor);
-  dart.addTypeCaches(material_state.MaterialStateColor);
-  material_state.MaterialStateColor[dart.implements] = () => [material_state.MaterialStateProperty$(ui.Color)];
-  dart.setLibraryUri(material_state.MaterialStateColor, I[0]);
-  var _resolve$ = dart.privateName(material_state, "_resolve");
-  material_state._MaterialStateColor = class _MaterialStateColor extends material_state.MaterialStateColor {
-    resolve(states) {
+  }, false);
+  var ___CupertinoScrollbarState__thicknessAnimationController = dart.privateName(scrollbar$, "_#_CupertinoScrollbarState#_thicknessAnimationController");
+  var _pressStartAxisPosition = dart.privateName(scrollbar$, "_pressStartAxisPosition");
+  var _thicknessAnimationController = dart.privateName(scrollbar$, "_thicknessAnimationController");
+  var _thickness = dart.privateName(scrollbar$, "_thickness");
+  var _radius = dart.privateName(scrollbar$, "_radius");
+  var _name = dart.privateName(basic_types, "_name");
+  scrollbar$._CupertinoScrollbarState = class _CupertinoScrollbarState extends scrollbar.RawScrollbarState$(scrollbar$.CupertinoScrollbar) {
+    get [_thicknessAnimationController]() {
       let t0;
-      t0 = states;
-      return this[_resolve$](t0);
+      t0 = this[___CupertinoScrollbarState__thicknessAnimationController];
+      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_thicknessAnimationController")) : t0;
     }
-  };
-  (material_state._MaterialStateColor.new = function(_resolve) {
-    this[_resolve$] = _resolve;
-    material_state._MaterialStateColor.__proto__.new.call(this, _resolve(material_state._MaterialStateColor._defaultStates).value);
-    ;
-  }).prototype = material_state._MaterialStateColor.prototype;
-  dart.addTypeTests(material_state._MaterialStateColor);
-  dart.addTypeCaches(material_state._MaterialStateColor);
-  dart.setMethodSignature(material_state._MaterialStateColor, () => ({
-    __proto__: dart.getMethods(material_state._MaterialStateColor.__proto__),
-    resolve: dart.fnType(ui.Color, [core.Set$(material_state.MaterialState)])
-  }));
-  dart.setLibraryUri(material_state._MaterialStateColor, I[0]);
-  dart.setFieldSignature(material_state._MaterialStateColor, () => ({
-    __proto__: dart.getFields(material_state._MaterialStateColor.__proto__),
-    [_resolve$]: dart.finalFieldType(dart.fnType(ui.Color, [core.Set$(material_state.MaterialState)]))
-  }));
-  dart.defineLazy(material_state._MaterialStateColor, {
-    /*material_state._MaterialStateColor._defaultStates*/get _defaultStates() {
-      return C[8] || CT.C8;
+    set [_thicknessAnimationController](t0) {
+      this[___CupertinoScrollbarState__thicknessAnimationController] = t0;
     }
-  }, false);
-  var _EnabledAndDisabledMouseCursor_name = dart.privateName(material_state, "_EnabledAndDisabledMouseCursor.name");
-  var SystemMouseCursor_kind = dart.privateName(mouse_cursor, "SystemMouseCursor.kind");
-  var _EnabledAndDisabledMouseCursor_disabledCursor = dart.privateName(material_state, "_EnabledAndDisabledMouseCursor.disabledCursor");
-  var _EnabledAndDisabledMouseCursor_enabledCursor = dart.privateName(material_state, "_EnabledAndDisabledMouseCursor.enabledCursor");
-  material_state.MaterialStateMouseCursor = class MaterialStateMouseCursor extends mouse_cursor.MouseCursor {
-    createSession(device) {
-      return this.resolve(T.LinkedHashSetOfMaterialState().new()).createSession(device);
+    get [_thickness]() {
+      return dart.nullCheck(this.widget.thickness) + this[_thicknessAnimationController].value * (this.widget.thicknessWhileDragging - dart.nullCheck(this.widget.thickness));
     }
-  };
-  (material_state.MaterialStateMouseCursor.new = function() {
-    material_state.MaterialStateMouseCursor.__proto__.new.call(this);
-    ;
-  }).prototype = material_state.MaterialStateMouseCursor.prototype;
-  dart.addTypeTests(material_state.MaterialStateMouseCursor);
-  dart.addTypeCaches(material_state.MaterialStateMouseCursor);
-  material_state.MaterialStateMouseCursor[dart.implements] = () => [material_state.MaterialStateProperty$(mouse_cursor.MouseCursor)];
-  dart.setMethodSignature(material_state.MaterialStateMouseCursor, () => ({
-    __proto__: dart.getMethods(material_state.MaterialStateMouseCursor.__proto__),
-    createSession: dart.fnType(mouse_cursor.MouseCursorSession, [core.int])
-  }));
-  dart.setLibraryUri(material_state.MaterialStateMouseCursor, I[0]);
-  dart.defineLazy(material_state.MaterialStateMouseCursor, {
-    /*material_state.MaterialStateMouseCursor.clickable*/get clickable() {
-      return C[9] || CT.C9;
-    },
-    /*material_state.MaterialStateMouseCursor.textable*/get textable() {
-      return C[12] || CT.C12;
+    get [_radius]() {
+      return dart.nullCheck(ui.Radius.lerp(this.widget.radius, this.widget.radiusWhileDragging, this[_thicknessAnimationController].value));
     }
-  }, false);
-  const enabledCursor$ = _EnabledAndDisabledMouseCursor_enabledCursor;
-  const disabledCursor$ = _EnabledAndDisabledMouseCursor_disabledCursor;
-  const name$ = _EnabledAndDisabledMouseCursor_name;
-  material_state._EnabledAndDisabledMouseCursor = class _EnabledAndDisabledMouseCursor extends material_state.MaterialStateMouseCursor {
-    get enabledCursor() {
-      return this[enabledCursor$];
+    initState() {
+      super.initState();
+      this[_thicknessAnimationController] = new animation_controller.AnimationController.new({vsync: this, duration: scrollbar$._kScrollbarResizeDuration});
+      this[_thicknessAnimationController].addListener(dart.fn(() => {
+        this.updateScrollbarPainter();
+      }, T.VoidTovoid()));
     }
-    set enabledCursor(value) {
-      super.enabledCursor = value;
+    updateScrollbarPainter() {
+      let t1;
+      t1 = this.scrollbarPainter;
+      (() => {
+        t1.color = colors.CupertinoDynamicColor.resolve(scrollbar$._kScrollbarColor, this.context);
+        t1.textDirection = basic.Directionality.of(this.context);
+        t1.thickness = this[_thickness];
+        t1.mainAxisMargin = 3;
+        t1.crossAxisMargin = 3;
+        t1.radius = this[_radius];
+        t1.padding = media_query.MediaQuery.of(this.context).padding;
+        t1.minLength = 36;
+        t1.minOverscrollLength = 8;
+        return t1;
+      })();
     }
-    get disabledCursor() {
-      return this[disabledCursor$];
-    }
-    set disabledCursor(value) {
-      super.disabledCursor = value;
-    }
-    get name() {
-      return this[name$];
-    }
-    set name(value) {
-      super.name = value;
-    }
-    resolve(states) {
-      if (states.contains(material_state.MaterialState.disabled)) {
-        return this.disabledCursor;
-      }
-      return this.enabledCursor;
-    }
-    get debugDescription() {
-      return "MaterialStateMouseCursor(" + this.name + ")";
-    }
-  };
-  (material_state._EnabledAndDisabledMouseCursor.new = function(opts) {
-    let enabledCursor = opts && 'enabledCursor' in opts ? opts.enabledCursor : null;
-    let disabledCursor = opts && 'disabledCursor' in opts ? opts.disabledCursor : null;
-    let name = opts && 'name' in opts ? opts.name : null;
-    this[enabledCursor$] = enabledCursor;
-    this[disabledCursor$] = disabledCursor;
-    this[name$] = name;
-    material_state._EnabledAndDisabledMouseCursor.__proto__.new.call(this);
-    ;
-  }).prototype = material_state._EnabledAndDisabledMouseCursor.prototype;
-  dart.addTypeTests(material_state._EnabledAndDisabledMouseCursor);
-  dart.addTypeCaches(material_state._EnabledAndDisabledMouseCursor);
-  dart.setMethodSignature(material_state._EnabledAndDisabledMouseCursor, () => ({
-    __proto__: dart.getMethods(material_state._EnabledAndDisabledMouseCursor.__proto__),
-    resolve: dart.fnType(mouse_cursor.MouseCursor, [core.Set$(material_state.MaterialState)])
-  }));
-  dart.setGetterSignature(material_state._EnabledAndDisabledMouseCursor, () => ({
-    __proto__: dart.getGetters(material_state._EnabledAndDisabledMouseCursor.__proto__),
-    debugDescription: core.String
-  }));
-  dart.setLibraryUri(material_state._EnabledAndDisabledMouseCursor, I[0]);
-  dart.setFieldSignature(material_state._EnabledAndDisabledMouseCursor, () => ({
-    __proto__: dart.getFields(material_state._EnabledAndDisabledMouseCursor.__proto__),
-    enabledCursor: dart.finalFieldType(mouse_cursor.MouseCursor),
-    disabledCursor: dart.finalFieldType(mouse_cursor.MouseCursor),
-    name: dart.finalFieldType(core.String)
-  }));
-  material_state.MaterialStateBorderSide = class MaterialStateBorderSide extends borders.BorderSide {
-    static resolveWith(callback) {
-      return new material_state._MaterialStateBorderSide.new(callback);
-    }
-  };
-  (material_state.MaterialStateBorderSide.new = function() {
-    material_state.MaterialStateBorderSide.__proto__.new.call(this);
-    ;
-  }).prototype = material_state.MaterialStateBorderSide.prototype;
-  dart.addTypeTests(material_state.MaterialStateBorderSide);
-  dart.addTypeCaches(material_state.MaterialStateBorderSide);
-  material_state.MaterialStateBorderSide[dart.implements] = () => [material_state.MaterialStateProperty$(dart.nullable(borders.BorderSide))];
-  dart.setLibraryUri(material_state.MaterialStateBorderSide, I[0]);
-  var _resolve$0 = dart.privateName(material_state, "_MaterialStateBorderSide._resolve");
-  material_state._MaterialStateBorderSide = class _MaterialStateBorderSide extends material_state.MaterialStateBorderSide {
-    get [_resolve$]() {
-      return this[_resolve$0];
-    }
-    set [_resolve$](value) {
-      super[_resolve$] = value;
-    }
-    resolve(states) {
-      let t0;
-      t0 = states;
-      return this[_resolve$](t0);
-    }
-  };
-  (material_state._MaterialStateBorderSide.new = function(_resolve) {
-    this[_resolve$0] = _resolve;
-    material_state._MaterialStateBorderSide.__proto__.new.call(this);
-    ;
-  }).prototype = material_state._MaterialStateBorderSide.prototype;
-  dart.addTypeTests(material_state._MaterialStateBorderSide);
-  dart.addTypeCaches(material_state._MaterialStateBorderSide);
-  dart.setMethodSignature(material_state._MaterialStateBorderSide, () => ({
-    __proto__: dart.getMethods(material_state._MaterialStateBorderSide.__proto__),
-    resolve: dart.fnType(dart.nullable(borders.BorderSide), [core.Set$(material_state.MaterialState)])
-  }));
-  dart.setLibraryUri(material_state._MaterialStateBorderSide, I[0]);
-  dart.setFieldSignature(material_state._MaterialStateBorderSide, () => ({
-    __proto__: dart.getFields(material_state._MaterialStateBorderSide.__proto__),
-    [_resolve$]: dart.finalFieldType(dart.fnType(dart.nullable(borders.BorderSide), [core.Set$(material_state.MaterialState)]))
-  }));
-  material_state.MaterialStateOutlinedBorder = class MaterialStateOutlinedBorder extends borders.OutlinedBorder {};
-  (material_state.MaterialStateOutlinedBorder.new = function() {
-    material_state.MaterialStateOutlinedBorder.__proto__.new.call(this);
-    ;
-  }).prototype = material_state.MaterialStateOutlinedBorder.prototype;
-  dart.addTypeTests(material_state.MaterialStateOutlinedBorder);
-  dart.addTypeCaches(material_state.MaterialStateOutlinedBorder);
-  material_state.MaterialStateOutlinedBorder[dart.implements] = () => [material_state.MaterialStateProperty$(dart.nullable(borders.OutlinedBorder))];
-  dart.setLibraryUri(material_state.MaterialStateOutlinedBorder, I[0]);
-  const _is_MaterialStateProperty_default = Symbol('_is_MaterialStateProperty_default');
-  material_state.MaterialStateProperty$ = dart.generic(T => {
-    class MaterialStateProperty extends core.Object {
-      static resolveAs(T, value, states) {
-        if (material_state.MaterialStateProperty$(T).is(value)) {
-          let property = value;
-          return property.resolve(states);
+    handleThumbPressStart(localPosition) {
+      super.handleThumbPressStart(localPosition);
+      let direction = dart.nullCheck(this.getScrollbarDirection());
+      switch (direction) {
+        case C[4] || CT.C4:
+        {
+          this[_pressStartAxisPosition] = localPosition.dy;
+          break;
         }
-        return value;
-      }
-      static resolveWith(T, callback) {
-        return new (material_state._MaterialStatePropertyWith$(T)).new(callback);
-      }
-      static all(T, value) {
-        return new (material_state._MaterialStatePropertyAll$(T)).new(value);
+        case C[5] || CT.C5:
+        {
+          this[_pressStartAxisPosition] = localPosition.dx;
+          break;
+        }
       }
     }
-    (MaterialStateProperty.new = function() {
-      ;
-    }).prototype = MaterialStateProperty.prototype;
-    dart.addTypeTests(MaterialStateProperty);
-    MaterialStateProperty.prototype[_is_MaterialStateProperty_default] = true;
-    dart.addTypeCaches(MaterialStateProperty);
-    dart.setLibraryUri(MaterialStateProperty, I[0]);
-    return MaterialStateProperty;
-  });
-  material_state.MaterialStateProperty = material_state.MaterialStateProperty$();
-  dart.addTypeTests(material_state.MaterialStateProperty, _is_MaterialStateProperty_default);
-  const _is__MaterialStatePropertyWith_default = Symbol('_is__MaterialStatePropertyWith_default');
-  material_state._MaterialStatePropertyWith$ = dart.generic(T => {
-    class _MaterialStatePropertyWith extends core.Object {
-      resolve(states) {
-        let t0;
-        t0 = states;
-        return this[_resolve$](t0);
+    handleThumbPress() {
+      if (this.getScrollbarDirection() == null) {
+        return;
+      }
+      super.handleThumbPress();
+      this[_thicknessAnimationController].forward().then(dart.void, dart.fn(_ => haptic_feedback.HapticFeedback.mediumImpact(), T.voidToFutureOfvoid()));
+    }
+    handleThumbPressEnd(localPosition, velocity) {
+      let direction = this.getScrollbarDirection();
+      if (direction == null) {
+        return;
+      }
+      this[_thicknessAnimationController].reverse();
+      super.handleThumbPressEnd(localPosition, velocity);
+      switch (direction) {
+        case C[4] || CT.C4:
+        {
+          if (velocity.pixelsPerSecond.dy[$abs]() < 10 && (localPosition.dy - this[_pressStartAxisPosition])[$abs]() > 0) {
+            haptic_feedback.HapticFeedback.mediumImpact();
+          }
+          break;
+        }
+        case C[5] || CT.C5:
+        {
+          if (velocity.pixelsPerSecond.dx[$abs]() < 10 && (localPosition.dx - this[_pressStartAxisPosition])[$abs]() > 0) {
+            haptic_feedback.HapticFeedback.mediumImpact();
+          }
+          break;
+        }
       }
     }
-    (_MaterialStatePropertyWith.new = function(_resolve) {
-      this[_resolve$] = _resolve;
-      ;
-    }).prototype = _MaterialStatePropertyWith.prototype;
-    dart.addTypeTests(_MaterialStatePropertyWith);
-    _MaterialStatePropertyWith.prototype[_is__MaterialStatePropertyWith_default] = true;
-    dart.addTypeCaches(_MaterialStatePropertyWith);
-    _MaterialStatePropertyWith[dart.implements] = () => [material_state.MaterialStateProperty$(T)];
-    dart.setMethodSignature(_MaterialStatePropertyWith, () => ({
-      __proto__: dart.getMethods(_MaterialStatePropertyWith.__proto__),
-      resolve: dart.fnType(T, [core.Set$(material_state.MaterialState)])
-    }));
-    dart.setLibraryUri(_MaterialStatePropertyWith, I[0]);
-    dart.setFieldSignature(_MaterialStatePropertyWith, () => ({
-      __proto__: dart.getFields(_MaterialStatePropertyWith.__proto__),
-      [_resolve$]: dart.finalFieldType(dart.fnType(T, [core.Set$(material_state.MaterialState)]))
-    }));
-    return _MaterialStatePropertyWith;
-  });
-  material_state._MaterialStatePropertyWith = material_state._MaterialStatePropertyWith$();
-  dart.addTypeTests(material_state._MaterialStatePropertyWith, _is__MaterialStatePropertyWith_default);
-  const _is__MaterialStatePropertyAll_default = Symbol('_is__MaterialStatePropertyAll_default');
-  material_state._MaterialStatePropertyAll$ = dart.generic(T => {
-    class _MaterialStatePropertyAll extends core.Object {
-      resolve(states) {
-        return this.value;
-      }
-      toString() {
-        return "MaterialStateProperty.all(" + dart.str(this.value) + ")";
-      }
+    dispose() {
+      this[_thicknessAnimationController].dispose();
+      super.dispose();
     }
-    (_MaterialStatePropertyAll.new = function(value) {
-      this.value = value;
-      ;
-    }).prototype = _MaterialStatePropertyAll.prototype;
-    dart.addTypeTests(_MaterialStatePropertyAll);
-    _MaterialStatePropertyAll.prototype[_is__MaterialStatePropertyAll_default] = true;
-    dart.addTypeCaches(_MaterialStatePropertyAll);
-    _MaterialStatePropertyAll[dart.implements] = () => [material_state.MaterialStateProperty$(T)];
-    dart.setMethodSignature(_MaterialStatePropertyAll, () => ({
-      __proto__: dart.getMethods(_MaterialStatePropertyAll.__proto__),
-      resolve: dart.fnType(T, [core.Set$(material_state.MaterialState)])
-    }));
-    dart.setLibraryUri(_MaterialStatePropertyAll, I[0]);
-    dart.setFieldSignature(_MaterialStatePropertyAll, () => ({
-      __proto__: dart.getFields(_MaterialStatePropertyAll.__proto__),
-      value: dart.finalFieldType(T)
-    }));
-    dart.defineExtensionMethods(_MaterialStatePropertyAll, ['toString']);
-    return _MaterialStatePropertyAll;
-  });
-  material_state._MaterialStatePropertyAll = material_state._MaterialStatePropertyAll$();
-  dart.addTypeTests(material_state._MaterialStatePropertyAll, _is__MaterialStatePropertyAll_default);
-  dart.trackLibraries("packages/flutter/src/material/material_state.dart", {
-    "package:flutter/src/material/material_state.dart": material_state
+  };
+  (scrollbar$._CupertinoScrollbarState.new = function() {
+    this[___CupertinoScrollbarState__thicknessAnimationController] = null;
+    this[_pressStartAxisPosition] = 0.0;
+    scrollbar$._CupertinoScrollbarState.__proto__.new.call(this);
+    ;
+  }).prototype = scrollbar$._CupertinoScrollbarState.prototype;
+  dart.addTypeTests(scrollbar$._CupertinoScrollbarState);
+  dart.addTypeCaches(scrollbar$._CupertinoScrollbarState);
+  dart.setGetterSignature(scrollbar$._CupertinoScrollbarState, () => ({
+    __proto__: dart.getGetters(scrollbar$._CupertinoScrollbarState.__proto__),
+    [_thicknessAnimationController]: animation_controller.AnimationController,
+    [_thickness]: core.double,
+    [_radius]: ui.Radius
+  }));
+  dart.setSetterSignature(scrollbar$._CupertinoScrollbarState, () => ({
+    __proto__: dart.getSetters(scrollbar$._CupertinoScrollbarState.__proto__),
+    [_thicknessAnimationController]: animation_controller.AnimationController
+  }));
+  dart.setLibraryUri(scrollbar$._CupertinoScrollbarState, I[1]);
+  dart.setFieldSignature(scrollbar$._CupertinoScrollbarState, () => ({
+    __proto__: dart.getFields(scrollbar$._CupertinoScrollbarState.__proto__),
+    [___CupertinoScrollbarState__thicknessAnimationController]: dart.fieldType(dart.nullable(animation_controller.AnimationController)),
+    [_pressStartAxisPosition]: dart.fieldType(core.double)
+  }));
+  var Color_value = dart.privateName(ui, "Color.value");
+  var CupertinoDynamicColor_darkHighContrastElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.darkHighContrastElevatedColor");
+  var CupertinoDynamicColor_highContrastElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.highContrastElevatedColor");
+  var CupertinoDynamicColor_darkElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.darkElevatedColor");
+  var CupertinoDynamicColor_elevatedColor = dart.privateName(colors, "CupertinoDynamicColor.elevatedColor");
+  var CupertinoDynamicColor_darkHighContrastColor = dart.privateName(colors, "CupertinoDynamicColor.darkHighContrastColor");
+  var CupertinoDynamicColor_highContrastColor = dart.privateName(colors, "CupertinoDynamicColor.highContrastColor");
+  var CupertinoDynamicColor_darkColor = dart.privateName(colors, "CupertinoDynamicColor.darkColor");
+  var CupertinoDynamicColor_color = dart.privateName(colors, "CupertinoDynamicColor.color");
+  var CupertinoDynamicColor__debugResolveContext = dart.privateName(colors, "CupertinoDynamicColor._debugResolveContext");
+  var CupertinoDynamicColor__debugLabel = dart.privateName(colors, "CupertinoDynamicColor._debugLabel");
+  var CupertinoDynamicColor__effectiveColor = dart.privateName(colors, "CupertinoDynamicColor._effectiveColor");
+  dart.defineLazy(scrollbar$, {
+    /*scrollbar$._kScrollbarMinLength*/get _kScrollbarMinLength() {
+      return 36;
+    },
+    /*scrollbar$._kScrollbarMinOverscrollLength*/get _kScrollbarMinOverscrollLength() {
+      return 8;
+    },
+    /*scrollbar$._kScrollbarTimeToFade*/get _kScrollbarTimeToFade() {
+      return C[6] || CT.C6;
+    },
+    /*scrollbar$._kScrollbarFadeDuration*/get _kScrollbarFadeDuration() {
+      return C[7] || CT.C7;
+    },
+    /*scrollbar$._kScrollbarResizeDuration*/get _kScrollbarResizeDuration() {
+      return C[2] || CT.C2;
+    },
+    /*scrollbar$._kScrollbarColor*/get _kScrollbarColor() {
+      return C[8] || CT.C8;
+    },
+    /*scrollbar$._kScrollbarMainAxisMargin*/get _kScrollbarMainAxisMargin() {
+      return 3;
+    },
+    /*scrollbar$._kScrollbarCrossAxisMargin*/get _kScrollbarCrossAxisMargin() {
+      return 3;
+    }
+  }, false);
+  dart.trackLibraries("packages/flutter/src/cupertino/scrollbar.dart", {
+    "package:flutter/src/cupertino/scrollbar.dart": scrollbar$
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["material_state.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA6EA;;sDA7CK;;;;EA6CL;;;;;;;;;;;;;;;;;;;uBAoEwE;AAAa,wDAAoB,QAAQ;IAAC;;oDAVnF;AAAgB,+DAAM,YAAY;;EAAC;;;;;;;YAkC/B;;AAAW,WAAS,MAAM;YAAf,AAAQ;IAAQ;;;IARnC;AAAY,gEAAM,AAAQ,AAAiB,QAAjB,CAAC;;EAAsB;;;;;;;;;;;;;MAK1C,iDAAc;;;;;;;;;kBAqET;AACnC,YAAO,AAA2B,cAAJ,sDAAkB,MAAM;IACxD;;;AANM;;EAA0B;;;;;;;;;;MAsBM,iDAAS;;;MAaT,gDAAQ;;;;;;;;IAc5B;;;;;;IACA;;;;;;IACL;;;;;;YAG0B;AACrC,UAAI,AAAO,MAAD,UAAwB;AAChC,cAAO;;AAET,YAAO;IACT;;AAG+B,YAAA,AAAiC,+BAAN,YAAI;IAAE;;;QAlBhD;QACA;QACA;IAFA;IACA;IACA;AAHV;;EAIJ;;;;;;;;;;;;;;;;;;;uBAuG+E;AAC7E,6DAAyB,QAAQ;IAAC;;;AAzChC;;EAAyB;;;;;;;IAsDa;;;;;;YAGL;;AACrC,WAAgB,MAAM;YAAf,AAAQ;IACjB;;;IAPoC;AAA9B;;EAAuC;;;;;;;;;;;;;;AA+DvC;;EAA6B;;;;;;;;0BAkFX,OAA0B;AAChD,YAAU,4CAAN,KAAK;AACwB,yBAAW,KAAK;AAC/C,gBAAO,AAAS,SAAD,SAAS,MAAM;;AAEhC,cAAO,MAAK;MACd;4BAI2E;AAAa,uEAA8B,QAAQ;MAAC;oBAItF;AAAU,sEAA6B,KAAK;MAAC;;;;IACxF;;;;;;;;;;;;cAQ+B;;AAAW,aAAS,MAAM;cAAf,AAAQ;MAAQ;;;MALxB;;IAAS;;;;;;;;;;;;;;;;;;;;;cAcZ;AAAW;MAAK;;AAGxB,cAAA,AAAmC,yCAAP,cAAK;MAAE;;;MARzB;;IAAM","file":"../../../../../../../packages/flutter/src/material/material_state.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["scrollbar.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAsGe;;;;;;IAQA;;;;;;;AAG6B;IAA0B;;;;QA1D7D;QACW;QACE;QACb;QACE;QACF;QACE;QACF;QACwB;;IAHxB;IAEA;UAEK,AAAU,SAAD;UACT,AAAU,SAAD;UACT,AAAuB,sBAAD;UACtB,AAAuB,sBAAD;UACtB,AAAO,MAAD;UACN,AAAoB,mBAAD;AAC1B,iEACO,GAAG,SACD,KAAK,cACA,UAAU,iBACP,aAAa,aACjB,SAAS,UACZ,MAAM,gBACA,gDACF,wFAEiC,KAAtB,qBAAqB,EAArB;;EACxB;;;;;;;;;;;;;;MAGc,8CAAgB;;;MAIhB,2DAA6B;;;MAG7B,2CAAa;;;MAIb,wDAA0B;;;;;;;;;;;;;AAsBrB;;IAA6B;;AAA7B;IAA6B;;AAGpD,YAAuB,AAAE,gBAAlB,AAAO,yBAAa,AAA8B,AAAM,6CAAG,AAAO,AAAuB,qCAAkB,eAAhB,AAAO;IAC3G;;AAGE,YAAkG,gBAApF,eAAK,AAAO,oBAAQ,AAAO,iCAAqB,AAA8B;IAC9F;;AAImB,MAAX;AAIL,MAHD,sCAAgC,yDACvB,gBACG;AAIV,MAFF,AAA8B,gDAAY;AAChB,QAAxB;;IAEJ;;;AAa0D,WATxD;;AACI,mBAA8B,qCAAQ,6BAAkB;AACxD,2BAA+B,wBAAG;AAClC,uBAAY;AACZ;AACA;AACA,oBAAS;AACT,qBAAqB,AAAY,0BAAT;AACxB;AACA;;;IACN;0BAQkC;AACU,MAApC,4BAAsB,aAAa;AAC9B,sBAAmC,eAAvB;AACvB,cAAQ,SAAS;;;AAE6B,UAA1C,gCAA0B,AAAc,aAAD;AACvC;;;;AAE0C,UAA1C,gCAA0B,AAAc,aAAD;AACvC;;;IAEN;;AAIE,UAAI,AAAwB;AAC1B;;AAEsB,MAAlB;AAGL,MAFD,AAA8B,AAAU,8DAClC,QAAC,KAAqB;IAE9B;wBAGgC,eAAwB;AAC1C,sBAAY;AACxB,UAAI,AAAU,SAAD;AACX;;AAEqC,MAAvC,AAA8B;AACoB,MAA5C,0BAAoB,aAAa,EAAE,QAAQ;AACjD,cAAO,SAAS;;;AAEZ,cAAI,AAAS,AAAgB,AAAG,AAAM,QAA1B,8BAA4B,MACO,AAAM,CAAlD,AAAc,AAAG,aAAJ,MAAM,yCAAiC;AACxB,YAAd;;AAEjB;;;;AAEA,cAAI,AAAS,AAAgB,AAAG,AAAM,QAA1B,8BAA4B,MACO,AAAM,CAAlD,AAAc,AAAG,aAAJ,MAAM,yCAAiC;AACxB,YAAd;;AAEjB;;;IAEN;;AAIyC,MAAvC,AAA8B;AACf,MAAT;IACR;;;qEA9FyB;IAoClB,gCAA0B;;;EA2DnC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MA1Ma,+BAAoB;;;MACpB,yCAA8B;;;MAC5B,gCAAqB;;;MACrB,kCAAuB;;;MACvB,oCAAyB;;;MAG5B,2BAAgB;;;MASf,oCAAyB;;;MACzB,qCAA0B","file":"../../../../../../../packages/flutter/src/cupertino/scrollbar.dart.lib.js"}');
   // Exports:
   return {
-    src__material__material_state: material_state
+    src__cupertino__scrollbar: scrollbar$
   };
 }));
 
-//# sourceMappingURL=material_state.dart.lib.js.map
+//# sourceMappingURL=scrollbar.dart.lib.js.map

@@ -1,17 +1,18 @@
-define(['dart_sdk', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/painting/colors.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__material__floating_action_button_theme_dart(dart_sdk, packages__flutter__src__painting__borders$46dart, packages__flutter__src__painting__colors$46dart, packages__flutter__src__foundation__debug$46dart) {
+define(['dart_sdk', 'packages/flutter/src/gestures/velocity_tracker.dart', 'packages/flutter/src/gestures/constants.dart', 'packages/flutter/src/gestures/arena.dart', 'packages/flutter/src/gestures/events.dart', 'packages/flutter/src/gestures/recognizer.dart'], (function load__packages__flutter__src__gestures__long_press_dart(dart_sdk, packages__flutter__src__gestures__velocity_tracker$46dart, packages__flutter__src__gestures__constants$46dart, packages__flutter__src__gestures__arena$46dart, packages__flutter__src__gestures__events$46dart, packages__flutter__src__gestures__recognizer$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  const colors = packages__flutter__src__painting__colors$46dart.src__painting__colors;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  var floating_action_button_theme = Object.create(dart.library);
-  var $runtimeType = dartx.runtimeType;
+  const velocity_tracker = packages__flutter__src__gestures__velocity_tracker$46dart.src__gestures__velocity_tracker;
+  const constants = packages__flutter__src__gestures__constants$46dart.src__gestures__constants;
+  const arena = packages__flutter__src__gestures__arena$46dart.src__gestures__arena;
+  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
+  const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
+  var long_press = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    DiagnosticsPropertyOfShapeBorder: () => (T.DiagnosticsPropertyOfShapeBorder = dart.constFn(diagnostics.DiagnosticsProperty$(borders.ShapeBorder)))()
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -19,210 +20,536 @@ define(['dart_sdk', 'packages/flutter/src/painting/borders.dart', 'packages/flut
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: floating_action_button_theme.FloatingActionButtonThemeData.prototype,
-        [shape$]: null,
-        [highlightElevation$]: null,
-        [disabledElevation$]: null,
-        [hoverElevation$]: null,
-        [focusElevation$]: null,
-        [elevation$]: null,
-        [splashColor$]: null,
-        [hoverColor$]: null,
-        [focusColor$]: null,
-        [backgroundColor$]: null,
-        [foregroundColor$]: null
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 0,
+        [OffsetBase__dx]: 0
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: velocity_tracker.Velocity.prototype,
+        [Velocity_pixelsPerSecond]: C[0] || CT.C0
       });
     }
   }, false);
-  var C = [void 0];
+  var C = Array(2).fill(void 0);
   var I = [
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/material/floating_action_button_theme.dart",
-    "package:flutter/src/material/floating_action_button_theme.dart"
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/gestures/long_press.dart",
+    "package:flutter/src/gestures/long_press.dart"
   ];
-  var foregroundColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.foregroundColor");
-  var backgroundColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.backgroundColor");
-  var focusColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.focusColor");
-  var hoverColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.hoverColor");
-  var splashColor$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.splashColor");
-  var elevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.elevation");
-  var focusElevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.focusElevation");
-  var hoverElevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.hoverElevation");
-  var disabledElevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.disabledElevation");
-  var highlightElevation$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.highlightElevation");
-  var shape$ = dart.privateName(floating_action_button_theme, "FloatingActionButtonThemeData.shape");
-  const Object_Diagnosticable$36 = class Object_Diagnosticable extends core.Object {};
-  (Object_Diagnosticable$36.new = function() {
-  }).prototype = Object_Diagnosticable$36.prototype;
-  dart.applyMixin(Object_Diagnosticable$36, diagnostics.Diagnosticable);
-  floating_action_button_theme.FloatingActionButtonThemeData = class FloatingActionButtonThemeData extends Object_Diagnosticable$36 {
-    get foregroundColor() {
-      return this[foregroundColor$];
+  var globalPosition$ = dart.privateName(long_press, "LongPressStartDetails.globalPosition");
+  var localPosition$ = dart.privateName(long_press, "LongPressStartDetails.localPosition");
+  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
+  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
+  long_press.LongPressStartDetails = class LongPressStartDetails extends core.Object {
+    get globalPosition() {
+      return this[globalPosition$];
     }
-    set foregroundColor(value) {
-      super.foregroundColor = value;
+    set globalPosition(value) {
+      super.globalPosition = value;
     }
-    get backgroundColor() {
-      return this[backgroundColor$];
+    get localPosition() {
+      return this[localPosition$];
     }
-    set backgroundColor(value) {
-      super.backgroundColor = value;
-    }
-    get focusColor() {
-      return this[focusColor$];
-    }
-    set focusColor(value) {
-      super.focusColor = value;
-    }
-    get hoverColor() {
-      return this[hoverColor$];
-    }
-    set hoverColor(value) {
-      super.hoverColor = value;
-    }
-    get splashColor() {
-      return this[splashColor$];
-    }
-    set splashColor(value) {
-      super.splashColor = value;
-    }
-    get elevation() {
-      return this[elevation$];
-    }
-    set elevation(value) {
-      super.elevation = value;
-    }
-    get focusElevation() {
-      return this[focusElevation$];
-    }
-    set focusElevation(value) {
-      super.focusElevation = value;
-    }
-    get hoverElevation() {
-      return this[hoverElevation$];
-    }
-    set hoverElevation(value) {
-      super.hoverElevation = value;
-    }
-    get disabledElevation() {
-      return this[disabledElevation$];
-    }
-    set disabledElevation(value) {
-      super.disabledElevation = value;
-    }
-    get highlightElevation() {
-      return this[highlightElevation$];
-    }
-    set highlightElevation(value) {
-      super.highlightElevation = value;
-    }
-    get shape() {
-      return this[shape$];
-    }
-    set shape(value) {
-      super.shape = value;
-    }
-    copyWith(opts) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6, t0$7, t0$8;
-      let foregroundColor = opts && 'foregroundColor' in opts ? opts.foregroundColor : null;
-      let backgroundColor = opts && 'backgroundColor' in opts ? opts.backgroundColor : null;
-      let focusColor = opts && 'focusColor' in opts ? opts.focusColor : null;
-      let hoverColor = opts && 'hoverColor' in opts ? opts.hoverColor : null;
-      let splashColor = opts && 'splashColor' in opts ? opts.splashColor : null;
-      let elevation = opts && 'elevation' in opts ? opts.elevation : null;
-      let focusElevation = opts && 'focusElevation' in opts ? opts.focusElevation : null;
-      let hoverElevation = opts && 'hoverElevation' in opts ? opts.hoverElevation : null;
-      let disabledElevation = opts && 'disabledElevation' in opts ? opts.disabledElevation : null;
-      let highlightElevation = opts && 'highlightElevation' in opts ? opts.highlightElevation : null;
-      let shape = opts && 'shape' in opts ? opts.shape : null;
-      return new floating_action_button_theme.FloatingActionButtonThemeData.new({foregroundColor: (t0 = foregroundColor, t0 == null ? this.foregroundColor : t0), backgroundColor: (t0$ = backgroundColor, t0$ == null ? this.backgroundColor : t0$), focusColor: (t0$0 = focusColor, t0$0 == null ? this.focusColor : t0$0), hoverColor: (t0$1 = hoverColor, t0$1 == null ? this.hoverColor : t0$1), splashColor: (t0$2 = splashColor, t0$2 == null ? this.splashColor : t0$2), elevation: (t0$3 = elevation, t0$3 == null ? this.elevation : t0$3), focusElevation: (t0$4 = focusElevation, t0$4 == null ? this.focusElevation : t0$4), hoverElevation: (t0$5 = hoverElevation, t0$5 == null ? this.hoverElevation : t0$5), disabledElevation: (t0$6 = disabledElevation, t0$6 == null ? this.disabledElevation : t0$6), highlightElevation: (t0$7 = highlightElevation, t0$7 == null ? this.highlightElevation : t0$7), shape: (t0$8 = shape, t0$8 == null ? this.shape : t0$8)});
-    }
-    static lerp(a, b, t) {
-      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6, t0$7, t0$8, t0$9, t0$10, t0$11, t0$12, t0$13, t0$14, t0$15, t0$16, t0$17, t0$18, t0$19;
-      if (!(t !== null)) dart.assertFailed(null, I[0], 128, 12, "t != null");
-      if (a == null && b == null) return null;
-      return new floating_action_button_theme.FloatingActionButtonThemeData.new({foregroundColor: ui.Color.lerp((t0 = a, t0 == null ? null : t0.foregroundColor), (t0$ = b, t0$ == null ? null : t0$.foregroundColor), t), backgroundColor: ui.Color.lerp((t0$0 = a, t0$0 == null ? null : t0$0.backgroundColor), (t0$1 = b, t0$1 == null ? null : t0$1.backgroundColor), t), focusColor: ui.Color.lerp((t0$2 = a, t0$2 == null ? null : t0$2.focusColor), (t0$3 = b, t0$3 == null ? null : t0$3.focusColor), t), hoverColor: ui.Color.lerp((t0$4 = a, t0$4 == null ? null : t0$4.hoverColor), (t0$5 = b, t0$5 == null ? null : t0$5.hoverColor), t), splashColor: ui.Color.lerp((t0$6 = a, t0$6 == null ? null : t0$6.splashColor), (t0$7 = b, t0$7 == null ? null : t0$7.splashColor), t), elevation: ui.lerpDouble((t0$8 = a, t0$8 == null ? null : t0$8.elevation), (t0$9 = b, t0$9 == null ? null : t0$9.elevation), t), focusElevation: ui.lerpDouble((t0$10 = a, t0$10 == null ? null : t0$10.focusElevation), (t0$11 = b, t0$11 == null ? null : t0$11.focusElevation), t), hoverElevation: ui.lerpDouble((t0$12 = a, t0$12 == null ? null : t0$12.hoverElevation), (t0$13 = b, t0$13 == null ? null : t0$13.hoverElevation), t), disabledElevation: ui.lerpDouble((t0$14 = a, t0$14 == null ? null : t0$14.disabledElevation), (t0$15 = b, t0$15 == null ? null : t0$15.disabledElevation), t), highlightElevation: ui.lerpDouble((t0$16 = a, t0$16 == null ? null : t0$16.highlightElevation), (t0$17 = b, t0$17 == null ? null : t0$17.highlightElevation), t), shape: borders.ShapeBorder.lerp((t0$18 = a, t0$18 == null ? null : t0$18.shape), (t0$19 = b, t0$19 == null ? null : t0$19.shape), t)});
-    }
-    get hashCode() {
-      return ui.hashValues(this.foregroundColor, this.backgroundColor, this.focusColor, this.hoverColor, this.splashColor, this.elevation, this.focusElevation, this.hoverElevation, this.disabledElevation, this.highlightElevation, this.shape);
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (this === other) return true;
-      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
-      return floating_action_button_theme.FloatingActionButtonThemeData.is(other) && dart.equals(other.foregroundColor, this.foregroundColor) && dart.equals(other.backgroundColor, this.backgroundColor) && dart.equals(other.focusColor, this.focusColor) && dart.equals(other.hoverColor, this.hoverColor) && dart.equals(other.splashColor, this.splashColor) && other.elevation == this.elevation && other.focusElevation == this.focusElevation && other.hoverElevation == this.hoverElevation && other.disabledElevation == this.disabledElevation && other.highlightElevation == this.highlightElevation && dart.equals(other.shape, this.shape);
-    }
-    debugFillProperties(properties) {
-      super.debugFillProperties(properties);
-      let defaultData = C[0] || CT.C0;
-      properties.add(new colors.ColorProperty.new("foregroundColor", this.foregroundColor, {defaultValue: defaultData.foregroundColor}));
-      properties.add(new colors.ColorProperty.new("backgroundColor", this.backgroundColor, {defaultValue: defaultData.backgroundColor}));
-      properties.add(new colors.ColorProperty.new("focusColor", this.focusColor, {defaultValue: defaultData.focusColor}));
-      properties.add(new colors.ColorProperty.new("hoverColor", this.hoverColor, {defaultValue: defaultData.hoverColor}));
-      properties.add(new colors.ColorProperty.new("splashColor", this.splashColor, {defaultValue: defaultData.splashColor}));
-      properties.add(new diagnostics.DoubleProperty.new("elevation", this.elevation, {defaultValue: defaultData.elevation}));
-      properties.add(new diagnostics.DoubleProperty.new("focusElevation", this.focusElevation, {defaultValue: defaultData.focusElevation}));
-      properties.add(new diagnostics.DoubleProperty.new("hoverElevation", this.hoverElevation, {defaultValue: defaultData.hoverElevation}));
-      properties.add(new diagnostics.DoubleProperty.new("disabledElevation", this.disabledElevation, {defaultValue: defaultData.disabledElevation}));
-      properties.add(new diagnostics.DoubleProperty.new("highlightElevation", this.highlightElevation, {defaultValue: defaultData.highlightElevation}));
-      properties.add(new (T.DiagnosticsPropertyOfShapeBorder()).new("shape", this.shape, {defaultValue: defaultData.shape}));
+    set localPosition(value) {
+      super.localPosition = value;
     }
   };
-  (floating_action_button_theme.FloatingActionButtonThemeData.new = function(opts) {
-    let foregroundColor = opts && 'foregroundColor' in opts ? opts.foregroundColor : null;
-    let backgroundColor = opts && 'backgroundColor' in opts ? opts.backgroundColor : null;
-    let focusColor = opts && 'focusColor' in opts ? opts.focusColor : null;
-    let hoverColor = opts && 'hoverColor' in opts ? opts.hoverColor : null;
-    let splashColor = opts && 'splashColor' in opts ? opts.splashColor : null;
-    let elevation = opts && 'elevation' in opts ? opts.elevation : null;
-    let focusElevation = opts && 'focusElevation' in opts ? opts.focusElevation : null;
-    let hoverElevation = opts && 'hoverElevation' in opts ? opts.hoverElevation : null;
-    let disabledElevation = opts && 'disabledElevation' in opts ? opts.disabledElevation : null;
-    let highlightElevation = opts && 'highlightElevation' in opts ? opts.highlightElevation : null;
-    let shape = opts && 'shape' in opts ? opts.shape : null;
-    this[foregroundColor$] = foregroundColor;
-    this[backgroundColor$] = backgroundColor;
-    this[focusColor$] = focusColor;
-    this[hoverColor$] = hoverColor;
-    this[splashColor$] = splashColor;
-    this[elevation$] = elevation;
-    this[focusElevation$] = focusElevation;
-    this[hoverElevation$] = hoverElevation;
-    this[disabledElevation$] = disabledElevation;
-    this[highlightElevation$] = highlightElevation;
-    this[shape$] = shape;
+  (long_press.LongPressStartDetails.new = function(opts) {
+    let t0;
+    let globalPosition = opts && 'globalPosition' in opts ? opts.globalPosition : C[0] || CT.C0;
+    let localPosition = opts && 'localPosition' in opts ? opts.localPosition : null;
+    this[globalPosition$] = globalPosition;
+    if (!(globalPosition !== null)) dart.assertFailed(null, I[0], 59, 15, "globalPosition != null");
+    this[localPosition$] = (t0 = localPosition, t0 == null ? globalPosition : t0);
     ;
-  }).prototype = floating_action_button_theme.FloatingActionButtonThemeData.prototype;
-  dart.addTypeTests(floating_action_button_theme.FloatingActionButtonThemeData);
-  dart.addTypeCaches(floating_action_button_theme.FloatingActionButtonThemeData);
-  dart.setMethodSignature(floating_action_button_theme.FloatingActionButtonThemeData, () => ({
-    __proto__: dart.getMethods(floating_action_button_theme.FloatingActionButtonThemeData.__proto__),
-    copyWith: dart.fnType(floating_action_button_theme.FloatingActionButtonThemeData, [], {backgroundColor: dart.nullable(ui.Color), disabledElevation: dart.nullable(core.double), elevation: dart.nullable(core.double), focusColor: dart.nullable(ui.Color), focusElevation: dart.nullable(core.double), foregroundColor: dart.nullable(ui.Color), highlightElevation: dart.nullable(core.double), hoverColor: dart.nullable(ui.Color), hoverElevation: dart.nullable(core.double), shape: dart.nullable(borders.ShapeBorder), splashColor: dart.nullable(ui.Color)}, {})
+  }).prototype = long_press.LongPressStartDetails.prototype;
+  dart.addTypeTests(long_press.LongPressStartDetails);
+  dart.addTypeCaches(long_press.LongPressStartDetails);
+  dart.setLibraryUri(long_press.LongPressStartDetails, I[1]);
+  dart.setFieldSignature(long_press.LongPressStartDetails, () => ({
+    __proto__: dart.getFields(long_press.LongPressStartDetails.__proto__),
+    globalPosition: dart.finalFieldType(ui.Offset),
+    localPosition: dart.finalFieldType(ui.Offset)
   }));
-  dart.setLibraryUri(floating_action_button_theme.FloatingActionButtonThemeData, I[1]);
-  dart.setFieldSignature(floating_action_button_theme.FloatingActionButtonThemeData, () => ({
-    __proto__: dart.getFields(floating_action_button_theme.FloatingActionButtonThemeData.__proto__),
-    foregroundColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    backgroundColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    focusColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    hoverColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    splashColor: dart.finalFieldType(dart.nullable(ui.Color)),
-    elevation: dart.finalFieldType(dart.nullable(core.double)),
-    focusElevation: dart.finalFieldType(dart.nullable(core.double)),
-    hoverElevation: dart.finalFieldType(dart.nullable(core.double)),
-    disabledElevation: dart.finalFieldType(dart.nullable(core.double)),
-    highlightElevation: dart.finalFieldType(dart.nullable(core.double)),
-    shape: dart.finalFieldType(dart.nullable(borders.ShapeBorder))
+  var globalPosition$0 = dart.privateName(long_press, "LongPressMoveUpdateDetails.globalPosition");
+  var localPosition$0 = dart.privateName(long_press, "LongPressMoveUpdateDetails.localPosition");
+  var offsetFromOrigin$ = dart.privateName(long_press, "LongPressMoveUpdateDetails.offsetFromOrigin");
+  var localOffsetFromOrigin$ = dart.privateName(long_press, "LongPressMoveUpdateDetails.localOffsetFromOrigin");
+  long_press.LongPressMoveUpdateDetails = class LongPressMoveUpdateDetails extends core.Object {
+    get globalPosition() {
+      return this[globalPosition$0];
+    }
+    set globalPosition(value) {
+      super.globalPosition = value;
+    }
+    get localPosition() {
+      return this[localPosition$0];
+    }
+    set localPosition(value) {
+      super.localPosition = value;
+    }
+    get offsetFromOrigin() {
+      return this[offsetFromOrigin$];
+    }
+    set offsetFromOrigin(value) {
+      super.offsetFromOrigin = value;
+    }
+    get localOffsetFromOrigin() {
+      return this[localOffsetFromOrigin$];
+    }
+    set localOffsetFromOrigin(value) {
+      super.localOffsetFromOrigin = value;
+    }
+  };
+  (long_press.LongPressMoveUpdateDetails.new = function(opts) {
+    let t0, t0$;
+    let globalPosition = opts && 'globalPosition' in opts ? opts.globalPosition : C[0] || CT.C0;
+    let localPosition = opts && 'localPosition' in opts ? opts.localPosition : null;
+    let offsetFromOrigin = opts && 'offsetFromOrigin' in opts ? opts.offsetFromOrigin : C[0] || CT.C0;
+    let localOffsetFromOrigin = opts && 'localOffsetFromOrigin' in opts ? opts.localOffsetFromOrigin : null;
+    this[globalPosition$0] = globalPosition;
+    this[offsetFromOrigin$] = offsetFromOrigin;
+    if (!(globalPosition !== null)) dart.assertFailed(null, I[0], 85, 15, "globalPosition != null");
+    if (!(offsetFromOrigin !== null)) dart.assertFailed(null, I[0], 86, 15, "offsetFromOrigin != null");
+    this[localPosition$0] = (t0 = localPosition, t0 == null ? globalPosition : t0);
+    this[localOffsetFromOrigin$] = (t0$ = localOffsetFromOrigin, t0$ == null ? offsetFromOrigin : t0$);
+    ;
+  }).prototype = long_press.LongPressMoveUpdateDetails.prototype;
+  dart.addTypeTests(long_press.LongPressMoveUpdateDetails);
+  dart.addTypeCaches(long_press.LongPressMoveUpdateDetails);
+  dart.setLibraryUri(long_press.LongPressMoveUpdateDetails, I[1]);
+  dart.setFieldSignature(long_press.LongPressMoveUpdateDetails, () => ({
+    __proto__: dart.getFields(long_press.LongPressMoveUpdateDetails.__proto__),
+    globalPosition: dart.finalFieldType(ui.Offset),
+    localPosition: dart.finalFieldType(ui.Offset),
+    offsetFromOrigin: dart.finalFieldType(ui.Offset),
+    localOffsetFromOrigin: dart.finalFieldType(ui.Offset)
   }));
-  dart.defineExtensionMethods(floating_action_button_theme.FloatingActionButtonThemeData, ['_equals']);
-  dart.defineExtensionAccessors(floating_action_button_theme.FloatingActionButtonThemeData, ['hashCode']);
-  dart.trackLibraries("packages/flutter/src/material/floating_action_button_theme.dart", {
-    "package:flutter/src/material/floating_action_button_theme.dart": floating_action_button_theme
+  var globalPosition$1 = dart.privateName(long_press, "LongPressEndDetails.globalPosition");
+  var localPosition$1 = dart.privateName(long_press, "LongPressEndDetails.localPosition");
+  var velocity$ = dart.privateName(long_press, "LongPressEndDetails.velocity");
+  var Velocity_pixelsPerSecond = dart.privateName(velocity_tracker, "Velocity.pixelsPerSecond");
+  long_press.LongPressEndDetails = class LongPressEndDetails extends core.Object {
+    get globalPosition() {
+      return this[globalPosition$1];
+    }
+    set globalPosition(value) {
+      super.globalPosition = value;
+    }
+    get localPosition() {
+      return this[localPosition$1];
+    }
+    set localPosition(value) {
+      super.localPosition = value;
+    }
+    get velocity() {
+      return this[velocity$];
+    }
+    set velocity(value) {
+      super.velocity = value;
+    }
+  };
+  (long_press.LongPressEndDetails.new = function(opts) {
+    let t0;
+    let globalPosition = opts && 'globalPosition' in opts ? opts.globalPosition : C[0] || CT.C0;
+    let localPosition = opts && 'localPosition' in opts ? opts.localPosition : null;
+    let velocity = opts && 'velocity' in opts ? opts.velocity : C[1] || CT.C1;
+    this[globalPosition$1] = globalPosition;
+    this[velocity$] = velocity;
+    if (!(globalPosition !== null)) dart.assertFailed(null, I[0], 122, 15, "globalPosition != null");
+    this[localPosition$1] = (t0 = localPosition, t0 == null ? globalPosition : t0);
+    ;
+  }).prototype = long_press.LongPressEndDetails.prototype;
+  dart.addTypeTests(long_press.LongPressEndDetails);
+  dart.addTypeCaches(long_press.LongPressEndDetails);
+  dart.setLibraryUri(long_press.LongPressEndDetails, I[1]);
+  dart.setFieldSignature(long_press.LongPressEndDetails, () => ({
+    __proto__: dart.getFields(long_press.LongPressEndDetails.__proto__),
+    globalPosition: dart.finalFieldType(ui.Offset),
+    localPosition: dart.finalFieldType(ui.Offset),
+    velocity: dart.finalFieldType(velocity_tracker.Velocity)
+  }));
+  var onLongPress = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPress");
+  var onLongPressStart = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPressStart");
+  var onLongPressMoveUpdate = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPressMoveUpdate");
+  var onLongPressUp = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPressUp");
+  var onLongPressEnd = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPressEnd");
+  var onSecondaryLongPress = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPress");
+  var onSecondaryLongPressStart = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPressStart");
+  var onSecondaryLongPressMoveUpdate = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPressMoveUpdate");
+  var onSecondaryLongPressUp = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPressUp");
+  var onSecondaryLongPressEnd = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPressEnd");
+  var onTertiaryLongPress = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPress");
+  var onTertiaryLongPressStart = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPressStart");
+  var onTertiaryLongPressMoveUpdate = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPressMoveUpdate");
+  var onTertiaryLongPressUp = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPressUp");
+  var onTertiaryLongPressEnd = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPressEnd");
+  var _longPressAccepted = dart.privateName(long_press, "_longPressAccepted");
+  var _longPressOrigin = dart.privateName(long_press, "_longPressOrigin");
+  var _initialButtons = dart.privateName(long_press, "_initialButtons");
+  var _velocityTracker = dart.privateName(long_press, "_velocityTracker");
+  var _checkLongPressStart = dart.privateName(long_press, "_checkLongPressStart");
+  var _checkLongPressEnd = dart.privateName(long_press, "_checkLongPressEnd");
+  var _reset = dart.privateName(long_press, "_reset");
+  var _checkLongPressMoveUpdate = dart.privateName(long_press, "_checkLongPressMoveUpdate");
+  long_press.LongPressGestureRecognizer = class LongPressGestureRecognizer extends recognizer.PrimaryPointerGestureRecognizer {
+    get onLongPress() {
+      return this[onLongPress];
+    }
+    set onLongPress(value) {
+      this[onLongPress] = value;
+    }
+    get onLongPressStart() {
+      return this[onLongPressStart];
+    }
+    set onLongPressStart(value) {
+      this[onLongPressStart] = value;
+    }
+    get onLongPressMoveUpdate() {
+      return this[onLongPressMoveUpdate];
+    }
+    set onLongPressMoveUpdate(value) {
+      this[onLongPressMoveUpdate] = value;
+    }
+    get onLongPressUp() {
+      return this[onLongPressUp];
+    }
+    set onLongPressUp(value) {
+      this[onLongPressUp] = value;
+    }
+    get onLongPressEnd() {
+      return this[onLongPressEnd];
+    }
+    set onLongPressEnd(value) {
+      this[onLongPressEnd] = value;
+    }
+    get onSecondaryLongPress() {
+      return this[onSecondaryLongPress];
+    }
+    set onSecondaryLongPress(value) {
+      this[onSecondaryLongPress] = value;
+    }
+    get onSecondaryLongPressStart() {
+      return this[onSecondaryLongPressStart];
+    }
+    set onSecondaryLongPressStart(value) {
+      this[onSecondaryLongPressStart] = value;
+    }
+    get onSecondaryLongPressMoveUpdate() {
+      return this[onSecondaryLongPressMoveUpdate];
+    }
+    set onSecondaryLongPressMoveUpdate(value) {
+      this[onSecondaryLongPressMoveUpdate] = value;
+    }
+    get onSecondaryLongPressUp() {
+      return this[onSecondaryLongPressUp];
+    }
+    set onSecondaryLongPressUp(value) {
+      this[onSecondaryLongPressUp] = value;
+    }
+    get onSecondaryLongPressEnd() {
+      return this[onSecondaryLongPressEnd];
+    }
+    set onSecondaryLongPressEnd(value) {
+      this[onSecondaryLongPressEnd] = value;
+    }
+    get onTertiaryLongPress() {
+      return this[onTertiaryLongPress];
+    }
+    set onTertiaryLongPress(value) {
+      this[onTertiaryLongPress] = value;
+    }
+    get onTertiaryLongPressStart() {
+      return this[onTertiaryLongPressStart];
+    }
+    set onTertiaryLongPressStart(value) {
+      this[onTertiaryLongPressStart] = value;
+    }
+    get onTertiaryLongPressMoveUpdate() {
+      return this[onTertiaryLongPressMoveUpdate];
+    }
+    set onTertiaryLongPressMoveUpdate(value) {
+      this[onTertiaryLongPressMoveUpdate] = value;
+    }
+    get onTertiaryLongPressUp() {
+      return this[onTertiaryLongPressUp];
+    }
+    set onTertiaryLongPressUp(value) {
+      this[onTertiaryLongPressUp] = value;
+    }
+    get onTertiaryLongPressEnd() {
+      return this[onTertiaryLongPressEnd];
+    }
+    set onTertiaryLongPressEnd(value) {
+      this[onTertiaryLongPressEnd] = value;
+    }
+    isPointerAllowed(event) {
+      switch (event.buttons) {
+        case 1:
+        {
+          if (this.onLongPressStart == null && this.onLongPress == null && this.onLongPressMoveUpdate == null && this.onLongPressEnd == null && this.onLongPressUp == null) return false;
+          break;
+        }
+        case 2:
+        {
+          if (this.onSecondaryLongPressStart == null && this.onSecondaryLongPress == null && this.onSecondaryLongPressMoveUpdate == null && this.onSecondaryLongPressEnd == null && this.onSecondaryLongPressUp == null) return false;
+          break;
+        }
+        case 4:
+        {
+          if (this.onTertiaryLongPressStart == null && this.onTertiaryLongPress == null && this.onTertiaryLongPressMoveUpdate == null && this.onTertiaryLongPressEnd == null && this.onTertiaryLongPressUp == null) return false;
+          break;
+        }
+        default:
+        {
+          return false;
+        }
+      }
+      return super.isPointerAllowed(event);
+    }
+    didExceedDeadline() {
+      this.resolve(arena.GestureDisposition.accepted);
+      this[_longPressAccepted] = true;
+      super.acceptGesture(dart.nullCheck(this.primaryPointer));
+      this[_checkLongPressStart]();
+    }
+    handlePrimaryPointer(event) {
+      if (!event.synthesized) {
+        if (events.PointerDownEvent.is(event)) {
+          this[_velocityTracker] = new velocity_tracker.VelocityTracker.withKind(event.kind);
+          dart.nullCheck(this[_velocityTracker]).addPosition(event.timeStamp, event.localPosition);
+        }
+        if (events.PointerMoveEvent.is(event)) {
+          if (!(this[_velocityTracker] != null)) dart.assertFailed(null, I[0], 383, 16, "_velocityTracker != null");
+          dart.nullCheck(this[_velocityTracker]).addPosition(event.timeStamp, event.localPosition);
+        }
+      }
+      if (events.PointerUpEvent.is(event)) {
+        if (this[_longPressAccepted] === true) {
+          this[_checkLongPressEnd](event);
+        } else {
+          this.resolve(arena.GestureDisposition.rejected);
+        }
+        this[_reset]();
+      } else if (events.PointerCancelEvent.is(event)) {
+        this[_reset]();
+      } else if (events.PointerDownEvent.is(event)) {
+        this[_longPressOrigin] = recognizer.OffsetPair.fromEventPosition(event);
+        this[_initialButtons] = event.buttons;
+      } else if (events.PointerMoveEvent.is(event)) {
+        if (event.buttons !== this[_initialButtons]) {
+          this.resolve(arena.GestureDisposition.rejected);
+          this.stopTrackingPointer(dart.nullCheck(this.primaryPointer));
+        } else if (this[_longPressAccepted]) {
+          this[_checkLongPressMoveUpdate](event);
+        }
+      }
+    }
+    [_checkLongPressStart]() {
+      switch (this[_initialButtons]) {
+        case 1:
+        {
+          if (this.onLongPressStart != null) {
+            let details = new long_press.LongPressStartDetails.new({globalPosition: dart.nullCheck(this[_longPressOrigin]).global, localPosition: dart.nullCheck(this[_longPressOrigin]).local});
+            this.invokeCallback(dart.void, "onLongPressStart", dart.fn(() => dart.nullCheck(this.onLongPressStart)(details), T.VoidTovoid()));
+          }
+          if (this.onLongPress != null) {
+            this.invokeCallback(dart.void, "onLongPress", dart.nullCheck(this.onLongPress));
+          }
+          break;
+        }
+        case 2:
+        {
+          if (this.onSecondaryLongPressStart != null) {
+            let details = new long_press.LongPressStartDetails.new({globalPosition: dart.nullCheck(this[_longPressOrigin]).global, localPosition: dart.nullCheck(this[_longPressOrigin]).local});
+            this.invokeCallback(dart.void, "onSecondaryLongPressStart", dart.fn(() => dart.nullCheck(this.onSecondaryLongPressStart)(details), T.VoidTovoid()));
+          }
+          if (this.onSecondaryLongPress != null) {
+            this.invokeCallback(dart.void, "onSecondaryLongPress", dart.nullCheck(this.onSecondaryLongPress));
+          }
+          break;
+        }
+        case 4:
+        {
+          if (this.onTertiaryLongPressStart != null) {
+            let details = new long_press.LongPressStartDetails.new({globalPosition: dart.nullCheck(this[_longPressOrigin]).global, localPosition: dart.nullCheck(this[_longPressOrigin]).local});
+            this.invokeCallback(dart.void, "onTertiaryLongPressStart", dart.fn(() => dart.nullCheck(this.onTertiaryLongPressStart)(details), T.VoidTovoid()));
+          }
+          if (this.onTertiaryLongPress != null) {
+            this.invokeCallback(dart.void, "onTertiaryLongPress", dart.nullCheck(this.onTertiaryLongPress));
+          }
+          break;
+        }
+        default:
+        {
+          if (!false) dart.assertFailed("Unhandled button " + dart.str(this[_initialButtons]), I[0], 451, 16, "false");
+        }
+      }
+    }
+    [_checkLongPressMoveUpdate](event) {
+      let details = new long_press.LongPressMoveUpdateDetails.new({globalPosition: event.position, localPosition: event.localPosition, offsetFromOrigin: event.position['-'](dart.nullCheck(this[_longPressOrigin]).global), localOffsetFromOrigin: event.localPosition['-'](dart.nullCheck(this[_longPressOrigin]).local)});
+      switch (this[_initialButtons]) {
+        case 1:
+        {
+          if (this.onLongPressMoveUpdate != null) {
+            this.invokeCallback(dart.void, "onLongPressMoveUpdate", dart.fn(() => dart.nullCheck(this.onLongPressMoveUpdate)(details), T.VoidTovoid()));
+          }
+          break;
+        }
+        case 2:
+        {
+          if (this.onSecondaryLongPressMoveUpdate != null) {
+            this.invokeCallback(dart.void, "onSecondaryLongPressMoveUpdate", dart.fn(() => dart.nullCheck(this.onSecondaryLongPressMoveUpdate)(details), T.VoidTovoid()));
+          }
+          break;
+        }
+        case 4:
+        {
+          if (this.onTertiaryLongPressMoveUpdate != null) {
+            this.invokeCallback(dart.void, "onTertiaryLongPressMoveUpdate", dart.fn(() => dart.nullCheck(this.onTertiaryLongPressMoveUpdate)(details), T.VoidTovoid()));
+          }
+          break;
+        }
+        default:
+        {
+          if (!false) dart.assertFailed("Unhandled button " + dart.str(this[_initialButtons]), I[0], 479, 16, "false");
+        }
+      }
+    }
+    [_checkLongPressEnd](event) {
+      let estimate = dart.nullCheck(this[_velocityTracker]).getVelocityEstimate();
+      let velocity = estimate == null ? velocity_tracker.Velocity.zero : new velocity_tracker.Velocity.new({pixelsPerSecond: estimate.pixelsPerSecond});
+      let details = new long_press.LongPressEndDetails.new({globalPosition: event.position, localPosition: event.localPosition, velocity: velocity});
+      this[_velocityTracker] = null;
+      switch (this[_initialButtons]) {
+        case 1:
+        {
+          if (this.onLongPressEnd != null) {
+            this.invokeCallback(dart.void, "onLongPressEnd", dart.fn(() => dart.nullCheck(this.onLongPressEnd)(details), T.VoidTovoid()));
+          }
+          if (this.onLongPressUp != null) {
+            this.invokeCallback(dart.void, "onLongPressUp", dart.nullCheck(this.onLongPressUp));
+          }
+          break;
+        }
+        case 2:
+        {
+          if (this.onSecondaryLongPressEnd != null) {
+            this.invokeCallback(dart.void, "onSecondaryLongPressEnd", dart.fn(() => dart.nullCheck(this.onSecondaryLongPressEnd)(details), T.VoidTovoid()));
+          }
+          if (this.onSecondaryLongPressUp != null) {
+            this.invokeCallback(dart.void, "onSecondaryLongPressUp", dart.nullCheck(this.onSecondaryLongPressUp));
+          }
+          break;
+        }
+        case 4:
+        {
+          if (this.onTertiaryLongPressEnd != null) {
+            this.invokeCallback(dart.void, "onTertiaryLongPressEnd", dart.fn(() => dart.nullCheck(this.onTertiaryLongPressEnd)(details), T.VoidTovoid()));
+          }
+          if (this.onTertiaryLongPressUp != null) {
+            this.invokeCallback(dart.void, "onTertiaryLongPressUp", dart.nullCheck(this.onTertiaryLongPressUp));
+          }
+          break;
+        }
+        default:
+        {
+          if (!false) dart.assertFailed("Unhandled button " + dart.str(this[_initialButtons]), I[0], 521, 16, "false");
+        }
+      }
+    }
+    [_reset]() {
+      this[_longPressAccepted] = false;
+      this[_longPressOrigin] = null;
+      this[_initialButtons] = null;
+      this[_velocityTracker] = null;
+    }
+    resolve(disposition) {
+      if (this[_longPressAccepted] && disposition === arena.GestureDisposition.rejected) {
+        this[_reset]();
+      }
+      super.resolve(disposition);
+    }
+    acceptGesture(pointer) {
+    }
+    get debugDescription() {
+      return "long press";
+    }
+  };
+  (long_press.LongPressGestureRecognizer.new = function(opts) {
+    let t0;
+    let duration = opts && 'duration' in opts ? opts.duration : null;
+    let postAcceptSlopTolerance = opts && 'postAcceptSlopTolerance' in opts ? opts.postAcceptSlopTolerance : null;
+    let kind = opts && 'kind' in opts ? opts.kind : null;
+    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
+    this[_longPressAccepted] = false;
+    this[_longPressOrigin] = null;
+    this[_initialButtons] = null;
+    this[onLongPress] = null;
+    this[onLongPressStart] = null;
+    this[onLongPressMoveUpdate] = null;
+    this[onLongPressUp] = null;
+    this[onLongPressEnd] = null;
+    this[onSecondaryLongPress] = null;
+    this[onSecondaryLongPressStart] = null;
+    this[onSecondaryLongPressMoveUpdate] = null;
+    this[onSecondaryLongPressUp] = null;
+    this[onSecondaryLongPressEnd] = null;
+    this[onTertiaryLongPress] = null;
+    this[onTertiaryLongPressStart] = null;
+    this[onTertiaryLongPressMoveUpdate] = null;
+    this[onTertiaryLongPressUp] = null;
+    this[onTertiaryLongPressEnd] = null;
+    this[_velocityTracker] = null;
+    long_press.LongPressGestureRecognizer.__proto__.new.call(this, {deadline: (t0 = duration, t0 == null ? constants.kLongPressTimeout : t0), postAcceptSlopTolerance: postAcceptSlopTolerance, kind: kind, debugOwner: debugOwner});
+    ;
+  }).prototype = long_press.LongPressGestureRecognizer.prototype;
+  dart.addTypeTests(long_press.LongPressGestureRecognizer);
+  dart.addTypeCaches(long_press.LongPressGestureRecognizer);
+  dart.setMethodSignature(long_press.LongPressGestureRecognizer, () => ({
+    __proto__: dart.getMethods(long_press.LongPressGestureRecognizer.__proto__),
+    handlePrimaryPointer: dart.fnType(dart.void, [events.PointerEvent]),
+    [_checkLongPressStart]: dart.fnType(dart.void, []),
+    [_checkLongPressMoveUpdate]: dart.fnType(dart.void, [events.PointerEvent]),
+    [_checkLongPressEnd]: dart.fnType(dart.void, [events.PointerEvent]),
+    [_reset]: dart.fnType(dart.void, [])
+  }));
+  dart.setGetterSignature(long_press.LongPressGestureRecognizer, () => ({
+    __proto__: dart.getGetters(long_press.LongPressGestureRecognizer.__proto__),
+    debugDescription: core.String
+  }));
+  dart.setLibraryUri(long_press.LongPressGestureRecognizer, I[1]);
+  dart.setFieldSignature(long_press.LongPressGestureRecognizer, () => ({
+    __proto__: dart.getFields(long_press.LongPressGestureRecognizer.__proto__),
+    [_longPressAccepted]: dart.fieldType(core.bool),
+    [_longPressOrigin]: dart.fieldType(dart.nullable(recognizer.OffsetPair)),
+    [_initialButtons]: dart.fieldType(dart.nullable(core.int)),
+    onLongPress: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
+    onLongPressStart: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressStartDetails]))),
+    onLongPressMoveUpdate: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressMoveUpdateDetails]))),
+    onLongPressUp: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
+    onLongPressEnd: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressEndDetails]))),
+    onSecondaryLongPress: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
+    onSecondaryLongPressStart: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressStartDetails]))),
+    onSecondaryLongPressMoveUpdate: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressMoveUpdateDetails]))),
+    onSecondaryLongPressUp: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
+    onSecondaryLongPressEnd: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressEndDetails]))),
+    onTertiaryLongPress: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
+    onTertiaryLongPressStart: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressStartDetails]))),
+    onTertiaryLongPressMoveUpdate: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressMoveUpdateDetails]))),
+    onTertiaryLongPressUp: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
+    onTertiaryLongPressEnd: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressEndDetails]))),
+    [_velocityTracker]: dart.fieldType(dart.nullable(velocity_tracker.VelocityTracker))
+  }));
+  dart.trackLibraries("packages/flutter/src/gestures/long_press.dart", {
+    "package:flutter/src/gestures/long_press.dart": long_press
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["floating_action_button_theme.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAgDe;;;;;;IAIA;;;;;;IAGA;;;;;;IAIA;;;;;;IAGA;;;;;;IAIC;;;;;;IAMA;;;;;;IAMA;;;;;;IAIA;;;;;;IAIA;;;;;;IAGK;;;;;;;;UAKV;UACA;UACA;UACA;UACA;UACC;UACA;UACA;UACA;UACA;UACK;AAEb,YAAO,uFAC4B,KAAhB,eAAe,EAAf,aAAwB,8CACR,MAAhB,eAAe,EAAf,cAAwB,0CAClB,OAAX,UAAU,EAAV,eAAmB,sCACR,OAAX,UAAU,EAAV,eAAmB,uCACN,OAAZ,WAAW,EAAX,eAAoB,sCACZ,OAAV,SAAS,EAAT,eAAkB,yCACE,OAAf,cAAc,EAAd,eAAuB,8CACR,OAAf,cAAc,EAAd,eAAuB,iDACF,OAAlB,iBAAiB,EAAjB,eAA0B,qDACN,OAAnB,kBAAkB,EAAlB,eAA2B,yCAClC,OAAN,KAAK,EAAL,eAAc;IAEzB;gBAO0E,GAAkC,GAAU;;AACpH,YAAO,AAAE,CAAD;AACR,UAAI,AAAE,CAAD,YAAY,AAAE,CAAD,UAChB,MAAO;AACT,YAAO,sFACkB,oBAAK,CAAC,eAAD,OAAG,4BAAiB,CAAC,gBAAD,OAAG,sBAAiB,CAAC,oBAC9C,sBAAK,CAAC,iBAAD,OAAG,+BAAiB,CAAC,iBAAD,OAAG,uBAAiB,CAAC,eACnD,sBAAK,CAAC,iBAAD,OAAG,0BAAY,CAAC,iBAAD,OAAG,kBAAY,CAAC,eACpC,sBAAK,CAAC,iBAAD,OAAG,0BAAY,CAAC,iBAAD,OAAG,kBAAY,CAAC,gBACnC,sBAAK,CAAC,iBAAD,OAAG,2BAAa,CAAC,iBAAD,OAAG,mBAAa,CAAC,cAC9C,sBAAW,CAAC,iBAAD,OAAG,yBAAW,CAAC,iBAAD,OAAG,iBAAW,CAAC,mBACnC,uBAAW,CAAC,kBAAD,OAAG,gCAAgB,CAAC,kBAAD,OAAG,uBAAgB,CAAC,mBAClD,uBAAW,CAAC,kBAAD,OAAG,gCAAgB,CAAC,kBAAD,OAAG,uBAAgB,CAAC,sBAC/C,uBAAW,CAAC,kBAAD,OAAG,mCAAmB,CAAC,kBAAD,OAAG,0BAAmB,CAAC,uBACvD,uBAAW,CAAC,kBAAD,OAAG,oCAAoB,CAAC,kBAAD,OAAG,2BAAoB,CAAC,UAC3D,kCAAK,CAAC,kBAAD,OAAG,uBAAO,CAAC,kBAAD,OAAG,cAAO,CAAC;IAEjD;;AAIE,YAAO,eACL,sBACA,sBACA,iBACA,iBACA,kBACA,gBACA,qBACA,qBACA,wBACA,yBACA;IAEJ;;UAGwB;AACtB,UAAI,AAAU,SAAM,KAAK,EACvB,MAAO;AACT,WAAI,AAAM,KAAD,uBAAgB,qBACvB,MAAO;AACT,YAAa,AAWT,+DAXG,KAAK,KACiB,YAAtB,AAAM,KAAD,kBAAoB,yBACH,YAAtB,AAAM,KAAD,kBAAoB,yBACR,YAAjB,AAAM,KAAD,aAAe,oBACH,YAAjB,AAAM,KAAD,aAAe,oBACF,YAAlB,AAAM,KAAD,cAAgB,qBACrB,AAAM,AAAU,KAAX,cAAc,kBACnB,AAAM,AAAe,KAAhB,mBAAmB,uBACxB,AAAM,AAAe,KAAhB,mBAAmB,uBACxB,AAAM,AAAkB,KAAnB,sBAAsB,0BAC3B,AAAM,AAAmB,KAApB,uBAAuB,2BAChB,YAAZ,AAAM,KAAD,QAAU;IACxB;wBAGqD;AACd,MAA/B,0BAAoB,UAAU;AACA;AAEwE,MAA5G,AAAW,UAAD,KAAK,6BAAc,mBAAmB,qCAA+B,AAAY,WAAD;AACkB,MAA5G,AAAW,UAAD,KAAK,6BAAc,mBAAmB,qCAA+B,AAAY,WAAD;AACG,MAA7F,AAAW,UAAD,KAAK,6BAAc,cAAc,gCAA0B,AAAY,WAAD;AACa,MAA7F,AAAW,UAAD,KAAK,6BAAc,cAAc,gCAA0B,AAAY,WAAD;AACgB,MAAhG,AAAW,UAAD,KAAK,6BAAc,eAAe,iCAA2B,AAAY,WAAD;AACS,MAA3F,AAAW,UAAD,KAAK,mCAAe,aAAa,+BAAyB,AAAY,WAAD;AAC2B,MAA1G,AAAW,UAAD,KAAK,mCAAe,kBAAkB,oCAA8B,AAAY,WAAD;AACiB,MAA1G,AAAW,UAAD,KAAK,mCAAe,kBAAkB,oCAA8B,AAAY,WAAD;AAC0B,MAAnH,AAAW,UAAD,KAAK,mCAAe,qBAAqB,uCAAiC,AAAY,WAAD;AACuB,MAAtH,AAAW,UAAD,KAAK,mCAAe,sBAAsB,wCAAkC,AAAY,WAAD;AACA,MAAjG,AAAW,UAAD,KAAK,+CAAiC,SAAS,2BAAqB,AAAY,WAAD;IAC3F;;;QArKO;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;IAVA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;;EACL","file":"../../../../../../../packages/flutter/src/material/floating_action_button_theme.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["long_press.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/gestures/long_press.dart.lib.js"}');
   // Exports:
   return {
-    src__material__floating_action_button_theme: floating_action_button_theme
+    src__gestures__long_press: long_press
   };
 }));
 
-//# sourceMappingURL=floating_action_button_theme.dart.lib.js.map
+//# sourceMappingURL=long_press.dart.lib.js.map

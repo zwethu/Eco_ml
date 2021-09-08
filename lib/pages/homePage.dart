@@ -25,6 +25,11 @@ class _HomePageState extends State<HomePage> {
     SettingPage(),
   ];
 
+@override
+  void dispose() {
+  //  Hive.close();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(

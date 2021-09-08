@@ -1,689 +1,894 @@
-define(['dart_sdk', 'packages/flutter/src/painting/basic_types.dart'], (function load__packages__flutter__src__painting__edge_insets_dart(dart_sdk, packages__flutter__src__painting__basic_types$46dart) {
+define(['dart_sdk', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/rendering/layout_helper.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__rendering__wrap_dart(dart_sdk, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__rendering__layout_helper$46dart, packages__flutter__src__foundation__debug$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
+  const math = dart_sdk.math;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
+  const layer = packages__flutter__src__rendering__layer$46dart.src__rendering__layer;
   const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
-  var edge_insets = Object.create(dart.library);
-  var $clamp = dartx.clamp;
-  var $toStringAsFixed = dartx.toStringAsFixed;
-  var $truncate = dartx.truncate;
-  var $toDouble = dartx.toDouble;
-  var $modulo = dartx['%'];
+  const layout_helper = packages__flutter__src__rendering__layout_helper$46dart.src__rendering__layout_helper;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  var wrap = Object.create(dart.library);
+  var $runtimeType = dartx.runtimeType;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $add = dartx.add;
+  var $length = dartx.length;
+  var $_get = dartx._get;
   dart._checkModuleNullSafetyMode(true);
+  var T = {
+    RenderBoxAndBoxConstraintsToSize: () => (T.RenderBoxAndBoxConstraintsToSize = dart.constFn(dart.fnType(ui.Size, [box.RenderBox, box.BoxConstraints])))(),
+    JSArrayOf_RunMetrics: () => (T.JSArrayOf_RunMetrics = dart.constFn(_interceptors.JSArray$(wrap._RunMetrics)))(),
+    EnumPropertyOfAxis: () => (T.EnumPropertyOfAxis = dart.constFn(diagnostics.EnumProperty$(basic_types.Axis)))(),
+    EnumPropertyOfWrapAlignment: () => (T.EnumPropertyOfWrapAlignment = dart.constFn(diagnostics.EnumProperty$(wrap.WrapAlignment)))(),
+    EnumPropertyOfTextDirection: () => (T.EnumPropertyOfTextDirection = dart.constFn(diagnostics.EnumProperty$(ui.TextDirection)))(),
+    EnumPropertyOfVerticalDirection: () => (T.EnumPropertyOfVerticalDirection = dart.constFn(diagnostics.EnumProperty$(basic_types.VerticalDirection)))()
+  };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name]: "Axis.horizontal",
+        __proto__: wrap.WrapAlignment.prototype,
+        [_name$]: "WrapAlignment.start",
         index: 0
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name]: "Axis.vertical",
+        __proto__: wrap.WrapAlignment.prototype,
+        [_name$]: "WrapAlignment.end",
         index: 1
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: edge_insets._MixedEdgeInsets.prototype,
-        [_MixedEdgeInsets__bottom]: 1 / 0,
-        [_MixedEdgeInsets__top]: 1 / 0,
-        [_MixedEdgeInsets__end]: 1 / 0,
-        [_MixedEdgeInsets__start]: 1 / 0,
-        [_MixedEdgeInsets__right]: 1 / 0,
-        [_MixedEdgeInsets__left]: 1 / 0
+        __proto__: wrap.WrapAlignment.prototype,
+        [_name$]: "WrapAlignment.center",
+        index: 2
       });
     },
     get C3() {
       return C[3] = dart.const({
-        __proto__: edge_insets.EdgeInsets.prototype,
-        [bottom$]: 0,
-        [right$]: 0,
-        [top$]: 0,
-        [left$]: 0
+        __proto__: wrap.WrapAlignment.prototype,
+        [_name$]: "WrapAlignment.spaceBetween",
+        index: 3
       });
     },
     get C4() {
       return C[4] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name$]: "TextDirection.rtl",
-        index: 0
+        __proto__: wrap.WrapAlignment.prototype,
+        [_name$]: "WrapAlignment.spaceAround",
+        index: 4
       });
     },
     get C5() {
       return C[5] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name$]: "TextDirection.ltr",
-        index: 1
+        __proto__: wrap.WrapAlignment.prototype,
+        [_name$]: "WrapAlignment.spaceEvenly",
+        index: 5
       });
     },
     get C6() {
-      return C[6] = dart.const({
-        __proto__: edge_insets.EdgeInsetsDirectional.prototype,
-        [bottom$0]: 0,
-        [end$]: 0,
-        [top$0]: 0,
-        [start$]: 0
+      return C[6] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], wrap.WrapAlignment);
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: wrap.WrapCrossAlignment.prototype,
+        [_name$]: "WrapCrossAlignment.start",
+        index: 0
       });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: wrap.WrapCrossAlignment.prototype,
+        [_name$]: "WrapCrossAlignment.end",
+        index: 1
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: wrap.WrapCrossAlignment.prototype,
+        [_name$]: "WrapCrossAlignment.center",
+        index: 2
+      });
+    },
+    get C10() {
+      return C[10] = dart.constList([C[7] || CT.C7, C[8] || CT.C8, C[9] || CT.C9], wrap.WrapCrossAlignment);
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.horizontal",
+        index: 0
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: basic_types.VerticalDirection.prototype,
+        [_name]: "VerticalDirection.down",
+        index: 1
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: ui.Clip.prototype,
+        [_name$0]: "Clip.none",
+        index: 0
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: basic_types.Axis.prototype,
+        [_name]: "Axis.vertical",
+        index: 1
+      });
+    },
+    get C15() {
+      return C[15] = dart.fn(layout_helper.ChildLayoutHelper.dryLayoutChild, T.RenderBoxAndBoxConstraintsToSize());
     }
   }, false);
-  var C = Array(7).fill(void 0);
+  var C = Array(16).fill(void 0);
   var I = [
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/painting/edge_insets.dart",
-    "package:flutter/src/painting/edge_insets.dart"
+    "package:flutter/src/rendering/wrap.dart",
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/rendering/wrap.dart"
   ];
-  var _left = dart.privateName(edge_insets, "_left");
-  var _right = dart.privateName(edge_insets, "_right");
-  var _start = dart.privateName(edge_insets, "_start");
-  var _end = dart.privateName(edge_insets, "_end");
-  var _top = dart.privateName(edge_insets, "_top");
-  var _bottom = dart.privateName(edge_insets, "_bottom");
+  var _name$ = dart.privateName(wrap, "_name");
+  wrap.WrapAlignment = class WrapAlignment extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (wrap.WrapAlignment.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = wrap.WrapAlignment.prototype;
+  dart.addTypeTests(wrap.WrapAlignment);
+  dart.addTypeCaches(wrap.WrapAlignment);
+  dart.setLibraryUri(wrap.WrapAlignment, I[0]);
+  dart.setFieldSignature(wrap.WrapAlignment, () => ({
+    __proto__: dart.getFields(wrap.WrapAlignment.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(wrap.WrapAlignment, ['toString']);
+  wrap.WrapAlignment.start = C[0] || CT.C0;
+  wrap.WrapAlignment.end = C[1] || CT.C1;
+  wrap.WrapAlignment.center = C[2] || CT.C2;
+  wrap.WrapAlignment.spaceBetween = C[3] || CT.C3;
+  wrap.WrapAlignment.spaceAround = C[4] || CT.C4;
+  wrap.WrapAlignment.spaceEvenly = C[5] || CT.C5;
+  wrap.WrapAlignment.values = C[6] || CT.C6;
+  wrap.WrapCrossAlignment = class WrapCrossAlignment extends core.Object {
+    toString() {
+      return this[_name$];
+    }
+  };
+  (wrap.WrapCrossAlignment.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = wrap.WrapCrossAlignment.prototype;
+  dart.addTypeTests(wrap.WrapCrossAlignment);
+  dart.addTypeCaches(wrap.WrapCrossAlignment);
+  dart.setLibraryUri(wrap.WrapCrossAlignment, I[0]);
+  dart.setFieldSignature(wrap.WrapCrossAlignment, () => ({
+    __proto__: dart.getFields(wrap.WrapCrossAlignment.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(wrap.WrapCrossAlignment, ['toString']);
+  wrap.WrapCrossAlignment.start = C[7] || CT.C7;
+  wrap.WrapCrossAlignment.end = C[8] || CT.C8;
+  wrap.WrapCrossAlignment.center = C[9] || CT.C9;
+  wrap.WrapCrossAlignment.values = C[10] || CT.C10;
+  wrap._RunMetrics = class _RunMetrics extends core.Object {};
+  (wrap._RunMetrics.new = function(mainAxisExtent, crossAxisExtent, childCount) {
+    this.mainAxisExtent = mainAxisExtent;
+    this.crossAxisExtent = crossAxisExtent;
+    this.childCount = childCount;
+    ;
+  }).prototype = wrap._RunMetrics.prototype;
+  dart.addTypeTests(wrap._RunMetrics);
+  dart.addTypeCaches(wrap._RunMetrics);
+  dart.setLibraryUri(wrap._RunMetrics, I[0]);
+  dart.setFieldSignature(wrap._RunMetrics, () => ({
+    __proto__: dart.getFields(wrap._RunMetrics.__proto__),
+    mainAxisExtent: dart.finalFieldType(core.double),
+    crossAxisExtent: dart.finalFieldType(core.double),
+    childCount: dart.finalFieldType(core.int)
+  }));
+  var _runIndex = dart.privateName(wrap, "_runIndex");
+  wrap.WrapParentData = class WrapParentData extends box.ContainerBoxParentData$(box.RenderBox) {};
+  (wrap.WrapParentData.new = function() {
+    this[_runIndex] = 0;
+    wrap.WrapParentData.__proto__.new.call(this);
+    ;
+  }).prototype = wrap.WrapParentData.prototype;
+  dart.addTypeTests(wrap.WrapParentData);
+  dart.addTypeCaches(wrap.WrapParentData);
+  dart.setLibraryUri(wrap.WrapParentData, I[0]);
+  dart.setFieldSignature(wrap.WrapParentData, () => ({
+    __proto__: dart.getFields(wrap.WrapParentData.__proto__),
+    [_runIndex]: dart.fieldType(core.int)
+  }));
   var _name = dart.privateName(basic_types, "_name");
-  var _MixedEdgeInsets__bottom = dart.privateName(edge_insets, "_MixedEdgeInsets._bottom");
-  var _MixedEdgeInsets__top = dart.privateName(edge_insets, "_MixedEdgeInsets._top");
-  var _MixedEdgeInsets__end = dart.privateName(edge_insets, "_MixedEdgeInsets._end");
-  var _MixedEdgeInsets__start = dart.privateName(edge_insets, "_MixedEdgeInsets._start");
-  var _MixedEdgeInsets__right = dart.privateName(edge_insets, "_MixedEdgeInsets._right");
-  var _MixedEdgeInsets__left = dart.privateName(edge_insets, "_MixedEdgeInsets._left");
-  edge_insets.EdgeInsetsGeometry = class EdgeInsetsGeometry extends core.Object {
-    get isNonNegative() {
-      return this[_left] >= 0.0 && this[_right] >= 0.0 && this[_start] >= 0.0 && this[_end] >= 0.0 && this[_top] >= 0.0 && this[_bottom] >= 0.0;
+  var _name$0 = dart.privateName(ui, "_name");
+  var _clipBehavior = dart.privateName(wrap, "_clipBehavior");
+  var _hasVisualOverflow = dart.privateName(wrap, "_hasVisualOverflow");
+  var _clipRectLayer = dart.privateName(wrap, "_clipRectLayer");
+  var _direction = dart.privateName(wrap, "_direction");
+  var _alignment = dart.privateName(wrap, "_alignment");
+  var _spacing = dart.privateName(wrap, "_spacing");
+  var _runAlignment = dart.privateName(wrap, "_runAlignment");
+  var _runSpacing = dart.privateName(wrap, "_runSpacing");
+  var _crossAxisAlignment = dart.privateName(wrap, "_crossAxisAlignment");
+  var _textDirection = dart.privateName(wrap, "_textDirection");
+  var _verticalDirection = dart.privateName(wrap, "_verticalDirection");
+  var _debugHasNecessaryDirections = dart.privateName(wrap, "_debugHasNecessaryDirections");
+  var _getMainAxisExtent = dart.privateName(wrap, "_getMainAxisExtent");
+  var _getCrossAxisExtent = dart.privateName(wrap, "_getCrossAxisExtent");
+  var _getOffset = dart.privateName(wrap, "_getOffset");
+  var _getChildCrossAxisOffset = dart.privateName(wrap, "_getChildCrossAxisOffset");
+  var _computeDryLayout = dart.privateName(wrap, "_computeDryLayout");
+  const RenderBox_ContainerRenderObjectMixin$36 = class RenderBox_ContainerRenderObjectMixin extends box.RenderBox {};
+  (RenderBox_ContainerRenderObjectMixin$36.new = function() {
+    object.ContainerRenderObjectMixin$(box.RenderBox, wrap.WrapParentData)[dart.mixinNew].call(this);
+    RenderBox_ContainerRenderObjectMixin$36.__proto__.new.call(this);
+  }).prototype = RenderBox_ContainerRenderObjectMixin$36.prototype;
+  dart.applyMixin(RenderBox_ContainerRenderObjectMixin$36, object.ContainerRenderObjectMixin$(box.RenderBox, wrap.WrapParentData));
+  const RenderBox_RenderBoxContainerDefaultsMixin$36 = class RenderBox_RenderBoxContainerDefaultsMixin extends RenderBox_ContainerRenderObjectMixin$36 {};
+  (RenderBox_RenderBoxContainerDefaultsMixin$36.new = function() {
+    RenderBox_RenderBoxContainerDefaultsMixin$36.__proto__.new.call(this);
+  }).prototype = RenderBox_RenderBoxContainerDefaultsMixin$36.prototype;
+  dart.applyMixin(RenderBox_RenderBoxContainerDefaultsMixin$36, box.RenderBoxContainerDefaultsMixin$(box.RenderBox, wrap.WrapParentData));
+  wrap.RenderWrap = class RenderWrap extends RenderBox_RenderBoxContainerDefaultsMixin$36 {
+    get direction() {
+      return this[_direction];
     }
-    get horizontal() {
-      return this[_left] + this[_right] + this[_start] + this[_end];
+    set direction(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[1], 152, 12, "value != null");
+      if (this[_direction] === value) return;
+      this[_direction] = value;
+      this.markNeedsLayout();
     }
-    get vertical() {
-      return this[_top] + this[_bottom];
+    get alignment() {
+      return this[_alignment];
     }
-    along(axis) {
-      if (!(axis !== null)) dart.assertFailed(null, I[0], 68, 12, "axis != null");
-      switch (axis) {
+    set alignment(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[1], 175, 12, "value != null");
+      if (this[_alignment] === value) return;
+      this[_alignment] = value;
+      this.markNeedsLayout();
+    }
+    get spacing() {
+      return this[_spacing];
+    }
+    set spacing(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[1], 196, 12, "value != null");
+      if (this[_spacing] === value) return;
+      this[_spacing] = value;
+      this.markNeedsLayout();
+    }
+    get runAlignment() {
+      return this[_runAlignment];
+    }
+    set runAlignment(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[1], 220, 12, "value != null");
+      if (this[_runAlignment] === value) return;
+      this[_runAlignment] = value;
+      this.markNeedsLayout();
+    }
+    get runSpacing() {
+      return this[_runSpacing];
+    }
+    set runSpacing(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[1], 240, 12, "value != null");
+      if (this[_runSpacing] === value) return;
+      this[_runSpacing] = value;
+      this.markNeedsLayout();
+    }
+    get crossAxisAlignment() {
+      return this[_crossAxisAlignment];
+    }
+    set crossAxisAlignment(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[1], 265, 12, "value != null");
+      if (this[_crossAxisAlignment] === value) return;
+      this[_crossAxisAlignment] = value;
+      this.markNeedsLayout();
+    }
+    get textDirection() {
+      return this[_textDirection];
+    }
+    set textDirection(value) {
+      if (this[_textDirection] != value) {
+        this[_textDirection] = value;
+        this.markNeedsLayout();
+      }
+    }
+    get verticalDirection() {
+      return this[_verticalDirection];
+    }
+    set verticalDirection(value) {
+      if (this[_verticalDirection] !== value) {
+        this[_verticalDirection] = value;
+        this.markNeedsLayout();
+      }
+    }
+    get clipBehavior() {
+      return this[_clipBehavior];
+    }
+    set clipBehavior(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[1], 341, 12, "value != null");
+      if (value !== this[_clipBehavior]) {
+        this[_clipBehavior] = value;
+        this.markNeedsPaint();
+        this.markNeedsSemanticsUpdate();
+      }
+    }
+    get [_debugHasNecessaryDirections]() {
+      if (!(this.direction !== null)) dart.assertFailed(null, I[1], 350, 12, "direction != null");
+      if (!(this.alignment !== null)) dart.assertFailed(null, I[1], 351, 12, "alignment != null");
+      if (!(this.runAlignment !== null)) dart.assertFailed(null, I[1], 352, 12, "runAlignment != null");
+      if (!(this.crossAxisAlignment !== null)) dart.assertFailed(null, I[1], 353, 12, "crossAxisAlignment != null");
+      if (this.firstChild != null && !dart.equals(this.lastChild, this.firstChild)) {
+        switch (this.direction) {
+          case C[11] || CT.C11:
+          {
+            if (!(this.textDirection != null)) dart.assertFailed("Horizontal " + dart.str(this[$runtimeType]) + " with multiple children has a null textDirection, so the layout order is undefined.", I[1], 358, 18, "textDirection != null");
+            break;
+          }
+          case C[14] || CT.C14:
+          {
+            if (!(this.verticalDirection !== null)) dart.assertFailed("Vertical " + dart.str(this[$runtimeType]) + " with multiple children has a null verticalDirection, so the layout order is undefined.", I[1], 361, 18, "verticalDirection != null");
+            break;
+          }
+        }
+      }
+      if (this.alignment === wrap.WrapAlignment.start || this.alignment === wrap.WrapAlignment.end) {
+        switch (this.direction) {
+          case C[11] || CT.C11:
+          {
+            if (!(this.textDirection != null)) dart.assertFailed("Horizontal " + dart.str(this[$runtimeType]) + " with alignment " + dart.str(this.alignment) + " has a null textDirection, so the alignment cannot be resolved.", I[1], 368, 18, "textDirection != null");
+            break;
+          }
+          case C[14] || CT.C14:
+          {
+            if (!(this.verticalDirection !== null)) dart.assertFailed("Vertical " + dart.str(this[$runtimeType]) + " with alignment " + dart.str(this.alignment) + " has a null verticalDirection, so the alignment cannot be resolved.", I[1], 371, 18, "verticalDirection != null");
+            break;
+          }
+        }
+      }
+      if (this.runAlignment === wrap.WrapAlignment.start || this.runAlignment === wrap.WrapAlignment.end) {
+        switch (this.direction) {
+          case C[11] || CT.C11:
+          {
+            if (!(this.verticalDirection !== null)) dart.assertFailed("Horizontal " + dart.str(this[$runtimeType]) + " with runAlignment " + dart.str(this.runAlignment) + " has a null verticalDirection, so the alignment cannot be resolved.", I[1], 378, 18, "verticalDirection != null");
+            break;
+          }
+          case C[14] || CT.C14:
+          {
+            if (!(this.textDirection != null)) dart.assertFailed("Vertical " + dart.str(this[$runtimeType]) + " with runAlignment " + dart.str(this.runAlignment) + " has a null textDirection, so the alignment cannot be resolved.", I[1], 381, 18, "textDirection != null");
+            break;
+          }
+        }
+      }
+      if (this.crossAxisAlignment === wrap.WrapCrossAlignment.start || this.crossAxisAlignment === wrap.WrapCrossAlignment.end) {
+        switch (this.direction) {
+          case C[11] || CT.C11:
+          {
+            if (!(this.verticalDirection !== null)) dart.assertFailed("Horizontal " + dart.str(this[$runtimeType]) + " with crossAxisAlignment " + dart.str(this.crossAxisAlignment) + " has a null verticalDirection, so the alignment cannot be resolved.", I[1], 388, 18, "verticalDirection != null");
+            break;
+          }
+          case C[14] || CT.C14:
+          {
+            if (!(this.textDirection != null)) dart.assertFailed("Vertical " + dart.str(this[$runtimeType]) + " with crossAxisAlignment " + dart.str(this.crossAxisAlignment) + " has a null textDirection, so the alignment cannot be resolved.", I[1], 391, 18, "textDirection != null");
+            break;
+          }
+        }
+      }
+      return true;
+    }
+    setupParentData(child) {
+      box.RenderBox.as(child);
+      if (!wrap.WrapParentData.is(child.parentData)) child.parentData = new wrap.WrapParentData.new();
+    }
+    computeMinIntrinsicWidth(height) {
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          let width = 0.0;
+          let child = this.firstChild;
+          while (child != null) {
+            width = math.max(core.double, width, child.getMinIntrinsicWidth(1 / 0));
+            child = this.childAfter(child);
+          }
+          return width;
+        }
+        case C[14] || CT.C14:
+        {
+          return this.computeDryLayout(new box.BoxConstraints.new({maxHeight: height})).width;
+        }
+      }
+    }
+    computeMaxIntrinsicWidth(height) {
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          let width = 0.0;
+          let child = this.firstChild;
+          while (child != null) {
+            width = width + child.getMaxIntrinsicWidth(1 / 0);
+            child = this.childAfter(child);
+          }
+          return width;
+        }
+        case C[14] || CT.C14:
+        {
+          return this.computeDryLayout(new box.BoxConstraints.new({maxHeight: height})).width;
+        }
+      }
+    }
+    computeMinIntrinsicHeight(width) {
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          return this.computeDryLayout(new box.BoxConstraints.new({maxWidth: width})).height;
+        }
+        case C[14] || CT.C14:
+        {
+          let height = 0.0;
+          let child = this.firstChild;
+          while (child != null) {
+            height = math.max(core.double, height, child.getMinIntrinsicHeight(1 / 0));
+            child = this.childAfter(child);
+          }
+          return height;
+        }
+      }
+    }
+    computeMaxIntrinsicHeight(width) {
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          return this.computeDryLayout(new box.BoxConstraints.new({maxWidth: width})).height;
+        }
+        case C[14] || CT.C14:
+        {
+          let height = 0.0;
+          let child = this.firstChild;
+          while (child != null) {
+            height = height + child.getMaxIntrinsicHeight(1 / 0);
+            child = this.childAfter(child);
+          }
+          return height;
+        }
+      }
+    }
+    computeDistanceToActualBaseline(baseline) {
+      return this.defaultComputeDistanceToHighestActualBaseline(baseline);
+    }
+    [_getMainAxisExtent](childSize) {
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          return childSize.width;
+        }
+        case C[14] || CT.C14:
+        {
+          return childSize.height;
+        }
+      }
+    }
+    [_getCrossAxisExtent](childSize) {
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          return childSize.height;
+        }
+        case C[14] || CT.C14:
+        {
+          return childSize.width;
+        }
+      }
+    }
+    [_getOffset](mainAxisOffset, crossAxisOffset) {
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          return new ui.Offset.new(mainAxisOffset, crossAxisOffset);
+        }
+        case C[14] || CT.C14:
+        {
+          return new ui.Offset.new(crossAxisOffset, mainAxisOffset);
+        }
+      }
+    }
+    [_getChildCrossAxisOffset](flipCrossAxis, runCrossAxisExtent, childCrossAxisExtent) {
+      let freeSpace = runCrossAxisExtent - childCrossAxisExtent;
+      switch (this.crossAxisAlignment) {
+        case C[7] || CT.C7:
+        {
+          return flipCrossAxis ? freeSpace : 0.0;
+        }
+        case C[8] || CT.C8:
+        {
+          return flipCrossAxis ? 0.0 : freeSpace;
+        }
+        case C[9] || CT.C9:
+        {
+          return freeSpace / 2.0;
+        }
+      }
+    }
+    computeDryLayout(constraints) {
+      return this[_computeDryLayout](constraints);
+    }
+    [_computeDryLayout](constraints, layoutChild = C[15] || CT.C15) {
+      let childConstraints = null;
+      let mainAxisLimit = 0.0;
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          childConstraints = new box.BoxConstraints.new({maxWidth: constraints.maxWidth});
+          mainAxisLimit = constraints.maxWidth;
+          break;
+        }
+        case C[14] || CT.C14:
+        {
+          childConstraints = new box.BoxConstraints.new({maxHeight: constraints.maxHeight});
+          mainAxisLimit = constraints.maxHeight;
+          break;
+        }
+      }
+      let mainAxisExtent = 0.0;
+      let crossAxisExtent = 0.0;
+      let runMainAxisExtent = 0.0;
+      let runCrossAxisExtent = 0.0;
+      let childCount = 0;
+      let child = this.firstChild;
+      while (child != null) {
+        let childSize = layoutChild(child, childConstraints);
+        let childMainAxisExtent = this[_getMainAxisExtent](childSize);
+        let childCrossAxisExtent = this[_getCrossAxisExtent](childSize);
+        if (childCount > 0 && runMainAxisExtent + childMainAxisExtent + this.spacing > mainAxisLimit) {
+          mainAxisExtent = math.max(core.double, mainAxisExtent, runMainAxisExtent);
+          crossAxisExtent = crossAxisExtent + (runCrossAxisExtent + this.runSpacing);
+          runMainAxisExtent = 0.0;
+          runCrossAxisExtent = 0.0;
+          childCount = 0;
+        }
+        runMainAxisExtent = runMainAxisExtent + childMainAxisExtent;
+        runCrossAxisExtent = math.max(core.double, runCrossAxisExtent, childCrossAxisExtent);
+        if (childCount > 0) runMainAxisExtent = runMainAxisExtent + this.spacing;
+        childCount = childCount + 1;
+        child = this.childAfter(child);
+      }
+      crossAxisExtent = crossAxisExtent + runCrossAxisExtent;
+      mainAxisExtent = math.max(core.double, mainAxisExtent, runMainAxisExtent);
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          return constraints.constrain(new ui.Size.new(mainAxisExtent, crossAxisExtent));
+        }
+        case C[14] || CT.C14:
+        {
+          return constraints.constrain(new ui.Size.new(crossAxisExtent, mainAxisExtent));
+        }
+      }
+    }
+    performLayout() {
+      let constraints = this.constraints;
+      if (!this[_debugHasNecessaryDirections]) dart.assertFailed(null, I[1], 572, 12, "_debugHasNecessaryDirections");
+      this[_hasVisualOverflow] = false;
+      let child = this.firstChild;
+      if (child == null) {
+        this.size = constraints.smallest;
+        return;
+      }
+      let childConstraints = null;
+      let mainAxisLimit = 0.0;
+      let flipMainAxis = false;
+      let flipCrossAxis = false;
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          childConstraints = new box.BoxConstraints.new({maxWidth: constraints.maxWidth});
+          mainAxisLimit = constraints.maxWidth;
+          if (this.textDirection === ui.TextDirection.rtl) flipMainAxis = true;
+          if (this.verticalDirection === basic_types.VerticalDirection.up) flipCrossAxis = true;
+          break;
+        }
+        case C[14] || CT.C14:
+        {
+          childConstraints = new box.BoxConstraints.new({maxHeight: constraints.maxHeight});
+          mainAxisLimit = constraints.maxHeight;
+          if (this.verticalDirection === basic_types.VerticalDirection.up) flipMainAxis = true;
+          if (this.textDirection === ui.TextDirection.rtl) flipCrossAxis = true;
+          break;
+        }
+      }
+      if (!(childConstraints !== null)) dart.assertFailed(null, I[1], 601, 12, "childConstraints != null");
+      if (!(mainAxisLimit !== null)) dart.assertFailed(null, I[1], 602, 12, "mainAxisLimit != null");
+      let spacing = this.spacing;
+      let runSpacing = this.runSpacing;
+      let runMetrics = T.JSArrayOf_RunMetrics().of([]);
+      let mainAxisExtent = 0.0;
+      let crossAxisExtent = 0.0;
+      let runMainAxisExtent = 0.0;
+      let runCrossAxisExtent = 0.0;
+      let childCount = 0;
+      while (child != null) {
+        child.layout(childConstraints, {parentUsesSize: true});
+        let childMainAxisExtent = this[_getMainAxisExtent](child.size);
+        let childCrossAxisExtent = this[_getCrossAxisExtent](child.size);
+        if (childCount > 0 && runMainAxisExtent + spacing + childMainAxisExtent > mainAxisLimit) {
+          mainAxisExtent = math.max(core.double, mainAxisExtent, runMainAxisExtent);
+          crossAxisExtent = crossAxisExtent + runCrossAxisExtent;
+          if (runMetrics[$isNotEmpty]) crossAxisExtent = crossAxisExtent + runSpacing;
+          runMetrics[$add](new wrap._RunMetrics.new(runMainAxisExtent, runCrossAxisExtent, childCount));
+          runMainAxisExtent = 0.0;
+          runCrossAxisExtent = 0.0;
+          childCount = 0;
+        }
+        runMainAxisExtent = runMainAxisExtent + childMainAxisExtent;
+        if (childCount > 0) runMainAxisExtent = runMainAxisExtent + spacing;
+        runCrossAxisExtent = math.max(core.double, runCrossAxisExtent, childCrossAxisExtent);
+        childCount = childCount + 1;
+        let childParentData = wrap.WrapParentData.as(dart.nullCheck(child.parentData));
+        childParentData[_runIndex] = runMetrics[$length];
+        child = childParentData.nextSibling;
+      }
+      if (childCount > 0) {
+        mainAxisExtent = math.max(core.double, mainAxisExtent, runMainAxisExtent);
+        crossAxisExtent = crossAxisExtent + runCrossAxisExtent;
+        if (runMetrics[$isNotEmpty]) crossAxisExtent = crossAxisExtent + runSpacing;
+        runMetrics[$add](new wrap._RunMetrics.new(runMainAxisExtent, runCrossAxisExtent, childCount));
+      }
+      let runCount = runMetrics[$length];
+      if (!(runCount > 0)) dart.assertFailed(null, I[1], 643, 12, "runCount > 0");
+      let containerMainAxisExtent = 0.0;
+      let containerCrossAxisExtent = 0.0;
+      switch (this.direction) {
+        case C[11] || CT.C11:
+        {
+          this.size = constraints.constrain(new ui.Size.new(mainAxisExtent, crossAxisExtent));
+          containerMainAxisExtent = this.size.width;
+          containerCrossAxisExtent = this.size.height;
+          break;
+        }
+        case C[14] || CT.C14:
+        {
+          this.size = constraints.constrain(new ui.Size.new(crossAxisExtent, mainAxisExtent));
+          containerMainAxisExtent = this.size.height;
+          containerCrossAxisExtent = this.size.width;
+          break;
+        }
+      }
+      this[_hasVisualOverflow] = containerMainAxisExtent < mainAxisExtent || containerCrossAxisExtent < crossAxisExtent;
+      let crossAxisFreeSpace = math.max(core.double, 0.0, containerCrossAxisExtent - crossAxisExtent);
+      let runLeadingSpace = 0.0;
+      let runBetweenSpace = 0.0;
+      switch (this.runAlignment) {
         case C[0] || CT.C0:
         {
-          return this.horizontal;
+          break;
         }
         case C[1] || CT.C1:
         {
-          return this.vertical;
+          runLeadingSpace = crossAxisFreeSpace;
+          break;
         }
-      }
-    }
-    get collapsedSize() {
-      return new ui.Size.new(this.horizontal, this.vertical);
-    }
-    get flipped() {
-      return new edge_insets._MixedEdgeInsets.fromLRSETB(this[_right], this[_left], this[_end], this[_start], this[_bottom], this[_top]);
-    }
-    inflateSize(size) {
-      return new ui.Size.new(size.width + this.horizontal, size.height + this.vertical);
-    }
-    deflateSize(size) {
-      return new ui.Size.new(size.width - this.horizontal, size.height - this.vertical);
-    }
-    subtract(other) {
-      return new edge_insets._MixedEdgeInsets.fromLRSETB(this[_left] - other[_left], this[_right] - other[_right], this[_start] - other[_start], this[_end] - other[_end], this[_top] - other[_top], this[_bottom] - other[_bottom]);
-    }
-    add(other) {
-      return new edge_insets._MixedEdgeInsets.fromLRSETB(this[_left] + other[_left], this[_right] + other[_right], this[_start] + other[_start], this[_end] + other[_end], this[_top] + other[_top], this[_bottom] + other[_bottom]);
-    }
-    clamp(min, max) {
-      return new edge_insets._MixedEdgeInsets.fromLRSETB(this[_left][$clamp](min[_left], max[_left]), this[_right][$clamp](min[_right], max[_right]), this[_start][$clamp](min[_start], max[_start]), this[_end][$clamp](min[_end], max[_end]), this[_top][$clamp](min[_top], max[_top]), this[_bottom][$clamp](min[_bottom], max[_bottom]));
-    }
-    static lerp(a, b, t) {
-      if (!(t !== null)) dart.assertFailed(null, I[0], 220, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return dart.nullCheck(b)['*'](t);
-      if (b == null) return a['*'](1.0 - t);
-      if (edge_insets.EdgeInsets.is(a) && edge_insets.EdgeInsets.is(b)) return edge_insets.EdgeInsets.lerp(a, b, t);
-      if (edge_insets.EdgeInsetsDirectional.is(a) && edge_insets.EdgeInsetsDirectional.is(b)) return edge_insets.EdgeInsetsDirectional.lerp(a, b, t);
-      return new edge_insets._MixedEdgeInsets.fromLRSETB(dart.nullCheck(ui.lerpDouble(a[_left], b[_left], t)), dart.nullCheck(ui.lerpDouble(a[_right], b[_right], t)), dart.nullCheck(ui.lerpDouble(a[_start], b[_start], t)), dart.nullCheck(ui.lerpDouble(a[_end], b[_end], t)), dart.nullCheck(ui.lerpDouble(a[_top], b[_top], t)), dart.nullCheck(ui.lerpDouble(a[_bottom], b[_bottom], t)));
-    }
-    toString() {
-      if (this[_start] === 0.0 && this[_end] === 0.0) {
-        if (this[_left] === 0.0 && this[_right] === 0.0 && this[_top] === 0.0 && this[_bottom] === 0.0) return "EdgeInsets.zero";
-        if (this[_left] === this[_right] && this[_right] === this[_top] && this[_top] === this[_bottom]) return "EdgeInsets.all(" + this[_left][$toStringAsFixed](1) + ")";
-        return "EdgeInsets(" + this[_left][$toStringAsFixed](1) + ", " + this[_top][$toStringAsFixed](1) + ", " + this[_right][$toStringAsFixed](1) + ", " + this[_bottom][$toStringAsFixed](1) + ")";
-      }
-      if (this[_left] === 0.0 && this[_right] === 0.0) {
-        return "EdgeInsetsDirectional(" + this[_start][$toStringAsFixed](1) + ", " + this[_top][$toStringAsFixed](1) + ", " + this[_end][$toStringAsFixed](1) + ", " + this[_bottom][$toStringAsFixed](1) + ")";
-      }
-      return "EdgeInsets(" + this[_left][$toStringAsFixed](1) + ", " + this[_top][$toStringAsFixed](1) + ", " + this[_right][$toStringAsFixed](1) + ", " + this[_bottom][$toStringAsFixed](1) + ")" + " + " + "EdgeInsetsDirectional(" + this[_start][$toStringAsFixed](1) + ", " + "0.0, " + this[_end][$toStringAsFixed](1) + ", " + "0.0)";
-    }
-    _equals(other) {
-      if (other == null) return false;
-      return edge_insets.EdgeInsetsGeometry.is(other) && other[_left] === this[_left] && other[_right] === this[_right] && other[_start] === this[_start] && other[_end] === this[_end] && other[_top] === this[_top] && other[_bottom] === this[_bottom];
-    }
-    get hashCode() {
-      return ui.hashValues(this[_left], this[_right], this[_start], this[_end], this[_top], this[_bottom]);
-    }
-  };
-  (edge_insets.EdgeInsetsGeometry.new = function() {
-    ;
-  }).prototype = edge_insets.EdgeInsetsGeometry.prototype;
-  dart.addTypeTests(edge_insets.EdgeInsetsGeometry);
-  dart.addTypeCaches(edge_insets.EdgeInsetsGeometry);
-  dart.setMethodSignature(edge_insets.EdgeInsetsGeometry, () => ({
-    __proto__: dart.getMethods(edge_insets.EdgeInsetsGeometry.__proto__),
-    along: dart.fnType(core.double, [basic_types.Axis]),
-    inflateSize: dart.fnType(ui.Size, [ui.Size]),
-    deflateSize: dart.fnType(ui.Size, [ui.Size]),
-    subtract: dart.fnType(edge_insets.EdgeInsetsGeometry, [edge_insets.EdgeInsetsGeometry]),
-    add: dart.fnType(edge_insets.EdgeInsetsGeometry, [edge_insets.EdgeInsetsGeometry]),
-    clamp: dart.fnType(edge_insets.EdgeInsetsGeometry, [edge_insets.EdgeInsetsGeometry, edge_insets.EdgeInsetsGeometry])
-  }));
-  dart.setGetterSignature(edge_insets.EdgeInsetsGeometry, () => ({
-    __proto__: dart.getGetters(edge_insets.EdgeInsetsGeometry.__proto__),
-    isNonNegative: core.bool,
-    horizontal: core.double,
-    vertical: core.double,
-    collapsedSize: ui.Size,
-    flipped: edge_insets.EdgeInsetsGeometry
-  }));
-  dart.setLibraryUri(edge_insets.EdgeInsetsGeometry, I[1]);
-  dart.defineExtensionMethods(edge_insets.EdgeInsetsGeometry, ['toString', '_equals']);
-  dart.defineExtensionAccessors(edge_insets.EdgeInsetsGeometry, ['hashCode']);
-  dart.defineLazy(edge_insets.EdgeInsetsGeometry, {
-    /*edge_insets.EdgeInsetsGeometry.infinity*/get infinity() {
-      return C[2] || CT.C2;
-    }
-  }, false);
-  var left$ = dart.privateName(edge_insets, "EdgeInsets.left");
-  var top$ = dart.privateName(edge_insets, "EdgeInsets.top");
-  var right$ = dart.privateName(edge_insets, "EdgeInsets.right");
-  var bottom$ = dart.privateName(edge_insets, "EdgeInsets.bottom");
-  edge_insets.EdgeInsets = class EdgeInsets extends edge_insets.EdgeInsetsGeometry {
-    get left() {
-      return this[left$];
-    }
-    set left(value) {
-      super.left = value;
-    }
-    get top() {
-      return this[top$];
-    }
-    set top(value) {
-      super.top = value;
-    }
-    get right() {
-      return this[right$];
-    }
-    set right(value) {
-      super.right = value;
-    }
-    get bottom() {
-      return this[bottom$];
-    }
-    set bottom(value) {
-      super.bottom = value;
-    }
-    get [_left]() {
-      return this.left;
-    }
-    get [_top]() {
-      return this.top;
-    }
-    get [_right]() {
-      return this.right;
-    }
-    get [_bottom]() {
-      return this.bottom;
-    }
-    get [_start]() {
-      return 0.0;
-    }
-    get [_end]() {
-      return 0.0;
-    }
-    get topLeft() {
-      return new ui.Offset.new(this.left, this.top);
-    }
-    get topRight() {
-      return new ui.Offset.new(-this.right, this.top);
-    }
-    get bottomLeft() {
-      return new ui.Offset.new(this.left, -this.bottom);
-    }
-    get bottomRight() {
-      return new ui.Offset.new(-this.right, -this.bottom);
-    }
-    get flipped() {
-      return new edge_insets.EdgeInsets.fromLTRB(this.right, this.bottom, this.left, this.top);
-    }
-    inflateRect(rect) {
-      return new ui.Rect.fromLTRB(rect.left - this.left, rect.top - this.top, rect.right + this.right, rect.bottom + this.bottom);
-    }
-    deflateRect(rect) {
-      return new ui.Rect.fromLTRB(rect.left + this.left, rect.top + this.top, rect.right - this.right, rect.bottom - this.bottom);
-    }
-    subtract(other) {
-      if (edge_insets.EdgeInsets.is(other)) return this['-'](other);
-      return super.subtract(other);
-    }
-    add(other) {
-      if (edge_insets.EdgeInsets.is(other)) return this['+'](other);
-      return super.add(other);
-    }
-    clamp(min, max) {
-      return new edge_insets.EdgeInsets.fromLTRB(this[_left][$clamp](min[_left], max[_left]), this[_top][$clamp](min[_top], max[_top]), this[_right][$clamp](min[_right], max[_right]), this[_bottom][$clamp](min[_bottom], max[_bottom]));
-    }
-    ['-'](other) {
-      return new edge_insets.EdgeInsets.fromLTRB(this.left - other.left, this.top - other.top, this.right - other.right, this.bottom - other.bottom);
-    }
-    ['+'](other) {
-      return new edge_insets.EdgeInsets.fromLTRB(this.left + other.left, this.top + other.top, this.right + other.right, this.bottom + other.bottom);
-    }
-    _negate() {
-      return new edge_insets.EdgeInsets.fromLTRB(-this.left, -this.top, -this.right, -this.bottom);
-    }
-    ['*'](other) {
-      return new edge_insets.EdgeInsets.fromLTRB(this.left * other, this.top * other, this.right * other, this.bottom * other);
-    }
-    ['/'](other) {
-      return new edge_insets.EdgeInsets.fromLTRB(this.left / other, this.top / other, this.right / other, this.bottom / other);
-    }
-    ['~/'](other) {
-      return new edge_insets.EdgeInsets.fromLTRB((this.left / other)[$truncate]()[$toDouble](), (this.top / other)[$truncate]()[$toDouble](), (this.right / other)[$truncate]()[$toDouble](), (this.bottom / other)[$truncate]()[$toDouble]());
-    }
-    ['%'](other) {
-      return new edge_insets.EdgeInsets.fromLTRB(this.left[$modulo](other), this.top[$modulo](other), this.right[$modulo](other), this.bottom[$modulo](other));
-    }
-    static lerp(a, b, t) {
-      if (!(t !== null)) dart.assertFailed(null, I[0], 599, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return dart.nullCheck(b)['*'](t);
-      if (b == null) return a['*'](1.0 - t);
-      return new edge_insets.EdgeInsets.fromLTRB(dart.nullCheck(ui.lerpDouble(a.left, b.left, t)), dart.nullCheck(ui.lerpDouble(a.top, b.top, t)), dart.nullCheck(ui.lerpDouble(a.right, b.right, t)), dart.nullCheck(ui.lerpDouble(a.bottom, b.bottom, t)));
-    }
-    resolve(direction) {
-      return this;
-    }
-    copyWith(opts) {
-      let t0, t0$, t0$0, t0$1;
-      let left = opts && 'left' in opts ? opts.left : null;
-      let top = opts && 'top' in opts ? opts.top : null;
-      let right = opts && 'right' in opts ? opts.right : null;
-      let bottom = opts && 'bottom' in opts ? opts.bottom : null;
-      return new edge_insets.EdgeInsets.only({left: (t0 = left, t0 == null ? this.left : t0), top: (t0$ = top, t0$ == null ? this.top : t0$), right: (t0$0 = right, t0$0 == null ? this.right : t0$0), bottom: (t0$1 = bottom, t0$1 == null ? this.bottom : t0$1)});
-    }
-  };
-  (edge_insets.EdgeInsets.fromLTRB = function(left, top, right, bottom) {
-    this[left$] = left;
-    this[top$] = top;
-    this[right$] = right;
-    this[bottom$] = bottom;
-    edge_insets.EdgeInsets.__proto__.new.call(this);
-    ;
-  }).prototype = edge_insets.EdgeInsets.prototype;
-  (edge_insets.EdgeInsets.all = function(value) {
-    this[left$] = value;
-    this[top$] = value;
-    this[right$] = value;
-    this[bottom$] = value;
-    edge_insets.EdgeInsets.__proto__.new.call(this);
-    ;
-  }).prototype = edge_insets.EdgeInsets.prototype;
-  (edge_insets.EdgeInsets.only = function(opts) {
-    let left = opts && 'left' in opts ? opts.left : 0;
-    let top = opts && 'top' in opts ? opts.top : 0;
-    let right = opts && 'right' in opts ? opts.right : 0;
-    let bottom = opts && 'bottom' in opts ? opts.bottom : 0;
-    this[left$] = left;
-    this[top$] = top;
-    this[right$] = right;
-    this[bottom$] = bottom;
-    edge_insets.EdgeInsets.__proto__.new.call(this);
-    ;
-  }).prototype = edge_insets.EdgeInsets.prototype;
-  (edge_insets.EdgeInsets.symmetric = function(opts) {
-    let vertical = opts && 'vertical' in opts ? opts.vertical : 0;
-    let horizontal = opts && 'horizontal' in opts ? opts.horizontal : 0;
-    this[left$] = horizontal;
-    this[top$] = vertical;
-    this[right$] = horizontal;
-    this[bottom$] = vertical;
-    edge_insets.EdgeInsets.__proto__.new.call(this);
-    ;
-  }).prototype = edge_insets.EdgeInsets.prototype;
-  (edge_insets.EdgeInsets.fromWindowPadding = function(padding, devicePixelRatio) {
-    this[left$] = padding.left / devicePixelRatio;
-    this[top$] = padding.top / devicePixelRatio;
-    this[right$] = padding.right / devicePixelRatio;
-    this[bottom$] = padding.bottom / devicePixelRatio;
-    edge_insets.EdgeInsets.__proto__.new.call(this);
-    ;
-  }).prototype = edge_insets.EdgeInsets.prototype;
-  dart.addTypeTests(edge_insets.EdgeInsets);
-  dart.addTypeCaches(edge_insets.EdgeInsets);
-  dart.setMethodSignature(edge_insets.EdgeInsets, () => ({
-    __proto__: dart.getMethods(edge_insets.EdgeInsets.__proto__),
-    inflateRect: dart.fnType(ui.Rect, [ui.Rect]),
-    deflateRect: dart.fnType(ui.Rect, [ui.Rect]),
-    '-': dart.fnType(edge_insets.EdgeInsets, [edge_insets.EdgeInsets]),
-    '+': dart.fnType(edge_insets.EdgeInsets, [edge_insets.EdgeInsets]),
-    _negate: dart.fnType(edge_insets.EdgeInsets, []),
-    '*': dart.fnType(edge_insets.EdgeInsets, [core.double]),
-    '/': dart.fnType(edge_insets.EdgeInsets, [core.double]),
-    '~/': dart.fnType(edge_insets.EdgeInsets, [core.double]),
-    '%': dart.fnType(edge_insets.EdgeInsets, [core.double]),
-    resolve: dart.fnType(edge_insets.EdgeInsets, [dart.nullable(ui.TextDirection)]),
-    copyWith: dart.fnType(edge_insets.EdgeInsets, [], {bottom: dart.nullable(core.double), left: dart.nullable(core.double), right: dart.nullable(core.double), top: dart.nullable(core.double)}, {})
-  }));
-  dart.setGetterSignature(edge_insets.EdgeInsets, () => ({
-    __proto__: dart.getGetters(edge_insets.EdgeInsets.__proto__),
-    [_left]: core.double,
-    [_top]: core.double,
-    [_right]: core.double,
-    [_bottom]: core.double,
-    [_start]: core.double,
-    [_end]: core.double,
-    topLeft: ui.Offset,
-    topRight: ui.Offset,
-    bottomLeft: ui.Offset,
-    bottomRight: ui.Offset,
-    flipped: edge_insets.EdgeInsets
-  }));
-  dart.setLibraryUri(edge_insets.EdgeInsets, I[1]);
-  dart.setFieldSignature(edge_insets.EdgeInsets, () => ({
-    __proto__: dart.getFields(edge_insets.EdgeInsets.__proto__),
-    left: dart.finalFieldType(core.double),
-    top: dart.finalFieldType(core.double),
-    right: dart.finalFieldType(core.double),
-    bottom: dart.finalFieldType(core.double)
-  }));
-  dart.defineLazy(edge_insets.EdgeInsets, {
-    /*edge_insets.EdgeInsets.zero*/get zero() {
-      return C[3] || CT.C3;
-    }
-  }, false);
-  var start$ = dart.privateName(edge_insets, "EdgeInsetsDirectional.start");
-  var top$0 = dart.privateName(edge_insets, "EdgeInsetsDirectional.top");
-  var end$ = dart.privateName(edge_insets, "EdgeInsetsDirectional.end");
-  var bottom$0 = dart.privateName(edge_insets, "EdgeInsetsDirectional.bottom");
-  var _name$ = dart.privateName(ui, "_name");
-  edge_insets.EdgeInsetsDirectional = class EdgeInsetsDirectional extends edge_insets.EdgeInsetsGeometry {
-    get start() {
-      return this[start$];
-    }
-    set start(value) {
-      super.start = value;
-    }
-    get top() {
-      return this[top$0];
-    }
-    set top(value) {
-      super.top = value;
-    }
-    get end() {
-      return this[end$];
-    }
-    set end(value) {
-      super.end = value;
-    }
-    get bottom() {
-      return this[bottom$0];
-    }
-    set bottom(value) {
-      super.bottom = value;
-    }
-    get [_start]() {
-      return this.start;
-    }
-    get [_top]() {
-      return this.top;
-    }
-    get [_end]() {
-      return this.end;
-    }
-    get [_bottom]() {
-      return this.bottom;
-    }
-    get [_left]() {
-      return 0.0;
-    }
-    get [_right]() {
-      return 0.0;
-    }
-    get isNonNegative() {
-      return this.start >= 0.0 && this.top >= 0.0 && this.end >= 0.0 && this.bottom >= 0.0;
-    }
-    get flipped() {
-      return new edge_insets.EdgeInsetsDirectional.fromSTEB(this.end, this.bottom, this.start, this.top);
-    }
-    subtract(other) {
-      if (edge_insets.EdgeInsetsDirectional.is(other)) return this['-'](other);
-      return super.subtract(other);
-    }
-    add(other) {
-      if (edge_insets.EdgeInsetsDirectional.is(other)) return this['+'](other);
-      return super.add(other);
-    }
-    ['-'](other) {
-      return new edge_insets.EdgeInsetsDirectional.fromSTEB(this.start - other.start, this.top - other.top, this.end - other.end, this.bottom - other.bottom);
-    }
-    ['+'](other) {
-      return new edge_insets.EdgeInsetsDirectional.fromSTEB(this.start + other.start, this.top + other.top, this.end + other.end, this.bottom + other.bottom);
-    }
-    _negate() {
-      return new edge_insets.EdgeInsetsDirectional.fromSTEB(-this.start, -this.top, -this.end, -this.bottom);
-    }
-    ['*'](other) {
-      return new edge_insets.EdgeInsetsDirectional.fromSTEB(this.start * other, this.top * other, this.end * other, this.bottom * other);
-    }
-    ['/'](other) {
-      return new edge_insets.EdgeInsetsDirectional.fromSTEB(this.start / other, this.top / other, this.end / other, this.bottom / other);
-    }
-    ['~/'](other) {
-      return new edge_insets.EdgeInsetsDirectional.fromSTEB((this.start / other)[$truncate]()[$toDouble](), (this.top / other)[$truncate]()[$toDouble](), (this.end / other)[$truncate]()[$toDouble](), (this.bottom / other)[$truncate]()[$toDouble]());
-    }
-    ['%'](other) {
-      return new edge_insets.EdgeInsetsDirectional.fromSTEB(this.start[$modulo](other), this.top[$modulo](other), this.end[$modulo](other), this.bottom[$modulo](other));
-    }
-    static lerp(a, b, t) {
-      if (!(t !== null)) dart.assertFailed(null, I[0], 840, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return dart.nullCheck(b)['*'](t);
-      if (b == null) return a['*'](1.0 - t);
-      return new edge_insets.EdgeInsetsDirectional.fromSTEB(dart.nullCheck(ui.lerpDouble(a.start, b.start, t)), dart.nullCheck(ui.lerpDouble(a.top, b.top, t)), dart.nullCheck(ui.lerpDouble(a.end, b.end, t)), dart.nullCheck(ui.lerpDouble(a.bottom, b.bottom, t)));
-    }
-    resolve(direction) {
-      if (!(direction != null)) dart.assertFailed(null, I[0], 857, 12, "direction != null");
-      switch (dart.nullCheck(direction)) {
+        case C[2] || CT.C2:
+        {
+          runLeadingSpace = crossAxisFreeSpace / 2.0;
+          break;
+        }
+        case C[3] || CT.C3:
+        {
+          runBetweenSpace = runCount > 1 ? crossAxisFreeSpace / (runCount - 1) : 0.0;
+          break;
+        }
         case C[4] || CT.C4:
         {
-          return new edge_insets.EdgeInsets.fromLTRB(this.end, this.top, this.start, this.bottom);
+          runBetweenSpace = crossAxisFreeSpace / runCount;
+          runLeadingSpace = runBetweenSpace / 2.0;
+          break;
         }
         case C[5] || CT.C5:
         {
-          return new edge_insets.EdgeInsets.fromLTRB(this.start, this.top, this.end, this.bottom);
+          runBetweenSpace = crossAxisFreeSpace / (runCount + 1);
+          runLeadingSpace = runBetweenSpace;
+          break;
         }
       }
-    }
-  };
-  (edge_insets.EdgeInsetsDirectional.fromSTEB = function(start, top, end, bottom) {
-    this[start$] = start;
-    this[top$0] = top;
-    this[end$] = end;
-    this[bottom$0] = bottom;
-    edge_insets.EdgeInsetsDirectional.__proto__.new.call(this);
-    ;
-  }).prototype = edge_insets.EdgeInsetsDirectional.prototype;
-  (edge_insets.EdgeInsetsDirectional.only = function(opts) {
-    let start = opts && 'start' in opts ? opts.start : 0;
-    let top = opts && 'top' in opts ? opts.top : 0;
-    let end = opts && 'end' in opts ? opts.end : 0;
-    let bottom = opts && 'bottom' in opts ? opts.bottom : 0;
-    this[start$] = start;
-    this[top$0] = top;
-    this[end$] = end;
-    this[bottom$0] = bottom;
-    edge_insets.EdgeInsetsDirectional.__proto__.new.call(this);
-    ;
-  }).prototype = edge_insets.EdgeInsetsDirectional.prototype;
-  (edge_insets.EdgeInsetsDirectional.all = function(value) {
-    this[start$] = value;
-    this[top$0] = value;
-    this[end$] = value;
-    this[bottom$0] = value;
-    edge_insets.EdgeInsetsDirectional.__proto__.new.call(this);
-    ;
-  }).prototype = edge_insets.EdgeInsetsDirectional.prototype;
-  dart.addTypeTests(edge_insets.EdgeInsetsDirectional);
-  dart.addTypeCaches(edge_insets.EdgeInsetsDirectional);
-  dart.setMethodSignature(edge_insets.EdgeInsetsDirectional, () => ({
-    __proto__: dart.getMethods(edge_insets.EdgeInsetsDirectional.__proto__),
-    '-': dart.fnType(edge_insets.EdgeInsetsDirectional, [edge_insets.EdgeInsetsDirectional]),
-    '+': dart.fnType(edge_insets.EdgeInsetsDirectional, [edge_insets.EdgeInsetsDirectional]),
-    _negate: dart.fnType(edge_insets.EdgeInsetsDirectional, []),
-    '*': dart.fnType(edge_insets.EdgeInsetsDirectional, [core.double]),
-    '/': dart.fnType(edge_insets.EdgeInsetsDirectional, [core.double]),
-    '~/': dart.fnType(edge_insets.EdgeInsetsDirectional, [core.double]),
-    '%': dart.fnType(edge_insets.EdgeInsetsDirectional, [core.double]),
-    resolve: dart.fnType(edge_insets.EdgeInsets, [dart.nullable(ui.TextDirection)])
-  }));
-  dart.setGetterSignature(edge_insets.EdgeInsetsDirectional, () => ({
-    __proto__: dart.getGetters(edge_insets.EdgeInsetsDirectional.__proto__),
-    [_start]: core.double,
-    [_top]: core.double,
-    [_end]: core.double,
-    [_bottom]: core.double,
-    [_left]: core.double,
-    [_right]: core.double,
-    flipped: edge_insets.EdgeInsetsDirectional
-  }));
-  dart.setLibraryUri(edge_insets.EdgeInsetsDirectional, I[1]);
-  dart.setFieldSignature(edge_insets.EdgeInsetsDirectional, () => ({
-    __proto__: dart.getFields(edge_insets.EdgeInsetsDirectional.__proto__),
-    start: dart.finalFieldType(core.double),
-    top: dart.finalFieldType(core.double),
-    end: dart.finalFieldType(core.double),
-    bottom: dart.finalFieldType(core.double)
-  }));
-  dart.defineLazy(edge_insets.EdgeInsetsDirectional, {
-    /*edge_insets.EdgeInsetsDirectional.zero*/get zero() {
-      return C[6] || CT.C6;
-    }
-  }, false);
-  const _left$ = _MixedEdgeInsets__left;
-  const _right$ = _MixedEdgeInsets__right;
-  const _start$ = _MixedEdgeInsets__start;
-  const _end$ = _MixedEdgeInsets__end;
-  const _top$ = _MixedEdgeInsets__top;
-  const _bottom$ = _MixedEdgeInsets__bottom;
-  edge_insets._MixedEdgeInsets = class _MixedEdgeInsets extends edge_insets.EdgeInsetsGeometry {
-    get [_left]() {
-      return this[_left$];
-    }
-    set [_left](value) {
-      super[_left] = value;
-    }
-    get [_right]() {
-      return this[_right$];
-    }
-    set [_right](value) {
-      super[_right] = value;
-    }
-    get [_start]() {
-      return this[_start$];
-    }
-    set [_start](value) {
-      super[_start] = value;
-    }
-    get [_end]() {
-      return this[_end$];
-    }
-    set [_end](value) {
-      super[_end] = value;
-    }
-    get [_top]() {
-      return this[_top$];
-    }
-    set [_top](value) {
-      super[_top] = value;
-    }
-    get [_bottom]() {
-      return this[_bottom$];
-    }
-    set [_bottom](value) {
-      super[_bottom] = value;
-    }
-    get isNonNegative() {
-      return this[_left] >= 0.0 && this[_right] >= 0.0 && this[_start] >= 0.0 && this[_end] >= 0.0 && this[_top] >= 0.0 && this[_bottom] >= 0.0;
-    }
-    _negate() {
-      return new edge_insets._MixedEdgeInsets.fromLRSETB(-this[_left], -this[_right], -this[_start], -this[_end], -this[_top], -this[_bottom]);
-    }
-    ['*'](other) {
-      return new edge_insets._MixedEdgeInsets.fromLRSETB(this[_left] * other, this[_right] * other, this[_start] * other, this[_end] * other, this[_top] * other, this[_bottom] * other);
-    }
-    ['/'](other) {
-      return new edge_insets._MixedEdgeInsets.fromLRSETB(this[_left] / other, this[_right] / other, this[_start] / other, this[_end] / other, this[_top] / other, this[_bottom] / other);
-    }
-    ['~/'](other) {
-      return new edge_insets._MixedEdgeInsets.fromLRSETB((this[_left] / other)[$truncate]()[$toDouble](), (this[_right] / other)[$truncate]()[$toDouble](), (this[_start] / other)[$truncate]()[$toDouble](), (this[_end] / other)[$truncate]()[$toDouble](), (this[_top] / other)[$truncate]()[$toDouble](), (this[_bottom] / other)[$truncate]()[$toDouble]());
-    }
-    ['%'](other) {
-      return new edge_insets._MixedEdgeInsets.fromLRSETB(this[_left][$modulo](other), this[_right][$modulo](other), this[_start][$modulo](other), this[_end][$modulo](other), this[_top][$modulo](other), this[_bottom][$modulo](other));
-    }
-    resolve(direction) {
-      if (!(direction != null)) dart.assertFailed(null, I[0], 960, 12, "direction != null");
-      switch (dart.nullCheck(direction)) {
-        case C[4] || CT.C4:
-        {
-          return new edge_insets.EdgeInsets.fromLTRB(this[_end] + this[_left], this[_top], this[_start] + this[_right], this[_bottom]);
+      runBetweenSpace = runBetweenSpace + runSpacing;
+      let crossAxisOffset = flipCrossAxis ? containerCrossAxisExtent - runLeadingSpace : runLeadingSpace;
+      child = this.firstChild;
+      for (let i = 0; i < runCount; i = i + 1) {
+        let metrics = runMetrics[$_get](i);
+        let runMainAxisExtent = metrics.mainAxisExtent;
+        let runCrossAxisExtent = metrics.crossAxisExtent;
+        let childCount = metrics.childCount;
+        let mainAxisFreeSpace = math.max(core.double, 0.0, containerMainAxisExtent - runMainAxisExtent);
+        let childLeadingSpace = 0.0;
+        let childBetweenSpace = 0.0;
+        switch (this.alignment) {
+          case C[0] || CT.C0:
+          {
+            break;
+          }
+          case C[1] || CT.C1:
+          {
+            childLeadingSpace = mainAxisFreeSpace;
+            break;
+          }
+          case C[2] || CT.C2:
+          {
+            childLeadingSpace = mainAxisFreeSpace / 2.0;
+            break;
+          }
+          case C[3] || CT.C3:
+          {
+            childBetweenSpace = childCount > 1 ? mainAxisFreeSpace / (childCount - 1) : 0.0;
+            break;
+          }
+          case C[4] || CT.C4:
+          {
+            childBetweenSpace = mainAxisFreeSpace / childCount;
+            childLeadingSpace = childBetweenSpace / 2.0;
+            break;
+          }
+          case C[5] || CT.C5:
+          {
+            childBetweenSpace = mainAxisFreeSpace / (childCount + 1);
+            childLeadingSpace = childBetweenSpace;
+            break;
+          }
         }
-        case C[5] || CT.C5:
-        {
-          return new edge_insets.EdgeInsets.fromLTRB(this[_start] + this[_left], this[_top], this[_end] + this[_right], this[_bottom]);
+        childBetweenSpace = childBetweenSpace + spacing;
+        let childMainPosition = flipMainAxis ? containerMainAxisExtent - childLeadingSpace : childLeadingSpace;
+        if (flipCrossAxis) crossAxisOffset = crossAxisOffset - runCrossAxisExtent;
+        while (child != null) {
+          let childParentData = wrap.WrapParentData.as(dart.nullCheck(child.parentData));
+          if (childParentData[_runIndex] !== i) break;
+          let childMainAxisExtent = this[_getMainAxisExtent](child.size);
+          let childCrossAxisExtent = this[_getCrossAxisExtent](child.size);
+          let childCrossAxisOffset = this[_getChildCrossAxisOffset](flipCrossAxis, runCrossAxisExtent, childCrossAxisExtent);
+          if (flipMainAxis) childMainPosition = childMainPosition - childMainAxisExtent;
+          childParentData.offset = this[_getOffset](childMainPosition, crossAxisOffset + childCrossAxisOffset);
+          if (flipMainAxis)
+            childMainPosition = childMainPosition - childBetweenSpace;
+          else
+            childMainPosition = childMainPosition + (childMainAxisExtent + childBetweenSpace);
+          child = childParentData.nextSibling;
         }
+        if (flipCrossAxis)
+          crossAxisOffset = crossAxisOffset - runBetweenSpace;
+        else
+          crossAxisOffset = crossAxisOffset + (runCrossAxisExtent + runBetweenSpace);
       }
     }
+    hitTestChildren(result, opts) {
+      let position = opts && 'position' in opts ? opts.position : null;
+      return this.defaultHitTestChildren(result, {position: position});
+    }
+    paint(context, offset) {
+      if (this[_hasVisualOverflow] && this.clipBehavior !== ui.Clip.none) {
+        this[_clipRectLayer] = context.pushClipRect(this.needsCompositing, offset, ui.Offset.zero['&'](this.size), dart.bind(this, 'defaultPaint'), {clipBehavior: this.clipBehavior, oldLayer: this[_clipRectLayer]});
+      } else {
+        this[_clipRectLayer] = null;
+        this.defaultPaint(context, offset);
+      }
+    }
+    debugFillProperties(properties) {
+      super.debugFillProperties(properties);
+      properties.add(new (T.EnumPropertyOfAxis()).new("direction", this.direction));
+      properties.add(new (T.EnumPropertyOfWrapAlignment()).new("alignment", this.alignment));
+      properties.add(new diagnostics.DoubleProperty.new("spacing", this.spacing));
+      properties.add(new (T.EnumPropertyOfWrapAlignment()).new("runAlignment", this.runAlignment));
+      properties.add(new diagnostics.DoubleProperty.new("runSpacing", this.runSpacing));
+      properties.add(new diagnostics.DoubleProperty.new("crossAxisAlignment", this.runSpacing));
+      properties.add(new (T.EnumPropertyOfTextDirection()).new("textDirection", this.textDirection, {defaultValue: null}));
+      properties.add(new (T.EnumPropertyOfVerticalDirection()).new("verticalDirection", this.verticalDirection, {defaultValue: basic_types.VerticalDirection.down}));
+    }
   };
-  (edge_insets._MixedEdgeInsets.fromLRSETB = function(_left, _right, _start, _end, _top, _bottom) {
-    this[_left$] = _left;
-    this[_right$] = _right;
-    this[_start$] = _start;
-    this[_end$] = _end;
-    this[_top$] = _top;
-    this[_bottom$] = _bottom;
-    edge_insets._MixedEdgeInsets.__proto__.new.call(this);
-    ;
-  }).prototype = edge_insets._MixedEdgeInsets.prototype;
-  dart.addTypeTests(edge_insets._MixedEdgeInsets);
-  dart.addTypeCaches(edge_insets._MixedEdgeInsets);
-  dart.setMethodSignature(edge_insets._MixedEdgeInsets, () => ({
-    __proto__: dart.getMethods(edge_insets._MixedEdgeInsets.__proto__),
-    _negate: dart.fnType(edge_insets._MixedEdgeInsets, []),
-    '*': dart.fnType(edge_insets._MixedEdgeInsets, [core.double]),
-    '/': dart.fnType(edge_insets._MixedEdgeInsets, [core.double]),
-    '~/': dart.fnType(edge_insets._MixedEdgeInsets, [core.double]),
-    '%': dart.fnType(edge_insets._MixedEdgeInsets, [core.double]),
-    resolve: dart.fnType(edge_insets.EdgeInsets, [dart.nullable(ui.TextDirection)])
+  (wrap.RenderWrap.new = function(opts) {
+    let children = opts && 'children' in opts ? opts.children : null;
+    let direction = opts && 'direction' in opts ? opts.direction : C[11] || CT.C11;
+    let alignment = opts && 'alignment' in opts ? opts.alignment : C[0] || CT.C0;
+    let spacing = opts && 'spacing' in opts ? opts.spacing : 0;
+    let runAlignment = opts && 'runAlignment' in opts ? opts.runAlignment : C[0] || CT.C0;
+    let runSpacing = opts && 'runSpacing' in opts ? opts.runSpacing : 0;
+    let crossAxisAlignment = opts && 'crossAxisAlignment' in opts ? opts.crossAxisAlignment : C[7] || CT.C7;
+    let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+    let verticalDirection = opts && 'verticalDirection' in opts ? opts.verticalDirection : C[12] || CT.C12;
+    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[13] || CT.C13;
+    this[_clipBehavior] = ui.Clip.none;
+    this[_hasVisualOverflow] = false;
+    this[_clipRectLayer] = null;
+    if (!(direction !== null)) dart.assertFailed(null, I[1], 124, 15, "direction != null");
+    if (!(alignment !== null)) dart.assertFailed(null, I[1], 125, 15, "alignment != null");
+    if (!(spacing !== null)) dart.assertFailed(null, I[1], 126, 15, "spacing != null");
+    if (!(runAlignment !== null)) dart.assertFailed(null, I[1], 127, 15, "runAlignment != null");
+    if (!(runSpacing !== null)) dart.assertFailed(null, I[1], 128, 15, "runSpacing != null");
+    if (!(crossAxisAlignment !== null)) dart.assertFailed(null, I[1], 129, 15, "crossAxisAlignment != null");
+    if (!(clipBehavior !== null)) dart.assertFailed(null, I[1], 130, 15, "clipBehavior != null");
+    this[_direction] = direction;
+    this[_alignment] = alignment;
+    this[_spacing] = spacing;
+    this[_runAlignment] = runAlignment;
+    this[_runSpacing] = runSpacing;
+    this[_crossAxisAlignment] = crossAxisAlignment;
+    this[_textDirection] = textDirection;
+    this[_verticalDirection] = verticalDirection;
+    this[_clipBehavior] = clipBehavior;
+    wrap.RenderWrap.__proto__.new.call(this);
+    this.addAll(children);
+  }).prototype = wrap.RenderWrap.prototype;
+  dart.addTypeTests(wrap.RenderWrap);
+  dart.addTypeCaches(wrap.RenderWrap);
+  dart.setMethodSignature(wrap.RenderWrap, () => ({
+    __proto__: dart.getMethods(wrap.RenderWrap.__proto__),
+    [_getMainAxisExtent]: dart.fnType(core.double, [ui.Size]),
+    [_getCrossAxisExtent]: dart.fnType(core.double, [ui.Size]),
+    [_getOffset]: dart.fnType(ui.Offset, [core.double, core.double]),
+    [_getChildCrossAxisOffset]: dart.fnType(core.double, [core.bool, core.double, core.double]),
+    [_computeDryLayout]: dart.fnType(ui.Size, [box.BoxConstraints], [dart.fnType(ui.Size, [box.RenderBox, box.BoxConstraints])])
   }));
-  dart.setLibraryUri(edge_insets._MixedEdgeInsets, I[1]);
-  dart.setFieldSignature(edge_insets._MixedEdgeInsets, () => ({
-    __proto__: dart.getFields(edge_insets._MixedEdgeInsets.__proto__),
-    [_left]: dart.finalFieldType(core.double),
-    [_right]: dart.finalFieldType(core.double),
-    [_start]: dart.finalFieldType(core.double),
-    [_end]: dart.finalFieldType(core.double),
-    [_top]: dart.finalFieldType(core.double),
-    [_bottom]: dart.finalFieldType(core.double)
+  dart.setGetterSignature(wrap.RenderWrap, () => ({
+    __proto__: dart.getGetters(wrap.RenderWrap.__proto__),
+    direction: basic_types.Axis,
+    alignment: wrap.WrapAlignment,
+    spacing: core.double,
+    runAlignment: wrap.WrapAlignment,
+    runSpacing: core.double,
+    crossAxisAlignment: wrap.WrapCrossAlignment,
+    textDirection: dart.nullable(ui.TextDirection),
+    verticalDirection: basic_types.VerticalDirection,
+    clipBehavior: ui.Clip,
+    [_debugHasNecessaryDirections]: core.bool
   }));
-  dart.trackLibraries("packages/flutter/src/painting/edge_insets.dart", {
-    "package:flutter/src/painting/edge_insets.dart": edge_insets
+  dart.setSetterSignature(wrap.RenderWrap, () => ({
+    __proto__: dart.getSetters(wrap.RenderWrap.__proto__),
+    direction: basic_types.Axis,
+    alignment: wrap.WrapAlignment,
+    spacing: core.double,
+    runAlignment: wrap.WrapAlignment,
+    runSpacing: core.double,
+    crossAxisAlignment: wrap.WrapCrossAlignment,
+    textDirection: dart.nullable(ui.TextDirection),
+    verticalDirection: basic_types.VerticalDirection,
+    clipBehavior: ui.Clip
+  }));
+  dart.setLibraryUri(wrap.RenderWrap, I[0]);
+  dart.setFieldSignature(wrap.RenderWrap, () => ({
+    __proto__: dart.getFields(wrap.RenderWrap.__proto__),
+    [_direction]: dart.fieldType(basic_types.Axis),
+    [_alignment]: dart.fieldType(wrap.WrapAlignment),
+    [_spacing]: dart.fieldType(core.double),
+    [_runAlignment]: dart.fieldType(wrap.WrapAlignment),
+    [_runSpacing]: dart.fieldType(core.double),
+    [_crossAxisAlignment]: dart.fieldType(wrap.WrapCrossAlignment),
+    [_textDirection]: dart.fieldType(dart.nullable(ui.TextDirection)),
+    [_verticalDirection]: dart.fieldType(basic_types.VerticalDirection),
+    [_clipBehavior]: dart.fieldType(ui.Clip),
+    [_hasVisualOverflow]: dart.fieldType(core.bool),
+    [_clipRectLayer]: dart.fieldType(dart.nullable(layer.ClipRectLayer))
+  }));
+  dart.trackLibraries("packages/flutter/src/rendering/wrap.dart", {
+    "package:flutter/src/rendering/wrap.dart": wrap
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["edge_insets.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/painting/edge_insets.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["wrap.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/rendering/wrap.dart.lib.js"}');
   // Exports:
   return {
-    src__painting__edge_insets: edge_insets
+    src__rendering__wrap: wrap
   };
 }));
 
-//# sourceMappingURL=edge_insets.dart.lib.js.map
+//# sourceMappingURL=wrap.dart.lib.js.map

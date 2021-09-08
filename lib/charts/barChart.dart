@@ -91,49 +91,49 @@ class BarChartSample2State extends State<BarChartSample2> {
                             tooltipPadding: EdgeInsets.all(0),
                             tooltipBgColor: Colors.transparent,
                             getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                              String weekDay;
-                              switch (group.x.toInt()) {
-                                case 0:
-                                  weekDay = 'Monday';
-                                  break;
-                                case 1:
-                                  weekDay = 'Tuesday';
-                                  break;
-                                case 2:
-                                  weekDay = 'Wednesday';
-                                  break;
-                                case 3:
-                                  weekDay = 'Thursday';
-                                  break;
-                                case 4:
-                                  weekDay = 'Friday';
-                                  break;
-                                case 5:
-                                  weekDay = 'Saturday';
-                                  break;
-                                case 6:
-                                  weekDay = 'Sunday';
-                                  break;
-                                default:
-                                  throw Error();
-                              }
-                              return BarTooltipItem(
-                                weekDay + '\n',
-                                TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                ),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: (rod.y - 1).toString(),
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              );
+                              // String weekDay;
+                              // switch (group.x.toInt()) {
+                              //   case 0:
+                              //     weekDay = 'Monday';
+                              //     break;
+                              //   case 1:
+                              //     weekDay = 'Tuesday';
+                              //     break;
+                              //   case 2:
+                              //     weekDay = 'Wednesday';
+                              //     break;
+                              //   case 3:
+                              //     weekDay = 'Thursday';
+                              //     break;
+                              //   case 4:
+                              //     weekDay = 'Friday';
+                              //     break;
+                              //   case 5:
+                              //     weekDay = 'Saturday';
+                              //     break;
+                              //   case 6:
+                              //     weekDay = 'Sunday';
+                              //     break;
+                              //   default:
+                              //     throw Error();
+                              // }
+                              // return BarTooltipItem(
+                              //   weekDay + '\n',
+                              //   TextStyle(
+                              //     color: Colors.white,
+                              //     fontSize: 15,
+                              //   ),
+                              //   children: <TextSpan>[
+                              //     TextSpan(
+                              //       text: (rod.y - 1).toString(),
+                              //       style: TextStyle(
+                              //         color: Colors.white,
+                              //         fontSize: 14,
+                              //         fontWeight: FontWeight.w500,
+                              //       ),
+                              //     ),
+                              //   ],
+                              // );
                             }),
                         touchCallback: (FlTouchEvent event, barTouchResponse) {
                           setState(() {

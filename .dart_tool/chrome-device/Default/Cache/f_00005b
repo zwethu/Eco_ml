@@ -1,23 +1,30 @@
-define(['dart_sdk', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/animation/curves.dart', 'packages/flutter/src/foundation/change_notifier.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/widgets/widget_span.dart'], (function load__packages__flutter__src__material__tab_controller_dart(dart_sdk, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__animation__curves$46dart, packages__flutter__src__foundation__change_notifier$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__widgets__widget_span$46dart) {
+define(['dart_sdk', 'packages/flutter/src/scheduler/binding.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/foundation/object.dart'], (function load__packages__flutter__src__scheduler__ticker_dart(dart_sdk, packages__flutter__src__scheduler__binding$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__foundation__object$46dart) {
   'use strict';
   const core = dart_sdk.core;
+  const _interceptors = dart_sdk._interceptors;
   const _internal = dart_sdk._internal;
-  const math = dart_sdk.math;
+  const async = dart_sdk.async;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
-  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
-  const change_notifier = packages__flutter__src__foundation__change_notifier$46dart.src__foundation__change_notifier;
-  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  var tab_controller = Object.create(dart.library);
-  var $toDouble = dartx.toDouble;
-  var $_equals = dartx._equals;
+  const binding = packages__flutter__src__scheduler__binding$46dart.src__scheduler__binding;
+  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
+  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
+  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
+  var ticker$ = Object.create(dart.library);
+  var $runtimeType = dartx.runtimeType;
+  var $trimRight = dartx.trimRight;
+  var $split = dartx.split;
+  var $forEach = dartx.forEach;
+  var $toString = dartx.toString;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))()
+    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    JSArrayOfDiagnosticsNode: () => (T.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
+    DiagnosticsPropertyOfTicker: () => (T.DiagnosticsPropertyOfTicker = dart.constFn(diagnostics.DiagnosticsProperty$(ticker$.Ticker)))(),
+    CompleterOfvoid: () => (T.CompleterOfvoid = dart.constFn(async.Completer$(dart.void)))(),
+    dynamicTovoid: () => (T.dynamicTovoid = dart.constFn(dart.fnType(dart.void, [dart.dynamic])))(),
+    VoidToFutureOrOfvoid: () => (T.VoidToFutureOrOfvoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    VoidToNFutureOrOfvoid: () => (T.VoidToNFutureOrOfvoid = dart.constFn(dart.nullable(T.VoidToFutureOrOfvoid())))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -25,399 +32,372 @@ define(['dart_sdk', 'packages/flutter/src/animation/animation_controller.dart', 
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 300000
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: curves.Cubic.prototype,
-        [Cubic_d]: 1,
-        [Cubic_c]: 0.25,
-        [Cubic_b]: 0.1,
-        [Cubic_a]: 0.25
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "controller",
-        [_Location_column]: 7,
-        [_Location_line]: 441,
-        [_Location_file]: null
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "enabled",
-        [_Location_column]: 7,
-        [_Location_line]: 442,
-        [_Location_file]: null
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 443,
-        [_Location_file]: null
-      });
-    },
-    get C3() {
-      return C[3] = dart.constList([C[4] || CT.C4, C[5] || CT.C5, C[6] || CT.C6], widget_inspector._Location);
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[3] || CT.C3,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 440,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/material/tab_controller.dart"
+        __proto__: ticker$.TickerCanceled.prototype,
+        [TickerCanceled_ticker]: null
       });
     }
   }, false);
-  var C = Array(7).fill(void 0);
+  var C = [void 0];
   var I = [
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/material/tab_controller.dart",
-    "package:flutter/src/material/tab_controller.dart"
+    "package:flutter/src/scheduler/ticker.dart",
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/scheduler/ticker.dart"
   ];
-  var length$ = dart.privateName(tab_controller, "TabController.length");
-  var _indexIsChangingCount = dart.privateName(tab_controller, "_indexIsChangingCount");
-  var _index = dart.privateName(tab_controller, "_index");
-  var _previousIndex = dart.privateName(tab_controller, "_previousIndex");
-  var _animationController = dart.privateName(tab_controller, "_animationController");
-  var _copyWith = dart.privateName(tab_controller, "_copyWith");
-  var _changeIndex = dart.privateName(tab_controller, "_changeIndex");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  var Cubic_d = dart.privateName(curves, "Cubic.d");
-  var Cubic_c = dart.privateName(curves, "Cubic.c");
-  var Cubic_b = dart.privateName(curves, "Cubic.b");
-  var Cubic_a = dart.privateName(curves, "Cubic.a");
-  tab_controller.TabController = class TabController extends change_notifier.ChangeNotifier {
-    get length() {
-      return this[length$];
+  ticker$.TickerProvider = class TickerProvider extends core.Object {};
+  (ticker$.TickerProvider.new = function() {
+    ;
+  }).prototype = ticker$.TickerProvider.prototype;
+  dart.addTypeTests(ticker$.TickerProvider);
+  dart.addTypeCaches(ticker$.TickerProvider);
+  dart.setLibraryUri(ticker$.TickerProvider, I[0]);
+  var debugLabel$ = dart.privateName(ticker$, "Ticker.debugLabel");
+  var _future = dart.privateName(ticker$, "_future");
+  var _muted = dart.privateName(ticker$, "_muted");
+  var _startTime = dart.privateName(ticker$, "_startTime");
+  var _animationId = dart.privateName(ticker$, "_animationId");
+  var __Ticker__debugCreationStack = dart.privateName(ticker$, "_#Ticker#_debugCreationStack");
+  var _onTick$ = dart.privateName(ticker$, "_onTick");
+  var _debugCreationStack = dart.privateName(ticker$, "_debugCreationStack");
+  var _cancel = dart.privateName(ticker$, "_cancel");
+  var _complete = dart.privateName(ticker$, "_complete");
+  var _tick = dart.privateName(ticker$, "_tick");
+  ticker$.Ticker = class Ticker extends core.Object {
+    get debugLabel() {
+      return this[debugLabel$];
     }
-    set length(value) {
-      super.length = value;
+    set debugLabel(value) {
+      super.debugLabel = value;
     }
-    [_copyWith](opts) {
-      let t0, t0$, t0$0;
-      let index = opts && 'index' in opts ? opts.index : null;
-      let length = opts && 'length' in opts ? opts.length : null;
-      let previousIndex = opts && 'previousIndex' in opts ? opts.previousIndex : null;
-      return new tab_controller.TabController.__({index: (t0 = index, t0 == null ? this[_index] : t0), length: (t0$ = length, t0$ == null ? this.length : t0$), animationController: this[_animationController], previousIndex: (t0$0 = previousIndex, t0$0 == null ? this[_previousIndex] : t0$0)});
+    get muted() {
+      return this[_muted];
     }
-    get animation() {
-      let t0;
-      t0 = this[_animationController];
-      return t0 == null ? null : t0.view;
-    }
-    [_changeIndex](value, opts) {
-      let duration = opts && 'duration' in opts ? opts.duration : null;
-      let curve = opts && 'curve' in opts ? opts.curve : null;
-      if (!(value !== null)) dart.assertFailed(null, I[0], 211, 12, "value != null");
-      if (!(value >= 0 && (value < this.length || this.length === 0))) dart.assertFailed(null, I[0], 212, 12, "value >= 0 && (value < length || length == 0)");
-      if (!(duration != null || curve == null)) dart.assertFailed(null, I[0], 213, 12, "duration != null || curve == null");
-      if (!(this[_indexIsChangingCount] >= 0)) dart.assertFailed(null, I[0], 214, 12, "_indexIsChangingCount >= 0");
-      if (value === this[_index] || this.length < 2) return;
-      this[_previousIndex] = this.index;
-      this[_index] = value;
-      if (duration != null) {
-        this[_indexIsChangingCount] = this[_indexIsChangingCount] + 1;
-        this.notifyListeners();
-        dart.nullCheck(this[_animationController]).animateTo(this[_index][$toDouble](), {duration: duration, curve: dart.nullCheck(curve)}).whenCompleteOrCancel(dart.fn(() => {
-          if (this[_animationController] != null) {
-            this[_indexIsChangingCount] = this[_indexIsChangingCount] - 1;
-            this.notifyListeners();
-          }
-        }, T.VoidTovoid()));
-      } else {
-        this[_indexIsChangingCount] = this[_indexIsChangingCount] + 1;
-        dart.nullCheck(this[_animationController]).value = this[_index][$toDouble]();
-        this[_indexIsChangingCount] = this[_indexIsChangingCount] - 1;
-        this.notifyListeners();
+    set muted(value) {
+      if (value === this.muted) return;
+      this[_muted] = value;
+      if (value) {
+        this.unscheduleTick();
+      } else if (this.shouldScheduleTick) {
+        this.scheduleTick();
       }
     }
-    get index() {
-      return this[_index];
+    get isTicking() {
+      if (this[_future] == null) return false;
+      if (this.muted) return false;
+      if (dart.nullCheck(binding.SchedulerBinding.instance).framesEnabled) return true;
+      if (dart.nullCheck(binding.SchedulerBinding.instance).schedulerPhase !== binding.SchedulerPhase.idle) return true;
+      return false;
     }
-    set index(value) {
-      this[_changeIndex](value);
+    get isActive() {
+      return this[_future] != null;
     }
-    get previousIndex() {
-      return this[_previousIndex];
-    }
-    get indexIsChanging() {
-      return this[_indexIsChangingCount] !== 0;
-    }
-    animateTo(value, opts) {
-      let duration = opts && 'duration' in opts ? opts.duration : C[0] || CT.C0;
-      let curve = opts && 'curve' in opts ? opts.curve : C[1] || CT.C1;
-      this[_changeIndex](value, {duration: duration, curve: curve});
-    }
-    get offset() {
-      return dart.nullCheck(this[_animationController]).value - this[_index][$toDouble]();
-    }
-    set offset(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[0], 287, 12, "value != null");
-      if (!(value >= -1.0 && value <= 1.0)) dart.assertFailed(null, I[0], 288, 12, "value >= -1.0 && value <= 1.0");
-      if (!!this.indexIsChanging) dart.assertFailed(null, I[0], 289, 12, "!indexIsChanging");
-      if (value === this.offset) return;
-      dart.nullCheck(this[_animationController]).value = value + this[_index][$toDouble]();
-    }
-    dispose() {
-      let t0;
-      t0 = this[_animationController];
-      t0 == null ? null : t0.dispose();
-      this[_animationController] = null;
-      super.dispose();
-    }
-  };
-  (tab_controller.TabController.new = function(opts) {
-    let initialIndex = opts && 'initialIndex' in opts ? opts.initialIndex : 0;
-    let length = opts && 'length' in opts ? opts.length : null;
-    let vsync = opts && 'vsync' in opts ? opts.vsync : null;
-    this[_indexIsChangingCount] = 0;
-    this[length$] = length;
-    if (!(length !== null && length >= 0)) dart.assertFailed(null, I[0], 150, 14, "length != null && length >= 0");
-    if (!(initialIndex !== null && initialIndex >= 0 && (length === 0 || initialIndex < length))) dart.assertFailed(null, I[0], 151, 14, "initialIndex != null && initialIndex >= 0 && (length == 0 || initialIndex < length)");
-    this[_index] = initialIndex;
-    this[_previousIndex] = initialIndex;
-    this[_animationController] = new animation_controller.AnimationController.unbounded({value: initialIndex[$toDouble](), vsync: vsync});
-    tab_controller.TabController.__proto__.new.call(this);
-    ;
-  }).prototype = tab_controller.TabController.prototype;
-  (tab_controller.TabController.__ = function(opts) {
-    let index = opts && 'index' in opts ? opts.index : null;
-    let previousIndex = opts && 'previousIndex' in opts ? opts.previousIndex : null;
-    let animationController = opts && 'animationController' in opts ? opts.animationController : null;
-    let length = opts && 'length' in opts ? opts.length : null;
-    this[_indexIsChangingCount] = 0;
-    this[length$] = length;
-    this[_index] = index;
-    this[_previousIndex] = previousIndex;
-    this[_animationController] = animationController;
-    tab_controller.TabController.__proto__.new.call(this);
-    ;
-  }).prototype = tab_controller.TabController.prototype;
-  dart.addTypeTests(tab_controller.TabController);
-  dart.addTypeCaches(tab_controller.TabController);
-  dart.setMethodSignature(tab_controller.TabController, () => ({
-    __proto__: dart.getMethods(tab_controller.TabController.__proto__),
-    [_copyWith]: dart.fnType(tab_controller.TabController, [], {}, {index: dart.nullable(core.int), length: dart.nullable(core.int), previousIndex: dart.nullable(core.int)}),
-    [_changeIndex]: dart.fnType(dart.void, [core.int], {curve: dart.nullable(curves.Curve), duration: dart.nullable(core.Duration)}, {}),
-    animateTo: dart.fnType(dart.void, [core.int], {curve: curves.Curve, duration: core.Duration}, {})
-  }));
-  dart.setGetterSignature(tab_controller.TabController, () => ({
-    __proto__: dart.getGetters(tab_controller.TabController.__proto__),
-    animation: dart.nullable(animation.Animation$(core.double)),
-    index: core.int,
-    previousIndex: core.int,
-    indexIsChanging: core.bool,
-    offset: core.double
-  }));
-  dart.setSetterSignature(tab_controller.TabController, () => ({
-    __proto__: dart.getSetters(tab_controller.TabController.__proto__),
-    index: core.int,
-    offset: core.double
-  }));
-  dart.setLibraryUri(tab_controller.TabController, I[1]);
-  dart.setFieldSignature(tab_controller.TabController, () => ({
-    __proto__: dart.getFields(tab_controller.TabController.__proto__),
-    [_animationController]: dart.fieldType(dart.nullable(animation_controller.AnimationController)),
-    length: dart.finalFieldType(core.int),
-    [_index]: dart.fieldType(core.int),
-    [_previousIndex]: dart.fieldType(core.int),
-    [_indexIsChangingCount]: dart.fieldType(core.int)
-  }));
-  var controller$ = dart.privateName(tab_controller, "_TabControllerScope.controller");
-  var enabled$ = dart.privateName(tab_controller, "_TabControllerScope.enabled");
-  tab_controller._TabControllerScope = class _TabControllerScope extends framework.InheritedWidget {
-    get controller() {
-      return this[controller$];
-    }
-    set controller(value) {
-      super.controller = value;
-    }
-    get enabled() {
-      return this[enabled$];
-    }
-    set enabled(value) {
-      super.enabled = value;
-    }
-    updateShouldNotify(old) {
-      tab_controller._TabControllerScope.as(old);
-      return this.enabled !== old.enabled || !this.controller[$_equals](old.controller);
-    }
-  };
-  (tab_controller._TabControllerScope.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let enabled = opts && 'enabled' in opts ? opts.enabled : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[controller$] = controller;
-    this[enabled$] = enabled;
-    tab_controller._TabControllerScope.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = tab_controller._TabControllerScope.prototype;
-  dart.addTypeTests(tab_controller._TabControllerScope);
-  dart.addTypeCaches(tab_controller._TabControllerScope);
-  dart.setMethodSignature(tab_controller._TabControllerScope, () => ({
-    __proto__: dart.getMethods(tab_controller._TabControllerScope.__proto__),
-    updateShouldNotify: dart.fnType(core.bool, [dart.nullable(core.Object)])
-  }));
-  dart.setLibraryUri(tab_controller._TabControllerScope, I[1]);
-  dart.setFieldSignature(tab_controller._TabControllerScope, () => ({
-    __proto__: dart.getFields(tab_controller._TabControllerScope.__proto__),
-    controller: dart.finalFieldType(tab_controller.TabController),
-    enabled: dart.finalFieldType(core.bool)
-  }));
-  var length$0 = dart.privateName(tab_controller, "DefaultTabController.length");
-  var initialIndex$ = dart.privateName(tab_controller, "DefaultTabController.initialIndex");
-  var child$ = dart.privateName(tab_controller, "DefaultTabController.child");
-  tab_controller.DefaultTabController = class DefaultTabController extends framework.StatefulWidget {
-    get length() {
-      return this[length$0];
-    }
-    set length(value) {
-      super.length = value;
-    }
-    get initialIndex() {
-      return this[initialIndex$];
-    }
-    set initialIndex(value) {
-      super.initialIndex = value;
-    }
-    get child() {
-      return this[child$];
-    }
-    set child(value) {
-      super.child = value;
-    }
-    static of(context) {
-      let t0;
-      let scope = context.dependOnInheritedWidgetOfExactType(tab_controller._TabControllerScope);
-      t0 = scope;
-      return t0 == null ? null : t0.controller;
-    }
-    createState() {
-      return new tab_controller._DefaultTabControllerState.new();
-    }
-  };
-  (tab_controller.DefaultTabController.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let length = opts && 'length' in opts ? opts.length : null;
-    let initialIndex = opts && 'initialIndex' in opts ? opts.initialIndex : 0;
-    let child = opts && 'child' in opts ? opts.child : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[length$0] = length;
-    this[initialIndex$] = initialIndex;
-    this[child$] = child;
-    if (!(initialIndex !== null)) dart.assertFailed(null, I[0], 378, 15, "initialIndex != null");
-    if (!(length >= 0)) dart.assertFailed(null, I[0], 379, 15, "length >= 0");
-    if (!(length === 0 || initialIndex >= 0 && initialIndex < length)) dart.assertFailed(null, I[0], 380, 15, "length == 0 || (initialIndex >= 0 && initialIndex < length)");
-    tab_controller.DefaultTabController.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = tab_controller.DefaultTabController.prototype;
-  dart.addTypeTests(tab_controller.DefaultTabController);
-  dart.addTypeCaches(tab_controller.DefaultTabController);
-  dart.setMethodSignature(tab_controller.DefaultTabController, () => ({
-    __proto__: dart.getMethods(tab_controller.DefaultTabController.__proto__),
-    createState: dart.fnType(tab_controller._DefaultTabControllerState, [])
-  }));
-  dart.setLibraryUri(tab_controller.DefaultTabController, I[1]);
-  dart.setFieldSignature(tab_controller.DefaultTabController, () => ({
-    __proto__: dart.getFields(tab_controller.DefaultTabController.__proto__),
-    length: dart.finalFieldType(core.int),
-    initialIndex: dart.finalFieldType(core.int),
-    child: dart.finalFieldType(framework.Widget)
-  }));
-  var ___DefaultTabControllerState__controller = dart.privateName(tab_controller, "_#_DefaultTabControllerState#_controller");
-  var _controller = dart.privateName(tab_controller, "_controller");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  const State_SingleTickerProviderStateMixin$36 = class State_SingleTickerProviderStateMixin extends framework.State$(tab_controller.DefaultTabController) {};
-  (State_SingleTickerProviderStateMixin$36.new = function() {
-    ticker_provider.SingleTickerProviderStateMixin$(tab_controller.DefaultTabController)[dart.mixinNew].call(this);
-    State_SingleTickerProviderStateMixin$36.__proto__.new.call(this);
-  }).prototype = State_SingleTickerProviderStateMixin$36.prototype;
-  dart.applyMixin(State_SingleTickerProviderStateMixin$36, ticker_provider.SingleTickerProviderStateMixin$(tab_controller.DefaultTabController));
-  tab_controller._DefaultTabControllerState = class _DefaultTabControllerState extends State_SingleTickerProviderStateMixin$36 {
-    get [_controller]() {
-      let t0;
-      t0 = this[___DefaultTabControllerState__controller];
-      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_controller")) : t0;
-    }
-    set [_controller](t0) {
-      this[___DefaultTabControllerState__controller] = t0;
-    }
-    initState() {
-      super.initState();
-      this[_controller] = new tab_controller.TabController.new({vsync: this, length: this.widget.length, initialIndex: this.widget.initialIndex});
-    }
-    dispose() {
-      this[_controller].dispose();
-      super.dispose();
-    }
-    build(context) {
-      return new tab_controller._TabControllerScope.new({controller: this[_controller], enabled: ticker_provider.TickerMode.of(context), child: this.widget.child, $creationLocationd_0dea112b090073317d4: C[2] || CT.C2});
-    }
-    didUpdateWidget(oldWidget) {
-      tab_controller.DefaultTabController.as(oldWidget);
-      super.didUpdateWidget(oldWidget);
-      if (oldWidget.length !== this.widget.length) {
-        let newIndex = null;
-        let previousIndex = this[_controller].previousIndex;
-        if (this[_controller].index >= this.widget.length) {
-          newIndex = math.max(core.int, 0, this.widget.length - 1);
-          previousIndex = this[_controller].index;
+    start() {
+      if (!dart.fn(() => {
+        if (this.isActive) {
+          dart.throw(new assertions.FlutterError.fromParts(T.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("A ticker was started twice."), new assertions.ErrorDescription.new("A ticker that is already active cannot be started again without first stopping it."), this.describeForError("The affected ticker was")])));
         }
-        this[_controller] = this[_controller][_copyWith]({length: this.widget.length, index: newIndex, previousIndex: previousIndex});
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 149, 12, "() {\r\n      if (isActive) {\r\n        throw FlutterError.fromParts(<DiagnosticsNode>[\r\n          ErrorSummary('A ticker was started twice.'),\r\n          ErrorDescription('A ticker that is already active cannot be started again without first stopping it.'),\r\n          describeForError('The affected ticker was'),\r\n        ]);\r\n      }\r\n      return true;\r\n    }()");
+      if (!(this[_startTime] == null)) dart.assertFailed(null, I[1], 159, 12, "_startTime == null");
+      this[_future] = new ticker$.TickerFuture.__();
+      if (this.shouldScheduleTick) {
+        this.scheduleTick();
+      }
+      if (dart.nullCheck(binding.SchedulerBinding.instance).schedulerPhase.index > binding.SchedulerPhase.idle.index && dart.nullCheck(binding.SchedulerBinding.instance).schedulerPhase.index < binding.SchedulerPhase.postFrameCallbacks.index) this[_startTime] = dart.nullCheck(binding.SchedulerBinding.instance).currentFrameTimeStamp;
+      return dart.nullCheck(this[_future]);
+    }
+    describeForError(name) {
+      return new (T.DiagnosticsPropertyOfTicker()).new(name, this, {description: this.toString({debugIncludeStack: true})});
+    }
+    stop(opts) {
+      let canceled = opts && 'canceled' in opts ? opts.canceled : false;
+      if (!this.isActive) return;
+      let localFuture = dart.nullCheck(this[_future]);
+      this[_future] = null;
+      this[_startTime] = null;
+      if (!!this.isActive) dart.assertFailed(null, I[1], 201, 12, "!isActive");
+      this.unscheduleTick();
+      if (canceled) {
+        localFuture[_cancel](this);
+      } else {
+        localFuture[_complete]();
       }
     }
+    get scheduled() {
+      return this[_animationId] != null;
+    }
+    get shouldScheduleTick() {
+      return !this.muted && this.isActive && !this.scheduled;
+    }
+    [_tick](timeStamp) {
+      let t0;
+      if (!this.isTicking) dart.assertFailed(null, I[1], 233, 12, "isTicking");
+      if (!this.scheduled) dart.assertFailed(null, I[1], 234, 12, "scheduled");
+      this[_animationId] = null;
+      this[_startTime] == null ? this[_startTime] = timeStamp : null;
+      t0 = timeStamp['-'](dart.nullCheck(this[_startTime]));
+      this[_onTick$](t0);
+      if (this.shouldScheduleTick) this.scheduleTick({rescheduling: true});
+    }
+    scheduleTick(opts) {
+      let rescheduling = opts && 'rescheduling' in opts ? opts.rescheduling : false;
+      if (!!this.scheduled) dart.assertFailed(null, I[1], 251, 12, "!scheduled");
+      if (!this.shouldScheduleTick) dart.assertFailed(null, I[1], 252, 12, "shouldScheduleTick");
+      this[_animationId] = dart.nullCheck(binding.SchedulerBinding.instance).scheduleFrameCallback(dart.bind(this, _tick), {rescheduling: rescheduling});
+    }
+    unscheduleTick() {
+      if (this.scheduled) {
+        dart.nullCheck(binding.SchedulerBinding.instance).cancelFrameCallbackWithId(dart.nullCheck(this[_animationId]));
+        this[_animationId] = null;
+      }
+      if (!!this.shouldScheduleTick) dart.assertFailed(null, I[1], 268, 12, "!shouldScheduleTick");
+    }
+    absorbTicker(originalTicker) {
+      if (!!this.isActive) dart.assertFailed(null, I[1], 281, 12, "!isActive");
+      if (!(this[_future] == null)) dart.assertFailed(null, I[1], 282, 12, "_future == null");
+      if (!(this[_startTime] == null)) dart.assertFailed(null, I[1], 283, 12, "_startTime == null");
+      if (!(this[_animationId] == null)) dart.assertFailed(null, I[1], 284, 12, "_animationId == null");
+      if (!(originalTicker[_future] == null === (originalTicker[_startTime] == null))) dart.assertFailed("Cannot absorb Ticker after it has been disposed.", I[1], 285, 12, "(originalTicker._future == null) == (originalTicker._startTime == null)");
+      if (originalTicker[_future] != null) {
+        this[_future] = originalTicker[_future];
+        this[_startTime] = originalTicker[_startTime];
+        if (this.shouldScheduleTick) this.scheduleTick();
+        originalTicker[_future] = null;
+        originalTicker.unscheduleTick();
+      }
+      originalTicker.dispose();
+    }
+    dispose() {
+      if (this[_future] != null) {
+        let localFuture = dart.nullCheck(this[_future]);
+        this[_future] = null;
+        if (!!this.isActive) dart.assertFailed(null, I[1], 312, 14, "!isActive");
+        this.unscheduleTick();
+        localFuture[_cancel](this);
+      }
+      if (!dart.fn(() => {
+        this[_startTime] = core.Duration.zero;
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 316, 12, "() {\r\n      // We intentionally don't null out _startTime. This means that if start()\r\n      // was ever called, the object is now in a bogus state. This weakly helps\r\n      // catch cases of use-after-dispose.\r\n      _startTime = Duration.zero;\r\n      return true;\r\n    }()");
+    }
+    get [_debugCreationStack]() {
+      let t0;
+      t0 = this[__Ticker__debugCreationStack];
+      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_debugCreationStack")) : t0;
+    }
+    set [_debugCreationStack](t0) {
+      this[__Ticker__debugCreationStack] = t0;
+    }
+    toString(opts) {
+      let debugIncludeStack = opts && 'debugIncludeStack' in opts ? opts.debugIncludeStack : false;
+      let buffer = new core.StringBuffer.new();
+      buffer.write(object.objectRuntimeType(this, "Ticker") + "(");
+      if (!dart.fn(() => {
+        let t1;
+        buffer.write((t1 = this.debugLabel, t1 == null ? "" : t1));
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 335, 12, "() {\r\n      buffer.write(debugLabel ?? '');\r\n      return true;\r\n    }()");
+      buffer.write(")");
+      if (!dart.fn(() => {
+        if (debugIncludeStack) {
+          buffer.writeln();
+          buffer.writeln("The stack trace when the " + dart.str(this[$runtimeType]) + " was actually created was:");
+          assertions.FlutterError.defaultStackFilter(this[_debugCreationStack].toString()[$trimRight]()[$split]("\n"))[$forEach](dart.bind(buffer, 'writeln'));
+        }
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 340, 12, "() {\r\n      if (debugIncludeStack) {\r\n        buffer.writeln();\r\n        buffer.writeln('The stack trace when the $runtimeType was actually created was:');\r\n        FlutterError.defaultStackFilter(_debugCreationStack.toString().trimRight().split('\\n')).forEach(buffer.writeln);\r\n      }\r\n      return true;\r\n    }()");
+      return buffer.toString();
+    }
   };
-  (tab_controller._DefaultTabControllerState.new = function() {
-    this[___DefaultTabControllerState__controller] = null;
-    tab_controller._DefaultTabControllerState.__proto__.new.call(this);
+  (ticker$.Ticker.new = function(_onTick, opts) {
+    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
+    this[_future] = null;
+    this[_muted] = false;
+    this[_startTime] = null;
+    this[_animationId] = null;
+    this[__Ticker__debugCreationStack] = null;
+    this[_onTick$] = _onTick;
+    this[debugLabel$] = debugLabel;
+    if (!dart.fn(() => {
+      this[_debugCreationStack] = core.StackTrace.current;
+      return true;
+    }, T.VoidTobool())()) dart.assertFailed(null, I[1], 66, 12, "() {\r\n      _debugCreationStack = StackTrace.current;\r\n      return true;\r\n    }()");
+  }).prototype = ticker$.Ticker.prototype;
+  dart.addTypeTests(ticker$.Ticker);
+  dart.addTypeCaches(ticker$.Ticker);
+  dart.setMethodSignature(ticker$.Ticker, () => ({
+    __proto__: dart.getMethods(ticker$.Ticker.__proto__),
+    start: dart.fnType(ticker$.TickerFuture, []),
+    describeForError: dart.fnType(diagnostics.DiagnosticsNode, [core.String]),
+    stop: dart.fnType(dart.void, [], {canceled: core.bool}, {}),
+    [_tick]: dart.fnType(dart.void, [core.Duration]),
+    scheduleTick: dart.fnType(dart.void, [], {rescheduling: core.bool}, {}),
+    unscheduleTick: dart.fnType(dart.void, []),
+    absorbTicker: dart.fnType(dart.void, [ticker$.Ticker]),
+    dispose: dart.fnType(dart.void, []),
+    toString: dart.fnType(core.String, [], {debugIncludeStack: core.bool}, {}),
+    [$toString]: dart.fnType(core.String, [], {debugIncludeStack: core.bool}, {})
+  }));
+  dart.setGetterSignature(ticker$.Ticker, () => ({
+    __proto__: dart.getGetters(ticker$.Ticker.__proto__),
+    muted: core.bool,
+    isTicking: core.bool,
+    isActive: core.bool,
+    scheduled: core.bool,
+    shouldScheduleTick: core.bool,
+    [_debugCreationStack]: core.StackTrace
+  }));
+  dart.setSetterSignature(ticker$.Ticker, () => ({
+    __proto__: dart.getSetters(ticker$.Ticker.__proto__),
+    muted: core.bool,
+    [_debugCreationStack]: core.StackTrace
+  }));
+  dart.setLibraryUri(ticker$.Ticker, I[0]);
+  dart.setFieldSignature(ticker$.Ticker, () => ({
+    __proto__: dart.getFields(ticker$.Ticker.__proto__),
+    [_future]: dart.fieldType(dart.nullable(ticker$.TickerFuture)),
+    [_muted]: dart.fieldType(core.bool),
+    [_startTime]: dart.fieldType(dart.nullable(core.Duration)),
+    [_onTick$]: dart.finalFieldType(dart.fnType(dart.void, [core.Duration])),
+    [_animationId]: dart.fieldType(dart.nullable(core.int)),
+    debugLabel: dart.finalFieldType(dart.nullable(core.String)),
+    [__Ticker__debugCreationStack]: dart.fieldType(dart.nullable(core.StackTrace))
+  }));
+  dart.defineExtensionMethods(ticker$.Ticker, ['toString']);
+  var _primaryCompleter = dart.privateName(ticker$, "_primaryCompleter");
+  var _secondaryCompleter = dart.privateName(ticker$, "_secondaryCompleter");
+  var _completed = dart.privateName(ticker$, "_completed");
+  var TickerCanceled_ticker = dart.privateName(ticker$, "TickerCanceled.ticker");
+  ticker$.TickerFuture = class TickerFuture extends core.Object {
+    [_complete]() {
+      let t1;
+      if (!(this[_completed] == null)) dart.assertFailed(null, I[1], 387, 12, "_completed == null");
+      this[_completed] = true;
+      this[_primaryCompleter].complete();
+      t1 = this[_secondaryCompleter];
+      t1 == null ? null : t1.complete();
+    }
+    [_cancel](ticker) {
+      let t1;
+      if (!(this[_completed] == null)) dart.assertFailed(null, I[1], 394, 12, "_completed == null");
+      this[_completed] = false;
+      t1 = this[_secondaryCompleter];
+      t1 == null ? null : t1.completeError(new ticker$.TickerCanceled.new(ticker));
+    }
+    whenCompleteOrCancel(callback) {
+      function thunk(value) {
+        callback();
+      }
+      dart.fn(thunk, T.dynamicTovoid());
+      this.orCancel.then(dart.void, thunk, {onError: thunk});
+    }
+    get orCancel() {
+      if (this[_secondaryCompleter] == null) {
+        this[_secondaryCompleter] = T.CompleterOfvoid().new();
+        if (this[_completed] != null) {
+          if (dart.nullCheck(this[_completed])) {
+            dart.nullCheck(this[_secondaryCompleter]).complete();
+          } else {
+            dart.nullCheck(this[_secondaryCompleter]).completeError(C[0] || CT.C0);
+          }
+        }
+      }
+      return dart.nullCheck(this[_secondaryCompleter]).future;
+    }
+    asStream() {
+      return this[_primaryCompleter].future.asStream();
+    }
+    catchError(onError, opts) {
+      let test = opts && 'test' in opts ? opts.test : null;
+      return this[_primaryCompleter].future.catchError(onError, {test: test});
+    }
+    then(R, onValue, opts) {
+      let onError = opts && 'onError' in opts ? opts.onError : null;
+      return this[_primaryCompleter].future.then(R, onValue, {onError: onError});
+    }
+    timeout(timeLimit, opts) {
+      let onTimeout = opts && 'onTimeout' in opts ? opts.onTimeout : null;
+      T.VoidToNFutureOrOfvoid().as(onTimeout);
+      return this[_primaryCompleter].future.timeout(timeLimit, {onTimeout: onTimeout});
+    }
+    whenComplete(action) {
+      return this[_primaryCompleter].future.whenComplete(action);
+    }
+    toString() {
+      return diagnostics.describeIdentity(this) + "(" + (this[_completed] == null ? "active" : dart.nullCheck(this[_completed]) ? "complete" : "canceled") + ")";
+    }
+  };
+  (ticker$.TickerFuture.__ = function() {
+    this[_primaryCompleter] = T.CompleterOfvoid().new();
+    this[_secondaryCompleter] = null;
+    this[_completed] = null;
     ;
-  }).prototype = tab_controller._DefaultTabControllerState.prototype;
-  dart.addTypeTests(tab_controller._DefaultTabControllerState);
-  dart.addTypeCaches(tab_controller._DefaultTabControllerState);
-  dart.setMethodSignature(tab_controller._DefaultTabControllerState, () => ({
-    __proto__: dart.getMethods(tab_controller._DefaultTabControllerState.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = ticker$.TickerFuture.prototype;
+  (ticker$.TickerFuture.complete = function() {
+    this[_primaryCompleter] = T.CompleterOfvoid().new();
+    this[_secondaryCompleter] = null;
+    this[_completed] = null;
+    this[_complete]();
+  }).prototype = ticker$.TickerFuture.prototype;
+  ticker$.TickerFuture.prototype[dart.isFuture] = true;
+  dart.addTypeTests(ticker$.TickerFuture);
+  dart.addTypeCaches(ticker$.TickerFuture);
+  ticker$.TickerFuture[dart.implements] = () => [async.Future$(dart.void)];
+  dart.setMethodSignature(ticker$.TickerFuture, () => ({
+    __proto__: dart.getMethods(ticker$.TickerFuture.__proto__),
+    [_complete]: dart.fnType(dart.void, []),
+    [_cancel]: dart.fnType(dart.void, [ticker$.Ticker]),
+    whenCompleteOrCancel: dart.fnType(dart.void, [dart.fnType(dart.void, [])]),
+    asStream: dart.fnType(async.Stream$(dart.void), []),
+    catchError: dart.fnType(async.Future$(dart.void), [core.Function], {test: dart.nullable(dart.fnType(core.bool, [core.Object]))}, {}),
+    then: dart.gFnType(R => [async.Future$(R), [dart.fnType(async.FutureOr$(R), [dart.void])], {onError: dart.nullable(core.Function)}, {}], R => [dart.nullable(core.Object)]),
+    timeout: dart.fnType(async.Future$(dart.void), [core.Duration], {onTimeout: dart.nullable(core.Object)}, {}),
+    whenComplete: dart.fnType(async.Future$(dart.void), [dart.fnType(dart.dynamic, [])])
   }));
-  dart.setGetterSignature(tab_controller._DefaultTabControllerState, () => ({
-    __proto__: dart.getGetters(tab_controller._DefaultTabControllerState.__proto__),
-    [_controller]: tab_controller.TabController
+  dart.setGetterSignature(ticker$.TickerFuture, () => ({
+    __proto__: dart.getGetters(ticker$.TickerFuture.__proto__),
+    orCancel: async.Future$(dart.void)
   }));
-  dart.setSetterSignature(tab_controller._DefaultTabControllerState, () => ({
-    __proto__: dart.getSetters(tab_controller._DefaultTabControllerState.__proto__),
-    [_controller]: tab_controller.TabController
+  dart.setLibraryUri(ticker$.TickerFuture, I[0]);
+  dart.setFieldSignature(ticker$.TickerFuture, () => ({
+    __proto__: dart.getFields(ticker$.TickerFuture.__proto__),
+    [_primaryCompleter]: dart.finalFieldType(async.Completer$(dart.void)),
+    [_secondaryCompleter]: dart.fieldType(dart.nullable(async.Completer$(dart.void))),
+    [_completed]: dart.fieldType(dart.nullable(core.bool))
   }));
-  dart.setLibraryUri(tab_controller._DefaultTabControllerState, I[1]);
-  dart.setFieldSignature(tab_controller._DefaultTabControllerState, () => ({
-    __proto__: dart.getFields(tab_controller._DefaultTabControllerState.__proto__),
-    [___DefaultTabControllerState__controller]: dart.fieldType(dart.nullable(tab_controller.TabController))
+  dart.defineExtensionMethods(ticker$.TickerFuture, ['toString']);
+  const ticker$0 = TickerCanceled_ticker;
+  ticker$.TickerCanceled = class TickerCanceled extends core.Object {
+    get ticker() {
+      return this[ticker$0];
+    }
+    set ticker(value) {
+      super.ticker = value;
+    }
+    toString() {
+      if (this.ticker != null) return "This ticker was canceled: " + dart.str(this.ticker);
+      return "The ticker was canceled before the \"orCancel\" property was first used.";
+    }
+  };
+  (ticker$.TickerCanceled.new = function(ticker = null) {
+    this[ticker$0] = ticker;
+    ;
+  }).prototype = ticker$.TickerCanceled.prototype;
+  dart.addTypeTests(ticker$.TickerCanceled);
+  dart.addTypeCaches(ticker$.TickerCanceled);
+  ticker$.TickerCanceled[dart.implements] = () => [core.Exception];
+  dart.setLibraryUri(ticker$.TickerCanceled, I[0]);
+  dart.setFieldSignature(ticker$.TickerCanceled, () => ({
+    __proto__: dart.getFields(ticker$.TickerCanceled.__proto__),
+    ticker: dart.finalFieldType(dart.nullable(ticker$.Ticker))
   }));
-  dart.trackLibraries("packages/flutter/src/material/tab_controller.dart", {
-    "package:flutter/src/material/tab_controller.dart": tab_controller
+  dart.defineExtensionMethods(ticker$.TickerCanceled, ['toString']);
+  dart.trackLibraries("packages/flutter/src/scheduler/ticker.dart", {
+    "package:flutter/src/scheduler/ticker.dart": ticker$
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["tab_controller.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/material/tab_controller.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["ticker.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/scheduler/ticker.dart.lib.js"}');
   // Exports:
   return {
-    src__material__tab_controller: tab_controller
+    src__scheduler__ticker: ticker$
   };
 }));
 
-//# sourceMappingURL=tab_controller.dart.lib.js.map
+//# sourceMappingURL=ticker.dart.lib.js.map

@@ -10,9 +10,12 @@ Future main() async{
   await Hive.initFlutter();
   Hive.registerAdapter(UserNameAdapter());
   Hive.registerAdapter(TotalAmountAdapter());
+  Hive.registerAdapter(IconDataAdapter());
+  Hive.registerAdapter(TransactionAdapter());
   Hive.openBox('username');
   Hive.openBox('amount');
   Hive.openBox('id');
+  Hive.openBox('transactions');
   runApp(MyApp());
 }
 

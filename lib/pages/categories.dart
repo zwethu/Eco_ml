@@ -32,6 +32,7 @@ class _CategoriesPageState extends State<CategoriesPage>
   @override
   void dispose() {
     super.dispose();
+    // Hive.close();
     _tabController.dispose();
   }
 
@@ -128,10 +129,9 @@ class _CategoriesPageState extends State<CategoriesPage>
                                 ),
                               ),
                               onTap: () {
-                                navigateToTransaction(context);
+                                navigateToTransaction(context,index);
                                 box.put(0, index);
                                 box.put(1, false);
-                                
                               });
                         },
                       ),
@@ -170,10 +170,10 @@ class _CategoriesPageState extends State<CategoriesPage>
                               ),
                             ),
                             onTap: (){
-                              navigateToTransaction(context);
+                              navigateToTransaction(context,index);
                               box.put(0, index);
                               box.put(1, true);
-                              print(box.get(0));
+                              
                             },
                           );
                         },
@@ -190,6 +190,6 @@ class _CategoriesPageState extends State<CategoriesPage>
   }
 }
 
-void navigateToTransaction(BuildContext context) {
-  AutoRouter.of(context).push(TransactionRoute());
+void navigateToTransaction(BuildContext context,int index) {
+  AutoRouter.of(context).push(TransactionRoute(id: index));
 }

@@ -1,741 +1,721 @@
-define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/material/card.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/material/colors.dart', 'packages/fl_chart/src/chart/scatter_chart/scatter_chart_painter.dart', 'packages/fl_chart/src/chart/base/base_chart/fl_touch_event.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/painting/borders.dart'], (function load__packages__eco_ml__charts__pieChartProfile_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__material__card$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__material__colors$46dart, packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart, packages__fl_chart__src__chart__base__base_chart__fl_touch_event$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__painting__borders$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/foundation/change_notifier.dart', 'packages/flutter/src/animation/curves.dart', 'packages/flutter/src/widgets/layout_builder.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/widgets/scroll_simulation.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/foundation/object.dart'], (function load__packages__flutter__src__widgets__draggable_scrollable_sheet_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__foundation__change_notifier$46dart, packages__flutter__src__animation__curves$46dart, packages__flutter__src__widgets__layout_builder$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__widgets__scroll_simulation$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__foundation__object$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
-  const _interceptors = dart_sdk._interceptors;
+  const _internal = dart_sdk._internal;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
   const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const scroll_controller = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_controller;
+  const notification_listener = packages__flutter__src__widgets__widget_span$46dart.src__widgets__notification_listener;
+  const scroll_notification = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_notification;
   const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
   const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
-  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
-  const card = packages__flutter__src__material__card$46dart.src__material__card;
-  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
-  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
-  const pie_chart = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__pie_chart__pie_chart;
-  const pie_chart_data = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__pie_chart__pie_chart_data;
-  const base_chart_data = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__base__base_chart__base_chart_data;
-  const fl_touch_event = packages__fl_chart__src__chart__base__base_chart__fl_touch_event$46dart.src__chart__base__base_chart__fl_touch_event;
-  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
-  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  var pieChartProfile = Object.create(dart.library);
+  const scroll_physics = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_physics;
+  const scroll_context = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_context;
+  const scroll_position = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_position;
+  const scroll_position_with_single_context = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_position_with_single_context;
+  const inherited_notifier = packages__flutter__src__widgets__widget_span$46dart.src__widgets__inherited_notifier;
+  const change_notifier = packages__flutter__src__foundation__change_notifier$46dart.src__foundation__change_notifier;
+  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
+  const layout_builder = packages__flutter__src__widgets__layout_builder$46dart.src__widgets__layout_builder;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const scroll_simulation = packages__flutter__src__widgets__scroll_simulation$46dart.src__widgets__scroll_simulation;
+  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
+  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
+  var draggable_scrollable_sheet = Object.create(dart.library);
+  var $add = dartx.add;
+  var $clamp = dartx.clamp;
+  var $sign = dartx.sign;
   dart._checkModuleNullSafetyMode(true);
   var T = {
+    ValueNotifierOfdouble: () => (T.ValueNotifierOfdouble = dart.constFn(change_notifier.ValueNotifier$(core.double)))(),
     VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    PieTouchResponseN: () => (T.PieTouchResponseN = dart.constFn(dart.nullable(pie_chart_data.PieTouchResponse)))(),
-    FlTouchEventAndPieTouchResponseNTovoid: () => (T.FlTouchEventAndPieTouchResponseNTovoid = dart.constFn(dart.fnType(dart.void, [fl_touch_event.FlTouchEvent, T.PieTouchResponseN()])))(),
-    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
-    ListOfPieChartSectionData: () => (T.ListOfPieChartSectionData = dart.constFn(core.List$(pie_chart_data.PieChartSectionData)))(),
-    intToPieChartSectionData: () => (T.intToPieChartSectionData = dart.constFn(dart.fnType(pie_chart_data.PieChartSectionData, [core.int])))()
+    BuildContextAndBoxConstraintsToWidget: () => (T.BuildContextAndBoxConstraintsToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, box.BoxConstraints])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C2() {
-      return C[2] = dart.const({
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: core.Duration.prototype,
+        [Duration__duration]: 1000
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 21,
-        [_Location_line]: 33,
+        [_Location_name]: "heightFactor",
+        [_Location_column]: 11,
+        [_Location_line]: 337,
         [_Location_file]: null
       });
     },
-    get C1() {
-      return C[1] = dart.constList([C[2] || CT.C2], widget_inspector._Location);
-    },
-    get C0() {
-      return C[0] = dart.const({
+    get C4() {
+      return C[4] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[1] || CT.C1,
-        [_Location_name]: null,
-        [_Location_column]: 26,
-        [_Location_line]: 32,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 338,
+        [_Location_file]: null
       });
     },
     get C5() {
       return C[5] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "aspectRatio",
-        [_Location_column]: 19,
-        [_Location_line]: 31,
+        [_Location_name]: "alignment",
+        [_Location_column]: 11,
+        [_Location_line]: 339,
         [_Location_file]: null
       });
+    },
+    get C2() {
+      return C[2] = dart.constList([C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], widget_inspector._Location);
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[2] || CT.C2,
+        [_Location_name]: null,
+        [_Location_column]: 30,
+        [_Location_line]: 336,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/draggable_scrollable_sheet.dart"
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 48,
+        [_Location_line]: 341,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.constList([C[8] || CT.C8], widget_inspector._Location);
     },
     get C6() {
       return C[6] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 32,
-        [_Location_file]: null
-      });
-    },
-    get C4() {
-      return C[4] = dart.constList([C[5] || CT.C5, C[6] || CT.C6], widget_inspector._Location);
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[4] || CT.C4,
+        [_Location_parameterLocations]: C[7] || CT.C7,
         [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 30,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
+        [_Location_column]: 41,
+        [_Location_line]: 341,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/draggable_scrollable_sheet.dart"
       });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 17,
-        [_Location_line]: 30,
-        [_Location_file]: null
-      });
-    },
-    get C8() {
-      return C[8] = dart.constList([C[9] || CT.C9], widget_inspector._Location);
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[8] || CT.C8,
-        [_Location_name]: null,
-        [_Location_column]: 15,
-        [_Location_line]: 29,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 17,
-        [_Location_line]: 58,
-        [_Location_file]: null
-      });
-    },
-    get C12() {
-      return C[12] = dart.constList([C[13] || CT.C13], widget_inspector._Location);
     },
     get C11() {
       return C[11] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[12] || CT.C12,
-        [_Location_name]: null,
-        [_Location_column]: 22,
-        [_Location_line]: 57,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "builder",
+        [_Location_column]: 7,
+        [_Location_line]: 334,
+        [_Location_file]: null
       });
     },
     get C10() {
-      return C[10] = dart.const({
-        __proto__: basic.SizedBox.prototype,
-        [Widget__location]: C[11] || CT.C11,
-        [Widget_key]: null,
-        [SingleChildRenderObjectWidget_child]: null,
-        [SizedBox_height]: 28,
-        [SizedBox_width]: null
-      });
+      return C[10] = dart.constList([C[11] || CT.C11], widget_inspector._Location);
     },
-    get C16() {
-      return C[16] = dart.const({
+    get C9() {
+      return C[9] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "margin",
-        [_Location_column]: 27,
-        [_Location_line]: 68,
-        [_Location_file]: null
+        [_Location_parameterLocations]: C[10] || CT.C10,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 333,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/draggable_scrollable_sheet.dart"
       });
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 27,
-        [_Location_line]: 69,
-        [_Location_file]: null
-      });
-    },
-    get C18() {
-      return C[18] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 27,
-        [_Location_line]: 70,
-        [_Location_file]: null
-      });
-    },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "decoration",
-        [_Location_column]: 27,
-        [_Location_line]: 71,
-        [_Location_file]: null
-      });
-    },
-    get C15() {
-      return C[15] = dart.constList([C[16] || CT.C16, C[17] || CT.C17, C[18] || CT.C18, C[19] || CT.C19], widget_inspector._Location);
     },
     get C14() {
       return C[14] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[15] || CT.C15,
-        [_Location_name]: null,
-        [_Location_column]: 25,
-        [_Location_line]: 67,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C22() {
-      return C[22] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 30,
-        [_Location_line]: 75,
-        [_Location_file]: null
-      });
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "style",
-        [_Location_column]: 29,
-        [_Location_line]: 76,
-        [_Location_file]: null
-      });
-    },
-    get C21() {
-      return C[21] = dart.constList([C[22] || CT.C22, C[23] || CT.C23], widget_inspector._Location);
-    },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[21] || CT.C21,
-        [_Location_name]: null,
-        [_Location_column]: 25,
-        [_Location_line]: 75,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C26() {
-      return C[26] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 23,
-        [_Location_line]: 66,
-        [_Location_file]: null
-      });
-    },
-    get C25() {
-      return C[25] = dart.constList([C[26] || CT.C26], widget_inspector._Location);
-    },
-    get C24() {
-      return C[24] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[25] || CT.C25,
-        [_Location_name]: null,
-        [_Location_column]: 21,
-        [_Location_line]: 65,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C29() {
-      return C[29] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 23,
-        [_Location_line]: 83,
-        [_Location_file]: null
-      });
-    },
-    get C28() {
-      return C[28] = dart.constList([C[29] || CT.C29], widget_inspector._Location);
-    },
-    get C27() {
-      return C[27] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[28] || CT.C28,
-        [_Location_name]: null,
-        [_Location_column]: 21,
-        [_Location_line]: 82,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C32() {
-      return C[32] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "margin",
-        [_Location_column]: 27,
-        [_Location_line]: 88,
-        [_Location_file]: null
-      });
-    },
-    get C33() {
-      return C[33] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 27,
-        [_Location_line]: 89,
-        [_Location_file]: null
-      });
-    },
-    get C34() {
-      return C[34] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 27,
-        [_Location_line]: 90,
-        [_Location_file]: null
-      });
-    },
-    get C35() {
-      return C[35] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "decoration",
-        [_Location_column]: 27,
-        [_Location_line]: 91,
-        [_Location_file]: null
-      });
-    },
-    get C31() {
-      return C[31] = dart.constList([C[32] || CT.C32, C[33] || CT.C33, C[34] || CT.C34, C[35] || CT.C35], widget_inspector._Location);
-    },
-    get C30() {
-      return C[30] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[31] || CT.C31,
-        [_Location_name]: null,
-        [_Location_column]: 25,
-        [_Location_line]: 87,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C38() {
-      return C[38] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 30,
-        [_Location_line]: 95,
-        [_Location_file]: null
-      });
-    },
-    get C39() {
-      return C[39] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "style",
-        [_Location_column]: 29,
-        [_Location_line]: 96,
-        [_Location_file]: null
-      });
-    },
-    get C37() {
-      return C[37] = dart.constList([C[38] || CT.C38, C[39] || CT.C39], widget_inspector._Location);
-    },
-    get C36() {
-      return C[36] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[37] || CT.C37,
-        [_Location_name]: null,
-        [_Location_column]: 25,
-        [_Location_line]: 95,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C42() {
-      return C[42] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 23,
-        [_Location_line]: 86,
-        [_Location_file]: null
-      });
-    },
-    get C41() {
-      return C[41] = dart.constList([C[42] || CT.C42], widget_inspector._Location);
-    },
-    get C40() {
-      return C[40] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[41] || CT.C41,
-        [_Location_name]: null,
-        [_Location_column]: 21,
-        [_Location_line]: 85,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C45() {
-      return C[45] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "mainAxisAlignment",
-        [_Location_column]: 19,
-        [_Location_line]: 63,
-        [_Location_file]: null
-      });
-    },
-    get C46() {
-      return C[46] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 19,
-        [_Location_line]: 64,
-        [_Location_file]: null
-      });
-    },
-    get C44() {
-      return C[44] = dart.constList([C[45] || CT.C45, C[46] || CT.C46], widget_inspector._Location);
-    },
-    get C43() {
-      return C[43] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[44] || CT.C44,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 62,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C49() {
-      return C[49] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 17,
-        [_Location_line]: 61,
-        [_Location_file]: null
-      });
-    },
-    get C50() {
-      return C[50] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
         [_Location_name]: "child",
-        [_Location_column]: 17,
-        [_Location_line]: 62,
+        [_Location_column]: 36,
+        [_Location_line]: 557,
         [_Location_file]: null
       });
     },
-    get C48() {
-      return C[48] = dart.constList([C[49] || CT.C49, C[50] || CT.C50], widget_inspector._Location);
-    },
-    get C47() {
-      return C[47] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[48] || CT.C48,
-        [_Location_name]: null,
-        [_Location_column]: 15,
-        [_Location_line]: 60,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C53() {
-      return C[53] = dart.const({
+    get C15() {
+      return C[15] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 13,
-        [_Location_line]: 26,
+        [_Location_name]: "notifier",
+        [_Location_column]: 50,
+        [_Location_line]: 557,
         [_Location_file]: null
       });
     },
-    get C52() {
-      return C[52] = dart.constList([C[53] || CT.C53], widget_inspector._Location);
+    get C13() {
+      return C[13] = dart.constList([C[14] || CT.C14, C[15] || CT.C15], widget_inspector._Location);
     },
-    get C51() {
-      return C[51] = dart.const({
+    get C12() {
+      return C[12] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[52] || CT.C52,
-        [_Location_name]: null,
-        [_Location_column]: 18,
-        [_Location_line]: 25,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C56() {
-      return C[56] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "shape",
-        [_Location_column]: 11,
-        [_Location_line]: 20,
-        [_Location_file]: null
-      });
-    },
-    get C57() {
-      return C[57] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "color",
-        [_Location_column]: 11,
-        [_Location_line]: 22,
-        [_Location_file]: null
-      });
-    },
-    get C58() {
-      return C[58] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "elevation",
-        [_Location_column]: 11,
-        [_Location_line]: 23,
-        [_Location_file]: null
-      });
-    },
-    get C59() {
-      return C[59] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "shadowColor",
-        [_Location_column]: 11,
-        [_Location_line]: 24,
-        [_Location_file]: null
-      });
-    },
-    get C60() {
-      return C[60] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 25,
-        [_Location_file]: null
-      });
-    },
-    get C55() {
-      return C[55] = dart.constList([C[56] || CT.C56, C[57] || CT.C57, C[58] || CT.C58, C[59] || CT.C59, C[60] || CT.C60], widget_inspector._Location);
-    },
-    get C54() {
-      return C[54] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[55] || CT.C55,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 19,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C63() {
-      return C[63] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 9,
-        [_Location_line]: 17,
-        [_Location_file]: null
-      });
-    },
-    get C64() {
-      return C[64] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "decoration",
-        [_Location_column]: 9,
-        [_Location_line]: 18,
-        [_Location_file]: null
-      });
-    },
-    get C65() {
-      return C[65] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 19,
-        [_Location_file]: null
-      });
-    },
-    get C62() {
-      return C[62] = dart.constList([C[63] || CT.C63, C[64] || CT.C64, C[65] || CT.C65], widget_inspector._Location);
-    },
-    get C61() {
-      return C[61] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[62] || CT.C62,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 16,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C68() {
-      return C[68] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "aspectRatio",
-        [_Location_column]: 7,
-        [_Location_line]: 15,
-        [_Location_file]: null
-      });
-    },
-    get C69() {
-      return C[69] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 16,
-        [_Location_file]: null
-      });
-    },
-    get C67() {
-      return C[67] = dart.constList([C[68] || CT.C68, C[69] || CT.C69], widget_inspector._Location);
-    },
-    get C66() {
-      return C[66] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[67] || CT.C67,
+        [_Location_parameterLocations]: C[13] || CT.C13,
         [_Location_name]: null,
         [_Location_column]: 12,
-        [_Location_line]: 14,
-        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/pieChartProfile.dart"
-      });
-    },
-    get C70() {
-      return C[70] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4294935178.0
-      });
-    },
-    get C71() {
-      return C[71] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4279232836.0
-      });
-    },
-    get C72() {
-      return C[72] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4294967295.0
+        [_Location_line]: 557,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/draggable_scrollable_sheet.dart"
       });
     }
   }, false);
-  var C = Array(73).fill(void 0);
-  var I = ["package:eco_ml/charts/pieChartProfile.dart"];
-  pieChartProfile.PieChartProfile = class PieChartProfile extends framework.StatefulWidget {
+  var C = Array(16).fill(void 0);
+  var I = [
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/draggable_scrollable_sheet.dart",
+    "package:flutter/src/widgets/draggable_scrollable_sheet.dart"
+  ];
+  var initialChildSize$ = dart.privateName(draggable_scrollable_sheet, "DraggableScrollableSheet.initialChildSize");
+  var minChildSize$ = dart.privateName(draggable_scrollable_sheet, "DraggableScrollableSheet.minChildSize");
+  var maxChildSize$ = dart.privateName(draggable_scrollable_sheet, "DraggableScrollableSheet.maxChildSize");
+  var expand$ = dart.privateName(draggable_scrollable_sheet, "DraggableScrollableSheet.expand");
+  var builder$ = dart.privateName(draggable_scrollable_sheet, "DraggableScrollableSheet.builder");
+  draggable_scrollable_sheet.DraggableScrollableSheet = class DraggableScrollableSheet extends framework.StatefulWidget {
+    get initialChildSize() {
+      return this[initialChildSize$];
+    }
+    set initialChildSize(value) {
+      super.initialChildSize = value;
+    }
+    get minChildSize() {
+      return this[minChildSize$];
+    }
+    set minChildSize(value) {
+      super.minChildSize = value;
+    }
+    get maxChildSize() {
+      return this[maxChildSize$];
+    }
+    set maxChildSize(value) {
+      super.maxChildSize = value;
+    }
+    get expand() {
+      return this[expand$];
+    }
+    set expand(value) {
+      super.expand = value;
+    }
+    get builder() {
+      return this[builder$];
+    }
+    set builder(value) {
+      super.builder = value;
+    }
     createState() {
-      return new pieChartProfile.PieChartProfileState.new();
+      return new draggable_scrollable_sheet._DraggableScrollableSheetState.new();
     }
   };
-  (pieChartProfile.PieChartProfile.new = function(opts) {
+  (draggable_scrollable_sheet.DraggableScrollableSheet.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let initialChildSize = opts && 'initialChildSize' in opts ? opts.initialChildSize : 0.5;
+    let minChildSize = opts && 'minChildSize' in opts ? opts.minChildSize : 0.25;
+    let maxChildSize = opts && 'maxChildSize' in opts ? opts.maxChildSize : 1;
+    let expand = opts && 'expand' in opts ? opts.expand : true;
+    let builder = opts && 'builder' in opts ? opts.builder : null;
     let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    pieChartProfile.PieChartProfile.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    this[initialChildSize$] = initialChildSize;
+    this[minChildSize$] = minChildSize;
+    this[maxChildSize$] = maxChildSize;
+    this[expand$] = expand;
+    this[builder$] = builder;
+    if (!(initialChildSize !== null)) dart.assertFailed(null, I[0], 110, 16, "initialChildSize != null");
+    if (!(minChildSize !== null)) dart.assertFailed(null, I[0], 111, 16, "minChildSize != null");
+    if (!(maxChildSize !== null)) dart.assertFailed(null, I[0], 112, 16, "maxChildSize != null");
+    if (!(minChildSize >= 0.0)) dart.assertFailed(null, I[0], 113, 16, "minChildSize >= 0.0");
+    if (!(maxChildSize <= 1.0)) dart.assertFailed(null, I[0], 114, 16, "maxChildSize <= 1.0");
+    if (!(minChildSize <= initialChildSize)) dart.assertFailed(null, I[0], 115, 16, "minChildSize <= initialChildSize");
+    if (!(initialChildSize <= maxChildSize)) dart.assertFailed(null, I[0], 116, 16, "initialChildSize <= maxChildSize");
+    if (!(expand !== null)) dart.assertFailed(null, I[0], 117, 16, "expand != null");
+    if (!(builder !== null)) dart.assertFailed(null, I[0], 118, 16, "builder != null");
+    draggable_scrollable_sheet.DraggableScrollableSheet.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
     ;
-  }).prototype = pieChartProfile.PieChartProfile.prototype;
-  dart.addTypeTests(pieChartProfile.PieChartProfile);
-  dart.addTypeCaches(pieChartProfile.PieChartProfile);
-  dart.setMethodSignature(pieChartProfile.PieChartProfile, () => ({
-    __proto__: dart.getMethods(pieChartProfile.PieChartProfile.__proto__),
-    createState: dart.fnType(framework.State$(framework.StatefulWidget), [])
+  }).prototype = draggable_scrollable_sheet.DraggableScrollableSheet.prototype;
+  dart.addTypeTests(draggable_scrollable_sheet.DraggableScrollableSheet);
+  dart.addTypeCaches(draggable_scrollable_sheet.DraggableScrollableSheet);
+  dart.setMethodSignature(draggable_scrollable_sheet.DraggableScrollableSheet, () => ({
+    __proto__: dart.getMethods(draggable_scrollable_sheet.DraggableScrollableSheet.__proto__),
+    createState: dart.fnType(draggable_scrollable_sheet._DraggableScrollableSheetState, [])
   }));
-  dart.setLibraryUri(pieChartProfile.PieChartProfile, I[0]);
-  var touchedIndex = dart.privateName(pieChartProfile, "PieChartProfileState.touchedIndex");
+  dart.setLibraryUri(draggable_scrollable_sheet.DraggableScrollableSheet, I[1]);
+  dart.setFieldSignature(draggable_scrollable_sheet.DraggableScrollableSheet, () => ({
+    __proto__: dart.getFields(draggable_scrollable_sheet.DraggableScrollableSheet.__proto__),
+    initialChildSize: dart.finalFieldType(core.double),
+    minChildSize: dart.finalFieldType(core.double),
+    maxChildSize: dart.finalFieldType(core.double),
+    expand: dart.finalFieldType(core.bool),
+    builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext, scroll_controller.ScrollController]))
+  }));
+  var extent$ = dart.privateName(draggable_scrollable_sheet, "DraggableScrollableNotification.extent");
+  var minExtent$ = dart.privateName(draggable_scrollable_sheet, "DraggableScrollableNotification.minExtent");
+  var maxExtent$ = dart.privateName(draggable_scrollable_sheet, "DraggableScrollableNotification.maxExtent");
+  var initialExtent$ = dart.privateName(draggable_scrollable_sheet, "DraggableScrollableNotification.initialExtent");
+  var context$ = dart.privateName(draggable_scrollable_sheet, "DraggableScrollableNotification.context");
+  const Notification_ViewportNotificationMixin$36 = class Notification_ViewportNotificationMixin extends notification_listener.Notification {};
+  (Notification_ViewportNotificationMixin$36.new = function() {
+    scroll_notification.ViewportNotificationMixin[dart.mixinNew].call(this);
+    Notification_ViewportNotificationMixin$36.__proto__.new.call(this);
+  }).prototype = Notification_ViewportNotificationMixin$36.prototype;
+  dart.applyMixin(Notification_ViewportNotificationMixin$36, scroll_notification.ViewportNotificationMixin);
+  draggable_scrollable_sheet.DraggableScrollableNotification = class DraggableScrollableNotification extends Notification_ViewportNotificationMixin$36 {
+    get extent() {
+      return this[extent$];
+    }
+    set extent(value) {
+      super.extent = value;
+    }
+    get minExtent() {
+      return this[minExtent$];
+    }
+    set minExtent(value) {
+      super.minExtent = value;
+    }
+    get maxExtent() {
+      return this[maxExtent$];
+    }
+    set maxExtent(value) {
+      super.maxExtent = value;
+    }
+    get initialExtent() {
+      return this[initialExtent$];
+    }
+    set initialExtent(value) {
+      super.initialExtent = value;
+    }
+    get context() {
+      return this[context$];
+    }
+    set context(value) {
+      super.context = value;
+    }
+    debugFillDescription(description) {
+      super.debugFillDescription(description);
+      description[$add]("minExtent: " + dart.str(this.minExtent) + ", extent: " + dart.str(this.extent) + ", maxExtent: " + dart.str(this.maxExtent) + ", initialExtent: " + dart.str(this.initialExtent));
+    }
+  };
+  (draggable_scrollable_sheet.DraggableScrollableNotification.new = function(opts) {
+    let extent = opts && 'extent' in opts ? opts.extent : null;
+    let minExtent = opts && 'minExtent' in opts ? opts.minExtent : null;
+    let maxExtent = opts && 'maxExtent' in opts ? opts.maxExtent : null;
+    let initialExtent = opts && 'initialExtent' in opts ? opts.initialExtent : null;
+    let context = opts && 'context' in opts ? opts.context : null;
+    this[extent$] = extent;
+    this[minExtent$] = minExtent;
+    this[maxExtent$] = maxExtent;
+    this[initialExtent$] = initialExtent;
+    this[context$] = context;
+    if (!(extent !== null)) dart.assertFailed(null, I[0], 190, 15, "extent != null");
+    if (!(initialExtent !== null)) dart.assertFailed(null, I[0], 191, 15, "initialExtent != null");
+    if (!(minExtent !== null)) dart.assertFailed(null, I[0], 192, 15, "minExtent != null");
+    if (!(maxExtent !== null)) dart.assertFailed(null, I[0], 193, 15, "maxExtent != null");
+    if (!(0.0 <= minExtent)) dart.assertFailed(null, I[0], 194, 15, "0.0 <= minExtent");
+    if (!(maxExtent <= 1.0)) dart.assertFailed(null, I[0], 195, 15, "maxExtent <= 1.0");
+    if (!(minExtent <= extent)) dart.assertFailed(null, I[0], 196, 15, "minExtent <= extent");
+    if (!(minExtent <= initialExtent)) dart.assertFailed(null, I[0], 197, 15, "minExtent <= initialExtent");
+    if (!(extent <= maxExtent)) dart.assertFailed(null, I[0], 198, 15, "extent <= maxExtent");
+    if (!(initialExtent <= maxExtent)) dart.assertFailed(null, I[0], 199, 15, "initialExtent <= maxExtent");
+    if (!(context !== null)) dart.assertFailed(null, I[0], 200, 15, "context != null");
+    draggable_scrollable_sheet.DraggableScrollableNotification.__proto__.new.call(this);
+    ;
+  }).prototype = draggable_scrollable_sheet.DraggableScrollableNotification.prototype;
+  dart.addTypeTests(draggable_scrollable_sheet.DraggableScrollableNotification);
+  dart.addTypeCaches(draggable_scrollable_sheet.DraggableScrollableNotification);
+  dart.setLibraryUri(draggable_scrollable_sheet.DraggableScrollableNotification, I[1]);
+  dart.setFieldSignature(draggable_scrollable_sheet.DraggableScrollableNotification, () => ({
+    __proto__: dart.getFields(draggable_scrollable_sheet.DraggableScrollableNotification.__proto__),
+    extent: dart.finalFieldType(core.double),
+    minExtent: dart.finalFieldType(core.double),
+    maxExtent: dart.finalFieldType(core.double),
+    initialExtent: dart.finalFieldType(core.double),
+    context: dart.finalFieldType(framework.BuildContext)
+  }));
+  var _currentExtent = dart.privateName(draggable_scrollable_sheet, "_currentExtent");
+  draggable_scrollable_sheet._DraggableSheetExtent = class _DraggableSheetExtent extends core.Object {
+    get isAtMin() {
+      return this.minExtent >= this[_currentExtent].value;
+    }
+    get isAtMax() {
+      return this.maxExtent <= this[_currentExtent].value;
+    }
+    set currentExtent(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[0], 265, 12, "value != null");
+      this[_currentExtent].value = value[$clamp](this.minExtent, this.maxExtent);
+    }
+    get currentExtent() {
+      return this[_currentExtent].value;
+    }
+    get additionalMinExtent() {
+      return this.isAtMin ? 0.0 : 1.0;
+    }
+    get additionalMaxExtent() {
+      return this.isAtMax ? 0.0 : 1.0;
+    }
+    addPixelDelta(delta, context) {
+      if (this.availablePixels === 0) {
+        return;
+      }
+      this.currentExtent = this.currentExtent + delta / this.availablePixels * this.maxExtent;
+      new draggable_scrollable_sheet.DraggableScrollableNotification.new({minExtent: this.minExtent, maxExtent: this.maxExtent, extent: this.currentExtent, initialExtent: this.initialExtent, context: context}).dispatch(context);
+    }
+  };
+  (draggable_scrollable_sheet._DraggableSheetExtent.new = function(opts) {
+    let t0;
+    let minExtent = opts && 'minExtent' in opts ? opts.minExtent : null;
+    let maxExtent = opts && 'maxExtent' in opts ? opts.maxExtent : null;
+    let initialExtent = opts && 'initialExtent' in opts ? opts.initialExtent : null;
+    let listener = opts && 'listener' in opts ? opts.listener : null;
+    this.minExtent = minExtent;
+    this.maxExtent = maxExtent;
+    this.initialExtent = initialExtent;
+    if (!(minExtent !== null)) dart.assertFailed(null, I[0], 245, 15, "minExtent != null");
+    if (!(maxExtent !== null)) dart.assertFailed(null, I[0], 246, 15, "maxExtent != null");
+    if (!(initialExtent !== null)) dart.assertFailed(null, I[0], 247, 15, "initialExtent != null");
+    if (!(minExtent >= 0)) dart.assertFailed(null, I[0], 248, 15, "minExtent >= 0");
+    if (!(maxExtent <= 1)) dart.assertFailed(null, I[0], 249, 15, "maxExtent <= 1");
+    if (!(minExtent <= initialExtent)) dart.assertFailed(null, I[0], 250, 15, "minExtent <= initialExtent");
+    if (!(initialExtent <= maxExtent)) dart.assertFailed(null, I[0], 251, 15, "initialExtent <= maxExtent");
+    this[_currentExtent] = (t0 = new (T.ValueNotifierOfdouble()).new(initialExtent), (() => {
+      t0.addListener(listener);
+      return t0;
+    })());
+    this.availablePixels = 1 / 0;
+    ;
+  }).prototype = draggable_scrollable_sheet._DraggableSheetExtent.prototype;
+  dart.addTypeTests(draggable_scrollable_sheet._DraggableSheetExtent);
+  dart.addTypeCaches(draggable_scrollable_sheet._DraggableSheetExtent);
+  dart.setMethodSignature(draggable_scrollable_sheet._DraggableSheetExtent, () => ({
+    __proto__: dart.getMethods(draggable_scrollable_sheet._DraggableSheetExtent.__proto__),
+    addPixelDelta: dart.fnType(dart.void, [core.double, framework.BuildContext])
+  }));
+  dart.setGetterSignature(draggable_scrollable_sheet._DraggableSheetExtent, () => ({
+    __proto__: dart.getGetters(draggable_scrollable_sheet._DraggableSheetExtent.__proto__),
+    isAtMin: core.bool,
+    isAtMax: core.bool,
+    currentExtent: core.double,
+    additionalMinExtent: core.double,
+    additionalMaxExtent: core.double
+  }));
+  dart.setSetterSignature(draggable_scrollable_sheet._DraggableSheetExtent, () => ({
+    __proto__: dart.getSetters(draggable_scrollable_sheet._DraggableSheetExtent.__proto__),
+    currentExtent: core.double
+  }));
+  dart.setLibraryUri(draggable_scrollable_sheet._DraggableSheetExtent, I[1]);
+  dart.setFieldSignature(draggable_scrollable_sheet._DraggableSheetExtent, () => ({
+    __proto__: dart.getFields(draggable_scrollable_sheet._DraggableSheetExtent.__proto__),
+    minExtent: dart.finalFieldType(core.double),
+    maxExtent: dart.finalFieldType(core.double),
+    initialExtent: dart.finalFieldType(core.double),
+    [_currentExtent]: dart.finalFieldType(change_notifier.ValueNotifier$(core.double)),
+    availablePixels: dart.fieldType(core.double)
+  }));
+  var ___DraggableScrollableSheetState__scrollController = dart.privateName(draggable_scrollable_sheet, "_#_DraggableScrollableSheetState#_scrollController");
+  var ___DraggableScrollableSheetState__extent = dart.privateName(draggable_scrollable_sheet, "_#_DraggableScrollableSheetState#_extent");
+  var _scrollController = dart.privateName(draggable_scrollable_sheet, "_scrollController");
+  var _extent = dart.privateName(draggable_scrollable_sheet, "_extent");
+  var _setExtent = dart.privateName(draggable_scrollable_sheet, "_setExtent");
+  var Duration__duration = dart.privateName(core, "Duration._duration");
   var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
   var _Location_name = dart.privateName(widget_inspector, "_Location.name");
   var _Location_column = dart.privateName(widget_inspector, "_Location.column");
   var _Location_line = dart.privateName(widget_inspector, "_Location.line");
   var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  var Widget__location = dart.privateName(framework, "Widget._location");
-  var Widget_key = dart.privateName(framework, "Widget.key");
-  var SingleChildRenderObjectWidget_child = dart.privateName(framework, "SingleChildRenderObjectWidget.child");
-  var SizedBox_height = dart.privateName(basic, "SizedBox.height");
-  var SizedBox_width = dart.privateName(basic, "SizedBox.width");
-  var Color_value = dart.privateName(ui, "Color.value");
-  pieChartProfile.PieChartProfileState = class PieChartProfileState extends framework.State$(framework.StatefulWidget) {
-    get touchedIndex() {
-      return this[touchedIndex];
+  draggable_scrollable_sheet._DraggableScrollableSheetState = class _DraggableScrollableSheetState extends framework.State$(draggable_scrollable_sheet.DraggableScrollableSheet) {
+    get [_scrollController]() {
+      let t0;
+      t0 = this[___DraggableScrollableSheetState__scrollController];
+      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_scrollController")) : t0;
     }
-    set touchedIndex(value) {
-      this[touchedIndex] = value;
+    set [_scrollController](t0) {
+      this[___DraggableScrollableSheetState__scrollController] = t0;
+    }
+    get [_extent]() {
+      let t1;
+      t1 = this[___DraggableScrollableSheetState__extent];
+      return t1 == null ? dart.throw(new _internal.LateError.fieldNI("_extent")) : t1;
+    }
+    set [_extent](t1) {
+      this[___DraggableScrollableSheetState__extent] = t1;
+    }
+    initState() {
+      super.initState();
+      this[_extent] = new draggable_scrollable_sheet._DraggableSheetExtent.new({minExtent: this.widget.minChildSize, maxExtent: this.widget.maxChildSize, initialExtent: this.widget.initialChildSize, listener: dart.bind(this, _setExtent)});
+      this[_scrollController] = new draggable_scrollable_sheet._DraggableScrollableSheetScrollController.new({extent: this[_extent]});
+    }
+    didChangeDependencies() {
+      super.didChangeDependencies();
+      if (draggable_scrollable_sheet._InheritedResetNotifier.shouldReset(this.context)) {
+        if (this[_scrollController].offset !== 0.0) {
+          this[_scrollController].animateTo(0.0, {duration: C[0] || CT.C0, curve: curves.Curves.linear});
+        }
+        this[_extent][_currentExtent].value = this[_extent].initialExtent;
+      }
+    }
+    [_setExtent]() {
+      this.setState(dart.fn(() => {
+      }, T.VoidTovoid()));
     }
     build(context) {
-      return new basic.AspectRatio.new({aspectRatio: 3 / 2, child: new container.Container.new({padding: new edge_insets.EdgeInsets.all(20.0), decoration: new box_decoration.BoxDecoration.new({borderRadius: new border_radius.BorderRadius.circular(30.0)}), child: new card.Card.new({shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(30.0)}), color: colors.Colors.white, elevation: 3.0, shadowColor: colors.Colors.grey, child: new basic.Row.new({children: T.JSArrayOfWidget().of([new basic.Expanded.new({child: new basic.AspectRatio.new({aspectRatio: 0.5, child: new pie_chart.PieChart.new(new pie_chart_data.PieChartData.new({pieTouchData: new pie_chart_data.PieTouchData.new({touchCallback: dart.fn((event, pieTouchResponse) => {
-                          this.setState(dart.fn(() => {
-                            if (!event.isInterestedForInteractions || pieTouchResponse == null || pieTouchResponse.touchedSection == null) {
-                              this.touchedIndex = -1;
-                              return;
-                            }
-                            this.touchedIndex = dart.nullCheck(pieTouchResponse.touchedSection).touchedSectionIndex;
-                          }, T.VoidTovoid()));
-                        }, T.FlTouchEventAndPieTouchResponseNTovoid())}), startDegreeOffset: 180.0, borderData: new base_chart_data.FlBorderData.new({show: false}), sectionsSpace: 6.0, centerSpaceRadius: 0.0, sections: this.showingSections()}), {$creationLocationd_0dea112b090073317d4: C[0] || CT.C0}), $creationLocationd_0dea112b090073317d4: C[3] || CT.C3}), $creationLocationd_0dea112b090073317d4: C[7] || CT.C7}), C[10] || CT.C10, new container.Container.new({padding: new edge_insets.EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 20.0), child: new basic.Column.new({mainAxisAlignment: flex.MainAxisAlignment.start, children: T.JSArrayOfWidget().of([new basic.Row.new({children: T.JSArrayOfWidget().of([new container.Container.new({margin: new edge_insets.EdgeInsets.only({right: 20.0, left: 10.0}), height: 22.0, width: 22.0, decoration: new box_decoration.BoxDecoration.new({borderRadius: new border_radius.BorderRadius.circular(0.0), color: new ui.Color.new(4282339686)}), $creationLocationd_0dea112b090073317d4: C[14] || CT.C14}), new text.Text.new("Total", {style: new text_style.TextStyle.new({color: new ui.Color.new(4283406497), fontWeight: ui.FontWeight.bold, fontSize: 23.0}), $creationLocationd_0dea112b090073317d4: C[20] || CT.C20})]), $creationLocationd_0dea112b090073317d4: C[24] || CT.C24}), new basic.SizedBox.new({height: 20.0, $creationLocationd_0dea112b090073317d4: C[27] || CT.C27}), new basic.Row.new({children: T.JSArrayOfWidget().of([new container.Container.new({margin: new edge_insets.EdgeInsets.only({right: 10.0, left: 12.0}), height: 21.0, width: 21.0, decoration: new box_decoration.BoxDecoration.new({borderRadius: new border_radius.BorderRadius.circular(0.0), color: new ui.Color.new(4294932275)}), $creationLocationd_0dea112b090073317d4: C[30] || CT.C30}), new text.Text.new("Saving", {style: new text_style.TextStyle.new({color: new ui.Color.new(4283406497), fontWeight: ui.FontWeight.bold, fontSize: 22.0}), $creationLocationd_0dea112b090073317d4: C[36] || CT.C36})]), $creationLocationd_0dea112b090073317d4: C[40] || CT.C40})]), $creationLocationd_0dea112b090073317d4: C[43] || CT.C43}), $creationLocationd_0dea112b090073317d4: C[47] || CT.C47})]), $creationLocationd_0dea112b090073317d4: C[51] || CT.C51}), $creationLocationd_0dea112b090073317d4: C[54] || CT.C54}), $creationLocationd_0dea112b090073317d4: C[61] || CT.C61}), $creationLocationd_0dea112b090073317d4: C[66] || CT.C66});
+      return new layout_builder.LayoutBuilder.new({builder: dart.fn((context, constraints) => {
+          let t4, t3, t2;
+          this[_extent].availablePixels = this.widget.maxChildSize * constraints.biggest.height;
+          let sheet = new basic.FractionallySizedBox.new({heightFactor: this[_extent].currentExtent, child: (t2 = this.widget, t3 = context, t4 = this[_scrollController], t2.builder(t3, t4)), alignment: alignment.Alignment.bottomCenter, $creationLocationd_0dea112b090073317d4: C[1] || CT.C1});
+          return this.widget.expand ? new basic.SizedBox.expand({child: sheet, $creationLocationd_0dea112b090073317d4: C[6] || CT.C6}) : sheet;
+        }, T.BuildContextAndBoxConstraintsToWidget()), $creationLocationd_0dea112b090073317d4: C[9] || CT.C9});
     }
-    showingSections() {
-      return T.ListOfPieChartSectionData().generate(2, dart.fn(i => {
-        let isTouched = i === this.touchedIndex;
-        let opacity = isTouched ? 1.0 : 0.6;
-        let value1 = 80.0;
-        let value2 = 40.0;
-        let color0 = C[70] || CT.C70;
-        let color1 = C[71] || CT.C71;
-        switch (i) {
-          case 0:
-          {
-            return new pie_chart_data.PieChartSectionData.new({color: color0, value: value1, title: "80%", radius: 55.0, titleStyle: new text_style.TextStyle.new({fontSize: 15.0, fontWeight: ui.FontWeight.bold, color: C[72] || CT.C72}), titlePositionPercentageOffset: 0.5});
-          }
-          case 1:
-          {
-            return new pie_chart_data.PieChartSectionData.new({color: color1.withOpacity(opacity), value: value2, title: "20%", radius: 65.0, titleStyle: new text_style.TextStyle.new({fontSize: 15.0, fontWeight: ui.FontWeight.bold, color: C[72] || CT.C72}), titlePositionPercentageOffset: 0.5, borderSide: new borders.BorderSide.new({color: colors.Colors.white, width: 6.0})});
-          }
-          default:
-          {
-            dart.throw(new core.Error.new());
-          }
-        }
-      }, T.intToPieChartSectionData()));
+    dispose() {
+      this[_scrollController].dispose();
+      super.dispose();
     }
   };
-  (pieChartProfile.PieChartProfileState.new = function() {
-    this[touchedIndex] = -1;
-    pieChartProfile.PieChartProfileState.__proto__.new.call(this);
+  (draggable_scrollable_sheet._DraggableScrollableSheetState.new = function() {
+    this[___DraggableScrollableSheetState__scrollController] = null;
+    this[___DraggableScrollableSheetState__extent] = null;
+    draggable_scrollable_sheet._DraggableScrollableSheetState.__proto__.new.call(this);
     ;
-  }).prototype = pieChartProfile.PieChartProfileState.prototype;
-  dart.addTypeTests(pieChartProfile.PieChartProfileState);
-  dart.addTypeCaches(pieChartProfile.PieChartProfileState);
-  dart.setMethodSignature(pieChartProfile.PieChartProfileState, () => ({
-    __proto__: dart.getMethods(pieChartProfile.PieChartProfileState.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext]),
-    showingSections: dart.fnType(core.List$(pie_chart_data.PieChartSectionData), [])
+  }).prototype = draggable_scrollable_sheet._DraggableScrollableSheetState.prototype;
+  dart.addTypeTests(draggable_scrollable_sheet._DraggableScrollableSheetState);
+  dart.addTypeCaches(draggable_scrollable_sheet._DraggableScrollableSheetState);
+  dart.setMethodSignature(draggable_scrollable_sheet._DraggableScrollableSheetState, () => ({
+    __proto__: dart.getMethods(draggable_scrollable_sheet._DraggableScrollableSheetState.__proto__),
+    [_setExtent]: dart.fnType(dart.void, []),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
   }));
-  dart.setLibraryUri(pieChartProfile.PieChartProfileState, I[0]);
-  dart.setFieldSignature(pieChartProfile.PieChartProfileState, () => ({
-    __proto__: dart.getFields(pieChartProfile.PieChartProfileState.__proto__),
-    touchedIndex: dart.fieldType(core.int)
+  dart.setGetterSignature(draggable_scrollable_sheet._DraggableScrollableSheetState, () => ({
+    __proto__: dart.getGetters(draggable_scrollable_sheet._DraggableScrollableSheetState.__proto__),
+    [_scrollController]: draggable_scrollable_sheet._DraggableScrollableSheetScrollController,
+    [_extent]: draggable_scrollable_sheet._DraggableSheetExtent
   }));
-  dart.trackLibraries("packages/eco_ml/charts/pieChartProfile.dart", {
-    "package:eco_ml/charts/pieChartProfile.dart": pieChartProfile
+  dart.setSetterSignature(draggable_scrollable_sheet._DraggableScrollableSheetState, () => ({
+    __proto__: dart.getSetters(draggable_scrollable_sheet._DraggableScrollableSheetState.__proto__),
+    [_scrollController]: draggable_scrollable_sheet._DraggableScrollableSheetScrollController,
+    [_extent]: draggable_scrollable_sheet._DraggableSheetExtent
+  }));
+  dart.setLibraryUri(draggable_scrollable_sheet._DraggableScrollableSheetState, I[1]);
+  dart.setFieldSignature(draggable_scrollable_sheet._DraggableScrollableSheetState, () => ({
+    __proto__: dart.getFields(draggable_scrollable_sheet._DraggableScrollableSheetState.__proto__),
+    [___DraggableScrollableSheetState__scrollController]: dart.fieldType(dart.nullable(draggable_scrollable_sheet._DraggableScrollableSheetScrollController)),
+    [___DraggableScrollableSheetState__extent]: dart.fieldType(dart.nullable(draggable_scrollable_sheet._DraggableSheetExtent))
+  }));
+  draggable_scrollable_sheet._DraggableScrollableSheetScrollController = class _DraggableScrollableSheetScrollController extends scroll_controller.ScrollController {
+    createScrollPosition(physics, context, oldPosition) {
+      return new draggable_scrollable_sheet._DraggableScrollableSheetScrollPosition.new({physics: physics, context: context, oldPosition: oldPosition, extent: this.extent});
+    }
+    debugFillDescription(description) {
+      super.debugFillDescription(description);
+      description[$add]("extent: " + dart.str(this.extent));
+    }
+  };
+  (draggable_scrollable_sheet._DraggableScrollableSheetScrollController.new = function(opts) {
+    let initialScrollOffset = opts && 'initialScrollOffset' in opts ? opts.initialScrollOffset : 0;
+    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
+    let extent = opts && 'extent' in opts ? opts.extent : null;
+    this.extent = extent;
+    if (!(extent !== null)) dart.assertFailed(null, I[0], 372, 15, "extent != null");
+    draggable_scrollable_sheet._DraggableScrollableSheetScrollController.__proto__.new.call(this, {debugLabel: debugLabel, initialScrollOffset: initialScrollOffset});
+    ;
+  }).prototype = draggable_scrollable_sheet._DraggableScrollableSheetScrollController.prototype;
+  dart.addTypeTests(draggable_scrollable_sheet._DraggableScrollableSheetScrollController);
+  dart.addTypeCaches(draggable_scrollable_sheet._DraggableScrollableSheetScrollController);
+  dart.setMethodSignature(draggable_scrollable_sheet._DraggableScrollableSheetScrollController, () => ({
+    __proto__: dart.getMethods(draggable_scrollable_sheet._DraggableScrollableSheetScrollController.__proto__),
+    createScrollPosition: dart.fnType(draggable_scrollable_sheet._DraggableScrollableSheetScrollPosition, [scroll_physics.ScrollPhysics, scroll_context.ScrollContext, dart.nullable(scroll_position.ScrollPosition)])
+  }));
+  dart.setLibraryUri(draggable_scrollable_sheet._DraggableScrollableSheetScrollController, I[1]);
+  dart.setFieldSignature(draggable_scrollable_sheet._DraggableScrollableSheetScrollController, () => ({
+    __proto__: dart.getFields(draggable_scrollable_sheet._DraggableScrollableSheetScrollController.__proto__),
+    extent: dart.finalFieldType(draggable_scrollable_sheet._DraggableSheetExtent)
+  }));
+  var _dragCancelCallback = dart.privateName(draggable_scrollable_sheet, "_dragCancelCallback");
+  draggable_scrollable_sheet._DraggableScrollableSheetScrollPosition = class _DraggableScrollableSheetScrollPosition extends scroll_position_with_single_context.ScrollPositionWithSingleContext {
+    get listShouldScroll() {
+      return this.pixels > 0.0;
+    }
+    applyContentDimensions(minScrollExtent, maxScrollExtent) {
+      return super.applyContentDimensions(minScrollExtent - this.extent.additionalMinExtent, maxScrollExtent + this.extent.additionalMaxExtent);
+    }
+    applyUserOffset(delta) {
+      if (!this.listShouldScroll && (!(this.extent.isAtMin || this.extent.isAtMax) || this.extent.isAtMin && delta < 0 || this.extent.isAtMax && delta > 0)) {
+        this.extent.addPixelDelta(-delta, dart.nullCheck(this.context.notificationContext));
+      } else {
+        super.applyUserOffset(delta);
+      }
+    }
+    goBallistic(velocity) {
+      let t2, t2$;
+      if (velocity === 0.0 || velocity < 0.0 && this.listShouldScroll || velocity > 0.0 && this.extent.isAtMax) {
+        super.goBallistic(velocity);
+        return;
+      }
+      t2 = this[_dragCancelCallback];
+      t2 == null ? null : t2();
+      this[_dragCancelCallback] = null;
+      let simulation = new scroll_simulation.ClampingScrollSimulation.new({position: this.extent.currentExtent, velocity: velocity, tolerance: this.physics.tolerance});
+      let ballisticController = new animation_controller.AnimationController.unbounded({debugLabel: object.objectRuntimeType(this, "_DraggableScrollableSheetPosition"), vsync: this.context.vsync});
+      let lastDelta = 0.0;
+      const _tick = () => {
+        let delta = ballisticController.value - lastDelta;
+        lastDelta = ballisticController.value;
+        this.extent.addPixelDelta(delta, dart.nullCheck(this.context.notificationContext));
+        if (velocity > 0 && this.extent.isAtMax || velocity < 0 && this.extent.isAtMin) {
+          velocity = ballisticController.velocity + this.physics.tolerance.velocity * ballisticController.velocity[$sign];
+          super.goBallistic(velocity);
+          ballisticController.stop();
+        } else if (ballisticController.isCompleted) {
+          super.goBallistic(0.0);
+        }
+      };
+      dart.fn(_tick, T.VoidTovoid());
+      t2$ = ballisticController;
+      (() => {
+        t2$.addListener(_tick);
+        t2$.animateWith(simulation).whenCompleteOrCancel(dart.bind(ballisticController, 'dispose'));
+        return t2$;
+      })();
+    }
+    drag(details, dragCancelCallback) {
+      this[_dragCancelCallback] = dragCancelCallback;
+      return super.drag(details, dragCancelCallback);
+    }
+  };
+  (draggable_scrollable_sheet._DraggableScrollableSheetScrollPosition.new = function(opts) {
+    let physics = opts && 'physics' in opts ? opts.physics : null;
+    let context = opts && 'context' in opts ? opts.context : null;
+    let initialPixels = opts && 'initialPixels' in opts ? opts.initialPixels : 0;
+    let keepScrollOffset = opts && 'keepScrollOffset' in opts ? opts.keepScrollOffset : true;
+    let oldPosition = opts && 'oldPosition' in opts ? opts.oldPosition : null;
+    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
+    let extent = opts && 'extent' in opts ? opts.extent : null;
+    this[_dragCancelCallback] = null;
+    this.extent = extent;
+    if (!(extent !== null)) dart.assertFailed(null, I[0], 423, 16, "extent != null");
+    draggable_scrollable_sheet._DraggableScrollableSheetScrollPosition.__proto__.new.call(this, {physics: physics, context: context, initialPixels: initialPixels, keepScrollOffset: keepScrollOffset, oldPosition: oldPosition, debugLabel: debugLabel});
+    ;
+  }).prototype = draggable_scrollable_sheet._DraggableScrollableSheetScrollPosition.prototype;
+  dart.addTypeTests(draggable_scrollable_sheet._DraggableScrollableSheetScrollPosition);
+  dart.addTypeCaches(draggable_scrollable_sheet._DraggableScrollableSheetScrollPosition);
+  dart.setGetterSignature(draggable_scrollable_sheet._DraggableScrollableSheetScrollPosition, () => ({
+    __proto__: dart.getGetters(draggable_scrollable_sheet._DraggableScrollableSheetScrollPosition.__proto__),
+    listShouldScroll: core.bool
+  }));
+  dart.setLibraryUri(draggable_scrollable_sheet._DraggableScrollableSheetScrollPosition, I[1]);
+  dart.setFieldSignature(draggable_scrollable_sheet._DraggableScrollableSheetScrollPosition, () => ({
+    __proto__: dart.getFields(draggable_scrollable_sheet._DraggableScrollableSheetScrollPosition.__proto__),
+    [_dragCancelCallback]: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
+    extent: dart.finalFieldType(draggable_scrollable_sheet._DraggableSheetExtent)
+  }));
+  var child$ = dart.privateName(draggable_scrollable_sheet, "DraggableScrollableActuator.child");
+  var _notifier = dart.privateName(draggable_scrollable_sheet, "_notifier");
+  var _sendReset = dart.privateName(draggable_scrollable_sheet, "_sendReset");
+  draggable_scrollable_sheet.DraggableScrollableActuator = class DraggableScrollableActuator extends framework.StatelessWidget {
+    get child() {
+      return this[child$];
+    }
+    set child(value) {
+      super.child = value;
+    }
+    static reset(context) {
+      let notifier = context.dependOnInheritedWidgetOfExactType(draggable_scrollable_sheet._InheritedResetNotifier);
+      if (notifier == null) {
+        return false;
+      }
+      return notifier[_sendReset]();
+    }
+    build(context) {
+      return new draggable_scrollable_sheet._InheritedResetNotifier.new({child: this.child, notifier: this[_notifier], $creationLocationd_0dea112b090073317d4: C[12] || CT.C12});
+    }
+  };
+  (draggable_scrollable_sheet.DraggableScrollableActuator.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[_notifier] = new draggable_scrollable_sheet._ResetNotifier.new();
+    this[child$] = child;
+    draggable_scrollable_sheet.DraggableScrollableActuator.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = draggable_scrollable_sheet.DraggableScrollableActuator.prototype;
+  dart.addTypeTests(draggable_scrollable_sheet.DraggableScrollableActuator);
+  dart.addTypeCaches(draggable_scrollable_sheet.DraggableScrollableActuator);
+  dart.setMethodSignature(draggable_scrollable_sheet.DraggableScrollableActuator, () => ({
+    __proto__: dart.getMethods(draggable_scrollable_sheet.DraggableScrollableActuator.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }));
+  dart.setLibraryUri(draggable_scrollable_sheet.DraggableScrollableActuator, I[1]);
+  dart.setFieldSignature(draggable_scrollable_sheet.DraggableScrollableActuator, () => ({
+    __proto__: dart.getFields(draggable_scrollable_sheet.DraggableScrollableActuator.__proto__),
+    child: dart.finalFieldType(framework.Widget),
+    [_notifier]: dart.finalFieldType(draggable_scrollable_sheet._ResetNotifier)
+  }));
+  var _wasCalled = dart.privateName(draggable_scrollable_sheet, "_wasCalled");
+  draggable_scrollable_sheet._ResetNotifier = class _ResetNotifier extends change_notifier.ChangeNotifier {
+    sendReset() {
+      if (!this.hasListeners) {
+        return false;
+      }
+      this[_wasCalled] = true;
+      this.notifyListeners();
+      return true;
+    }
+  };
+  (draggable_scrollable_sheet._ResetNotifier.new = function() {
+    this[_wasCalled] = false;
+    draggable_scrollable_sheet._ResetNotifier.__proto__.new.call(this);
+    ;
+  }).prototype = draggable_scrollable_sheet._ResetNotifier.prototype;
+  dart.addTypeTests(draggable_scrollable_sheet._ResetNotifier);
+  dart.addTypeCaches(draggable_scrollable_sheet._ResetNotifier);
+  dart.setMethodSignature(draggable_scrollable_sheet._ResetNotifier, () => ({
+    __proto__: dart.getMethods(draggable_scrollable_sheet._ResetNotifier.__proto__),
+    sendReset: dart.fnType(core.bool, [])
+  }));
+  dart.setLibraryUri(draggable_scrollable_sheet._ResetNotifier, I[1]);
+  dart.setFieldSignature(draggable_scrollable_sheet._ResetNotifier, () => ({
+    __proto__: dart.getFields(draggable_scrollable_sheet._ResetNotifier.__proto__),
+    [_wasCalled]: dart.fieldType(core.bool)
+  }));
+  draggable_scrollable_sheet._InheritedResetNotifier = class _InheritedResetNotifier extends inherited_notifier.InheritedNotifier$(draggable_scrollable_sheet._ResetNotifier) {
+    [_sendReset]() {
+      return dart.nullCheck(this.notifier).sendReset();
+    }
+    static shouldReset(context) {
+      let widget = context.dependOnInheritedWidgetOfExactType(draggable_scrollable_sheet._InheritedResetNotifier);
+      if (widget == null) {
+        return false;
+      }
+      if (!draggable_scrollable_sheet._InheritedResetNotifier.is(widget)) dart.assertFailed(null, I[0], 604, 12, "widget is _InheritedResetNotifier");
+      let inheritedNotifier = draggable_scrollable_sheet._InheritedResetNotifier.as(widget);
+      let wasCalled = dart.nullCheck(inheritedNotifier.notifier)[_wasCalled];
+      dart.nullCheck(inheritedNotifier.notifier)[_wasCalled] = false;
+      return wasCalled;
+    }
+  };
+  (draggable_scrollable_sheet._InheritedResetNotifier.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let child = opts && 'child' in opts ? opts.child : null;
+    let notifier = opts && 'notifier' in opts ? opts.notifier : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    draggable_scrollable_sheet._InheritedResetNotifier.__proto__.new.call(this, {key: key, child: child, notifier: notifier, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = draggable_scrollable_sheet._InheritedResetNotifier.prototype;
+  dart.addTypeTests(draggable_scrollable_sheet._InheritedResetNotifier);
+  dart.addTypeCaches(draggable_scrollable_sheet._InheritedResetNotifier);
+  dart.setMethodSignature(draggable_scrollable_sheet._InheritedResetNotifier, () => ({
+    __proto__: dart.getMethods(draggable_scrollable_sheet._InheritedResetNotifier.__proto__),
+    [_sendReset]: dart.fnType(core.bool, [])
+  }));
+  dart.setLibraryUri(draggable_scrollable_sheet._InheritedResetNotifier, I[1]);
+  dart.trackLibraries("packages/flutter/src/widgets/draggable_scrollable_sheet.dart", {
+    "package:flutter/src/widgets/draggable_scrollable_sheet.dart": draggable_scrollable_sheet
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["pieChartProfile.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAKyC;IAAsB;;;;;;EAC/D;;;;;;;;;;;;;;;;;;;;;IAGM;;;;;;UAGsB;AACxB,YAAO,yCACQ,AAAE,IAAE,UACV,sCACe,+BAAI,mBACZ,oDAAyC,wCAAS,gBACvD,0BAED,uEAAkD,wCAAS,gBACjD,gCACH,kBACS,2BACb,6BACa,wBAGhB,+BACS,wCACQ,YACN,2BACL,mDACkB,oDACV,SAAc,OAAO;AAUrB,0BATF,cAAS;AACP,iCAAK,AAAM,KAAD,gCACN,AAAiB,gBAAD,YAChB,AAAiB,AAAe,gBAAhB;AACD,8BAAjB,oBAAe,CAAC;AAChB;;AAGsC,4BADxC,oBACmB,AAAE,eADN,AACV,gBAD0B;;6FAIhB,mBACP,4CACL,wBAEQ,wBACI,eACT,uNAOpB,sCACsB,oCAAS,MAAI,MAAI,MAAI,cAClC,yCACgC,wCAC3B,wBACR,6BACY,wBACR,qCACqB,wCAAY,YAAU,gBACjC,aACD,kBACK,oDACmB,wCAAS,aAC7B,iBAAM,0EAEnB,kBAAK,iBACM,qCACI,iBAAM,yBACU,8BACb,gIAGtB,gCACS,iEAET,6BACY,wBACR,qCACqB,wCAAY,YAAU,gBACjC,aACD,kBACK,oDACmB,wCAAS,aAC7B,iBAAM,0EAEnB,kBAAK,kBACM,qCACI,iBAAM,yBACU,8BACb;IAWxC;;AAGE,YAAY,wCACV,GACA,QAAC;AACO,wBAAY,AAAE,CAAD,KAAI;AACjB,sBAAU,SAAS,GAAG,MAAM;AAE3B,qBAAS;AACT,qBAAS;AAGV;AACA;AAGN,gBAAQ,CAAC;;;AAEL,kBAAO,oDAEI,MAAM,SACN,MAAM,SACN,eACC,kBACI,wCACE,kBACa,6EAEI;;;;AAGnC,kBAAO,oDAEE,AAAO,MAAD,aAAa,OAAO,UAC1B,MAAM,SACN,eACC,kBACI,wCACE,kBACa,6EAEI,iBAElB,mCAGG,4BACP;;;;AAME,YAAb,WAAM;;;;IAIhB;;;IA9JI,qBAAe,CAAC;;;EA+JtB","file":"../../../../../packages/eco_ml/charts/pieChartProfile.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["draggable_scrollable_sheet.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IA4He;;;;;;IAMA;;;;;;IAMA;;;;;;IAUF;;;;;;IAKmB;;;;;;;AAGkB;IAAgC;;;QAnDzE;QACA;QACA;QACA;QACA;QACS;;IAJT;IACA;IACA;IACA;IACS;UACH,AAAiB,gBAAD;UAChB,AAAa,YAAD;UACZ,AAAa,YAAD;UACZ,AAAa,YAAD,IAAI;UAChB,AAAa,YAAD,IAAI;UAChB,AAAa,YAAD,IAAI,gBAAgB;UAChC,AAAiB,gBAAD,IAAI,YAAY;UAChC,AAAO,MAAD;UACN,AAAQ,OAAD;AACd,uFAAW,GAAG;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAoFR;;;;;;IAGA;;;;;;IAGA;;;;;;IAGA;;;;;;IAOM;;;;;;yBAGoB;AACE,MAAjC,2BAAqB,WAAW;AACyE,MAA/G,AAAY,WAAD,OAAK,AAA8F,yBAAjF,kBAAS,wBAAW,eAAM,2BAAc,kBAAS,+BAAkB;IAClG;;;QAxCgB;QACA;QACA;QACA;QACA;IAJA;IACA;IACA;IACA;IACA;UACJ,AAAO,MAAD;UACN,AAAc,aAAD;UACb,AAAU,SAAD;UACT,AAAU,SAAD;UACT,AAAI,OAAG,SAAS;UAChB,AAAU,SAAD,IAAI;UACb,AAAU,SAAD,IAAI,MAAM;UACnB,AAAU,SAAD,IAAI,aAAa;UAC1B,AAAO,MAAD,IAAI,SAAS;UACnB,AAAc,aAAD,IAAI,SAAS;UAC1B,AAAQ,OAAD;AAhBnB;;EAgB4B;;;;;;;;;;;;;;;AA6DR,YAAA,AAAU,mBAAG,AAAe;IAAK;;AACjC,YAAA,AAAU,mBAAG,AAAe;IAAK;sBAE5B;AACvB,YAAO,AAAM,KAAD;AAC4C,MAAxD,AAAe,6BAAQ,AAAM,KAAD,SAAO,gBAAW;IAChD;;AAC4B,YAAA,AAAe;IAAK;;AAEd,4BAAU,MAAM;IAAG;;AACnB,4BAAU,MAAM;IAAG;kBAI3B,OAAoB;AAC5C,UAAI,AAAgB,yBAAG;AACrB;;AAEkD,MAApD,qBAAA,AAAc,qBAAG,AAAM,AAAkB,KAAnB,GAAG,uBAAkB;AAOxB,MANnB,AAME,+EALW,2BACA,wBACH,mCACO,6BACN,OAAO,YACP,OAAO;IACpB;;;;QA9CgB;QACA;QACA;QACQ;IAHR;IACA;IACA;UAEJ,AAAU,SAAD;UACT,AAAU,SAAD;UACT,AAAc,aAAD;UACb,AAAU,SAAD,IAAI;UACb,AAAU,SAAD,IAAI;UACb,AAAU,SAAD,IAAI,aAAa;UAC1B,AAAc,aAAD,IAAI,SAAS;IAClB,6BAAE,oCAAsB,aAAa,GAAnC;AAAsC,qBAAY,QAAQ;;;IAC3D;;EAAiB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAsCS;;IAAiB;;AAAjB;IAAiB;;;AACrC;;IAAO;;AAAP;IAAO;;AAIf,MAAX;AAML,MALD,gBAAU,qEACG,AAAO,qCACP,AAAO,yCACH,AAAO,kDACZ;AAEkE,MAA9E,0BAAoB,sFAAkD;IACxE;;AAI+B,MAAvB;AACN,UAA4B,+DAAY;AAItC,YAAI,AAAkB,mCAAU;AAK7B,UAJD,AAAkB,kCAChB,sCAEc;;AAGkC,QAApD,AAAQ,AAAe,sCAAQ,AAAQ;;IAE3C;;AAKI,MAFF,cAAS;;IAIX;UAG0B;AACxB,YAAO,gDACI,SAAc,SAAwB;;AAC6B,UAA1E,AAAQ,gCAAkB,AAAO,AAAa,2BAAE,AAAY,AAAQ,WAAT;AAC9C,sBAAQ,kDACL,AAAQ,0CACf,kBAAe,OAAO,OAAE,yBAAV,gCACA;AAEvB,gBAAO,AAAO,sBAAkB,kCAAc,KAAK,4DAAI,KAAK;;IAGlE;;AAI6B,MAA3B,AAAkB;AACH,MAAT;IACR;;;+DA3D+C;qDACpB;;;EA2D7B;;;;;;;;;;;;;;;;;;;;;;;;;yBA+BkB,SACA,SACE;AAEhB,YAAO,sFACI,OAAO,WACP,OAAO,eACH,WAAW,UAChB;IAEZ;yBAGuC;AACE,MAAjC,2BAAqB,WAAW;AACJ,MAAlC,AAAY,WAAD,OAAK,AAAiB,sBAAP;IAC5B;;;QA7BS;QACC;QACM;;UACJ,AAAO,MAAD;AACb,+GACc,UAAU,uBACD,mBAAmB;;EACzC;;;;;;;;;;;;;;;AA2DuB,YAAA,AAAO,eAAE;IAAG;2BAGN,iBAAwB;AAIzD,YAAa,8BACX,AAAgB,eAAD,GAAG,AAAO,iCACzB,AAAgB,eAAD,GAAG,AAAO;IAE7B;oBAG4B;AAC1B,WAAK,4BACE,AAAO,uBAAW,AAAO,wBACzB,AAAO,uBAAW,AAAM,KAAD,GAAG,KAC1B,AAAO,uBAAW,AAAM,KAAD,GAAG;AAC2B,QAA1D,AAAO,0BAAc,CAAC,KAAK,EAA6B,eAA3B,AAAQ;;AAET,QAAtB,sBAAgB,KAAK;;IAE/B;gBAGwB;;AACtB,UAAI,AAAS,QAAD,KAAI,OACZ,AAAS,QAAD,GAAG,OAAO,yBAClB,AAAS,QAAD,GAAG,OAAO,AAAO;AACA,QAArB,kBAAY,QAAQ;AAC1B;;AAGyB,WAA3B;0BAAqB;AACK,MAA1B,4BAAsB;AAIL,uBAAa,8DAClB,AAAO,qCACP,QAAQ,aACP,AAAQ;AAGK,gCAA0C,oEACtD,yBAAkB,MAAM,6CAC7B,AAAQ;AAEV,sBAAY;AACnB,YAAK;AACU,oBAAQ,AAAoB,AAAM,mBAAP,SAAS,SAAS;AACrB,QAArC,YAAY,AAAoB,mBAAD;AAC0B,QAAzD,AAAO,0BAAc,KAAK,EAA6B,eAA3B,AAAQ;AACpC,YAAK,AAAS,QAAD,GAAG,KAAK,AAAO,uBAAa,AAAS,QAAD,GAAG,KAAK,AAAO;AAI4C,UAA1G,WAAW,AAAoB,AAAS,mBAAV,YAAa,AAAQ,AAAU,AAAS,kCAAE,AAAoB,AAAS,mBAAV;AAChE,UAArB,kBAAY,QAAQ;AACA,UAA1B,AAAoB,mBAAD;cACd,KAAI,AAAoB,mBAAD;AACR,UAAd,kBAAY;;;;AAQnB,YAJH,mBAAmB;MAAnB;AACI,wBAAY,KAAK;AACO,QAAxB,gBAAY,UAAU,uBACF,UAApB,mBAAmB;;;IAEzB;SAG2B,SAAsB;AAEP,MAAxC,4BAAsB,kBAAkB;AACxC,YAAa,YAAK,OAAO,EAAE,kBAAkB;IAC/C;;;QAjGyB;QACA;QAChB;QACF;QACW;QACR;QACM;IAWF;IAXE;UACH,AAAO,MAAD;AACb,0GACW,OAAO,WACP,OAAO,iBACD,aAAa,oBACV,gBAAgB,eACrB,WAAW,cACZ,UAAU;;EACvB;;;;;;;;;;;;;;;;;IA0GM;;;;;;iBAUkB;AACE,qBAAW,AAAQ,OAAD;AACjD,UAAI,AAAS,QAAD;AACV,cAAO;;AAET,YAAO,AAAS,SAAD;IACjB;UAG0B;AACxB,YAAO,oEAA+B,sBAAiB;IACzD;;;QA7BO;QACS;;IASK,kBAAY;IATjB;AACX,0FAAW,GAAG;;EAAC;;;;;;;;;;;;;;;;AA0ClB,WAAK;AACH,cAAO;;AAEQ,MAAjB,mBAAa;AACI,MAAjB;AACA,YAAO;IACT;;;IAZK,mBAAa;;;EAapB;;;;;;;;;;;;;;AAauB,YAAQ,AAAE,gBAAV;IAAqB;uBAML;AACZ,mBAAS,AAAQ,OAAD;AACvC,UAAI,AAAO,MAAD;AACR,cAAO;;AAET,WAAc,sDAAP,MAAM;AACiB,8BAA2B,sDAAP,MAAM;AAC7C,sBAAsC,AAAE,eAA5B,AAAkB,iBAAD;AACM,MAApB,AAAE,eAA5B,AAAkB,iBAAD,yBAAwB;AACzC,YAAO,UAAS;IAClB;;;QArBO;QACW;QACQ;;AACrB,sFAAW,GAAG,SAAS,KAAK,YAAY,QAAQ;;EAAC","file":"../../../../../../../packages/flutter/src/widgets/draggable_scrollable_sheet.dart.lib.js"}');
   // Exports:
   return {
-    charts__pieChartProfile: pieChartProfile
+    src__widgets__draggable_scrollable_sheet: draggable_scrollable_sheet
   };
 }));
 
-//# sourceMappingURL=pieChartProfile.dart.lib.js.map
+//# sourceMappingURL=draggable_scrollable_sheet.dart.lib.js.map

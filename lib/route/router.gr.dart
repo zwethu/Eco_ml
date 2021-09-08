@@ -72,8 +72,9 @@ class MyAppRouter extends _i1.RootStackRouter {
         }),
     TransactionRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
         routeData: routeData,
-        builder: (_) {
-          return const _i6.TransactionPage();
+        builder: (data) {
+          final args = data.argsAs<TransactionRouteArgs>();
+          return _i6.TransactionPage(key: args.key, id: args.id);
         })
   };
 
@@ -161,8 +162,19 @@ class AmountInputRoute extends _i1.PageRouteInfo {
   static const String name = 'AmountInputRoute';
 }
 
-class TransactionRoute extends _i1.PageRouteInfo {
-  const TransactionRoute() : super(name, path: '/transaction-page');
+class TransactionRoute extends _i1.PageRouteInfo<TransactionRouteArgs> {
+  TransactionRoute({_i2.Key? key, required int id})
+      : super(name,
+            path: '/transaction-page',
+            args: TransactionRouteArgs(key: key, id: id));
 
   static const String name = 'TransactionRoute';
+}
+
+class TransactionRouteArgs {
+  const TransactionRouteArgs({this.key, required this.id});
+
+  final _i2.Key? key;
+
+  final int id;
 }

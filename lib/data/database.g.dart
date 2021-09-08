@@ -113,3 +113,46 @@ class IconDataAdapter extends TypeAdapter<IconData> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+class TransactionAdapter extends TypeAdapter<Transaction> {
+  @override
+  final int typeId = 3;
+
+  @override
+  Transaction read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return Transaction(
+      fields[0] as int,
+      fields[1] as bool,
+      fields[2] as double,
+      fields[4] as String,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, Transaction obj) {
+    writer
+      ..writeByte(4)
+      ..writeByte(0)
+      ..write(obj.iconId)
+      ..writeByte(1)
+      ..write(obj.isExpense)
+      ..writeByte(2)
+      ..write(obj.amount)
+      ..writeByte(4)
+      ..write(obj.description);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TransactionAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
