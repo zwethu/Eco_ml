@@ -130,7 +130,7 @@ class _CategoriesPageState extends State<CategoriesPage>
                                 ),
                               ),
                               onTap: () {
-                                navigateToTransaction(context,index);
+                                navigateToTransaction(context);
                                 box.put(0, index);
                                 box.put(1, false);
                               });
@@ -172,10 +172,9 @@ class _CategoriesPageState extends State<CategoriesPage>
                               ),
                             ),
                             onTap: (){
-                              navigateToTransaction(context,index);
+                              navigateToTransaction(context);
                               box.put(0, index);
                               box.put(1, true);
-                              
                             },
                           );
                         },
@@ -192,6 +191,6 @@ class _CategoriesPageState extends State<CategoriesPage>
   }
 }
 
-void navigateToTransaction(BuildContext context,int index) {
-  AutoRouter.of(context).push(TransactionRoute(id: index));
+void navigateToTransaction(BuildContext context) {
+  AutoRouter.of(context).push(TransactionRoute());
 }

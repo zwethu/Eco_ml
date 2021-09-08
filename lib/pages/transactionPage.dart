@@ -7,8 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:eco_ml/data/outcomeData.dart';
 
 class TransactionPage extends StatefulWidget {
-  final int id;
-  const TransactionPage({Key? key,required this.id}) : super(key: key);
+  const TransactionPage({Key? key}) : super(key: key);
 
   @override
   _TransactionPageState createState() => _TransactionPageState();
@@ -16,29 +15,26 @@ class TransactionPage extends StatefulWidget {
 
 class _TransactionPageState extends State<TransactionPage> {
   late DateTime pickedDate;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    pickedDate = DateTime.now();
-  }
-
   final int id = Hive.box('id').get(0);
   final bool check = Hive.box('id').get(1);
   final transactionBox = Hive.box('transactions');
   final TextEditingController amountController = TextEditingController();
   final TextEditingController noteController = TextEditingController();
+
   @override
   void initState() {
     amountController.addListener(() => setState(() {}));
     noteController.addListener(() => setState(() {}));
+    pickedDate = DateTime.now();
     super.initState();
   }
+
   @override
   void dispose() {
     // Hive.close();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -47,52 +43,13 @@ class _TransactionPageState extends State<TransactionPage> {
           backgroundColor: Color(0xff4F98A1),
         ),
         body: Center(
-<<<<<<< HEAD
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.all(25),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      child: Row(
-                        children: [
-                          Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: check
-                                  ? incomeData[id].colorName
-                                  : outcomeData[id].colorName,
-                            ),
-                            child: Icon(
-                              check
-                                  ? incomeData[id].iconName
-                                  : outcomeData[id].iconName,
-                              color: Colors.white,
-                              size: 25,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            check
-                                ? incomeData[id].title
-                                : outcomeData[id].title,
-                            style: TextStyle(
-                              fontSize: 25,
-=======
           child: SingleChildScrollView(
             child: Container(
               width: MediaQuery.of(context).size.width,
               padding: EdgeInsets.all(5),
               child: Column(
                 children: [
-                 SizedBox(
+                  SizedBox(
                     height: 30,
                   ),
                   TextButton.icon(
@@ -111,16 +68,16 @@ class _TransactionPageState extends State<TransactionPage> {
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       )),
-                      SizedBox(
-                      height: 50,
-                      ),
+                  SizedBox(
+                    height: 50,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                         child: Row(
                           children: [
-                             SizedBox(
+                            SizedBox(
                               width: 20,
                             ),
                             Container(
@@ -142,7 +99,6 @@ class _TransactionPageState extends State<TransactionPage> {
                             ),
                             SizedBox(
                               width: 20,
->>>>>>> 94442c36e93d54a97d29a6b70dee59617cb22795
                             ),
                             Text(
                               check
@@ -153,141 +109,68 @@ class _TransactionPageState extends State<TransactionPage> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            
                           ],
                         ),
                       ),
-<<<<<<< HEAD
-                    ),
-                    Container(
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Text(
-                            'money',
-                            style: TextStyle(
-                              fontSize: 25,
-=======
                       SizedBox(
-                              width: 10,
->>>>>>> 94442c36e93d54a97d29a6b70dee59617cb22795
-                            ),
-                      
+                        width: 10,
+                      ),
                       Flexible(
                         child: TextField(
                           keyboardType: TextInputType.number,
+                          controller: amountController,
                           autofocus: true,
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
-                           focusedBorder: UnderlineInputBorder(
-                              borderSide:
-                        BorderSide(color: Color(0xff4F98A1), width: 3)
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide:
-                        BorderSide(color: Color(0xff4F98A1), width: 3)
-                            ),
-                            border: InputBorder.none
-
-                          ),
-                          cursorColor:Color(0xff4F98A1) ,
+                              focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Color(0xff4F98A1), width: 3)),
+                              enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Color(0xff4F98A1), width: 3)),
+                              border: InputBorder.none),
+                          cursorColor: Color(0xff4F98A1),
                           cursorHeight: 30,
                           style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold),
+                              color: Colors.black,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
-<<<<<<< HEAD
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  controller: amountController,
-                  autofocus: true,
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(
-                  height: 60,
-                ),
-                TextField(
-                  controller: noteController,
-                  keyboardType: TextInputType.text,
-                  maxLines: 10,
-                  decoration: InputDecoration(
-                    hintText: 'Write the description...',
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(width: 2),
-                    ),
-=======
                       SizedBox(
-                              width: 30,
-                            ),
+                        width: 30,
+                      ),
                     ],
                   ),
                   SizedBox(
                     height: 100,
->>>>>>> 94442c36e93d54a97d29a6b70dee59617cb22795
                   ),
                   TextField(
                     keyboardType: TextInputType.text,
+                    controller: noteController,
                     maxLines: 10,
                     decoration: InputDecoration(
                       hintText: 'Write the description...',
-                      focusedBorder:  OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(width: 1,color:Color(0xff4F98A1))
-                      ),
-                      enabledBorder:  OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
-                        borderSide: BorderSide(width: 1,color:Color(0xff4F98A1))
-                      ),
-                      border:InputBorder.none,
-
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(width: 1, color: Color(0xff4F98A1))),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          borderSide:
+                              BorderSide(width: 1, color: Color(0xff4F98A1))),
+                      border: InputBorder.none,
                     ),
-                    cursorColor:Color(0xff4F98A1) ,
+                    cursorColor: Color(0xff4F98A1),
                     cursorHeight: 30,
-                          style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-                        ),
-                  
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
                   SizedBox(
                     height: 35,
                   ),
-<<<<<<< HEAD
-                  onPressed: () {
-                    
-                    transactionBox.add(Transaction(widget.id,check?false:true,double.parse(amountController.text),noteController.text));
-                    // transactionBox.put(0, id);
-                    // transactionBox.put(1, check?false:true);
-                    // transactionBox.put(2, double.parse(amountController.text));
-                    // transactionBox.put(4, noteController.text);
-                    final data = transactionBox.getAt(1)as Transaction;
-                    // print(transactionBox.getAt(0));
-                    print(data.iconId);
-                    print(data.isExpense);
-                    print(data.description);
-                    AutoRouter.of(context).push(HomeRoute());
-                    
-                  },
-                  child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 0, horizontal: 60),
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                    child: Text(
-                      "Submit",
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-=======
                   ElevatedButton(
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -298,7 +181,21 @@ class _TransactionPageState extends State<TransactionPage> {
                       backgroundColor:
                           MaterialStateProperty.all(Color(0xff4F98A1)),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      
+                      transactionBox.add(Transaction(id,check?false:true,double.parse(amountController.text),noteController.text));
+                    // // transactionBox.put(0, id);
+                    // // transactionBox.put(1, check?false:true);
+                    // // transactionBox.put(2, double.parse(amountController.text));
+                    // // transactionBox.put(4, noteController.text);
+                    final data = transactionBox.getAt(3)as Transaction;
+                    // print(transactionBox.getAt(data.iconId++));
+                    print(data.iconId);
+                    print(data.isExpense);
+                    print(data.description);
+                    AutoRouter.of(context).push(HomeRoute());   
+                    // transactionBox.clear();                
+                    },
                     child: Container(
                       margin: EdgeInsets.symmetric(vertical: 0, horizontal: 60),
                       padding:
@@ -310,7 +207,6 @@ class _TransactionPageState extends State<TransactionPage> {
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
->>>>>>> 94442c36e93d54a97d29a6b70dee59617cb22795
                       ),
                     ),
                   ),
