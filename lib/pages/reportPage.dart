@@ -15,6 +15,7 @@ class _ReportPageState extends State<ReportPage> {
     return Container(
       child: Column(
         children: [
+          SizedBox(height:10),
           DefaultTabController(
             length: 2, // length of tabs
             initialIndex: 0,

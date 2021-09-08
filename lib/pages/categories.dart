@@ -51,7 +51,7 @@ class _CategoriesPageState extends State<CategoriesPage>
               // give the ta
               //b bar a height [can change height to preferred height]
               Container(
-                height: 45,
+                height: 30,
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
@@ -95,7 +95,7 @@ class _CategoriesPageState extends State<CategoriesPage>
                   children: [
                     // first tab bar view widget
                     Container(
-                      margin: EdgeInsets.only(top: 20),
+                      margin: EdgeInsets.only(top: 50),
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height / 1.5,
                       child: GridView.builder(
@@ -114,12 +114,13 @@ class _CategoriesPageState extends State<CategoriesPage>
                                       width: 40,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(20),
-                                        color: Colors.grey.shade300,
+                                        color: Colors.grey.shade200,
                                       ),
                                       child: Icon(
                                         activeIndex == 0
                                             ? outcomeData[index].iconName
                                             : incomeData[index].iconName,
+                                            color: Colors.grey.shade600,
                                         size: 25,
                                       ),
                                     ),
@@ -139,7 +140,7 @@ class _CategoriesPageState extends State<CategoriesPage>
 
                     // second tab bar view widget
                     Container(
-                      margin: EdgeInsets.only(top: 20),
+                      margin: EdgeInsets.only(top: 50),
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height / 1.5,
                       child: GridView.builder(
@@ -158,11 +159,12 @@ class _CategoriesPageState extends State<CategoriesPage>
                                     width: 40,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
-                                      color: Colors.grey.shade300,
+                                      color: Colors.grey.shade200,
                                     ),
                                     child: Icon(
                                       incomeData[index].iconName,
                                       size: 25,
+                                      color: Colors.grey.shade600,
                                     ),
                                   ),
                                   Text(incomeData[index].title),
