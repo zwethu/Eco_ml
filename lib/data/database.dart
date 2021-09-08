@@ -35,12 +35,12 @@ class Transaction extends HiveObject{
   late bool isExpense;
   @HiveField(2)
   late double amount;
-  // @HiveField(3)
-  // late DateTime datatime;
+  @HiveField(3)
+  late DateTime datatime;
   @HiveField(4)
   late String description;
-  // @HiveField(5)
-  // late int cardNum=0;
-  Transaction(this.iconId,this.isExpense,this.amount,this.description);
+  @HiveField(5)
+  late int cardNum=1;
+  Transaction(this.iconId,this.isExpense,this.amount,this.datatime,this.description,this.cardNum);
 }
 

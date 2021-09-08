@@ -1,3 +1,4 @@
+import 'package:eco_ml/data/database.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -11,16 +12,18 @@ class WalletPage extends StatefulWidget {
 }
 
 class _WalletPageState extends State<WalletPage> {
+  final box = Hive.box('transactions');
   @override
   void dispose() {
     // Hive.close();
     super.dispose();
   }
-  final data = Hive.box('transactions');
+
   @override
   Widget build(BuildContext context) {
     final amount = Hive.box('amount').get(0);
     return ListView(
+      shrinkWrap: true,
       children: [
         Container(
           decoration: BoxDecoration(
@@ -176,8 +179,6 @@ class _WalletPageState extends State<WalletPage> {
               ),
               Container(
                 margin: EdgeInsets.only(top: 15),
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(25),
@@ -190,7 +191,39 @@ class _WalletPageState extends State<WalletPage> {
                       margin: EdgeInsets.all(20),
                       alignment: Alignment.topLeft,
                       width: MediaQuery.of(context).size.width,
-                      child: Text(''),
+                      child: Text('Transactions'),
+                    ),
+                    Container(
+                      child: ValueListenableBuilder(
+                        valueListenable: box.listenable(),
+                        builder: (BuildContext context, box, _) {
+                          final length = Hive.box('transactions').length;
+                          final dataBox = Hive.box('transactions');
+                          return Container(
+                            height: MediaQuery.of(context).size.height,
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              physics: ScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              itemCount: length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final data =
+                                    dataBox.getAt(index) as Transaction;
+                                return Container(
+                                  margin: EdgeInsets.symmetric(
+                                      vertical: 5, horizontal: 10),
+                                  padding: EdgeInsets.all(10),
+                                  child: ListTile(
+                                    title: Text(
+                                      data.amount.toString(),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),

@@ -1,430 +1,438 @@
-define(['dart_sdk', 'packages/flutter/src/services/text_input.dart', 'packages/flutter/src/foundation/_platform_web.dart', 'packages/characters/src/characters_impl.dart', 'packages/characters/src/extensions.dart', 'packages/flutter/src/services/text_editing.dart'], (function load__packages__flutter__src__services__text_formatter_dart(dart_sdk, packages__flutter__src__services__text_input$46dart, packages__flutter__src__foundation___platform_web$46dart, packages__characters__src__characters_impl$46dart, packages__characters__src__extensions$46dart, packages__flutter__src__services__text_editing$46dart) {
+define(['dart_sdk', 'packages/collection/src/utils.dart'], (function load__packages__collection__src__priority_queue_dart(dart_sdk, packages__collection__src__utils$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const math = dart_sdk.math;
-  const ui = dart_sdk.ui;
+  const collection = dart_sdk.collection;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const text_input = packages__flutter__src__services__text_input$46dart.src__services__text_input;
-  const platform$ = packages__flutter__src__foundation___platform_web$46dart.src__foundation__platform;
-  const characters_impl = packages__characters__src__characters_impl$46dart.src__characters_impl;
-  const extensions = packages__characters__src__extensions$46dart.src__extensions;
-  const text_editing = packages__flutter__src__services__text_editing$46dart.src__services__text_editing;
-  var text_formatter = Object.create(dart.library);
-  var $isNotEmpty = dartx.isNotEmpty;
-  var $splitMapJoin = dartx.splitMapJoin;
+  const utils = packages__collection__src__utils$46dart.src__utils;
+  var priority_queue = Object.create(dart.library);
+  var $_get = dartx._get;
+  var $take = dartx.take;
+  var $cast = dartx.cast;
+  var $sort = dartx.sort;
+  var $add = dartx.add;
+  var $toString = dartx.toString;
   var $length = dartx.length;
-  var $substring = dartx.substring;
+  var $isOdd = dartx.isOdd;
+  var $rightShift = dartx['>>'];
+  var $_set = dartx._set;
+  var $truncate = dartx.truncate;
+  var $setRange = dartx.setRange;
+  var $iterator = dartx.iterator;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    MatchToString: () => (T.MatchToString = dart.constFn(dart.fnType(core.String, [core.Match])))(),
-    StringToString: () => (T.StringToString = dart.constFn(dart.fnType(core.String, [core.String])))()
+    ObjectN: () => (T.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
+    ObjectNAndObjectNToint: () => (T.ObjectNAndObjectNToint = dart.constFn(dart.fnType(core.int, [T.ObjectN(), T.ObjectN()])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.const({
-        __proto__: text_formatter.MaxLengthEnforcement.prototype,
-        [_name$]: "MaxLengthEnforcement.none",
-        index: 0
-      });
+      return C[0] = dart.fn(utils.defaultCompare, T.ObjectNAndObjectNToint());
     },
     get C1() {
-      return C[1] = dart.const({
-        __proto__: text_formatter.MaxLengthEnforcement.prototype,
-        [_name$]: "MaxLengthEnforcement.enforced",
-        index: 1
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: text_formatter.MaxLengthEnforcement.prototype,
-        [_name$]: "MaxLengthEnforcement.truncateAfterCompositionEnds",
-        index: 2
-      });
-    },
-    get C3() {
-      return C[3] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2], text_formatter.MaxLengthEnforcement);
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.android",
-        index: 0
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.windows",
-        index: 5
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.iOS",
-        index: 2
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.macOS",
-        index: 4
-      });
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.linux",
-        index: 3
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.fuchsia",
-        index: 1
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: ui.TextAffinity.prototype,
-        [_name$0]: "TextAffinity.downstream",
-        index: 1
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: text_editing.TextSelection.prototype,
-        [TextRange_end]: -1,
-        [TextRange_start]: -1,
-        [TextSelection_isDirectional]: false,
-        [TextSelection_affinity]: C[11] || CT.C11,
-        [TextSelection_extentOffset]: -1,
-        [TextSelection_baseOffset]: -1
-      });
+      return C[1] = dart.constList([], core.Null);
     }
   }, false);
-  var C = Array(12).fill(void 0);
-  var I = [
-    "package:flutter/src/services/text_formatter.dart",
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/services/text_formatter.dart"
-  ];
-  var _name$ = dart.privateName(text_formatter, "_name");
-  text_formatter.MaxLengthEnforcement = class MaxLengthEnforcement extends core.Object {
-    toString() {
-      return this[_name$];
+  var C = Array(2).fill(void 0);
+  var I = ["package:collection/src/priority_queue.dart"];
+  const _is_PriorityQueue_default = Symbol('_is_PriorityQueue_default');
+  priority_queue.PriorityQueue$ = dart.generic(E => {
+    class PriorityQueue extends core.Object {}
+    (PriorityQueue[dart.mixinNew] = function() {
+    }).prototype = PriorityQueue.prototype;
+    dart.addTypeTests(PriorityQueue);
+    PriorityQueue.prototype[_is_PriorityQueue_default] = true;
+    dart.addTypeCaches(PriorityQueue);
+    dart.setLibraryUri(PriorityQueue, I[0]);
+    return PriorityQueue;
+  });
+  priority_queue.PriorityQueue = priority_queue.PriorityQueue$();
+  dart.addTypeTests(priority_queue.PriorityQueue, _is_PriorityQueue_default);
+  var comparison$ = dart.privateName(priority_queue, "HeapPriorityQueue.comparison");
+  var _queue$ = dart.privateName(priority_queue, "_queue");
+  var _length = dart.privateName(priority_queue, "_length");
+  var _modificationCount = dart.privateName(priority_queue, "_modificationCount");
+  var _elementAt = dart.privateName(priority_queue, "_elementAt");
+  var _add = dart.privateName(priority_queue, "_add");
+  var _locate = dart.privateName(priority_queue, "_locate");
+  var _removeLast = dart.privateName(priority_queue, "_removeLast");
+  var _bubbleUp = dart.privateName(priority_queue, "_bubbleUp");
+  var _bubbleDown = dart.privateName(priority_queue, "_bubbleDown");
+  var _toUnorderedList = dart.privateName(priority_queue, "_toUnorderedList");
+  var _grow = dart.privateName(priority_queue, "_grow");
+  const _is_HeapPriorityQueue_default = Symbol('_is_HeapPriorityQueue_default');
+  priority_queue.HeapPriorityQueue$ = dart.generic(E => {
+    var EN = () => (EN = dart.constFn(dart.nullable(E)))();
+    var ListOfEN = () => (ListOfEN = dart.constFn(core.List$(EN())))();
+    var IterableOfE = () => (IterableOfE = dart.constFn(core.Iterable$(E)))();
+    var _UnorderedElementsIterableOfE = () => (_UnorderedElementsIterableOfE = dart.constFn(priority_queue._UnorderedElementsIterable$(E)))();
+    var SplayTreeSetOfE = () => (SplayTreeSetOfE = dart.constFn(collection.SplayTreeSet$(E)))();
+    var JSArrayOfE = () => (JSArrayOfE = dart.constFn(_interceptors.JSArray$(E)))();
+    class HeapPriorityQueue extends core.Object {
+      get comparison() {
+        return this[comparison$];
+      }
+      set comparison(value) {
+        super.comparison = value;
+      }
+      [_elementAt](index) {
+        let t0;
+        t0 = this[_queue$][$_get](index);
+        return t0 == null ? E.as(null) : t0;
+      }
+      add(element) {
+        E.as(element);
+        this[_modificationCount] = this[_modificationCount] + 1;
+        this[_add](element);
+      }
+      addAll(elements) {
+        IterableOfE().as(elements);
+        let modified = 0;
+        for (let element of elements) {
+          modified = 1;
+          this[_add](element);
+        }
+        this[_modificationCount] = this[_modificationCount] + modified;
+      }
+      clear() {
+        this[_modificationCount] = this[_modificationCount] + 1;
+        this[_queue$] = C[1] || CT.C1;
+        this[_length] = 0;
+      }
+      contains(object) {
+        E.as(object);
+        return this[_locate](object) >= 0;
+      }
+      get unorderedElements() {
+        return new (_UnorderedElementsIterableOfE()).new(this);
+      }
+      get first() {
+        if (this[_length] === 0) dart.throw(new core.StateError.new("No element"));
+        return this[_elementAt](0);
+      }
+      get isEmpty() {
+        return this[_length] === 0;
+      }
+      get isNotEmpty() {
+        return this[_length] !== 0;
+      }
+      get length() {
+        return this[_length];
+      }
+      remove(element) {
+        let t1, t0;
+        E.as(element);
+        let index = this[_locate](element);
+        if (index < 0) return false;
+        this[_modificationCount] = this[_modificationCount] + 1;
+        let last = this[_removeLast]();
+        if (index < this[_length]) {
+          let comp = (t0 = last, t1 = element, this.comparison(t0, t1));
+          if (comp <= 0) {
+            this[_bubbleUp](last, index);
+          } else {
+            this[_bubbleDown](last, index);
+          }
+        }
+        return true;
+      }
+      removeAll() {
+        this[_modificationCount] = this[_modificationCount] + 1;
+        let result = this[_queue$];
+        let length = this[_length];
+        this[_queue$] = C[1] || CT.C1;
+        this[_length] = 0;
+        return result[$take](length)[$cast](E);
+      }
+      removeFirst() {
+        if (this[_length] === 0) dart.throw(new core.StateError.new("No element"));
+        this[_modificationCount] = this[_modificationCount] + 1;
+        let result = this[_elementAt](0);
+        let last = this[_removeLast]();
+        if (this[_length] > 0) {
+          this[_bubbleDown](last, 0);
+        }
+        return result;
+      }
+      toList() {
+        let t0;
+        t0 = this[_toUnorderedList]();
+        return (() => {
+          t0[$sort](this.comparison);
+          return t0;
+        })();
+      }
+      toSet() {
+        let set = new (SplayTreeSetOfE()).new(this.comparison);
+        for (let i = 0; i < this[_length]; i = i + 1) {
+          set.add(this[_elementAt](i));
+        }
+        return set;
+      }
+      toUnorderedList() {
+        return this[_toUnorderedList]();
+      }
+      [_toUnorderedList]() {
+        return (() => {
+          let t0 = JSArrayOfE().of([]);
+          for (let i = 0; i < this[_length]; i = i + 1)
+            t0[$add](this[_elementAt](i));
+          return t0;
+        })();
+      }
+      toString() {
+        return this[_queue$][$take](this[_length])[$toString]();
+      }
+      [_add](element) {
+        let t1;
+        if (this[_length] === this[_queue$][$length]) this[_grow]();
+        this[_bubbleUp](element, (t1 = this[_length], this[_length] = t1 + 1, t1));
+      }
+      [_locate](object) {
+        let t2, t1;
+        if (this[_length] === 0) return -1;
+        let position = 1;
+        do {
+          let index = position - 1;
+          let element = this[_elementAt](index);
+          let comp = (t1 = element, t2 = object, this.comparison(t1, t2));
+          if (comp <= 0) {
+            if (comp === 0 && dart.equals(element, object)) return index;
+            let leftChildPosition = position * 2;
+            if (leftChildPosition <= this[_length]) {
+              position = leftChildPosition;
+              continue;
+            }
+          }
+          do {
+            while (position[$isOdd]) {
+              position = position[$rightShift](1);
+            }
+            position = position + 1;
+          } while (position > this[_length]);
+        } while (position !== 1);
+        return -1;
+      }
+      [_removeLast]() {
+        let newLength = this[_length] - 1;
+        let last = this[_elementAt](newLength);
+        this[_queue$][$_set](newLength, null);
+        this[_length] = newLength;
+        return last;
+      }
+      [_bubbleUp](element, index) {
+        let t2, t1;
+        while (index > 0) {
+          let parentIndex = ((index - 1) / 2)[$truncate]();
+          let parent = this[_elementAt](parentIndex);
+          if ((t1 = element, t2 = parent, this.comparison(t1, t2)) > 0) break;
+          this[_queue$][$_set](index, parent);
+          index = parentIndex;
+        }
+        this[_queue$][$_set](index, element);
+      }
+      [_bubbleDown](element, index) {
+        let t2, t1, t2$, t1$, t2$0, t1$0;
+        let rightChildIndex = index * 2 + 2;
+        while (rightChildIndex < this[_length]) {
+          let leftChildIndex = rightChildIndex - 1;
+          let leftChild = this[_elementAt](leftChildIndex);
+          let rightChild = this[_elementAt](rightChildIndex);
+          let comp = (t1 = leftChild, t2 = rightChild, this.comparison(t1, t2));
+          let minChildIndex = null;
+          let minChild = null;
+          if (comp < 0) {
+            minChild = leftChild;
+            minChildIndex = leftChildIndex;
+          } else {
+            minChild = rightChild;
+            minChildIndex = rightChildIndex;
+          }
+          comp = (t1$ = element, t2$ = minChild, this.comparison(t1$, t2$));
+          if (comp <= 0) {
+            this[_queue$][$_set](index, element);
+            return;
+          }
+          this[_queue$][$_set](index, minChild);
+          index = minChildIndex;
+          rightChildIndex = index * 2 + 2;
+        }
+        let leftChildIndex = rightChildIndex - 1;
+        if (leftChildIndex < this[_length]) {
+          let child = this[_elementAt](leftChildIndex);
+          let comp = (t1$0 = element, t2$0 = child, this.comparison(t1$0, t2$0));
+          if (comp > 0) {
+            this[_queue$][$_set](index, child);
+            index = leftChildIndex;
+          }
+        }
+        this[_queue$][$_set](index, element);
+      }
+      [_grow]() {
+        let newCapacity = this[_queue$][$length] * 2 + 1;
+        if (newCapacity < 7) newCapacity = 7;
+        let newQueue = ListOfEN().filled(newCapacity, null);
+        newQueue[$setRange](0, this[_length], this[_queue$]);
+        this[_queue$] = newQueue;
+      }
     }
-  };
-  (text_formatter.MaxLengthEnforcement.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
-    ;
-  }).prototype = text_formatter.MaxLengthEnforcement.prototype;
-  dart.addTypeTests(text_formatter.MaxLengthEnforcement);
-  dart.addTypeCaches(text_formatter.MaxLengthEnforcement);
-  dart.setLibraryUri(text_formatter.MaxLengthEnforcement, I[0]);
-  dart.setFieldSignature(text_formatter.MaxLengthEnforcement, () => ({
-    __proto__: dart.getFields(text_formatter.MaxLengthEnforcement.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(text_formatter.MaxLengthEnforcement, ['toString']);
-  text_formatter.MaxLengthEnforcement.none = C[0] || CT.C0;
-  text_formatter.MaxLengthEnforcement.enforced = C[1] || CT.C1;
-  text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds = C[2] || CT.C2;
-  text_formatter.MaxLengthEnforcement.values = C[3] || CT.C3;
-  text_formatter.TextInputFormatter = class TextInputFormatter extends core.Object {
-    static withFunction(formatFunction) {
-      return new text_formatter._SimpleTextInputFormatter.new(formatFunction);
-    }
-  };
-  (text_formatter.TextInputFormatter.new = function() {
-    ;
-  }).prototype = text_formatter.TextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.TextInputFormatter);
-  dart.addTypeCaches(text_formatter.TextInputFormatter);
-  dart.setLibraryUri(text_formatter.TextInputFormatter, I[0]);
-  text_formatter._SimpleTextInputFormatter = class _SimpleTextInputFormatter extends text_formatter.TextInputFormatter {
-    formatEditUpdate(oldValue, newValue) {
-      let t1, t0;
-      t0 = oldValue;
-      t1 = newValue;
-      return this.formatFunction(t0, t1);
-    }
-  };
-  (text_formatter._SimpleTextInputFormatter.new = function(formatFunction) {
-    this.formatFunction = formatFunction;
-    if (!(formatFunction !== null)) dart.assertFailed(null, I[1], 111, 14, "formatFunction != null");
-    ;
-  }).prototype = text_formatter._SimpleTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter._SimpleTextInputFormatter);
-  dart.addTypeCaches(text_formatter._SimpleTextInputFormatter);
-  dart.setMethodSignature(text_formatter._SimpleTextInputFormatter, () => ({
-    __proto__: dart.getMethods(text_formatter._SimpleTextInputFormatter.__proto__),
-    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
-  }));
-  dart.setLibraryUri(text_formatter._SimpleTextInputFormatter, I[0]);
-  dart.setFieldSignature(text_formatter._SimpleTextInputFormatter, () => ({
-    __proto__: dart.getFields(text_formatter._SimpleTextInputFormatter.__proto__),
-    formatFunction: dart.finalFieldType(dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue]))
-  }));
-  var filterPattern$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.filterPattern");
-  var allow$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.allow");
-  var replacementString$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.replacementString");
-  text_formatter.FilteringTextInputFormatter = class FilteringTextInputFormatter extends text_formatter.TextInputFormatter {
-    get filterPattern() {
-      return this[filterPattern$];
-    }
-    set filterPattern(value) {
-      super.filterPattern = value;
-    }
-    get allow() {
-      return this[allow$];
-    }
-    set allow(value) {
-      super.allow = value;
-    }
-    get replacementString() {
-      return this[replacementString$];
-    }
-    set replacementString(value) {
-      super.replacementString = value;
-    }
-    formatEditUpdate(oldValue, newValue) {
-      return text_formatter._selectionAwareTextManipulation(newValue, dart.fn(substring => substring[$splitMapJoin](this.filterPattern, {onMatch: !this.allow ? dart.fn(match => this.replacementString, T.MatchToString()) : null, onNonMatch: this.allow ? dart.fn(nonMatch => nonMatch[$isNotEmpty] ? this.replacementString : "", T.StringToString()) : null}), T.StringToString()));
-    }
-  };
-  (text_formatter.FilteringTextInputFormatter.new = function(filterPattern, opts) {
-    let allow = opts && 'allow' in opts ? opts.allow : null;
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    this[filterPattern$] = filterPattern;
-    this[allow$] = allow;
-    this[replacementString$] = replacementString;
-    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 153, 15, "filterPattern != null");
-    if (!(allow !== null)) dart.assertFailed(null, I[1], 154, 15, "allow != null");
-    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 155, 15, "replacementString != null");
-    ;
-  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
-  (text_formatter.FilteringTextInputFormatter.allow = function(filterPattern, opts) {
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    this[filterPattern$] = filterPattern;
-    this[replacementString$] = replacementString;
-    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 164, 15, "filterPattern != null");
-    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 165, 15, "replacementString != null");
-    this[allow$] = true;
-    ;
-  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
-  (text_formatter.FilteringTextInputFormatter.deny = function(filterPattern, opts) {
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    this[filterPattern$] = filterPattern;
-    this[replacementString$] = replacementString;
-    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 175, 15, "filterPattern != null");
-    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 176, 15, "replacementString != null");
-    this[allow$] = false;
-    ;
-  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.FilteringTextInputFormatter);
-  dart.addTypeCaches(text_formatter.FilteringTextInputFormatter);
-  dart.setMethodSignature(text_formatter.FilteringTextInputFormatter, () => ({
-    __proto__: dart.getMethods(text_formatter.FilteringTextInputFormatter.__proto__),
-    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
-  }));
-  dart.setLibraryUri(text_formatter.FilteringTextInputFormatter, I[0]);
-  dart.setFieldSignature(text_formatter.FilteringTextInputFormatter, () => ({
-    __proto__: dart.getFields(text_formatter.FilteringTextInputFormatter.__proto__),
-    filterPattern: dart.finalFieldType(core.Pattern),
-    allow: dart.finalFieldType(core.bool),
-    replacementString: dart.finalFieldType(core.String)
-  }));
-  dart.defineLazy(text_formatter.FilteringTextInputFormatter, {
-    /*text_formatter.FilteringTextInputFormatter.singleLineFormatter*/get singleLineFormatter() {
-      return new text_formatter.FilteringTextInputFormatter.deny("\n");
-    },
-    /*text_formatter.FilteringTextInputFormatter.digitsOnly*/get digitsOnly() {
-      return new text_formatter.FilteringTextInputFormatter.allow(core.RegExp.new("[0-9]"));
-    }
-  }, false);
-  text_formatter.BlacklistingTextInputFormatter = class BlacklistingTextInputFormatter extends text_formatter.FilteringTextInputFormatter {
-    get blacklistedPattern() {
-      return this.filterPattern;
-    }
-  };
-  (text_formatter.BlacklistingTextInputFormatter.new = function(blacklistedPattern, opts) {
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    text_formatter.BlacklistingTextInputFormatter.__proto__.deny.call(this, blacklistedPattern, {replacementString: replacementString});
-    ;
-  }).prototype = text_formatter.BlacklistingTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.BlacklistingTextInputFormatter);
-  dart.addTypeCaches(text_formatter.BlacklistingTextInputFormatter);
-  dart.setGetterSignature(text_formatter.BlacklistingTextInputFormatter, () => ({
-    __proto__: dart.getGetters(text_formatter.BlacklistingTextInputFormatter.__proto__),
-    blacklistedPattern: core.Pattern
-  }));
-  dart.setLibraryUri(text_formatter.BlacklistingTextInputFormatter, I[0]);
-  dart.defineLazy(text_formatter.BlacklistingTextInputFormatter, {
-    /*text_formatter.BlacklistingTextInputFormatter.singleLineFormatter*/get singleLineFormatter() {
-      return new text_formatter.BlacklistingTextInputFormatter.new(core.RegExp.new("\\n"));
-    }
-  }, false);
-  text_formatter.WhitelistingTextInputFormatter = class WhitelistingTextInputFormatter extends text_formatter.FilteringTextInputFormatter {
-    get whitelistedPattern() {
-      return this.filterPattern;
-    }
-  };
-  (text_formatter.WhitelistingTextInputFormatter.new = function(whitelistedPattern) {
-    if (!(whitelistedPattern !== null)) dart.assertFailed(null, I[1], 329, 14, "whitelistedPattern != null");
-    text_formatter.WhitelistingTextInputFormatter.__proto__.allow.call(this, whitelistedPattern);
-    ;
-  }).prototype = text_formatter.WhitelistingTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.WhitelistingTextInputFormatter);
-  dart.addTypeCaches(text_formatter.WhitelistingTextInputFormatter);
-  dart.setGetterSignature(text_formatter.WhitelistingTextInputFormatter, () => ({
-    __proto__: dart.getGetters(text_formatter.WhitelistingTextInputFormatter.__proto__),
-    whitelistedPattern: core.Pattern
-  }));
-  dart.setLibraryUri(text_formatter.WhitelistingTextInputFormatter, I[0]);
-  dart.defineLazy(text_formatter.WhitelistingTextInputFormatter, {
-    /*text_formatter.WhitelistingTextInputFormatter.digitsOnly*/get digitsOnly() {
-      return new text_formatter.WhitelistingTextInputFormatter.new(core.RegExp.new("\\d+"));
-    }
-  }, false);
-  var maxLength$ = dart.privateName(text_formatter, "LengthLimitingTextInputFormatter.maxLength");
-  var maxLengthEnforcement$ = dart.privateName(text_formatter, "LengthLimitingTextInputFormatter.maxLengthEnforcement");
-  var _name = dart.privateName(platform$, "_name");
-  text_formatter.LengthLimitingTextInputFormatter = class LengthLimitingTextInputFormatter extends text_formatter.TextInputFormatter {
-    get maxLength() {
-      return this[maxLength$];
-    }
-    set maxLength(value) {
-      super.maxLength = value;
-    }
-    get maxLengthEnforcement() {
-      return this[maxLengthEnforcement$];
-    }
-    set maxLengthEnforcement(value) {
-      super.maxLengthEnforcement = value;
-    }
-    static getDefaultMaxLengthEnforcement(platform = null) {
+    (HeapPriorityQueue.new = function(comparison = null) {
       let t0;
-      if (true) {
-        return text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds;
-      } else {
-        switch (t0 = platform, t0 == null ? platform$.defaultTargetPlatform : t0) {
-          case C[4] || CT.C4:
-          case C[5] || CT.C5:
-          {
-            return text_formatter.MaxLengthEnforcement.enforced;
-          }
-          case C[6] || CT.C6:
-          case C[7] || CT.C7:
-          case C[8] || CT.C8:
-          case C[9] || CT.C9:
-          {
-            return text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds;
-          }
-        }
+      this[_queue$] = ListOfEN().filled(7, null);
+      this[_length] = 0;
+      this[_modificationCount] = 0;
+      this[comparison$] = (t0 = comparison, t0 == null ? C[0] || CT.C0 : t0);
+      ;
+    }).prototype = HeapPriorityQueue.prototype;
+    dart.addTypeTests(HeapPriorityQueue);
+    HeapPriorityQueue.prototype[_is_HeapPriorityQueue_default] = true;
+    dart.addTypeCaches(HeapPriorityQueue);
+    HeapPriorityQueue[dart.implements] = () => [priority_queue.PriorityQueue$(E)];
+    dart.setMethodSignature(HeapPriorityQueue, () => ({
+      __proto__: dart.getMethods(HeapPriorityQueue.__proto__),
+      [_elementAt]: dart.fnType(E, [core.int]),
+      add: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      addAll: dart.fnType(dart.void, [dart.nullable(core.Object)]),
+      clear: dart.fnType(dart.void, []),
+      contains: dart.fnType(core.bool, [dart.nullable(core.Object)]),
+      remove: dart.fnType(core.bool, [dart.nullable(core.Object)]),
+      removeAll: dart.fnType(core.Iterable$(E), []),
+      removeFirst: dart.fnType(E, []),
+      toList: dart.fnType(core.List$(E), []),
+      toSet: dart.fnType(core.Set$(E), []),
+      toUnorderedList: dart.fnType(core.List$(E), []),
+      [_toUnorderedList]: dart.fnType(core.List$(E), []),
+      [_add]: dart.fnType(dart.void, [E]),
+      [_locate]: dart.fnType(core.int, [E]),
+      [_removeLast]: dart.fnType(E, []),
+      [_bubbleUp]: dart.fnType(dart.void, [E, core.int]),
+      [_bubbleDown]: dart.fnType(dart.void, [E, core.int]),
+      [_grow]: dart.fnType(dart.void, [])
+    }));
+    dart.setGetterSignature(HeapPriorityQueue, () => ({
+      __proto__: dart.getGetters(HeapPriorityQueue.__proto__),
+      unorderedElements: core.Iterable$(E),
+      first: E,
+      isEmpty: core.bool,
+      isNotEmpty: core.bool,
+      length: core.int
+    }));
+    dart.setLibraryUri(HeapPriorityQueue, I[0]);
+    dart.setFieldSignature(HeapPriorityQueue, () => ({
+      __proto__: dart.getFields(HeapPriorityQueue.__proto__),
+      comparison: dart.finalFieldType(dart.fnType(core.int, [E, E])),
+      [_queue$]: dart.fieldType(core.List$(dart.nullable(E))),
+      [_length]: dart.fieldType(core.int),
+      [_modificationCount]: dart.fieldType(core.int)
+    }));
+    dart.defineExtensionMethods(HeapPriorityQueue, ['toString']);
+    return HeapPriorityQueue;
+  });
+  priority_queue.HeapPriorityQueue = priority_queue.HeapPriorityQueue$();
+  dart.defineLazy(priority_queue.HeapPriorityQueue, {
+    /*priority_queue.HeapPriorityQueue._INITIAL_CAPACITY*/get _INITIAL_CAPACITY() {
+      return 7;
+    }
+  }, false);
+  dart.addTypeTests(priority_queue.HeapPriorityQueue, _is_HeapPriorityQueue_default);
+  const _is__UnorderedElementsIterable_default = Symbol('_is__UnorderedElementsIterable_default');
+  priority_queue._UnorderedElementsIterable$ = dart.generic(E => {
+    var _UnorderedElementsIteratorOfE = () => (_UnorderedElementsIteratorOfE = dart.constFn(priority_queue._UnorderedElementsIterator$(E)))();
+    class _UnorderedElementsIterable extends core.Iterable$(E) {
+      get iterator() {
+        return new (_UnorderedElementsIteratorOfE()).new(this[_queue$]);
       }
     }
-    static truncate(value, maxLength) {
-      let iterator = new characters_impl.StringCharacterRange.new(value.text);
-      if (extensions['StringCharacters|get#characters'](value.text)[$length] > maxLength) {
-        iterator.expandNext(maxLength);
-      }
-      let truncated = iterator.current;
-      return new text_input.TextEditingValue.new({text: truncated, selection: value.selection.copyWith({baseOffset: math.min(core.int, value.selection.start, truncated.length), extentOffset: math.min(core.int, value.selection.end, truncated.length)}), composing: !value.composing.isCollapsed && truncated.length > value.composing.start ? new ui.TextRange.new({start: value.composing.start, end: math.min(core.int, value.composing.end, truncated.length)}) : ui.TextRange.empty});
-    }
-    formatEditUpdate(oldValue, newValue) {
-      let t0;
-      let maxLength = this.maxLength;
-      if (maxLength == null || maxLength === -1 || extensions['StringCharacters|get#characters'](newValue.text)[$length] <= dart.notNull(maxLength)) {
-        return newValue;
-      }
-      if (!(dart.notNull(maxLength) > 0)) dart.assertFailed(null, I[1], 497, 12, "maxLength > 0");
-      switch (t0 = this.maxLengthEnforcement, t0 == null ? text_formatter.LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement() : t0) {
-        case C[0] || CT.C0:
-        {
-          return newValue;
+    (_UnorderedElementsIterable.new = function(_queue) {
+      this[_queue$] = _queue;
+      _UnorderedElementsIterable.__proto__.new.call(this);
+      ;
+    }).prototype = _UnorderedElementsIterable.prototype;
+    dart.addTypeTests(_UnorderedElementsIterable);
+    _UnorderedElementsIterable.prototype[_is__UnorderedElementsIterable_default] = true;
+    dart.addTypeCaches(_UnorderedElementsIterable);
+    dart.setGetterSignature(_UnorderedElementsIterable, () => ({
+      __proto__: dart.getGetters(_UnorderedElementsIterable.__proto__),
+      iterator: core.Iterator$(E),
+      [$iterator]: core.Iterator$(E)
+    }));
+    dart.setLibraryUri(_UnorderedElementsIterable, I[0]);
+    dart.setFieldSignature(_UnorderedElementsIterable, () => ({
+      __proto__: dart.getFields(_UnorderedElementsIterable.__proto__),
+      [_queue$]: dart.finalFieldType(priority_queue.HeapPriorityQueue$(E))
+    }));
+    dart.defineExtensionAccessors(_UnorderedElementsIterable, ['iterator']);
+    return _UnorderedElementsIterable;
+  });
+  priority_queue._UnorderedElementsIterable = priority_queue._UnorderedElementsIterable$();
+  dart.addTypeTests(priority_queue._UnorderedElementsIterable, _is__UnorderedElementsIterable_default);
+  var _current = dart.privateName(priority_queue, "_current");
+  var _index = dart.privateName(priority_queue, "_index");
+  var _initialModificationCount = dart.privateName(priority_queue, "_initialModificationCount");
+  const _is__UnorderedElementsIterator_default = Symbol('_is__UnorderedElementsIterator_default');
+  priority_queue._UnorderedElementsIterator$ = dart.generic(E => {
+    class _UnorderedElementsIterator extends core.Object {
+      moveNext() {
+        if (this[_initialModificationCount] !== this[_queue$][_modificationCount]) {
+          dart.throw(new core.ConcurrentModificationError.new(this[_queue$]));
         }
-        case C[1] || CT.C1:
-        {
-          if (extensions['StringCharacters|get#characters'](oldValue.text)[$length] === maxLength && oldValue.selection.isCollapsed) {
-            return oldValue;
-          }
-          return text_formatter.LengthLimitingTextInputFormatter.truncate(newValue, maxLength);
+        let nextIndex = this[_index] + 1;
+        if (0 <= nextIndex && nextIndex < this[_queue$].length) {
+          this[_current] = this[_queue$][_queue$][$_get](nextIndex);
+          this[_index] = nextIndex;
+          return true;
         }
-        case C[2] || CT.C2:
-        {
-          if (extensions['StringCharacters|get#characters'](oldValue.text)[$length] === maxLength && !oldValue.composing.isValid) {
-            return oldValue;
-          }
-          if (newValue.composing.isValid) {
-            return newValue;
-          }
-          return text_formatter.LengthLimitingTextInputFormatter.truncate(newValue, maxLength);
-        }
+        this[_current] = null;
+        this[_index] = -2;
+        return false;
       }
-    }
-  };
-  (text_formatter.LengthLimitingTextInputFormatter.new = function(maxLength, opts) {
-    let maxLengthEnforcement = opts && 'maxLengthEnforcement' in opts ? opts.maxLengthEnforcement : null;
-    this[maxLength$] = maxLength;
-    this[maxLengthEnforcement$] = maxLengthEnforcement;
-    if (!(maxLength == null || maxLength === -1 || dart.notNull(maxLength) > 0)) dart.assertFailed(null, I[1], 371, 15, "maxLength == null || maxLength == -1 || maxLength > 0");
-    ;
-  }).prototype = text_formatter.LengthLimitingTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.LengthLimitingTextInputFormatter);
-  dart.addTypeCaches(text_formatter.LengthLimitingTextInputFormatter);
-  dart.setMethodSignature(text_formatter.LengthLimitingTextInputFormatter, () => ({
-    __proto__: dart.getMethods(text_formatter.LengthLimitingTextInputFormatter.__proto__),
-    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
-  }));
-  dart.setLibraryUri(text_formatter.LengthLimitingTextInputFormatter, I[0]);
-  dart.setFieldSignature(text_formatter.LengthLimitingTextInputFormatter, () => ({
-    __proto__: dart.getFields(text_formatter.LengthLimitingTextInputFormatter.__proto__),
-    maxLength: dart.finalFieldType(dart.nullable(core.int)),
-    maxLengthEnforcement: dart.finalFieldType(dart.nullable(text_formatter.MaxLengthEnforcement))
-  }));
-  var TextRange_end = dart.privateName(ui, "TextRange.end");
-  var TextRange_start = dart.privateName(ui, "TextRange.start");
-  var TextSelection_isDirectional = dart.privateName(text_editing, "TextSelection.isDirectional");
-  var _name$0 = dart.privateName(ui, "_name");
-  var TextSelection_affinity = dart.privateName(text_editing, "TextSelection.affinity");
-  var TextSelection_extentOffset = dart.privateName(text_editing, "TextSelection.extentOffset");
-  var TextSelection_baseOffset = dart.privateName(text_editing, "TextSelection.baseOffset");
-  text_formatter._selectionAwareTextManipulation = function _selectionAwareTextManipulation(value, substringManipulation) {
-    let t0;
-    let selectionStartIndex = value.selection.start;
-    let selectionEndIndex = value.selection.end;
-    let manipulatedText = null;
-    let manipulatedSelection = null;
-    if (selectionStartIndex < 0 || selectionEndIndex < 0) {
-      manipulatedText = substringManipulation(value.text);
-    } else {
-      let beforeSelection = substringManipulation(value.text[$substring](0, selectionStartIndex));
-      let inSelection = substringManipulation(value.text[$substring](selectionStartIndex, selectionEndIndex));
-      let afterSelection = substringManipulation(value.text[$substring](selectionEndIndex));
-      manipulatedText = beforeSelection + inSelection + afterSelection;
-      if (value.selection.baseOffset > value.selection.extentOffset) {
-        manipulatedSelection = value.selection.copyWith({baseOffset: beforeSelection.length + inSelection.length, extentOffset: beforeSelection.length});
-      } else {
-        manipulatedSelection = value.selection.copyWith({baseOffset: beforeSelection.length, extentOffset: beforeSelection.length + inSelection.length});
+      get current() {
+        let t1;
+        return this[_index] < 0 ? dart.throw(new core.StateError.new("No element")) : (t1 = this[_current], t1 == null ? E.as(null) : t1);
       }
     }
-    return new text_input.TextEditingValue.new({text: manipulatedText, selection: (t0 = manipulatedSelection, t0 == null ? C[10] || CT.C10 : t0), composing: manipulatedText === value.text ? value.composing : ui.TextRange.empty});
-  };
-  dart.trackLibraries("packages/flutter/src/services/text_formatter.dart", {
-    "package:flutter/src/services/text_formatter.dart": text_formatter
+    (_UnorderedElementsIterator.new = function(_queue) {
+      this[_current] = null;
+      this[_index] = -1;
+      this[_queue$] = _queue;
+      this[_initialModificationCount] = _queue[_modificationCount];
+      ;
+    }).prototype = _UnorderedElementsIterator.prototype;
+    dart.addTypeTests(_UnorderedElementsIterator);
+    _UnorderedElementsIterator.prototype[_is__UnorderedElementsIterator_default] = true;
+    dart.addTypeCaches(_UnorderedElementsIterator);
+    _UnorderedElementsIterator[dart.implements] = () => [core.Iterator$(E)];
+    dart.setMethodSignature(_UnorderedElementsIterator, () => ({
+      __proto__: dart.getMethods(_UnorderedElementsIterator.__proto__),
+      moveNext: dart.fnType(core.bool, [])
+    }));
+    dart.setGetterSignature(_UnorderedElementsIterator, () => ({
+      __proto__: dart.getGetters(_UnorderedElementsIterator.__proto__),
+      current: E
+    }));
+    dart.setLibraryUri(_UnorderedElementsIterator, I[0]);
+    dart.setFieldSignature(_UnorderedElementsIterator, () => ({
+      __proto__: dart.getFields(_UnorderedElementsIterator.__proto__),
+      [_queue$]: dart.finalFieldType(priority_queue.HeapPriorityQueue$(E)),
+      [_initialModificationCount]: dart.finalFieldType(core.int),
+      [_current]: dart.fieldType(dart.nullable(E)),
+      [_index]: dart.fieldType(core.int)
+    }));
+    return _UnorderedElementsIterator;
+  });
+  priority_queue._UnorderedElementsIterator = priority_queue._UnorderedElementsIterator$();
+  dart.addTypeTests(priority_queue._UnorderedElementsIterator, _is__UnorderedElementsIterator_default);
+  dart.trackLibraries("packages/collection/src/priority_queue.dart", {
+    "package:collection/src/priority_queue.dart": priority_queue
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["text_formatter.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/services/text_formatter.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["priority_queue.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MAmLsB;;;;;;mBA2BH;;AAAU,aAAA,AAAM,qBAAC,KAAK;cAAN,cAAiB,KAAL;MAAU;;aAG5C;AACW,QAApB,2BAAA,AAAkB,2BAAA;AACL,QAAb,WAAK,OAAO;MACd;;yBAGwB;AAClB,uBAAW;AACf,iBAAS,UAAW,SAAQ;AACd,UAAZ,WAAW;AACE,UAAb,WAAK,OAAO;;AAEgB,QAA9B,2BAAA,AAAmB,2BAAG,QAAQ;MAChC;;AAIsB,QAApB,2BAAA,AAAkB,2BAAA;AACD,QAAjB;AACW,QAAX,gBAAU;MACZ;;aAGgB;AAAW,cAAA,AAAgB,eAAR,MAAM,KAAK;MAAC;;AAUV,yDAA8B;MAAK;;AAItE,YAAI,AAAQ,kBAAG,GAAG,AAA8B,WAAxB,wBAAW;AACnC,cAAO,kBAAW;MACpB;;AAGoB,cAAA,AAAQ,mBAAG;MAAC;;AAGT,cAAA,AAAQ,mBAAG;MAAC;;AAGjB;MAAO;aAGX;;;AACR,oBAAQ,cAAQ,OAAO;AAC3B,YAAI,AAAM,KAAD,GAAG,GAAG,MAAO;AACF,QAApB,2BAAA,AAAkB,2BAAA;AACd,mBAAO;AACX,YAAI,AAAM,KAAD,GAAG;AACN,2BAAkB,IAAI,OAAE,OAAO,EAAxB,AAAU;AACrB,cAAI,AAAK,IAAD,IAAI;AACY,YAAtB,gBAAU,IAAI,EAAE,KAAK;;AAEG,YAAxB,kBAAY,IAAI,EAAE,KAAK;;;AAG3B,cAAO;MACT;;AAUsB,QAApB,2BAAA,AAAkB,2BAAA;AACd,qBAAS;AACT,qBAAS;AACI,QAAjB;AACW,QAAX,gBAAU;AACV,cAAO,AAAO,AAAa,OAAd,QAAM,MAAM;MAC3B;;AAIE,YAAI,AAAQ,kBAAG,GAAG,AAA8B,WAAxB,wBAAW;AACf,QAApB,2BAAA,AAAkB,2BAAA;AACd,qBAAS,iBAAW;AACpB,mBAAO;AACX,YAAI,AAAQ,gBAAE;AACQ,UAApB,kBAAY,IAAI,EAAE;;AAEpB,cAAO,OAAM;MACf;;;AAGoB;;AAAoB,oBAAK;;;MAAW;;AAIlD,kBAAM,4BAAgB;AAC1B,iBAAS,IAAI,GAAG,AAAE,CAAD,GAAG,eAAS,IAAA,AAAC,CAAA;AACN,UAAtB,AAAI,GAAD,KAAK,iBAAW,CAAC;;AAEtB,cAAO,IAAG;MACZ;;AAG6B;MAAkB;;AAG3C;;AAAC,mBAAS,IAAI,GAAG,AAAE,CAAD,GAAG,eAAS,IAAA,AAAC,CAAA;AAAI,sCAAW,CAAC;;;MAAE;;AAOnD,cAAO,AAAO,AAAc,sBAAT;MACrB;aAKY;;AACV,YAAI,AAAQ,kBAAG,AAAO,wBAAQ,AAAO;AACR,QAA7B,gBAAU,OAAO,GAAS,oBAAP,qBAAO;MAC5B;gBAQc;;AACZ,YAAI,AAAQ,kBAAG,GAAG,MAAO,EAAC;AAMtB,uBAAW;AAIf;AACM,sBAAQ,AAAS,QAAD,GAAG;AACnB,wBAAU,iBAAW,KAAK;AAC1B,2BAAkB,OAAO,OAAE,MAAM,EAA1B,AAAU;AACrB,cAAI,AAAK,IAAD,IAAI;AACV,gBAAI,AAAK,IAAD,KAAI,KAAa,YAAR,OAAO,EAAI,MAAM,GAAE,MAAO,MAAK;AAG5C,oCAAoB,AAAS,QAAD,GAAG;AACnC,gBAAI,AAAkB,iBAAD,IAAI;AACK,cAA5B,WAAW,iBAAiB;AAC5B;;;AAIJ;AACE,mBAAO,AAAS,QAAD;AAEC,cAAd,WAAA,AAAS,QAAD,cAAK;;AAGF,YAAb,WAAA,AAAS,QAAD,GAAI;mBACL,AAAS,QAAD,GAAG;iBACb,QAAQ,KAAI;AACrB,cAAO,EAAC;MACV;;AAGM,wBAAY,AAAQ,gBAAE;AACtB,mBAAO,iBAAW,SAAS;AACP,QAAxB,AAAM,qBAAC,SAAS,EAAI;AACD,QAAnB,gBAAU,SAAS;AACnB,cAAO,KAAI;MACb;kBAOiB,SAAa;;AAC5B,eAAO,AAAM,KAAD,GAAG;AACT,4BAA0B,EAAX,AAAM,KAAD,GAAG,KAAM;AAC7B,uBAAS,iBAAW,WAAW;AACnC,cAAgC,MAAjB,OAAO,OAAE,MAAM,EAA1B,AAAU,2BAAoB,GAAG;AACf,UAAtB,AAAM,qBAAC,KAAK,EAAI,MAAM;AACH,UAAnB,QAAQ,WAAW;;AAEE,QAAvB,AAAM,qBAAC,KAAK,EAAI,OAAO;MACzB;oBAOmB,SAAa;;AAC1B,8BAAkB,AAAM,AAAI,KAAL,GAAG,IAAI;AAClC,eAAO,AAAgB,eAAD,GAAG;AACnB,+BAAiB,AAAgB,eAAD,GAAG;AACnC,0BAAY,iBAAW,cAAc;AACrC,2BAAa,iBAAW,eAAe;AACvC,2BAAkB,SAAS,OAAE,UAAU,EAAhC,AAAU;AACjB;AACF;AACF,cAAI,AAAK,IAAD,GAAG;AACW,YAApB,WAAW,SAAS;AACU,YAA9B,gBAAgB,cAAc;;AAET,YAArB,WAAW,UAAU;AACU,YAA/B,gBAAgB,eAAe;;AAEG,UAApC,cAAkB,OAAO,QAAE,QAAQ,EAA5B,AAAU;AACjB,cAAI,AAAK,IAAD,IAAI;AACa,YAAvB,AAAM,qBAAC,KAAK,EAAI,OAAO;AACvB;;AAEsB,UAAxB,AAAM,qBAAC,KAAK,EAAI,QAAQ;AACH,UAArB,QAAQ,aAAa;AACU,UAA/B,kBAAkB,AAAM,AAAI,KAAL,GAAG,IAAI;;AAE5B,6BAAiB,AAAgB,eAAD,GAAG;AACvC,YAAI,AAAe,cAAD,GAAG;AACf,sBAAQ,iBAAW,cAAc;AACjC,6BAAkB,OAAO,SAAE,KAAK,EAAzB,AAAU;AACrB,cAAI,AAAK,IAAD,GAAG;AACY,YAArB,AAAM,qBAAC,KAAK,EAAI,KAAK;AACC,YAAtB,QAAQ,cAAc;;;AAGH,QAAvB,AAAM,qBAAC,KAAK,EAAI,OAAO;MACzB;;AAMM,0BAAc,AAAO,AAAO,AAAI,yBAAF,IAAI;AACtC,YAAI,AAAY,WAAD,MAAsB,AAA+B;AAChE,uBAAW,kBAAgB,WAAW,EAAE;AACP,QAArC,AAAS,QAAD,YAAU,GAAG,eAAS;AACb,QAAjB,gBAAS,QAAQ;MACnB;;sCA9PuC;;MArB9B,gBAAS,qBAAmC;MAKjD,gBAAU;MAKV,2BAAqB;MAYR,qBAAa,KAAX,UAAU,EAAV;;IAA4B;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MA5B9B,kDAAiB;;;;;;;;;;AAiSN,yDAA8B;MAAO;;;MAFjC;AAAhC;;IAAuC;;;;;;;;;;;;;;;;;;;;;;;;;;AAgBrC,YAAI,oCAA6B,AAAO;AACG,UAAzC,WAAM,yCAA4B;;AAEhC,wBAAY,AAAO,eAAE;AACzB,YAAI,AAAE,KAAG,SAAS,IAAI,AAAU,SAAD,GAAG,AAAO;AACJ,UAAnC,iBAAW,AAAO,AAAM,8BAAC,SAAS;AAChB,UAAlB,eAAS,SAAS;AAClB,gBAAO;;AAEM,QAAf,iBAAW;AACA,QAAX,eAAS,CAAC;AACV,cAAO;MACT;;;AAII,cAAA,AAAO,gBAAE,IAAI,WAAM,wBAAW,kBAA0B,qBAAT,aAAiB,KAAL;MAAU;;+CArBzC;MAH7B;MACC,eAAS,CAAC;MAEkB;MACA,kCAAE,AAAO,MAAD;;IAAmB","file":"../../../../../../../../packages/collection/src/priority_queue.dart.lib.js"}');
   // Exports:
   return {
-    src__services__text_formatter: text_formatter
+    src__priority_queue: priority_queue
   };
 }));
 
-//# sourceMappingURL=text_formatter.dart.lib.js.map
+//# sourceMappingURL=priority_queue.dart.lib.js.map

@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/data/database.dart';
+import 'package:eco_ml/pages/amountInputPage.dart';
+
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:eco_ml/data/incomeData.dart';
@@ -14,6 +16,7 @@ class TransactionPage extends StatefulWidget {
 }
 
 class _TransactionPageState extends State<TransactionPage> {
+  static int cardId = 1;
   late DateTime pickedDate;
   final int id = Hive.box('id').get(0);
   final bool check = Hive.box('id').get(1);
@@ -182,19 +185,22 @@ class _TransactionPageState extends State<TransactionPage> {
                           MaterialStateProperty.all(Color(0xff4F98A1)),
                     ),
                     onPressed: () {
-                      
-                      transactionBox.add(Transaction(id,check?false:true,double.parse(amountController.text),noteController.text));
-                    // // transactionBox.put(0, id);
-                    // // transactionBox.put(1, check?false:true);
-                    // // transactionBox.put(2, double.parse(amountController.text));
-                    // // transactionBox.put(4, noteController.text);
-                    final data = transactionBox.getAt(3)as Transaction;
-                    // print(transactionBox.getAt(data.iconId++));
-                    print(data.iconId);
-                    print(data.isExpense);
-                    print(data.description);
-                    AutoRouter.of(context).push(HomeRoute());   
-                    // transactionBox.clear();                
+                      setState(() {
+                        transactionBox.add(Transaction(
+                            id,
+                            check ? false : true,
+                            double.parse(amountController.text),
+                            pickedDate,
+                            noteController.text,
+                            ++cardId));
+                        // final data = transactionBox.getAt(1) as Transaction;
+                        // print(data.iconId);
+                        // print(data.isExpense);
+                        // print(data.description);
+                        // print(data.cardNum);
+                        navigateToHome(context);
+                        print(pickedDate);
+                      });
                     },
                     child: Container(
                       margin: EdgeInsets.symmetric(vertical: 0, horizontal: 60),
@@ -261,4 +267,8 @@ class _TransactionPageState extends State<TransactionPage> {
         pickedDate = date;
       });
   }
+}
+
+void naviToHome(BuildContext context) {
+  AutoRouter.of(context).push(HomeRoute());
 }
