@@ -1,4 +1,6 @@
 import 'package:eco_ml/data/database.dart';
+import 'package:eco_ml/data/incomeData.dart';
+import 'package:eco_ml/data/outcomeData.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -21,7 +23,11 @@ class _WalletPageState extends State<WalletPage> {
 
   @override
   Widget build(BuildContext context) {
+    // final totalAmount;
+    // final totalExpense;
+    // final totalIncome;
     final amount = Hive.box('amount').get(0);
+    // final data = Hive.box('trasactions').get(0);
     return ListView(
       shrinkWrap: true,
       children: [
@@ -68,7 +74,7 @@ class _WalletPageState extends State<WalletPage> {
                     Container(
                       alignment: Alignment.bottomRight,
                       child: Text(
-                        '${amount.amount} Ks',
+                        ' Ks',
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,
@@ -191,7 +197,13 @@ class _WalletPageState extends State<WalletPage> {
                       margin: EdgeInsets.all(20),
                       alignment: Alignment.topLeft,
                       width: MediaQuery.of(context).size.width,
-                      child: Text('Transactions'),
+                      child: Text(
+                        'Transactions',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                     Container(
                       child: ValueListenableBuilder(
@@ -210,13 +222,36 @@ class _WalletPageState extends State<WalletPage> {
                                 final data =
                                     dataBox.getAt(index) as Transaction;
                                 return Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: Colors.black38, width: 1),
+                                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                                  ),
                                   margin: EdgeInsets.symmetric(
                                       vertical: 5, horizontal: 10),
-                                  padding: EdgeInsets.all(10),
+                                  padding: EdgeInsets.all(5),
                                   child: ListTile(
-                                    title: Text(
-                                      data.amount.toString(),
+                                    leading: Container(
+                                      height: 30,
+                                      width: 30,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: Colors.grey.shade200,
+                                      ),
+                                      child: Icon(
+                                        data.isExpense
+                                            ? outcomeData[data.iconId].iconName
+                                            : incomeData[data.iconId].iconName,
+                                        size: 25,
+                                        color: Colors.grey.shade800,
+                                      ),
                                     ),
+                                    title: Text(
+                                      data.isExpense
+                                          ? outcomeData[data.iconId].title
+                                          : incomeData[data.iconId].title,
+                                    ),
+                                    trailing: Text(data.amount.toString()),
                                   ),
                                 );
                               },

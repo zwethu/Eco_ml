@@ -158,3 +158,67 @@ class TransactionAdapter extends TypeAdapter<Transaction> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+class TIcomeAdapter extends TypeAdapter<TIcome> {
+  @override
+  final int typeId = 4;
+
+  @override
+  TIcome read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return TIcome()..amount = fields[0] as double;
+  }
+
+  @override
+  void write(BinaryWriter writer, TIcome obj) {
+    writer
+      ..writeByte(1)
+      ..writeByte(0)
+      ..write(obj.amount);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TIcomeAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+class TOutcomeAdapter extends TypeAdapter<TOutcome> {
+  @override
+  final int typeId = 5;
+
+  @override
+  TOutcome read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return TOutcome()..amount = fields[0] as double;
+  }
+
+  @override
+  void write(BinaryWriter writer, TOutcome obj) {
+    writer
+      ..writeByte(1)
+      ..writeByte(0)
+      ..write(obj.amount);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TOutcomeAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}

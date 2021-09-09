@@ -44,3 +44,15 @@ class Transaction extends HiveObject{
   Transaction(this.iconId,this.isExpense,this.amount,this.datatime,this.description,this.cardNum);
 }
 
+
+@HiveType(typeId: 4)
+class TIcome extends HiveObject{
+  @HiveField(0)
+  late double amount;
+}
+
+@HiveType(typeId: 5)
+class TOutcome extends HiveObject{
+  @HiveField(0)
+  late double amount;
+}
