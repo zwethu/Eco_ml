@@ -159,21 +159,23 @@ class TransactionAdapter extends TypeAdapter<Transaction> {
           typeId == other.typeId;
 }
 
-class TIcomeAdapter extends TypeAdapter<TIcome> {
+class IncomeAdapter extends TypeAdapter<Income> {
   @override
   final int typeId = 4;
 
   @override
-  TIcome read(BinaryReader reader) {
+  Income read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return TIcome()..amount = fields[0] as double;
+    return Income(
+      fields[0] as dynamic,
+    );
   }
 
   @override
-  void write(BinaryWriter writer, TIcome obj) {
+  void write(BinaryWriter writer, Income obj) {
     writer
       ..writeByte(1)
       ..writeByte(0)
@@ -186,26 +188,28 @@ class TIcomeAdapter extends TypeAdapter<TIcome> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is TIcomeAdapter &&
+      other is IncomeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
 
-class TOutcomeAdapter extends TypeAdapter<TOutcome> {
+class OutcomeAdapter extends TypeAdapter<Outcome> {
   @override
   final int typeId = 5;
 
   @override
-  TOutcome read(BinaryReader reader) {
+  Outcome read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return TOutcome()..amount = fields[0] as double;
+    return Outcome(
+      fields[0] as dynamic,
+    );
   }
 
   @override
-  void write(BinaryWriter writer, TOutcome obj) {
+  void write(BinaryWriter writer, Outcome obj) {
     writer
       ..writeByte(1)
       ..writeByte(0)
@@ -218,7 +222,7 @@ class TOutcomeAdapter extends TypeAdapter<TOutcome> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is TOutcomeAdapter &&
+      other is OutcomeAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

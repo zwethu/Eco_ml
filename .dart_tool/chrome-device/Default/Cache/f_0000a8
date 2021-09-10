@@ -1,942 +1,702 @@
-define(['dart_sdk', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/gestures/recognizer.dart', 'packages/flutter/src/widgets/scroll_view.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/rendering/viewport_offset.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/rendering/sliver.dart', 'packages/flutter/src/painting/matrix_utils.dart', 'packages/flutter/src/animation/curves.dart'], (function load__packages__flutter__src__widgets__single_child_scroll_view_dart(dart_sdk, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__gestures__recognizer$46dart, packages__flutter__src__widgets__scroll_view$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__rendering__viewport_offset$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__rendering__sliver$46dart, packages__flutter__src__painting__matrix_utils$46dart, packages__flutter__src__animation__curves$46dart) {
+define(['dart_sdk', 'packages/collection/src/algorithms.dart', 'packages/collection/src/utils.dart'], (function load__packages__collection__src__iterable_extensions_dart(dart_sdk, packages__collection__src__algorithms$46dart, packages__collection__src__utils$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
+  const _interceptors = dart_sdk._interceptors;
   const math = dart_sdk.math;
+  const _js_helper = dart_sdk._js_helper;
+  const collection = dart_sdk.collection;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
-  const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
-  const scroll_view = packages__flutter__src__widgets__scroll_view$46dart.src__widgets__scroll_view;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const primary_scroll_controller = packages__flutter__src__widgets__widget_span$46dart.src__widgets__primary_scroll_controller;
-  const scrollable$ = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scrollable;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const notification_listener = packages__flutter__src__widgets__widget_span$46dart.src__widgets__notification_listener;
-  const scroll_notification = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_notification;
-  const focus_scope = packages__flutter__src__widgets__widget_span$46dart.src__widgets__focus_scope;
-  const scroll_controller = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_controller;
-  const scroll_physics = packages__flutter__src__widgets__widget_span$46dart.src__widgets__scroll_physics;
-  const viewport_offset = packages__flutter__src__rendering__viewport_offset$46dart.src__rendering__viewport_offset;
-  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
-  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
-  const layer = packages__flutter__src__rendering__layer$46dart.src__rendering__layer;
-  const viewport = packages__flutter__src__rendering__sliver$46dart.src__rendering__viewport;
-  const matrix_utils = packages__flutter__src__painting__matrix_utils$46dart.src__painting__matrix_utils;
-  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
-  var single_child_scroll_view = Object.create(dart.library);
-  var $_equals = dartx._equals;
+  const algorithms = packages__collection__src__algorithms$46dart.src__algorithms;
+  const utils = packages__collection__src__utils$46dart.src__utils;
+  var iterable_extensions = Object.create(dart.library);
+  var $iterator = dartx.iterator;
+  var $add = dartx.add;
+  var $_set = dartx._set;
+  var $where = dartx.where;
+  var $sort = dartx.sort;
+  var $compareTo = dartx.compareTo;
+  var $isEmpty = dartx.isEmpty;
+  var $last = dartx.last;
+  var $_get = dartx._get;
+  var $truncate = dartx.truncate;
+  var $remainder = dartx.remainder;
   dart._checkModuleNullSafetyMode(true);
-  var T = {
-    BuildContextAndViewportOffsetTo_SingleChildViewport: () => (T.BuildContextAndViewportOffsetTo_SingleChildViewport = dart.constFn(dart.fnType(single_child_scroll_view._SingleChildViewport, [framework.BuildContext, viewport_offset.ViewportOffset])))(),
-    NotificationListenerOfScrollUpdateNotification: () => (T.NotificationListenerOfScrollUpdateNotification = dart.constFn(notification_listener.NotificationListener$(scroll_notification.ScrollUpdateNotification)))(),
-    ScrollUpdateNotificationTobool: () => (T.ScrollUpdateNotificationTobool = dart.constFn(dart.fnType(core.bool, [scroll_notification.ScrollUpdateNotification])))(),
-    PaintingContextAndOffsetTovoid: () => (T.PaintingContextAndOffsetTovoid = dart.constFn(dart.fnType(dart.void, [object.PaintingContext, ui.Offset])))(),
-    RenderObjectN: () => (T.RenderObjectN = dart.constFn(dart.nullable(object.RenderObject)))(),
-    OffsetN: () => (T.OffsetN = dart.constFn(dart.nullable(ui.Offset)))(),
-    BoxHitTestResultAndOffsetNTobool: () => (T.BoxHitTestResultAndOffsetNTobool = dart.constFn(dart.fnType(core.bool, [box.BoxHitTestResult, T.OffsetN()])))()
+  var T$ = {
+    RandomN: () => (T$.RandomN = dart.constFn(dart.nullable(math.Random)))(),
+    TAndTToint: () => (T$.TAndTToint = dart.constFn(dart.gFnType(T => [core.int, [T, T]], T => [core.Comparable$(T)])))(),
+    ObjectN: () => (T$.ObjectN = dart.constFn(dart.nullable(core.Object)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
-      return C[0] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name]: "Axis.vertical",
-        index: 1
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: recognizer.DragStartBehavior.prototype,
-        [_name$]: "DragStartBehavior.start",
-        index: 1
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: ui.Clip.prototype,
-        [_name$0]: "Clip.hardEdge",
-        index: 1
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: scroll_view.ScrollViewKeyboardDismissBehavior.prototype,
-        [_name$1]: "ScrollViewKeyboardDismissBehavior.manual",
-        index: 0
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "padding",
-        [_Location_column]: 26,
-        [_Location_line]: 327,
-        [_Location_file]: null
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 45,
-        [_Location_line]: 327,
-        [_Location_file]: null
-      });
-    },
-    get C5() {
-      return C[5] = dart.constList([C[6] || CT.C6, C[7] || CT.C7], widget_inspector._Location);
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[5] || CT.C5,
-        [_Location_name]: null,
-        [_Location_column]: 18,
-        [_Location_line]: 327,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "axisDirection",
-        [_Location_column]: 11,
-        [_Location_line]: 339,
-        [_Location_file]: null
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "offset",
-        [_Location_column]: 11,
-        [_Location_line]: 340,
-        [_Location_file]: null
-      });
-    },
-    get C12() {
-      return C[12] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 341,
-        [_Location_file]: null
-      });
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "clipBehavior",
-        [_Location_column]: 11,
-        [_Location_line]: 342,
-        [_Location_file]: null
-      });
-    },
-    get C9() {
-      return C[9] = dart.constList([C[10] || CT.C10, C[11] || CT.C11, C[12] || CT.C12, C[13] || CT.C13], widget_inspector._Location);
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[9] || CT.C9,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 338,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
-      });
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "dragStartBehavior",
-        [_Location_column]: 7,
-        [_Location_line]: 332,
-        [_Location_file]: null
-      });
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "axisDirection",
-        [_Location_column]: 7,
-        [_Location_line]: 333,
-        [_Location_file]: null
-      });
-    },
-    get C18() {
-      return C[18] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "controller",
-        [_Location_column]: 7,
-        [_Location_line]: 334,
-        [_Location_file]: null
-      });
-    },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "physics",
-        [_Location_column]: 7,
-        [_Location_line]: 335,
-        [_Location_file]: null
-      });
-    },
-    get C20() {
-      return C[20] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "restorationId",
-        [_Location_column]: 7,
-        [_Location_line]: 336,
-        [_Location_file]: null
-      });
-    },
-    get C21() {
-      return C[21] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "viewportBuilder",
-        [_Location_column]: 7,
-        [_Location_line]: 337,
-        [_Location_file]: null
-      });
-    },
-    get C15() {
-      return C[15] = dart.constList([C[16] || CT.C16, C[17] || CT.C17, C[18] || CT.C18, C[19] || CT.C19, C[20] || CT.C20, C[21] || CT.C21], widget_inspector._Location);
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[15] || CT.C15,
-        [_Location_name]: null,
-        [_Location_column]: 25,
-        [_Location_line]: 331,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
-      });
-    },
-    get C24() {
-      return C[24] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 349,
-        [_Location_file]: null
-      });
-    },
-    get C25() {
-      return C[25] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onNotification",
-        [_Location_column]: 9,
-        [_Location_line]: 350,
-        [_Location_file]: null
-      });
-    },
-    get C23() {
-      return C[23] = dart.constList([C[24] || CT.C24, C[25] || CT.C25], widget_inspector._Location);
-    },
-    get C22() {
-      return C[22] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[23] || CT.C23,
-        [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 348,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
-      });
-    },
-    get C28() {
-      return C[28] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 38,
-        [_Location_line]: 361,
-        [_Location_file]: null
-      });
-    },
-    get C27() {
-      return C[27] = dart.constList([C[28] || CT.C28], widget_inspector._Location);
-    },
-    get C26() {
-      return C[26] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[27] || CT.C27,
-        [_Location_name]: null,
-        [_Location_column]: 33,
-        [_Location_line]: 361,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart"
-      });
-    },
-    get C29() {
-      return C[29] = dart.const({
-        __proto__: basic_types.AxisDirection.prototype,
-        [_name]: "AxisDirection.down",
-        index: 2
-      });
-    },
-    get C30() {
-      return C[30] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name]: "Axis.horizontal",
-        index: 0
-      });
-    },
-    get C31() {
-      return C[31] = dart.const({
-        __proto__: basic_types.AxisDirection.prototype,
-        [_name]: "AxisDirection.up",
-        index: 0
-      });
-    },
-    get C32() {
-      return C[32] = dart.const({
-        __proto__: basic_types.AxisDirection.prototype,
-        [_name]: "AxisDirection.left",
-        index: 3
-      });
-    },
-    get C33() {
-      return C[33] = dart.const({
-        __proto__: basic_types.AxisDirection.prototype,
-        [_name]: "AxisDirection.right",
-        index: 1
-      });
-    },
-    get C34() {
-      return C[34] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 0
-      });
-    },
-    get C35() {
-      return C[35] = dart.const({
-        __proto__: curves.Cubic.prototype,
-        [Cubic_d]: 1,
-        [Cubic_c]: 0.25,
-        [Cubic_b]: 0.1,
-        [Cubic_a]: 0.25
-      });
+      return C[0] = dart.fn(utils.compareComparable, T$.TAndTToint());
     }
   }, false);
-  var C = Array(36).fill(void 0);
-  var I = [
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/single_child_scroll_view.dart",
-    "package:flutter/src/widgets/single_child_scroll_view.dart"
-  ];
-  var scrollDirection$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.scrollDirection");
-  var reverse$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.reverse");
-  var padding$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.padding");
-  var controller$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.controller");
-  var primary$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.primary");
-  var physics$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.physics");
-  var child$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.child");
-  var dragStartBehavior$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.dragStartBehavior");
-  var clipBehavior$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.clipBehavior");
-  var restorationId$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.restorationId");
-  var keyboardDismissBehavior$ = dart.privateName(single_child_scroll_view, "SingleChildScrollView.keyboardDismissBehavior");
-  var _name = dart.privateName(basic_types, "_name");
-  var _name$ = dart.privateName(recognizer, "_name");
-  var _name$0 = dart.privateName(ui, "_name");
-  var _name$1 = dart.privateName(scroll_view, "_name");
-  var _getDirection = dart.privateName(single_child_scroll_view, "_getDirection");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  single_child_scroll_view.SingleChildScrollView = class SingleChildScrollView extends framework.StatelessWidget {
-    get scrollDirection() {
-      return this[scrollDirection$];
-    }
-    set scrollDirection(value) {
-      super.scrollDirection = value;
-    }
-    get reverse() {
-      return this[reverse$];
-    }
-    set reverse(value) {
-      super.reverse = value;
-    }
-    get padding() {
-      return this[padding$];
-    }
-    set padding(value) {
-      super.padding = value;
-    }
-    get controller() {
-      return this[controller$];
-    }
-    set controller(value) {
-      super.controller = value;
-    }
-    get primary() {
-      return this[primary$];
-    }
-    set primary(value) {
-      super.primary = value;
-    }
-    get physics() {
-      return this[physics$];
-    }
-    set physics(value) {
-      super.physics = value;
-    }
-    get child() {
-      return this[child$];
-    }
-    set child(value) {
-      super.child = value;
-    }
-    get dragStartBehavior() {
-      return this[dragStartBehavior$];
-    }
-    set dragStartBehavior(value) {
-      super.dragStartBehavior = value;
-    }
-    get clipBehavior() {
-      return this[clipBehavior$];
-    }
-    set clipBehavior(value) {
-      super.clipBehavior = value;
-    }
-    get restorationId() {
-      return this[restorationId$];
-    }
-    set restorationId(value) {
-      super.restorationId = value;
-    }
-    get keyboardDismissBehavior() {
-      return this[keyboardDismissBehavior$];
-    }
-    set keyboardDismissBehavior(value) {
-      super.keyboardDismissBehavior = value;
-    }
-    [_getDirection](context) {
-      return basic.getAxisDirectionFromAxisReverseAndDirectionality(context, this.scrollDirection, this.reverse);
-    }
-    build(context) {
-      let axisDirection = this[_getDirection](context);
-      let contents = this.child;
-      if (this.padding != null) contents = new basic.Padding.new({padding: dart.nullCheck(this.padding), child: contents, $creationLocationd_0dea112b090073317d4: C[4] || CT.C4});
-      let scrollController = this.primary ? primary_scroll_controller.PrimaryScrollController.of(context) : this.controller;
-      let scrollable = new scrollable$.Scrollable.new({dragStartBehavior: this.dragStartBehavior, axisDirection: axisDirection, controller: scrollController, physics: this.physics, restorationId: this.restorationId, viewportBuilder: dart.fn((context, offset) => new single_child_scroll_view._SingleChildViewport.new({axisDirection: axisDirection, offset: offset, child: contents, clipBehavior: this.clipBehavior, $creationLocationd_0dea112b090073317d4: C[8] || CT.C8}), T.BuildContextAndViewportOffsetTo_SingleChildViewport()), $creationLocationd_0dea112b090073317d4: C[14] || CT.C14});
-      if (this.keyboardDismissBehavior === scroll_view.ScrollViewKeyboardDismissBehavior.onDrag) {
-        scrollable = new (T.NotificationListenerOfScrollUpdateNotification()).new({child: scrollable, onNotification: dart.fn(notification => {
-            let focusNode = focus_scope.FocusScope.of(context);
-            if (notification.dragDetails != null && focusNode.hasFocus) {
-              focusNode.unfocus();
-            }
-            return false;
-          }, T.ScrollUpdateNotificationTobool()), $creationLocationd_0dea112b090073317d4: C[22] || CT.C22});
+  var C = [void 0];
+  iterable_extensions['IterableExtension|sample'] = function IterableExtension$124sample(T, $this, count, random = null) {
+    core.RangeError.checkNotNegative(count, "count");
+    let iterator = $this[$iterator];
+    let chosen = _interceptors.JSArray$(T).of([]);
+    for (let i = 0; i < count; i = i + 1) {
+      if (iterator.moveNext()) {
+        chosen[$add](iterator.current);
+      } else {
+        return chosen;
       }
-      return this.primary && scrollController != null ? new primary_scroll_controller.PrimaryScrollController.none({child: scrollable, $creationLocationd_0dea112b090073317d4: C[26] || CT.C26}) : scrollable;
+    }
+    let index = count;
+    random == null ? random = math.Random.new() : null;
+    while (iterator.moveNext()) {
+      index = index + 1;
+      let position = random.nextInt(index);
+      if (position < count) chosen[$_set](position, iterator.current);
+    }
+    return chosen;
+  };
+  iterable_extensions['IterableExtension|get#sample'] = function IterableExtension$124get$35sample(T, $this) {
+    return dart.fn((count, random = null) => iterable_extensions['IterableExtension|sample'](T, $this, count, random), dart.fnType(core.List$(T), [core.int], [T$.RandomN()]));
+  };
+  iterable_extensions['IterableExtension|whereNot'] = function IterableExtension$124whereNot(T, $this, test) {
+    return $this[$where](dart.fn(element => !test(element), dart.fnType(core.bool, [T])));
+  };
+  iterable_extensions['IterableExtension|get#whereNot'] = function IterableExtension$124get$35whereNot(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|whereNot'](T, $this, test), dart.fnType(core.Iterable$(T), [dart.fnType(core.bool, [T])]));
+  };
+  iterable_extensions['IterableExtension|sorted'] = function IterableExtension$124sorted(T, $this, compare) {
+    let t6;
+    t6 = (() => {
+      let t5 = core.List$(T).of($this);
+      return t5;
+    })();
+    return (() => {
+      t6[$sort](compare);
+      return t6;
+    })();
+  };
+  iterable_extensions['IterableExtension|get#sorted'] = function IterableExtension$124get$35sorted(T, $this) {
+    return dart.fn(compare => iterable_extensions['IterableExtension|sorted'](T, $this, compare), dart.fnType(core.List$(T), [dart.fnType(core.int, [T, T])]));
+  };
+  iterable_extensions['IterableExtension|sortedBy'] = function IterableExtension$124sortedBy(T, K, $this, keyOf) {
+    let elements = (() => {
+      let t8 = core.List$(T).of($this);
+      return t8;
+    })();
+    algorithms.quickSortBy(T, K, elements, keyOf, dart.gbind(C[0] || CT.C0, K));
+    return elements;
+  };
+  iterable_extensions['IterableExtension|get#sortedBy'] = function IterableExtension$124get$35sortedBy(T, $this) {
+    return dart.fn((K, keyOf) => iterable_extensions['IterableExtension|sortedBy'](T, K, $this, keyOf), dart.gFnType(K => [core.List$(T), [dart.fnType(K, [T])]], K => {
+      var ComparableOfK = () => (ComparableOfK = dart.constFn(core.Comparable$(K)))();
+      return [ComparableOfK()];
+    }));
+  };
+  iterable_extensions['IterableExtension|sortedByCompare'] = function IterableExtension$124sortedByCompare(T, K, $this, keyOf, compare) {
+    let elements = (() => {
+      let t11 = core.List$(T).of($this);
+      return t11;
+    })();
+    algorithms.quickSortBy(T, K, elements, keyOf, compare);
+    return elements;
+  };
+  iterable_extensions['IterableExtension|get#sortedByCompare'] = function IterableExtension$124get$35sortedByCompare(T, $this) {
+    return dart.fn((K, keyOf, compare) => iterable_extensions['IterableExtension|sortedByCompare'](T, K, $this, keyOf, compare), dart.gFnType(K => {
+      var KAndKToint = () => (KAndKToint = dart.constFn(dart.fnType(core.int, [K, K])))();
+      return [core.List$(T), [dart.fnType(K, [T]), KAndKToint()]];
+    }, K => {
+      var KAndKToint = () => (KAndKToint = dart.constFn(dart.fnType(core.int, [K, K])))();
+      return [T$.ObjectN()];
+    }));
+  };
+  iterable_extensions['IterableExtension|isSorted'] = function IterableExtension$124isSorted(T, $this, compare) {
+    let iterator = $this[$iterator];
+    if (!iterator.moveNext()) return true;
+    let previousElement = iterator.current;
+    while (iterator.moveNext()) {
+      let element = iterator.current;
+      if (compare(previousElement, element) > 0) return false;
+      previousElement = element;
+    }
+    return true;
+  };
+  iterable_extensions['IterableExtension|get#isSorted'] = function IterableExtension$124get$35isSorted(T, $this) {
+    return dart.fn(compare => iterable_extensions['IterableExtension|isSorted'](T, $this, compare), dart.fnType(core.bool, [dart.fnType(core.int, [T, T])]));
+  };
+  iterable_extensions['IterableExtension|isSortedBy'] = function IterableExtension$124isSortedBy(T, K, $this, keyOf) {
+    let iterator = $this[$iterator];
+    if (!iterator.moveNext()) return true;
+    let previousKey = keyOf(iterator.current);
+    while (iterator.moveNext()) {
+      let key = keyOf(iterator.current);
+      if (previousKey[$compareTo](key) > 0) return false;
+      previousKey = key;
+    }
+    return true;
+  };
+  iterable_extensions['IterableExtension|get#isSortedBy'] = function IterableExtension$124get$35isSortedBy(T, $this) {
+    return dart.fn((K, keyOf) => iterable_extensions['IterableExtension|isSortedBy'](T, K, $this, keyOf), dart.gFnType(K => [core.bool, [dart.fnType(K, [T])]], K => {
+      var ComparableOfK = () => (ComparableOfK = dart.constFn(core.Comparable$(K)))();
+      return [ComparableOfK()];
+    }));
+  };
+  iterable_extensions['IterableExtension|isSortedByCompare'] = function IterableExtension$124isSortedByCompare(T, K, $this, keyOf, compare) {
+    let iterator = $this[$iterator];
+    if (!iterator.moveNext()) return true;
+    let previousKey = keyOf(iterator.current);
+    while (iterator.moveNext()) {
+      let key = keyOf(iterator.current);
+      if (compare(previousKey, key) > 0) return false;
+      previousKey = key;
+    }
+    return true;
+  };
+  iterable_extensions['IterableExtension|get#isSortedByCompare'] = function IterableExtension$124get$35isSortedByCompare(T, $this) {
+    return dart.fn((K, keyOf, compare) => iterable_extensions['IterableExtension|isSortedByCompare'](T, K, $this, keyOf, compare), dart.gFnType(K => {
+      var KAndKToint = () => (KAndKToint = dart.constFn(dart.fnType(core.int, [K, K])))();
+      return [core.bool, [dart.fnType(K, [T]), KAndKToint()]];
+    }, K => {
+      var KAndKToint = () => (KAndKToint = dart.constFn(dart.fnType(core.int, [K, K])))();
+      return [T$.ObjectN()];
+    }));
+  };
+  iterable_extensions['IterableExtension|forEachIndexed'] = function IterableExtension$124forEachIndexed(T, $this, action) {
+    let t20;
+    let index = 0;
+    for (let element of $this) {
+      action((t20 = index, index = t20 + 1, t20), element);
     }
   };
-  (single_child_scroll_view.SingleChildScrollView.new = function(opts) {
-    let t0;
-    let key = opts && 'key' in opts ? opts.key : null;
-    let scrollDirection = opts && 'scrollDirection' in opts ? opts.scrollDirection : C[0] || CT.C0;
-    let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-    let padding = opts && 'padding' in opts ? opts.padding : null;
-    let primary = opts && 'primary' in opts ? opts.primary : null;
-    let physics = opts && 'physics' in opts ? opts.physics : null;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[1] || CT.C1;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : C[2] || CT.C2;
-    let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-    let keyboardDismissBehavior = opts && 'keyboardDismissBehavior' in opts ? opts.keyboardDismissBehavior : C[3] || CT.C3;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[scrollDirection$] = scrollDirection;
-    this[reverse$] = reverse;
-    this[padding$] = padding;
-    this[physics$] = physics;
-    this[controller$] = controller;
-    this[child$] = child;
-    this[dragStartBehavior$] = dragStartBehavior;
-    this[clipBehavior$] = clipBehavior;
-    this[restorationId$] = restorationId;
-    this[keyboardDismissBehavior$] = keyboardDismissBehavior;
-    if (!(scrollDirection !== null)) dart.assertFailed(null, I[0], 230, 15, "scrollDirection != null");
-    if (!(dragStartBehavior !== null)) dart.assertFailed(null, I[0], 231, 15, "dragStartBehavior != null");
-    if (!(clipBehavior !== null)) dart.assertFailed(null, I[0], 232, 15, "clipBehavior != null");
-    if (!!(controller != null && primary === true)) dart.assertFailed("Primary ScrollViews obtain their ScrollController via inheritance from a PrimaryScrollController widget. " + "You cannot both set primary to true and pass an explicit controller.", I[0], 233, 15, "!(controller != null && primary == true)");
-    this[primary$] = (t0 = primary, t0 == null ? controller == null && scrollDirection === basic_types.Axis.vertical : t0);
-    single_child_scroll_view.SingleChildScrollView.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = single_child_scroll_view.SingleChildScrollView.prototype;
-  dart.addTypeTests(single_child_scroll_view.SingleChildScrollView);
-  dart.addTypeCaches(single_child_scroll_view.SingleChildScrollView);
-  dart.setMethodSignature(single_child_scroll_view.SingleChildScrollView, () => ({
-    __proto__: dart.getMethods(single_child_scroll_view.SingleChildScrollView.__proto__),
-    [_getDirection]: dart.fnType(basic_types.AxisDirection, [framework.BuildContext]),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
-  }));
-  dart.setLibraryUri(single_child_scroll_view.SingleChildScrollView, I[1]);
-  dart.setFieldSignature(single_child_scroll_view.SingleChildScrollView, () => ({
-    __proto__: dart.getFields(single_child_scroll_view.SingleChildScrollView.__proto__),
-    scrollDirection: dart.finalFieldType(basic_types.Axis),
-    reverse: dart.finalFieldType(core.bool),
-    padding: dart.finalFieldType(dart.nullable(edge_insets.EdgeInsetsGeometry)),
-    controller: dart.finalFieldType(dart.nullable(scroll_controller.ScrollController)),
-    primary: dart.finalFieldType(core.bool),
-    physics: dart.finalFieldType(dart.nullable(scroll_physics.ScrollPhysics)),
-    child: dart.finalFieldType(dart.nullable(framework.Widget)),
-    dragStartBehavior: dart.finalFieldType(recognizer.DragStartBehavior),
-    clipBehavior: dart.finalFieldType(ui.Clip),
-    restorationId: dart.finalFieldType(dart.nullable(core.String)),
-    keyboardDismissBehavior: dart.finalFieldType(scroll_view.ScrollViewKeyboardDismissBehavior)
-  }));
-  var axisDirection$ = dart.privateName(single_child_scroll_view, "_SingleChildViewport.axisDirection");
-  var offset$ = dart.privateName(single_child_scroll_view, "_SingleChildViewport.offset");
-  var clipBehavior$0 = dart.privateName(single_child_scroll_view, "_SingleChildViewport.clipBehavior");
-  single_child_scroll_view._SingleChildViewport = class _SingleChildViewport extends framework.SingleChildRenderObjectWidget {
-    get axisDirection() {
-      return this[axisDirection$];
+  iterable_extensions['IterableExtension|get#forEachIndexed'] = function IterableExtension$124get$35forEachIndexed(T, $this) {
+    return dart.fn(action => iterable_extensions['IterableExtension|forEachIndexed'](T, $this, action), dart.fnType(dart.void, [dart.fnType(dart.void, [core.int, T])]));
+  };
+  iterable_extensions['IterableExtension|forEachWhile'] = function IterableExtension$124forEachWhile(T, $this, action) {
+    for (let element of $this) {
+      if (!action(element)) break;
     }
-    set axisDirection(value) {
-      super.axisDirection = value;
+  };
+  iterable_extensions['IterableExtension|get#forEachWhile'] = function IterableExtension$124get$35forEachWhile(T, $this) {
+    return dart.fn(action => iterable_extensions['IterableExtension|forEachWhile'](T, $this, action), dart.fnType(dart.void, [dart.fnType(core.bool, [T])]));
+  };
+  iterable_extensions['IterableExtension|forEachIndexedWhile'] = function IterableExtension$124forEachIndexedWhile(T, $this, action) {
+    let t24;
+    let index = 0;
+    for (let element of $this) {
+      if (!action((t24 = index, index = t24 + 1, t24), element)) break;
     }
-    get offset() {
-      return this[offset$];
+  };
+  iterable_extensions['IterableExtension|get#forEachIndexedWhile'] = function IterableExtension$124get$35forEachIndexedWhile(T, $this) {
+    return dart.fn(action => iterable_extensions['IterableExtension|forEachIndexedWhile'](T, $this, action), dart.fnType(dart.void, [dart.fnType(core.bool, [core.int, T])]));
+  };
+  iterable_extensions['IterableExtension|mapIndexed'] = function IterableExtension$124mapIndexed(T, R, $this, convert) {
+    return new (_js_helper.SyncIterable$(R)).new(function* IterableExtension$124mapIndexed() {
+      let t26;
+      let index = 0;
+      for (let element of $this) {
+        yield convert((t26 = index, index = t26 + 1, t26), element);
+      }
+    });
+  };
+  iterable_extensions['IterableExtension|get#mapIndexed'] = function IterableExtension$124get$35mapIndexed(T, $this) {
+    return dart.fn((R, convert) => iterable_extensions['IterableExtension|mapIndexed'](T, R, $this, convert), dart.gFnType(R => {
+      var IterableOfR = () => (IterableOfR = dart.constFn(core.Iterable$(R)))();
+      return [IterableOfR(), [dart.fnType(R, [core.int, T])]];
+    }, R => {
+      var IterableOfR = () => (IterableOfR = dart.constFn(core.Iterable$(R)))();
+      return [T$.ObjectN()];
+    }));
+  };
+  iterable_extensions['IterableExtension|whereIndexed'] = function IterableExtension$124whereIndexed(T, $this, test) {
+    return new (_js_helper.SyncIterable$(T)).new(function* IterableExtension$124whereIndexed() {
+      let t28;
+      let index = 0;
+      for (let element of $this) {
+        if (test((t28 = index, index = t28 + 1, t28), element)) yield element;
+      }
+    });
+  };
+  iterable_extensions['IterableExtension|get#whereIndexed'] = function IterableExtension$124get$35whereIndexed(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|whereIndexed'](T, $this, test), dart.fnType(core.Iterable$(T), [dart.fnType(core.bool, [core.int, T])]));
+  };
+  iterable_extensions['IterableExtension|whereNotIndexed'] = function IterableExtension$124whereNotIndexed(T, $this, test) {
+    return new (_js_helper.SyncIterable$(T)).new(function* IterableExtension$124whereNotIndexed() {
+      let t30;
+      let index = 0;
+      for (let element of $this) {
+        if (!test((t30 = index, index = t30 + 1, t30), element)) yield element;
+      }
+    });
+  };
+  iterable_extensions['IterableExtension|get#whereNotIndexed'] = function IterableExtension$124get$35whereNotIndexed(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|whereNotIndexed'](T, $this, test), dart.fnType(core.Iterable$(T), [dart.fnType(core.bool, [core.int, T])]));
+  };
+  iterable_extensions['IterableExtension|get#expandIndexed'] = function IterableExtension$124get$35expandIndexed(T, $this) {
+    return dart.fn((R, expend) => iterable_extensions['IterableExtension|expandIndexed'](T, R, $this, expend), dart.gFnType(R => {
+      var IterableOfR = () => (IterableOfR = dart.constFn(core.Iterable$(R)))();
+      return [IterableOfR(), [dart.fnType(IterableOfR(), [core.int, T])]];
+    }, R => {
+      var IterableOfR = () => (IterableOfR = dart.constFn(core.Iterable$(R)))();
+      return [T$.ObjectN()];
+    }));
+  };
+  iterable_extensions['IterableExtension|expandIndexed'] = function IterableExtension$124expandIndexed(T, R, $this, expend) {
+    return new (_js_helper.SyncIterable$(R)).new(function* IterableExtension$124expandIndexed() {
+      let t33;
+      let index = 0;
+      for (let element of $this) {
+        yield* expend((t33 = index, index = t33 + 1, t33), element);
+      }
+    });
+  };
+  iterable_extensions['IterableExtension|reduceIndexed'] = function IterableExtension$124reduceIndexed(T, $this, combine) {
+    let t34;
+    let iterator = $this[$iterator];
+    if (!iterator.moveNext()) {
+      dart.throw(new core.StateError.new("no elements"));
     }
-    set offset(value) {
-      super.offset = value;
+    let index = 1;
+    let result = iterator.current;
+    while (iterator.moveNext()) {
+      result = combine((t34 = index, index = t34 + 1, t34), result, iterator.current);
     }
-    get clipBehavior() {
-      return this[clipBehavior$0];
+    return result;
+  };
+  iterable_extensions['IterableExtension|get#reduceIndexed'] = function IterableExtension$124get$35reduceIndexed(T, $this) {
+    return dart.fn(combine => iterable_extensions['IterableExtension|reduceIndexed'](T, $this, combine), dart.fnType(T, [dart.fnType(T, [core.int, T, T])]));
+  };
+  iterable_extensions['IterableExtension|foldIndexed'] = function IterableExtension$124foldIndexed(T, R, $this, initialValue, combine) {
+    let t36;
+    let result = initialValue;
+    let index = 0;
+    for (let element of $this) {
+      result = combine((t36 = index, index = t36 + 1, t36), result, element);
     }
-    set clipBehavior(value) {
-      super.clipBehavior = value;
+    return result;
+  };
+  iterable_extensions['IterableExtension|get#foldIndexed'] = function IterableExtension$124get$35foldIndexed(T, $this) {
+    return dart.fn((R, initialValue, combine) => iterable_extensions['IterableExtension|foldIndexed'](T, R, $this, initialValue, combine), dart.gFnType(R => [R, [R, dart.fnType(R, [core.int, R, T])]], R => [T$.ObjectN()]));
+  };
+  iterable_extensions['IterableExtension|firstWhereOrNull'] = function IterableExtension$124firstWhereOrNull(T, $this, test) {
+    for (let element of $this) {
+      if (test(element)) return element;
     }
-    createRenderObject(context) {
-      return new single_child_scroll_view._RenderSingleChildViewport.new({axisDirection: this.axisDirection, offset: this.offset, clipBehavior: this.clipBehavior});
+    return null;
+  };
+  iterable_extensions['IterableExtension|get#firstWhereOrNull'] = function IterableExtension$124get$35firstWhereOrNull(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|firstWhereOrNull'](T, $this, test), dart.fnType(dart.nullable(T), [dart.fnType(core.bool, [T])]));
+  };
+  iterable_extensions['IterableExtension|firstWhereIndexedOrNull'] = function IterableExtension$124firstWhereIndexedOrNull(T, $this, test) {
+    let t40;
+    let index = 0;
+    for (let element of $this) {
+      if (test((t40 = index, index = t40 + 1, t40), element)) return element;
     }
-    updateRenderObject(context, renderObject) {
-      let t0;
-      single_child_scroll_view._RenderSingleChildViewport.as(renderObject);
-      t0 = renderObject;
+    return null;
+  };
+  iterable_extensions['IterableExtension|get#firstWhereIndexedOrNull'] = function IterableExtension$124get$35firstWhereIndexedOrNull(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|firstWhereIndexedOrNull'](T, $this, test), dart.fnType(dart.nullable(T), [dart.fnType(core.bool, [core.int, T])]));
+  };
+  iterable_extensions['IterableExtension|get#firstOrNull'] = function IterableExtension$124get$35firstOrNull(T, $this) {
+    let iterator = $this[$iterator];
+    if (iterator.moveNext()) return iterator.current;
+    return null;
+  };
+  iterable_extensions['IterableExtension|lastWhereOrNull'] = function IterableExtension$124lastWhereOrNull(T, $this, test) {
+    let result = null;
+    for (let element of $this) {
+      if (test(element)) result = element;
+    }
+    return result;
+  };
+  iterable_extensions['IterableExtension|get#lastWhereOrNull'] = function IterableExtension$124get$35lastWhereOrNull(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|lastWhereOrNull'](T, $this, test), dart.fnType(dart.nullable(T), [dart.fnType(core.bool, [T])]));
+  };
+  iterable_extensions['IterableExtension|lastWhereIndexedOrNull'] = function IterableExtension$124lastWhereIndexedOrNull(T, $this, test) {
+    let t45;
+    let result = null;
+    let index = 0;
+    for (let element of $this) {
+      if (test((t45 = index, index = t45 + 1, t45), element)) result = element;
+    }
+    return result;
+  };
+  iterable_extensions['IterableExtension|get#lastWhereIndexedOrNull'] = function IterableExtension$124get$35lastWhereIndexedOrNull(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|lastWhereIndexedOrNull'](T, $this, test), dart.fnType(dart.nullable(T), [dart.fnType(core.bool, [core.int, T])]));
+  };
+  iterable_extensions['IterableExtension|get#lastOrNull'] = function IterableExtension$124get$35lastOrNull(T, $this) {
+    if ($this[$isEmpty]) return null;
+    return $this[$last];
+  };
+  iterable_extensions['IterableExtension|singleWhereOrNull'] = function IterableExtension$124singleWhereOrNull(T, $this, test) {
+    let result = null;
+    let found = false;
+    for (let element of $this) {
+      if (test(element)) {
+        if (!found) {
+          result = element;
+          found = true;
+        } else {
+          return null;
+        }
+      }
+    }
+    return result;
+  };
+  iterable_extensions['IterableExtension|get#singleWhereOrNull'] = function IterableExtension$124get$35singleWhereOrNull(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|singleWhereOrNull'](T, $this, test), dart.fnType(dart.nullable(T), [dart.fnType(core.bool, [T])]));
+  };
+  iterable_extensions['IterableExtension|singleWhereIndexedOrNull'] = function IterableExtension$124singleWhereIndexedOrNull(T, $this, test) {
+    let t50;
+    let result = null;
+    let found = false;
+    let index = 0;
+    for (let element of $this) {
+      if (test((t50 = index, index = t50 + 1, t50), element)) {
+        if (!found) {
+          result = element;
+          found = true;
+        } else {
+          return null;
+        }
+      }
+    }
+    return result;
+  };
+  iterable_extensions['IterableExtension|get#singleWhereIndexedOrNull'] = function IterableExtension$124get$35singleWhereIndexedOrNull(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|singleWhereIndexedOrNull'](T, $this, test), dart.fnType(dart.nullable(T), [dart.fnType(core.bool, [core.int, T])]));
+  };
+  iterable_extensions['IterableExtension|get#singleOrNull'] = function IterableExtension$124get$35singleOrNull(T, $this) {
+    let iterator = $this[$iterator];
+    if (iterator.moveNext()) {
+      let result = iterator.current;
+      if (!iterator.moveNext()) {
+        return result;
+      }
+    }
+    return null;
+  };
+  iterable_extensions['IterableExtension|groupFoldBy'] = function IterableExtension$124groupFoldBy(T, K, G, $this, keyOf, combine) {
+    let result = new (_js_helper.LinkedMap$(K, G)).new();
+    for (let element of $this) {
+      let key = keyOf(element);
+      result[$_set](key, combine(result[$_get](key), element));
+    }
+    return result;
+  };
+  iterable_extensions['IterableExtension|get#groupFoldBy'] = function IterableExtension$124get$35groupFoldBy(T, $this) {
+    return dart.fn((K, G, keyOf, combine) => iterable_extensions['IterableExtension|groupFoldBy'](T, K, G, $this, keyOf, combine), dart.gFnType((K, G) => {
+      var MapOfK$G = () => (MapOfK$G = dart.constFn(core.Map$(K, G)))();
+      var GN = () => (GN = dart.constFn(dart.nullable(G)))();
+      return [MapOfK$G(), [dart.fnType(K, [T]), dart.fnType(G, [GN(), T])]];
+    }, (K, G) => {
+      var MapOfK$G = () => (MapOfK$G = dart.constFn(core.Map$(K, G)))();
+      var GN = () => (GN = dart.constFn(dart.nullable(G)))();
+      return [T$.ObjectN(), T$.ObjectN()];
+    }));
+  };
+  iterable_extensions['IterableExtension|groupSetsBy'] = function IterableExtension$124groupSetsBy(T, K, $this, keyOf) {
+    let t58, t57, t56, t55, t55$;
+    let result = new (_js_helper.LinkedMap$(K, core.Set$(T))).new();
+    for (let element of $this) {
+      t55$ = (t55 = result, t56 = keyOf(element), t57 = t55[$_get](t56), t57 == null ? (t58 = collection.LinkedHashSet$(T).new(), t55[$_set](t56, t58), t58) : t57);
       (() => {
-        t0.axisDirection = this.axisDirection;
-        t0.offset = this.offset;
-        t0.clipBehavior = this.clipBehavior;
-        return t0;
+        t55$.add(element);
+        return t55$;
       })();
     }
+    return result;
   };
-  (single_child_scroll_view._SingleChildViewport.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let axisDirection = opts && 'axisDirection' in opts ? opts.axisDirection : C[29] || CT.C29;
-    let offset = opts && 'offset' in opts ? opts.offset : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[axisDirection$] = axisDirection;
-    this[offset$] = offset;
-    this[clipBehavior$0] = clipBehavior;
-    if (!(axisDirection !== null)) dart.assertFailed(null, I[0], 373, 15, "axisDirection != null");
-    if (!(clipBehavior !== null)) dart.assertFailed(null, I[0], 374, 15, "clipBehavior != null");
-    single_child_scroll_view._SingleChildViewport.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = single_child_scroll_view._SingleChildViewport.prototype;
-  dart.addTypeTests(single_child_scroll_view._SingleChildViewport);
-  dart.addTypeCaches(single_child_scroll_view._SingleChildViewport);
-  dart.setMethodSignature(single_child_scroll_view._SingleChildViewport, () => ({
-    __proto__: dart.getMethods(single_child_scroll_view._SingleChildViewport.__proto__),
-    createRenderObject: dart.fnType(single_child_scroll_view._RenderSingleChildViewport, [framework.BuildContext])
-  }));
-  dart.setLibraryUri(single_child_scroll_view._SingleChildViewport, I[1]);
-  dart.setFieldSignature(single_child_scroll_view._SingleChildViewport, () => ({
-    __proto__: dart.getFields(single_child_scroll_view._SingleChildViewport.__proto__),
-    axisDirection: dart.finalFieldType(basic_types.AxisDirection),
-    offset: dart.finalFieldType(viewport_offset.ViewportOffset),
-    clipBehavior: dart.finalFieldType(ui.Clip)
-  }));
-  var _clipBehavior = dart.privateName(single_child_scroll_view, "_clipBehavior");
-  var _clipRectLayer = dart.privateName(single_child_scroll_view, "_clipRectLayer");
-  var _axisDirection = dart.privateName(single_child_scroll_view, "_axisDirection");
-  var _offset = dart.privateName(single_child_scroll_view, "_offset");
-  var _cacheExtent = dart.privateName(single_child_scroll_view, "_cacheExtent");
-  var _hasScrolled = dart.privateName(single_child_scroll_view, "_hasScrolled");
-  var _viewportExtent = dart.privateName(single_child_scroll_view, "_viewportExtent");
-  var _minScrollExtent = dart.privateName(single_child_scroll_view, "_minScrollExtent");
-  var _maxScrollExtent = dart.privateName(single_child_scroll_view, "_maxScrollExtent");
-  var _getInnerConstraints = dart.privateName(single_child_scroll_view, "_getInnerConstraints");
-  var _paintOffsetForPosition = dart.privateName(single_child_scroll_view, "_paintOffsetForPosition");
-  var _paintOffset = dart.privateName(single_child_scroll_view, "_paintOffset");
-  var _shouldClipAtPaintOffset = dart.privateName(single_child_scroll_view, "_shouldClipAtPaintOffset");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  var Cubic_d = dart.privateName(curves, "Cubic.d");
-  var Cubic_c = dart.privateName(curves, "Cubic.c");
-  var Cubic_b = dart.privateName(curves, "Cubic.b");
-  var Cubic_a = dart.privateName(curves, "Cubic.a");
-  const RenderBox_RenderObjectWithChildMixin$36 = class RenderBox_RenderObjectWithChildMixin extends box.RenderBox {};
-  (RenderBox_RenderObjectWithChildMixin$36.new = function() {
-    object.RenderObjectWithChildMixin$(box.RenderBox)[dart.mixinNew].call(this);
-    RenderBox_RenderObjectWithChildMixin$36.__proto__.new.call(this);
-  }).prototype = RenderBox_RenderObjectWithChildMixin$36.prototype;
-  dart.applyMixin(RenderBox_RenderObjectWithChildMixin$36, object.RenderObjectWithChildMixin$(box.RenderBox));
-  single_child_scroll_view._RenderSingleChildViewport = class _RenderSingleChildViewport extends RenderBox_RenderObjectWithChildMixin$36 {
-    get axisDirection() {
-      return this[_axisDirection];
-    }
-    set axisDirection(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[0], 421, 12, "value != null");
-      if (value === this[_axisDirection]) return;
-      this[_axisDirection] = value;
-      this.markNeedsLayout();
-    }
-    get axis() {
-      return basic_types.axisDirectionToAxis(this.axisDirection);
-    }
-    get offset() {
-      return this[_offset];
-    }
-    set offset(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[0], 433, 12, "value != null");
-      if (value[$_equals](this[_offset])) return;
-      if (this.attached) this[_offset].removeListener(dart.bind(this, _hasScrolled));
-      this[_offset] = value;
-      if (this.attached) this[_offset].addListener(dart.bind(this, _hasScrolled));
-      this.markNeedsLayout();
-    }
-    get cacheExtent() {
-      return this[_cacheExtent];
-    }
-    set cacheExtent(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[0], 448, 12, "value != null");
-      if (value === this[_cacheExtent]) return;
-      this[_cacheExtent] = value;
-      this.markNeedsLayout();
-    }
-    get clipBehavior() {
-      return this[_clipBehavior];
-    }
-    set clipBehavior(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[0], 461, 12, "value != null");
-      if (value !== this[_clipBehavior]) {
-        this[_clipBehavior] = value;
-        this.markNeedsPaint();
-        this.markNeedsSemanticsUpdate();
-      }
-    }
-    [_hasScrolled]() {
-      this.markNeedsPaint();
-      this.markNeedsSemanticsUpdate();
-    }
-    setupParentData(child) {
-      object.RenderObject.as(child);
-      if (!object.ParentData.is(child.parentData)) child.parentData = new object.ParentData.new();
-    }
-    attach(owner) {
-      object.PipelineOwner.as(owner);
-      super.attach(owner);
-      this[_offset].addListener(dart.bind(this, _hasScrolled));
-    }
-    detach() {
-      this[_offset].removeListener(dart.bind(this, _hasScrolled));
-      super.detach();
-    }
-    get isRepaintBoundary() {
-      return true;
-    }
-    get [_viewportExtent]() {
-      if (!this.hasSize) dart.assertFailed(null, I[0], 498, 12, "hasSize");
-      switch (this.axis) {
-        case C[30] || CT.C30:
-        {
-          return this.size.width;
-        }
-        case C[0] || CT.C0:
-        {
-          return this.size.height;
-        }
-      }
-    }
-    get [_minScrollExtent]() {
-      if (!this.hasSize) dart.assertFailed(null, I[0], 508, 12, "hasSize");
-      return 0.0;
-    }
-    get [_maxScrollExtent]() {
-      if (!this.hasSize) dart.assertFailed(null, I[0], 513, 12, "hasSize");
-      if (this.child == null) return 0.0;
-      switch (this.axis) {
-        case C[30] || CT.C30:
-        {
-          return math.max(core.double, 0.0, dart.nullCheck(this.child).size.width - this.size.width);
-        }
-        case C[0] || CT.C0:
-        {
-          return math.max(core.double, 0.0, dart.nullCheck(this.child).size.height - this.size.height);
-        }
-      }
-    }
-    [_getInnerConstraints](constraints) {
-      switch (this.axis) {
-        case C[30] || CT.C30:
-        {
-          return constraints.heightConstraints();
-        }
-        case C[0] || CT.C0:
-        {
-          return constraints.widthConstraints();
-        }
-      }
-    }
-    computeMinIntrinsicWidth(height) {
-      if (this.child != null) return dart.nullCheck(this.child).getMinIntrinsicWidth(height);
-      return 0.0;
-    }
-    computeMaxIntrinsicWidth(height) {
-      if (this.child != null) return dart.nullCheck(this.child).getMaxIntrinsicWidth(height);
-      return 0.0;
-    }
-    computeMinIntrinsicHeight(width) {
-      if (this.child != null) return dart.nullCheck(this.child).getMinIntrinsicHeight(width);
-      return 0.0;
-    }
-    computeMaxIntrinsicHeight(width) {
-      if (this.child != null) return dart.nullCheck(this.child).getMaxIntrinsicHeight(width);
-      return 0.0;
-    }
-    computeDryLayout(constraints) {
-      if (this.child == null) {
-        return constraints.smallest;
-      }
-      let childSize = dart.nullCheck(this.child).getDryLayout(this[_getInnerConstraints](constraints));
-      return constraints.constrain(childSize);
-    }
-    performLayout() {
-      let constraints = this.constraints;
-      if (this.child == null) {
-        this.size = constraints.smallest;
-      } else {
-        dart.nullCheck(this.child).layout(this[_getInnerConstraints](constraints), {parentUsesSize: true});
-        this.size = constraints.constrain(dart.nullCheck(this.child).size);
-      }
-      this.offset.applyViewportDimension(this[_viewportExtent]);
-      this.offset.applyContentDimensions(this[_minScrollExtent], this[_maxScrollExtent]);
-    }
-    get [_paintOffset]() {
-      return this[_paintOffsetForPosition](this.offset.pixels);
-    }
-    [_paintOffsetForPosition](position) {
-      if (!(this.axisDirection !== null)) dart.assertFailed(null, I[0], 592, 12, "axisDirection != null");
-      switch (this.axisDirection) {
-        case C[31] || CT.C31:
-        {
-          return new ui.Offset.new(0.0, position - dart.nullCheck(this.child).size.height + this.size.height);
-        }
-        case C[29] || CT.C29:
-        {
-          return new ui.Offset.new(0.0, -position);
-        }
-        case C[32] || CT.C32:
-        {
-          return new ui.Offset.new(position - dart.nullCheck(this.child).size.width + this.size.width, 0.0);
-        }
-        case C[33] || CT.C33:
-        {
-          return new ui.Offset.new(-position, 0.0);
-        }
-      }
-    }
-    [_shouldClipAtPaintOffset](paintOffset) {
-      if (!(this.child != null)) dart.assertFailed(null, I[0], 606, 12, "child != null");
-      return paintOffset.dx < 0 || paintOffset.dy < 0 || paintOffset.dx + dart.nullCheck(this.child).size.width > this.size.width || paintOffset.dy + dart.nullCheck(this.child).size.height > this.size.height;
-    }
-    paint(context, offset) {
-      if (this.child != null) {
-        let paintOffset = this[_paintOffset];
-        const paintContents = (context, offset) => {
-          context.paintChild(dart.nullCheck(this.child), offset['+'](paintOffset));
-        };
-        dart.fn(paintContents, T.PaintingContextAndOffsetTovoid());
-        if (this[_shouldClipAtPaintOffset](paintOffset) && this.clipBehavior !== ui.Clip.none) {
-          this[_clipRectLayer] = context.pushClipRect(this.needsCompositing, offset, ui.Offset.zero['&'](this.size), paintContents, {clipBehavior: this.clipBehavior, oldLayer: this[_clipRectLayer]});
-        } else {
-          this[_clipRectLayer] = null;
-          paintContents(context, offset);
-        }
-      }
-    }
-    applyPaintTransform(child, transform) {
-      box.RenderBox.as(child);
-      let paintOffset = this[_paintOffset];
-      transform.translate(paintOffset.dx, paintOffset.dy);
-    }
-    describeApproximatePaintClip(child) {
-      T.RenderObjectN().as(child);
-      if (child != null && this[_shouldClipAtPaintOffset](this[_paintOffset])) return ui.Offset.zero['&'](this.size);
-      return null;
-    }
-    hitTestChildren(result, opts) {
-      let position = opts && 'position' in opts ? opts.position : null;
-      if (this.child != null) {
-        return result.addWithPaintOffset({offset: this[_paintOffset], position: position, hitTest: dart.fn((result, transformed) => {
-            if (!dart.equals(transformed, position['+'](this[_paintOffset]._negate()))) dart.assertFailed(null, I[0], 660, 18, "transformed == position + -_paintOffset");
-            return dart.nullCheck(this.child).hitTest(result, {position: dart.nullCheck(transformed)});
-          }, T.BoxHitTestResultAndOffsetNTobool())});
-      }
-      return false;
-    }
-    getOffsetToReveal(target, alignment, opts) {
-      let rect = opts && 'rect' in opts ? opts.rect : null;
-      rect == null ? rect = target.paintBounds : null;
-      if (!box.RenderBox.is(target)) return new viewport.RevealedOffset.new({offset: this.offset.pixels, rect: rect});
-      let targetBox = target;
-      let transform = targetBox.getTransformTo(this.child);
-      let bounds = matrix_utils.MatrixUtils.transformRect(transform, rect);
-      let contentSize = dart.nullCheck(this.child).size;
-      let leadingScrollOffset = null;
-      let targetMainAxisExtent = null;
-      let mainAxisExtent = null;
-      if (!(this.axisDirection !== null)) dart.assertFailed(null, I[0], 683, 12, "axisDirection != null");
-      switch (this.axisDirection) {
-        case C[31] || CT.C31:
-        {
-          mainAxisExtent = this.size.height;
-          leadingScrollOffset = contentSize.height - bounds.bottom;
-          targetMainAxisExtent = bounds.height;
-          break;
-        }
-        case C[33] || CT.C33:
-        {
-          mainAxisExtent = this.size.width;
-          leadingScrollOffset = bounds.left;
-          targetMainAxisExtent = bounds.width;
-          break;
-        }
-        case C[29] || CT.C29:
-        {
-          mainAxisExtent = this.size.height;
-          leadingScrollOffset = bounds.top;
-          targetMainAxisExtent = bounds.height;
-          break;
-        }
-        case C[32] || CT.C32:
-        {
-          mainAxisExtent = this.size.width;
-          leadingScrollOffset = contentSize.width - bounds.right;
-          targetMainAxisExtent = bounds.width;
-          break;
-        }
-      }
-      let targetOffset = leadingScrollOffset - (mainAxisExtent - targetMainAxisExtent) * alignment;
-      let targetRect = bounds.shift(this[_paintOffsetForPosition](targetOffset));
-      return new viewport.RevealedOffset.new({offset: targetOffset, rect: targetRect});
-    }
-    showOnScreen(opts) {
-      let descendant = opts && 'descendant' in opts ? opts.descendant : null;
-      let rect = opts && 'rect' in opts ? opts.rect : null;
-      let duration = opts && 'duration' in opts ? opts.duration : C[34] || CT.C34;
-      let curve = opts && 'curve' in opts ? opts.curve : C[35] || CT.C35;
-      if (!this.offset.allowImplicitScrolling) {
-        return super.showOnScreen({descendant: descendant, rect: rect, duration: duration, curve: curve});
-      }
-      let newRect = viewport.RenderViewportBase.showInViewport({descendant: descendant, viewport: this, offset: this.offset, rect: rect, duration: duration, curve: curve});
-      super.showOnScreen({rect: newRect, duration: duration, curve: curve});
-    }
-    describeSemanticsClip(child) {
-      object.RenderObject.as(child);
-      if (!(this.axis !== null)) dart.assertFailed(null, I[0], 745, 12, "axis != null");
-      switch (this.axis) {
-        case C[0] || CT.C0:
-        {
-          return new ui.Rect.fromLTRB(this.semanticBounds.left, this.semanticBounds.top - this.cacheExtent, this.semanticBounds.right, this.semanticBounds.bottom + this.cacheExtent);
-        }
-        case C[30] || CT.C30:
-        {
-          return new ui.Rect.fromLTRB(this.semanticBounds.left - this.cacheExtent, this.semanticBounds.top, this.semanticBounds.right + this.cacheExtent, this.semanticBounds.bottom);
-        }
-      }
-    }
+  iterable_extensions['IterableExtension|get#groupSetsBy'] = function IterableExtension$124get$35groupSetsBy(T, $this) {
+    return dart.fn((K, keyOf) => iterable_extensions['IterableExtension|groupSetsBy'](T, K, $this, keyOf), dart.gFnType(K => [core.Map$(K, core.Set$(T)), [dart.fnType(K, [T])]], K => [T$.ObjectN()]));
   };
-  (single_child_scroll_view._RenderSingleChildViewport.new = function(opts) {
-    let axisDirection = opts && 'axisDirection' in opts ? opts.axisDirection : C[29] || CT.C29;
-    let offset = opts && 'offset' in opts ? opts.offset : null;
-    let cacheExtent = opts && 'cacheExtent' in opts ? opts.cacheExtent : 250;
-    let child = opts && 'child' in opts ? opts.child : null;
-    let clipBehavior = opts && 'clipBehavior' in opts ? opts.clipBehavior : null;
-    this[_clipBehavior] = ui.Clip.none;
-    this[_clipRectLayer] = null;
-    if (!(axisDirection !== null)) dart.assertFailed(null, I[0], 407, 15, "axisDirection != null");
-    if (!(offset !== null)) dart.assertFailed(null, I[0], 408, 15, "offset != null");
-    if (!(cacheExtent !== null)) dart.assertFailed(null, I[0], 409, 15, "cacheExtent != null");
-    if (!(clipBehavior !== null)) dart.assertFailed(null, I[0], 410, 15, "clipBehavior != null");
-    this[_axisDirection] = axisDirection;
-    this[_offset] = offset;
-    this[_cacheExtent] = cacheExtent;
-    this[_clipBehavior] = clipBehavior;
-    single_child_scroll_view._RenderSingleChildViewport.__proto__.new.call(this);
-    this.child = child;
-  }).prototype = single_child_scroll_view._RenderSingleChildViewport.prototype;
-  dart.addTypeTests(single_child_scroll_view._RenderSingleChildViewport);
-  dart.addTypeCaches(single_child_scroll_view._RenderSingleChildViewport);
-  single_child_scroll_view._RenderSingleChildViewport[dart.implements] = () => [viewport.RenderAbstractViewport];
-  dart.setMethodSignature(single_child_scroll_view._RenderSingleChildViewport, () => ({
-    __proto__: dart.getMethods(single_child_scroll_view._RenderSingleChildViewport.__proto__),
-    [_hasScrolled]: dart.fnType(dart.void, []),
-    [_getInnerConstraints]: dart.fnType(box.BoxConstraints, [box.BoxConstraints]),
-    [_paintOffsetForPosition]: dart.fnType(ui.Offset, [core.double]),
-    [_shouldClipAtPaintOffset]: dart.fnType(core.bool, [ui.Offset]),
-    getOffsetToReveal: dart.fnType(viewport.RevealedOffset, [object.RenderObject, core.double], {rect: dart.nullable(ui.Rect)}, {}),
-    describeSemanticsClip: dart.fnType(ui.Rect, [dart.nullable(core.Object)])
-  }));
-  dart.setGetterSignature(single_child_scroll_view._RenderSingleChildViewport, () => ({
-    __proto__: dart.getGetters(single_child_scroll_view._RenderSingleChildViewport.__proto__),
-    axisDirection: basic_types.AxisDirection,
-    axis: basic_types.Axis,
-    offset: viewport_offset.ViewportOffset,
-    cacheExtent: core.double,
-    clipBehavior: ui.Clip,
-    [_viewportExtent]: core.double,
-    [_minScrollExtent]: core.double,
-    [_maxScrollExtent]: core.double,
-    [_paintOffset]: ui.Offset
-  }));
-  dart.setSetterSignature(single_child_scroll_view._RenderSingleChildViewport, () => ({
-    __proto__: dart.getSetters(single_child_scroll_view._RenderSingleChildViewport.__proto__),
-    axisDirection: basic_types.AxisDirection,
-    offset: viewport_offset.ViewportOffset,
-    cacheExtent: core.double,
-    clipBehavior: ui.Clip
-  }));
-  dart.setLibraryUri(single_child_scroll_view._RenderSingleChildViewport, I[1]);
-  dart.setFieldSignature(single_child_scroll_view._RenderSingleChildViewport, () => ({
-    __proto__: dart.getFields(single_child_scroll_view._RenderSingleChildViewport.__proto__),
-    [_axisDirection]: dart.fieldType(basic_types.AxisDirection),
-    [_offset]: dart.fieldType(viewport_offset.ViewportOffset),
-    [_cacheExtent]: dart.fieldType(core.double),
-    [_clipBehavior]: dart.fieldType(ui.Clip),
-    [_clipRectLayer]: dart.fieldType(dart.nullable(layer.ClipRectLayer))
-  }));
-  dart.trackLibraries("packages/flutter/src/widgets/single_child_scroll_view.dart", {
-    "package:flutter/src/widgets/single_child_scroll_view.dart": single_child_scroll_view
+  iterable_extensions['IterableExtension|groupListsBy'] = function IterableExtension$124groupListsBy(T, K, $this, keyOf) {
+    let t60, t59, t58, t57, t57$;
+    let result = new (_js_helper.LinkedMap$(K, core.List$(T))).new();
+    for (let element of $this) {
+      t57$ = (t57 = result, t58 = keyOf(element), t59 = t57[$_get](t58), t59 == null ? (t60 = _interceptors.JSArray$(T).of([]), t57[$_set](t58, t60), t60) : t59);
+      (() => {
+        t57$[$add](element);
+        return t57$;
+      })();
+    }
+    return result;
+  };
+  iterable_extensions['IterableExtension|get#groupListsBy'] = function IterableExtension$124get$35groupListsBy(T, $this) {
+    return dart.fn((K, keyOf) => iterable_extensions['IterableExtension|groupListsBy'](T, K, $this, keyOf), dart.gFnType(K => [core.Map$(K, core.List$(T)), [dart.fnType(K, [T])]], K => [T$.ObjectN()]));
+  };
+  iterable_extensions['IterableExtension|splitBefore'] = function IterableExtension$124splitBefore(T, $this, test) {
+    return iterable_extensions['IterableExtension|splitBeforeIndexed'](T, $this, dart.fn((_, element) => test(element), dart.fnType(core.bool, [core.int, T])));
+  };
+  iterable_extensions['IterableExtension|get#splitBefore'] = function IterableExtension$124get$35splitBefore(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|splitBefore'](T, $this, test), dart.fnType(core.Iterable$(core.List$(T)), [dart.fnType(core.bool, [T])]));
+  };
+  iterable_extensions['IterableExtension|splitAfter'] = function IterableExtension$124splitAfter(T, $this, test) {
+    return iterable_extensions['IterableExtension|splitAfterIndexed'](T, $this, dart.fn((_, element) => test(element), dart.fnType(core.bool, [core.int, T])));
+  };
+  iterable_extensions['IterableExtension|get#splitAfter'] = function IterableExtension$124get$35splitAfter(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|splitAfter'](T, $this, test), dart.fnType(core.Iterable$(core.List$(T)), [dart.fnType(core.bool, [T])]));
+  };
+  iterable_extensions['IterableExtension|get#splitBetween'] = function IterableExtension$124get$35splitBetween(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|splitBetween'](T, $this, test), dart.fnType(core.Iterable$(core.List$(T)), [dart.fnType(core.bool, [T, T])]));
+  };
+  iterable_extensions['IterableExtension|splitBetween'] = function IterableExtension$124splitBetween(T, $this, test) {
+    return iterable_extensions['IterableExtension|splitBetweenIndexed'](T, $this, dart.fn((_, first, second) => test(first, second), dart.fnType(core.bool, [core.int, T, T])));
+  };
+  iterable_extensions['IterableExtension|splitBeforeIndexed'] = function IterableExtension$124splitBeforeIndexed(T, $this, test) {
+    return new (_js_helper.SyncIterable$(core.List$(T))).new(function* IterableExtension$124splitBeforeIndexed() {
+      let t65;
+      let iterator = $this[$iterator];
+      if (!iterator.moveNext()) {
+        return;
+      }
+      let index = 1;
+      let chunk = _interceptors.JSArray$(T).of([iterator.current]);
+      while (iterator.moveNext()) {
+        let element = iterator.current;
+        if (test((t65 = index, index = t65 + 1, t65), element)) {
+          yield chunk;
+          chunk = _interceptors.JSArray$(T).of([]);
+        }
+        chunk[$add](element);
+      }
+      yield chunk;
+    });
+  };
+  iterable_extensions['IterableExtension|get#splitBeforeIndexed'] = function IterableExtension$124get$35splitBeforeIndexed(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|splitBeforeIndexed'](T, $this, test), dart.fnType(core.Iterable$(core.List$(T)), [dart.fnType(core.bool, [core.int, T])]));
+  };
+  iterable_extensions['IterableExtension|splitAfterIndexed'] = function IterableExtension$124splitAfterIndexed(T, $this, test) {
+    return new (_js_helper.SyncIterable$(core.List$(T))).new(function* IterableExtension$124splitAfterIndexed() {
+      let t67, t67$;
+      let index = 0;
+      let chunk = null;
+      for (let element of $this) {
+        (t67 = chunk, t67 == null ? chunk = _interceptors.JSArray$(T).of([]) : t67)[$add](element);
+        if (test((t67$ = index, index = t67$ + 1, t67$), element)) {
+          yield chunk;
+          chunk = null;
+        }
+      }
+      if (chunk != null) yield chunk;
+    });
+  };
+  iterable_extensions['IterableExtension|get#splitAfterIndexed'] = function IterableExtension$124get$35splitAfterIndexed(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|splitAfterIndexed'](T, $this, test), dart.fnType(core.Iterable$(core.List$(T)), [dart.fnType(core.bool, [core.int, T])]));
+  };
+  iterable_extensions['IterableExtension|splitBetweenIndexed'] = function IterableExtension$124splitBetweenIndexed(T, $this, test) {
+    return new (_js_helper.SyncIterable$(core.List$(T))).new(function* IterableExtension$124splitBetweenIndexed() {
+      let t69;
+      let iterator = $this[$iterator];
+      if (!iterator.moveNext()) return;
+      let previous = iterator.current;
+      let chunk = _interceptors.JSArray$(T).of([previous]);
+      let index = 1;
+      while (iterator.moveNext()) {
+        let element = iterator.current;
+        if (test((t69 = index, index = t69 + 1, t69), previous, element)) {
+          yield chunk;
+          chunk = _interceptors.JSArray$(T).of([]);
+        }
+        chunk[$add](element);
+        previous = element;
+      }
+      yield chunk;
+    });
+  };
+  iterable_extensions['IterableExtension|get#splitBetweenIndexed'] = function IterableExtension$124get$35splitBetweenIndexed(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|splitBetweenIndexed'](T, $this, test), dart.fnType(core.Iterable$(core.List$(T)), [dart.fnType(core.bool, [core.int, T, T])]));
+  };
+  iterable_extensions['IterableExtension|none'] = function IterableExtension$124none(T, $this, test) {
+    for (let element of $this) {
+      if (test(element)) return false;
+    }
+    return true;
+  };
+  iterable_extensions['IterableExtension|get#none'] = function IterableExtension$124get$35none(T, $this) {
+    return dart.fn(test => iterable_extensions['IterableExtension|none'](T, $this, test), dart.fnType(core.bool, [dart.fnType(core.bool, [T])]));
+  };
+  iterable_extensions['IterableNullableExtension|whereNotNull'] = function IterableNullableExtension$124whereNotNull(T, $this) {
+    return new (_js_helper.SyncIterable$(T)).new(function* IterableNullableExtension$124whereNotNull() {
+      for (let element of $this) {
+        if (element != null) yield element;
+      }
+    });
+  };
+  iterable_extensions['IterableNullableExtension|get#whereNotNull'] = function IterableNullableExtension$124get$35whereNotNull(T, $this) {
+    return dart.fn(() => iterable_extensions['IterableNullableExtension|whereNotNull'](T, $this), dart.fnType(core.Iterable$(T), []));
+  };
+  iterable_extensions['IterableNumberExtension|get#sum'] = function IterableNumberExtension$124get$35sum($this) {
+    let result = 0;
+    for (let value of $this) {
+      result = result + value;
+    }
+    return result;
+  };
+  iterable_extensions['IterableNumberExtension|get#average'] = function IterableNumberExtension$124get$35average($this) {
+    let result = 0.0;
+    let count = 0;
+    for (let value of $this) {
+      count = count + 1;
+      result = result + (value - result) / count;
+    }
+    if (count === 0) dart.throw(new core.StateError.new("No elements"));
+    return result;
+  };
+  iterable_extensions['IterableIntegerExtension|get#sum'] = function IterableIntegerExtension$124get$35sum($this) {
+    let result = 0;
+    for (let value of $this) {
+      result = result + value;
+    }
+    return result;
+  };
+  iterable_extensions['IterableIntegerExtension|get#average'] = function IterableIntegerExtension$124get$35average($this) {
+    let average = 0;
+    let remainder = 0;
+    let count = 0;
+    for (let value of $this) {
+      count = count + 1;
+      let delta = value - average + remainder;
+      average = average + (delta / count)[$truncate]();
+      remainder = delta[$remainder](count);
+    }
+    if (count === 0) dart.throw(new core.StateError.new("No elements"));
+    return average + remainder / count;
+  };
+  iterable_extensions['IterableDoubleExtension|get#sum'] = function IterableDoubleExtension$124get$35sum($this) {
+    let result = 0.0;
+    for (let value of $this) {
+      result = result + value;
+    }
+    return result;
+  };
+  iterable_extensions['IterableIterableExtension|get#flattened'] = function IterableIterableExtension$124get$35flattened(T, $this) {
+    return new (_js_helper.SyncIterable$(T)).new(function* IterableIterableExtension$124get$35flattened() {
+      for (let elements of $this) {
+        yield* elements;
+      }
+    });
+  };
+  iterable_extensions['IterableComparableExtension|get#minOrNull'] = function IterableComparableExtension$124get$35minOrNull(T, $this) {
+    let iterator = $this[$iterator];
+    if (iterator.moveNext()) {
+      let value = iterator.current;
+      while (iterator.moveNext()) {
+        let newValue = iterator.current;
+        if (value[$compareTo](newValue) > 0) {
+          value = newValue;
+        }
+      }
+      return value;
+    }
+    return null;
+  };
+  iterable_extensions['IterableComparableExtension|get#min'] = function IterableComparableExtension$124get$35min(T, $this) {
+    let iterator = $this[$iterator];
+    if (iterator.moveNext()) {
+      let value = iterator.current;
+      while (iterator.moveNext()) {
+        let newValue = iterator.current;
+        if (value[$compareTo](newValue) > 0) {
+          value = newValue;
+        }
+      }
+      return value;
+    }
+    dart.throw(new core.StateError.new("No element"));
+  };
+  iterable_extensions['IterableComparableExtension|get#maxOrNull'] = function IterableComparableExtension$124get$35maxOrNull(T, $this) {
+    let iterator = $this[$iterator];
+    if (iterator.moveNext()) {
+      let value = iterator.current;
+      while (iterator.moveNext()) {
+        let newValue = iterator.current;
+        if (value[$compareTo](newValue) < 0) {
+          value = newValue;
+        }
+      }
+      return value;
+    }
+    return null;
+  };
+  iterable_extensions['IterableComparableExtension|get#max'] = function IterableComparableExtension$124get$35max(T, $this) {
+    let iterator = $this[$iterator];
+    if (iterator.moveNext()) {
+      let value = iterator.current;
+      while (iterator.moveNext()) {
+        let newValue = iterator.current;
+        if (value[$compareTo](newValue) < 0) {
+          value = newValue;
+        }
+      }
+      return value;
+    }
+    dart.throw(new core.StateError.new("No element"));
+  };
+  iterable_extensions['IterableComparableExtension|sorted'] = function IterableComparableExtension$124sorted(T, $this, compare = null) {
+    let t86;
+    t86 = (() => {
+      let t85 = core.List$(T).of($this);
+      return t85;
+    })();
+    return (() => {
+      t86[$sort](compare);
+      return t86;
+    })();
+  };
+  iterable_extensions['IterableComparableExtension|get#sorted'] = function IterableComparableExtension$124get$35sorted(T, $this) {
+    return dart.fn((compare = null) => iterable_extensions['IterableComparableExtension|sorted'](T, $this, compare), dart.fnType(core.List$(T), [], [dart.nullable(dart.fnType(core.int, [T, T]))]));
+  };
+  iterable_extensions['IterableComparableExtension|isSorted'] = function IterableComparableExtension$124isSorted(T, $this, compare = null) {
+    if (compare != null) {
+      return iterable_extensions['IterableExtension|isSorted'](T, $this, compare);
+    }
+    let iterator = $this[$iterator];
+    if (!iterator.moveNext()) return true;
+    let previousElement = iterator.current;
+    while (iterator.moveNext()) {
+      let element = iterator.current;
+      if (previousElement[$compareTo](element) > 0) return false;
+      previousElement = element;
+    }
+    return true;
+  };
+  iterable_extensions['IterableComparableExtension|get#isSorted'] = function IterableComparableExtension$124get$35isSorted(T, $this) {
+    return dart.fn((compare = null) => iterable_extensions['IterableComparableExtension|isSorted'](T, $this, compare), dart.fnType(core.bool, [], [dart.nullable(dart.fnType(core.int, [T, T]))]));
+  };
+  iterable_extensions['ComparatorExtension|get#inverse'] = function ComparatorExtension$124get$35inverse(T, $this) {
+    return dart.fn((a, b) => $this(b, a), dart.fnType(core.int, [T, T]));
+  };
+  iterable_extensions['ComparatorExtension|compareBy'] = function ComparatorExtension$124compareBy(T, R, $this, keyOf) {
+    return dart.fn((a, b) => $this(keyOf(a), keyOf(b)), dart.fnType(core.int, [R, R]));
+  };
+  iterable_extensions['ComparatorExtension|get#compareBy'] = function ComparatorExtension$124get$35compareBy(T, $this) {
+    return dart.fn((R, keyOf) => iterable_extensions['ComparatorExtension|compareBy'](T, R, $this, keyOf), dart.gFnType(R => {
+      var RAndRToint = () => (RAndRToint = dart.constFn(dart.fnType(core.int, [R, R])))();
+      return [RAndRToint(), [dart.fnType(T, [R])]];
+    }, R => {
+      var RAndRToint = () => (RAndRToint = dart.constFn(dart.fnType(core.int, [R, R])))();
+      return [T$.ObjectN()];
+    }));
+  };
+  iterable_extensions['ComparatorExtension|then'] = function ComparatorExtension$124then(T, $this, tieBreaker) {
+    return dart.fn((a, b) => {
+      let result = $this(a, b);
+      if (result === 0) result = tieBreaker(a, b);
+      return result;
+    }, dart.fnType(core.int, [T, T]));
+  };
+  iterable_extensions['ComparatorExtension|get#then'] = function ComparatorExtension$124get$35then(T, $this) {
+    return dart.fn(tieBreaker => iterable_extensions['ComparatorExtension|then'](T, $this, tieBreaker), dart.fnType(dart.fnType(core.int, [T, T]), [dart.fnType(core.int, [T, T])]));
+  };
+  dart.trackLibraries("packages/collection/src/iterable_extensions.dart", {
+    "package:collection/src/iterable_extensions.dart": iterable_extensions
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["single_child_scroll_view.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/widgets/single_child_scroll_view.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["iterable_extensions.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/collection/src/iterable_extensions.dart.lib.js"}');
   // Exports:
   return {
-    src__widgets__single_child_scroll_view: single_child_scroll_view
+    src__iterable_extensions: iterable_extensions
   };
 }));
 
-//# sourceMappingURL=single_child_scroll_view.dart.lib.js.map
+//# sourceMappingURL=iterable_extensions.dart.lib.js.map

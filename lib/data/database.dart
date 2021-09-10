@@ -46,13 +46,15 @@ class Transaction extends HiveObject{
 
 
 @HiveType(typeId: 4)
-class TIcome extends HiveObject{
+class Income extends HiveObject{
   @HiveField(0)
-  late double amount;
+  final amount;
+  Income(this.amount);
 }
 
 @HiveType(typeId: 5)
-class TOutcome extends HiveObject{
+class Outcome extends HiveObject{
   @HiveField(0)
-  late double amount;
+  final amount;
+  Outcome(this.amount);
 }

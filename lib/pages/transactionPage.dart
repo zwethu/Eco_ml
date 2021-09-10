@@ -21,9 +21,7 @@ class _TransactionPageState extends State<TransactionPage> {
   final int id = Hive.box('id').get(0);
   final bool check = Hive.box('id').get(1);
   final transactionBox = Hive.box('transactions');
-  final incomeBox = Hive.box('TIncome');
-  final expenseBox = Hive.box('TExpense');
-
+  final incomeBox = Hive.box('income');
   final TextEditingController amountController = TextEditingController();
   final TextEditingController noteController = TextEditingController();
 
@@ -196,18 +194,16 @@ class _TransactionPageState extends State<TransactionPage> {
                             pickedDate,
                             noteController.text,
                             ++cardId));
-                        double income = incomeBox.get(0) ?? 0.0;
-                        double outcome = expenseBox.get(0) ?? 0.0;
-                        if (check) {
-                          income = double.parse(amountController.text) + income;
-                          incomeBox.put(0, income);
-                        } else {
-                          outcome = double.parse(amountController.text) + outcome;
-                          expenseBox.put(0, outcome);
+                        final incomeData = incomeBox.get(0);
+                        if(check){
+                          final calculateIncome = incomeData + double.parse(amountController.text)??0.0;
+                          incomeBox.put(0, calculateIncome);
+                          print(incomeBox.get(0));
+                        }else{
+
                         }
                         navigateToHome(context);
-                        print(income);
-                        print(outcome);
+                        
                       });
                     },
                     child: Container(

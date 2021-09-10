@@ -15,6 +15,7 @@ class WalletPage extends StatefulWidget {
 
 class _WalletPageState extends State<WalletPage> {
   final box = Hive.box('transactions');
+  final incomeBox = Hive.box('income');
   @override
   void dispose() {
     // Hive.close();
@@ -27,6 +28,7 @@ class _WalletPageState extends State<WalletPage> {
     // final totalExpense;
     // final totalIncome;
     final amount = Hive.box('amount').get(0);
+    int income = incomeBox.get(0);
     // final data = Hive.box('trasactions').get(0);
     return ListView(
       shrinkWrap: true,
@@ -74,7 +76,7 @@ class _WalletPageState extends State<WalletPage> {
                     Container(
                       alignment: Alignment.bottomRight,
                       child: Text(
-                        ' Ks',
+                        '${amount.amount} Ks',
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,
@@ -125,7 +127,7 @@ class _WalletPageState extends State<WalletPage> {
                         Container(
                           padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
                           child: Text(
-                            '210000 Ks',
+                            '$income Ks',
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -225,7 +227,8 @@ class _WalletPageState extends State<WalletPage> {
                                   decoration: BoxDecoration(
                                     border: Border.all(
                                         color: Colors.black38, width: 1),
-                                        borderRadius: BorderRadius.all(Radius.circular(15)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(15)),
                                   ),
                                   margin: EdgeInsets.symmetric(
                                       vertical: 5, horizontal: 10),

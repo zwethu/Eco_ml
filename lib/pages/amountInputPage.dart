@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/data/database.dart';
+import 'package:eco_ml/data/incomeData.dart';
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -13,6 +14,9 @@ class AmountInputPage extends StatefulWidget {
 
 class _AmountInputPageState extends State<AmountInputPage> {
   final amountBox = Hive.openBox('amount');
+  final incomeBox = Hive.box('income');
+  final outcomeBox = Hive.box('outcome');
+  
   TextEditingController amountController = TextEditingController();
 
   @override
@@ -30,6 +34,8 @@ class _AmountInputPageState extends State<AmountInputPage> {
   @override
   Widget build(BuildContext context) {
     final dataName = Hive.box('username').get(0);
+  
+  
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -113,9 +119,16 @@ class _AmountInputPageState extends State<AmountInputPage> {
                 ),
                 onPressed: () {
                   navigateToHome(context);
-                  final data =
+                  setState(() {
+                    final data =
                       TotalAmount(double.parse(amountController.text), false);
                   addAmount(data);
+                  final incomeData = incomeBox.get(0);
+                    final calculateIncome = incomeData??0.0;
+                    incomeBox.put(0, calculateIncome);
+                    print(incomeBox.get(0));
+
+                  });
                 },
                 child: Container(
                   margin: EdgeInsets.symmetric(vertical: 0, horizontal: 60),
@@ -144,4 +157,8 @@ void navigateToHome(context) {
 
 void addAmount(TotalAmount totalAmount) {
   Hive.box('amount').put(0, totalAmount);
+}
+
+void addIncome(Income income){
+  Hive.box('income').put(0, income);
 }

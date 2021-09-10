@@ -1,605 +1,368 @@
-define(['dart_sdk', 'packages/dots_indicator/src/dots_decorator.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/circle_border.dart', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/colors.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/shape_decoration.dart', 'packages/flutter/src/material/icon_button.dart'], (function load__packages__dots_indicator__src__dots_indicator_dart(dart_sdk, packages__dots_indicator__src__dots_decorator$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__circle_border$46dart, packages__flutter__src__painting__borders$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__colors$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__shape_decoration$46dart, packages__flutter__src__material__icon_button$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/painting/box_decoration.dart'], (function load__packages__introduction_screen__src__model__page_decoration_dart(dart_sdk, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__painting__box_decoration$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
-  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const dots_decorator = packages__dots_indicator__src__dots_decorator$46dart.src__dots_decorator;
+  const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
   const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
-  const circle_border = packages__flutter__src__painting__circle_border$46dart.src__painting__circle_border;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
-  const colors$ = packages__flutter__src__painting__colors$46dart.src__painting__colors;
-  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
-  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
-  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const shape_decoration = packages__flutter__src__painting__shape_decoration$46dart.src__painting__shape_decoration;
-  const ink_well = packages__flutter__src__material__icon_button$46dart.src__material__ink_well;
-  var dots_indicator = Object.create(dart.library);
-  var $abs = dartx.abs;
-  var $toDouble = dartx.toDouble;
-  var $reversed = dartx.reversed;
-  var $toList = dartx.toList;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
+  var page_decoration = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(true);
-  var T = {
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    ListOfWidget: () => (T.ListOfWidget = dart.constFn(core.List$(framework.Widget)))()
-  };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C1() {
       return C[1] = dart.const({
-        __proto__: edge_insets.EdgeInsets.prototype,
-        [EdgeInsets_bottom]: 6,
-        [EdgeInsets_right]: 6,
-        [EdgeInsets_top]: 6,
-        [EdgeInsets_left]: 6
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: borders.BorderStyle.prototype,
-        [_name]: "BorderStyle.none",
-        index: 0
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278190080.0
-      });
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: borders.BorderSide.prototype,
-        [BorderSide_style]: C[4] || CT.C4,
-        [BorderSide_width]: 0,
-        [BorderSide_color]: C[5] || CT.C5
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: circle_border.CircleBorder.prototype,
-        [OutlinedBorder_side]: C[3] || CT.C3
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: ui.Size.prototype,
-        [OffsetBase__dy]: 9,
-        [OffsetBase__dx]: 9
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4292998654.0
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4289979900.0
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4286698746.0
-      });
-    },
-    get C12() {
-      return C[12] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4283417591.0
-      });
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4280923894.0
-      });
-    },
-    get C14() {
-      return C[14] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278430196.0
-      });
-    },
-    get C15() {
-      return C[15] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278426597.0
-      });
-    },
-    get C16() {
-      return C[16] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278356177.0
-      });
-    },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278351805.0
-      });
-    },
-    get C18() {
-      return C[18] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278278043.0
-      });
-    },
-    get C8() {
-      return C[8] = dart.constMap(core.int, ui.Color, [50, C[9] || CT.C9, 100, C[10] || CT.C10, 200, C[11] || CT.C11, 300, C[12] || CT.C12, 400, C[13] || CT.C13, 500, C[14] || CT.C14, 600, C[15] || CT.C15, 700, C[16] || CT.C16, 800, C[17] || CT.C17, 900, C[18] || CT.C18]);
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: colors.MaterialColor.prototype,
-        [Color_value]: 4278430196.0,
-        [ColorSwatch__swatch]: C[8] || CT.C8
-      });
-    },
-    get C21() {
-      return C[21] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4294638330.0
-      });
-    },
-    get C22() {
-      return C[22] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4294309365.0
-      });
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4293848814.0
-      });
-    },
-    get C24() {
-      return C[24] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4292927712.0
-      });
-    },
-    get C25() {
-      return C[25] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4292269782.0
-      });
-    },
-    get C26() {
-      return C[26] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4290624957.0
-      });
-    },
-    get C27() {
-      return C[27] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4288585374.0
-      });
-    },
-    get C28() {
-      return C[28] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4285887861.0
-      });
-    },
-    get C29() {
-      return C[29] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4284572001.0
-      });
-    },
-    get C30() {
-      return C[30] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4282532418.0
-      });
-    },
-    get C31() {
-      return C[31] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4281348144.0
-      });
-    },
-    get C32() {
-      return C[32] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4280361249.0
-      });
-    },
-    get C20() {
-      return C[20] = dart.constMap(core.int, ui.Color, [50, C[21] || CT.C21, 100, C[22] || CT.C22, 200, C[23] || CT.C23, 300, C[24] || CT.C24, 350, C[25] || CT.C25, 400, C[26] || CT.C26, 500, C[27] || CT.C27, 600, C[28] || CT.C28, 700, C[29] || CT.C29, 800, C[30] || CT.C30, 850, C[31] || CT.C31, 900, C[32] || CT.C32]);
-    },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: colors.MaterialColor.prototype,
-        [Color_value]: 4288585374.0,
-        [ColorSwatch__swatch]: C[20] || CT.C20
+        __proto__: ui.FontWeight.prototype,
+        [FontWeight_index]: 6
       });
     },
     get C0() {
       return C[0] = dart.const({
-        __proto__: dots_decorator.DotsDecorator.prototype,
-        [DotsDecorator_spacing]: C[1] || CT.C1,
-        [DotsDecorator_activeShape]: C[2] || CT.C2,
-        [DotsDecorator_shape]: C[2] || CT.C2,
-        [DotsDecorator_activeSize]: C[6] || CT.C6,
-        [DotsDecorator_size]: C[6] || CT.C6,
-        [DotsDecorator_activeColor]: C[7] || CT.C7,
-        [DotsDecorator_color]: C[19] || CT.C19
+        __proto__: text_style.TextStyle.prototype,
+        [TextStyle_fontFeatures]: null,
+        [TextStyle_shadows]: null,
+        [TextStyle_debugLabel]: null,
+        [TextStyle_decorationThickness]: null,
+        [TextStyle_decorationStyle]: null,
+        [TextStyle_decorationColor]: null,
+        [TextStyle_decoration]: null,
+        [TextStyle_background]: null,
+        [TextStyle_foreground]: null,
+        [TextStyle_locale]: null,
+        [TextStyle_leadingDistribution]: null,
+        [TextStyle_height]: null,
+        [TextStyle_textBaseline]: null,
+        [TextStyle_wordSpacing]: null,
+        [TextStyle_letterSpacing]: null,
+        [TextStyle_fontStyle]: null,
+        [TextStyle_fontWeight]: C[1] || CT.C1,
+        [TextStyle_fontSize]: 20,
+        [TextStyle__package]: null,
+        [TextStyle__fontFamilyFallback]: null,
+        [TextStyle_fontFamily]: null,
+        [TextStyle_backgroundColor]: null,
+        [TextStyle_color]: null,
+        [TextStyle_inherit]: true
       });
     },
-    get C33() {
-      return C[33] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name$]: "Axis.horizontal",
-        index: 0
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: ui.FontWeight.prototype,
+        [FontWeight_index]: 3
       });
     },
-    get C34() {
-      return C[34] = dart.const({
-        __proto__: flex.MainAxisSize.prototype,
-        [_name$0]: "MainAxisSize.min",
-        index: 0
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: text_style.TextStyle.prototype,
+        [TextStyle_fontFeatures]: null,
+        [TextStyle_shadows]: null,
+        [TextStyle_debugLabel]: null,
+        [TextStyle_decorationThickness]: null,
+        [TextStyle_decorationStyle]: null,
+        [TextStyle_decorationColor]: null,
+        [TextStyle_decoration]: null,
+        [TextStyle_background]: null,
+        [TextStyle_foreground]: null,
+        [TextStyle_locale]: null,
+        [TextStyle_leadingDistribution]: null,
+        [TextStyle_height]: null,
+        [TextStyle_textBaseline]: null,
+        [TextStyle_wordSpacing]: null,
+        [TextStyle_letterSpacing]: null,
+        [TextStyle_fontStyle]: null,
+        [TextStyle_fontWeight]: C[3] || CT.C3,
+        [TextStyle_fontSize]: 18,
+        [TextStyle__package]: null,
+        [TextStyle__fontFamilyFallback]: null,
+        [TextStyle_fontFamily]: null,
+        [TextStyle_backgroundColor]: null,
+        [TextStyle_color]: null,
+        [TextStyle_inherit]: true
       });
     },
-    get C35() {
-      return C[35] = dart.const({
-        __proto__: flex.MainAxisAlignment.prototype,
-        [_name$0]: "MainAxisAlignment.center",
-        index: 2
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 24,
+        [EdgeInsets_right]: 0,
+        [EdgeInsets_top]: 0,
+        [EdgeInsets_left]: 0
       });
     },
-    get C38() {
-      return C[38] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 7,
-        [_Location_line]: 51,
-        [_Location_file]: null
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 16,
+        [EdgeInsets_right]: 16,
+        [EdgeInsets_top]: 16,
+        [EdgeInsets_left]: 16
       });
     },
-    get C39() {
-      return C[39] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 7,
-        [_Location_line]: 52,
-        [_Location_file]: null
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 24,
+        [EdgeInsets_right]: 0,
+        [EdgeInsets_top]: 16,
+        [EdgeInsets_left]: 0
       });
     },
-    get C40() {
-      return C[40] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "margin",
-        [_Location_column]: 7,
-        [_Location_line]: 53,
-        [_Location_file]: null
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 0,
+        [EdgeInsets_right]: 0,
+        [EdgeInsets_top]: 0,
+        [EdgeInsets_left]: 0
       });
     },
-    get C41() {
-      return C[41] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "decoration",
-        [_Location_column]: 7,
-        [_Location_line]: 54,
-        [_Location_file]: null
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 24,
+        [EdgeInsets_right]: 0,
+        [EdgeInsets_top]: 24,
+        [EdgeInsets_left]: 0
       });
     },
-    get C37() {
-      return C[37] = dart.constList([C[38] || CT.C38, C[39] || CT.C39, C[40] || CT.C40, C[41] || CT.C41], widget_inspector._Location);
-    },
-    get C36() {
-      return C[36] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[37] || CT.C37,
-        [_Location_name]: null,
-        [_Location_column]: 17,
-        [_Location_line]: 50,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart"
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: alignment.Alignment.prototype,
+        [Alignment_y]: -1,
+        [Alignment_x]: 0
       });
     },
-    get C44() {
-      return C[44] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "customBorder",
-        [_Location_column]: 13,
-        [_Location_line]: 62,
-        [_Location_file]: null
-      });
-    },
-    get C45() {
-      return C[45] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onTap",
-        [_Location_column]: 13,
-        [_Location_line]: 63,
-        [_Location_file]: null
-      });
-    },
-    get C46() {
-      return C[46] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 13,
-        [_Location_line]: 64,
-        [_Location_file]: null
-      });
-    },
-    get C43() {
-      return C[43] = dart.constList([C[44] || CT.C44, C[45] || CT.C45, C[46] || CT.C46], widget_inspector._Location);
-    },
-    get C42() {
-      return C[42] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[43] || CT.C43,
-        [_Location_name]: null,
-        [_Location_column]: 11,
-        [_Location_line]: 61,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart"
-      });
-    },
-    get C49() {
-      return C[49] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "mainAxisAlignment",
-        [_Location_column]: 13,
-        [_Location_line]: 75,
-        [_Location_file]: null
-      });
-    },
-    get C50() {
-      return C[50] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "mainAxisSize",
-        [_Location_column]: 13,
-        [_Location_line]: 76,
-        [_Location_file]: null
-      });
-    },
-    get C51() {
-      return C[51] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 13,
-        [_Location_line]: 77,
-        [_Location_file]: null
-      });
-    },
-    get C48() {
-      return C[48] = dart.constList([C[49] || CT.C49, C[50] || CT.C50, C[51] || CT.C51], widget_inspector._Location);
-    },
-    get C47() {
-      return C[47] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[48] || CT.C48,
-        [_Location_name]: null,
-        [_Location_column]: 11,
-        [_Location_line]: 74,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart"
-      });
-    },
-    get C54() {
-      return C[54] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "mainAxisAlignment",
-        [_Location_column]: 13,
-        [_Location_line]: 80,
-        [_Location_file]: null
-      });
-    },
-    get C55() {
-      return C[55] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "mainAxisSize",
-        [_Location_column]: 13,
-        [_Location_line]: 81,
-        [_Location_file]: null
-      });
-    },
-    get C56() {
-      return C[56] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 13,
-        [_Location_line]: 82,
-        [_Location_file]: null
-      });
-    },
-    get C53() {
-      return C[53] = dart.constList([C[54] || CT.C54, C[55] || CT.C55, C[56] || CT.C56], widget_inspector._Location);
-    },
-    get C52() {
-      return C[52] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[53] || CT.C53,
-        [_Location_name]: null,
-        [_Location_column]: 11,
-        [_Location_line]: 79,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart"
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: alignment.Alignment.prototype,
+        [Alignment_y]: 1,
+        [Alignment_x]: 0
       });
     }
   }, false);
-  var C = Array(57).fill(void 0);
+  var C = Array(11).fill(void 0);
   var I = [
-    "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart",
-    "package:dots_indicator/src/dots_indicator.dart"
+    "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/introduction_screen-2.1.0/lib/src/model/page_decoration.dart",
+    "package:introduction_screen/src/model/page_decoration.dart"
   ];
-  var dotsCount$ = dart.privateName(dots_indicator, "DotsIndicator.dotsCount");
-  var position$ = dart.privateName(dots_indicator, "DotsIndicator.position");
-  var decorator$ = dart.privateName(dots_indicator, "DotsIndicator.decorator");
-  var axis$ = dart.privateName(dots_indicator, "DotsIndicator.axis");
-  var reversed$ = dart.privateName(dots_indicator, "DotsIndicator.reversed");
-  var onTap$ = dart.privateName(dots_indicator, "DotsIndicator.onTap");
-  var mainAxisSize$ = dart.privateName(dots_indicator, "DotsIndicator.mainAxisSize");
-  var mainAxisAlignment$ = dart.privateName(dots_indicator, "DotsIndicator.mainAxisAlignment");
+  var pageColor$ = dart.privateName(page_decoration, "PageDecoration.pageColor");
+  var titleTextStyle$ = dart.privateName(page_decoration, "PageDecoration.titleTextStyle");
+  var bodyTextStyle$ = dart.privateName(page_decoration, "PageDecoration.bodyTextStyle");
+  var boxDecoration$ = dart.privateName(page_decoration, "PageDecoration.boxDecoration");
+  var imageFlex$ = dart.privateName(page_decoration, "PageDecoration.imageFlex");
+  var bodyFlex$ = dart.privateName(page_decoration, "PageDecoration.bodyFlex");
+  var imagePadding$ = dart.privateName(page_decoration, "PageDecoration.imagePadding");
+  var contentMargin$ = dart.privateName(page_decoration, "PageDecoration.contentMargin");
+  var titlePadding$ = dart.privateName(page_decoration, "PageDecoration.titlePadding");
+  var descriptionPadding$ = dart.privateName(page_decoration, "PageDecoration.descriptionPadding");
+  var footerPadding$ = dart.privateName(page_decoration, "PageDecoration.footerPadding");
+  var bodyAlignment$ = dart.privateName(page_decoration, "PageDecoration.bodyAlignment");
+  var imageAlignment$ = dart.privateName(page_decoration, "PageDecoration.imageAlignment");
+  var fullScreen$ = dart.privateName(page_decoration, "PageDecoration.fullScreen");
+  var TextStyle_fontFeatures = dart.privateName(text_style, "TextStyle.fontFeatures");
+  var TextStyle_shadows = dart.privateName(text_style, "TextStyle.shadows");
+  var TextStyle_debugLabel = dart.privateName(text_style, "TextStyle.debugLabel");
+  var TextStyle_decorationThickness = dart.privateName(text_style, "TextStyle.decorationThickness");
+  var TextStyle_decorationStyle = dart.privateName(text_style, "TextStyle.decorationStyle");
+  var TextStyle_decorationColor = dart.privateName(text_style, "TextStyle.decorationColor");
+  var TextStyle_decoration = dart.privateName(text_style, "TextStyle.decoration");
+  var TextStyle_background = dart.privateName(text_style, "TextStyle.background");
+  var TextStyle_foreground = dart.privateName(text_style, "TextStyle.foreground");
+  var TextStyle_locale = dart.privateName(text_style, "TextStyle.locale");
+  var TextStyle_leadingDistribution = dart.privateName(text_style, "TextStyle.leadingDistribution");
+  var TextStyle_height = dart.privateName(text_style, "TextStyle.height");
+  var TextStyle_textBaseline = dart.privateName(text_style, "TextStyle.textBaseline");
+  var TextStyle_wordSpacing = dart.privateName(text_style, "TextStyle.wordSpacing");
+  var TextStyle_letterSpacing = dart.privateName(text_style, "TextStyle.letterSpacing");
+  var TextStyle_fontStyle = dart.privateName(text_style, "TextStyle.fontStyle");
+  var FontWeight_index = dart.privateName(ui, "FontWeight.index");
+  var TextStyle_fontWeight = dart.privateName(text_style, "TextStyle.fontWeight");
+  var TextStyle_fontSize = dart.privateName(text_style, "TextStyle.fontSize");
+  var TextStyle__package = dart.privateName(text_style, "TextStyle._package");
+  var TextStyle__fontFamilyFallback = dart.privateName(text_style, "TextStyle._fontFamilyFallback");
+  var TextStyle_fontFamily = dart.privateName(text_style, "TextStyle.fontFamily");
+  var TextStyle_backgroundColor = dart.privateName(text_style, "TextStyle.backgroundColor");
+  var TextStyle_color = dart.privateName(text_style, "TextStyle.color");
+  var TextStyle_inherit = dart.privateName(text_style, "TextStyle.inherit");
   var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
   var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
   var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
   var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
-  var DotsDecorator_spacing = dart.privateName(dots_decorator, "DotsDecorator.spacing");
-  var _name = dart.privateName(borders, "_name");
-  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
-  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
-  var Color_value = dart.privateName(ui, "Color.value");
-  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
-  var OutlinedBorder_side = dart.privateName(borders, "OutlinedBorder.side");
-  var DotsDecorator_activeShape = dart.privateName(dots_decorator, "DotsDecorator.activeShape");
-  var DotsDecorator_shape = dart.privateName(dots_decorator, "DotsDecorator.shape");
-  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
-  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
-  var DotsDecorator_activeSize = dart.privateName(dots_decorator, "DotsDecorator.activeSize");
-  var DotsDecorator_size = dart.privateName(dots_decorator, "DotsDecorator.size");
-  var ColorSwatch__swatch = dart.privateName(colors$, "ColorSwatch._swatch");
-  var DotsDecorator_activeColor = dart.privateName(dots_decorator, "DotsDecorator.activeColor");
-  var DotsDecorator_color = dart.privateName(dots_decorator, "DotsDecorator.color");
-  var _name$ = dart.privateName(basic_types, "_name");
-  var _name$0 = dart.privateName(flex, "_name");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  var _buildDot = dart.privateName(dots_indicator, "_buildDot");
-  dots_indicator.DotsIndicator = class DotsIndicator extends framework.StatelessWidget {
-    get dotsCount() {
-      return this[dotsCount$];
+  var Alignment_y = dart.privateName(alignment, "Alignment.y");
+  var Alignment_x = dart.privateName(alignment, "Alignment.x");
+  page_decoration.PageDecoration = class PageDecoration extends core.Object {
+    get pageColor() {
+      return this[pageColor$];
     }
-    set dotsCount(value) {
-      super.dotsCount = value;
+    set pageColor(value) {
+      super.pageColor = value;
     }
-    get position() {
-      return this[position$];
+    get titleTextStyle() {
+      return this[titleTextStyle$];
     }
-    set position(value) {
-      super.position = value;
+    set titleTextStyle(value) {
+      super.titleTextStyle = value;
     }
-    get decorator() {
-      return this[decorator$];
+    get bodyTextStyle() {
+      return this[bodyTextStyle$];
     }
-    set decorator(value) {
-      super.decorator = value;
+    set bodyTextStyle(value) {
+      super.bodyTextStyle = value;
     }
-    get axis() {
-      return this[axis$];
+    get boxDecoration() {
+      return this[boxDecoration$];
     }
-    set axis(value) {
-      super.axis = value;
+    set boxDecoration(value) {
+      super.boxDecoration = value;
     }
-    get reversed() {
-      return this[reversed$];
+    get imageFlex() {
+      return this[imageFlex$];
     }
-    set reversed(value) {
-      super.reversed = value;
+    set imageFlex(value) {
+      super.imageFlex = value;
     }
-    get onTap() {
-      return this[onTap$];
+    get bodyFlex() {
+      return this[bodyFlex$];
     }
-    set onTap(value) {
-      super.onTap = value;
+    set bodyFlex(value) {
+      super.bodyFlex = value;
     }
-    get mainAxisSize() {
-      return this[mainAxisSize$];
+    get imagePadding() {
+      return this[imagePadding$];
     }
-    set mainAxisSize(value) {
-      super.mainAxisSize = value;
+    set imagePadding(value) {
+      super.imagePadding = value;
     }
-    get mainAxisAlignment() {
-      return this[mainAxisAlignment$];
+    get contentMargin() {
+      return this[contentMargin$];
     }
-    set mainAxisAlignment(value) {
-      super.mainAxisAlignment = value;
+    set contentMargin(value) {
+      super.contentMargin = value;
     }
-    [_buildDot](index) {
-      let state = math.min(core.double, 1.0, (this.position - index)[$abs]());
-      let size = dart.nullCheck(ui.Size.lerp(this.decorator.activeSize, this.decorator.size, state));
-      let color = ui.Color.lerp(this.decorator.activeColor, this.decorator.color, state);
-      let shape = dart.nullCheck(borders.ShapeBorder.lerp(this.decorator.activeShape, this.decorator.shape, state));
-      let dot = new container.Container.new({width: size.width, height: size.height, margin: this.decorator.spacing, decoration: new shape_decoration.ShapeDecoration.new({color: color, shape: shape}), $creationLocationd_0dea112b090073317d4: C[36] || CT.C36});
-      return this.onTap == null ? dot : new ink_well.InkWell.new({customBorder: C[2] || CT.C2, onTap: dart.fn(() => dart.nullCheck(this.onTap)(index[$toDouble]()), T.VoidTovoid()), child: dot, $creationLocationd_0dea112b090073317d4: C[42] || CT.C42});
+    get titlePadding() {
+      return this[titlePadding$];
     }
-    build(context) {
-      let dotsList = T.ListOfWidget().generate(this.dotsCount, dart.bind(this, _buildDot));
-      let dots = this.reversed === true ? dotsList[$reversed][$toList]() : dotsList;
-      return this.axis === basic_types.Axis.vertical ? new basic.Column.new({mainAxisAlignment: this.mainAxisAlignment, mainAxisSize: this.mainAxisSize, children: dots, $creationLocationd_0dea112b090073317d4: C[47] || CT.C47}) : new basic.Row.new({mainAxisAlignment: this.mainAxisAlignment, mainAxisSize: this.mainAxisSize, children: dots, $creationLocationd_0dea112b090073317d4: C[52] || CT.C52});
+    set titlePadding(value) {
+      super.titlePadding = value;
+    }
+    get descriptionPadding() {
+      return this[descriptionPadding$];
+    }
+    set descriptionPadding(value) {
+      super.descriptionPadding = value;
+    }
+    get footerPadding() {
+      return this[footerPadding$];
+    }
+    set footerPadding(value) {
+      super.footerPadding = value;
+    }
+    get bodyAlignment() {
+      return this[bodyAlignment$];
+    }
+    set bodyAlignment(value) {
+      super.bodyAlignment = value;
+    }
+    get imageAlignment() {
+      return this[imageAlignment$];
+    }
+    set imageAlignment(value) {
+      super.imageAlignment = value;
+    }
+    get fullScreen() {
+      return this[fullScreen$];
+    }
+    set fullScreen(value) {
+      super.fullScreen = value;
+    }
+    copyWith(opts) {
+      let t0, t0$, t0$0, t0$1, t0$2, t0$3, t0$4, t0$5, t0$6, t0$7, t0$8, t0$9, t0$10, t0$11;
+      let pageColor = opts && 'pageColor' in opts ? opts.pageColor : null;
+      let titleTextStyle = opts && 'titleTextStyle' in opts ? opts.titleTextStyle : null;
+      let bodyTextStyle = opts && 'bodyTextStyle' in opts ? opts.bodyTextStyle : null;
+      let boxDecoration = opts && 'boxDecoration' in opts ? opts.boxDecoration : null;
+      let imageFlex = opts && 'imageFlex' in opts ? opts.imageFlex : null;
+      let bodyFlex = opts && 'bodyFlex' in opts ? opts.bodyFlex : null;
+      let imagePadding = opts && 'imagePadding' in opts ? opts.imagePadding : null;
+      let contentMargin = opts && 'contentMargin' in opts ? opts.contentMargin : null;
+      let titlePadding = opts && 'titlePadding' in opts ? opts.titlePadding : null;
+      let descriptionPadding = opts && 'descriptionPadding' in opts ? opts.descriptionPadding : null;
+      let footerPadding = opts && 'footerPadding' in opts ? opts.footerPadding : null;
+      let bodyAlignment = opts && 'bodyAlignment' in opts ? opts.bodyAlignment : null;
+      let imageAlignment = opts && 'imageAlignment' in opts ? opts.imageAlignment : null;
+      let fullScreen = opts && 'fullScreen' in opts ? opts.fullScreen : null;
+      if (!(pageColor == null || boxDecoration == null)) dart.assertFailed("Cannot provide both a Color and a BoxDecoration\n", I[0], 107, 7, "pageColor == null || boxDecoration == null");
+      return new page_decoration.PageDecoration.new({pageColor: (t0 = pageColor, t0 == null ? this.pageColor : t0), titleTextStyle: (t0$ = titleTextStyle, t0$ == null ? this.titleTextStyle : t0$), bodyTextStyle: (t0$0 = bodyTextStyle, t0$0 == null ? this.bodyTextStyle : t0$0), boxDecoration: (t0$1 = boxDecoration, t0$1 == null ? this.boxDecoration : t0$1), imageFlex: (t0$2 = imageFlex, t0$2 == null ? this.imageFlex : t0$2), bodyFlex: (t0$3 = bodyFlex, t0$3 == null ? this.bodyFlex : t0$3), imagePadding: (t0$4 = imagePadding, t0$4 == null ? this.imagePadding : t0$4), contentMargin: (t0$5 = contentMargin, t0$5 == null ? this.contentMargin : t0$5), titlePadding: (t0$6 = titlePadding, t0$6 == null ? this.titlePadding : t0$6), descriptionPadding: (t0$7 = descriptionPadding, t0$7 == null ? this.descriptionPadding : t0$7), footerPadding: (t0$8 = footerPadding, t0$8 == null ? this.footerPadding : t0$8), bodyAlignment: (t0$9 = bodyAlignment, t0$9 == null ? this.bodyAlignment : t0$9), imageAlignment: (t0$10 = imageAlignment, t0$10 == null ? this.imageAlignment : t0$10), fullScreen: (t0$11 = fullScreen, t0$11 == null ? this.fullScreen : t0$11)});
     }
   };
-  (dots_indicator.DotsIndicator.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let dotsCount = opts && 'dotsCount' in opts ? opts.dotsCount : null;
-    let position = opts && 'position' in opts ? opts.position : 0;
-    let decorator = opts && 'decorator' in opts ? opts.decorator : C[0] || CT.C0;
-    let axis = opts && 'axis' in opts ? opts.axis : C[33] || CT.C33;
-    let reversed = opts && 'reversed' in opts ? opts.reversed : false;
-    let mainAxisSize = opts && 'mainAxisSize' in opts ? opts.mainAxisSize : C[34] || CT.C34;
-    let mainAxisAlignment = opts && 'mainAxisAlignment' in opts ? opts.mainAxisAlignment : C[35] || CT.C35;
-    let onTap = opts && 'onTap' in opts ? opts.onTap : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[dotsCount$] = dotsCount;
-    this[position$] = position;
-    this[decorator$] = decorator;
-    this[axis$] = axis;
-    this[reversed$] = reversed;
-    this[mainAxisSize$] = mainAxisSize;
-    this[mainAxisAlignment$] = mainAxisAlignment;
-    this[onTap$] = onTap;
-    if (!(dotsCount > 0)) dart.assertFailed(null, I[0], 31, 16, "dotsCount > 0");
-    if (!(position >= 0)) dart.assertFailed(null, I[0], 32, 16, "position >= 0");
-    if (!(position < dotsCount)) dart.assertFailed("Position must be inferior than dotsCount", I[0], 34, 11, "position < dotsCount");
-    dots_indicator.DotsIndicator.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (page_decoration.PageDecoration.new = function(opts) {
+    let pageColor = opts && 'pageColor' in opts ? opts.pageColor : null;
+    let titleTextStyle = opts && 'titleTextStyle' in opts ? opts.titleTextStyle : C[0] || CT.C0;
+    let bodyTextStyle = opts && 'bodyTextStyle' in opts ? opts.bodyTextStyle : C[2] || CT.C2;
+    let boxDecoration = opts && 'boxDecoration' in opts ? opts.boxDecoration : null;
+    let imageFlex = opts && 'imageFlex' in opts ? opts.imageFlex : 1;
+    let bodyFlex = opts && 'bodyFlex' in opts ? opts.bodyFlex : 1;
+    let imagePadding = opts && 'imagePadding' in opts ? opts.imagePadding : C[4] || CT.C4;
+    let contentMargin = opts && 'contentMargin' in opts ? opts.contentMargin : C[5] || CT.C5;
+    let titlePadding = opts && 'titlePadding' in opts ? opts.titlePadding : C[6] || CT.C6;
+    let descriptionPadding = opts && 'descriptionPadding' in opts ? opts.descriptionPadding : C[7] || CT.C7;
+    let footerPadding = opts && 'footerPadding' in opts ? opts.footerPadding : C[8] || CT.C8;
+    let bodyAlignment = opts && 'bodyAlignment' in opts ? opts.bodyAlignment : C[9] || CT.C9;
+    let imageAlignment = opts && 'imageAlignment' in opts ? opts.imageAlignment : C[10] || CT.C10;
+    let fullScreen = opts && 'fullScreen' in opts ? opts.fullScreen : false;
+    this[pageColor$] = pageColor;
+    this[titleTextStyle$] = titleTextStyle;
+    this[bodyTextStyle$] = bodyTextStyle;
+    this[boxDecoration$] = boxDecoration;
+    this[imageFlex$] = imageFlex;
+    this[bodyFlex$] = bodyFlex;
+    this[imagePadding$] = imagePadding;
+    this[contentMargin$] = contentMargin;
+    this[titlePadding$] = titlePadding;
+    this[descriptionPadding$] = descriptionPadding;
+    this[footerPadding$] = footerPadding;
+    this[bodyAlignment$] = bodyAlignment;
+    this[imageAlignment$] = imageAlignment;
+    this[fullScreen$] = fullScreen;
+    if (!(pageColor == null || boxDecoration == null)) dart.assertFailed("Cannot provide both a Color and a BoxDecoration\n", I[0], 87, 15, "pageColor == null || boxDecoration == null");
     ;
-  }).prototype = dots_indicator.DotsIndicator.prototype;
-  dart.addTypeTests(dots_indicator.DotsIndicator);
-  dart.addTypeCaches(dots_indicator.DotsIndicator);
-  dart.setMethodSignature(dots_indicator.DotsIndicator, () => ({
-    __proto__: dart.getMethods(dots_indicator.DotsIndicator.__proto__),
-    [_buildDot]: dart.fnType(framework.Widget, [core.int]),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = page_decoration.PageDecoration.prototype;
+  dart.addTypeTests(page_decoration.PageDecoration);
+  dart.addTypeCaches(page_decoration.PageDecoration);
+  dart.setMethodSignature(page_decoration.PageDecoration, () => ({
+    __proto__: dart.getMethods(page_decoration.PageDecoration.__proto__),
+    copyWith: dart.fnType(page_decoration.PageDecoration, [], {bodyAlignment: dart.nullable(alignment.Alignment), bodyFlex: dart.nullable(core.int), bodyTextStyle: dart.nullable(text_style.TextStyle), boxDecoration: dart.nullable(box_decoration.BoxDecoration), contentMargin: dart.nullable(edge_insets.EdgeInsets), descriptionPadding: dart.nullable(edge_insets.EdgeInsets), footerPadding: dart.nullable(edge_insets.EdgeInsets), fullScreen: dart.nullable(core.bool), imageAlignment: dart.nullable(alignment.Alignment), imageFlex: dart.nullable(core.int), imagePadding: dart.nullable(edge_insets.EdgeInsets), pageColor: dart.nullable(ui.Color), titlePadding: dart.nullable(edge_insets.EdgeInsets), titleTextStyle: dart.nullable(text_style.TextStyle)}, {})
   }));
-  dart.setLibraryUri(dots_indicator.DotsIndicator, I[1]);
-  dart.setFieldSignature(dots_indicator.DotsIndicator, () => ({
-    __proto__: dart.getFields(dots_indicator.DotsIndicator.__proto__),
-    dotsCount: dart.finalFieldType(core.int),
-    position: dart.finalFieldType(core.double),
-    decorator: dart.finalFieldType(dots_decorator.DotsDecorator),
-    axis: dart.finalFieldType(basic_types.Axis),
-    reversed: dart.finalFieldType(core.bool),
-    onTap: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [core.double]))),
-    mainAxisSize: dart.finalFieldType(flex.MainAxisSize),
-    mainAxisAlignment: dart.finalFieldType(flex.MainAxisAlignment)
+  dart.setLibraryUri(page_decoration.PageDecoration, I[1]);
+  dart.setFieldSignature(page_decoration.PageDecoration, () => ({
+    __proto__: dart.getFields(page_decoration.PageDecoration.__proto__),
+    pageColor: dart.finalFieldType(dart.nullable(ui.Color)),
+    titleTextStyle: dart.finalFieldType(text_style.TextStyle),
+    bodyTextStyle: dart.finalFieldType(text_style.TextStyle),
+    boxDecoration: dart.finalFieldType(dart.nullable(box_decoration.BoxDecoration)),
+    imageFlex: dart.finalFieldType(core.int),
+    bodyFlex: dart.finalFieldType(core.int),
+    imagePadding: dart.finalFieldType(edge_insets.EdgeInsets),
+    contentMargin: dart.finalFieldType(edge_insets.EdgeInsets),
+    titlePadding: dart.finalFieldType(edge_insets.EdgeInsets),
+    descriptionPadding: dart.finalFieldType(edge_insets.EdgeInsets),
+    footerPadding: dart.finalFieldType(edge_insets.EdgeInsets),
+    bodyAlignment: dart.finalFieldType(alignment.Alignment),
+    imageAlignment: dart.finalFieldType(alignment.Alignment),
+    fullScreen: dart.finalFieldType(core.bool)
   }));
-  dart.trackLibraries("packages/dots_indicator/src/dots_indicator.dart", {
-    "package:dots_indicator/src/dots_indicator.dart": dots_indicator
+  dart.trackLibraries("packages/introduction_screen/src/model/page_decoration.dart", {
+    "package:introduction_screen/src/model/page_decoration.dart": page_decoration
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["dots_indicator.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAWY;;;;;;IACG;;;;;;IACO;;;;;;IACT;;;;;;IACA;;;;;;IACE;;;;;;IACM;;;;;;IACK;;;;;;gBAoBH;AACb,kBAAQ,sBAAI,KAAwB,CAAlB,AAAS,gBAAE,KAAK;AAElC,iBAA6D,eAAjD,aAAK,AAAU,2BAAY,AAAU,qBAAM,KAAK;AAC5D,kBAAc,cAAK,AAAU,4BAAa,AAAU,sBAAO,KAAK;AAChE,kBAIL,eAJyB,yBACxB,AAAU,4BACV,AAAU,sBACV,KAAK;AAGD,gBAAM,oCACH,AAAK,IAAD,gBACH,AAAK,IAAD,iBACJ,AAAU,oCACN,iDACH,KAAK,SACL,KAAK;AAGhB,YAAO,AAAM,sBACP,GAAG,GACH,8DAES,cAAW,AAAC,eAAN,YAAO,AAAM,KAAD,wCAClB,GAAG;IAEpB;UAG0B;AAClB,qBAAW,0BAAsB,0BAAW;AAC5C,iBAAO,AAAS,kBAAG,OAAO,AAAS,AAAS,QAAV,yBAAqB,QAAQ;AAErE,YAAO,AAAK,eAAQ,4BACd,yCACqB,sCACL,6BACJ,IAAI,8DAEhB,sCACqB,sCACL,6BACJ,IAAI;IAExB;;;QA9DO;QACS;QACT;QACA;QACA;QACA;QACA;QACA;QACA;;IAPS;IACT;IACA;IACA;IACA;IACA;IACA;IACA;UACM,AAAU,SAAD,GAAG;UACZ,AAAS,QAAD,IAAI;UAEjB,AAAS,QAAD,GAAG,SAAS,qBACpB;AAEF,gEAAW,GAAG;;EAAC","file":"../../../../../../../../packages/dots_indicator/src/dots_indicator.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["page_decoration.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAIe;;;;;;IAKG;;;;;;IAKA;;;;;;IAGK;;;;;;IAGX;;;;;;IAGA;;;;;;IAKO;;;;;;IAKA;;;;;;IAKA;;;;;;IAKA;;;;;;IAKA;;;;;;IAKD;;;;;;IAKA;;;;;;IAKL;;;;;;;;UA2BF;UACI;UACA;UACI;UACV;UACA;UACO;UACA;UACA;UACA;UACA;UACD;UACA;UACL;AAEN,YACE,AAAU,AAAQ,SAAT,YAAY,AAAc,aAAD,6BAClC;AAGF,YAAO,qDACgB,KAAV,SAAS,EAAT,aAAkB,uCACE,MAAf,cAAc,EAAd,cAAuB,4CACV,OAAd,aAAa,EAAb,eAAsB,4CACR,OAAd,aAAa,EAAb,eAAsB,wCAChB,OAAV,SAAS,EAAT,eAAkB,mCACV,OAAT,QAAQ,EAAR,eAAiB,sCACA,OAAb,YAAY,EAAZ,eAAqB,2CACN,OAAd,aAAa,EAAb,eAAsB,2CACV,OAAb,YAAY,EAAZ,eAAqB,gDACI,OAAnB,kBAAkB,EAAlB,eAA2B,iDAClB,OAAd,aAAa,EAAb,eAAsB,4CACR,OAAd,aAAa,EAAb,eAAsB,6CACN,QAAf,cAAc,EAAd,gBAAuB,2CAChB,QAAX,UAAU,EAAV,gBAAmB;IAEnC;;;QA5DO;QACA;QAIA;QAIA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;QACA;IAnBA;IACA;IAIA;IAIA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;IACA;UACK,AAAU,AAAQ,SAAT,YAAY,AAAc,aAAD,6BACpC;;EAAoD","file":"../../../../../../../../../packages/introduction_screen/src/model/page_decoration.dart.lib.js"}');
   // Exports:
   return {
-    src__dots_indicator: dots_indicator
+    src__model__page_decoration: page_decoration
   };
 }));
 
-//# sourceMappingURL=dots_indicator.dart.lib.js.map
+//# sourceMappingURL=page_decoration.dart.lib.js.map

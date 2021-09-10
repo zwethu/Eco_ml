@@ -1,24 +1,27 @@
-define(['dart_sdk', 'packages/vector_math/vector_math_64.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/foundation/debug.dart'], (function load__packages__flutter__src__painting__matrix_utils_dart(dart_sdk, packages__vector_math__vector_math_64$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__foundation__debug$46dart) {
+define(['dart_sdk', 'packages/flutter/src/gestures/events.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/services/system_channels.dart', 'packages/flutter/src/foundation/object.dart'], (function load__packages__flutter__src__services__mouse_cursor_dart(dart_sdk, packages__flutter__src__gestures__events$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__services__system_channels$46dart, packages__flutter__src__foundation__object$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const ui = dart_sdk.ui;
-  const _native_typed_data = dart_sdk._native_typed_data;
-  const _internal = dart_sdk._internal;
-  const _interceptors = dart_sdk._interceptors;
+  const _js_helper = dart_sdk._js_helper;
+  const async = dart_sdk.async;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const vector_math_64 = packages__vector_math__vector_math_64$46dart.vector_math_64;
-  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
   const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const debug = packages__flutter__src__foundation__debug$46dart.src__foundation__debug;
-  var matrix_utils = Object.create(dart.library);
+  const system_channels = packages__flutter__src__services__system_channels$46dart.src__services__system_channels;
+  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
+  var mouse_cursor = Object.create(dart.library);
+  var $_equals = dartx._equals;
   var $_get = dartx._get;
+  var $remove = dartx.remove;
   var $_set = dartx._set;
-  var $isFinite = dartx.isFinite;
-  var $join = dartx.join;
+  var $runtimeType = dartx.runtimeType;
+  var $hashCode = dartx.hashCode;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))()
+    IdentityMapOfint$MouseCursorSession: () => (T.IdentityMapOfint$MouseCursorSession = dart.constFn(_js_helper.IdentityMap$(core.int, mouse_cursor.MouseCursorSession)))(),
+    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
+    IdentityMapOfString$dynamic: () => (T.IdentityMapOfString$dynamic = dart.constFn(_js_helper.IdentityMap$(core.String, dart.dynamic)))(),
+    DiagnosticsPropertyOfString: () => (T.DiagnosticsPropertyOfString = dart.constFn(diagnostics.DiagnosticsProperty$(core.String)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -26,264 +29,635 @@ define(['dart_sdk', 'packages/vector_math/vector_math_64.dart', 'packages/flutte
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name]: "Axis.vertical",
-        index: 1
+        __proto__: diagnostics.DiagnosticLevel.prototype,
+        [_name]: "DiagnosticLevel.info",
+        index: 3
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: diagnostics._NoDefaultValue.prototype
+        __proto__: mouse_cursor._DeferringMouseCursor.prototype
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: diagnostics.DiagnosticLevel.prototype,
-        [_name$]: "DiagnosticLevel.info",
-        index: 3
+        __proto__: mouse_cursor._NoopMouseCursor.prototype
       });
     },
     get C3() {
-      return C[3] = dart.constList(["null"], core.String);
+      return C[3] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "none"
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "basic"
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "click"
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "forbidden"
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "wait"
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "progress"
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "contextMenu"
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "help"
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "text"
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "verticalText"
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "cell"
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "precise"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "move"
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "grab"
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "grabbing"
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "noDrop"
+      });
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "alias"
+      });
+    },
+    get C20() {
+      return C[20] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "copy"
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "disappearing"
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "allScroll"
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeLeftRight"
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeUpDown"
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeUpLeftDownRight"
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeUpRightDownLeft"
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeUp"
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeDown"
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeLeft"
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeRight"
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeUpLeft"
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeUpRight"
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeDownLeft"
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeDownRight"
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeColumn"
+      });
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "resizeRow"
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "zoomIn"
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: mouse_cursor.SystemMouseCursor.prototype,
+        [kind$]: "zoomOut"
+      });
     }
   }, false);
-  var C = Array(4).fill(void 0);
+  var C = Array(39).fill(void 0);
   var I = [
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/painting/matrix_utils.dart",
-    "package:flutter/src/painting/matrix_utils.dart"
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/services/mouse_cursor.dart",
+    "package:flutter/src/services/mouse_cursor.dart"
   ];
-  var _name = dart.privateName(basic_types, "_name");
-  matrix_utils.MatrixUtils = class MatrixUtils extends core.Object {
-    static getAsTranslation(transform) {
-      if (!(transform !== null)) dart.assertFailed(null, I[0], 24, 12, "transform != null");
-      let values = transform.storage;
-      if (values[$_get](0) === 1.0 && values[$_get](1) === 0.0 && values[$_get](2) === 0.0 && values[$_get](3) === 0.0 && values[$_get](4) === 0.0 && values[$_get](5) === 1.0 && values[$_get](6) === 0.0 && values[$_get](7) === 0.0 && values[$_get](8) === 0.0 && values[$_get](9) === 0.0 && values[$_get](10) === 1.0 && values[$_get](11) === 0.0 && values[$_get](14) === 0.0 && values[$_get](15) === 1.0) {
-        return new ui.Offset.new(values[$_get](12), values[$_get](13));
-      }
-      return null;
+  var fallbackMouseCursor$ = dart.privateName(mouse_cursor, "MouseCursorManager.fallbackMouseCursor");
+  var _lastSession = dart.privateName(mouse_cursor, "_lastSession");
+  mouse_cursor.MouseCursorManager = class MouseCursorManager extends core.Object {
+    get fallbackMouseCursor() {
+      return this[fallbackMouseCursor$];
     }
-    static getAsScale(transform) {
-      if (!(transform !== null)) dart.assertFailed(null, I[0], 51, 12, "transform != null");
-      let values = transform.storage;
-      if (values[$_get](1) === 0.0 && values[$_get](2) === 0.0 && values[$_get](3) === 0.0 && values[$_get](4) === 0.0 && values[$_get](6) === 0.0 && values[$_get](7) === 0.0 && values[$_get](8) === 0.0 && values[$_get](9) === 0.0 && values[$_get](10) === 1.0 && values[$_get](11) === 0.0 && values[$_get](12) === 0.0 && values[$_get](13) === 0.0 && values[$_get](14) === 0.0 && values[$_get](15) === 1.0 && values[$_get](0) === values[$_get](5)) {
-        return values[$_get](0);
-      }
-      return null;
+    set fallbackMouseCursor(value) {
+      super.fallbackMouseCursor = value;
     }
-    static matrixEquals(a, b) {
-      if (a == b) return true;
-      if (!(a != null || b != null)) dart.assertFailed(null, I[0], 79, 12, "a != null || b != null");
-      if (a == null) return matrix_utils.MatrixUtils.isIdentity(dart.nullCheck(b));
-      if (b == null) return matrix_utils.MatrixUtils.isIdentity(a);
-      if (!(a != null && b != null)) dart.assertFailed(null, I[0], 84, 12, "a != null && b != null");
-      return a.storage[$_get](0) === b.storage[$_get](0) && a.storage[$_get](1) === b.storage[$_get](1) && a.storage[$_get](2) === b.storage[$_get](2) && a.storage[$_get](3) === b.storage[$_get](3) && a.storage[$_get](4) === b.storage[$_get](4) && a.storage[$_get](5) === b.storage[$_get](5) && a.storage[$_get](6) === b.storage[$_get](6) && a.storage[$_get](7) === b.storage[$_get](7) && a.storage[$_get](8) === b.storage[$_get](8) && a.storage[$_get](9) === b.storage[$_get](9) && a.storage[$_get](10) === b.storage[$_get](10) && a.storage[$_get](11) === b.storage[$_get](11) && a.storage[$_get](12) === b.storage[$_get](12) && a.storage[$_get](13) === b.storage[$_get](13) && a.storage[$_get](14) === b.storage[$_get](14) && a.storage[$_get](15) === b.storage[$_get](15);
-    }
-    static isIdentity(a) {
-      if (!(a !== null)) dart.assertFailed(null, I[0], 105, 12, "a != null");
-      return a.storage[$_get](0) === 1.0 && a.storage[$_get](1) === 0.0 && a.storage[$_get](2) === 0.0 && a.storage[$_get](3) === 0.0 && a.storage[$_get](4) === 0.0 && a.storage[$_get](5) === 1.0 && a.storage[$_get](6) === 0.0 && a.storage[$_get](7) === 0.0 && a.storage[$_get](8) === 0.0 && a.storage[$_get](9) === 0.0 && a.storage[$_get](10) === 1.0 && a.storage[$_get](11) === 0.0 && a.storage[$_get](12) === 0.0 && a.storage[$_get](13) === 0.0 && a.storage[$_get](14) === 0.0 && a.storage[$_get](15) === 1.0;
-    }
-    static transformPoint(transform, point) {
-      let storage = transform.storage;
-      let x = point.dx;
-      let y = point.dy;
-      let rx = storage[$_get](0) * x + storage[$_get](4) * y + storage[$_get](12);
-      let ry = storage[$_get](1) * x + storage[$_get](5) * y + storage[$_get](13);
-      let rw = storage[$_get](3) * x + storage[$_get](7) * y + storage[$_get](15);
-      if (rw === 1.0) {
-        return new ui.Offset.new(rx, ry);
-      } else {
-        return new ui.Offset.new(rx / rw, ry / rw);
-      }
-    }
-    static _safeTransformRect(transform, rect) {
-      let storage = transform.storage;
-      let isAffine = storage[$_get](3) === 0.0 && storage[$_get](7) === 0.0 && storage[$_get](15) === 1.0;
-      matrix_utils.MatrixUtils._accumulate(storage, rect.left, rect.top, true, isAffine);
-      matrix_utils.MatrixUtils._accumulate(storage, rect.right, rect.top, false, isAffine);
-      matrix_utils.MatrixUtils._accumulate(storage, rect.left, rect.bottom, false, isAffine);
-      matrix_utils.MatrixUtils._accumulate(storage, rect.right, rect.bottom, false, isAffine);
-      return new ui.Rect.fromLTRB(matrix_utils.MatrixUtils._minMax[$_get](0), matrix_utils.MatrixUtils._minMax[$_get](1), matrix_utils.MatrixUtils._minMax[$_get](2), matrix_utils.MatrixUtils._minMax[$_get](3));
-    }
-    static get _minMax() {
-      let t1, t0;
-      t0 = matrix_utils.MatrixUtils['_#_minMax'];
-      return t0 == null ? (t1 = _native_typed_data.NativeFloat64List.new(4), matrix_utils.MatrixUtils['_#_minMax'] == null ? matrix_utils.MatrixUtils['_#_minMax'] = t1 : dart.throw(new _internal.LateError.fieldADI("_minMax"))) : t0;
-    }
-    static _accumulate(m, x, y, first, isAffine) {
-      let t1, t0, t1$, t0$;
-      let w = isAffine ? 1.0 : 1.0 / (m[$_get](3) * x + m[$_get](7) * y + m[$_get](15));
-      let tx = (m[$_get](0) * x + m[$_get](4) * y + m[$_get](12)) * w;
-      let ty = (m[$_get](1) * x + m[$_get](5) * y + m[$_get](13)) * w;
-      if (first) {
-        matrix_utils.MatrixUtils._minMax[$_set](0, (t0 = matrix_utils.MatrixUtils._minMax, t1 = 2, t0[$_set](t1, tx), tx));
-        matrix_utils.MatrixUtils._minMax[$_set](1, (t0$ = matrix_utils.MatrixUtils._minMax, t1$ = 3, t0$[$_set](t1$, ty), ty));
-      } else {
-        if (tx < matrix_utils.MatrixUtils._minMax[$_get](0)) {
-          matrix_utils.MatrixUtils._minMax[$_set](0, tx);
-        }
-        if (ty < matrix_utils.MatrixUtils._minMax[$_get](1)) {
-          matrix_utils.MatrixUtils._minMax[$_set](1, ty);
-        }
-        if (tx > matrix_utils.MatrixUtils._minMax[$_get](2)) {
-          matrix_utils.MatrixUtils._minMax[$_set](2, tx);
-        }
-        if (ty > matrix_utils.MatrixUtils._minMax[$_get](3)) {
-          matrix_utils.MatrixUtils._minMax[$_set](3, ty);
-        }
-      }
-    }
-    static transformRect(transform, rect) {
-      let storage = transform.storage;
-      let x = rect.left;
-      let y = rect.top;
-      let w = rect.right - x;
-      let h = rect.bottom - y;
-      if (!w[$isFinite] || !h[$isFinite]) {
-        return matrix_utils.MatrixUtils._safeTransformRect(transform, rect);
-      }
-      let wx = storage[$_get](0) * w;
-      let hx = storage[$_get](4) * h;
-      let rx = storage[$_get](0) * x + storage[$_get](4) * y + storage[$_get](12);
-      let wy = storage[$_get](1) * w;
-      let hy = storage[$_get](5) * h;
-      let ry = storage[$_get](1) * x + storage[$_get](5) * y + storage[$_get](13);
-      if (storage[$_get](3) === 0.0 && storage[$_get](7) === 0.0 && storage[$_get](15) === 1.0) {
-        let left = rx;
-        let right = rx;
-        if (wx < 0) {
-          left = left + wx;
-        } else {
-          right = right + wx;
-        }
-        if (hx < 0) {
-          left = left + hx;
-        } else {
-          right = right + hx;
-        }
-        let top = ry;
-        let bottom = ry;
-        if (wy < 0) {
-          top = top + wy;
-        } else {
-          bottom = bottom + wy;
-        }
-        if (hy < 0) {
-          top = top + hy;
-        } else {
-          bottom = bottom + hy;
-        }
-        return new ui.Rect.fromLTRB(left, top, right, bottom);
-      } else {
-        let ww = storage[$_get](3) * w;
-        let hw = storage[$_get](7) * h;
-        let rw = storage[$_get](3) * x + storage[$_get](7) * y + storage[$_get](15);
-        let ulx = rx / rw;
-        let uly = ry / rw;
-        let urx = (rx + wx) / (rw + ww);
-        let ury = (ry + wy) / (rw + ww);
-        let llx = (rx + hx) / (rw + hw);
-        let lly = (ry + hy) / (rw + hw);
-        let lrx = (rx + wx + hx) / (rw + ww + hw);
-        let lry = (ry + wy + hy) / (rw + ww + hw);
-        return new ui.Rect.fromLTRB(matrix_utils.MatrixUtils._min4(ulx, urx, llx, lrx), matrix_utils.MatrixUtils._min4(uly, ury, lly, lry), matrix_utils.MatrixUtils._max4(ulx, urx, llx, lrx), matrix_utils.MatrixUtils._max4(uly, ury, lly, lry));
-      }
-    }
-    static _min4(a, b, c, d) {
-      let e = a < b ? a : b;
-      let f = c < d ? c : d;
-      return e < f ? e : f;
-    }
-    static _max4(a, b, c, d) {
-      let e = a > b ? a : b;
-      let f = c > d ? c : d;
-      return e > f ? e : f;
-    }
-    static inverseTransformRect(transform, rect) {
-      let t0;
-      if (!(rect !== null)) dart.assertFailed(null, I[0], 440, 12, "rect != null");
-      if (matrix_utils.MatrixUtils.isIdentity(transform)) return rect;
-      transform = (t0 = vector_math_64.Matrix4.copy(transform), (() => {
-        t0.invert();
-        return t0;
-      })());
-      return matrix_utils.MatrixUtils.transformRect(transform, rect);
-    }
-    static createCylindricalProjectionTransform(opts) {
-      let t0;
-      let radius = opts && 'radius' in opts ? opts.radius : null;
-      let angle = opts && 'angle' in opts ? opts.angle : null;
-      let perspective = opts && 'perspective' in opts ? opts.perspective : 0.001;
-      let orientation = opts && 'orientation' in opts ? opts.orientation : C[0] || CT.C0;
-      if (!(radius !== null)) dart.assertFailed(null, I[0], 489, 12, "radius != null");
-      if (!(angle !== null)) dart.assertFailed(null, I[0], 490, 12, "angle != null");
-      if (!(perspective >= 0 && perspective <= 1.0)) dart.assertFailed(null, I[0], 491, 12, "perspective >= 0 && perspective <= 1.0");
-      if (!(orientation !== null)) dart.assertFailed(null, I[0], 492, 12, "orientation != null");
-      let result = (t0 = vector_math_64.Matrix4.identity(), (() => {
-        t0.setEntry(3, 2, -perspective);
-        t0.setEntry(2, 3, -radius);
-        t0.setEntry(3, 3, perspective * radius + 1.0);
-        return t0;
-      })());
-      result = vector_math_64.Matrix4.as(result['*']((orientation === basic_types.Axis.horizontal ? vector_math_64.Matrix4.rotationY(angle) : vector_math_64.Matrix4.rotationX(angle))['*'](vector_math_64.Matrix4.translationValues(0.0, 0.0, radius))));
+    debugDeviceActiveCursor(device) {
+      let result = null;
+      if (!dart.fn(() => {
+        let t0;
+        result = (t0 = this[_lastSession][$_get](device), t0 == null ? null : t0.cursor);
+        return true;
+      }, T.VoidTobool())()) dart.assertFailed(null, I[0], 38, 12, "() {\r\n      result = _lastSession[device]?.cursor;\r\n      return true;\r\n    }()");
       return result;
     }
-    static forceToPoint(offset) {
-      let t0;
-      t0 = vector_math_64.Matrix4.identity();
-      return (() => {
-        t0.setRow(0, vector_math_64.Vector4.new(0.0, 0.0, 0.0, offset.dx));
-        t0.setRow(1, vector_math_64.Vector4.new(0.0, 0.0, 0.0, offset.dy));
-        return t0;
-      })();
-    }
-  };
-  (matrix_utils.MatrixUtils.__ = function() {
-    ;
-  }).prototype = matrix_utils.MatrixUtils.prototype;
-  dart.addTypeTests(matrix_utils.MatrixUtils);
-  dart.addTypeCaches(matrix_utils.MatrixUtils);
-  dart.setLibraryUri(matrix_utils.MatrixUtils, I[1]);
-  dart.defineLazy(matrix_utils.MatrixUtils, {
-    /*matrix_utils.MatrixUtils['_#_minMax']*/get ['_#_minMax']() {
-      return null;
-    },
-    set ['_#_minMax'](_) {}
-  }, false);
-  var _name$ = dart.privateName(diagnostics, "_name");
-  matrix_utils.TransformProperty = class TransformProperty extends diagnostics.DiagnosticsProperty$(vector_math_64.Matrix4) {
-    valueToString(opts) {
-      let parentConfiguration = opts && 'parentConfiguration' in opts ? opts.parentConfiguration : null;
-      if (parentConfiguration != null && !parentConfiguration.lineBreakProperties) {
-        let values = T.JSArrayOfString().of([debug.debugFormatDouble(dart.nullCheck(this.value).entry(0, 0)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(0, 1)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(0, 2)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(0, 3)), debug.debugFormatDouble(dart.nullCheck(this.value).entry(1, 0)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(1, 1)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(1, 2)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(1, 3)), debug.debugFormatDouble(dart.nullCheck(this.value).entry(2, 0)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(2, 1)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(2, 2)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(2, 3)), debug.debugFormatDouble(dart.nullCheck(this.value).entry(3, 0)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(3, 1)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(3, 2)) + "," + debug.debugFormatDouble(dart.nullCheck(this.value).entry(3, 3))]);
-        return "[" + values[$join]("; ") + "]";
+    handleDeviceCursorUpdate(device, triggeringEvent, cursorCandidates) {
+      let t0, t0$, t0$0;
+      if (events.PointerRemovedEvent.is(triggeringEvent)) {
+        this[_lastSession][$remove](device);
+        return;
       }
-      return matrix_utils.debugDescribeTransform(this.value)[$join]("\n");
+      let lastSession = this[_lastSession][$_get](device);
+      let nextCursor = (t0 = mouse_cursor._DeferringMouseCursor.firstNonDeferred(cursorCandidates), t0 == null ? this.fallbackMouseCursor : t0);
+      if (!!mouse_cursor._DeferringMouseCursor.is(nextCursor)) dart.assertFailed(null, I[0], 68, 12, "nextCursor is! _DeferringMouseCursor");
+      if (dart.equals((t0$ = lastSession, t0$ == null ? null : t0$.cursor), nextCursor)) return;
+      let nextSession = nextCursor.createSession(device);
+      this[_lastSession][$_set](device, nextSession);
+      t0$0 = lastSession;
+      t0$0 == null ? null : t0$0.dispose();
+      nextSession.activate();
     }
   };
-  (matrix_utils.TransformProperty.new = function(name, value, opts) {
-    let showName = opts && 'showName' in opts ? opts.showName : true;
-    let defaultValue = opts && 'defaultValue' in opts ? opts.defaultValue : C[1] || CT.C1;
-    let level = opts && 'level' in opts ? opts.level : C[2] || CT.C2;
-    if (!(showName !== null)) dart.assertFailed(null, I[0], 562, 15, "showName != null");
-    if (!(level !== null)) dart.assertFailed(null, I[0], 563, 15, "level != null");
-    matrix_utils.TransformProperty.__proto__.new.call(this, name, value, {showName: showName, defaultValue: defaultValue, level: level});
+  (mouse_cursor.MouseCursorManager.new = function(fallbackMouseCursor) {
+    this[_lastSession] = new (T.IdentityMapOfint$MouseCursorSession()).new();
+    this[fallbackMouseCursor$] = fallbackMouseCursor;
+    if (!!fallbackMouseCursor[$_equals](mouse_cursor.MouseCursor.defer)) dart.assertFailed(null, I[0], 20, 14, "fallbackMouseCursor != MouseCursor.defer");
     ;
-  }).prototype = matrix_utils.TransformProperty.prototype;
-  dart.addTypeTests(matrix_utils.TransformProperty);
-  dart.addTypeCaches(matrix_utils.TransformProperty);
-  dart.setLibraryUri(matrix_utils.TransformProperty, I[1]);
-  matrix_utils.debugDescribeTransform = function debugDescribeTransform(transform) {
-    if (transform == null) return C[3] || CT.C3;
-    return T.JSArrayOfString().of(["[0] " + debug.debugFormatDouble(transform.entry(0, 0)) + "," + debug.debugFormatDouble(transform.entry(0, 1)) + "," + debug.debugFormatDouble(transform.entry(0, 2)) + "," + debug.debugFormatDouble(transform.entry(0, 3)), "[1] " + debug.debugFormatDouble(transform.entry(1, 0)) + "," + debug.debugFormatDouble(transform.entry(1, 1)) + "," + debug.debugFormatDouble(transform.entry(1, 2)) + "," + debug.debugFormatDouble(transform.entry(1, 3)), "[2] " + debug.debugFormatDouble(transform.entry(2, 0)) + "," + debug.debugFormatDouble(transform.entry(2, 1)) + "," + debug.debugFormatDouble(transform.entry(2, 2)) + "," + debug.debugFormatDouble(transform.entry(2, 3)), "[3] " + debug.debugFormatDouble(transform.entry(3, 0)) + "," + debug.debugFormatDouble(transform.entry(3, 1)) + "," + debug.debugFormatDouble(transform.entry(3, 2)) + "," + debug.debugFormatDouble(transform.entry(3, 3))]);
+  }).prototype = mouse_cursor.MouseCursorManager.prototype;
+  dart.addTypeTests(mouse_cursor.MouseCursorManager);
+  dart.addTypeCaches(mouse_cursor.MouseCursorManager);
+  dart.setMethodSignature(mouse_cursor.MouseCursorManager, () => ({
+    __proto__: dart.getMethods(mouse_cursor.MouseCursorManager.__proto__),
+    debugDeviceActiveCursor: dart.fnType(dart.nullable(mouse_cursor.MouseCursor), [core.int]),
+    handleDeviceCursorUpdate: dart.fnType(dart.void, [core.int, dart.nullable(events.PointerEvent), core.Iterable$(mouse_cursor.MouseCursor)])
+  }));
+  dart.setLibraryUri(mouse_cursor.MouseCursorManager, I[1]);
+  dart.setFieldSignature(mouse_cursor.MouseCursorManager, () => ({
+    __proto__: dart.getFields(mouse_cursor.MouseCursorManager.__proto__),
+    fallbackMouseCursor: dart.finalFieldType(mouse_cursor.MouseCursor),
+    [_lastSession]: dart.finalFieldType(core.Map$(core.int, mouse_cursor.MouseCursorSession))
+  }));
+  var cursor$ = dart.privateName(mouse_cursor, "MouseCursorSession.cursor");
+  var device$ = dart.privateName(mouse_cursor, "MouseCursorSession.device");
+  mouse_cursor.MouseCursorSession = class MouseCursorSession extends core.Object {
+    get cursor() {
+      return this[cursor$];
+    }
+    set cursor(value) {
+      super.cursor = value;
+    }
+    get device() {
+      return this[device$];
+    }
+    set device(value) {
+      super.device = value;
+    }
   };
-  dart.trackLibraries("packages/flutter/src/painting/matrix_utils.dart", {
-    "package:flutter/src/painting/matrix_utils.dart": matrix_utils
+  (mouse_cursor.MouseCursorSession.new = function(cursor, device) {
+    this[cursor$] = cursor;
+    this[device$] = device;
+    if (!(cursor !== null)) dart.assertFailed(null, I[0], 104, 14, "cursor != null");
+    if (!(device !== null)) dart.assertFailed(null, I[0], 105, 14, "device != null");
+    ;
+  }).prototype = mouse_cursor.MouseCursorSession.prototype;
+  dart.addTypeTests(mouse_cursor.MouseCursorSession);
+  dart.addTypeCaches(mouse_cursor.MouseCursorSession);
+  dart.setLibraryUri(mouse_cursor.MouseCursorSession, I[1]);
+  dart.setFieldSignature(mouse_cursor.MouseCursorSession, () => ({
+    __proto__: dart.getFields(mouse_cursor.MouseCursorSession.__proto__),
+    cursor: dart.finalFieldType(mouse_cursor.MouseCursor),
+    device: dart.finalFieldType(core.int)
+  }));
+  var _name = dart.privateName(diagnostics, "_name");
+  const Object_Diagnosticable$36 = class Object_Diagnosticable extends core.Object {};
+  (Object_Diagnosticable$36.new = function() {
+  }).prototype = Object_Diagnosticable$36.prototype;
+  dart.applyMixin(Object_Diagnosticable$36, diagnostics.Diagnosticable);
+  mouse_cursor.MouseCursor = class MouseCursor extends Object_Diagnosticable$36 {
+    toString(opts) {
+      let minLevel = opts && 'minLevel' in opts ? opts.minLevel : C[0] || CT.C0;
+      let debugDescription = this.debugDescription;
+      if (minLevel.index >= diagnostics.DiagnosticLevel.info.index && debugDescription !== null) return debugDescription;
+      return super.toString({minLevel: minLevel});
+    }
+  };
+  (mouse_cursor.MouseCursor.new = function() {
+    ;
+  }).prototype = mouse_cursor.MouseCursor.prototype;
+  dart.addTypeTests(mouse_cursor.MouseCursor);
+  dart.addTypeCaches(mouse_cursor.MouseCursor);
+  dart.setLibraryUri(mouse_cursor.MouseCursor, I[1]);
+  dart.defineExtensionMethods(mouse_cursor.MouseCursor, ['toString']);
+  dart.defineLazy(mouse_cursor.MouseCursor, {
+    /*mouse_cursor.MouseCursor.defer*/get defer() {
+      return C[1] || CT.C1;
+    },
+    /*mouse_cursor.MouseCursor.uncontrolled*/get uncontrolled() {
+      return C[2] || CT.C2;
+    }
+  }, false);
+  mouse_cursor._DeferringMouseCursor = class _DeferringMouseCursor extends mouse_cursor.MouseCursor {
+    createSession(device) {
+      if (!false) dart.assertFailed("_DeferringMouseCursor can not create a session", I[0], 266, 12, "false");
+      dart.throw(new core.UnimplementedError.new());
+    }
+    get debugDescription() {
+      return "defer";
+    }
+    static firstNonDeferred(cursors) {
+      for (let cursor of cursors) {
+        if (!(cursor !== null)) dart.assertFailed(null, I[0], 276, 14, "cursor != null");
+        if (!cursor[$_equals](mouse_cursor.MouseCursor.defer)) return cursor;
+      }
+      return null;
+    }
+  };
+  (mouse_cursor._DeferringMouseCursor.__ = function() {
+    mouse_cursor._DeferringMouseCursor.__proto__.new.call(this);
+    ;
+  }).prototype = mouse_cursor._DeferringMouseCursor.prototype;
+  dart.addTypeTests(mouse_cursor._DeferringMouseCursor);
+  dart.addTypeCaches(mouse_cursor._DeferringMouseCursor);
+  dart.setMethodSignature(mouse_cursor._DeferringMouseCursor, () => ({
+    __proto__: dart.getMethods(mouse_cursor._DeferringMouseCursor.__proto__),
+    createSession: dart.fnType(mouse_cursor.MouseCursorSession, [core.int])
+  }));
+  dart.setGetterSignature(mouse_cursor._DeferringMouseCursor, () => ({
+    __proto__: dart.getGetters(mouse_cursor._DeferringMouseCursor.__proto__),
+    debugDescription: core.String
+  }));
+  dart.setLibraryUri(mouse_cursor._DeferringMouseCursor, I[1]);
+  mouse_cursor._NoopMouseCursorSession = class _NoopMouseCursorSession extends mouse_cursor.MouseCursorSession {
+    activate() {
+      return async.async(dart.void, function* activate() {
+      });
+    }
+    dispose() {
+    }
+  };
+  (mouse_cursor._NoopMouseCursorSession.new = function(cursor, device) {
+    mouse_cursor._NoopMouseCursorSession.__proto__.new.call(this, cursor, device);
+    ;
+  }).prototype = mouse_cursor._NoopMouseCursorSession.prototype;
+  dart.addTypeTests(mouse_cursor._NoopMouseCursorSession);
+  dart.addTypeCaches(mouse_cursor._NoopMouseCursorSession);
+  dart.setMethodSignature(mouse_cursor._NoopMouseCursorSession, () => ({
+    __proto__: dart.getMethods(mouse_cursor._NoopMouseCursorSession.__proto__),
+    activate: dart.fnType(async.Future$(dart.void), []),
+    dispose: dart.fnType(dart.void, [])
+  }));
+  dart.setLibraryUri(mouse_cursor._NoopMouseCursorSession, I[1]);
+  mouse_cursor._NoopMouseCursor = class _NoopMouseCursor extends mouse_cursor.MouseCursor {
+    createSession(device) {
+      return new mouse_cursor._NoopMouseCursorSession.new(this, device);
+    }
+    get debugDescription() {
+      return "uncontrolled";
+    }
+  };
+  (mouse_cursor._NoopMouseCursor.__ = function() {
+    mouse_cursor._NoopMouseCursor.__proto__.new.call(this);
+    ;
+  }).prototype = mouse_cursor._NoopMouseCursor.prototype;
+  dart.addTypeTests(mouse_cursor._NoopMouseCursor);
+  dart.addTypeCaches(mouse_cursor._NoopMouseCursor);
+  dart.setMethodSignature(mouse_cursor._NoopMouseCursor, () => ({
+    __proto__: dart.getMethods(mouse_cursor._NoopMouseCursor.__proto__),
+    createSession: dart.fnType(mouse_cursor._NoopMouseCursorSession, [core.int])
+  }));
+  dart.setGetterSignature(mouse_cursor._NoopMouseCursor, () => ({
+    __proto__: dart.getGetters(mouse_cursor._NoopMouseCursor.__proto__),
+    debugDescription: core.String
+  }));
+  dart.setLibraryUri(mouse_cursor._NoopMouseCursor, I[1]);
+  mouse_cursor._SystemMouseCursorSession = class _SystemMouseCursorSession extends mouse_cursor.MouseCursorSession {
+    get cursor() {
+      return mouse_cursor.SystemMouseCursor.as(super.cursor);
+    }
+    activate() {
+      return system_channels.SystemChannels.mouseCursor.invokeMethod(dart.void, "activateSystemCursor", new (T.IdentityMapOfString$dynamic()).from(["device", this.device, "kind", this.cursor.kind]));
+    }
+    dispose() {
+    }
+  };
+  (mouse_cursor._SystemMouseCursorSession.new = function(cursor, device) {
+    mouse_cursor._SystemMouseCursorSession.__proto__.new.call(this, cursor, device);
+    ;
+  }).prototype = mouse_cursor._SystemMouseCursorSession.prototype;
+  dart.addTypeTests(mouse_cursor._SystemMouseCursorSession);
+  dart.addTypeCaches(mouse_cursor._SystemMouseCursorSession);
+  dart.setMethodSignature(mouse_cursor._SystemMouseCursorSession, () => ({
+    __proto__: dart.getMethods(mouse_cursor._SystemMouseCursorSession.__proto__),
+    activate: dart.fnType(async.Future$(dart.void), []),
+    dispose: dart.fnType(dart.void, [])
+  }));
+  dart.setGetterSignature(mouse_cursor._SystemMouseCursorSession, () => ({
+    __proto__: dart.getGetters(mouse_cursor._SystemMouseCursorSession.__proto__),
+    cursor: mouse_cursor.SystemMouseCursor
+  }));
+  dart.setLibraryUri(mouse_cursor._SystemMouseCursorSession, I[1]);
+  var kind$ = dart.privateName(mouse_cursor, "SystemMouseCursor.kind");
+  mouse_cursor.SystemMouseCursor = class SystemMouseCursor extends mouse_cursor.MouseCursor {
+    get kind() {
+      return this[kind$];
+    }
+    set kind(value) {
+      super.kind = value;
+    }
+    get debugDescription() {
+      return object.objectRuntimeType(this, "SystemMouseCursor") + "(" + this.kind + ")";
+    }
+    createSession(device) {
+      return new mouse_cursor._SystemMouseCursorSession.new(this, device);
+    }
+    _equals(other) {
+      if (other == null) return false;
+      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
+      return mouse_cursor.SystemMouseCursor.is(other) && other.kind === this.kind;
+    }
+    get hashCode() {
+      return this.kind[$hashCode];
+    }
+    debugFillProperties(properties) {
+      super.debugFillProperties(properties);
+      properties.add(new (T.DiagnosticsPropertyOfString()).new("kind", this.kind, {level: diagnostics.DiagnosticLevel.debug}));
+    }
+  };
+  (mouse_cursor.SystemMouseCursor.__ = function(opts) {
+    let kind = opts && 'kind' in opts ? opts.kind : null;
+    this[kind$] = kind;
+    if (!(kind !== null)) dart.assertFailed(null, I[0], 372, 15, "kind != null");
+    mouse_cursor.SystemMouseCursor.__proto__.new.call(this);
+    ;
+  }).prototype = mouse_cursor.SystemMouseCursor.prototype;
+  dart.addTypeTests(mouse_cursor.SystemMouseCursor);
+  dart.addTypeCaches(mouse_cursor.SystemMouseCursor);
+  dart.setMethodSignature(mouse_cursor.SystemMouseCursor, () => ({
+    __proto__: dart.getMethods(mouse_cursor.SystemMouseCursor.__proto__),
+    createSession: dart.fnType(mouse_cursor._SystemMouseCursorSession, [core.int])
+  }));
+  dart.setGetterSignature(mouse_cursor.SystemMouseCursor, () => ({
+    __proto__: dart.getGetters(mouse_cursor.SystemMouseCursor.__proto__),
+    debugDescription: core.String
+  }));
+  dart.setLibraryUri(mouse_cursor.SystemMouseCursor, I[1]);
+  dart.setFieldSignature(mouse_cursor.SystemMouseCursor, () => ({
+    __proto__: dart.getFields(mouse_cursor.SystemMouseCursor.__proto__),
+    kind: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(mouse_cursor.SystemMouseCursor, ['_equals']);
+  dart.defineExtensionAccessors(mouse_cursor.SystemMouseCursor, ['hashCode']);
+  mouse_cursor.SystemMouseCursors = class SystemMouseCursors extends core.Object {
+    static __() {
+      return dart.throw(new core.Error.new());
+    }
+  };
+  (mouse_cursor.SystemMouseCursors[dart.mixinNew] = function() {
+  }).prototype = mouse_cursor.SystemMouseCursors.prototype;
+  dart.addTypeTests(mouse_cursor.SystemMouseCursors);
+  dart.addTypeCaches(mouse_cursor.SystemMouseCursors);
+  dart.setLibraryUri(mouse_cursor.SystemMouseCursors, I[1]);
+  dart.defineLazy(mouse_cursor.SystemMouseCursors, {
+    /*mouse_cursor.SystemMouseCursors.none*/get none() {
+      return C[3] || CT.C3;
+    },
+    /*mouse_cursor.SystemMouseCursors.basic*/get basic() {
+      return C[4] || CT.C4;
+    },
+    /*mouse_cursor.SystemMouseCursors.click*/get click() {
+      return C[5] || CT.C5;
+    },
+    /*mouse_cursor.SystemMouseCursors.forbidden*/get forbidden() {
+      return C[6] || CT.C6;
+    },
+    /*mouse_cursor.SystemMouseCursors.wait*/get wait() {
+      return C[7] || CT.C7;
+    },
+    /*mouse_cursor.SystemMouseCursors.progress*/get progress() {
+      return C[8] || CT.C8;
+    },
+    /*mouse_cursor.SystemMouseCursors.contextMenu*/get contextMenu() {
+      return C[9] || CT.C9;
+    },
+    /*mouse_cursor.SystemMouseCursors.help*/get help() {
+      return C[10] || CT.C10;
+    },
+    /*mouse_cursor.SystemMouseCursors.text*/get text() {
+      return C[11] || CT.C11;
+    },
+    /*mouse_cursor.SystemMouseCursors.verticalText*/get verticalText() {
+      return C[12] || CT.C12;
+    },
+    /*mouse_cursor.SystemMouseCursors.cell*/get cell() {
+      return C[13] || CT.C13;
+    },
+    /*mouse_cursor.SystemMouseCursors.precise*/get precise() {
+      return C[14] || CT.C14;
+    },
+    /*mouse_cursor.SystemMouseCursors.move*/get move() {
+      return C[15] || CT.C15;
+    },
+    /*mouse_cursor.SystemMouseCursors.grab*/get grab() {
+      return C[16] || CT.C16;
+    },
+    /*mouse_cursor.SystemMouseCursors.grabbing*/get grabbing() {
+      return C[17] || CT.C17;
+    },
+    /*mouse_cursor.SystemMouseCursors.noDrop*/get noDrop() {
+      return C[18] || CT.C18;
+    },
+    /*mouse_cursor.SystemMouseCursors.alias*/get alias() {
+      return C[19] || CT.C19;
+    },
+    /*mouse_cursor.SystemMouseCursors.copy*/get copy() {
+      return C[20] || CT.C20;
+    },
+    /*mouse_cursor.SystemMouseCursors.disappearing*/get disappearing() {
+      return C[21] || CT.C21;
+    },
+    /*mouse_cursor.SystemMouseCursors.allScroll*/get allScroll() {
+      return C[22] || CT.C22;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeLeftRight*/get resizeLeftRight() {
+      return C[23] || CT.C23;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeUpDown*/get resizeUpDown() {
+      return C[24] || CT.C24;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeUpLeftDownRight*/get resizeUpLeftDownRight() {
+      return C[25] || CT.C25;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeUpRightDownLeft*/get resizeUpRightDownLeft() {
+      return C[26] || CT.C26;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeUp*/get resizeUp() {
+      return C[27] || CT.C27;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeDown*/get resizeDown() {
+      return C[28] || CT.C28;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeLeft*/get resizeLeft() {
+      return C[29] || CT.C29;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeRight*/get resizeRight() {
+      return C[30] || CT.C30;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeUpLeft*/get resizeUpLeft() {
+      return C[31] || CT.C31;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeUpRight*/get resizeUpRight() {
+      return C[32] || CT.C32;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeDownLeft*/get resizeDownLeft() {
+      return C[33] || CT.C33;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeDownRight*/get resizeDownRight() {
+      return C[34] || CT.C34;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeColumn*/get resizeColumn() {
+      return C[35] || CT.C35;
+    },
+    /*mouse_cursor.SystemMouseCursors.resizeRow*/get resizeRow() {
+      return C[36] || CT.C36;
+    },
+    /*mouse_cursor.SystemMouseCursors.zoomIn*/get zoomIn() {
+      return C[37] || CT.C37;
+    },
+    /*mouse_cursor.SystemMouseCursors.zoomOut*/get zoomOut() {
+      return C[38] || CT.C38;
+    }
+  }, false);
+  dart.trackLibraries("packages/flutter/src/services/mouse_cursor.dart", {
+    "package:flutter/src/services/mouse_cursor.dart": mouse_cursor
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["matrix_utils.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/painting/matrix_utils.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["mouse_cursor.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/services/mouse_cursor.dart.lib.js"}');
   // Exports:
   return {
-    src__painting__matrix_utils: matrix_utils
+    src__services__mouse_cursor: mouse_cursor
   };
 }));
 
-//# sourceMappingURL=matrix_utils.dart.lib.js.map
+//# sourceMappingURL=mouse_cursor.dart.lib.js.map

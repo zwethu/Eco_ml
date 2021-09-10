@@ -1,330 +1,273 @@
-define(['dart_sdk', 'packages/flutter/src/animation/curves.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/page_transition/src/enum.dart', 'packages/flutter/src/painting/alignment.dart'], (function load__packages__page_transition__src__page_transition_dart(dart_sdk, packages__flutter__src__animation__curves$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__page_transition__src__enum$46dart, packages__flutter__src__painting__alignment$46dart) {
+define(['dart_sdk', 'packages/dots_indicator/src/dots_decorator.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/circle_border.dart', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/colors.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/shape_decoration.dart', 'packages/flutter/src/material/icon_button.dart'], (function load__packages__dots_indicator__src__dots_indicator_dart(dart_sdk, packages__dots_indicator__src__dots_decorator$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__circle_border$46dart, packages__flutter__src__painting__borders$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__colors$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__shape_decoration$46dart, packages__flutter__src__material__icon_button$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
-  const _interceptors = dart_sdk._interceptors;
+  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
-  const inherited_theme = packages__flutter__src__widgets__widget_span$46dart.src__widgets__inherited_theme;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const transitions = packages__flutter__src__widgets__widget_span$46dart.src__widgets__transitions;
+  const dots_decorator = packages__dots_indicator__src__dots_decorator$46dart.src__dots_decorator;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const circle_border = packages__flutter__src__painting__circle_border$46dart.src__painting__circle_border;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const colors$ = packages__flutter__src__painting__colors$46dart.src__painting__colors;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
   const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
   const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const pages = packages__flutter__src__widgets__widget_span$46dart.src__widgets__pages;
-  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
-  const tween = packages__flutter__src__animation__listener_helpers$46dart.src__animation__tween;
-  const animations = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animations;
-  const $enum = packages__page_transition__src__enum$46dart.src__enum;
-  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
-  var page_transition = Object.create(dart.library);
+  const shape_decoration = packages__flutter__src__painting__shape_decoration$46dart.src__painting__shape_decoration;
+  const ink_well = packages__flutter__src__material__icon_button$46dart.src__material__ink_well;
+  var dots_indicator = Object.create(dart.library);
+  var $abs = dartx.abs;
+  var $toDouble = dartx.toDouble;
+  var $reversed = dartx.reversed;
+  var $toList = dartx.toList;
   dart._checkModuleNullSafetyMode(true);
-  var T$ = {
-    AnimationOfdouble: () => (T$.AnimationOfdouble = dart.constFn(animation.Animation$(core.double)))(),
-    BuildContextAndAnimationOfdoubleAndAnimationOfdoubleToWidget: () => (T$.BuildContextAndAnimationOfdoubleAndAnimationOfdoubleToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, T$.AnimationOfdouble(), T$.AnimationOfdouble()])))(),
-    TweenOfOffset: () => (T$.TweenOfOffset = dart.constFn(tween.Tween$(ui.Offset)))(),
-    JSArrayOfWidget: () => (T$.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
-    BuildContextAndAnimationOfdoubleAndAnimationOfdouble__ToWidget: () => (T$.BuildContextAndAnimationOfdoubleAndAnimationOfdouble__ToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, T$.AnimationOfdouble(), T$.AnimationOfdouble(), framework.Widget])))()
+  var T = {
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    ListOfWidget: () => (T.ListOfWidget = dart.constFn(core.List$(framework.Widget)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: curves._Linear.prototype
-      });
-    },
     get C1() {
       return C[1] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 300000
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 6,
+        [EdgeInsets_right]: 6,
+        [EdgeInsets_top]: 6,
+        [EdgeInsets_left]: 6
       });
     },
     get C4() {
       return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "opacity",
-        [_Location_column]: 39,
-        [_Location_line]: 72,
-        [_Location_file]: null
+        __proto__: borders.BorderStyle.prototype,
+        [_name]: "BorderStyle.none",
+        index: 0
       });
     },
     get C5() {
       return C[5] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 59,
-        [_Location_line]: 72,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
       });
     },
     get C3() {
-      return C[3] = dart.constList([C[4] || CT.C4, C[5] || CT.C5], widget_inspector._Location);
+      return C[3] = dart.const({
+        __proto__: borders.BorderSide.prototype,
+        [BorderSide_style]: C[4] || CT.C4,
+        [BorderSide_width]: 0,
+        [BorderSide_color]: C[5] || CT.C5
+      });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[3] || CT.C3,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 72,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
+        __proto__: circle_border.CircleBorder.prototype,
+        [OutlinedBorder_side]: C[3] || CT.C3
       });
     },
     get C6() {
       return C[6] = dart.const({
-        __proto__: $enum.PageTransitionType.prototype,
-        [_name]: "PageTransitionType.fade",
-        index: 0
+        __proto__: ui.Size.prototype,
+        [OffsetBase__dy]: 9,
+        [OffsetBase__dx]: 9
       });
     },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 0,
-        [OffsetBase__dx]: 1
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292998654.0
       });
     },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 0,
-        [OffsetBase__dx]: -1
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289979900.0
       });
     },
     get C11() {
       return C[11] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 21,
-        [_Location_line]: 90,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286698746.0
       });
     },
     get C12() {
       return C[12] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 21,
-        [_Location_line]: 99,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283417591.0
       });
     },
-    get C10() {
-      return C[10] = dart.constList([C[11] || CT.C11, C[12] || CT.C12], widget_inspector._Location);
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280923894.0
+      });
     },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[10] || CT.C10,
-        [_Location_name]: null,
-        [_Location_column]: 30,
-        [_Location_line]: 89,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278430196.0
       });
     },
     get C15() {
       return C[15] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "transformHitTests",
-        [_Location_column]: 19,
-        [_Location_line]: 79,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278426597.0
       });
     },
     get C16() {
       return C[16] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 19,
-        [_Location_line]: 80,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278356177.0
       });
     },
     get C17() {
       return C[17] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 89,
-        [_Location_file]: null
-      });
-    },
-    get C14() {
-      return C[14] = dart.constList([C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17], widget_inspector._Location);
-    },
-    get C13() {
-      return C[13] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[14] || CT.C14,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 78,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278351805.0
       });
     },
     get C18() {
       return C[18] = dart.const({
-        __proto__: $enum.PageTransitionType.prototype,
-        [_name]: "PageTransitionType.rightToLeft",
-        index: 1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278278043.0
+      });
+    },
+    get C8() {
+      return C[8] = dart.constMap(core.int, ui.Color, [50, C[9] || CT.C9, 100, C[10] || CT.C10, 200, C[11] || CT.C11, 300, C[12] || CT.C12, 400, C[13] || CT.C13, 500, C[14] || CT.C14, 600, C[15] || CT.C15, 700, C[16] || CT.C16, 800, C[17] || CT.C17, 900, C[18] || CT.C18]);
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: colors.MaterialColor.prototype,
+        [Color_value]: 4278430196.0,
+        [ColorSwatch__swatch]: C[8] || CT.C8
       });
     },
     get C21() {
       return C[21] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 21,
-        [_Location_line]: 120,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294638330.0
       });
     },
     get C22() {
       return C[22] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 21,
-        [_Location_line]: 129,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294309365.0
       });
     },
-    get C20() {
-      return C[20] = dart.constList([C[21] || CT.C21, C[22] || CT.C22], widget_inspector._Location);
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293848814.0
+      });
     },
-    get C19() {
-      return C[19] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[20] || CT.C20,
-        [_Location_name]: null,
-        [_Location_column]: 30,
-        [_Location_line]: 119,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292927712.0
       });
     },
     get C25() {
       return C[25] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "transformHitTests",
-        [_Location_column]: 19,
-        [_Location_line]: 109,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292269782.0
       });
     },
     get C26() {
       return C[26] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 19,
-        [_Location_line]: 110,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290624957.0
       });
     },
     get C27() {
       return C[27] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 119,
-        [_Location_file]: null
-      });
-    },
-    get C24() {
-      return C[24] = dart.constList([C[25] || CT.C25, C[26] || CT.C26, C[27] || CT.C27], widget_inspector._Location);
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[24] || CT.C24,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 108,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4288585374.0
       });
     },
     get C28() {
       return C[28] = dart.const({
-        __proto__: $enum.PageTransitionType.prototype,
-        [_name]: "PageTransitionType.leftToRight",
-        index: 2
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4285887861.0
       });
     },
     get C29() {
       return C[29] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: -1,
-        [OffsetBase__dx]: 0
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284572001.0
       });
     },
     get C30() {
       return C[30] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 1,
-        [OffsetBase__dx]: 0
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282532418.0
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281348144.0
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280361249.0
+      });
+    },
+    get C20() {
+      return C[20] = dart.constMap(core.int, ui.Color, [50, C[21] || CT.C21, 100, C[22] || CT.C22, 200, C[23] || CT.C23, 300, C[24] || CT.C24, 350, C[25] || CT.C25, 400, C[26] || CT.C26, 500, C[27] || CT.C27, 600, C[28] || CT.C28, 700, C[29] || CT.C29, 800, C[30] || CT.C30, 850, C[31] || CT.C31, 900, C[32] || CT.C32]);
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: colors.MaterialColor.prototype,
+        [Color_value]: 4288585374.0,
+        [ColorSwatch__swatch]: C[20] || CT.C20
+      });
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: dots_decorator.DotsDecorator.prototype,
+        [DotsDecorator_spacing]: C[1] || CT.C1,
+        [DotsDecorator_activeShape]: C[2] || CT.C2,
+        [DotsDecorator_shape]: C[2] || CT.C2,
+        [DotsDecorator_activeSize]: C[6] || CT.C6,
+        [DotsDecorator_size]: C[6] || CT.C6,
+        [DotsDecorator_activeColor]: C[7] || CT.C7,
+        [DotsDecorator_color]: C[19] || CT.C19
       });
     },
     get C33() {
       return C[33] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 21,
-        [_Location_line]: 150,
-        [_Location_file]: null
+        __proto__: basic_types.Axis.prototype,
+        [_name$]: "Axis.horizontal",
+        index: 0
       });
     },
     get C34() {
       return C[34] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 21,
-        [_Location_line]: 159,
-        [_Location_file]: null
+        __proto__: flex.MainAxisSize.prototype,
+        [_name$0]: "MainAxisSize.min",
+        index: 0
       });
     },
-    get C32() {
-      return C[32] = dart.constList([C[33] || CT.C33, C[34] || CT.C34], widget_inspector._Location);
-    },
-    get C31() {
-      return C[31] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[32] || CT.C32,
-        [_Location_name]: null,
-        [_Location_column]: 30,
-        [_Location_line]: 149,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C37() {
-      return C[37] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "transformHitTests",
-        [_Location_column]: 19,
-        [_Location_line]: 139,
-        [_Location_file]: null
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: flex.MainAxisAlignment.prototype,
+        [_name$0]: "MainAxisAlignment.center",
+        index: 2
       });
     },
     get C38() {
       return C[38] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 19,
-        [_Location_line]: 140,
+        [_Location_name]: "width",
+        [_Location_column]: 7,
+        [_Location_line]: 51,
         [_Location_file]: null
       });
     },
@@ -332,132 +275,138 @@ define(['dart_sdk', 'packages/flutter/src/animation/curves.dart', 'packages/flut
       return C[39] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 149,
+        [_Location_name]: "height",
+        [_Location_column]: 7,
+        [_Location_line]: 52,
         [_Location_file]: null
-      });
-    },
-    get C36() {
-      return C[36] = dart.constList([C[37] || CT.C37, C[38] || CT.C38, C[39] || CT.C39], widget_inspector._Location);
-    },
-    get C35() {
-      return C[35] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[36] || CT.C36,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 138,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
       });
     },
     get C40() {
       return C[40] = dart.const({
-        __proto__: $enum.PageTransitionType.prototype,
-        [_name]: "PageTransitionType.topToBottom",
-        index: 3
-      });
-    },
-    get C43() {
-      return C[43] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 21,
-        [_Location_line]: 180,
+        [_Location_name]: "margin",
+        [_Location_column]: 7,
+        [_Location_line]: 53,
         [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 7,
+        [_Location_line]: 54,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.constList([C[38] || CT.C38, C[39] || CT.C39, C[40] || CT.C40, C[41] || CT.C41], widget_inspector._Location);
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[37] || CT.C37,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 50,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart"
       });
     },
     get C44() {
       return C[44] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 21,
-        [_Location_line]: 189,
+        [_Location_name]: "customBorder",
+        [_Location_column]: 13,
+        [_Location_line]: 62,
         [_Location_file]: null
       });
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 13,
+        [_Location_line]: 63,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 64,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.constList([C[44] || CT.C44, C[45] || CT.C45, C[46] || CT.C46], widget_inspector._Location);
     },
     get C42() {
-      return C[42] = dart.constList([C[43] || CT.C43, C[44] || CT.C44], widget_inspector._Location);
-    },
-    get C41() {
-      return C[41] = dart.const({
+      return C[42] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[42] || CT.C42,
+        [_Location_parameterLocations]: C[43] || CT.C43,
         [_Location_name]: null,
-        [_Location_column]: 30,
-        [_Location_line]: 179,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C47() {
-      return C[47] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "transformHitTests",
-        [_Location_column]: 19,
-        [_Location_line]: 169,
-        [_Location_file]: null
-      });
-    },
-    get C48() {
-      return C[48] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 19,
-        [_Location_line]: 170,
-        [_Location_file]: null
+        [_Location_column]: 11,
+        [_Location_line]: 61,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart"
       });
     },
     get C49() {
       return C[49] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 179,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 13,
+        [_Location_line]: 75,
         [_Location_file]: null
-      });
-    },
-    get C46() {
-      return C[46] = dart.constList([C[47] || CT.C47, C[48] || CT.C48, C[49] || CT.C49], widget_inspector._Location);
-    },
-    get C45() {
-      return C[45] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[46] || CT.C46,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 168,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
       });
     },
     get C50() {
       return C[50] = dart.const({
-        __proto__: $enum.PageTransitionType.prototype,
-        [_name]: "PageTransitionType.bottomToTop",
-        index: 4
-      });
-    },
-    get C53() {
-      return C[53] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "alignment",
-        [_Location_column]: 19,
-        [_Location_line]: 199,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 13,
+        [_Location_line]: 76,
         [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 77,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.constList([C[49] || CT.C49, C[50] || CT.C50, C[51] || CT.C51], widget_inspector._Location);
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[48] || CT.C48,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 74,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart"
       });
     },
     get C54() {
       return C[54] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "scale",
-        [_Location_column]: 19,
-        [_Location_line]: 200,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 13,
+        [_Location_line]: 80,
         [_Location_file]: null
       });
     },
@@ -465,879 +414,192 @@ define(['dart_sdk', 'packages/flutter/src/animation/curves.dart', 'packages/flut
       return C[55] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 208,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 13,
+        [_Location_line]: 81,
         [_Location_file]: null
-      });
-    },
-    get C52() {
-      return C[52] = dart.constList([C[53] || CT.C53, C[54] || CT.C54, C[55] || CT.C55], widget_inspector._Location);
-    },
-    get C51() {
-      return C[51] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[52] || CT.C52,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 198,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
       });
     },
     get C56() {
       return C[56] = dart.const({
-        __proto__: $enum.PageTransitionType.prototype,
-        [_name]: "PageTransitionType.scale",
-        index: 5
-      });
-    },
-    get C59() {
-      return C[59] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "opacity",
-        [_Location_column]: 23,
-        [_Location_line]: 223,
-        [_Location_file]: null
-      });
-    },
-    get C60() {
-      return C[60] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 23,
-        [_Location_line]: 224,
-        [_Location_file]: null
-      });
-    },
-    get C58() {
-      return C[58] = dart.constList([C[59] || CT.C59, C[60] || CT.C60], widget_inspector._Location);
-    },
-    get C57() {
-      return C[57] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[58] || CT.C58,
-        [_Location_name]: null,
-        [_Location_column]: 28,
-        [_Location_line]: 222,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C63() {
-      return C[63] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "alignment",
-        [_Location_column]: 21,
-        [_Location_line]: 220,
-        [_Location_file]: null
-      });
-    },
-    get C64() {
-      return C[64] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "scale",
-        [_Location_column]: 21,
-        [_Location_line]: 221,
-        [_Location_file]: null
-      });
-    },
-    get C65() {
-      return C[65] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 21,
-        [_Location_line]: 222,
-        [_Location_file]: null
-      });
-    },
-    get C62() {
-      return C[62] = dart.constList([C[63] || CT.C63, C[64] || CT.C64, C[65] || CT.C65], widget_inspector._Location);
-    },
-    get C61() {
-      return C[61] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[62] || CT.C62,
-        [_Location_name]: null,
-        [_Location_column]: 30,
-        [_Location_line]: 219,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C68() {
-      return C[68] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "alignment",
-        [_Location_column]: 19,
-        [_Location_line]: 217,
-        [_Location_file]: null
-      });
-    },
-    get C69() {
-      return C[69] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "turns",
-        [_Location_column]: 19,
-        [_Location_line]: 218,
-        [_Location_file]: null
-      });
-    },
-    get C70() {
-      return C[70] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 219,
-        [_Location_file]: null
-      });
-    },
-    get C67() {
-      return C[67] = dart.constList([C[68] || CT.C68, C[69] || CT.C69, C[70] || CT.C70], widget_inspector._Location);
-    },
-    get C66() {
-      return C[66] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[67] || CT.C67,
-        [_Location_name]: null,
-        [_Location_column]: 28,
-        [_Location_line]: 216,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C71() {
-      return C[71] = dart.const({
-        __proto__: $enum.PageTransitionType.prototype,
-        [_name]: "PageTransitionType.rotate",
-        index: 6
-      });
-    },
-    get C74() {
-      return C[74] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "sizeFactor",
-        [_Location_column]: 21,
-        [_Location_line]: 237,
-        [_Location_file]: null
-      });
-    },
-    get C75() {
-      return C[75] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 21,
-        [_Location_line]: 241,
-        [_Location_file]: null
-      });
-    },
-    get C73() {
-      return C[73] = dart.constList([C[74] || CT.C74, C[75] || CT.C75], widget_inspector._Location);
-    },
-    get C72() {
-      return C[72] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[73] || CT.C73,
-        [_Location_name]: null,
-        [_Location_column]: 26,
-        [_Location_line]: 236,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C78() {
-      return C[78] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "alignment",
-        [_Location_column]: 19,
-        [_Location_line]: 235,
-        [_Location_file]: null
-      });
-    },
-    get C79() {
-      return C[79] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 236,
-        [_Location_file]: null
-      });
-    },
-    get C77() {
-      return C[77] = dart.constList([C[78] || CT.C78, C[79] || CT.C79], widget_inspector._Location);
-    },
-    get C76() {
-      return C[76] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[77] || CT.C77,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 234,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C80() {
-      return C[80] = dart.const({
-        __proto__: $enum.PageTransitionType.prototype,
-        [_name]: "PageTransitionType.size",
-        index: 7
-      });
-    },
-    get C83() {
-      return C[83] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 23,
-        [_Location_line]: 258,
-        [_Location_file]: null
-      });
-    },
-    get C84() {
-      return C[84] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 23,
-        [_Location_line]: 267,
-        [_Location_file]: null
-      });
-    },
-    get C82() {
-      return C[82] = dart.constList([C[83] || CT.C83, C[84] || CT.C84], widget_inspector._Location);
-    },
-    get C81() {
-      return C[81] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[82] || CT.C82,
-        [_Location_name]: null,
-        [_Location_column]: 28,
-        [_Location_line]: 257,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C87() {
-      return C[87] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "opacity",
-        [_Location_column]: 21,
-        [_Location_line]: 256,
-        [_Location_file]: null
-      });
-    },
-    get C88() {
-      return C[88] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 21,
-        [_Location_line]: 257,
-        [_Location_file]: null
-      });
-    },
-    get C86() {
-      return C[86] = dart.constList([C[87] || CT.C87, C[88] || CT.C88], widget_inspector._Location);
-    },
-    get C85() {
-      return C[85] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[86] || CT.C86,
-        [_Location_name]: null,
-        [_Location_column]: 26,
-        [_Location_line]: 255,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C91() {
-      return C[91] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 19,
-        [_Location_line]: 251,
-        [_Location_file]: null
-      });
-    },
-    get C92() {
-      return C[92] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 255,
-        [_Location_file]: null
-      });
-    },
-    get C90() {
-      return C[90] = dart.constList([C[91] || CT.C91, C[92] || CT.C92], widget_inspector._Location);
-    },
-    get C89() {
-      return C[89] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[90] || CT.C90,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 250,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C93() {
-      return C[93] = dart.const({
-        __proto__: $enum.PageTransitionType.prototype,
-        [_name]: "PageTransitionType.rightToLeftWithFade",
-        index: 8
-      });
-    },
-    get C96() {
-      return C[96] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 23,
-        [_Location_line]: 290,
-        [_Location_file]: null
-      });
-    },
-    get C97() {
-      return C[97] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 23,
-        [_Location_line]: 299,
-        [_Location_file]: null
-      });
-    },
-    get C95() {
-      return C[95] = dart.constList([C[96] || CT.C96, C[97] || CT.C97], widget_inspector._Location);
-    },
-    get C94() {
-      return C[94] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[95] || CT.C95,
-        [_Location_name]: null,
-        [_Location_column]: 28,
-        [_Location_line]: 289,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C100() {
-      return C[100] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "opacity",
-        [_Location_column]: 21,
-        [_Location_line]: 288,
-        [_Location_file]: null
-      });
-    },
-    get C101() {
-      return C[101] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 21,
-        [_Location_line]: 289,
-        [_Location_file]: null
-      });
-    },
-    get C99() {
-      return C[99] = dart.constList([C[100] || CT.C100, C[101] || CT.C101], widget_inspector._Location);
-    },
-    get C98() {
-      return C[98] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[99] || CT.C99,
-        [_Location_name]: null,
-        [_Location_column]: 26,
-        [_Location_line]: 287,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C104() {
-      return C[104] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 19,
-        [_Location_line]: 278,
-        [_Location_file]: null
-      });
-    },
-    get C105() {
-      return C[105] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 19,
-        [_Location_line]: 287,
-        [_Location_file]: null
-      });
-    },
-    get C103() {
-      return C[103] = dart.constList([C[104] || CT.C104, C[105] || CT.C105], widget_inspector._Location);
-    },
-    get C102() {
-      return C[102] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[103] || CT.C103,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 277,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C106() {
-      return C[106] = dart.const({
-        __proto__: $enum.PageTransitionType.prototype,
-        [_name]: "PageTransitionType.leftToRightWithFade",
-        index: 9
-      });
-    },
-    get C107() {
-      return C[107] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 0,
-        [OffsetBase__dx]: 0
-      });
-    },
-    get C110() {
-      return C[110] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 23,
-        [_Location_line]: 318,
-        [_Location_file]: null
-      });
-    },
-    get C111() {
-      return C[111] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 23,
-        [_Location_line]: 327,
-        [_Location_file]: null
-      });
-    },
-    get C109() {
-      return C[109] = dart.constList([C[110] || CT.C110, C[111] || CT.C111], widget_inspector._Location);
-    },
-    get C108() {
-      return C[108] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[109] || CT.C109,
-        [_Location_name]: null,
-        [_Location_column]: 21,
-        [_Location_line]: 317,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C114() {
-      return C[114] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 23,
-        [_Location_line]: 330,
-        [_Location_file]: null
-      });
-    },
-    get C115() {
-      return C[115] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 23,
-        [_Location_line]: 339,
-        [_Location_file]: null
-      });
-    },
-    get C113() {
-      return C[113] = dart.constList([C[114] || CT.C114, C[115] || CT.C115], widget_inspector._Location);
-    },
-    get C112() {
-      return C[112] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[113] || CT.C113,
-        [_Location_name]: null,
-        [_Location_column]: 21,
-        [_Location_line]: 329,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C118() {
-      return C[118] = dart.const({
         __proto__: widget_inspector._Location.prototype,
         [_Location_parameterLocations]: null,
         [_Location_name]: "children",
-        [_Location_column]: 19,
-        [_Location_line]: 316,
+        [_Location_column]: 13,
+        [_Location_line]: 82,
         [_Location_file]: null
       });
     },
-    get C117() {
-      return C[117] = dart.constList([C[118] || CT.C118], widget_inspector._Location);
+    get C53() {
+      return C[53] = dart.constList([C[54] || CT.C54, C[55] || CT.C55, C[56] || CT.C56], widget_inspector._Location);
     },
-    get C116() {
-      return C[116] = dart.const({
+    get C52() {
+      return C[52] = dart.const({
         __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[117] || CT.C117,
+        [_Location_parameterLocations]: C[53] || CT.C53,
         [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 315,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C119() {
-      return C[119] = dart.const({
-        __proto__: $enum.PageTransitionType.prototype,
-        [_name]: "PageTransitionType.rightToLeftJoined",
-        index: 11
-      });
-    },
-    get C122() {
-      return C[122] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 23,
-        [_Location_line]: 357,
-        [_Location_file]: null
-      });
-    },
-    get C123() {
-      return C[123] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 23,
-        [_Location_line]: 366,
-        [_Location_file]: null
-      });
-    },
-    get C121() {
-      return C[121] = dart.constList([C[122] || CT.C122, C[123] || CT.C123], widget_inspector._Location);
-    },
-    get C120() {
-      return C[120] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[121] || CT.C121,
-        [_Location_name]: null,
-        [_Location_column]: 21,
-        [_Location_line]: 356,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C126() {
-      return C[126] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 23,
-        [_Location_line]: 369,
-        [_Location_file]: null
-      });
-    },
-    get C127() {
-      return C[127] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 23,
-        [_Location_line]: 378,
-        [_Location_file]: null
-      });
-    },
-    get C125() {
-      return C[125] = dart.constList([C[126] || CT.C126, C[127] || CT.C127], widget_inspector._Location);
-    },
-    get C124() {
-      return C[124] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[125] || CT.C125,
-        [_Location_name]: null,
-        [_Location_column]: 21,
-        [_Location_line]: 368,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C130() {
-      return C[130] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 19,
-        [_Location_line]: 355,
-        [_Location_file]: null
-      });
-    },
-    get C129() {
-      return C[129] = dart.constList([C[130] || CT.C130], widget_inspector._Location);
-    },
-    get C128() {
-      return C[128] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[129] || CT.C129,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 354,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
-      });
-    },
-    get C131() {
-      return C[131] = dart.const({
-        __proto__: $enum.PageTransitionType.prototype,
-        [_name]: "PageTransitionType.leftToRightJoined",
-        index: 10
-      });
-    },
-    get C134() {
-      return C[134] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "opacity",
-        [_Location_column]: 39,
-        [_Location_line]: 388,
-        [_Location_file]: null
-      });
-    },
-    get C135() {
-      return C[135] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 59,
-        [_Location_line]: 388,
-        [_Location_file]: null
-      });
-    },
-    get C133() {
-      return C[133] = dart.constList([C[134] || CT.C134, C[135] || CT.C135], widget_inspector._Location);
-    },
-    get C132() {
-      return C[132] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[133] || CT.C133,
-        [_Location_name]: null,
-        [_Location_column]: 24,
-        [_Location_line]: 388,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart"
+        [_Location_column]: 11,
+        [_Location_line]: 79,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart"
       });
     }
   }, false);
-  var C = Array(136).fill(void 0);
+  var C = Array(57).fill(void 0);
   var I = [
-    "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/page_transition-2.0.1-nullsafety.0/lib/src/page_transition.dart",
-    "package:page_transition/src/page_transition.dart"
+    "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart",
+    "package:dots_indicator/src/dots_indicator.dart"
   ];
-  var child$ = dart.privateName(page_transition, "PageTransition.child");
-  var childCurrent$ = dart.privateName(page_transition, "PageTransition.childCurrent");
-  var type$ = dart.privateName(page_transition, "PageTransition.type");
-  var curve$ = dart.privateName(page_transition, "PageTransition.curve");
-  var alignment$ = dart.privateName(page_transition, "PageTransition.alignment");
-  var duration$ = dart.privateName(page_transition, "PageTransition.duration");
-  var reverseDuration$ = dart.privateName(page_transition, "PageTransition.reverseDuration");
-  var ctx$ = dart.privateName(page_transition, "PageTransition.ctx");
-  var inheritTheme$ = dart.privateName(page_transition, "PageTransition.inheritTheme");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
+  var dotsCount$ = dart.privateName(dots_indicator, "DotsIndicator.dotsCount");
+  var position$ = dart.privateName(dots_indicator, "DotsIndicator.position");
+  var decorator$ = dart.privateName(dots_indicator, "DotsIndicator.decorator");
+  var axis$ = dart.privateName(dots_indicator, "DotsIndicator.axis");
+  var reversed$ = dart.privateName(dots_indicator, "DotsIndicator.reversed");
+  var onTap$ = dart.privateName(dots_indicator, "DotsIndicator.onTap");
+  var mainAxisSize$ = dart.privateName(dots_indicator, "DotsIndicator.mainAxisSize");
+  var mainAxisAlignment$ = dart.privateName(dots_indicator, "DotsIndicator.mainAxisAlignment");
+  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
+  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
+  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
+  var DotsDecorator_spacing = dart.privateName(dots_decorator, "DotsDecorator.spacing");
+  var _name = dart.privateName(borders, "_name");
+  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
+  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
+  var OutlinedBorder_side = dart.privateName(borders, "OutlinedBorder.side");
+  var DotsDecorator_activeShape = dart.privateName(dots_decorator, "DotsDecorator.activeShape");
+  var DotsDecorator_shape = dart.privateName(dots_decorator, "DotsDecorator.shape");
+  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
+  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
+  var DotsDecorator_activeSize = dart.privateName(dots_decorator, "DotsDecorator.activeSize");
+  var DotsDecorator_size = dart.privateName(dots_decorator, "DotsDecorator.size");
+  var ColorSwatch__swatch = dart.privateName(colors$, "ColorSwatch._swatch");
+  var DotsDecorator_activeColor = dart.privateName(dots_decorator, "DotsDecorator.activeColor");
+  var DotsDecorator_color = dart.privateName(dots_decorator, "DotsDecorator.color");
+  var _name$ = dart.privateName(basic_types, "_name");
+  var _name$0 = dart.privateName(flex, "_name");
   var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
   var _Location_name = dart.privateName(widget_inspector, "_Location.name");
   var _Location_column = dart.privateName(widget_inspector, "_Location.column");
   var _Location_line = dart.privateName(widget_inspector, "_Location.line");
   var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  var _name = dart.privateName($enum, "_name");
-  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
-  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
-  const _is_PageTransition_default = Symbol('_is_PageTransition_default');
-  page_transition.PageTransition$ = dart.generic(T => {
-    class PageTransition extends pages.PageRouteBuilder$(T) {
-      get child() {
-        return this[child$];
-      }
-      set child(value) {
-        super.child = value;
-      }
-      get childCurrent() {
-        return this[childCurrent$];
-      }
-      set childCurrent(value) {
-        super.childCurrent = value;
-      }
-      get type() {
-        return this[type$];
-      }
-      set type(value) {
-        super.type = value;
-      }
-      get curve() {
-        return this[curve$];
-      }
-      set curve(value) {
-        super.curve = value;
-      }
-      get alignment() {
-        return this[alignment$];
-      }
-      set alignment(value) {
-        super.alignment = value;
-      }
-      get duration() {
-        return this[duration$];
-      }
-      set duration(value) {
-        super.duration = value;
-      }
-      get reverseDuration() {
-        return this[reverseDuration$];
-      }
-      set reverseDuration(value) {
-        super.reverseDuration = value;
-      }
-      get ctx() {
-        return this[ctx$];
-      }
-      set ctx(value) {
-        super.ctx = value;
-      }
-      get inheritTheme() {
-        return this[inheritTheme$];
-      }
-      set inheritTheme(value) {
-        super.inheritTheme = value;
-      }
+  var _buildDot = dart.privateName(dots_indicator, "_buildDot");
+  dots_indicator.DotsIndicator = class DotsIndicator extends framework.StatelessWidget {
+    get dotsCount() {
+      return this[dotsCount$];
     }
-    (PageTransition.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let child = opts && 'child' in opts ? opts.child : null;
-      let type = opts && 'type' in opts ? opts.type : null;
-      let childCurrent = opts && 'childCurrent' in opts ? opts.childCurrent : null;
-      let ctx = opts && 'ctx' in opts ? opts.ctx : null;
-      let inheritTheme = opts && 'inheritTheme' in opts ? opts.inheritTheme : false;
-      let curve = opts && 'curve' in opts ? opts.curve : C[0] || CT.C0;
-      let alignment = opts && 'alignment' in opts ? opts.alignment : null;
-      let duration = opts && 'duration' in opts ? opts.duration : C[1] || CT.C1;
-      let reverseDuration = opts && 'reverseDuration' in opts ? opts.reverseDuration : C[1] || CT.C1;
-      let settings = opts && 'settings' in opts ? opts.settings : null;
-      this[child$] = child;
-      this[type$] = type;
-      this[childCurrent$] = childCurrent;
-      this[ctx$] = ctx;
-      this[inheritTheme$] = inheritTheme;
-      this[curve$] = curve;
-      this[alignment$] = alignment;
-      this[duration$] = duration;
-      this[reverseDuration$] = reverseDuration;
-      if (!(inheritTheme ? ctx != null : true)) dart.assertFailed("'ctx' cannot be null when 'inheritTheme' is true, set ctx: context", I[0], 51, 16, "inheritTheme ? ctx != null : true");
-      PageTransition.__proto__.new.call(this, {pageBuilder: dart.fn((context, animation, secondaryAnimation) => inheritTheme ? inherited_theme.InheritedTheme.captureAll(dart.nullCheck(ctx), child) : child, T$.BuildContextAndAnimationOfdoubleAndAnimationOfdoubleToWidget()), transitionDuration: duration, reverseTransitionDuration: reverseDuration, settings: settings, transitionsBuilder: dart.fn((context, animation, secondaryAnimation, child) => {
-          switch (type) {
-            case C[6] || CT.C6:
-            {
-              return new transitions.FadeTransition.new({opacity: animation, child: child, $creationLocationd_0dea112b090073317d4: C[2] || CT.C2});
-              break;
-            }
-            case C[18] || CT.C18:
-            {
-              return new transitions.SlideTransition.new({transformHitTests: false, position: new (T$.TweenOfOffset()).new({begin: C[7] || CT.C7, end: ui.Offset.zero}).animate(new animations.CurvedAnimation.new({parent: animation, curve: curve})), child: new transitions.SlideTransition.new({position: new (T$.TweenOfOffset()).new({begin: ui.Offset.zero, end: C[8] || CT.C8}).animate(new animations.CurvedAnimation.new({parent: secondaryAnimation, curve: curve})), child: child, $creationLocationd_0dea112b090073317d4: C[9] || CT.C9}), $creationLocationd_0dea112b090073317d4: C[13] || CT.C13});
-              break;
-            }
-            case C[28] || CT.C28:
-            {
-              return new transitions.SlideTransition.new({transformHitTests: false, position: new (T$.TweenOfOffset()).new({begin: C[8] || CT.C8, end: ui.Offset.zero}).animate(new animations.CurvedAnimation.new({parent: animation, curve: curve})), child: new transitions.SlideTransition.new({position: new (T$.TweenOfOffset()).new({begin: ui.Offset.zero, end: C[7] || CT.C7}).animate(new animations.CurvedAnimation.new({parent: secondaryAnimation, curve: curve})), child: child, $creationLocationd_0dea112b090073317d4: C[19] || CT.C19}), $creationLocationd_0dea112b090073317d4: C[23] || CT.C23});
-              break;
-            }
-            case C[40] || CT.C40:
-            {
-              return new transitions.SlideTransition.new({transformHitTests: false, position: new (T$.TweenOfOffset()).new({begin: C[29] || CT.C29, end: ui.Offset.zero}).animate(new animations.CurvedAnimation.new({parent: animation, curve: curve})), child: new transitions.SlideTransition.new({position: new (T$.TweenOfOffset()).new({begin: ui.Offset.zero, end: C[30] || CT.C30}).animate(new animations.CurvedAnimation.new({parent: secondaryAnimation, curve: curve})), child: child, $creationLocationd_0dea112b090073317d4: C[31] || CT.C31}), $creationLocationd_0dea112b090073317d4: C[35] || CT.C35});
-              break;
-            }
-            case C[50] || CT.C50:
-            {
-              return new transitions.SlideTransition.new({transformHitTests: false, position: new (T$.TweenOfOffset()).new({begin: C[30] || CT.C30, end: ui.Offset.zero}).animate(new animations.CurvedAnimation.new({parent: animation, curve: curve})), child: new transitions.SlideTransition.new({position: new (T$.TweenOfOffset()).new({begin: ui.Offset.zero, end: C[29] || CT.C29}).animate(new animations.CurvedAnimation.new({parent: secondaryAnimation, curve: curve})), child: child, $creationLocationd_0dea112b090073317d4: C[41] || CT.C41}), $creationLocationd_0dea112b090073317d4: C[45] || CT.C45});
-              break;
-            }
-            case C[56] || CT.C56:
-            {
-              return new transitions.ScaleTransition.new({alignment: dart.nullCheck(alignment), scale: new animations.CurvedAnimation.new({parent: animation, curve: new curves.Interval.new(0.0, 0.5, {curve: curve})}), child: child, $creationLocationd_0dea112b090073317d4: C[51] || CT.C51});
-              break;
-            }
-            case C[71] || CT.C71:
-            {
-              return new transitions.RotationTransition.new({alignment: dart.nullCheck(alignment), turns: animation, child: new transitions.ScaleTransition.new({alignment: alignment, scale: animation, child: new transitions.FadeTransition.new({opacity: animation, child: child, $creationLocationd_0dea112b090073317d4: C[57] || CT.C57}), $creationLocationd_0dea112b090073317d4: C[61] || CT.C61}), $creationLocationd_0dea112b090073317d4: C[66] || CT.C66});
-              break;
-            }
-            case C[80] || CT.C80:
-            {
-              return new basic.Align.new({alignment: dart.nullCheck(alignment), child: new transitions.SizeTransition.new({sizeFactor: new animations.CurvedAnimation.new({parent: animation, curve: curve}), child: child, $creationLocationd_0dea112b090073317d4: C[72] || CT.C72}), $creationLocationd_0dea112b090073317d4: C[76] || CT.C76});
-              break;
-            }
-            case C[93] || CT.C93:
-            {
-              return new transitions.SlideTransition.new({position: new (T$.TweenOfOffset()).new({begin: C[7] || CT.C7, end: ui.Offset.zero}).animate(animation), child: new transitions.FadeTransition.new({opacity: animation, child: new transitions.SlideTransition.new({position: new (T$.TweenOfOffset()).new({begin: ui.Offset.zero, end: C[8] || CT.C8}).animate(new animations.CurvedAnimation.new({parent: secondaryAnimation, curve: curve})), child: child, $creationLocationd_0dea112b090073317d4: C[81] || CT.C81}), $creationLocationd_0dea112b090073317d4: C[85] || CT.C85}), $creationLocationd_0dea112b090073317d4: C[89] || CT.C89});
-              break;
-            }
-            case C[106] || CT.C106:
-            {
-              return new transitions.SlideTransition.new({position: new (T$.TweenOfOffset()).new({begin: C[8] || CT.C8, end: ui.Offset.zero}).animate(new animations.CurvedAnimation.new({parent: animation, curve: curve})), child: new transitions.FadeTransition.new({opacity: animation, child: new transitions.SlideTransition.new({position: new (T$.TweenOfOffset()).new({begin: ui.Offset.zero, end: C[7] || CT.C7}).animate(new animations.CurvedAnimation.new({parent: secondaryAnimation, curve: curve})), child: child, $creationLocationd_0dea112b090073317d4: C[94] || CT.C94}), $creationLocationd_0dea112b090073317d4: C[98] || CT.C98}), $creationLocationd_0dea112b090073317d4: C[102] || CT.C102});
-              break;
-            }
-            case C[119] || CT.C119:
-            {
-              if (!(childCurrent != null)) dart.assertFailed("                When using type \"rightToLeftJoined\" you need argument: 'childCurrent'\n\n                example:\n                  child: MyPage(),\n                  childCurrent: this\n\n                ", I[0], 307, 24, "childCurrent != null");
-              return new basic.Stack.new({children: T$.JSArrayOfWidget().of([new transitions.SlideTransition.new({position: new (T$.TweenOfOffset()).new({begin: C[107] || CT.C107, end: C[8] || CT.C8}).animate(new animations.CurvedAnimation.new({parent: animation, curve: curve})), child: childCurrent, $creationLocationd_0dea112b090073317d4: C[108] || CT.C108}), new transitions.SlideTransition.new({position: new (T$.TweenOfOffset()).new({begin: C[7] || CT.C7, end: C[107] || CT.C107}).animate(new animations.CurvedAnimation.new({parent: animation, curve: curve})), child: child, $creationLocationd_0dea112b090073317d4: C[112] || CT.C112})]), $creationLocationd_0dea112b090073317d4: C[116] || CT.C116});
-              break;
-            }
-            case C[131] || CT.C131:
-            {
-              if (!(childCurrent != null)) dart.assertFailed("                When using type \"leftToRightJoined\" you need argument: 'childCurrent'\n                example:\n                  child: MyPage(),\n                  childCurrent: this\n\n                ", I[0], 347, 24, "childCurrent != null");
-              return new basic.Stack.new({children: T$.JSArrayOfWidget().of([new transitions.SlideTransition.new({position: new (T$.TweenOfOffset()).new({begin: C[8] || CT.C8, end: C[107] || CT.C107}).animate(new animations.CurvedAnimation.new({parent: animation, curve: curve})), child: child, $creationLocationd_0dea112b090073317d4: C[120] || CT.C120}), new transitions.SlideTransition.new({position: new (T$.TweenOfOffset()).new({begin: C[107] || CT.C107, end: C[7] || CT.C7}).animate(new animations.CurvedAnimation.new({parent: animation, curve: curve})), child: childCurrent, $creationLocationd_0dea112b090073317d4: C[124] || CT.C124})]), $creationLocationd_0dea112b090073317d4: C[128] || CT.C128});
-              break;
-            }
-            default:
-            {
-              return new transitions.FadeTransition.new({opacity: animation, child: child, $creationLocationd_0dea112b090073317d4: C[132] || CT.C132});
-            }
-          }
-        }, T$.BuildContextAndAnimationOfdoubleAndAnimationOfdouble__ToWidget())});
-      ;
-    }).prototype = PageTransition.prototype;
-    dart.addTypeTests(PageTransition);
-    PageTransition.prototype[_is_PageTransition_default] = true;
-    dart.addTypeCaches(PageTransition);
-    dart.setLibraryUri(PageTransition, I[1]);
-    dart.setFieldSignature(PageTransition, () => ({
-      __proto__: dart.getFields(PageTransition.__proto__),
-      child: dart.finalFieldType(framework.Widget),
-      childCurrent: dart.finalFieldType(dart.nullable(framework.Widget)),
-      type: dart.finalFieldType($enum.PageTransitionType),
-      curve: dart.finalFieldType(curves.Curve),
-      alignment: dart.finalFieldType(dart.nullable(alignment.Alignment)),
-      duration: dart.finalFieldType(core.Duration),
-      reverseDuration: dart.finalFieldType(core.Duration),
-      ctx: dart.finalFieldType(dart.nullable(framework.BuildContext)),
-      inheritTheme: dart.finalFieldType(core.bool)
-    }));
-    return PageTransition;
-  });
-  page_transition.PageTransition = page_transition.PageTransition$();
-  dart.addTypeTests(page_transition.PageTransition, _is_PageTransition_default);
-  dart.trackLibraries("packages/page_transition/src/page_transition.dart", {
-    "package:page_transition/src/page_transition.dart": page_transition
+    set dotsCount(value) {
+      super.dotsCount = value;
+    }
+    get position() {
+      return this[position$];
+    }
+    set position(value) {
+      super.position = value;
+    }
+    get decorator() {
+      return this[decorator$];
+    }
+    set decorator(value) {
+      super.decorator = value;
+    }
+    get axis() {
+      return this[axis$];
+    }
+    set axis(value) {
+      super.axis = value;
+    }
+    get reversed() {
+      return this[reversed$];
+    }
+    set reversed(value) {
+      super.reversed = value;
+    }
+    get onTap() {
+      return this[onTap$];
+    }
+    set onTap(value) {
+      super.onTap = value;
+    }
+    get mainAxisSize() {
+      return this[mainAxisSize$];
+    }
+    set mainAxisSize(value) {
+      super.mainAxisSize = value;
+    }
+    get mainAxisAlignment() {
+      return this[mainAxisAlignment$];
+    }
+    set mainAxisAlignment(value) {
+      super.mainAxisAlignment = value;
+    }
+    [_buildDot](index) {
+      let state = math.min(core.double, 1.0, (this.position - index)[$abs]());
+      let size = dart.nullCheck(ui.Size.lerp(this.decorator.activeSize, this.decorator.size, state));
+      let color = ui.Color.lerp(this.decorator.activeColor, this.decorator.color, state);
+      let shape = dart.nullCheck(borders.ShapeBorder.lerp(this.decorator.activeShape, this.decorator.shape, state));
+      let dot = new container.Container.new({width: size.width, height: size.height, margin: this.decorator.spacing, decoration: new shape_decoration.ShapeDecoration.new({color: color, shape: shape}), $creationLocationd_0dea112b090073317d4: C[36] || CT.C36});
+      return this.onTap == null ? dot : new ink_well.InkWell.new({customBorder: C[2] || CT.C2, onTap: dart.fn(() => dart.nullCheck(this.onTap)(index[$toDouble]()), T.VoidTovoid()), child: dot, $creationLocationd_0dea112b090073317d4: C[42] || CT.C42});
+    }
+    build(context) {
+      let dotsList = T.ListOfWidget().generate(this.dotsCount, dart.bind(this, _buildDot));
+      let dots = this.reversed === true ? dotsList[$reversed][$toList]() : dotsList;
+      return this.axis === basic_types.Axis.vertical ? new basic.Column.new({mainAxisAlignment: this.mainAxisAlignment, mainAxisSize: this.mainAxisSize, children: dots, $creationLocationd_0dea112b090073317d4: C[47] || CT.C47}) : new basic.Row.new({mainAxisAlignment: this.mainAxisAlignment, mainAxisSize: this.mainAxisSize, children: dots, $creationLocationd_0dea112b090073317d4: C[52] || CT.C52});
+    }
+  };
+  (dots_indicator.DotsIndicator.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let dotsCount = opts && 'dotsCount' in opts ? opts.dotsCount : null;
+    let position = opts && 'position' in opts ? opts.position : 0;
+    let decorator = opts && 'decorator' in opts ? opts.decorator : C[0] || CT.C0;
+    let axis = opts && 'axis' in opts ? opts.axis : C[33] || CT.C33;
+    let reversed = opts && 'reversed' in opts ? opts.reversed : false;
+    let mainAxisSize = opts && 'mainAxisSize' in opts ? opts.mainAxisSize : C[34] || CT.C34;
+    let mainAxisAlignment = opts && 'mainAxisAlignment' in opts ? opts.mainAxisAlignment : C[35] || CT.C35;
+    let onTap = opts && 'onTap' in opts ? opts.onTap : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[dotsCount$] = dotsCount;
+    this[position$] = position;
+    this[decorator$] = decorator;
+    this[axis$] = axis;
+    this[reversed$] = reversed;
+    this[mainAxisSize$] = mainAxisSize;
+    this[mainAxisAlignment$] = mainAxisAlignment;
+    this[onTap$] = onTap;
+    if (!(dotsCount > 0)) dart.assertFailed(null, I[0], 31, 16, "dotsCount > 0");
+    if (!(position >= 0)) dart.assertFailed(null, I[0], 32, 16, "position >= 0");
+    if (!(position < dotsCount)) dart.assertFailed("Position must be inferior than dotsCount", I[0], 34, 11, "position < dotsCount");
+    dots_indicator.DotsIndicator.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = dots_indicator.DotsIndicator.prototype;
+  dart.addTypeTests(dots_indicator.DotsIndicator);
+  dart.addTypeCaches(dots_indicator.DotsIndicator);
+  dart.setMethodSignature(dots_indicator.DotsIndicator, () => ({
+    __proto__: dart.getMethods(dots_indicator.DotsIndicator.__proto__),
+    [_buildDot]: dart.fnType(framework.Widget, [core.int]),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }));
+  dart.setLibraryUri(dots_indicator.DotsIndicator, I[1]);
+  dart.setFieldSignature(dots_indicator.DotsIndicator, () => ({
+    __proto__: dart.getFields(dots_indicator.DotsIndicator.__proto__),
+    dotsCount: dart.finalFieldType(core.int),
+    position: dart.finalFieldType(core.double),
+    decorator: dart.finalFieldType(dots_decorator.DotsDecorator),
+    axis: dart.finalFieldType(basic_types.Axis),
+    reversed: dart.finalFieldType(core.bool),
+    onTap: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [core.double]))),
+    mainAxisSize: dart.finalFieldType(flex.MainAxisSize),
+    mainAxisAlignment: dart.finalFieldType(flex.MainAxisAlignment)
+  }));
+  dart.trackLibraries("packages/dots_indicator/src/dots_indicator.dart", {
+    "package:dots_indicator/src/dots_indicator.dart": dots_indicator
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["page_transition.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;MAUe;;;;;;MAGC;;;;;;MAIW;;;;;;MAGb;;;;;;MAGK;;;;;;MAGF;;;;;;MAGA;;;;;;MAGK;;;;;;MAGT;;;;;;;;UAIJ;UACS;UACA;UACT;UACA;UACA;UACA;UACA;UACA;UACA;UACU;MATD;MACA;MACT;MACA;MACA;MACA;MACA;MACA;MACA;YAEM,YAAY,GAAG,AAAI,GAAD,WAAW,yBAChC;AACJ,4DACe,SAAc,SAA2B,WAChC,uBACb,YAAY,GACE,0CACV,eAAH,GAAG,GACH,KAAK,IAEP,KAAK,0FAEO,QAAQ,6BACD,eAAe,YAChC,QAAQ,sBACE,SAAc,SACZ,WACA,oBACX;AACT,kBAAQ,IAAI;;;AAER,oBAAO,8CAAwB,SAAS,SAAS,KAAK;AAEtD;;;;AAIA,oBAAO,yDACc,iBACL,AAGZ,yDADY,yBAEZ,4CACU,SAAS,SACV,KAAK,YAGL,+CACK,AAGZ,qCAFc,6CAGd,4CACU,kBAAkB,SACnB,KAAK,YAGT,KAAK;AAIhB;;;;AAKA,oBAAO,yDACc,iBACT,AAGR,yDADY,yBAEZ,4CACU,SAAS,SACV,KAAK,YAGL,+CACK,AAGZ,qCAFc,6CAGd,4CACU,kBAAkB,SACnB,KAAK,YAGT,KAAK;AAIhB;;;;AAKA,oBAAO,yDACc,iBACT,AAGR,2DADY,yBAEZ,4CACU,SAAS,SACV,KAAK,YAGL,+CACK,AAGZ,qCAFc,+CAGd,4CACU,kBAAkB,SACnB,KAAK,YAGT,KAAK;AAIhB;;;;AAKA,oBAAO,yDACc,iBACT,AAGR,2DADY,yBAEZ,4CACU,SAAS,SACV,KAAK,YAGL,+CACK,AAGZ,qCAFc,+CAGd,4CACU,kBAAkB,SACnB,KAAK,YAGT,KAAK;AAIhB;;;;AAKA,oBAAO,iDACe,eAAT,SAAS,UACb,4CACG,SAAS,SACV,wBACL,KACA,aACO,KAAK,aAGT,KAAK;AAGd;;;;AAKA,oBAAW,oDACW,eAAT,SAAS,UACb,SAAS,SACL,gDACE,SAAS,SACb,SAAS,SACT,6CACI,SAAS,SACX,KAAK;AAKlB;;;;AAKA,oBAAO,iCACe,eAAT,SAAS,UACb,gDACO,4CACF,SAAS,SACV,KAAK,WAEP,KAAK;AAIhB;;;;AAKA,oBAAO,gDACK,AAGR,yDADY,yBACJ,SAAS,UACZ,6CACI,SAAS,SACX,+CACK,AAGR,qCAFc,6CAGd,4CACU,kBAAkB,SACnB,KAAK,YAGT,KAAK;AAKlB;;;;AAKA,oBAAO,gDACK,AAGR,yDADY,yBAEZ,4CACU,SAAS,SACV,KAAK,YAGT,6CACI,SAAS,SACX,+CACK,AAGR,qCAFc,6CAGd,4CACU,kBAAkB,SACnB,KAAK,YAGT,KAAK;AAKlB;;;;AAGA,oBAAO,AAAa,YAAD,6BAAU;AAQ7B,oBAAO,gCACa,yBAChB,+CACgB,AAGZ,qFACA,4CACU,SAAS,SACV,KAAK,YAGT,YAAY,+DAErB,+CACgB,AAGZ,qFACA,4CACU,SAAS,SACV,KAAK,YAGT,KAAK;AAKlB;;;;AAGA,oBAAO,AAAa,YAAD,6BAAU;AAO7B,oBAAO,gCACa,yBAChB,+CACgB,AAGZ,qFACA,4CACU,SAAS,SACV,KAAK,YAGT,KAAK,+DAEd,+CACgB,AAGZ,qFACA,4CACU,SAAS,SACV,KAAK,YAGT,YAAY;AAKzB;;;;AAKA,oBAAO,8CAAwB,SAAS,SAAS,KAAK;;;;;IAG7D","file":"../../../../../../../../packages/page_transition/src/page_transition.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["dots_indicator.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAWY;;;;;;IACG;;;;;;IACO;;;;;;IACT;;;;;;IACA;;;;;;IACE;;;;;;IACM;;;;;;IACK;;;;;;gBAoBH;AACb,kBAAQ,sBAAI,KAAwB,CAAlB,AAAS,gBAAE,KAAK;AAElC,iBAA6D,eAAjD,aAAK,AAAU,2BAAY,AAAU,qBAAM,KAAK;AAC5D,kBAAc,cAAK,AAAU,4BAAa,AAAU,sBAAO,KAAK;AAChE,kBAIL,eAJyB,yBACxB,AAAU,4BACV,AAAU,sBACV,KAAK;AAGD,gBAAM,oCACH,AAAK,IAAD,gBACH,AAAK,IAAD,iBACJ,AAAU,oCACN,iDACH,KAAK,SACL,KAAK;AAGhB,YAAO,AAAM,sBACP,GAAG,GACH,8DAES,cAAW,AAAC,eAAN,YAAO,AAAM,KAAD,wCAClB,GAAG;IAEpB;UAG0B;AAClB,qBAAW,0BAAsB,0BAAW;AAC5C,iBAAO,AAAS,kBAAG,OAAO,AAAS,AAAS,QAAV,yBAAqB,QAAQ;AAErE,YAAO,AAAK,eAAQ,4BACd,yCACqB,sCACL,6BACJ,IAAI,8DAEhB,sCACqB,sCACL,6BACJ,IAAI;IAExB;;;QA9DO;QACS;QACT;QACA;QACA;QACA;QACA;QACA;QACA;;IAPS;IACT;IACA;IACA;IACA;IACA;IACA;IACA;UACM,AAAU,SAAD,GAAG;UACZ,AAAS,QAAD,IAAI;UAEjB,AAAS,QAAD,GAAG,SAAS,qBACpB;AAEF,gEAAW,GAAG;;EAAC","file":"../../../../../../../../packages/dots_indicator/src/dots_indicator.dart.lib.js"}');
   // Exports:
   return {
-    src__page_transition: page_transition
+    src__dots_indicator: dots_indicator
   };
 }));
 
-//# sourceMappingURL=page_transition.dart.lib.js.map
+//# sourceMappingURL=dots_indicator.dart.lib.js.map

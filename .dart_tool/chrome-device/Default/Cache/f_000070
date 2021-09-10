@@ -1,23 +1,26 @@
-define(['dart_sdk', 'packages/collection/src/comparators.dart'], (function load__packages__collection__src__equality_dart(dart_sdk, packages__collection__src__comparators$46dart) {
+define(['dart_sdk', 'packages/flutter/src/physics/tolerance.dart', 'packages/flutter/src/physics/friction_simulation.dart', 'packages/flutter/src/physics/spring_simulation.dart', 'packages/flutter/src/foundation/object.dart', 'packages/flutter/src/physics/simulation.dart'], (function load__packages__flutter__src__widgets__scroll_simulation_dart(dart_sdk, packages__flutter__src__physics__tolerance$46dart, packages__flutter__src__physics__friction_simulation$46dart, packages__flutter__src__physics__spring_simulation$46dart, packages__flutter__src__foundation__object$46dart, packages__flutter__src__physics__simulation$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const collection = dart_sdk.collection;
-  const _js_helper = dart_sdk._js_helper;
+  const math = dart_sdk.math;
+  const _internal = dart_sdk._internal;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const comparators = packages__collection__src__comparators$46dart.src__comparators;
-  var equality = Object.create(dart.library);
-  var $hashCode = dartx.hashCode;
-  var $iterator = dartx.iterator;
-  var $rightShift = dartx['>>'];
-  var $length = dartx.length;
+  const tolerance = packages__flutter__src__physics__tolerance$46dart.src__physics__tolerance;
+  const friction_simulation = packages__flutter__src__physics__friction_simulation$46dart.src__physics__friction_simulation;
+  const spring_simulation = packages__flutter__src__physics__spring_simulation$46dart.src__physics__spring_simulation;
+  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
+  const simulation = packages__flutter__src__physics__simulation$46dart.src__physics__simulation;
+  var scroll_simulation = Object.create(dart.library);
+  var $isFinite = dartx.isFinite;
+  var $abs = dartx.abs;
+  var $round = dartx.round;
+  var $sign = dartx.sign;
+  var $clamp = dartx.clamp;
   var $_get = dartx._get;
-  var $_set = dartx._set;
-  var $keys = dartx.keys;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    DefaultEqualityOfNever: () => (T.DefaultEqualityOfNever = dart.constFn(equality.DefaultEquality$(dart.Never)))(),
-    LinkedMapOf_MapEntry$int: () => (T.LinkedMapOf_MapEntry$int = dart.constFn(_js_helper.LinkedMap$(equality._MapEntry, core.int)))()
+    JSArrayOfdouble: () => (T.JSArrayOfdouble = dart.constFn(_interceptors.JSArray$(core.double)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -25,678 +28,408 @@ define(['dart_sdk', 'packages/collection/src/comparators.dart'], (function load_
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: T.DefaultEqualityOfNever().prototype
+        __proto__: tolerance.Tolerance.prototype,
+        [Tolerance_velocity]: 0.001,
+        [Tolerance_time]: 0.001,
+        [Tolerance_distance]: 0.001
       });
     }
   }, false);
   var C = [void 0];
-  var I = ["package:collection/src/equality.dart"];
-  const _is_Equality_default = Symbol('_is_Equality_default');
-  equality.Equality$ = dart.generic(E => {
-    class Equality extends core.Object {}
-    (Equality[dart.mixinNew] = function() {
-    }).prototype = Equality.prototype;
-    dart.addTypeTests(Equality);
-    Equality.prototype[_is_Equality_default] = true;
-    dart.addTypeCaches(Equality);
-    dart.setLibraryUri(Equality, I[0]);
-    return Equality;
-  });
-  equality.Equality = equality.Equality$();
-  dart.addTypeTests(equality.Equality, _is_Equality_default);
-  var _comparisonKey = dart.privateName(equality, "_comparisonKey");
-  var _inner = dart.privateName(equality, "_inner");
-  const _is_EqualityBy_default = Symbol('_is_EqualityBy_default');
-  equality.EqualityBy$ = dart.generic((E, F) => {
-    class EqualityBy extends core.Object {
-      equals(e1, e2) {
-        let t0, t0$;
-        E.as(e1);
-        E.as(e2);
-        return this[_inner].equals((t0 = e1, this[_comparisonKey](t0)), (t0$ = e2, this[_comparisonKey](t0$)));
-      }
-      hash(e) {
-        let t0;
-        E.as(e);
-        return this[_inner].hash((t0 = e, this[_comparisonKey](t0)));
-      }
-      isValidKey(o) {
-        let t0;
-        if (E.is(o)) {
-          let value = (t0 = o, this[_comparisonKey](t0));
-          return F.is(value) && this[_inner].isValidKey(value);
-        }
-        return false;
-      }
+  var I = [
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/scroll_simulation.dart",
+    "package:flutter/src/widgets/scroll_simulation.dart"
+  ];
+  var leadingExtent$ = dart.privateName(scroll_simulation, "BouncingScrollSimulation.leadingExtent");
+  var trailingExtent$ = dart.privateName(scroll_simulation, "BouncingScrollSimulation.trailingExtent");
+  var spring$ = dart.privateName(scroll_simulation, "BouncingScrollSimulation.spring");
+  var Tolerance_velocity = dart.privateName(tolerance, "Tolerance.velocity");
+  var Tolerance_time = dart.privateName(tolerance, "Tolerance.time");
+  var Tolerance_distance = dart.privateName(tolerance, "Tolerance.distance");
+  var __BouncingScrollSimulation__frictionSimulation = dart.privateName(scroll_simulation, "_#BouncingScrollSimulation#_frictionSimulation");
+  var __BouncingScrollSimulation__springSimulation = dart.privateName(scroll_simulation, "_#BouncingScrollSimulation#_springSimulation");
+  var __BouncingScrollSimulation__springTime = dart.privateName(scroll_simulation, "_#BouncingScrollSimulation#_springTime");
+  var _timeOffset = dart.privateName(scroll_simulation, "_timeOffset");
+  var _springSimulation = dart.privateName(scroll_simulation, "_springSimulation");
+  var _underscrollSimulation = dart.privateName(scroll_simulation, "_underscrollSimulation");
+  var _springTime = dart.privateName(scroll_simulation, "_springTime");
+  var _overscrollSimulation = dart.privateName(scroll_simulation, "_overscrollSimulation");
+  var _frictionSimulation = dart.privateName(scroll_simulation, "_frictionSimulation");
+  var _simulation = dart.privateName(scroll_simulation, "_simulation");
+  scroll_simulation.BouncingScrollSimulation = class BouncingScrollSimulation extends simulation.Simulation {
+    get leadingExtent() {
+      return this[leadingExtent$];
     }
-    (EqualityBy.new = function(comparisonKey, inner = C[0] || CT.C0) {
-      this[_comparisonKey] = comparisonKey;
-      this[_inner] = inner;
-      ;
-    }).prototype = EqualityBy.prototype;
-    dart.addTypeTests(EqualityBy);
-    EqualityBy.prototype[_is_EqualityBy_default] = true;
-    dart.addTypeCaches(EqualityBy);
-    EqualityBy[dart.implements] = () => [equality.Equality$(E)];
-    dart.setMethodSignature(EqualityBy, () => ({
-      __proto__: dart.getMethods(EqualityBy.__proto__),
-      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
-      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
-      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
-    }));
-    dart.setLibraryUri(EqualityBy, I[0]);
-    dart.setFieldSignature(EqualityBy, () => ({
-      __proto__: dart.getFields(EqualityBy.__proto__),
-      [_comparisonKey]: dart.finalFieldType(dart.fnType(F, [E])),
-      [_inner]: dart.finalFieldType(equality.Equality$(F))
-    }));
-    return EqualityBy;
-  });
-  equality.EqualityBy = equality.EqualityBy$();
-  dart.addTypeTests(equality.EqualityBy, _is_EqualityBy_default);
-  const _is_DefaultEquality_default = Symbol('_is_DefaultEquality_default');
-  equality.DefaultEquality$ = dart.generic(E => {
-    class DefaultEquality extends core.Object {
-      equals(e1, e2) {
-        return dart.equals(e1, e2);
-      }
-      hash(e) {
-        return dart.hashCode(e);
-      }
-      isValidKey(o) {
-        return true;
-      }
+    set leadingExtent(value) {
+      super.leadingExtent = value;
     }
-    (DefaultEquality.new = function() {
-      ;
-    }).prototype = DefaultEquality.prototype;
-    dart.addTypeTests(DefaultEquality);
-    DefaultEquality.prototype[_is_DefaultEquality_default] = true;
-    dart.addTypeCaches(DefaultEquality);
-    DefaultEquality[dart.implements] = () => [equality.Equality$(E)];
-    dart.setMethodSignature(DefaultEquality, () => ({
-      __proto__: dart.getMethods(DefaultEquality.__proto__),
-      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
-      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
-      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
-    }));
-    dart.setLibraryUri(DefaultEquality, I[0]);
-    return DefaultEquality;
-  });
-  equality.DefaultEquality = equality.DefaultEquality$();
-  dart.addTypeTests(equality.DefaultEquality, _is_DefaultEquality_default);
-  const _is_IdentityEquality_default = Symbol('_is_IdentityEquality_default');
-  equality.IdentityEquality$ = dart.generic(E => {
-    class IdentityEquality extends core.Object {
-      equals(e1, e2) {
-        E.as(e1);
-        E.as(e2);
-        return core.identical(e1, e2);
-      }
-      hash(e) {
-        E.as(e);
-        return core.identityHashCode(e);
-      }
-      isValidKey(o) {
-        return true;
-      }
+    get trailingExtent() {
+      return this[trailingExtent$];
     }
-    (IdentityEquality.new = function() {
-      ;
-    }).prototype = IdentityEquality.prototype;
-    dart.addTypeTests(IdentityEquality);
-    IdentityEquality.prototype[_is_IdentityEquality_default] = true;
-    dart.addTypeCaches(IdentityEquality);
-    IdentityEquality[dart.implements] = () => [equality.Equality$(E)];
-    dart.setMethodSignature(IdentityEquality, () => ({
-      __proto__: dart.getMethods(IdentityEquality.__proto__),
-      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
-      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
-      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
-    }));
-    dart.setLibraryUri(IdentityEquality, I[0]);
-    return IdentityEquality;
-  });
-  equality.IdentityEquality = equality.IdentityEquality$();
-  dart.addTypeTests(equality.IdentityEquality, _is_IdentityEquality_default);
-  var _elementEquality = dart.privateName(equality, "IterableEquality._elementEquality");
-  var _elementEquality$ = dart.privateName(equality, "_elementEquality");
-  const _is_IterableEquality_default = Symbol('_is_IterableEquality_default');
-  equality.IterableEquality$ = dart.generic(E => {
-    var IterableOfE = () => (IterableOfE = dart.constFn(core.Iterable$(E)))();
-    var IterableNOfE = () => (IterableNOfE = dart.constFn(dart.nullable(IterableOfE())))();
-    class IterableEquality extends core.Object {
-      get [_elementEquality$]() {
-        return this[_elementEquality];
-      }
-      set [_elementEquality$](value) {
-        super[_elementEquality$] = value;
-      }
-      equals(elements1, elements2) {
-        IterableNOfE().as(elements1);
-        IterableNOfE().as(elements2);
-        if (elements1 == elements2) return true;
-        if (elements1 == null || elements2 == null) return false;
-        let it1 = elements1[$iterator];
-        let it2 = elements2[$iterator];
-        while (true) {
-          let hasNext = it1.moveNext();
-          if (hasNext !== it2.moveNext()) return false;
-          if (!hasNext) return true;
-          if (!this[_elementEquality$].equals(it1.current, it2.current)) return false;
-        }
-      }
-      hash(elements) {
-        IterableNOfE().as(elements);
-        if (elements == null) return dart.hashCode(null);
-        let hash = 0;
-        for (let element of elements) {
-          let c = this[_elementEquality$].hash(element);
-          hash = (hash + c & 2147483647) >>> 0;
-          hash = (hash + (hash << 10 >>> 0) & 2147483647) >>> 0;
-          hash = (hash ^ hash[$rightShift](6)) >>> 0;
-        }
-        hash = (hash + (hash << 3 >>> 0) & 2147483647) >>> 0;
-        hash = (hash ^ hash[$rightShift](11)) >>> 0;
-        hash = (hash + (hash << 15 >>> 0) & 2147483647) >>> 0;
-        return hash;
-      }
-      isValidKey(o) {
-        return IterableOfE().is(o);
-      }
+    set trailingExtent(value) {
+      super.trailingExtent = value;
     }
-    (IterableEquality.new = function(elementEquality = C[0] || CT.C0) {
-      this[_elementEquality] = elementEquality;
-      ;
-    }).prototype = IterableEquality.prototype;
-    dart.addTypeTests(IterableEquality);
-    IterableEquality.prototype[_is_IterableEquality_default] = true;
-    dart.addTypeCaches(IterableEquality);
-    IterableEquality[dart.implements] = () => [equality.Equality$(core.Iterable$(E))];
-    dart.setMethodSignature(IterableEquality, () => ({
-      __proto__: dart.getMethods(IterableEquality.__proto__),
-      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
-      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
-      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
-    }));
-    dart.setLibraryUri(IterableEquality, I[0]);
-    dart.setFieldSignature(IterableEquality, () => ({
-      __proto__: dart.getFields(IterableEquality.__proto__),
-      [_elementEquality$]: dart.finalFieldType(equality.Equality$(dart.nullable(E)))
-    }));
-    return IterableEquality;
-  });
-  equality.IterableEquality = equality.IterableEquality$();
-  dart.addTypeTests(equality.IterableEquality, _is_IterableEquality_default);
-  var _elementEquality$0 = dart.privateName(equality, "ListEquality._elementEquality");
-  const _is_ListEquality_default = Symbol('_is_ListEquality_default');
-  equality.ListEquality$ = dart.generic(E => {
-    var ListOfE = () => (ListOfE = dart.constFn(core.List$(E)))();
-    var ListNOfE = () => (ListNOfE = dart.constFn(dart.nullable(ListOfE())))();
-    class ListEquality extends core.Object {
-      get [_elementEquality$]() {
-        return this[_elementEquality$0];
-      }
-      set [_elementEquality$](value) {
-        super[_elementEquality$] = value;
-      }
-      equals(list1, list2) {
-        ListNOfE().as(list1);
-        ListNOfE().as(list2);
-        if (list1 == list2) return true;
-        if (list1 == null || list2 == null) return false;
-        let length = list1[$length];
-        if (length !== list2[$length]) return false;
-        for (let i = 0; i < length; i = i + 1) {
-          if (!this[_elementEquality$].equals(list1[$_get](i), list2[$_get](i))) return false;
-        }
-        return true;
-      }
-      hash(list) {
-        ListNOfE().as(list);
-        if (list == null) return dart.hashCode(null);
-        let hash = 0;
-        for (let i = 0; i < list[$length]; i = i + 1) {
-          let c = this[_elementEquality$].hash(list[$_get](i));
-          hash = (hash + c & 2147483647) >>> 0;
-          hash = (hash + (hash << 10 >>> 0) & 2147483647) >>> 0;
-          hash = (hash ^ hash[$rightShift](6)) >>> 0;
-        }
-        hash = (hash + (hash << 3 >>> 0) & 2147483647) >>> 0;
-        hash = (hash ^ hash[$rightShift](11)) >>> 0;
-        hash = (hash + (hash << 15 >>> 0) & 2147483647) >>> 0;
-        return hash;
-      }
-      isValidKey(o) {
-        return ListOfE().is(o);
-      }
+    get spring() {
+      return this[spring$];
     }
-    (ListEquality.new = function(elementEquality = C[0] || CT.C0) {
-      this[_elementEquality$0] = elementEquality;
-      ;
-    }).prototype = ListEquality.prototype;
-    dart.addTypeTests(ListEquality);
-    ListEquality.prototype[_is_ListEquality_default] = true;
-    dart.addTypeCaches(ListEquality);
-    ListEquality[dart.implements] = () => [equality.Equality$(core.List$(E))];
-    dart.setMethodSignature(ListEquality, () => ({
-      __proto__: dart.getMethods(ListEquality.__proto__),
-      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
-      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
-      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
-    }));
-    dart.setLibraryUri(ListEquality, I[0]);
-    dart.setFieldSignature(ListEquality, () => ({
-      __proto__: dart.getFields(ListEquality.__proto__),
-      [_elementEquality$]: dart.finalFieldType(equality.Equality$(E))
-    }));
-    return ListEquality;
-  });
-  equality.ListEquality = equality.ListEquality$();
-  dart.addTypeTests(equality.ListEquality, _is_ListEquality_default);
-  var _elementEquality$1 = dart.privateName(equality, "_UnorderedEquality._elementEquality");
-  const _is__UnorderedEquality_default = Symbol('_is__UnorderedEquality_default');
-  equality._UnorderedEquality$ = dart.generic((E, T) => {
-    var HashMapOfE$dynamic = () => (HashMapOfE$dynamic = dart.constFn(collection.HashMap$(E, dart.dynamic)))();
-    class _UnorderedEquality extends core.Object {
-      get [_elementEquality$]() {
-        return this[_elementEquality$1];
-      }
-      set [_elementEquality$](value) {
-        super[_elementEquality$] = value;
-      }
-      equals(elements1, elements2) {
-        let t0;
-        T.as(elements1);
-        T.as(elements2);
-        if (elements1 == elements2) return true;
-        if (elements1 == null || elements2 == null) return false;
-        let counts = HashMapOfE$dynamic().new({equals: dart.bind(this[_elementEquality$], 'equals'), hashCode: dart.bind(this[_elementEquality$], 'hash'), isValidKey: dart.bind(this[_elementEquality$], 'isValidKey')});
-        let length = 0;
-        for (let e of elements1) {
-          let count = (t0 = counts[$_get](e), t0 == null ? 0 : t0);
-          counts[$_set](e, dart.dsend(count, '+', [1]));
-          length = length + 1;
-        }
-        for (let e of elements2) {
-          let count = counts[$_get](e);
-          if (count == null || dart.equals(count, 0)) return false;
-          counts[$_set](e, dart.dsend(count, '-', [1]));
-          length = length - 1;
-        }
-        return length === 0;
-      }
-      hash(elements) {
-        T.as(elements);
-        if (elements == null) return dart.hashCode(null);
-        let hash = 0;
-        for (let element of elements) {
-          let c = this[_elementEquality$].hash(element);
-          hash = (hash + c & 2147483647) >>> 0;
-        }
-        hash = (hash + (hash << 3 >>> 0) & 2147483647) >>> 0;
-        hash = (hash ^ hash[$rightShift](11)) >>> 0;
-        hash = (hash + (hash << 15 >>> 0) & 2147483647) >>> 0;
-        return hash;
-      }
+    set spring(value) {
+      super.spring = value;
     }
-    (_UnorderedEquality.new = function(_elementEquality) {
-      this[_elementEquality$1] = _elementEquality;
-      ;
-    }).prototype = _UnorderedEquality.prototype;
-    dart.addTypeTests(_UnorderedEquality);
-    _UnorderedEquality.prototype[_is__UnorderedEquality_default] = true;
-    dart.addTypeCaches(_UnorderedEquality);
-    _UnorderedEquality[dart.implements] = () => [equality.Equality$(T)];
-    dart.setMethodSignature(_UnorderedEquality, () => ({
-      __proto__: dart.getMethods(_UnorderedEquality.__proto__),
-      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
-      hash: dart.fnType(core.int, [dart.nullable(core.Object)])
-    }));
-    dart.setLibraryUri(_UnorderedEquality, I[0]);
-    dart.setFieldSignature(_UnorderedEquality, () => ({
-      __proto__: dart.getFields(_UnorderedEquality.__proto__),
-      [_elementEquality$]: dart.finalFieldType(equality.Equality$(E))
-    }));
-    return _UnorderedEquality;
-  });
-  equality._UnorderedEquality = equality._UnorderedEquality$();
-  dart.addTypeTests(equality._UnorderedEquality, _is__UnorderedEquality_default);
-  const _is_UnorderedIterableEquality_default = Symbol('_is_UnorderedIterableEquality_default');
-  equality.UnorderedIterableEquality$ = dart.generic(E => {
-    var IterableOfE = () => (IterableOfE = dart.constFn(core.Iterable$(E)))();
-    class UnorderedIterableEquality extends equality._UnorderedEquality$(E, dart.nullable(core.Iterable$(E))) {
-      isValidKey(o) {
-        return IterableOfE().is(o);
+    get [_frictionSimulation]() {
+      let t0;
+      t0 = this[__BouncingScrollSimulation__frictionSimulation];
+      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_frictionSimulation")) : t0;
+    }
+    set [_frictionSimulation](t0) {
+      this[__BouncingScrollSimulation__frictionSimulation] = t0;
+    }
+    get [_springSimulation]() {
+      let t1;
+      t1 = this[__BouncingScrollSimulation__springSimulation];
+      return t1 == null ? dart.throw(new _internal.LateError.fieldNI("_springSimulation")) : t1;
+    }
+    set [_springSimulation](t1) {
+      this[__BouncingScrollSimulation__springSimulation] = t1;
+    }
+    get [_springTime]() {
+      let t2;
+      t2 = this[__BouncingScrollSimulation__springTime];
+      return t2 == null ? dart.throw(new _internal.LateError.fieldNI("_springTime")) : t2;
+    }
+    set [_springTime](t2) {
+      this[__BouncingScrollSimulation__springTime] = t2;
+    }
+    [_underscrollSimulation](x, dx) {
+      return new spring_simulation.ScrollSpringSimulation.new(this.spring, x, this.leadingExtent, dx);
+    }
+    [_overscrollSimulation](x, dx) {
+      return new spring_simulation.ScrollSpringSimulation.new(this.spring, x, this.trailingExtent, dx);
+    }
+    [_simulation](time) {
+      let t3;
+      let simulation = null;
+      if (time > this[_springTime]) {
+        this[_timeOffset] = this[_springTime][$isFinite] ? this[_springTime] : 0.0;
+        simulation = this[_springSimulation];
+      } else {
+        this[_timeOffset] = 0.0;
+        simulation = this[_frictionSimulation];
       }
+      t3 = simulation;
+      return (() => {
+        t3.tolerance = this.tolerance;
+        return t3;
+      })();
     }
-    (UnorderedIterableEquality.new = function(elementEquality = C[0] || CT.C0) {
-      UnorderedIterableEquality.__proto__.new.call(this, elementEquality);
-      ;
-    }).prototype = UnorderedIterableEquality.prototype;
-    dart.addTypeTests(UnorderedIterableEquality);
-    UnorderedIterableEquality.prototype[_is_UnorderedIterableEquality_default] = true;
-    dart.addTypeCaches(UnorderedIterableEquality);
-    dart.setMethodSignature(UnorderedIterableEquality, () => ({
-      __proto__: dart.getMethods(UnorderedIterableEquality.__proto__),
-      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
-    }));
-    dart.setLibraryUri(UnorderedIterableEquality, I[0]);
-    return UnorderedIterableEquality;
-  });
-  equality.UnorderedIterableEquality = equality.UnorderedIterableEquality$();
-  dart.addTypeTests(equality.UnorderedIterableEquality, _is_UnorderedIterableEquality_default);
-  const _is_SetEquality_default = Symbol('_is_SetEquality_default');
-  equality.SetEquality$ = dart.generic(E => {
-    var SetOfE = () => (SetOfE = dart.constFn(core.Set$(E)))();
-    class SetEquality extends equality._UnorderedEquality$(E, dart.nullable(core.Set$(E))) {
-      isValidKey(o) {
-        return SetOfE().is(o);
-      }
+    x(time) {
+      return this[_simulation](time).x(time - this[_timeOffset]);
     }
-    (SetEquality.new = function(elementEquality = C[0] || CT.C0) {
-      SetEquality.__proto__.new.call(this, elementEquality);
-      ;
-    }).prototype = SetEquality.prototype;
-    dart.addTypeTests(SetEquality);
-    SetEquality.prototype[_is_SetEquality_default] = true;
-    dart.addTypeCaches(SetEquality);
-    dart.setMethodSignature(SetEquality, () => ({
-      __proto__: dart.getMethods(SetEquality.__proto__),
-      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
-    }));
-    dart.setLibraryUri(SetEquality, I[0]);
-    return SetEquality;
-  });
-  equality.SetEquality = equality.SetEquality$();
-  dart.addTypeTests(equality.SetEquality, _is_SetEquality_default);
-  var _keyEquality = dart.privateName(equality, "_keyEquality");
-  var _valueEquality = dart.privateName(equality, "_valueEquality");
-  equality._MapEntry = class _MapEntry extends core.Object {
-    get hashCode() {
-      return (3 * this.equality[_keyEquality].hash(this.key) + 7 * this.equality[_valueEquality].hash(this.value) & 2147483647) >>> 0;
+    dx(time) {
+      return this[_simulation](time).dx(time - this[_timeOffset]);
     }
-    _equals(other) {
-      if (other == null) return false;
-      return equality._MapEntry.is(other) && this.equality[_keyEquality].equals(this.key, other.key) && this.equality[_valueEquality].equals(this.value, other.value);
+    isDone(time) {
+      return this[_simulation](time).isDone(time - this[_timeOffset]);
+    }
+    toString() {
+      return object.objectRuntimeType(this, "BouncingScrollSimulation") + "(leadingExtent: " + dart.str(this.leadingExtent) + ", trailingExtent: " + dart.str(this.trailingExtent) + ")";
     }
   };
-  (equality._MapEntry.new = function(equality, key, value) {
-    this.equality = equality;
-    this.key = key;
-    this.value = value;
-    ;
-  }).prototype = equality._MapEntry.prototype;
-  dart.addTypeTests(equality._MapEntry);
-  dart.addTypeCaches(equality._MapEntry);
-  dart.setLibraryUri(equality._MapEntry, I[0]);
-  dart.setFieldSignature(equality._MapEntry, () => ({
-    __proto__: dart.getFields(equality._MapEntry.__proto__),
-    equality: dart.finalFieldType(equality.MapEquality),
-    key: dart.finalFieldType(dart.dynamic),
-    value: dart.finalFieldType(dart.dynamic)
+  (scroll_simulation.BouncingScrollSimulation.new = function(opts) {
+    let position = opts && 'position' in opts ? opts.position : null;
+    let velocity = opts && 'velocity' in opts ? opts.velocity : null;
+    let leadingExtent = opts && 'leadingExtent' in opts ? opts.leadingExtent : null;
+    let trailingExtent = opts && 'trailingExtent' in opts ? opts.trailingExtent : null;
+    let spring = opts && 'spring' in opts ? opts.spring : null;
+    let tolerance = opts && 'tolerance' in opts ? opts.tolerance : C[0] || CT.C0;
+    this[__BouncingScrollSimulation__frictionSimulation] = null;
+    this[__BouncingScrollSimulation__springSimulation] = null;
+    this[__BouncingScrollSimulation__springTime] = null;
+    this[_timeOffset] = 0.0;
+    this[leadingExtent$] = leadingExtent;
+    this[trailingExtent$] = trailingExtent;
+    this[spring$] = spring;
+    if (!(position !== null)) dart.assertFailed(null, I[0], 38, 15, "position != null");
+    if (!(velocity !== null)) dart.assertFailed(null, I[0], 39, 15, "velocity != null");
+    if (!(leadingExtent !== null)) dart.assertFailed(null, I[0], 40, 15, "leadingExtent != null");
+    if (!(trailingExtent !== null)) dart.assertFailed(null, I[0], 41, 15, "trailingExtent != null");
+    if (!(leadingExtent <= trailingExtent)) dart.assertFailed(null, I[0], 42, 15, "leadingExtent <= trailingExtent");
+    if (!(spring !== null)) dart.assertFailed(null, I[0], 43, 15, "spring != null");
+    scroll_simulation.BouncingScrollSimulation.__proto__.new.call(this, {tolerance: tolerance});
+    if (position < this.leadingExtent) {
+      this[_springSimulation] = this[_underscrollSimulation](position, velocity);
+      this[_springTime] = -1 / 0;
+    } else if (position > this.trailingExtent) {
+      this[_springSimulation] = this[_overscrollSimulation](position, velocity);
+      this[_springTime] = -1 / 0;
+    } else {
+      this[_frictionSimulation] = new friction_simulation.FrictionSimulation.new(0.135, position, velocity);
+      let finalX = this[_frictionSimulation].finalX;
+      if (velocity > 0.0 && finalX > this.trailingExtent) {
+        this[_springTime] = this[_frictionSimulation].timeAtX(this.trailingExtent);
+        this[_springSimulation] = this[_overscrollSimulation](this.trailingExtent, math.min(core.double, this[_frictionSimulation].dx(this[_springTime]), 5000));
+        if (!this[_springTime][$isFinite]) dart.assertFailed(null, I[0], 62, 16, "_springTime.isFinite");
+      } else if (velocity < 0.0 && finalX < this.leadingExtent) {
+        this[_springTime] = this[_frictionSimulation].timeAtX(this.leadingExtent);
+        this[_springSimulation] = this[_underscrollSimulation](this.leadingExtent, math.min(core.double, this[_frictionSimulation].dx(this[_springTime]), 5000));
+        if (!this[_springTime][$isFinite]) dart.assertFailed(null, I[0], 69, 16, "_springTime.isFinite");
+      } else {
+        this[_springTime] = 1 / 0;
+      }
+    }
+    if (!(this[_springTime] !== null)) dart.assertFailed(null, I[0], 74, 12, "_springTime != null");
+  }).prototype = scroll_simulation.BouncingScrollSimulation.prototype;
+  dart.addTypeTests(scroll_simulation.BouncingScrollSimulation);
+  dart.addTypeCaches(scroll_simulation.BouncingScrollSimulation);
+  dart.setMethodSignature(scroll_simulation.BouncingScrollSimulation, () => ({
+    __proto__: dart.getMethods(scroll_simulation.BouncingScrollSimulation.__proto__),
+    [_underscrollSimulation]: dart.fnType(simulation.Simulation, [core.double, core.double]),
+    [_overscrollSimulation]: dart.fnType(simulation.Simulation, [core.double, core.double]),
+    [_simulation]: dart.fnType(simulation.Simulation, [core.double]),
+    x: dart.fnType(core.double, [core.double]),
+    dx: dart.fnType(core.double, [core.double]),
+    isDone: dart.fnType(core.bool, [core.double])
   }));
-  dart.defineExtensionMethods(equality._MapEntry, ['_equals']);
-  dart.defineExtensionAccessors(equality._MapEntry, ['hashCode']);
-  var _keyEquality$ = dart.privateName(equality, "MapEquality._keyEquality");
-  var _valueEquality$ = dart.privateName(equality, "MapEquality._valueEquality");
-  const _is_MapEquality_default = Symbol('_is_MapEquality_default');
-  equality.MapEquality$ = dart.generic((K, V) => {
-    var MapOfK$V = () => (MapOfK$V = dart.constFn(core.Map$(K, V)))();
-    var MapNOfK$V = () => (MapNOfK$V = dart.constFn(dart.nullable(MapOfK$V())))();
-    class MapEquality extends core.Object {
-      get [_keyEquality]() {
-        return this[_keyEquality$];
-      }
-      set [_keyEquality](value) {
-        super[_keyEquality] = value;
-      }
-      get [_valueEquality]() {
-        return this[_valueEquality$];
-      }
-      set [_valueEquality](value) {
-        super[_valueEquality] = value;
-      }
-      equals(map1, map2) {
-        let t0;
-        MapNOfK$V().as(map1);
-        MapNOfK$V().as(map2);
-        if (map1 == map2) return true;
-        if (map1 == null || map2 == null) return false;
-        let length = map1[$length];
-        if (length !== map2[$length]) return false;
-        let equalElementCounts = new (T.LinkedMapOf_MapEntry$int()).new();
-        for (let key of map1[$keys]) {
-          let entry = new equality._MapEntry.new(this, key, map1[$_get](key));
-          let count = (t0 = equalElementCounts[$_get](entry), t0 == null ? 0 : t0);
-          equalElementCounts[$_set](entry, count + 1);
-        }
-        for (let key of map2[$keys]) {
-          let entry = new equality._MapEntry.new(this, key, map2[$_get](key));
-          let count = equalElementCounts[$_get](entry);
-          if (count == null || count === 0) return false;
-          equalElementCounts[$_set](entry, dart.notNull(count) - 1);
-        }
-        return true;
-      }
-      hash(map) {
-        MapNOfK$V().as(map);
-        if (map == null) return dart.hashCode(null);
-        let hash = 0;
-        for (let key of map[$keys]) {
-          let keyHash = this[_keyEquality].hash(key);
-          let valueHash = this[_valueEquality].hash(V.as(map[$_get](key)));
-          hash = (hash + 3 * keyHash + 7 * valueHash & 2147483647) >>> 0;
-        }
-        hash = (hash + (hash << 3 >>> 0) & 2147483647) >>> 0;
-        hash = (hash ^ hash[$rightShift](11)) >>> 0;
-        hash = (hash + (hash << 15 >>> 0) & 2147483647) >>> 0;
-        return hash;
-      }
-      isValidKey(o) {
-        return MapOfK$V().is(o);
-      }
-    }
-    (MapEquality.new = function(opts) {
-      let keys = opts && 'keys' in opts ? opts.keys : C[0] || CT.C0;
-      let values = opts && 'values' in opts ? opts.values : C[0] || CT.C0;
-      this[_keyEquality$] = keys;
-      this[_valueEquality$] = values;
-      ;
-    }).prototype = MapEquality.prototype;
-    dart.addTypeTests(MapEquality);
-    MapEquality.prototype[_is_MapEquality_default] = true;
-    dart.addTypeCaches(MapEquality);
-    MapEquality[dart.implements] = () => [equality.Equality$(core.Map$(K, V))];
-    dart.setMethodSignature(MapEquality, () => ({
-      __proto__: dart.getMethods(MapEquality.__proto__),
-      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
-      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
-      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
-    }));
-    dart.setLibraryUri(MapEquality, I[0]);
-    dart.setFieldSignature(MapEquality, () => ({
-      __proto__: dart.getFields(MapEquality.__proto__),
-      [_keyEquality]: dart.finalFieldType(equality.Equality$(K)),
-      [_valueEquality]: dart.finalFieldType(equality.Equality$(V))
-    }));
-    return MapEquality;
-  });
-  equality.MapEquality = equality.MapEquality$();
-  dart.addTypeTests(equality.MapEquality, _is_MapEquality_default);
-  var _equalities = dart.privateName(equality, "MultiEquality._equalities");
-  var _equalities$ = dart.privateName(equality, "_equalities");
-  const _is_MultiEquality_default = Symbol('_is_MultiEquality_default');
-  equality.MultiEquality$ = dart.generic(E => {
-    class MultiEquality extends core.Object {
-      get [_equalities$]() {
-        return this[_equalities];
-      }
-      set [_equalities$](value) {
-        super[_equalities$] = value;
-      }
-      equals(e1, e2) {
-        E.as(e1);
-        E.as(e2);
-        for (let eq of this[_equalities$]) {
-          if (eq.isValidKey(e1)) return eq.isValidKey(e2) && eq.equals(e1, e2);
-        }
-        return false;
-      }
-      hash(e) {
-        E.as(e);
-        for (let eq of this[_equalities$]) {
-          if (eq.isValidKey(e)) return eq.hash(e);
-        }
-        return 0;
-      }
-      isValidKey(o) {
-        for (let eq of this[_equalities$]) {
-          if (eq.isValidKey(o)) return true;
-        }
-        return false;
-      }
-    }
-    (MultiEquality.new = function(equalities) {
-      this[_equalities] = equalities;
-      ;
-    }).prototype = MultiEquality.prototype;
-    dart.addTypeTests(MultiEquality);
-    MultiEquality.prototype[_is_MultiEquality_default] = true;
-    dart.addTypeCaches(MultiEquality);
-    MultiEquality[dart.implements] = () => [equality.Equality$(E)];
-    dart.setMethodSignature(MultiEquality, () => ({
-      __proto__: dart.getMethods(MultiEquality.__proto__),
-      equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
-      hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
-      isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
-    }));
-    dart.setLibraryUri(MultiEquality, I[0]);
-    dart.setFieldSignature(MultiEquality, () => ({
-      __proto__: dart.getFields(MultiEquality.__proto__),
-      [_equalities$]: dart.finalFieldType(core.Iterable$(equality.Equality$(E)))
-    }));
-    return MultiEquality;
-  });
-  equality.MultiEquality = equality.MultiEquality$();
-  dart.addTypeTests(equality.MultiEquality, _is_MultiEquality_default);
-  var _base = dart.privateName(equality, "DeepCollectionEquality._base");
-  var _unordered = dart.privateName(equality, "DeepCollectionEquality._unordered");
-  var _base$ = dart.privateName(equality, "_base");
-  var _unordered$ = dart.privateName(equality, "_unordered");
-  equality.DeepCollectionEquality = class DeepCollectionEquality extends core.Object {
-    get [_base$]() {
-      return this[_base];
-    }
-    set [_base$](value) {
-      super[_base$] = value;
-    }
-    get [_unordered$]() {
-      return this[_unordered];
-    }
-    set [_unordered$](value) {
-      super[_unordered$] = value;
-    }
-    equals(e1, e2) {
-      if (core.Set.is(e1)) {
-        return core.Set.is(e2) && new equality.SetEquality.new(this).equals(e1, e2);
-      }
-      if (core.Map.is(e1)) {
-        return core.Map.is(e2) && new equality.MapEquality.new({keys: this, values: this}).equals(e1, e2);
-      }
-      if (!this[_unordered$]) {
-        if (core.List.is(e1)) {
-          return core.List.is(e2) && new equality.ListEquality.new(this).equals(e1, e2);
-        }
-        if (core.Iterable.is(e1)) {
-          return core.Iterable.is(e2) && new equality.IterableEquality.new(this).equals(e1, e2);
-        }
-      } else if (core.Iterable.is(e1)) {
-        if (core.List.is(e1) !== core.List.is(e2)) return false;
-        return core.Iterable.is(e2) && new equality.UnorderedIterableEquality.new(this).equals(e1, e2);
-      }
-      return this[_base$].equals(e1, e2);
-    }
-    hash(o) {
-      if (core.Set.is(o)) return new equality.SetEquality.new(this).hash(o);
-      if (core.Map.is(o)) return new equality.MapEquality.new({keys: this, values: this}).hash(o);
-      if (!this[_unordered$]) {
-        if (core.List.is(o)) return new equality.ListEquality.new(this).hash(o);
-        if (core.Iterable.is(o)) return new equality.IterableEquality.new(this).hash(o);
-      } else if (core.Iterable.is(o)) {
-        return new equality.UnorderedIterableEquality.new(this).hash(o);
-      }
-      return this[_base$].hash(o);
-    }
-    isValidKey(o) {
-      return core.Iterable.is(o) || core.Map.is(o) || this[_base$].isValidKey(o);
-    }
-  };
-  (equality.DeepCollectionEquality.new = function(base = C[0] || CT.C0) {
-    this[_base] = base;
-    this[_unordered] = false;
-    ;
-  }).prototype = equality.DeepCollectionEquality.prototype;
-  (equality.DeepCollectionEquality.unordered = function(base = C[0] || CT.C0) {
-    this[_base] = base;
-    this[_unordered] = true;
-    ;
-  }).prototype = equality.DeepCollectionEquality.prototype;
-  dart.addTypeTests(equality.DeepCollectionEquality);
-  dart.addTypeCaches(equality.DeepCollectionEquality);
-  equality.DeepCollectionEquality[dart.implements] = () => [equality.Equality];
-  dart.setMethodSignature(equality.DeepCollectionEquality, () => ({
-    __proto__: dart.getMethods(equality.DeepCollectionEquality.__proto__),
-    equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
-    hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
-    isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
+  dart.setGetterSignature(scroll_simulation.BouncingScrollSimulation, () => ({
+    __proto__: dart.getGetters(scroll_simulation.BouncingScrollSimulation.__proto__),
+    [_frictionSimulation]: friction_simulation.FrictionSimulation,
+    [_springSimulation]: simulation.Simulation,
+    [_springTime]: core.double
   }));
-  dart.setLibraryUri(equality.DeepCollectionEquality, I[0]);
-  dart.setFieldSignature(equality.DeepCollectionEquality, () => ({
-    __proto__: dart.getFields(equality.DeepCollectionEquality.__proto__),
-    [_base$]: dart.finalFieldType(equality.Equality),
-    [_unordered$]: dart.finalFieldType(core.bool)
+  dart.setSetterSignature(scroll_simulation.BouncingScrollSimulation, () => ({
+    __proto__: dart.getSetters(scroll_simulation.BouncingScrollSimulation.__proto__),
+    [_frictionSimulation]: friction_simulation.FrictionSimulation,
+    [_springSimulation]: simulation.Simulation,
+    [_springTime]: core.double
   }));
-  equality.CaseInsensitiveEquality = class CaseInsensitiveEquality extends core.Object {
-    equals(string1, string2) {
-      core.String.as(string1);
-      core.String.as(string2);
-      return comparators.equalsIgnoreAsciiCase(string1, string2);
-    }
-    hash(string) {
-      core.String.as(string);
-      return comparators.hashIgnoreAsciiCase(string);
-    }
-    isValidKey(object) {
-      return typeof object == 'string';
-    }
-  };
-  (equality.CaseInsensitiveEquality.new = function() {
-    ;
-  }).prototype = equality.CaseInsensitiveEquality.prototype;
-  dart.addTypeTests(equality.CaseInsensitiveEquality);
-  dart.addTypeCaches(equality.CaseInsensitiveEquality);
-  equality.CaseInsensitiveEquality[dart.implements] = () => [equality.Equality$(core.String)];
-  dart.setMethodSignature(equality.CaseInsensitiveEquality, () => ({
-    __proto__: dart.getMethods(equality.CaseInsensitiveEquality.__proto__),
-    equals: dart.fnType(core.bool, [dart.nullable(core.Object), dart.nullable(core.Object)]),
-    hash: dart.fnType(core.int, [dart.nullable(core.Object)]),
-    isValidKey: dart.fnType(core.bool, [dart.nullable(core.Object)])
+  dart.setLibraryUri(scroll_simulation.BouncingScrollSimulation, I[1]);
+  dart.setFieldSignature(scroll_simulation.BouncingScrollSimulation, () => ({
+    __proto__: dart.getFields(scroll_simulation.BouncingScrollSimulation.__proto__),
+    leadingExtent: dart.finalFieldType(core.double),
+    trailingExtent: dart.finalFieldType(core.double),
+    spring: dart.finalFieldType(spring_simulation.SpringDescription),
+    [__BouncingScrollSimulation__frictionSimulation]: dart.fieldType(dart.nullable(friction_simulation.FrictionSimulation)),
+    [__BouncingScrollSimulation__springSimulation]: dart.fieldType(dart.nullable(simulation.Simulation)),
+    [__BouncingScrollSimulation__springTime]: dart.fieldType(dart.nullable(core.double)),
+    [_timeOffset]: dart.fieldType(core.double)
   }));
-  dart.setLibraryUri(equality.CaseInsensitiveEquality, I[0]);
-  dart.defineLazy(equality, {
-    /*equality._HASH_MASK*/get _HASH_MASK() {
-      return 2147483647;
+  dart.defineExtensionMethods(scroll_simulation.BouncingScrollSimulation, ['toString']);
+  dart.defineLazy(scroll_simulation.BouncingScrollSimulation, {
+    /*scroll_simulation.BouncingScrollSimulation.maxSpringTransferVelocity*/get maxSpringTransferVelocity() {
+      return 5000;
     }
   }, false);
-  dart.trackLibraries("packages/collection/src/equality.dart", {
-    "package:collection/src/equality.dart": equality
+  var position$ = dart.privateName(scroll_simulation, "ClampingScrollSimulation.position");
+  var velocity$ = dart.privateName(scroll_simulation, "ClampingScrollSimulation.velocity");
+  var friction$ = dart.privateName(scroll_simulation, "ClampingScrollSimulation.friction");
+  var __ClampingScrollSimulation__duration = dart.privateName(scroll_simulation, "_#ClampingScrollSimulation#_duration");
+  var __ClampingScrollSimulation__distance = dart.privateName(scroll_simulation, "_#ClampingScrollSimulation#_distance");
+  var _duration = dart.privateName(scroll_simulation, "_duration");
+  var _splineFlingDuration = dart.privateName(scroll_simulation, "_splineFlingDuration");
+  var _distance = dart.privateName(scroll_simulation, "_distance");
+  var _splineFlingDistance = dart.privateName(scroll_simulation, "_splineFlingDistance");
+  var _splineDeceleration = dart.privateName(scroll_simulation, "_splineDeceleration");
+  scroll_simulation.ClampingScrollSimulation = class ClampingScrollSimulation extends simulation.Simulation {
+    get position() {
+      return this[position$];
+    }
+    set position(value) {
+      super.position = value;
+    }
+    get velocity() {
+      return this[velocity$];
+    }
+    set velocity(value) {
+      super.velocity = value;
+    }
+    get friction() {
+      return this[friction$];
+    }
+    set friction(value) {
+      super.friction = value;
+    }
+    get [_duration]() {
+      let t3;
+      t3 = this[__ClampingScrollSimulation__duration];
+      return t3 == null ? dart.throw(new _internal.LateError.fieldNI("_duration")) : t3;
+    }
+    set [_duration](t3) {
+      this[__ClampingScrollSimulation__duration] = t3;
+    }
+    get [_distance]() {
+      let t4;
+      t4 = this[__ClampingScrollSimulation__distance];
+      return t4 == null ? dart.throw(new _internal.LateError.fieldNI("_distance")) : t4;
+    }
+    set [_distance](t4) {
+      this[__ClampingScrollSimulation__distance] = t4;
+    }
+    static _decelerationForFriction(friction) {
+      return 9.80665 * 39.37 * friction * 1.0 * 160.0;
+    }
+    [_splineDeceleration](velocity) {
+      return math.log(0.35 * velocity[$abs]() / (this.friction * scroll_simulation.ClampingScrollSimulation._decelerationForFriction(0.84)));
+    }
+    [_splineFlingDuration](velocity) {
+      let deceleration = this[_splineDeceleration](velocity);
+      return (1000 * math.exp(deceleration / (scroll_simulation.ClampingScrollSimulation._kDecelerationRate - 1.0)))[$round]();
+    }
+    [_splineFlingDistance](velocity) {
+      let l = this[_splineDeceleration](velocity);
+      let decelMinusOne = scroll_simulation.ClampingScrollSimulation._kDecelerationRate - 1.0;
+      return this.friction * scroll_simulation.ClampingScrollSimulation._decelerationForFriction(0.84) * math.exp(scroll_simulation.ClampingScrollSimulation._kDecelerationRate / decelMinusOne * l);
+    }
+    x(time) {
+      if (time === 0) {
+        return this.position;
+      }
+      let sample = new scroll_simulation._NBSample.new(time, this[_duration]);
+      return this.position + sample.distanceCoef * this[_distance] * this.velocity[$sign];
+    }
+    dx(time) {
+      if (time === 0) {
+        return this.velocity;
+      }
+      let sample = new scroll_simulation._NBSample.new(time, this[_duration]);
+      return sample.velocityCoef * this[_distance] / this[_duration] * this.velocity[$sign] * 1000.0;
+    }
+    isDone(time) {
+      return time * 1000.0 >= this[_duration];
+    }
+  };
+  (scroll_simulation.ClampingScrollSimulation.new = function(opts) {
+    let position = opts && 'position' in opts ? opts.position : null;
+    let velocity = opts && 'velocity' in opts ? opts.velocity : null;
+    let friction = opts && 'friction' in opts ? opts.friction : 0.015;
+    let tolerance = opts && 'tolerance' in opts ? opts.tolerance : C[0] || CT.C0;
+    this[__ClampingScrollSimulation__duration] = null;
+    this[__ClampingScrollSimulation__distance] = null;
+    this[position$] = position;
+    this[velocity$] = velocity;
+    this[friction$] = friction;
+    scroll_simulation.ClampingScrollSimulation.__proto__.new.call(this, {tolerance: tolerance});
+    this[_duration] = this[_splineFlingDuration](this.velocity);
+    this[_distance] = this[_splineFlingDistance](this.velocity);
+  }).prototype = scroll_simulation.ClampingScrollSimulation.prototype;
+  dart.addTypeTests(scroll_simulation.ClampingScrollSimulation);
+  dart.addTypeCaches(scroll_simulation.ClampingScrollSimulation);
+  dart.setMethodSignature(scroll_simulation.ClampingScrollSimulation, () => ({
+    __proto__: dart.getMethods(scroll_simulation.ClampingScrollSimulation.__proto__),
+    [_splineDeceleration]: dart.fnType(core.double, [core.double]),
+    [_splineFlingDuration]: dart.fnType(core.int, [core.double]),
+    [_splineFlingDistance]: dart.fnType(core.double, [core.double]),
+    x: dart.fnType(core.double, [core.double]),
+    dx: dart.fnType(core.double, [core.double]),
+    isDone: dart.fnType(core.bool, [core.double])
+  }));
+  dart.setGetterSignature(scroll_simulation.ClampingScrollSimulation, () => ({
+    __proto__: dart.getGetters(scroll_simulation.ClampingScrollSimulation.__proto__),
+    [_duration]: core.int,
+    [_distance]: core.double
+  }));
+  dart.setSetterSignature(scroll_simulation.ClampingScrollSimulation, () => ({
+    __proto__: dart.getSetters(scroll_simulation.ClampingScrollSimulation.__proto__),
+    [_duration]: core.int,
+    [_distance]: core.double
+  }));
+  dart.setLibraryUri(scroll_simulation.ClampingScrollSimulation, I[1]);
+  dart.setFieldSignature(scroll_simulation.ClampingScrollSimulation, () => ({
+    __proto__: dart.getFields(scroll_simulation.ClampingScrollSimulation.__proto__),
+    position: dart.finalFieldType(core.double),
+    velocity: dart.finalFieldType(core.double),
+    friction: dart.finalFieldType(core.double),
+    [__ClampingScrollSimulation__duration]: dart.fieldType(dart.nullable(core.int)),
+    [__ClampingScrollSimulation__distance]: dart.fieldType(dart.nullable(core.double))
+  }));
+  dart.defineLazy(scroll_simulation.ClampingScrollSimulation, {
+    /*scroll_simulation.ClampingScrollSimulation._kDecelerationRate*/get _kDecelerationRate() {
+      return math.log(0.78) / math.log(0.9);
+    }
+  }, false);
+  var ___NBSample__velocityCoef = dart.privateName(scroll_simulation, "_#_NBSample#_velocityCoef");
+  var ___NBSample__distanceCoef = dart.privateName(scroll_simulation, "_#_NBSample#_distanceCoef");
+  var _distanceCoef = dart.privateName(scroll_simulation, "_distanceCoef");
+  var _velocityCoef = dart.privateName(scroll_simulation, "_velocityCoef");
+  scroll_simulation._NBSample = class _NBSample extends core.Object {
+    get [_velocityCoef]() {
+      let t5;
+      t5 = this[___NBSample__velocityCoef];
+      return t5 == null ? dart.throw(new _internal.LateError.fieldNI("_velocityCoef")) : t5;
+    }
+    set [_velocityCoef](t5) {
+      this[___NBSample__velocityCoef] = t5;
+    }
+    get velocityCoef() {
+      return this[_velocityCoef];
+    }
+    get [_distanceCoef]() {
+      let t6;
+      t6 = this[___NBSample__distanceCoef];
+      return t6 == null ? dart.throw(new _internal.LateError.fieldNI("_distanceCoef")) : t6;
+    }
+    set [_distanceCoef](t6) {
+      this[___NBSample__distanceCoef] = t6;
+    }
+    get distanceCoef() {
+      return this[_distanceCoef];
+    }
+  };
+  (scroll_simulation._NBSample.new = function(time, duration) {
+    this[___NBSample__velocityCoef] = null;
+    this[___NBSample__distanceCoef] = null;
+    let t = time * 1000.0 / duration;
+    let index = (100 * t)[$clamp](0, 100)[$round]();
+    this[_distanceCoef] = 1.0;
+    this[_velocityCoef] = 0.0;
+    if (index < 100) {
+      let tInf = index / 100;
+      let tSup = (index + 1) / 100;
+      let dInf = scroll_simulation._NBSample._splinePosition[$_get](index);
+      let dSup = scroll_simulation._NBSample._splinePosition[$_get](index + 1);
+      this[_velocityCoef] = (dSup - dInf) / (tSup - tInf);
+      this[_distanceCoef] = dInf + (t - tInf) * this[_velocityCoef];
+    }
+  }).prototype = scroll_simulation._NBSample.prototype;
+  dart.addTypeTests(scroll_simulation._NBSample);
+  dart.addTypeCaches(scroll_simulation._NBSample);
+  dart.setGetterSignature(scroll_simulation._NBSample, () => ({
+    __proto__: dart.getGetters(scroll_simulation._NBSample.__proto__),
+    [_velocityCoef]: core.double,
+    velocityCoef: core.double,
+    [_distanceCoef]: core.double,
+    distanceCoef: core.double
+  }));
+  dart.setSetterSignature(scroll_simulation._NBSample, () => ({
+    __proto__: dart.getSetters(scroll_simulation._NBSample.__proto__),
+    [_velocityCoef]: core.double,
+    [_distanceCoef]: core.double
+  }));
+  dart.setLibraryUri(scroll_simulation._NBSample, I[1]);
+  dart.setFieldSignature(scroll_simulation._NBSample, () => ({
+    __proto__: dart.getFields(scroll_simulation._NBSample.__proto__),
+    [___NBSample__velocityCoef]: dart.fieldType(dart.nullable(core.double)),
+    [___NBSample__distanceCoef]: dart.fieldType(dart.nullable(core.double))
+  }));
+  dart.defineLazy(scroll_simulation._NBSample, {
+    /*scroll_simulation._NBSample._nbSamples*/get _nbSamples() {
+      return 100;
+    },
+    /*scroll_simulation._NBSample._splinePosition*/get _splinePosition() {
+      return T.JSArrayOfdouble().of([0.000022888183591973643, 0.028561000304762274, 0.05705195792956655, 0.08538917797618413, 0.11349556286812107, 0.14129881694635613, 0.16877157254923383, 0.19581093511175632, 0.22239649722992452, 0.24843841866631658, 0.2740024733220569, 0.298967680744136, 0.32333234658228116, 0.34709556909569184, 0.3702249257894571, 0.39272483400399893, 0.41456988647721615, 0.43582889025419114, 0.4564192786416, 0.476410299013587, 0.4957560715637827, 0.5145493169954743, 0.5327205670880077, 0.5502846891191615, 0.5673274324802855, 0.583810881323224, 0.5997478744397482, 0.615194045299478, 0.6301165005270208, 0.6445484042257972, 0.6585198219185201, 0.6720397744233084, 0.6850997688076114, 0.6977281404741683, 0.7099506591298411, 0.7217749311525871, 0.7331784038850426, 0.7442308394229518, 0.7549087205105974, 0.7652471277371271, 0.7752251637549381, 0.7848768260203478, 0.7942056937103814, 0.8032299679689082, 0.8119428702388629, 0.8203713516576219, 0.8285187880808974, 0.8363794492831295, 0.8439768562813565, 0.851322799855549, 0.8584111051351724, 0.8652534074722162, 0.8718525580962131, 0.8782333271742155, 0.8843892099362031, 0.8903155590440985, 0.8960465359221951, 0.9015574505919048, 0.9068736766459904, 0.9119951682409297, 0.9169321898723632, 0.9216747065581234, 0.9262420604674766, 0.9306331858366086, 0.9348476990715433, 0.9389007110754832, 0.9427903495057521, 0.9465220679845756, 0.9500943036519721, 0.9535176728088761, 0.9567898524767604, 0.959924306623116, 0.9629127700159108, 0.9657622101750765, 0.9684818726275105, 0.9710676079044347, 0.9735231939498, 0.9758514437576309, 0.9780599066560445, 0.9801485715370128, 0.9821149805689633, 0.9839677526782791, 0.9857085499421516, 0.9873347811966005, 0.9888547171706613, 0.9902689443512227, 0.9915771042095881, 0.9927840651641069, 0.9938913963715834, 0.9948987305580712, 0.9958114963810524, 0.9966274782266875, 0.997352148697352, 0.9979848677523623, 0.9985285021374979, 0.9989844084453229, 0.9993537595844986, 0.999638729860106, 0.9998403888004533, 0.9999602810470701, 1.0]);
+    }
+  }, false);
+  dart.defineLazy(scroll_simulation, {
+    /*scroll_simulation._inflexion*/get _inflexion() {
+      return 0.35;
+    }
+  }, false);
+  dart.trackLibraries("packages/flutter/src/widgets/scroll_simulation.dart", {
+    "package:flutter/src/widgets/scroll_simulation.dart": scroll_simulation
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["equality.dart"],"names":[],"mappings":"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","file":"../../../../../../../../packages/collection/src/equality.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["scroll_simulation.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/widgets/scroll_simulation.dart.lib.js"}');
   // Exports:
   return {
-    src__equality: equality
+    src__widgets__scroll_simulation: scroll_simulation
   };
 }));
 
-//# sourceMappingURL=equality.dart.lib.js.map
+//# sourceMappingURL=scroll_simulation.dart.lib.js.map
