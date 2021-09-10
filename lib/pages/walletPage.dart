@@ -16,6 +16,7 @@ class WalletPage extends StatefulWidget {
 class _WalletPageState extends State<WalletPage> {
   final box = Hive.box('transactions');
   final incomeBox = Hive.box('income');
+  final outcomeBox = Hive.box('outcome');
   @override
   void dispose() {
     // Hive.close();
@@ -28,7 +29,8 @@ class _WalletPageState extends State<WalletPage> {
     // final totalExpense;
     // final totalIncome;
     final amount = Hive.box('amount').get(0);
-    int income = incomeBox.get(0);
+    double income = incomeBox.get(0);
+    double outcome = outcomeBox.get(0);
     // final data = Hive.box('trasactions').get(0);
     return ListView(
       shrinkWrap: true,
@@ -173,7 +175,7 @@ class _WalletPageState extends State<WalletPage> {
                         Container(
                           padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
                           child: Text(
-                            '125000 Ks',
+                            '$outcome Ks',
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,

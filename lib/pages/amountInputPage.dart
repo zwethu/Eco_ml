@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/data/database.dart';
 import 'package:eco_ml/data/incomeData.dart';
+import 'package:eco_ml/data/outcomeData.dart';
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -34,8 +35,6 @@ class _AmountInputPageState extends State<AmountInputPage> {
   @override
   Widget build(BuildContext context) {
     final dataName = Hive.box('username').get(0);
-  
-  
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -127,7 +126,10 @@ class _AmountInputPageState extends State<AmountInputPage> {
                     final calculateIncome = incomeData??0.0;
                     incomeBox.put(0, calculateIncome);
                     print(incomeBox.get(0));
-
+                  final outcomeData = outcomeBox.get(0);
+                    final calculateOutcome = outcomeData??0.0;
+                    outcomeBox.put(0, calculateOutcome);
+                    print(outcomeBox.get(0));
                   });
                 },
                 child: Container(
