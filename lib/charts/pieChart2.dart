@@ -1,6 +1,9 @@
 import 'package:eco_ml/charts/barChart.dart';
+import 'package:eco_ml/data/database.dart';
+import 'package:eco_ml/data/outcomeData.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:hive/hive.dart';
 
 class PieChartTwoClass extends StatefulWidget {
   const PieChartTwoClass({Key? key}) : super(key: key);
@@ -10,6 +13,8 @@ class PieChartTwoClass extends StatefulWidget {
 }
 
 class _PieChartTwoClassState extends State<PieChartTwoClass> {
+  final box = Hive.box('transactions');
+  final outcomeBox = Hive.box('outcome');
   int touchedIndex = -1;
   
   @override
@@ -131,38 +136,31 @@ class _PieChartTwoClassState extends State<PieChartTwoClass> {
   }
 
 List<PieChartSectionData> showingSections() {
-    return List.generate(2, (i) {
+    return List.generate(box.length, (i) {
+      final data = box.getAt(i) as Transaction;
+      double outcome = outcomeBox.get(0);
+
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 20.0 : 16.0;
       final radius = isTouched ? 55.0 : 50.0;
-      switch (i) {
-        case 0:
-          return PieChartSectionData(
-            color: const Color(0xfffa96cf),
-            value: 80,
-            title: '80%',
-            radius: radius,
-           
-           
-           
-            titleStyle: TextStyle(
-                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-          );
-        case 1:
-          return PieChartSectionData(
-            color: const Color(0xfff0ff19),
-            value: 20,
-            title: '20%',
-            radius: radius,
-            titleStyle: TextStyle(
-                fontSize: fontSize, fontWeight: FontWeight.bold, color: const Color(0xffffffff)),
-          );
-        
-        
-        default:
-          throw Error();
+      double value = (data.amount / outcome) * 100;
+      if (data.isExpense&& data.datatime.day==DateTime.now().day) {
+        return PieChartSectionData(
+          color: outcomeData[data.iconId].colorName,
+          value: value.ceilToDouble(),
+          title: '${value.ceilToDouble()}%',
+          radius: radius,
+          titleStyle: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xffffffff)),
+        );
+      } else {
+       
+        return PieChartSectionData(
+          value: 0
+        );
       }
     });
   }
-  
 }

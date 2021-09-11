@@ -17,6 +17,7 @@ class _NameInputPageState extends State<NameInputPage> {
   final nameBox = Hive.box('username');
 
   TextEditingController nameController = TextEditingController();
+  bool _validate = false;
 
   @override
   void initState() {
@@ -66,6 +67,7 @@ class _NameInputPageState extends State<NameInputPage> {
                   controller: nameController,
                   decoration: InputDecoration(
                     hintText: 'Enter your name',
+                    errorText: _validate ? 'Please provide your name' : null,
                     filled: true,
                     hintStyle: TextStyle(
                       color: Color(0xff9E8FAE),
@@ -111,13 +113,31 @@ class _NameInputPageState extends State<NameInputPage> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                    backgroundColor: MaterialStateProperty.all(Color(0xffE3A5AA)),
+                    backgroundColor:
+                        MaterialStateProperty.all(Color(0xffE3A5AA)),
                   ),
+                  
                   onPressed: () {
-                    final newData = UserName(nameController.text.toString());
+                    if(nameController.text.isEmpty){
+                      _validate=true;
+                      setState(() {
+                        
+                      });
+                    }
+                     
+                    else{
+                      _validate = false;
+                      setState(() {
+                         final newData = UserName(nameController.text.toString());
                     addData(newData);
                     newData.save();
                     navigateToAmountInputPage(context);
+                      });
+                    }
+                   
+                         
+                       
+                   
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(vertical: 0, horizontal: 60),

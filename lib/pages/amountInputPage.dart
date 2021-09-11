@@ -18,7 +18,7 @@ class _AmountInputPageState extends State<AmountInputPage> {
   final piggyBox = Hive.box('piggy');
 
   TextEditingController amountController = TextEditingController();
-
+  bool _validate = false;
   @override
   void initState() {
     super.initState();
@@ -120,8 +120,10 @@ class _AmountInputPageState extends State<AmountInputPage> {
                   onPressed: () {
                     navigateToHome(context);
                     setState(() {
+                      var value = amountController.text;
+                      amountController.text.isEmpty ? value=0.toString(): value=amountController.text;
                       final data = TotalAmount(
-                          double.parse(amountController.text), false);
+                          double.parse(value), false);
                       addAmount(data);
                       final incomeData = incomeBox.get(0);
                       final calculateIncome = incomeData ?? 0.0;

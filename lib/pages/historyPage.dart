@@ -2,6 +2,7 @@ import 'package:eco_ml/data/incomeData.dart';
 import 'package:eco_ml/data/outcomeData.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 
 class HistoryPage extends StatefulWidget {
   final index;
@@ -37,7 +38,7 @@ class _HistoryPageState extends State<HistoryPage> {
                 ),
                 Container(
                   child: Text(
-                    '${date.month} / ${date.day} / ${date.year}',
+                    DateFormat.yMMMMEEEEd().format(date).toString(),
                     style: TextStyle(
                       color: Color(0xff4F98A1),
                       fontSize: 20,
@@ -75,14 +76,15 @@ class _HistoryPageState extends State<HistoryPage> {
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
+                         color: Color(0xff4F98A1),
                       ),
                     ),
                     trailing: Text(
                       data.isExpense
-                          ? data.amount.toString()
-                          : data.amount.toString(),
+                          ? data.amount.toString()+' Ks'
+                          : data.amount.toString()+' Ks',
                       style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: Color(0xff4F98A1),),
                     ),
                   ),
                 ),

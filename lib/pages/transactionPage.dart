@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/data/database.dart';
 import 'package:eco_ml/pages/amountInputPage.dart';
-
+import 'package:intl/intl.dart';
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:eco_ml/data/incomeData.dart';
@@ -67,7 +67,7 @@ class _TransactionPageState extends State<TransactionPage> {
                         size: 30,
                       ),
                       label: Text(
-                        '${pickedDate.month} / ${pickedDate.day} / ${pickedDate.year}',
+                        DateFormat.MMMMEEEEd().format(pickedDate).toString(),
                         style: TextStyle(
                             color: Color(0xff4F98A1),
                             fontSize: 20,
@@ -110,6 +110,7 @@ class _TransactionPageState extends State<TransactionPage> {
                                   ? incomeData[id].title
                                   : outcomeData[id].title,
                               style: TextStyle(
+                                color: Color(0xff4F98A1),
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -137,10 +138,17 @@ class _TransactionPageState extends State<TransactionPage> {
                           cursorColor: Color(0xff4F98A1),
                           cursorHeight: 30,
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Color(0xff4F98A1),
                               fontSize: 24,
                               fontWeight: FontWeight.bold),
                         ),
+                      ),
+                      Text(
+                        "Ks",
+                        style: TextStyle(
+                            color: Color(0xff4F98A1),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         width: 30,

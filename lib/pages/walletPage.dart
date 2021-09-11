@@ -7,6 +7,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 
 class WalletPage extends StatefulWidget {
   const WalletPage({Key? key}) : super(key: key);
@@ -35,12 +36,11 @@ class _WalletPageState extends State<WalletPage> {
     double income = incomeBox.get(0);
     double outcome = outcomeBox.get(0);
     double piggydata = piggyBox.get(0);
-    double total = amount.amount+(income-outcome);
+    double total = amount.amount + (income - outcome);
     double percent;
-    if(total>=0){
-      percent= total-(total*(piggydata/100));
-    }
-    else{
+    if (total >= 0) {
+      percent = total - (total * (piggydata / 100));
+    } else {
       percent = total;
     }
     // final data = Hive.box('trasactions').get(0);
@@ -240,8 +240,9 @@ class _WalletPageState extends State<WalletPage> {
                                 return GestureDetector(
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.black38, width: 1),
+                                      // color: Colors.white,
+                                      // border: Border.all(
+                                      //     color: Colors.black38, width: 1),
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(15)),
                                     ),
@@ -250,18 +251,23 @@ class _WalletPageState extends State<WalletPage> {
                                     padding: EdgeInsets.all(5),
                                     child: ListTile(
                                       leading: Container(
-                                        height: 30,
-                                        width: 30,
+                                        height: 50,
+                                        width: 50,
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(15),
+                                          borderRadius:
+                                              BorderRadius.circular(15),
                                           color: data.isExpense
-                                              ? outcomeData[data.iconId].colorName
-                                              : incomeData[data.iconId].colorName,
+                                              ? outcomeData[data.iconId]
+                                                  .colorName
+                                              : incomeData[data.iconId]
+                                                  .colorName,
                                         ),
                                         child: Icon(
                                           data.isExpense
-                                              ? outcomeData[data.iconId].iconName
-                                              : incomeData[data.iconId].iconName,
+                                              ? outcomeData[data.iconId]
+                                                  .iconName
+                                              : incomeData[data.iconId]
+                                                  .iconName,
                                           size: 25,
                                           color: Colors.grey.shade100,
                                         ),
@@ -273,19 +279,31 @@ class _WalletPageState extends State<WalletPage> {
                                         style: TextStyle(
                                           fontSize: 24,
                                           fontWeight: FontWeight.bold,
+                                          color: Color(0xff201A3C),
                                         ),
+                                      ),
+                                      subtitle: Text(
+                                        DateFormat.yMMMMd()
+                                            .format(data.datatime)
+                                            .toString(),
+                                      
                                       ),
                                       trailing: Text(
                                         data.isExpense
-                                            ? '- ' + data.amount.toString()
-                                            : '+ ' + data.amount.toString(),
+                                            ? '- ' +
+                                                data.amount.toString() +
+                                                ' Ks'
+                                            : '+ ' +
+                                                data.amount.toString() +
+                                                ' Ks',
                                         style: TextStyle(
+                                          color:Color(0xff201A3C),
                                             fontSize: 24,
                                             fontWeight: FontWeight.bold),
                                       ),
                                     ),
                                   ),
-                                  onTap: (){
+                                  onTap: () {
                                     print(index);
                                     naviToHistoryPage(context, index);
                                   },
@@ -307,6 +325,6 @@ class _WalletPageState extends State<WalletPage> {
   }
 }
 
-void naviToHistoryPage(BuildContext context,int id){
+void naviToHistoryPage(BuildContext context, int id) {
   AutoRouter.of(context).push(HistoryRoute(index: id));
 }

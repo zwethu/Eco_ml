@@ -1,5 +1,6 @@
 import 'package:eco_ml/charts/barChart.dart';
 import 'package:eco_ml/data/database.dart';
+import 'package:eco_ml/data/incomeData.dart';
 import 'package:eco_ml/data/outcomeData.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -17,6 +18,7 @@ class PieChartClass extends StatefulWidget {
 class _PieChartClassState extends State<PieChartClass> {
   var expenseList = [];
   final box = Hive.box('transactions');
+   final incomeBox = Hive.box('income');
   int touchedIndex = -1;
 
   @override
@@ -146,7 +148,7 @@ class _PieChartClassState extends State<PieChartClass> {
                           show: false,
                         ),
                         startDegreeOffset: 30,
-                        sectionsSpace: 2,
+                        sectionsSpace: 0,
                         centerSpaceRadius: 30,
                         centerSpaceColor: Colors.white,
                         sections: showingSections(),
@@ -163,28 +165,29 @@ class _PieChartClassState extends State<PieChartClass> {
   List<PieChartSectionData> showingSections() {
     return List.generate(box.length, (i) {
       final data = box.getAt(i) as Transaction;
+      double income = incomeBox.get(0);
 
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 20.0 : 16.0;
       final radius = isTouched ? 55.0 : 50.0;
-
-      if (data.isExpense) {
+      double value = (data.amount / income) * 100;
+      if (!data.isExpense && data.datatime.day==DateTime.now().day) {
         return PieChartSectionData(
-          color: outcomeData[data.iconId].colorName,
-          value: data.amount,
-          title: data.amount.toString(),
+          color: incomeData[data.iconId].colorName,
+          value: value.ceilToDouble(),
+          title: '${value.ceilToDouble()}%',
           radius: radius,
           titleStyle: TextStyle(
               fontSize: fontSize,
               fontWeight: FontWeight.bold,
               color: const Color(0xffffffff)),
         );
-      } else if (data.isExpense == false) {
-        expenseList.add(data);
-        return PieChartSectionData();
-      }  else {
-        throw Error();
-      }
+      } else {
+       
+        return PieChartSectionData(
+          value: 0
+        );
+      } 
     });
   }
 }
