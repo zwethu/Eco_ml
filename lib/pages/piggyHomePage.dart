@@ -36,42 +36,65 @@ void dispose() {
         backgroundColor: Color(0xff4F98A1),
         elevation: 1,
       ),
-      body: Center(
-          child: Container(
-        width: double.infinity,
-        height: 200,
-        child: LiquidCustomProgressIndicator(
-          direction: Axis.vertical,
-          shapePath: _piggypath(),
-          valueColor: AlwaysStoppedAnimation(Colors.green),
-          value: 20,
-          backgroundColor: Colors.green.shade100,
-          center: Text('20'),
-        ),
-      )),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 400
+          ),
+          Center(
+            child: Container(
+          width: double.infinity,
+          height: 30,
+          child: LiquidCustomProgressIndicator(
+            direction: Axis.vertical,
+            shapePath: _coinpath(),
+            valueColor: AlwaysStoppedAnimation(Color(0xffffD700)),
+            value: 0.9,
+            backgroundColor: Color(0xffffed87),
+           
+          ),
+        )),
+          Center(
+            child: Container(
+          width: double.infinity,
+          height: 140,
+          child: LiquidCustomProgressIndicator(
+            direction: Axis.vertical,
+            shapePath: _piggypath(),
+            valueColor: AlwaysStoppedAnimation(Color(0xff4F98A1)),
+            value: 0.2,
+            backgroundColor: Color(0xffa6cbd6),
+            center: Text('20',style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.bold
+            ),),
+          ),
+        )),
+        ]
+      ),
     );
   }
 
   Path _piggypath() {
     return Path()
          ..addRRect(RRect.fromRectAndRadius(
-              Rect.fromLTWH(130, 40, 150, 120), Radius.circular(600)))
+              Rect.fromLTWH(130, 10, 150, 120), Radius.circular(600)))
           ..addRRect(RRect.fromRectAndRadius(
-              Rect.fromLTWH(120, 90, 20, 25), Radius.circular(300)))
+              Rect.fromLTWH(120, 60, 20, 25), Radius.circular(300)))
           ..addRRect(RRect.fromRectAndRadius(
-              Rect.fromLTWH(160, 140, 25, 30), Radius.circular(5)))
+              Rect.fromLTWH(160, 110, 25, 30), Radius.circular(5)))
           ..addRRect(RRect.fromRectAndRadius(
-              Rect.fromLTWH(220, 140, 25, 30), Radius.circular(5)))
+              Rect.fromLTWH(220, 110, 25, 30), Radius.circular(5)))
 
 
-          ..quadraticBezierTo(260, 80, 280, 60)
-          ..moveTo(160, 50)
-          ..lineTo(160, 30)
-          ..lineTo(180, 50)
-          ..moveTo(130, 50)
-          ..lineTo(50, 50)
-          ..addRRect(RRect.fromRectAndRadius(
-              Rect.fromLTWH(195, 10, 25, 25), Radius.circular(300)))
+          ..quadraticBezierTo(260, 50, 280, 30)
+          ..moveTo(160, 20)
+          ..lineTo(160, 0)
+          ..lineTo(180, 20)
+          ..moveTo(130, 20)
+          ..lineTo(50, 20)
+         
           ..close()
 
         // ..quadraticBezierTo(35, 110, 55, 120)
@@ -85,5 +108,15 @@ void dispose() {
 
         ;
   }
-}
+  Path _coinpath() {
+    return Path()
+        
+          ..addRRect(RRect.fromRectAndRadius(
+              Rect.fromLTWH(193, 0, 25, 25), Radius.circular(300)))
+          ..close()
 
+        
+
+        ;
+  }
+}

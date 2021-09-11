@@ -1,18 +1,24 @@
-
-
 import 'package:auto_route/auto_route.dart';
 
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
 
 class PiggyPage extends StatefulWidget {
-  const PiggyPage({ Key? key }) : super(key: key);
+  const PiggyPage({Key? key}) : super(key: key);
 
   @override
   _PiggyPageState createState() => _PiggyPageState();
 }
 
 class _PiggyPageState extends State<PiggyPage> {
+  TextEditingController amountController = TextEditingController();
+
+  @override
+  void initState() {
+    amountController.addListener(() => setState(() {}));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +26,7 @@ class _PiggyPageState extends State<PiggyPage> {
         elevation: 0,
         backgroundColor: Color(0xff4F98A1),
       ),
-      body:Container(
+      body: Container(
         width: MediaQuery.of(context).size.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,31 +45,76 @@ class _PiggyPageState extends State<PiggyPage> {
                   color: Color(0xff4F98A1),
                 ),
               ),
-            ),     
+            ),
+            Container(
+              padding: EdgeInsets.fromLTRB(40, 50, 40, 50),
+              child: TextField(
+                maxLength: 2,
+                textAlign: TextAlign.center,
+                autofocus: true,
+                controller: amountController,
+                decoration: InputDecoration(
+                  hintText: 'Enter your Total Amount',
+                  filled: true,
+                  hintStyle: TextStyle(
+                    color: Color(0xff9E8FAE),
+                    fontSize: 30,
+                    fontWeight: FontWeight.normal,
+                  ),
+                  fillColor: Color(0xffFDF1F1),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.grey.shade300, width: 3)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Colors.grey.shade300, width: 3)),
+                  border: InputBorder.none,
+                  suffixIcon: amountController.text.isEmpty
+                      ? Container(
+                          width: 0,
+                        )
+                      : IconButton(
+                          icon: Icon(
+                            Icons.close,
+                            color: Color(0xff9E8FAE),
+                            size: 20,
+                          ),
+                          onPressed: () => amountController.clear()),
+                ),
+                keyboardType: TextInputType.number,
+                textInputAction: TextInputAction.done,
+                cursorColor: Colors.grey,
+                cursorHeight: 32,
+                style: TextStyle(
+                    color: Color(0xff9E8FAE),
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
             Container(
               margin: EdgeInsets.all(35),
               child: ElevatedButton(
-              style: ButtonStyle(
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  ),
+                  backgroundColor: MaterialStateProperty.all(Color(0xff72ADB4)),
+                ),
+                onPressed: () {
+                  navigateToPiggyHomePage(context);
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                  child: Text(
+                    " Submit ",
+                    style: TextStyle(
+                      fontSize: 30,
+                    ),
                   ),
                 ),
-                backgroundColor: MaterialStateProperty.all(Color(0xff72ADB4)),
               ),
-              onPressed: () {
-                navigateToPiggyHomePage(context);
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 10,horizontal: 5),
-                child: Text(
-                  " Submit ",
-                  style: TextStyle(
-                    fontSize: 30,
-                  ),
-                ),
-              ),
-            ),
             ),
           ],
         ),
@@ -75,4 +126,3 @@ class _PiggyPageState extends State<PiggyPage> {
 void navigateToPiggyHomePage(context) {
   AutoRouter.of(context).push(PiggyHomeRoute());
 }
-

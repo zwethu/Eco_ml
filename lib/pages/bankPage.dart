@@ -61,7 +61,7 @@ class _BankPageState extends State<BankPage> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                 child: Text(
-                  "Let's started saving!",
+                  "Let's save!",
                   style: TextStyle(
                     fontSize: 30,
                   ),

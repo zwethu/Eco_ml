@@ -15,7 +15,6 @@ class _ReportPageState extends State<ReportPage> {
     return Container(
       child: Column(
         children: [
-          SizedBox(height:10),
           DefaultTabController(
             length: 2, // length of tabs
             initialIndex: 0,
@@ -23,7 +22,7 @@ class _ReportPageState extends State<ReportPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 15,horizontal: 10),
+                  margin: EdgeInsets.symmetric(vertical: 1,horizontal: 10),
                   child: TabBar(
                     labelColor: Colors.black,
                     unselectedLabelColor: Color(0xffADADAD),

@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          elevation: 0,
+          elevation: 2,
           backgroundColor: Color(0xff4F98A1),
           actions: [
             TextButton.icon(
@@ -74,9 +74,9 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.white,
           selectedItemColor: Color(0xff4F98A1),
           unselectedItemColor: Color(0xffB8ADAD),
-          iconSize: 35,
-          selectedFontSize: 20,
-          unselectedFontSize: 20,
+          iconSize: 30,
+          selectedFontSize: 18,
+          unselectedFontSize: 18,
           currentIndex: currentIndex,
           onTap: (index) => setState(() => currentIndex = index),
           items: [

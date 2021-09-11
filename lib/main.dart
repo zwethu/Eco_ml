@@ -14,12 +14,14 @@ Future main() async{
   Hive.registerAdapter(TransactionAdapter());
   Hive.registerAdapter(IncomeAdapter());
   Hive.registerAdapter(OutcomeAdapter());
+  Hive.registerAdapter(PiggyAdapter());
   Hive.openBox('username');
   Hive.openBox('amount');
   Hive.openBox('id');
   Hive.openBox('transactions');
   Hive.openBox('income');
   Hive.openBox('outcome');
+  Hive.openBox('piggy');
   runApp(MyApp());
 }
 

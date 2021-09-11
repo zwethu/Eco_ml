@@ -226,3 +226,40 @@ class OutcomeAdapter extends TypeAdapter<Outcome> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+class PiggyAdapter extends TypeAdapter<Piggy> {
+  @override
+  final int typeId = 6;
+
+  @override
+  Piggy read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return Piggy(
+      fields[0] as int,
+      fields[1] as bool,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, Piggy obj) {
+    writer
+      ..writeByte(2)
+      ..writeByte(0)
+      ..write(obj.percentage)
+      ..writeByte(1)
+      ..write(obj.showPiggy);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is PiggyAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}

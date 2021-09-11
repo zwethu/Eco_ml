@@ -1,555 +1,605 @@
-define(['dart_sdk', 'packages/flutter/src/gestures/velocity_tracker.dart', 'packages/flutter/src/gestures/constants.dart', 'packages/flutter/src/gestures/arena.dart', 'packages/flutter/src/gestures/events.dart', 'packages/flutter/src/gestures/recognizer.dart'], (function load__packages__flutter__src__gestures__long_press_dart(dart_sdk, packages__flutter__src__gestures__velocity_tracker$46dart, packages__flutter__src__gestures__constants$46dart, packages__flutter__src__gestures__arena$46dart, packages__flutter__src__gestures__events$46dart, packages__flutter__src__gestures__recognizer$46dart) {
+define(['dart_sdk', 'packages/dots_indicator/src/dots_decorator.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/painting/circle_border.dart', 'packages/flutter/src/painting/borders.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/colors.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/shape_decoration.dart', 'packages/flutter/src/material/icon_button.dart'], (function load__packages__dots_indicator__src__dots_indicator_dart(dart_sdk, packages__dots_indicator__src__dots_decorator$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__painting__circle_border$46dart, packages__flutter__src__painting__borders$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__colors$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__shape_decoration$46dart, packages__flutter__src__material__icon_button$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
+  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const velocity_tracker = packages__flutter__src__gestures__velocity_tracker$46dart.src__gestures__velocity_tracker;
-  const constants = packages__flutter__src__gestures__constants$46dart.src__gestures__constants;
-  const arena = packages__flutter__src__gestures__arena$46dart.src__gestures__arena;
-  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
-  const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
-  var long_press = Object.create(dart.library);
+  const dots_decorator = packages__dots_indicator__src__dots_decorator$46dart.src__dots_decorator;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const circle_border = packages__flutter__src__painting__circle_border$46dart.src__painting__circle_border;
+  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const colors$ = packages__flutter__src__painting__colors$46dart.src__painting__colors;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const shape_decoration = packages__flutter__src__painting__shape_decoration$46dart.src__painting__shape_decoration;
+  const ink_well = packages__flutter__src__material__icon_button$46dart.src__material__ink_well;
+  var dots_indicator = Object.create(dart.library);
+  var $abs = dartx.abs;
+  var $toDouble = dartx.toDouble;
+  var $reversed = dartx.reversed;
+  var $toList = dartx.toList;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))()
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    ListOfWidget: () => (T.ListOfWidget = dart.constFn(core.List$(framework.Widget)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 0,
-        [OffsetBase__dx]: 0
-      });
-    },
     get C1() {
       return C[1] = dart.const({
-        __proto__: velocity_tracker.Velocity.prototype,
-        [Velocity_pixelsPerSecond]: C[0] || CT.C0
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 6,
+        [EdgeInsets_right]: 6,
+        [EdgeInsets_top]: 6,
+        [EdgeInsets_left]: 6
+      });
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: borders.BorderStyle.prototype,
+        [_name]: "BorderStyle.none",
+        index: 0
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: borders.BorderSide.prototype,
+        [BorderSide_style]: C[4] || CT.C4,
+        [BorderSide_width]: 0,
+        [BorderSide_color]: C[5] || CT.C5
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: circle_border.CircleBorder.prototype,
+        [OutlinedBorder_side]: C[3] || CT.C3
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: ui.Size.prototype,
+        [OffsetBase__dy]: 9,
+        [OffsetBase__dx]: 9
+      });
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292998654.0
+      });
+    },
+    get C10() {
+      return C[10] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289979900.0
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286698746.0
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283417591.0
+      });
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280923894.0
+      });
+    },
+    get C14() {
+      return C[14] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278430196.0
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278426597.0
+      });
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278356177.0
+      });
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278351805.0
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278278043.0
+      });
+    },
+    get C8() {
+      return C[8] = dart.constMap(core.int, ui.Color, [50, C[9] || CT.C9, 100, C[10] || CT.C10, 200, C[11] || CT.C11, 300, C[12] || CT.C12, 400, C[13] || CT.C13, 500, C[14] || CT.C14, 600, C[15] || CT.C15, 700, C[16] || CT.C16, 800, C[17] || CT.C17, 900, C[18] || CT.C18]);
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: colors.MaterialColor.prototype,
+        [Color_value]: 4278430196.0,
+        [ColorSwatch__swatch]: C[8] || CT.C8
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294638330.0
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294309365.0
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293848814.0
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292927712.0
+      });
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292269782.0
+      });
+    },
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290624957.0
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4288585374.0
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4285887861.0
+      });
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284572001.0
+      });
+    },
+    get C30() {
+      return C[30] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282532418.0
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281348144.0
+      });
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280361249.0
+      });
+    },
+    get C20() {
+      return C[20] = dart.constMap(core.int, ui.Color, [50, C[21] || CT.C21, 100, C[22] || CT.C22, 200, C[23] || CT.C23, 300, C[24] || CT.C24, 350, C[25] || CT.C25, 400, C[26] || CT.C26, 500, C[27] || CT.C27, 600, C[28] || CT.C28, 700, C[29] || CT.C29, 800, C[30] || CT.C30, 850, C[31] || CT.C31, 900, C[32] || CT.C32]);
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: colors.MaterialColor.prototype,
+        [Color_value]: 4288585374.0,
+        [ColorSwatch__swatch]: C[20] || CT.C20
+      });
+    },
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: dots_decorator.DotsDecorator.prototype,
+        [DotsDecorator_spacing]: C[1] || CT.C1,
+        [DotsDecorator_activeShape]: C[2] || CT.C2,
+        [DotsDecorator_shape]: C[2] || CT.C2,
+        [DotsDecorator_activeSize]: C[6] || CT.C6,
+        [DotsDecorator_size]: C[6] || CT.C6,
+        [DotsDecorator_activeColor]: C[7] || CT.C7,
+        [DotsDecorator_color]: C[19] || CT.C19
+      });
+    },
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: basic_types.Axis.prototype,
+        [_name$]: "Axis.horizontal",
+        index: 0
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: flex.MainAxisSize.prototype,
+        [_name$0]: "MainAxisSize.min",
+        index: 0
+      });
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: flex.MainAxisAlignment.prototype,
+        [_name$0]: "MainAxisAlignment.center",
+        index: 2
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 7,
+        [_Location_line]: 51,
+        [_Location_file]: null
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 7,
+        [_Location_line]: 52,
+        [_Location_file]: null
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 7,
+        [_Location_line]: 53,
+        [_Location_file]: null
+      });
+    },
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 7,
+        [_Location_line]: 54,
+        [_Location_file]: null
+      });
+    },
+    get C37() {
+      return C[37] = dart.constList([C[38] || CT.C38, C[39] || CT.C39, C[40] || CT.C40, C[41] || CT.C41], widget_inspector._Location);
+    },
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[37] || CT.C37,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 50,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart"
+      });
+    },
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "customBorder",
+        [_Location_column]: 13,
+        [_Location_line]: 62,
+        [_Location_file]: null
+      });
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "onTap",
+        [_Location_column]: 13,
+        [_Location_line]: 63,
+        [_Location_file]: null
+      });
+    },
+    get C46() {
+      return C[46] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 64,
+        [_Location_file]: null
+      });
+    },
+    get C43() {
+      return C[43] = dart.constList([C[44] || CT.C44, C[45] || CT.C45, C[46] || CT.C46], widget_inspector._Location);
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[43] || CT.C43,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 61,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart"
+      });
+    },
+    get C49() {
+      return C[49] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 13,
+        [_Location_line]: 75,
+        [_Location_file]: null
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 13,
+        [_Location_line]: 76,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 77,
+        [_Location_file]: null
+      });
+    },
+    get C48() {
+      return C[48] = dart.constList([C[49] || CT.C49, C[50] || CT.C50, C[51] || CT.C51], widget_inspector._Location);
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[48] || CT.C48,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 74,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart"
+      });
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 13,
+        [_Location_line]: 80,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 13,
+        [_Location_line]: 81,
+        [_Location_file]: null
+      });
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 13,
+        [_Location_line]: 82,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.constList([C[54] || CT.C54, C[55] || CT.C55, C[56] || CT.C56], widget_inspector._Location);
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[53] || CT.C53,
+        [_Location_name]: null,
+        [_Location_column]: 11,
+        [_Location_line]: 79,
+        [_Location_file]: "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart"
       });
     }
   }, false);
-  var C = Array(2).fill(void 0);
+  var C = Array(57).fill(void 0);
   var I = [
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/gestures/long_press.dart",
-    "package:flutter/src/gestures/long_press.dart"
+    "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0/lib/src/dots_indicator.dart",
+    "package:dots_indicator/src/dots_indicator.dart"
   ];
-  var globalPosition$ = dart.privateName(long_press, "LongPressStartDetails.globalPosition");
-  var localPosition$ = dart.privateName(long_press, "LongPressStartDetails.localPosition");
+  var dotsCount$ = dart.privateName(dots_indicator, "DotsIndicator.dotsCount");
+  var position$ = dart.privateName(dots_indicator, "DotsIndicator.position");
+  var decorator$ = dart.privateName(dots_indicator, "DotsIndicator.decorator");
+  var axis$ = dart.privateName(dots_indicator, "DotsIndicator.axis");
+  var reversed$ = dart.privateName(dots_indicator, "DotsIndicator.reversed");
+  var onTap$ = dart.privateName(dots_indicator, "DotsIndicator.onTap");
+  var mainAxisSize$ = dart.privateName(dots_indicator, "DotsIndicator.mainAxisSize");
+  var mainAxisAlignment$ = dart.privateName(dots_indicator, "DotsIndicator.mainAxisAlignment");
+  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
+  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
+  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
+  var DotsDecorator_spacing = dart.privateName(dots_decorator, "DotsDecorator.spacing");
+  var _name = dart.privateName(borders, "_name");
+  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
+  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
+  var OutlinedBorder_side = dart.privateName(borders, "OutlinedBorder.side");
+  var DotsDecorator_activeShape = dart.privateName(dots_decorator, "DotsDecorator.activeShape");
+  var DotsDecorator_shape = dart.privateName(dots_decorator, "DotsDecorator.shape");
   var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
   var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
-  long_press.LongPressStartDetails = class LongPressStartDetails extends core.Object {
-    get globalPosition() {
-      return this[globalPosition$];
+  var DotsDecorator_activeSize = dart.privateName(dots_decorator, "DotsDecorator.activeSize");
+  var DotsDecorator_size = dart.privateName(dots_decorator, "DotsDecorator.size");
+  var ColorSwatch__swatch = dart.privateName(colors$, "ColorSwatch._swatch");
+  var DotsDecorator_activeColor = dart.privateName(dots_decorator, "DotsDecorator.activeColor");
+  var DotsDecorator_color = dart.privateName(dots_decorator, "DotsDecorator.color");
+  var _name$ = dart.privateName(basic_types, "_name");
+  var _name$0 = dart.privateName(flex, "_name");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
+  var _buildDot = dart.privateName(dots_indicator, "_buildDot");
+  dots_indicator.DotsIndicator = class DotsIndicator extends framework.StatelessWidget {
+    get dotsCount() {
+      return this[dotsCount$];
     }
-    set globalPosition(value) {
-      super.globalPosition = value;
+    set dotsCount(value) {
+      super.dotsCount = value;
     }
-    get localPosition() {
-      return this[localPosition$];
+    get position() {
+      return this[position$];
     }
-    set localPosition(value) {
-      super.localPosition = value;
+    set position(value) {
+      super.position = value;
     }
-  };
-  (long_press.LongPressStartDetails.new = function(opts) {
-    let t0;
-    let globalPosition = opts && 'globalPosition' in opts ? opts.globalPosition : C[0] || CT.C0;
-    let localPosition = opts && 'localPosition' in opts ? opts.localPosition : null;
-    this[globalPosition$] = globalPosition;
-    if (!(globalPosition !== null)) dart.assertFailed(null, I[0], 59, 15, "globalPosition != null");
-    this[localPosition$] = (t0 = localPosition, t0 == null ? globalPosition : t0);
-    ;
-  }).prototype = long_press.LongPressStartDetails.prototype;
-  dart.addTypeTests(long_press.LongPressStartDetails);
-  dart.addTypeCaches(long_press.LongPressStartDetails);
-  dart.setLibraryUri(long_press.LongPressStartDetails, I[1]);
-  dart.setFieldSignature(long_press.LongPressStartDetails, () => ({
-    __proto__: dart.getFields(long_press.LongPressStartDetails.__proto__),
-    globalPosition: dart.finalFieldType(ui.Offset),
-    localPosition: dart.finalFieldType(ui.Offset)
-  }));
-  var globalPosition$0 = dart.privateName(long_press, "LongPressMoveUpdateDetails.globalPosition");
-  var localPosition$0 = dart.privateName(long_press, "LongPressMoveUpdateDetails.localPosition");
-  var offsetFromOrigin$ = dart.privateName(long_press, "LongPressMoveUpdateDetails.offsetFromOrigin");
-  var localOffsetFromOrigin$ = dart.privateName(long_press, "LongPressMoveUpdateDetails.localOffsetFromOrigin");
-  long_press.LongPressMoveUpdateDetails = class LongPressMoveUpdateDetails extends core.Object {
-    get globalPosition() {
-      return this[globalPosition$0];
+    get decorator() {
+      return this[decorator$];
     }
-    set globalPosition(value) {
-      super.globalPosition = value;
+    set decorator(value) {
+      super.decorator = value;
     }
-    get localPosition() {
-      return this[localPosition$0];
+    get axis() {
+      return this[axis$];
     }
-    set localPosition(value) {
-      super.localPosition = value;
+    set axis(value) {
+      super.axis = value;
     }
-    get offsetFromOrigin() {
-      return this[offsetFromOrigin$];
+    get reversed() {
+      return this[reversed$];
     }
-    set offsetFromOrigin(value) {
-      super.offsetFromOrigin = value;
+    set reversed(value) {
+      super.reversed = value;
     }
-    get localOffsetFromOrigin() {
-      return this[localOffsetFromOrigin$];
+    get onTap() {
+      return this[onTap$];
     }
-    set localOffsetFromOrigin(value) {
-      super.localOffsetFromOrigin = value;
+    set onTap(value) {
+      super.onTap = value;
     }
-  };
-  (long_press.LongPressMoveUpdateDetails.new = function(opts) {
-    let t0, t0$;
-    let globalPosition = opts && 'globalPosition' in opts ? opts.globalPosition : C[0] || CT.C0;
-    let localPosition = opts && 'localPosition' in opts ? opts.localPosition : null;
-    let offsetFromOrigin = opts && 'offsetFromOrigin' in opts ? opts.offsetFromOrigin : C[0] || CT.C0;
-    let localOffsetFromOrigin = opts && 'localOffsetFromOrigin' in opts ? opts.localOffsetFromOrigin : null;
-    this[globalPosition$0] = globalPosition;
-    this[offsetFromOrigin$] = offsetFromOrigin;
-    if (!(globalPosition !== null)) dart.assertFailed(null, I[0], 85, 15, "globalPosition != null");
-    if (!(offsetFromOrigin !== null)) dart.assertFailed(null, I[0], 86, 15, "offsetFromOrigin != null");
-    this[localPosition$0] = (t0 = localPosition, t0 == null ? globalPosition : t0);
-    this[localOffsetFromOrigin$] = (t0$ = localOffsetFromOrigin, t0$ == null ? offsetFromOrigin : t0$);
-    ;
-  }).prototype = long_press.LongPressMoveUpdateDetails.prototype;
-  dart.addTypeTests(long_press.LongPressMoveUpdateDetails);
-  dart.addTypeCaches(long_press.LongPressMoveUpdateDetails);
-  dart.setLibraryUri(long_press.LongPressMoveUpdateDetails, I[1]);
-  dart.setFieldSignature(long_press.LongPressMoveUpdateDetails, () => ({
-    __proto__: dart.getFields(long_press.LongPressMoveUpdateDetails.__proto__),
-    globalPosition: dart.finalFieldType(ui.Offset),
-    localPosition: dart.finalFieldType(ui.Offset),
-    offsetFromOrigin: dart.finalFieldType(ui.Offset),
-    localOffsetFromOrigin: dart.finalFieldType(ui.Offset)
-  }));
-  var globalPosition$1 = dart.privateName(long_press, "LongPressEndDetails.globalPosition");
-  var localPosition$1 = dart.privateName(long_press, "LongPressEndDetails.localPosition");
-  var velocity$ = dart.privateName(long_press, "LongPressEndDetails.velocity");
-  var Velocity_pixelsPerSecond = dart.privateName(velocity_tracker, "Velocity.pixelsPerSecond");
-  long_press.LongPressEndDetails = class LongPressEndDetails extends core.Object {
-    get globalPosition() {
-      return this[globalPosition$1];
+    get mainAxisSize() {
+      return this[mainAxisSize$];
     }
-    set globalPosition(value) {
-      super.globalPosition = value;
+    set mainAxisSize(value) {
+      super.mainAxisSize = value;
     }
-    get localPosition() {
-      return this[localPosition$1];
+    get mainAxisAlignment() {
+      return this[mainAxisAlignment$];
     }
-    set localPosition(value) {
-      super.localPosition = value;
+    set mainAxisAlignment(value) {
+      super.mainAxisAlignment = value;
     }
-    get velocity() {
-      return this[velocity$];
+    [_buildDot](index) {
+      let state = math.min(core.double, 1.0, (this.position - index)[$abs]());
+      let size = dart.nullCheck(ui.Size.lerp(this.decorator.activeSize, this.decorator.size, state));
+      let color = ui.Color.lerp(this.decorator.activeColor, this.decorator.color, state);
+      let shape = dart.nullCheck(borders.ShapeBorder.lerp(this.decorator.activeShape, this.decorator.shape, state));
+      let dot = new container.Container.new({width: size.width, height: size.height, margin: this.decorator.spacing, decoration: new shape_decoration.ShapeDecoration.new({color: color, shape: shape}), $creationLocationd_0dea112b090073317d4: C[36] || CT.C36});
+      return this.onTap == null ? dot : new ink_well.InkWell.new({customBorder: C[2] || CT.C2, onTap: dart.fn(() => dart.nullCheck(this.onTap)(index[$toDouble]()), T.VoidTovoid()), child: dot, $creationLocationd_0dea112b090073317d4: C[42] || CT.C42});
     }
-    set velocity(value) {
-      super.velocity = value;
+    build(context) {
+      let dotsList = T.ListOfWidget().generate(this.dotsCount, dart.bind(this, _buildDot));
+      let dots = this.reversed === true ? dotsList[$reversed][$toList]() : dotsList;
+      return this.axis === basic_types.Axis.vertical ? new basic.Column.new({mainAxisAlignment: this.mainAxisAlignment, mainAxisSize: this.mainAxisSize, children: dots, $creationLocationd_0dea112b090073317d4: C[47] || CT.C47}) : new basic.Row.new({mainAxisAlignment: this.mainAxisAlignment, mainAxisSize: this.mainAxisSize, children: dots, $creationLocationd_0dea112b090073317d4: C[52] || CT.C52});
     }
   };
-  (long_press.LongPressEndDetails.new = function(opts) {
-    let t0;
-    let globalPosition = opts && 'globalPosition' in opts ? opts.globalPosition : C[0] || CT.C0;
-    let localPosition = opts && 'localPosition' in opts ? opts.localPosition : null;
-    let velocity = opts && 'velocity' in opts ? opts.velocity : C[1] || CT.C1;
-    this[globalPosition$1] = globalPosition;
-    this[velocity$] = velocity;
-    if (!(globalPosition !== null)) dart.assertFailed(null, I[0], 122, 15, "globalPosition != null");
-    this[localPosition$1] = (t0 = localPosition, t0 == null ? globalPosition : t0);
+  (dots_indicator.DotsIndicator.new = function(opts) {
+    let key = opts && 'key' in opts ? opts.key : null;
+    let dotsCount = opts && 'dotsCount' in opts ? opts.dotsCount : null;
+    let position = opts && 'position' in opts ? opts.position : 0;
+    let decorator = opts && 'decorator' in opts ? opts.decorator : C[0] || CT.C0;
+    let axis = opts && 'axis' in opts ? opts.axis : C[33] || CT.C33;
+    let reversed = opts && 'reversed' in opts ? opts.reversed : false;
+    let mainAxisSize = opts && 'mainAxisSize' in opts ? opts.mainAxisSize : C[34] || CT.C34;
+    let mainAxisAlignment = opts && 'mainAxisAlignment' in opts ? opts.mainAxisAlignment : C[35] || CT.C35;
+    let onTap = opts && 'onTap' in opts ? opts.onTap : null;
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    this[dotsCount$] = dotsCount;
+    this[position$] = position;
+    this[decorator$] = decorator;
+    this[axis$] = axis;
+    this[reversed$] = reversed;
+    this[mainAxisSize$] = mainAxisSize;
+    this[mainAxisAlignment$] = mainAxisAlignment;
+    this[onTap$] = onTap;
+    if (!(dotsCount > 0)) dart.assertFailed(null, I[0], 31, 16, "dotsCount > 0");
+    if (!(position >= 0)) dart.assertFailed(null, I[0], 32, 16, "position >= 0");
+    if (!(position < dotsCount)) dart.assertFailed("Position must be inferior than dotsCount", I[0], 34, 11, "position < dotsCount");
+    dots_indicator.DotsIndicator.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
     ;
-  }).prototype = long_press.LongPressEndDetails.prototype;
-  dart.addTypeTests(long_press.LongPressEndDetails);
-  dart.addTypeCaches(long_press.LongPressEndDetails);
-  dart.setLibraryUri(long_press.LongPressEndDetails, I[1]);
-  dart.setFieldSignature(long_press.LongPressEndDetails, () => ({
-    __proto__: dart.getFields(long_press.LongPressEndDetails.__proto__),
-    globalPosition: dart.finalFieldType(ui.Offset),
-    localPosition: dart.finalFieldType(ui.Offset),
-    velocity: dart.finalFieldType(velocity_tracker.Velocity)
+  }).prototype = dots_indicator.DotsIndicator.prototype;
+  dart.addTypeTests(dots_indicator.DotsIndicator);
+  dart.addTypeCaches(dots_indicator.DotsIndicator);
+  dart.setMethodSignature(dots_indicator.DotsIndicator, () => ({
+    __proto__: dart.getMethods(dots_indicator.DotsIndicator.__proto__),
+    [_buildDot]: dart.fnType(framework.Widget, [core.int]),
+    build: dart.fnType(framework.Widget, [framework.BuildContext])
   }));
-  var onLongPress = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPress");
-  var onLongPressStart = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPressStart");
-  var onLongPressMoveUpdate = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPressMoveUpdate");
-  var onLongPressUp = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPressUp");
-  var onLongPressEnd = dart.privateName(long_press, "LongPressGestureRecognizer.onLongPressEnd");
-  var onSecondaryLongPress = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPress");
-  var onSecondaryLongPressStart = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPressStart");
-  var onSecondaryLongPressMoveUpdate = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPressMoveUpdate");
-  var onSecondaryLongPressUp = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPressUp");
-  var onSecondaryLongPressEnd = dart.privateName(long_press, "LongPressGestureRecognizer.onSecondaryLongPressEnd");
-  var onTertiaryLongPress = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPress");
-  var onTertiaryLongPressStart = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPressStart");
-  var onTertiaryLongPressMoveUpdate = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPressMoveUpdate");
-  var onTertiaryLongPressUp = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPressUp");
-  var onTertiaryLongPressEnd = dart.privateName(long_press, "LongPressGestureRecognizer.onTertiaryLongPressEnd");
-  var _longPressAccepted = dart.privateName(long_press, "_longPressAccepted");
-  var _longPressOrigin = dart.privateName(long_press, "_longPressOrigin");
-  var _initialButtons = dart.privateName(long_press, "_initialButtons");
-  var _velocityTracker = dart.privateName(long_press, "_velocityTracker");
-  var _checkLongPressStart = dart.privateName(long_press, "_checkLongPressStart");
-  var _checkLongPressEnd = dart.privateName(long_press, "_checkLongPressEnd");
-  var _reset = dart.privateName(long_press, "_reset");
-  var _checkLongPressMoveUpdate = dart.privateName(long_press, "_checkLongPressMoveUpdate");
-  long_press.LongPressGestureRecognizer = class LongPressGestureRecognizer extends recognizer.PrimaryPointerGestureRecognizer {
-    get onLongPress() {
-      return this[onLongPress];
-    }
-    set onLongPress(value) {
-      this[onLongPress] = value;
-    }
-    get onLongPressStart() {
-      return this[onLongPressStart];
-    }
-    set onLongPressStart(value) {
-      this[onLongPressStart] = value;
-    }
-    get onLongPressMoveUpdate() {
-      return this[onLongPressMoveUpdate];
-    }
-    set onLongPressMoveUpdate(value) {
-      this[onLongPressMoveUpdate] = value;
-    }
-    get onLongPressUp() {
-      return this[onLongPressUp];
-    }
-    set onLongPressUp(value) {
-      this[onLongPressUp] = value;
-    }
-    get onLongPressEnd() {
-      return this[onLongPressEnd];
-    }
-    set onLongPressEnd(value) {
-      this[onLongPressEnd] = value;
-    }
-    get onSecondaryLongPress() {
-      return this[onSecondaryLongPress];
-    }
-    set onSecondaryLongPress(value) {
-      this[onSecondaryLongPress] = value;
-    }
-    get onSecondaryLongPressStart() {
-      return this[onSecondaryLongPressStart];
-    }
-    set onSecondaryLongPressStart(value) {
-      this[onSecondaryLongPressStart] = value;
-    }
-    get onSecondaryLongPressMoveUpdate() {
-      return this[onSecondaryLongPressMoveUpdate];
-    }
-    set onSecondaryLongPressMoveUpdate(value) {
-      this[onSecondaryLongPressMoveUpdate] = value;
-    }
-    get onSecondaryLongPressUp() {
-      return this[onSecondaryLongPressUp];
-    }
-    set onSecondaryLongPressUp(value) {
-      this[onSecondaryLongPressUp] = value;
-    }
-    get onSecondaryLongPressEnd() {
-      return this[onSecondaryLongPressEnd];
-    }
-    set onSecondaryLongPressEnd(value) {
-      this[onSecondaryLongPressEnd] = value;
-    }
-    get onTertiaryLongPress() {
-      return this[onTertiaryLongPress];
-    }
-    set onTertiaryLongPress(value) {
-      this[onTertiaryLongPress] = value;
-    }
-    get onTertiaryLongPressStart() {
-      return this[onTertiaryLongPressStart];
-    }
-    set onTertiaryLongPressStart(value) {
-      this[onTertiaryLongPressStart] = value;
-    }
-    get onTertiaryLongPressMoveUpdate() {
-      return this[onTertiaryLongPressMoveUpdate];
-    }
-    set onTertiaryLongPressMoveUpdate(value) {
-      this[onTertiaryLongPressMoveUpdate] = value;
-    }
-    get onTertiaryLongPressUp() {
-      return this[onTertiaryLongPressUp];
-    }
-    set onTertiaryLongPressUp(value) {
-      this[onTertiaryLongPressUp] = value;
-    }
-    get onTertiaryLongPressEnd() {
-      return this[onTertiaryLongPressEnd];
-    }
-    set onTertiaryLongPressEnd(value) {
-      this[onTertiaryLongPressEnd] = value;
-    }
-    isPointerAllowed(event) {
-      switch (event.buttons) {
-        case 1:
-        {
-          if (this.onLongPressStart == null && this.onLongPress == null && this.onLongPressMoveUpdate == null && this.onLongPressEnd == null && this.onLongPressUp == null) return false;
-          break;
-        }
-        case 2:
-        {
-          if (this.onSecondaryLongPressStart == null && this.onSecondaryLongPress == null && this.onSecondaryLongPressMoveUpdate == null && this.onSecondaryLongPressEnd == null && this.onSecondaryLongPressUp == null) return false;
-          break;
-        }
-        case 4:
-        {
-          if (this.onTertiaryLongPressStart == null && this.onTertiaryLongPress == null && this.onTertiaryLongPressMoveUpdate == null && this.onTertiaryLongPressEnd == null && this.onTertiaryLongPressUp == null) return false;
-          break;
-        }
-        default:
-        {
-          return false;
-        }
-      }
-      return super.isPointerAllowed(event);
-    }
-    didExceedDeadline() {
-      this.resolve(arena.GestureDisposition.accepted);
-      this[_longPressAccepted] = true;
-      super.acceptGesture(dart.nullCheck(this.primaryPointer));
-      this[_checkLongPressStart]();
-    }
-    handlePrimaryPointer(event) {
-      if (!event.synthesized) {
-        if (events.PointerDownEvent.is(event)) {
-          this[_velocityTracker] = new velocity_tracker.VelocityTracker.withKind(event.kind);
-          dart.nullCheck(this[_velocityTracker]).addPosition(event.timeStamp, event.localPosition);
-        }
-        if (events.PointerMoveEvent.is(event)) {
-          if (!(this[_velocityTracker] != null)) dart.assertFailed(null, I[0], 383, 16, "_velocityTracker != null");
-          dart.nullCheck(this[_velocityTracker]).addPosition(event.timeStamp, event.localPosition);
-        }
-      }
-      if (events.PointerUpEvent.is(event)) {
-        if (this[_longPressAccepted] === true) {
-          this[_checkLongPressEnd](event);
-        } else {
-          this.resolve(arena.GestureDisposition.rejected);
-        }
-        this[_reset]();
-      } else if (events.PointerCancelEvent.is(event)) {
-        this[_reset]();
-      } else if (events.PointerDownEvent.is(event)) {
-        this[_longPressOrigin] = recognizer.OffsetPair.fromEventPosition(event);
-        this[_initialButtons] = event.buttons;
-      } else if (events.PointerMoveEvent.is(event)) {
-        if (event.buttons !== this[_initialButtons]) {
-          this.resolve(arena.GestureDisposition.rejected);
-          this.stopTrackingPointer(dart.nullCheck(this.primaryPointer));
-        } else if (this[_longPressAccepted]) {
-          this[_checkLongPressMoveUpdate](event);
-        }
-      }
-    }
-    [_checkLongPressStart]() {
-      switch (this[_initialButtons]) {
-        case 1:
-        {
-          if (this.onLongPressStart != null) {
-            let details = new long_press.LongPressStartDetails.new({globalPosition: dart.nullCheck(this[_longPressOrigin]).global, localPosition: dart.nullCheck(this[_longPressOrigin]).local});
-            this.invokeCallback(dart.void, "onLongPressStart", dart.fn(() => dart.nullCheck(this.onLongPressStart)(details), T.VoidTovoid()));
-          }
-          if (this.onLongPress != null) {
-            this.invokeCallback(dart.void, "onLongPress", dart.nullCheck(this.onLongPress));
-          }
-          break;
-        }
-        case 2:
-        {
-          if (this.onSecondaryLongPressStart != null) {
-            let details = new long_press.LongPressStartDetails.new({globalPosition: dart.nullCheck(this[_longPressOrigin]).global, localPosition: dart.nullCheck(this[_longPressOrigin]).local});
-            this.invokeCallback(dart.void, "onSecondaryLongPressStart", dart.fn(() => dart.nullCheck(this.onSecondaryLongPressStart)(details), T.VoidTovoid()));
-          }
-          if (this.onSecondaryLongPress != null) {
-            this.invokeCallback(dart.void, "onSecondaryLongPress", dart.nullCheck(this.onSecondaryLongPress));
-          }
-          break;
-        }
-        case 4:
-        {
-          if (this.onTertiaryLongPressStart != null) {
-            let details = new long_press.LongPressStartDetails.new({globalPosition: dart.nullCheck(this[_longPressOrigin]).global, localPosition: dart.nullCheck(this[_longPressOrigin]).local});
-            this.invokeCallback(dart.void, "onTertiaryLongPressStart", dart.fn(() => dart.nullCheck(this.onTertiaryLongPressStart)(details), T.VoidTovoid()));
-          }
-          if (this.onTertiaryLongPress != null) {
-            this.invokeCallback(dart.void, "onTertiaryLongPress", dart.nullCheck(this.onTertiaryLongPress));
-          }
-          break;
-        }
-        default:
-        {
-          if (!false) dart.assertFailed("Unhandled button " + dart.str(this[_initialButtons]), I[0], 451, 16, "false");
-        }
-      }
-    }
-    [_checkLongPressMoveUpdate](event) {
-      let details = new long_press.LongPressMoveUpdateDetails.new({globalPosition: event.position, localPosition: event.localPosition, offsetFromOrigin: event.position['-'](dart.nullCheck(this[_longPressOrigin]).global), localOffsetFromOrigin: event.localPosition['-'](dart.nullCheck(this[_longPressOrigin]).local)});
-      switch (this[_initialButtons]) {
-        case 1:
-        {
-          if (this.onLongPressMoveUpdate != null) {
-            this.invokeCallback(dart.void, "onLongPressMoveUpdate", dart.fn(() => dart.nullCheck(this.onLongPressMoveUpdate)(details), T.VoidTovoid()));
-          }
-          break;
-        }
-        case 2:
-        {
-          if (this.onSecondaryLongPressMoveUpdate != null) {
-            this.invokeCallback(dart.void, "onSecondaryLongPressMoveUpdate", dart.fn(() => dart.nullCheck(this.onSecondaryLongPressMoveUpdate)(details), T.VoidTovoid()));
-          }
-          break;
-        }
-        case 4:
-        {
-          if (this.onTertiaryLongPressMoveUpdate != null) {
-            this.invokeCallback(dart.void, "onTertiaryLongPressMoveUpdate", dart.fn(() => dart.nullCheck(this.onTertiaryLongPressMoveUpdate)(details), T.VoidTovoid()));
-          }
-          break;
-        }
-        default:
-        {
-          if (!false) dart.assertFailed("Unhandled button " + dart.str(this[_initialButtons]), I[0], 479, 16, "false");
-        }
-      }
-    }
-    [_checkLongPressEnd](event) {
-      let estimate = dart.nullCheck(this[_velocityTracker]).getVelocityEstimate();
-      let velocity = estimate == null ? velocity_tracker.Velocity.zero : new velocity_tracker.Velocity.new({pixelsPerSecond: estimate.pixelsPerSecond});
-      let details = new long_press.LongPressEndDetails.new({globalPosition: event.position, localPosition: event.localPosition, velocity: velocity});
-      this[_velocityTracker] = null;
-      switch (this[_initialButtons]) {
-        case 1:
-        {
-          if (this.onLongPressEnd != null) {
-            this.invokeCallback(dart.void, "onLongPressEnd", dart.fn(() => dart.nullCheck(this.onLongPressEnd)(details), T.VoidTovoid()));
-          }
-          if (this.onLongPressUp != null) {
-            this.invokeCallback(dart.void, "onLongPressUp", dart.nullCheck(this.onLongPressUp));
-          }
-          break;
-        }
-        case 2:
-        {
-          if (this.onSecondaryLongPressEnd != null) {
-            this.invokeCallback(dart.void, "onSecondaryLongPressEnd", dart.fn(() => dart.nullCheck(this.onSecondaryLongPressEnd)(details), T.VoidTovoid()));
-          }
-          if (this.onSecondaryLongPressUp != null) {
-            this.invokeCallback(dart.void, "onSecondaryLongPressUp", dart.nullCheck(this.onSecondaryLongPressUp));
-          }
-          break;
-        }
-        case 4:
-        {
-          if (this.onTertiaryLongPressEnd != null) {
-            this.invokeCallback(dart.void, "onTertiaryLongPressEnd", dart.fn(() => dart.nullCheck(this.onTertiaryLongPressEnd)(details), T.VoidTovoid()));
-          }
-          if (this.onTertiaryLongPressUp != null) {
-            this.invokeCallback(dart.void, "onTertiaryLongPressUp", dart.nullCheck(this.onTertiaryLongPressUp));
-          }
-          break;
-        }
-        default:
-        {
-          if (!false) dart.assertFailed("Unhandled button " + dart.str(this[_initialButtons]), I[0], 521, 16, "false");
-        }
-      }
-    }
-    [_reset]() {
-      this[_longPressAccepted] = false;
-      this[_longPressOrigin] = null;
-      this[_initialButtons] = null;
-      this[_velocityTracker] = null;
-    }
-    resolve(disposition) {
-      if (this[_longPressAccepted] && disposition === arena.GestureDisposition.rejected) {
-        this[_reset]();
-      }
-      super.resolve(disposition);
-    }
-    acceptGesture(pointer) {
-    }
-    get debugDescription() {
-      return "long press";
-    }
-  };
-  (long_press.LongPressGestureRecognizer.new = function(opts) {
-    let t0;
-    let duration = opts && 'duration' in opts ? opts.duration : null;
-    let postAcceptSlopTolerance = opts && 'postAcceptSlopTolerance' in opts ? opts.postAcceptSlopTolerance : null;
-    let kind = opts && 'kind' in opts ? opts.kind : null;
-    let debugOwner = opts && 'debugOwner' in opts ? opts.debugOwner : null;
-    this[_longPressAccepted] = false;
-    this[_longPressOrigin] = null;
-    this[_initialButtons] = null;
-    this[onLongPress] = null;
-    this[onLongPressStart] = null;
-    this[onLongPressMoveUpdate] = null;
-    this[onLongPressUp] = null;
-    this[onLongPressEnd] = null;
-    this[onSecondaryLongPress] = null;
-    this[onSecondaryLongPressStart] = null;
-    this[onSecondaryLongPressMoveUpdate] = null;
-    this[onSecondaryLongPressUp] = null;
-    this[onSecondaryLongPressEnd] = null;
-    this[onTertiaryLongPress] = null;
-    this[onTertiaryLongPressStart] = null;
-    this[onTertiaryLongPressMoveUpdate] = null;
-    this[onTertiaryLongPressUp] = null;
-    this[onTertiaryLongPressEnd] = null;
-    this[_velocityTracker] = null;
-    long_press.LongPressGestureRecognizer.__proto__.new.call(this, {deadline: (t0 = duration, t0 == null ? constants.kLongPressTimeout : t0), postAcceptSlopTolerance: postAcceptSlopTolerance, kind: kind, debugOwner: debugOwner});
-    ;
-  }).prototype = long_press.LongPressGestureRecognizer.prototype;
-  dart.addTypeTests(long_press.LongPressGestureRecognizer);
-  dart.addTypeCaches(long_press.LongPressGestureRecognizer);
-  dart.setMethodSignature(long_press.LongPressGestureRecognizer, () => ({
-    __proto__: dart.getMethods(long_press.LongPressGestureRecognizer.__proto__),
-    handlePrimaryPointer: dart.fnType(dart.void, [events.PointerEvent]),
-    [_checkLongPressStart]: dart.fnType(dart.void, []),
-    [_checkLongPressMoveUpdate]: dart.fnType(dart.void, [events.PointerEvent]),
-    [_checkLongPressEnd]: dart.fnType(dart.void, [events.PointerEvent]),
-    [_reset]: dart.fnType(dart.void, [])
+  dart.setLibraryUri(dots_indicator.DotsIndicator, I[1]);
+  dart.setFieldSignature(dots_indicator.DotsIndicator, () => ({
+    __proto__: dart.getFields(dots_indicator.DotsIndicator.__proto__),
+    dotsCount: dart.finalFieldType(core.int),
+    position: dart.finalFieldType(core.double),
+    decorator: dart.finalFieldType(dots_decorator.DotsDecorator),
+    axis: dart.finalFieldType(basic_types.Axis),
+    reversed: dart.finalFieldType(core.bool),
+    onTap: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [core.double]))),
+    mainAxisSize: dart.finalFieldType(flex.MainAxisSize),
+    mainAxisAlignment: dart.finalFieldType(flex.MainAxisAlignment)
   }));
-  dart.setGetterSignature(long_press.LongPressGestureRecognizer, () => ({
-    __proto__: dart.getGetters(long_press.LongPressGestureRecognizer.__proto__),
-    debugDescription: core.String
-  }));
-  dart.setLibraryUri(long_press.LongPressGestureRecognizer, I[1]);
-  dart.setFieldSignature(long_press.LongPressGestureRecognizer, () => ({
-    __proto__: dart.getFields(long_press.LongPressGestureRecognizer.__proto__),
-    [_longPressAccepted]: dart.fieldType(core.bool),
-    [_longPressOrigin]: dart.fieldType(dart.nullable(recognizer.OffsetPair)),
-    [_initialButtons]: dart.fieldType(dart.nullable(core.int)),
-    onLongPress: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onLongPressStart: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressStartDetails]))),
-    onLongPressMoveUpdate: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressMoveUpdateDetails]))),
-    onLongPressUp: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onLongPressEnd: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressEndDetails]))),
-    onSecondaryLongPress: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onSecondaryLongPressStart: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressStartDetails]))),
-    onSecondaryLongPressMoveUpdate: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressMoveUpdateDetails]))),
-    onSecondaryLongPressUp: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onSecondaryLongPressEnd: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressEndDetails]))),
-    onTertiaryLongPress: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onTertiaryLongPressStart: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressStartDetails]))),
-    onTertiaryLongPressMoveUpdate: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressMoveUpdateDetails]))),
-    onTertiaryLongPressUp: dart.fieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onTertiaryLongPressEnd: dart.fieldType(dart.nullable(dart.fnType(dart.void, [long_press.LongPressEndDetails]))),
-    [_velocityTracker]: dart.fieldType(dart.nullable(velocity_tracker.VelocityTracker))
-  }));
-  dart.trackLibraries("packages/flutter/src/gestures/long_press.dart", {
-    "package:flutter/src/gestures/long_press.dart": long_press
+  dart.trackLibraries("packages/dots_indicator/src/dots_indicator.dart", {
+    "package:dots_indicator/src/dots_indicator.dart": dots_indicator
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["long_press.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/gestures/long_press.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["dots_indicator.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;IAWY;;;;;;IACG;;;;;;IACO;;;;;;IACT;;;;;;IACA;;;;;;IACE;;;;;;IACM;;;;;;IACK;;;;;;gBAoBH;AACb,kBAAQ,sBAAI,KAAwB,CAAlB,AAAS,gBAAE,KAAK;AAElC,iBAA6D,eAAjD,aAAK,AAAU,2BAAY,AAAU,qBAAM,KAAK;AAC5D,kBAAc,cAAK,AAAU,4BAAa,AAAU,sBAAO,KAAK;AAChE,kBAIL,eAJyB,yBACxB,AAAU,4BACV,AAAU,sBACV,KAAK;AAGD,gBAAM,oCACH,AAAK,IAAD,gBACH,AAAK,IAAD,iBACJ,AAAU,oCACN,iDACH,KAAK,SACL,KAAK;AAGhB,YAAO,AAAM,sBACP,GAAG,GACH,8DAES,cAAW,AAAC,eAAN,YAAO,AAAM,KAAD,wCAClB,GAAG;IAEpB;UAG0B;AAClB,qBAAW,0BAAsB,0BAAW;AAC5C,iBAAO,AAAS,kBAAG,OAAO,AAAS,AAAS,QAAV,yBAAqB,QAAQ;AAErE,YAAO,AAAK,eAAQ,4BACd,yCACqB,sCACL,6BACJ,IAAI,8DAEhB,sCACqB,sCACL,6BACJ,IAAI;IAExB;;;QA9DO;QACS;QACT;QACA;QACA;QACA;QACA;QACA;QACA;;IAPS;IACT;IACA;IACA;IACA;IACA;IACA;IACA;UACM,AAAU,SAAD,GAAG;UACZ,AAAS,QAAD,IAAI;UAEjB,AAAS,QAAD,GAAG,SAAS,qBACpB;AAEF,gEAAW,GAAG;;EAAC","file":"../../../../../../../../packages/dots_indicator/src/dots_indicator.dart.lib.js"}');
   // Exports:
   return {
-    src__gestures__long_press: long_press
+    src__dots_indicator: dots_indicator
   };
 }));
 
-//# sourceMappingURL=long_press.dart.lib.js.map
+//# sourceMappingURL=dots_indicator.dart.lib.js.map

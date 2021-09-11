@@ -52,7 +52,7 @@ class _CategoriesPageState extends State<CategoriesPage>
               // give the ta
               //b bar a height [can change height to preferred height]
               Container(
-                height: 30,
+                height: 40,
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
@@ -96,7 +96,7 @@ class _CategoriesPageState extends State<CategoriesPage>
                   children: [
                     // first tab bar view widget
                     Container(
-                      margin: EdgeInsets.only(top: 50),
+                      margin: EdgeInsets.only(top: 30),
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height / 1.5,
                       child: GridView.builder(

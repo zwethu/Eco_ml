@@ -209,7 +209,7 @@ define(['dart_sdk', 'packages/hive/src/box/lazy_box_impl.dart'], (function load_
       return this[amount$0];
     }
     set amount(value) {
-      this[amount$0] = value;
+      super.amount = value;
     }
   };
   (database.Income.new = function(amount) {
@@ -222,7 +222,7 @@ define(['dart_sdk', 'packages/hive/src/box/lazy_box_impl.dart'], (function load_
   dart.setLibraryUri(database.Income, I[0]);
   dart.setFieldSignature(database.Income, () => ({
     __proto__: dart.getFields(database.Income.__proto__),
-    amount: dart.fieldType(dart.dynamic)
+    amount: dart.finalFieldType(dart.dynamic)
   }));
   var amount$1 = dart.privateName(database, "Outcome.amount");
   database.Outcome = class Outcome extends hive_object.HiveObject {
@@ -230,7 +230,7 @@ define(['dart_sdk', 'packages/hive/src/box/lazy_box_impl.dart'], (function load_
       return this[amount$1];
     }
     set amount(value) {
-      this[amount$1] = value;
+      super.amount = value;
     }
   };
   (database.Outcome.new = function(amount) {
@@ -243,7 +243,37 @@ define(['dart_sdk', 'packages/hive/src/box/lazy_box_impl.dart'], (function load_
   dart.setLibraryUri(database.Outcome, I[0]);
   dart.setFieldSignature(database.Outcome, () => ({
     __proto__: dart.getFields(database.Outcome.__proto__),
-    amount: dart.fieldType(dart.dynamic)
+    amount: dart.finalFieldType(dart.dynamic)
+  }));
+  var percentage$ = dart.privateName(database, "Piggy.percentage");
+  var showPiggy$ = dart.privateName(database, "Piggy.showPiggy");
+  database.Piggy = class Piggy extends hive_object.HiveObject {
+    get percentage() {
+      return this[percentage$];
+    }
+    set percentage(value) {
+      this[percentage$] = value;
+    }
+    get showPiggy() {
+      return this[showPiggy$];
+    }
+    set showPiggy(value) {
+      this[showPiggy$] = value;
+    }
+  };
+  (database.Piggy.new = function(percentage, showPiggy) {
+    this[percentage$] = percentage;
+    this[showPiggy$] = showPiggy;
+    database.Piggy.__proto__.new.call(this);
+    ;
+  }).prototype = database.Piggy.prototype;
+  dart.addTypeTests(database.Piggy);
+  dart.addTypeCaches(database.Piggy);
+  dart.setLibraryUri(database.Piggy, I[0]);
+  dart.setFieldSignature(database.Piggy, () => ({
+    __proto__: dart.getFields(database.Piggy.__proto__),
+    percentage: dart.fieldType(core.int),
+    showPiggy: dart.fieldType(core.bool)
   }));
   var typeId = dart.privateName(database, "UserNameAdapter.typeId");
   database.UserNameAdapter = class UserNameAdapter extends hive.TypeAdapter$(database.UserName) {
@@ -589,11 +619,68 @@ define(['dart_sdk', 'packages/hive/src/box/lazy_box_impl.dart'], (function load_
   }));
   dart.defineExtensionMethods(database.OutcomeAdapter, ['_equals']);
   dart.defineExtensionAccessors(database.OutcomeAdapter, ['hashCode']);
+  var typeId$4 = dart.privateName(database, "PiggyAdapter.typeId");
+  database.PiggyAdapter = class PiggyAdapter extends hive.TypeAdapter$(database.Piggy) {
+    get typeId() {
+      return this[typeId$4];
+    }
+    set typeId(value) {
+      super.typeId = value;
+    }
+    read(reader) {
+      let numOfFields = reader.readByte();
+      let fields = (() => {
+        let t12 = new (T.IdentityMapOfint$dynamic()).new();
+        for (let i = 0; i < numOfFields; i = i + 1)
+          t12[$_set](reader.readByte(), reader.read());
+        return t12;
+      })();
+      return new database.Piggy.new(core.int.as(fields[$_get](0)), core.bool.as(fields[$_get](1)));
+    }
+    write(writer, obj) {
+      let t13;
+      database.Piggy.as(obj);
+      t13 = writer;
+      (() => {
+        t13.writeByte(2);
+        t13.writeByte(0);
+        t13.write(core.int, obj.percentage);
+        t13.writeByte(1);
+        t13.write(core.bool, obj.showPiggy);
+        return t13;
+      })();
+    }
+    get hashCode() {
+      return this.typeId[$hashCode];
+    }
+    _equals(other) {
+      if (other == null) return false;
+      return this === other || database.PiggyAdapter.is(other) && this[$runtimeType]._equals(other[$runtimeType]) && this.typeId === other.typeId;
+    }
+  };
+  (database.PiggyAdapter.new = function() {
+    this[typeId$4] = 6;
+    ;
+  }).prototype = database.PiggyAdapter.prototype;
+  dart.addTypeTests(database.PiggyAdapter);
+  dart.addTypeCaches(database.PiggyAdapter);
+  dart.setMethodSignature(database.PiggyAdapter, () => ({
+    __proto__: dart.getMethods(database.PiggyAdapter.__proto__),
+    read: dart.fnType(database.Piggy, [hive.BinaryReader]),
+    write: dart.fnType(dart.void, [hive.BinaryWriter, dart.nullable(core.Object)])
+  }));
+  dart.setLibraryUri(database.PiggyAdapter, I[0]);
+  dart.setFieldSignature(database.PiggyAdapter, () => ({
+    __proto__: dart.getFields(database.PiggyAdapter.__proto__),
+    typeId: dart.finalFieldType(core.int)
+  }));
+  dart.defineExtensionMethods(database.PiggyAdapter, ['_equals']);
+  dart.defineExtensionAccessors(database.PiggyAdapter, ['hashCode']);
   dart.trackLibraries("packages/eco_ml/data/database.dart", {
     "package:eco_ml/data/database.dart": database
   }, {
     "package:eco_ml/data/database.dart": ["database.g.dart"]
-  }, '{"version":3,"sourceRoot":"","sources":["database.dart","database.g.dart"],"names":[],"mappings":"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","file":"../../../../../packages/eco_ml/data/database.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["database.dart","database.g.dart"],"names":[],"mappings":"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","file":"../../../../../packages/eco_ml/data/database.dart.lib.js"}');
   // Exports:
   return {
     data__database: database

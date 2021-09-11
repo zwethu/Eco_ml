@@ -78,7 +78,7 @@ class _WalletPageState extends State<WalletPage> {
                     Container(
                       alignment: Alignment.bottomRight,
                       child: Text(
-                        '${amount.amount} Ks',
+                        '${amount.amount + (income - outcome)} Ks',
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,
@@ -241,22 +241,31 @@ class _WalletPageState extends State<WalletPage> {
                                       width: 30,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(15),
-                                        color: Colors.grey.shade200,
+                                        color: data.isExpense?outcomeData[data.iconId].colorName:incomeData[data.iconId].colorName,
                                       ),
                                       child: Icon(
                                         data.isExpense
                                             ? outcomeData[data.iconId].iconName
                                             : incomeData[data.iconId].iconName,
                                         size: 25,
-                                        color: Colors.grey.shade800,
+                                        color: Colors.white,
                                       ),
                                     ),
                                     title: Text(
                                       data.isExpense
                                           ? outcomeData[data.iconId].title
                                           : incomeData[data.iconId].title,
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                    trailing: Text(data.amount.toString()),
+                                    trailing: Text(
+                                      data.amount.toString(),
+                                      style: TextStyle(
+                                        fontSize: 24,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                 );
                               },

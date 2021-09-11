@@ -58,3 +58,12 @@ class Outcome extends HiveObject{
   final amount;
   Outcome(this.amount);
 }
+
+@HiveType(typeId: 6)
+class Piggy extends HiveObject{
+@HiveField(0)
+int percentage;
+@HiveField(1)
+bool showPiggy;
+Piggy(this.percentage,this.showPiggy);
+}
