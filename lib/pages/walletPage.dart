@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/data/database.dart';
 import 'package:eco_ml/data/incomeData.dart';
 import 'package:eco_ml/data/outcomeData.dart';
+import 'package:eco_ml/route/router.gr.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -17,6 +19,7 @@ class _WalletPageState extends State<WalletPage> {
   final box = Hive.box('transactions');
   final incomeBox = Hive.box('income');
   final outcomeBox = Hive.box('outcome');
+  final piggyBox = Hive.box('piggy');
   @override
   void dispose() {
     // Hive.close();
@@ -31,6 +34,15 @@ class _WalletPageState extends State<WalletPage> {
     final amount = Hive.box('amount').get(0);
     double income = incomeBox.get(0);
     double outcome = outcomeBox.get(0);
+    double piggydata = piggyBox.get(0);
+    double total = amount.amount+(income-outcome);
+    double percent;
+    if(total>=0){
+      percent= total-(total*(piggydata/100));
+    }
+    else{
+      percent = total;
+    }
     // final data = Hive.box('trasactions').get(0);
     return ListView(
       shrinkWrap: true,
@@ -78,7 +90,7 @@ class _WalletPageState extends State<WalletPage> {
                     Container(
                       alignment: Alignment.bottomRight,
                       child: Text(
-                        '${amount.amount + (income - outcome)} Ks',
+                        '$percent Ks',
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,
@@ -225,48 +237,58 @@ class _WalletPageState extends State<WalletPage> {
                               itemBuilder: (BuildContext context, int index) {
                                 final data =
                                     dataBox.getAt(index) as Transaction;
-                                return Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.black38, width: 1),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(15)),
-                                  ),
-                                  margin: EdgeInsets.symmetric(
-                                      vertical: 5, horizontal: 10),
-                                  padding: EdgeInsets.all(5),
-                                  child: ListTile(
-                                    leading: Container(
-                                      height: 30,
-                                      width: 30,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(15),
-                                        color: data.isExpense?outcomeData[data.iconId].colorName:incomeData[data.iconId].colorName,
+                                return GestureDetector(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.black38, width: 1),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(15)),
+                                    ),
+                                    margin: EdgeInsets.symmetric(
+                                        vertical: 5, horizontal: 10),
+                                    padding: EdgeInsets.all(5),
+                                    child: ListTile(
+                                      leading: Container(
+                                        height: 30,
+                                        width: 30,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(15),
+                                          color: data.isExpense
+                                              ? outcomeData[data.iconId].colorName
+                                              : incomeData[data.iconId].colorName,
+                                        ),
+                                        child: Icon(
+                                          data.isExpense
+                                              ? outcomeData[data.iconId].iconName
+                                              : incomeData[data.iconId].iconName,
+                                          size: 25,
+                                          color: Colors.grey.shade100,
+                                        ),
                                       ),
-                                      child: Icon(
+                                      title: Text(
                                         data.isExpense
-                                            ? outcomeData[data.iconId].iconName
-                                            : incomeData[data.iconId].iconName,
-                                        size: 25,
-                                        color: Colors.white,
+                                            ? outcomeData[data.iconId].title
+                                            : incomeData[data.iconId].title,
+                                        style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    title: Text(
-                                      data.isExpense
-                                          ? outcomeData[data.iconId].title
-                                          : incomeData[data.iconId].title,
-                                      style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold,
+                                      trailing: Text(
+                                        data.isExpense
+                                            ? '- ' + data.amount.toString()
+                                            : '+ ' + data.amount.toString(),
+                                        style: TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold),
                                       ),
-                                    ),
-                                    trailing: Text(
-                                      data.amount.toString(),
-                                      style: TextStyle(
-                                        fontSize: 24,
-                                          fontWeight: FontWeight.bold),
                                     ),
                                   ),
+                                  onTap: (){
+                                    print(index);
+                                    naviToHistoryPage(context, index);
+                                  },
                                 );
                               },
                             ),
@@ -283,4 +305,8 @@ class _WalletPageState extends State<WalletPage> {
       ],
     );
   }
+}
+
+void naviToHistoryPage(BuildContext context,int id){
+  AutoRouter.of(context).push(HistoryRoute(index: id));
 }

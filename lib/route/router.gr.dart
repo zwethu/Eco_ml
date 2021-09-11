@@ -7,7 +7,10 @@
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:flutter/material.dart' as _i2;
 
+import '../pages/amountChangePage.dart' as _i8;
 import '../pages/amountInputPage.dart' as _i5;
+import '../pages/historyPage.dart' as _i7;
+import '../pages/nameChangePage.dart' as _i9;
 import '../pages/NameInputPage.dart' as _i4;
 import '../pages/pages.dart' as _i3;
 import '../pages/transactionPage.dart' as _i6;
@@ -74,6 +77,22 @@ class MyAppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return const _i6.TransactionPage();
+        }),
+    HistoryRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (data) {
+          final args = data.argsAs<HistoryRouteArgs>();
+          return _i7.HistoryPage(key: args.key, index: args.index);
+        }),
+    AmountChangeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i8.AmountChangePage();
+        }),
+    NameChangeRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i9.NameChangePage();
         })
   };
 
@@ -89,7 +108,10 @@ class MyAppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(PiggyHomeRoute.name, path: '/piggy-home-page'),
         _i1.RouteConfig(NameInputRoute.name, path: '/name-input-page'),
         _i1.RouteConfig(AmountInputRoute.name, path: '/amount-input-page'),
-        _i1.RouteConfig(TransactionRoute.name, path: '/transaction-page')
+        _i1.RouteConfig(TransactionRoute.name, path: '/transaction-page'),
+        _i1.RouteConfig(HistoryRoute.name, path: '/history-page'),
+        _i1.RouteConfig(AmountChangeRoute.name, path: '/amount-change-page'),
+        _i1.RouteConfig(NameChangeRoute.name, path: '/name-change-page')
       ];
 }
 
@@ -165,4 +187,33 @@ class TransactionRoute extends _i1.PageRouteInfo {
   const TransactionRoute() : super(name, path: '/transaction-page');
 
   static const String name = 'TransactionRoute';
+}
+
+class HistoryRoute extends _i1.PageRouteInfo<HistoryRouteArgs> {
+  HistoryRoute({_i2.Key? key, required dynamic index})
+      : super(name,
+            path: '/history-page',
+            args: HistoryRouteArgs(key: key, index: index));
+
+  static const String name = 'HistoryRoute';
+}
+
+class HistoryRouteArgs {
+  const HistoryRouteArgs({this.key, required this.index});
+
+  final _i2.Key? key;
+
+  final dynamic index;
+}
+
+class AmountChangeRoute extends _i1.PageRouteInfo {
+  const AmountChangeRoute() : super(name, path: '/amount-change-page');
+
+  static const String name = 'AmountChangeRoute';
+}
+
+class NameChangeRoute extends _i1.PageRouteInfo {
+  const NameChangeRoute() : super(name, path: '/name-change-page');
+
+  static const String name = 'NameChangeRoute';
 }

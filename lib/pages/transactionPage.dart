@@ -169,9 +169,10 @@ class _TransactionPageState extends State<TransactionPage> {
                     cursorColor: Color(0xff4F98A1),
                     cursorHeight: 30,
                     style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   SizedBox(
                     height: 35,
@@ -197,16 +198,21 @@ class _TransactionPageState extends State<TransactionPage> {
                             ++cardId));
                         final incomeData = incomeBox.get(0);
                         final outcomeData = outcomeBox.get(0);
-                        if(check){
-                          final calculateIncome = incomeData + double.parse(amountController.text)??0.0;
+                        if (check) {
+                          final calculateIncome = incomeData +
+                                  double.parse(amountController.text) ??
+                              0.0;
                           incomeBox.put(0, calculateIncome);
                           print(incomeBox.get(0));
-                        }else{
-                          final calculateOutcome = outcomeData + double.parse(amountController.text)??0.0;
+                        } else {
+                          final calculateOutcome = outcomeData +
+                                  double.parse(amountController.text) ??
+                              0.0;
                           outcomeBox.put(0, calculateOutcome);
                           print(outcomeBox.get(0));
                         }
                         navigateToHome(context);
+
                         // transactionBox.clear();
                         // outcomeBox.clear();
                         // incomeBox.clear();

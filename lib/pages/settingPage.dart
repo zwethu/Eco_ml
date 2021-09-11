@@ -1,4 +1,8 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:eco_ml/data/outcomeData.dart';
+import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -8,6 +12,13 @@ class SettingPage extends StatefulWidget {
 }
 
 class _SettingPageState extends State<SettingPage> {
+  final usernameBox = Hive.box('username');
+  final amountBox = Hive.box('amount');
+  final idBox = Hive.box('id');
+  final transactionBox = Hive.box('transactions');
+  final incomeBox = Hive.box('income');
+  final outcomeBox = Hive.box('outcome');
+  final piggyBox = Hive.box('piggy');
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,8 +51,6 @@ class _SettingPageState extends State<SettingPage> {
                 child: Text(''),
               ),
               GestureDetector(
-               
-                
                 child: Container(
                   height: 50,
                   padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
@@ -62,75 +71,100 @@ class _SettingPageState extends State<SettingPage> {
                     ],
                   ),
                 ),
+                onTap: (){
+                  naviToNameChangePage(context);
+                },
               ),
               Divider(
                 color: Color(0xff4F98A1),
               ),
-              Container(
-                height: 50,
-                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Edit Profile Picture',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+              GestureDetector(
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Edit Profile Picture',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Icon(
-                      Icons.photo_camera_rounded,
-                      size: 30,
-                    ),
-                  ],
+                      Icon(
+                        Icons.photo_camera_rounded,
+                        size: 30,
+                      ),
+                    ],
+                  ),
                 ),
+                onTap: (){
+
+                },
               ),
               Divider(
                 color: Color(0xff4F98A1),
               ),
-              Container(
-                height: 50,
-                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Edit Saving %',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+              GestureDetector(
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Edit Saving %',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Icon(
-                      Icons.savings_rounded,
-                      size: 30,
-                    ),
-                  ],
+                      Icon(
+                        Icons.savings_rounded,
+                        size: 30,
+                      ),
+                    ],
+                  ),
                 ),
+                onTap: (){
+                  naviToAmountChangePage(context);
+                },
               ),
               Divider(
                 color: Color(0xff4F98A1),
               ),
-              Container(
-                height: 50,
-                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Reset Data',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
+              GestureDetector(
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Reset Data',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Icon(
-                      Icons.restart_alt_rounded,
-                      size: 30,
-                    ),
-                  ],
+                      Icon(
+                        Icons.restart_alt_rounded,
+                        size: 30,
+                      ),
+                    ],
+                  ),
                 ),
+                onTap: (){
+                  usernameBox.clear();
+                  amountBox.clear();
+                  idBox.clear();
+                  transactionBox.clear();
+                  incomeBox.clear();
+                  outcomeBox.clear();
+                  piggyBox.clear();
+                  navigateToOnboard(context);
+                },
               ),
               Divider(
                 color: Color(0xff4F98A1),
@@ -161,4 +195,15 @@ class _SettingPageState extends State<SettingPage> {
       ),
     );
   }
+}
+
+void naviToAmountChangePage(BuildContext context){
+  AutoRouter.of(context).push(AmountChangeRoute());
+}
+
+void naviToNameChangePage(BuildContext context){
+  AutoRouter.of(context).push(NameChangeRoute());
+}
+void navigateToOnboard(context) {
+  AutoRouter.of(context).push(OnboardRoute());
 }

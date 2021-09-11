@@ -4,7 +4,7 @@ part 'database.g.dart';
 
 @HiveType(typeId: 0)
 class UserName extends HiveObject{
-  @HiveField(0)
+  @HiveField(0,defaultValue: 'Unknown')
   final String username;
   UserName(this.username);
 }
@@ -13,7 +13,7 @@ class UserName extends HiveObject{
 class TotalAmount extends HiveObject{
   @HiveField(0)
   final double amount;
-  @HiveField(1)
+  @HiveField(1,defaultValue: true)
   final bool showOnboard;
   TotalAmount(this.amount,this.showOnboard);
 }
@@ -37,10 +37,10 @@ class Transaction extends HiveObject{
   late double amount;
   @HiveField(3)
   late DateTime datatime;
-  @HiveField(4)
+  @HiveField(4,defaultValue: 'No description')
   late String description;
-  @HiveField(5)
-  late int cardNum=1;
+  @HiveField(5,defaultValue: 1)
+  late int cardNum;
   Transaction(this.iconId,this.isExpense,this.amount,this.datatime,this.description,this.cardNum);
 }
 
@@ -62,7 +62,7 @@ class Outcome extends HiveObject{
 @HiveType(typeId: 6)
 class Piggy extends HiveObject{
 @HiveField(0)
-int percentage;
+double percentage;
 @HiveField(1)
 bool showPiggy;
 Piggy(this.percentage,this.showPiggy);

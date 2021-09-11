@@ -36,7 +36,6 @@ class _NameInputPageState extends State<NameInputPage> {
       child: Scaffold(
         body: Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/submit_name.png'),

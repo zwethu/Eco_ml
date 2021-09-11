@@ -17,7 +17,7 @@ class UserNameAdapter extends TypeAdapter<UserName> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return UserName(
-      fields[0] as String,
+      fields[0] == null ? 'Unknown' : fields[0] as String,
     );
   }
 
@@ -52,7 +52,7 @@ class TotalAmountAdapter extends TypeAdapter<TotalAmount> {
     };
     return TotalAmount(
       fields[0] as double,
-      fields[1] as bool,
+      fields[1] == null ? true : fields[1] as bool,
     );
   }
 
@@ -129,8 +129,8 @@ class TransactionAdapter extends TypeAdapter<Transaction> {
       fields[1] as bool,
       fields[2] as double,
       fields[3] as DateTime,
-      fields[4] as String,
-      fields[5] as int,
+      fields[4] == null ? 'No description' : fields[4] as String,
+      fields[5] == null ? 1 : fields[5] as int,
     );
   }
 
@@ -242,7 +242,7 @@ class PiggyAdapter extends TypeAdapter<Piggy> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Piggy(
-      fields[0] as int,
+      fields[0] as double,
       fields[1] as bool,
     );
   }

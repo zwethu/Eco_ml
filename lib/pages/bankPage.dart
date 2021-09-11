@@ -72,6 +72,7 @@ class _BankPageState extends State<BankPage> {
         ],
       ),
     );
+    
   }
 }
 

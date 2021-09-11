@@ -16,7 +16,7 @@ class _AmountInputPageState extends State<AmountInputPage> {
   final incomeBox = Hive.box('income');
   final outcomeBox = Hive.box('outcome');
   final piggyBox = Hive.box('piggy');
-  
+
   TextEditingController amountController = TextEditingController();
 
   @override
@@ -38,7 +38,6 @@ class _AmountInputPageState extends State<AmountInputPage> {
       child: Scaffold(
         body: Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/images/submit_name.png'),
@@ -115,23 +114,27 @@ class _AmountInputPageState extends State<AmountInputPage> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                    backgroundColor: MaterialStateProperty.all(Color(0xffE3A5AA)),
+                    backgroundColor:
+                        MaterialStateProperty.all(Color(0xffE3A5AA)),
                   ),
                   onPressed: () {
                     navigateToHome(context);
                     setState(() {
-                      final data =
-                        TotalAmount(double.parse(amountController.text), false);
-                    addAmount(data);
-                    final incomeData = incomeBox.get(0);
-                      final calculateIncome = incomeData??0.0;
+                      final data = TotalAmount(
+                          double.parse(amountController.text), false);
+                      addAmount(data);
+                      final incomeData = incomeBox.get(0);
+                      final calculateIncome = incomeData ?? 0.0;
                       incomeBox.put(0, calculateIncome);
                       print(incomeBox.get(0));
-                    final outcomeData = outcomeBox.get(0);
-                      final calculateOutcome = outcomeData??0.0;
+                      final outcomeData = outcomeBox.get(0);
+                      final calculateOutcome = outcomeData ?? 0.0;
                       outcomeBox.put(0, calculateOutcome);
                       print(outcomeBox.get(0));
-                    
+                      final piggyData = piggyBox.get(0);
+                      final calculatePiggy = piggyData ?? 0;
+                      piggyBox.put(0, calculatePiggy);
+                      print(piggyBox.get(0));
                     });
                   },
                   child: Container(
@@ -164,6 +167,6 @@ void addAmount(TotalAmount totalAmount) {
   Hive.box('amount').put(0, totalAmount);
 }
 
-void addIncome(Income income){
+void addIncome(Income income) {
   Hive.box('income').put(0, income);
 }

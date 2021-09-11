@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class PiggyPage extends StatefulWidget {
   const PiggyPage({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class PiggyPage extends StatefulWidget {
 }
 
 class _PiggyPageState extends State<PiggyPage> {
+  final piggyBox = Hive.box('piggy');
   TextEditingController amountController = TextEditingController();
 
   @override
@@ -103,7 +105,12 @@ class _PiggyPageState extends State<PiggyPage> {
                   backgroundColor: MaterialStateProperty.all(Color(0xff72ADB4)),
                 ),
                 onPressed: () {
-                  navigateToPiggyHomePage(context);
+                  final calculateData = double.parse(amountController.text);
+                  piggyBox.put(0, calculateData);
+                  piggyBox.put(1, true);
+                  final data = piggyBox.get(0);
+                  print(data);
+                  navigateToHome(context);
                 },
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
@@ -123,6 +130,6 @@ class _PiggyPageState extends State<PiggyPage> {
   }
 }
 
-void navigateToPiggyHomePage(context) {
-  AutoRouter.of(context).push(PiggyHomeRoute());
+void navigateToHome(context) {
+  AutoRouter.of(context).push(HomeRoute());
 }
