@@ -34,16 +34,10 @@ class _NameChangePageState extends State<NameChangePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        // resizeToAvoidBottomInset: false,
         body: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/submit_name.png'),
-                fit: BoxFit.fill,
-              ),
-            ),
             child: Column(
               children: [
                 const SizedBox(

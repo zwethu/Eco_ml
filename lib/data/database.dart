@@ -13,9 +13,9 @@ class UserName extends HiveObject {
 class TotalAmount extends HiveObject {
   @HiveField(0)
   double amount = 0;
-  @HiveField(1, defaultValue: true)
-  final bool showOnboard;
-  TotalAmount(this.amount, this.showOnboard);
+  @HiveField(1)
+  final bool showOnboard=true;
+  TotalAmount(this.amount);
 }
 
 @HiveType(typeId: 2)

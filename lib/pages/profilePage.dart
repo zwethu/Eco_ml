@@ -13,22 +13,14 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Color(0xff4F98A1),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Color(0xff4F98A1),
+        ),
+        body: SingleChildScrollView(
           child: Container(
-            height: 800,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/profile.png'),
-                fit: BoxFit.fill,
-              ),
-            ),
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -38,7 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Column(
                     children: [
                       CircleAvatar(
-                        radius: 30,
+                        radius: 40,
                         backgroundImage:
                             AssetImage('assets/images/avator.jpeg'),
                       ),

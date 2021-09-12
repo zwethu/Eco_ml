@@ -37,7 +37,7 @@ class _PiggyPageState extends State<PiggyPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  height: 150,
+                  
                   child: Image.asset('assets/images/piggy.png'),
                 ),
                 Container(

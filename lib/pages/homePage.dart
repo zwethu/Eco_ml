@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
   final username = Hive.box('username').getAt(0) as UserName;
-  
+  final piggyBox = Hive.box('piggy');
 @override
   void dispose() {
   //  Hive.close();
@@ -26,11 +26,12 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
+    bool check = piggyBox.get(1) ;
     final pages = [
     WalletPage(),
     ReportPage(),
     (() {
-   if(currentIndex==2){
+   if(check){
      return PiggyHomePage();
    }else{
     return BankPage();

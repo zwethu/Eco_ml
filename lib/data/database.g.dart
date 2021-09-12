@@ -52,7 +52,6 @@ class TotalAmountAdapter extends TypeAdapter<TotalAmount> {
     };
     return TotalAmount(
       fields[0] as double,
-      fields[1] == null ? true : fields[1] as bool,
     );
   }
 
@@ -242,7 +241,7 @@ class PiggyAdapter extends TypeAdapter<Piggy> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return Piggy(
-      fields[0] as double,
+      fields[0] as dynamic,
       fields[1] as bool,
     );
   }

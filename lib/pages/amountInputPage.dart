@@ -12,7 +12,7 @@ class AmountInputPage extends StatefulWidget {
 }
 
 class _AmountInputPageState extends State<AmountInputPage> {
-  final amountBox = Hive.openBox('amount');
+  final amountBox = Hive.box('amount');
   final incomeBox = Hive.box('income');
   final outcomeBox = Hive.box('outcome');
   final piggyBox = Hive.box('piggy');
@@ -123,8 +123,11 @@ class _AmountInputPageState extends State<AmountInputPage> {
                       var value = amountController.text;
                       amountController.text.isEmpty ? value=0.toString(): value=amountController.text;
                       final data = TotalAmount(
-                          double.parse(value), false);
+                          double.parse(value));
                       addAmount(data);
+                      // final amountData = double.parse(value);
+                      // amountBox.put(0,amountData);
+                      amountBox.put(1, false);
                       final incomeData = incomeBox.get(0);
                       final calculateIncome = incomeData ?? 0.0;
                       incomeBox.put(0, calculateIncome);
@@ -136,6 +139,7 @@ class _AmountInputPageState extends State<AmountInputPage> {
                       var piggyData = piggyBox.get(0);
                       var calculatePiggy = piggyData ?? 0.0;
                       piggyBox.put(0, calculatePiggy);
+                      piggyBox.put(1, false);
                       print(piggyBox.get(0));
                     });
                   },
@@ -169,6 +173,6 @@ void addAmount(TotalAmount totalAmount) {
   Hive.box('amount').put(0, totalAmount);
 }
 
-void addIncome(Income income) {
-  Hive.box('income').put(0, income);
+void addCheck(bool check){
+  Hive.box('amount').put(1, check);
 }

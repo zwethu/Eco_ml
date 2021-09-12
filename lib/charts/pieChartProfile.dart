@@ -72,7 +72,7 @@ class PieChartProfileState extends State {
                               borderRadius: BorderRadius.circular(0),
                               color: Color(0xff3f5166)),
                         ),
-                        Text('Total',
+                        Text(' Total',
                             style: TextStyle(
                                 color: Color(0xff4F98A1),
                                 fontWeight: FontWeight.bold,

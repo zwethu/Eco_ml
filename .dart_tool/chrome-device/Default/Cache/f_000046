@@ -1,46 +1,48 @@
-define(['dart_sdk', 'packages/flutter/src/gestures/recognizer.dart', 'packages/flutter/src/rendering/proxy_box.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/gestures/drag_details.dart', 'packages/flutter/src/gestures/velocity_tracker.dart', 'packages/flutter/src/animation/curves.dart'], (function load__packages__flutter__src__widgets__dismissible_dart(dart_sdk, packages__flutter__src__gestures__recognizer$46dart, packages__flutter__src__rendering__proxy_box$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__gestures__drag_details$46dart, packages__flutter__src__gestures__velocity_tracker$46dart, packages__flutter__src__animation__curves$46dart) {
+define(['dart_sdk', 'packages/flutter/src/foundation/object.dart'], (function load__packages__flutter__src__animation__curves_dart(dart_sdk, packages__flutter__src__foundation__object$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const async = dart_sdk.async;
+  const math = dart_sdk.math;
   const ui = dart_sdk.ui;
-  const _internal = dart_sdk._internal;
   const _interceptors = dart_sdk._interceptors;
+  const _internal = dart_sdk._internal;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const recognizer = packages__flutter__src__gestures__recognizer$46dart.src__gestures__recognizer;
-  const proxy_box = packages__flutter__src__rendering__proxy_box$46dart.src__rendering__proxy_box;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const debug = packages__flutter__src__widgets__widget_span$46dart.src__widgets__debug;
-  const transitions = packages__flutter__src__widgets__widget_span$46dart.src__widgets__transitions;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const gesture_detector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__gesture_detector;
-  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
-  const automatic_keep_alive = packages__flutter__src__widgets__widget_span$46dart.src__widgets__automatic_keep_alive;
-  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
-  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
-  const tween = packages__flutter__src__animation__listener_helpers$46dart.src__animation__tween;
-  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
-  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const drag_details = packages__flutter__src__gestures__drag_details$46dart.src__gestures__drag_details;
-  const velocity_tracker = packages__flutter__src__gestures__velocity_tracker$46dart.src__gestures__velocity_tracker;
-  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
-  var dismissible = Object.create(dart.library);
-  var $sign = dartx.sign;
+  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
+  var curves = Object.create(dart.library);
+  var $truncateToDouble = dartx.truncateToDouble;
+  var $clamp = dartx.clamp;
   var $abs = dartx.abs;
-  var $_get = dartx._get;
+  var $toStringAsFixed = dartx.toStringAsFixed;
   var $add = dartx.add;
+  var $sign = dartx.sign;
+  var $length = dartx.length;
+  var $_get = dartx._get;
+  var $last = dartx.last;
+  var $addAll = dartx.addAll;
+  var $toDouble = dartx.toDouble;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $round = dartx.round;
+  var $modulo = dartx['%'];
+  var $floor = dartx.floor;
+  var $clear = dartx.clear;
+  var $join = dartx.join;
+  var $toList = dartx.toList;
+  var $first = dartx.first;
+  var $isEmpty = dartx.isEmpty;
+  var $truncate = dartx.truncate;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
-    TweenOfOffset: () => (T.TweenOfOffset = dart.constFn(tween.Tween$(ui.Offset)))(),
-    boolN: () => (T.boolN = dart.constFn(dart.nullable(core.bool)))(),
-    AnimationStatusTovoid: () => (T.AnimationStatusTovoid = dart.constFn(dart.fnType(dart.void, [animation.AnimationStatus])))(),
-    TweenOfdouble: () => (T.TweenOfdouble = dart.constFn(tween.Tween$(core.double)))(),
-    JSArrayOfDiagnosticsNode: () => (T.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
+    OffsetAndOffsetAndOffsetTobool: () => (T.OffsetAndOffsetAndOffsetTobool = dart.constFn(dart.fnType(core.bool, [ui.Offset, ui.Offset, ui.Offset])))(),
+    JSArrayOfCurve2DSample: () => (T.JSArrayOfCurve2DSample = dart.constFn(_interceptors.JSArray$(curves.Curve2DSample)))(),
+    Curve2DSampleAndCurve2DSample__Tovoid: () => (T.Curve2DSampleAndCurve2DSample__Tovoid = dart.constFn(dart.fnType(dart.void, [curves.Curve2DSample, curves.Curve2DSample], {forceSubdivide: core.bool}, {})))(),
+    VoidTodouble: () => (T.VoidTodouble = dart.constFn(dart.fnType(core.double, [])))(),
+    doubleTodynamic: () => (T.doubleTodynamic = dart.constFn(dart.fnType(dart.dynamic, [core.double])))(),
+    doubleTodouble: () => (T.doubleTodouble = dart.constFn(dart.fnType(core.double, [core.double])))(),
+    ListOfOffset: () => (T.ListOfOffset = dart.constFn(core.List$(ui.Offset)))(),
+    JSArrayOfListOfOffset: () => (T.JSArrayOfListOfOffset = dart.constFn(_interceptors.JSArray$(T.ListOfOffset())))(),
+    JSArrayOfOffset: () => (T.JSArrayOfOffset = dart.constFn(_interceptors.JSArray$(ui.Offset)))(),
     VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
-    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))()
+    JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -48,1134 +50,1396 @@ define(['dart_sdk', 'packages/flutter/src/gestures/recognizer.dart', 'packages/f
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: dismissible.DismissDirection.prototype,
-        [_name$]: "DismissDirection.vertical",
-        index: 0
+        __proto__: curves._Linear.prototype
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: dismissible.DismissDirection.prototype,
-        [_name$]: "DismissDirection.horizontal",
-        index: 1
+        __proto__: ui.Offset.prototype,
+        [OffsetBase__dy]: 1,
+        [OffsetBase__dx]: 1
       });
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: dismissible.DismissDirection.prototype,
-        [_name$]: "DismissDirection.endToStart",
-        index: 2
+        __proto__: curves._DecelerateCurve.prototype
       });
     },
     get C3() {
       return C[3] = dart.const({
-        __proto__: dismissible.DismissDirection.prototype,
-        [_name$]: "DismissDirection.startToEnd",
-        index: 3
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.04,
+        [b$]: 1,
+        [a$]: 0.18
       });
     },
     get C4() {
       return C[4] = dart.const({
-        __proto__: dismissible.DismissDirection.prototype,
-        [_name$]: "DismissDirection.up",
-        index: 4
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.25,
+        [b$]: 0.1,
+        [a$]: 0.25
       });
     },
     get C5() {
       return C[5] = dart.const({
-        __proto__: dismissible.DismissDirection.prototype,
-        [_name$]: "DismissDirection.down",
-        index: 5
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 1,
+        [b$]: 0,
+        [a$]: 0.42
       });
     },
     get C6() {
       return C[6] = dart.const({
-        __proto__: dismissible.DismissDirection.prototype,
-        [_name$]: "DismissDirection.none",
-        index: 6
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.09,
+        [c$]: 0.65,
+        [b$]: 0.03,
+        [a$]: 0.67
       });
     },
     get C7() {
-      return C[7] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2, C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5, C[6] || CT.C6], dismissible.DismissDirection);
+      return C[7] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.715,
+        [c$]: 0.745,
+        [b$]: 0,
+        [a$]: 0.47
+      });
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 300000
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.53,
+        [c$]: 0.68,
+        [b$]: 0.085,
+        [a$]: 0.55
       });
     },
     get C9() {
-      return C[9] = dart.constMap(dismissible.DismissDirection, core.double, []);
+      return C[9] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.19,
+        [c$]: 0.675,
+        [b$]: 0.055,
+        [a$]: 0.55
+      });
     },
     get C10() {
       return C[10] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 200000
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.22,
+        [c$]: 0.685,
+        [b$]: 0.03,
+        [a$]: 0.895
       });
     },
     get C11() {
       return C[11] = dart.const({
-        __proto__: recognizer.DragStartBehavior.prototype,
-        [_name]: "DragStartBehavior.start",
-        index: 1
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.06,
+        [c$]: 0.855,
+        [b$]: 0.05,
+        [a$]: 0.755
       });
     },
     get C12() {
       return C[12] = dart.const({
-        __proto__: proxy_box.HitTestBehavior.prototype,
-        [_name$0]: "HitTestBehavior.opaque",
-        index: 1
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.035,
+        [c$]: 0.795,
+        [b$]: 0.05,
+        [a$]: 0.95
       });
     },
     get C13() {
       return C[13] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name$1]: "Axis.horizontal",
-        index: 0
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.335,
+        [c$]: 0.98,
+        [b$]: 0.04,
+        [a$]: 0.6
       });
     },
     get C14() {
       return C[14] = dart.const({
-        __proto__: basic_types.Axis.prototype,
-        [_name$1]: "Axis.vertical",
-        index: 1
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.045,
+        [c$]: 0.735,
+        [b$]: -0.28,
+        [a$]: 0.6
       });
     },
     get C15() {
       return C[15] = dart.const({
-        __proto__: dismissible._FlingGestureKind.prototype,
-        [_name$]: "_FlingGestureKind.none",
-        index: 0
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.58,
+        [b$]: 0,
+        [a$]: 0
       });
     },
     get C16() {
       return C[16] = dart.const({
-        __proto__: dismissible._FlingGestureKind.prototype,
-        [_name$]: "_FlingGestureKind.forward",
-        index: 1
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.97,
+        [c$]: 0.33,
+        [b$]: 0.91,
+        [a$]: 0.35
       });
     },
     get C17() {
       return C[17] = dart.const({
-        __proto__: dismissible._FlingGestureKind.prototype,
-        [_name$]: "_FlingGestureKind.reverse",
-        index: 2
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.565,
+        [b$]: 0.575,
+        [a$]: 0.39
       });
     },
     get C18() {
-      return C[18] = dart.constList([C[15] || CT.C15, C[16] || CT.C16, C[17] || CT.C17], dismissible._FlingGestureKind);
+      return C[18] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.94,
+        [c$]: 0.45,
+        [b$]: 0.46,
+        [a$]: 0.25
+      });
     },
     get C19() {
       return C[19] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name$2]: "TextDirection.rtl",
-        index: 0
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.355,
+        [b$]: 0.61,
+        [a$]: 0.215
       });
     },
     get C20() {
       return C[20] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name$2]: "TextDirection.ltr",
-        index: 1
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.44,
+        [b$]: 0.84,
+        [a$]: 0.165
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.32,
+        [b$]: 1,
+        [a$]: 0.23
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.22,
+        [b$]: 1,
+        [a$]: 0.19
       });
     },
     get C23() {
       return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 11,
-        [_Location_line]: 585,
-        [_Location_file]: null
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.165,
+        [b$]: 0.82,
+        [a$]: 0.075
       });
     },
     get C24() {
       return C[24] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "height",
-        [_Location_column]: 11,
-        [_Location_line]: 586,
-        [_Location_file]: null
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1.275,
+        [c$]: 0.32,
+        [b$]: 0.885,
+        [a$]: 0.175
       });
     },
     get C25() {
       return C[25] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 587,
-        [_Location_file]: null
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.58,
+        [b$]: 0,
+        [a$]: 0.42
       });
     },
-    get C22() {
-      return C[22] = dart.constList([C[23] || CT.C23, C[24] || CT.C24, C[25] || CT.C25], widget_inspector._Location);
+    get C26() {
+      return C[26] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.95,
+        [c$]: 0.55,
+        [b$]: 0.05,
+        [a$]: 0.445
+      });
     },
-    get C21() {
-      return C[21] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[22] || CT.C22,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 584,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.955,
+        [c$]: 0.515,
+        [b$]: 0.03,
+        [a$]: 0.455
       });
     },
     get C28() {
       return C[28] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "sizeFactor",
-        [_Location_column]: 9,
-        [_Location_line]: 582,
-        [_Location_file]: null
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.355,
+        [b$]: 0.045,
+        [a$]: 0.645
       });
     },
     get C29() {
       return C[29] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "axis",
-        [_Location_column]: 9,
-        [_Location_line]: 583,
-        [_Location_file]: null
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.175,
+        [b$]: 0,
+        [a$]: 0.77
       });
     },
     get C30() {
       return C[30] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 584,
-        [_Location_file]: null
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.07,
+        [b$]: 0,
+        [a$]: 0.86
       });
     },
-    get C27() {
-      return C[27] = dart.constList([C[28] || CT.C28, C[29] || CT.C29, C[30] || CT.C30], widget_inspector._Location);
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0,
+        [b$]: 0,
+        [a$]: 1
+      });
     },
-    get C26() {
-      return C[26] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[27] || CT.C27,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 581,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.86,
+        [c$]: 0.15,
+        [b$]: 0.135,
+        [a$]: 0.785
       });
     },
     get C33() {
       return C[33] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 7,
-        [_Location_line]: 593,
-        [_Location_file]: null
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1.55,
+        [c$]: 0.265,
+        [b$]: -0.55,
+        [a$]: 0.68
       });
     },
     get C34() {
       return C[34] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 594,
-        [_Location_file]: null
+        __proto__: curves.Cubic.prototype,
+        [d$]: 1,
+        [c$]: 0.2,
+        [b$]: 0,
+        [a$]: 0.4
       });
     },
-    get C32() {
-      return C[32] = dart.constList([C[33] || CT.C33, C[34] || CT.C34], widget_inspector._Location);
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: curves.Cubic.prototype,
+        [d$]: 0.15,
+        [c$]: 0.85,
+        [b$]: 0.85,
+        [a$]: 0.15
+      });
     },
-    get C31() {
-      return C[31] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[32] || CT.C32,
-        [_Location_name]: null,
-        [_Location_column]: 22,
-        [_Location_line]: 592,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
+    get C36() {
+      return C[36] = dart.const({
+        __proto__: curves._BounceInCurve.prototype
       });
     },
     get C37() {
       return C[37] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "clipper",
-        [_Location_column]: 15,
-        [_Location_line]: 602,
-        [_Location_file]: null
+        __proto__: curves._BounceOutCurve.prototype
       });
     },
     get C38() {
       return C[38] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 15,
-        [_Location_line]: 606,
-        [_Location_file]: null
+        __proto__: curves._BounceInOutCurve.prototype
       });
     },
-    get C36() {
-      return C[36] = dart.constList([C[37] || CT.C37, C[38] || CT.C38], widget_inspector._Location);
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: curves.ElasticInCurve.prototype,
+        [period$]: 0.4
+      });
     },
-    get C35() {
-      return C[35] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[36] || CT.C36,
-        [_Location_name]: null,
-        [_Location_column]: 20,
-        [_Location_line]: 601,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
+    get C40() {
+      return C[40] = dart.const({
+        __proto__: curves.ElasticOutCurve.prototype,
+        [period$0]: 0.4
       });
     },
     get C41() {
       return C[41] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 13,
-        [_Location_line]: 601,
-        [_Location_file]: null
-      });
-    },
-    get C40() {
-      return C[40] = dart.constList([C[41] || CT.C41], widget_inspector._Location);
-    },
-    get C39() {
-      return C[39] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[40] || CT.C40,
-        [_Location_name]: null,
-        [_Location_column]: 22,
-        [_Location_line]: 600,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
-      });
-    },
-    get C44() {
-      return C[44] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 23,
-        [_Location_line]: 598,
-        [_Location_file]: null
-      });
-    },
-    get C43() {
-      return C[43] = dart.constList([C[44] || CT.C44], widget_inspector._Location);
-    },
-    get C42() {
-      return C[42] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[43] || CT.C43,
-        [_Location_name]: null,
-        [_Location_column]: 17,
-        [_Location_line]: 598,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
-      });
-    },
-    get C47() {
-      return C[47] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onHorizontalDragStart",
-        [_Location_column]: 7,
-        [_Location_line]: 614,
-        [_Location_file]: null
-      });
-    },
-    get C48() {
-      return C[48] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onHorizontalDragUpdate",
-        [_Location_column]: 7,
-        [_Location_line]: 615,
-        [_Location_file]: null
-      });
-    },
-    get C49() {
-      return C[49] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onHorizontalDragEnd",
-        [_Location_column]: 7,
-        [_Location_line]: 616,
-        [_Location_file]: null
-      });
-    },
-    get C50() {
-      return C[50] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onVerticalDragStart",
-        [_Location_column]: 7,
-        [_Location_line]: 617,
-        [_Location_file]: null
-      });
-    },
-    get C51() {
-      return C[51] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onVerticalDragUpdate",
-        [_Location_column]: 7,
-        [_Location_line]: 618,
-        [_Location_file]: null
-      });
-    },
-    get C52() {
-      return C[52] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onVerticalDragEnd",
-        [_Location_column]: 7,
-        [_Location_line]: 619,
-        [_Location_file]: null
-      });
-    },
-    get C53() {
-      return C[53] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "behavior",
-        [_Location_column]: 7,
-        [_Location_line]: 620,
-        [_Location_file]: null
-      });
-    },
-    get C54() {
-      return C[54] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 621,
-        [_Location_file]: null
-      });
-    },
-    get C55() {
-      return C[55] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "dragStartBehavior",
-        [_Location_column]: 7,
-        [_Location_line]: 622,
-        [_Location_file]: null
-      });
-    },
-    get C46() {
-      return C[46] = dart.constList([C[47] || CT.C47, C[48] || CT.C48, C[49] || CT.C49, C[50] || CT.C50, C[51] || CT.C51, C[52] || CT.C52, C[53] || CT.C53, C[54] || CT.C54, C[55] || CT.C55], widget_inspector._Location);
-    },
-    get C45() {
-      return C[45] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[46] || CT.C46,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 613,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
-      });
-    },
-    get C57() {
-      return C[57] = dart.const({
-        __proto__: curves.Cubic.prototype,
-        [Cubic_d]: 1,
-        [Cubic_c]: 0.25,
-        [Cubic_b]: 0.1,
-        [Cubic_a]: 0.25
-      });
-    },
-    get C56() {
-      return C[56] = dart.const({
-        __proto__: curves.Interval.prototype,
-        [Interval_curve]: C[57] || CT.C57,
-        [Interval_end]: 1,
-        [Interval_begin]: 0.4
+        __proto__: curves.ElasticInOutCurve.prototype,
+        [period$1]: 0.4
       });
     }
   }, false);
-  var C = Array(58).fill(void 0);
+  var C = Array(42).fill(void 0);
   var I = [
-    "package:flutter/src/widgets/dismissible.dart",
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/widgets/dismissible.dart"
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/animation/curves.dart",
+    "package:flutter/src/animation/curves.dart"
   ];
-  var _name$ = dart.privateName(dismissible, "_name");
-  dismissible.DismissDirection = class DismissDirection extends core.Object {
+  const _is_ParametricCurve_default = Symbol('_is_ParametricCurve_default');
+  curves.ParametricCurve$ = dart.generic(T => {
+    class ParametricCurve extends core.Object {
+      transform(t) {
+        if (!(t !== null)) dart.assertFailed(null, I[0], 36, 12, "t != null");
+        if (!(t >= 0.0 && t <= 1.0)) dart.assertFailed("parametric value " + dart.str(t) + " is outside of [0, 1] range.", I[0], 37, 12, "t >= 0.0 && t <= 1.0");
+        return this.transformInternal(t);
+      }
+      transformInternal(t) {
+        dart.throw(new core.UnimplementedError.new());
+      }
+      toString() {
+        return object.objectRuntimeType(this, "ParametricCurve");
+      }
+    }
+    (ParametricCurve.new = function() {
+      ;
+    }).prototype = ParametricCurve.prototype;
+    dart.addTypeTests(ParametricCurve);
+    ParametricCurve.prototype[_is_ParametricCurve_default] = true;
+    dart.addTypeCaches(ParametricCurve);
+    dart.setMethodSignature(ParametricCurve, () => ({
+      __proto__: dart.getMethods(ParametricCurve.__proto__),
+      transform: dart.fnType(T, [core.double]),
+      transformInternal: dart.fnType(T, [core.double])
+    }));
+    dart.setLibraryUri(ParametricCurve, I[1]);
+    dart.defineExtensionMethods(ParametricCurve, ['toString']);
+    return ParametricCurve;
+  });
+  curves.ParametricCurve = curves.ParametricCurve$();
+  dart.addTypeTests(curves.ParametricCurve, _is_ParametricCurve_default);
+  curves.Curve = class Curve extends curves.ParametricCurve$(core.double) {
+    transform(t) {
+      if (t === 0.0 || t === 1.0) {
+        return t;
+      }
+      return super.transform(t);
+    }
+    get flipped() {
+      return new curves.FlippedCurve.new(this);
+    }
+  };
+  (curves.Curve.new = function() {
+    curves.Curve.__proto__.new.call(this);
+    ;
+  }).prototype = curves.Curve.prototype;
+  dart.addTypeTests(curves.Curve);
+  dart.addTypeCaches(curves.Curve);
+  dart.setGetterSignature(curves.Curve, () => ({
+    __proto__: dart.getGetters(curves.Curve.__proto__),
+    flipped: curves.Curve
+  }));
+  dart.setLibraryUri(curves.Curve, I[1]);
+  curves._Linear = class _Linear extends curves.Curve {
+    transformInternal(t) {
+      return t;
+    }
+  };
+  (curves._Linear.__ = function() {
+    curves._Linear.__proto__.new.call(this);
+    ;
+  }).prototype = curves._Linear.prototype;
+  dart.addTypeTests(curves._Linear);
+  dart.addTypeCaches(curves._Linear);
+  dart.setLibraryUri(curves._Linear, I[1]);
+  var count$ = dart.privateName(curves, "SawTooth.count");
+  curves.SawTooth = class SawTooth extends curves.Curve {
+    get count() {
+      return this[count$];
+    }
+    set count(value) {
+      super.count = value;
+    }
+    transformInternal(t) {
+      t = t * this.count;
+      return t - t[$truncateToDouble]();
+    }
     toString() {
-      return this[_name$];
+      return object.objectRuntimeType(this, "SawTooth") + "(" + dart.str(this.count) + ")";
     }
   };
-  (dismissible.DismissDirection.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
+  (curves.SawTooth.new = function(count) {
+    this[count$] = count;
+    if (!(count !== null)) dart.assertFailed(null, I[0], 130, 39, "count != null");
+    curves.SawTooth.__proto__.new.call(this);
     ;
-  }).prototype = dismissible.DismissDirection.prototype;
-  dart.addTypeTests(dismissible.DismissDirection);
-  dart.addTypeCaches(dismissible.DismissDirection);
-  dart.setLibraryUri(dismissible.DismissDirection, I[0]);
-  dart.setFieldSignature(dismissible.DismissDirection, () => ({
-    __proto__: dart.getFields(dismissible.DismissDirection.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
+  }).prototype = curves.SawTooth.prototype;
+  dart.addTypeTests(curves.SawTooth);
+  dart.addTypeCaches(curves.SawTooth);
+  dart.setLibraryUri(curves.SawTooth, I[1]);
+  dart.setFieldSignature(curves.SawTooth, () => ({
+    __proto__: dart.getFields(curves.SawTooth.__proto__),
+    count: dart.finalFieldType(core.int)
   }));
-  dart.defineExtensionMethods(dismissible.DismissDirection, ['toString']);
-  dismissible.DismissDirection.vertical = C[0] || CT.C0;
-  dismissible.DismissDirection.horizontal = C[1] || CT.C1;
-  dismissible.DismissDirection.endToStart = C[2] || CT.C2;
-  dismissible.DismissDirection.startToEnd = C[3] || CT.C3;
-  dismissible.DismissDirection.up = C[4] || CT.C4;
-  dismissible.DismissDirection.down = C[5] || CT.C5;
-  dismissible.DismissDirection.none = C[6] || CT.C6;
-  dismissible.DismissDirection.values = C[7] || CT.C7;
-  var child$ = dart.privateName(dismissible, "Dismissible.child");
-  var background$ = dart.privateName(dismissible, "Dismissible.background");
-  var secondaryBackground$ = dart.privateName(dismissible, "Dismissible.secondaryBackground");
-  var confirmDismiss$ = dart.privateName(dismissible, "Dismissible.confirmDismiss");
-  var onResize$ = dart.privateName(dismissible, "Dismissible.onResize");
-  var onDismissed$ = dart.privateName(dismissible, "Dismissible.onDismissed");
-  var direction$ = dart.privateName(dismissible, "Dismissible.direction");
-  var resizeDuration$ = dart.privateName(dismissible, "Dismissible.resizeDuration");
-  var dismissThresholds$ = dart.privateName(dismissible, "Dismissible.dismissThresholds");
-  var movementDuration$ = dart.privateName(dismissible, "Dismissible.movementDuration");
-  var crossAxisEndOffset$ = dart.privateName(dismissible, "Dismissible.crossAxisEndOffset");
-  var dragStartBehavior$ = dart.privateName(dismissible, "Dismissible.dragStartBehavior");
-  var behavior$ = dart.privateName(dismissible, "Dismissible.behavior");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  var _name = dart.privateName(recognizer, "_name");
-  var _name$0 = dart.privateName(proxy_box, "_name");
-  dismissible.Dismissible = class Dismissible extends framework.StatefulWidget {
-    get child() {
-      return this[child$];
+  dart.defineExtensionMethods(curves.SawTooth, ['toString']);
+  var begin$ = dart.privateName(curves, "Interval.begin");
+  var end$ = dart.privateName(curves, "Interval.end");
+  var curve$ = dart.privateName(curves, "Interval.curve");
+  curves.Interval = class Interval extends curves.Curve {
+    get begin() {
+      return this[begin$];
     }
-    set child(value) {
-      super.child = value;
+    set begin(value) {
+      super.begin = value;
     }
-    get background() {
-      return this[background$];
+    get end() {
+      return this[end$];
     }
-    set background(value) {
-      super.background = value;
+    set end(value) {
+      super.end = value;
     }
-    get secondaryBackground() {
-      return this[secondaryBackground$];
+    get curve() {
+      return this[curve$];
     }
-    set secondaryBackground(value) {
-      super.secondaryBackground = value;
+    set curve(value) {
+      super.curve = value;
     }
-    get confirmDismiss() {
-      return this[confirmDismiss$];
+    transformInternal(t) {
+      if (!(this.begin >= 0.0)) dart.assertFailed(null, I[0], 180, 12, "begin >= 0.0");
+      if (!(this.begin <= 1.0)) dart.assertFailed(null, I[0], 181, 12, "begin <= 1.0");
+      if (!(this.end >= 0.0)) dart.assertFailed(null, I[0], 182, 12, "end >= 0.0");
+      if (!(this.end <= 1.0)) dart.assertFailed(null, I[0], 183, 12, "end <= 1.0");
+      if (!(this.end >= this.begin)) dart.assertFailed(null, I[0], 184, 12, "end >= begin");
+      t = ((t - this.begin) / (this.end - this.begin))[$clamp](0.0, 1.0);
+      if (t === 0.0 || t === 1.0) return t;
+      return this.curve.transform(t);
     }
-    set confirmDismiss(value) {
-      super.confirmDismiss = value;
-    }
-    get onResize() {
-      return this[onResize$];
-    }
-    set onResize(value) {
-      super.onResize = value;
-    }
-    get onDismissed() {
-      return this[onDismissed$];
-    }
-    set onDismissed(value) {
-      super.onDismissed = value;
-    }
-    get direction() {
-      return this[direction$];
-    }
-    set direction(value) {
-      super.direction = value;
-    }
-    get resizeDuration() {
-      return this[resizeDuration$];
-    }
-    set resizeDuration(value) {
-      super.resizeDuration = value;
-    }
-    get dismissThresholds() {
-      return this[dismissThresholds$];
-    }
-    set dismissThresholds(value) {
-      super.dismissThresholds = value;
-    }
-    get movementDuration() {
-      return this[movementDuration$];
-    }
-    set movementDuration(value) {
-      super.movementDuration = value;
-    }
-    get crossAxisEndOffset() {
-      return this[crossAxisEndOffset$];
-    }
-    set crossAxisEndOffset(value) {
-      super.crossAxisEndOffset = value;
-    }
-    get dragStartBehavior() {
-      return this[dragStartBehavior$];
-    }
-    set dragStartBehavior(value) {
-      super.dragStartBehavior = value;
-    }
-    get behavior() {
-      return this[behavior$];
-    }
-    set behavior(value) {
-      super.behavior = value;
-    }
-    createState() {
-      return new dismissible._DismissibleState.new();
-    }
-  };
-  (dismissible.Dismissible.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    let background = opts && 'background' in opts ? opts.background : null;
-    let secondaryBackground = opts && 'secondaryBackground' in opts ? opts.secondaryBackground : null;
-    let confirmDismiss = opts && 'confirmDismiss' in opts ? opts.confirmDismiss : null;
-    let onResize = opts && 'onResize' in opts ? opts.onResize : null;
-    let onDismissed = opts && 'onDismissed' in opts ? opts.onDismissed : null;
-    let direction = opts && 'direction' in opts ? opts.direction : C[1] || CT.C1;
-    let resizeDuration = opts && 'resizeDuration' in opts ? opts.resizeDuration : C[8] || CT.C8;
-    let dismissThresholds = opts && 'dismissThresholds' in opts ? opts.dismissThresholds : C[9] || CT.C9;
-    let movementDuration = opts && 'movementDuration' in opts ? opts.movementDuration : C[10] || CT.C10;
-    let crossAxisEndOffset = opts && 'crossAxisEndOffset' in opts ? opts.crossAxisEndOffset : 0;
-    let dragStartBehavior = opts && 'dragStartBehavior' in opts ? opts.dragStartBehavior : C[11] || CT.C11;
-    let behavior = opts && 'behavior' in opts ? opts.behavior : C[12] || CT.C12;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[child$] = child;
-    this[background$] = background;
-    this[secondaryBackground$] = secondaryBackground;
-    this[confirmDismiss$] = confirmDismiss;
-    this[onResize$] = onResize;
-    this[onDismissed$] = onDismissed;
-    this[direction$] = direction;
-    this[resizeDuration$] = resizeDuration;
-    this[dismissThresholds$] = dismissThresholds;
-    this[movementDuration$] = movementDuration;
-    this[crossAxisEndOffset$] = crossAxisEndOffset;
-    this[dragStartBehavior$] = dragStartBehavior;
-    this[behavior$] = behavior;
-    if (!(key !== null)) dart.assertFailed(null, I[1], 138, 15, "key != null");
-    if (!(secondaryBackground == null || background != null)) dart.assertFailed(null, I[1], 139, 15, "secondaryBackground == null || background != null");
-    if (!(dragStartBehavior !== null)) dart.assertFailed(null, I[1], 140, 15, "dragStartBehavior != null");
-    dismissible.Dismissible.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-    ;
-  }).prototype = dismissible.Dismissible.prototype;
-  dart.addTypeTests(dismissible.Dismissible);
-  dart.addTypeCaches(dismissible.Dismissible);
-  dart.setMethodSignature(dismissible.Dismissible, () => ({
-    __proto__: dart.getMethods(dismissible.Dismissible.__proto__),
-    createState: dart.fnType(dismissible._DismissibleState, [])
-  }));
-  dart.setLibraryUri(dismissible.Dismissible, I[0]);
-  dart.setFieldSignature(dismissible.Dismissible, () => ({
-    __proto__: dart.getFields(dismissible.Dismissible.__proto__),
-    child: dart.finalFieldType(framework.Widget),
-    background: dart.finalFieldType(dart.nullable(framework.Widget)),
-    secondaryBackground: dart.finalFieldType(dart.nullable(framework.Widget)),
-    confirmDismiss: dart.finalFieldType(dart.nullable(dart.fnType(async.Future$(dart.nullable(core.bool)), [dismissible.DismissDirection]))),
-    onResize: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, []))),
-    onDismissed: dart.finalFieldType(dart.nullable(dart.fnType(dart.void, [dismissible.DismissDirection]))),
-    direction: dart.finalFieldType(dismissible.DismissDirection),
-    resizeDuration: dart.finalFieldType(dart.nullable(core.Duration)),
-    dismissThresholds: dart.finalFieldType(core.Map$(dismissible.DismissDirection, core.double)),
-    movementDuration: dart.finalFieldType(core.Duration),
-    crossAxisEndOffset: dart.finalFieldType(core.double),
-    dragStartBehavior: dart.finalFieldType(recognizer.DragStartBehavior),
-    behavior: dart.finalFieldType(proxy_box.HitTestBehavior)
-  }));
-  var _name$1 = dart.privateName(basic_types, "_name");
-  dismissible._DismissibleClipper = class _DismissibleClipper extends proxy_box.CustomClipper$(ui.Rect) {
-    getClip(size) {
-      if (!(this.axis !== null)) dart.assertFailed(null, I[1], 251, 12, "axis != null");
-      switch (this.axis) {
-        case C[13] || CT.C13:
-        {
-          let offset = this.moveAnimation.value.dx * size.width;
-          if (offset < 0) return new ui.Rect.fromLTRB(size.width + offset, 0.0, size.width, size.height);
-          return new ui.Rect.fromLTRB(0.0, 0.0, offset, size.height);
-        }
-        case C[14] || CT.C14:
-        {
-          let offset = this.moveAnimation.value.dy * size.height;
-          if (offset < 0) return new ui.Rect.fromLTRB(0.0, size.height + offset, size.width, size.height);
-          return new ui.Rect.fromLTRB(0.0, 0.0, size.width, offset);
-        }
-      }
-    }
-    getApproximateClipRect(size) {
-      return this.getClip(size);
-    }
-    shouldReclip(oldClipper) {
-      dismissible._DismissibleClipper.as(oldClipper);
-      return oldClipper.axis !== this.axis || !oldClipper.moveAnimation.value._equals(this.moveAnimation.value);
-    }
-  };
-  (dismissible._DismissibleClipper.new = function(opts) {
-    let axis = opts && 'axis' in opts ? opts.axis : null;
-    let moveAnimation = opts && 'moveAnimation' in opts ? opts.moveAnimation : null;
-    this.axis = axis;
-    this.moveAnimation = moveAnimation;
-    if (!(axis !== null)) dart.assertFailed(null, I[1], 242, 15, "axis != null");
-    if (!(moveAnimation !== null)) dart.assertFailed(null, I[1], 243, 15, "moveAnimation != null");
-    dismissible._DismissibleClipper.__proto__.new.call(this, {reclip: moveAnimation});
-    ;
-  }).prototype = dismissible._DismissibleClipper.prototype;
-  dart.addTypeTests(dismissible._DismissibleClipper);
-  dart.addTypeCaches(dismissible._DismissibleClipper);
-  dart.setMethodSignature(dismissible._DismissibleClipper, () => ({
-    __proto__: dart.getMethods(dismissible._DismissibleClipper.__proto__),
-    getClip: dart.fnType(ui.Rect, [ui.Size]),
-    shouldReclip: dart.fnType(core.bool, [dart.nullable(core.Object)])
-  }));
-  dart.setLibraryUri(dismissible._DismissibleClipper, I[0]);
-  dart.setFieldSignature(dismissible._DismissibleClipper, () => ({
-    __proto__: dart.getFields(dismissible._DismissibleClipper.__proto__),
-    axis: dart.finalFieldType(basic_types.Axis),
-    moveAnimation: dart.finalFieldType(animation.Animation$(ui.Offset))
-  }));
-  dismissible._FlingGestureKind = class _FlingGestureKind extends core.Object {
     toString() {
-      return this[_name$];
+      if (!curves._Linear.is(this.curve)) return object.objectRuntimeType(this, "Interval") + "(" + dart.str(this.begin) + "⋯" + dart.str(this.end) + ")➩" + dart.str(this.curve);
+      return object.objectRuntimeType(this, "Interval") + "(" + dart.str(this.begin) + "⋯" + dart.str(this.end) + ")";
     }
   };
-  (dismissible._FlingGestureKind.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
+  (curves.Interval.new = function(begin, end, opts) {
+    let curve = opts && 'curve' in opts ? opts.curve : C[0] || CT.C0;
+    this[begin$] = begin;
+    this[end$] = end;
+    this[curve$] = curve;
+    if (!(begin !== null)) dart.assertFailed(null, I[0], 161, 14, "begin != null");
+    if (!(end !== null)) dart.assertFailed(null, I[0], 162, 14, "end != null");
+    if (!(curve !== null)) dart.assertFailed(null, I[0], 163, 14, "curve != null");
+    curves.Interval.__proto__.new.call(this);
     ;
-  }).prototype = dismissible._FlingGestureKind.prototype;
-  dart.addTypeTests(dismissible._FlingGestureKind);
-  dart.addTypeCaches(dismissible._FlingGestureKind);
-  dart.setLibraryUri(dismissible._FlingGestureKind, I[0]);
-  dart.setFieldSignature(dismissible._FlingGestureKind, () => ({
-    __proto__: dart.getFields(dismissible._FlingGestureKind.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
+  }).prototype = curves.Interval.prototype;
+  dart.addTypeTests(curves.Interval);
+  dart.addTypeCaches(curves.Interval);
+  dart.setLibraryUri(curves.Interval, I[1]);
+  dart.setFieldSignature(curves.Interval, () => ({
+    __proto__: dart.getFields(curves.Interval.__proto__),
+    begin: dart.finalFieldType(core.double),
+    end: dart.finalFieldType(core.double),
+    curve: dart.finalFieldType(curves.Curve)
   }));
-  dart.defineExtensionMethods(dismissible._FlingGestureKind, ['toString']);
-  dismissible._FlingGestureKind.none = C[15] || CT.C15;
-  dismissible._FlingGestureKind.forward = C[16] || CT.C16;
-  dismissible._FlingGestureKind.reverse = C[17] || CT.C17;
-  dismissible._FlingGestureKind.values = C[18] || CT.C18;
-  var _moveController = dart.privateName(dismissible, "_moveController");
-  var ___DismissibleState__moveAnimation = dart.privateName(dismissible, "_#_DismissibleState#_moveAnimation");
-  var _resizeController = dart.privateName(dismissible, "_resizeController");
-  var _resizeAnimation = dart.privateName(dismissible, "_resizeAnimation");
-  var _dragExtent = dart.privateName(dismissible, "_dragExtent");
-  var _dragUnderway = dart.privateName(dismissible, "_dragUnderway");
-  var _sizePriorToCollapse = dart.privateName(dismissible, "_sizePriorToCollapse");
-  var _handleDismissStatusChanged = dart.privateName(dismissible, "_handleDismissStatusChanged");
-  var _updateMoveAnimation = dart.privateName(dismissible, "_updateMoveAnimation");
-  var _moveAnimation = dart.privateName(dismissible, "_moveAnimation");
-  var _directionIsXAxis = dart.privateName(dismissible, "_directionIsXAxis");
-  var _name$2 = dart.privateName(ui, "_name");
-  var _extentToDirection = dart.privateName(dismissible, "_extentToDirection");
-  var _dismissDirection = dart.privateName(dismissible, "_dismissDirection");
-  var _isActive = dart.privateName(dismissible, "_isActive");
-  var _overallDragAxisExtent = dart.privateName(dismissible, "_overallDragAxisExtent");
-  var _handleDragStart = dart.privateName(dismissible, "_handleDragStart");
-  var _handleDragUpdate = dart.privateName(dismissible, "_handleDragUpdate");
-  var _describeFlingGesture = dart.privateName(dismissible, "_describeFlingGesture");
-  var _confirmStartResizeAnimation = dart.privateName(dismissible, "_confirmStartResizeAnimation");
-  var _startResizeAnimation = dart.privateName(dismissible, "_startResizeAnimation");
-  var _handleDragEnd = dart.privateName(dismissible, "_handleDragEnd");
-  var _handleResizeProgressChanged = dart.privateName(dismissible, "_handleResizeProgressChanged");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  const State_TickerProviderStateMixin$36 = class State_TickerProviderStateMixin extends framework.State$(dismissible.Dismissible) {};
-  (State_TickerProviderStateMixin$36.new = function() {
-    ticker_provider.TickerProviderStateMixin$(dismissible.Dismissible)[dart.mixinNew].call(this);
-    State_TickerProviderStateMixin$36.__proto__.new.call(this);
-  }).prototype = State_TickerProviderStateMixin$36.prototype;
-  dart.applyMixin(State_TickerProviderStateMixin$36, ticker_provider.TickerProviderStateMixin$(dismissible.Dismissible));
-  const State_AutomaticKeepAliveClientMixin$36 = class State_AutomaticKeepAliveClientMixin extends State_TickerProviderStateMixin$36 {};
-  (State_AutomaticKeepAliveClientMixin$36.new = function() {
-    automatic_keep_alive.AutomaticKeepAliveClientMixin$(dismissible.Dismissible)[dart.mixinNew].call(this);
-    State_AutomaticKeepAliveClientMixin$36.__proto__.new.call(this);
-  }).prototype = State_AutomaticKeepAliveClientMixin$36.prototype;
-  dart.applyMixin(State_AutomaticKeepAliveClientMixin$36, automatic_keep_alive.AutomaticKeepAliveClientMixin$(dismissible.Dismissible));
-  dismissible._DismissibleState = class _DismissibleState extends State_AutomaticKeepAliveClientMixin$36 {
-    initState() {
-      let t0;
-      super.initState();
-      this[_moveController] = (t0 = new animation_controller.AnimationController.new({duration: this.widget.movementDuration, vsync: this}), (() => {
-        t0.addStatusListener(dart.bind(this, _handleDismissStatusChanged));
-        return t0;
-      })());
-      this[_updateMoveAnimation]();
+  dart.defineExtensionMethods(curves.Interval, ['toString']);
+  var threshold$ = dart.privateName(curves, "Threshold.threshold");
+  curves.Threshold = class Threshold extends curves.Curve {
+    get threshold() {
+      return this[threshold$];
     }
-    get [_moveAnimation]() {
-      let t0;
-      t0 = this[___DismissibleState__moveAnimation];
-      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_moveAnimation")) : t0;
+    set threshold(value) {
+      super.threshold = value;
     }
-    set [_moveAnimation](t0) {
-      this[___DismissibleState__moveAnimation] = t0;
-    }
-    get wantKeepAlive() {
-      let t1, t1$;
-      return (t1 = this[_moveController], t1 == null ? null : t1.isAnimating) === true || (t1$ = this[_resizeController], t1$ == null ? null : t1$.isAnimating) === true;
-    }
-    dispose() {
-      let t1;
-      dart.nullCheck(this[_moveController]).dispose();
-      t1 = this[_resizeController];
-      t1 == null ? null : t1.dispose();
-      super.dispose();
-    }
-    get [_directionIsXAxis]() {
-      return this.widget.direction === dismissible.DismissDirection.horizontal || this.widget.direction === dismissible.DismissDirection.endToStart || this.widget.direction === dismissible.DismissDirection.startToEnd;
-    }
-    [_extentToDirection](extent) {
-      if (extent === 0.0) return dismissible.DismissDirection.none;
-      if (this[_directionIsXAxis]) {
-        switch (basic.Directionality.of(this.context)) {
-          case C[19] || CT.C19:
-          {
-            return extent < 0 ? dismissible.DismissDirection.startToEnd : dismissible.DismissDirection.endToStart;
-          }
-          case C[20] || CT.C20:
-          {
-            return extent > 0 ? dismissible.DismissDirection.startToEnd : dismissible.DismissDirection.endToStart;
-          }
-        }
-      }
-      return extent > 0 ? dismissible.DismissDirection.down : dismissible.DismissDirection.up;
-    }
-    get [_dismissDirection]() {
-      return this[_extentToDirection](this[_dragExtent]);
-    }
-    get [_isActive]() {
-      return this[_dragUnderway] || dart.nullCheck(this[_moveController]).isAnimating;
-    }
-    get [_overallDragAxisExtent]() {
-      let size = dart.nullCheck(this.context.size);
-      return this[_directionIsXAxis] ? size.width : size.height;
-    }
-    [_handleDragStart](details) {
-      this[_dragUnderway] = true;
-      if (dart.nullCheck(this[_moveController]).isAnimating) {
-        this[_dragExtent] = dart.nullCheck(this[_moveController]).value * this[_overallDragAxisExtent] * this[_dragExtent][$sign];
-        dart.nullCheck(this[_moveController]).stop();
-      } else {
-        this[_dragExtent] = 0.0;
-        dart.nullCheck(this[_moveController]).value = 0.0;
-      }
-      this.setState(dart.fn(() => {
-        this[_updateMoveAnimation]();
-      }, T.VoidTovoid()));
-    }
-    [_handleDragUpdate](details) {
-      if (!this[_isActive] || dart.nullCheck(this[_moveController]).isAnimating) return;
-      let delta = dart.nullCheck(details.primaryDelta);
-      let oldDragExtent = this[_dragExtent];
-      switch (this.widget.direction) {
-        case C[1] || CT.C1:
-        case C[0] || CT.C0:
-        {
-          this[_dragExtent] = this[_dragExtent] + delta;
-          break;
-        }
-        case C[4] || CT.C4:
-        {
-          if (this[_dragExtent] + delta < 0) this[_dragExtent] = this[_dragExtent] + delta;
-          break;
-        }
-        case C[5] || CT.C5:
-        {
-          if (this[_dragExtent] + delta > 0) this[_dragExtent] = this[_dragExtent] + delta;
-          break;
-        }
-        case C[2] || CT.C2:
-        {
-          switch (basic.Directionality.of(this.context)) {
-            case C[19] || CT.C19:
-            {
-              if (this[_dragExtent] + delta > 0) this[_dragExtent] = this[_dragExtent] + delta;
-              break;
-            }
-            case C[20] || CT.C20:
-            {
-              if (this[_dragExtent] + delta < 0) this[_dragExtent] = this[_dragExtent] + delta;
-              break;
-            }
-          }
-          break;
-        }
-        case C[3] || CT.C3:
-        {
-          switch (basic.Directionality.of(this.context)) {
-            case C[19] || CT.C19:
-            {
-              if (this[_dragExtent] + delta < 0) this[_dragExtent] = this[_dragExtent] + delta;
-              break;
-            }
-            case C[20] || CT.C20:
-            {
-              if (this[_dragExtent] + delta > 0) this[_dragExtent] = this[_dragExtent] + delta;
-              break;
-            }
-          }
-          break;
-        }
-        case C[6] || CT.C6:
-        {
-          this[_dragExtent] = 0.0;
-          break;
-        }
-      }
-      if (oldDragExtent[$sign] !== this[_dragExtent][$sign]) {
-        this.setState(dart.fn(() => {
-          this[_updateMoveAnimation]();
-        }, T.VoidTovoid()));
-      }
-      if (!dart.nullCheck(this[_moveController]).isAnimating) {
-        dart.nullCheck(this[_moveController]).value = this[_dragExtent][$abs]() / this[_overallDragAxisExtent];
-      }
-    }
-    [_updateMoveAnimation]() {
-      let end = this[_dragExtent][$sign];
-      this[_moveAnimation] = dart.nullCheck(this[_moveController]).drive(ui.Offset, new (T.TweenOfOffset()).new({begin: ui.Offset.zero, end: this[_directionIsXAxis] ? new ui.Offset.new(end, this.widget.crossAxisEndOffset) : new ui.Offset.new(this.widget.crossAxisEndOffset, end)}));
-    }
-    [_describeFlingGesture](velocity) {
-      if (!(this.widget.direction !== null)) dart.assertFailed(null, I[1], 427, 12, "widget.direction != null");
-      if (this[_dragExtent] === 0.0) {
-        return dismissible._FlingGestureKind.none;
-      }
-      let vx = velocity.pixelsPerSecond.dx;
-      let vy = velocity.pixelsPerSecond.dy;
-      let flingDirection = null;
-      if (this[_directionIsXAxis]) {
-        if (vx[$abs]() - vy[$abs]() < 400 || vx[$abs]() < 700) return dismissible._FlingGestureKind.none;
-        if (!(vx !== 0.0)) dart.assertFailed(null, I[1], 443, 14, "vx != 0.0");
-        flingDirection = this[_extentToDirection](vx);
-      } else {
-        if (vy[$abs]() - vx[$abs]() < 400 || vy[$abs]() < 700) return dismissible._FlingGestureKind.none;
-        if (!(vy !== 0.0)) dart.assertFailed(null, I[1], 448, 14, "vy != 0.0");
-        flingDirection = this[_extentToDirection](vy);
-      }
-      if (!(this[_dismissDirection] !== null)) dart.assertFailed(null, I[1], 451, 12, "_dismissDirection != null");
-      if (flingDirection === this[_dismissDirection]) return dismissible._FlingGestureKind.forward;
-      return dismissible._FlingGestureKind.reverse;
-    }
-    [_handleDragEnd](details) {
-      return async.async(dart.void, (function* _handleDragEnd() {
-        let t1, t1$;
-        if (!this[_isActive] || dart.nullCheck(this[_moveController]).isAnimating) return;
-        this[_dragUnderway] = false;
-        if (dart.nullCheck(this[_moveController]).isCompleted && (yield this[_confirmStartResizeAnimation]()) === true) {
-          this[_startResizeAnimation]();
-          return;
-        }
-        let flingVelocity = this[_directionIsXAxis] ? details.velocity.pixelsPerSecond.dx : details.velocity.pixelsPerSecond.dy;
-        switch (this[_describeFlingGesture](details.velocity)) {
-          case C[16] || CT.C16:
-          {
-            if (!(this[_dragExtent] !== 0.0)) dart.assertFailed(null, I[1], 468, 16, "_dragExtent != 0.0");
-            if (!!dart.nullCheck(this[_moveController]).isDismissed) dart.assertFailed(null, I[1], 469, 16, "!_moveController!.isDismissed");
-            if (dart.notNull((t1 = this.widget.dismissThresholds[$_get](this[_dismissDirection]), t1 == null ? 0.4 : t1)) >= 1.0) {
-              dart.nullCheck(this[_moveController]).reverse();
-              break;
-            }
-            this[_dragExtent] = flingVelocity[$sign];
-            dart.nullCheck(this[_moveController]).fling({velocity: flingVelocity[$abs]() * 0.0033333333333333335});
-            break;
-          }
-          case C[17] || CT.C17:
-          {
-            if (!(this[_dragExtent] !== 0.0)) dart.assertFailed(null, I[1], 478, 16, "_dragExtent != 0.0");
-            if (!!dart.nullCheck(this[_moveController]).isDismissed) dart.assertFailed(null, I[1], 479, 16, "!_moveController!.isDismissed");
-            this[_dragExtent] = flingVelocity[$sign];
-            dart.nullCheck(this[_moveController]).fling({velocity: -flingVelocity[$abs]() * 0.0033333333333333335});
-            break;
-          }
-          case C[15] || CT.C15:
-          {
-            if (!dart.nullCheck(this[_moveController]).isDismissed) {
-              if (dart.nullCheck(this[_moveController]).value > dart.notNull((t1$ = this.widget.dismissThresholds[$_get](this[_dismissDirection]), t1$ == null ? 0.4 : t1$))) {
-                dart.nullCheck(this[_moveController]).forward();
-              } else {
-                dart.nullCheck(this[_moveController]).reverse();
-              }
-            }
-            break;
-          }
-        }
-      }).bind(this));
-    }
-    [_handleDismissStatusChanged](status) {
-      return async.async(dart.void, (function* _handleDismissStatusChanged() {
-        if (status === animation.AnimationStatus.completed && !this[_dragUnderway]) {
-          if ((yield this[_confirmStartResizeAnimation]()) === true)
-            this[_startResizeAnimation]();
-          else
-            dart.nullCheck(this[_moveController]).reverse();
-        }
-        this.updateKeepAlive();
-      }).bind(this));
-    }
-    [_confirmStartResizeAnimation]() {
-      return async.async(T.boolN(), (function* _confirmStartResizeAnimation() {
-        if (this.widget.confirmDismiss != null) {
-          let direction = this[_dismissDirection];
-          return dart.nullCheck(this.widget.confirmDismiss)(direction);
-        }
-        return true;
-      }).bind(this));
-    }
-    [_startResizeAnimation]() {
-      let t1;
-      if (!(this[_moveController] != null)) dart.assertFailed(null, I[1], 514, 12, "_moveController != null");
-      if (!dart.nullCheck(this[_moveController]).isCompleted) dart.assertFailed(null, I[1], 515, 12, "_moveController!.isCompleted");
-      if (!(this[_resizeController] == null)) dart.assertFailed(null, I[1], 516, 12, "_resizeController == null");
-      if (!(this[_sizePriorToCollapse] == null)) dart.assertFailed(null, I[1], 517, 12, "_sizePriorToCollapse == null");
-      if (this.widget.resizeDuration == null) {
-        if (this.widget.onDismissed != null) {
-          let direction = this[_dismissDirection];
-          dart.nullCheck(this.widget.onDismissed)(direction);
-        }
-      } else {
-        this[_resizeController] = (t1 = new animation_controller.AnimationController.new({duration: this.widget.resizeDuration, vsync: this}), (() => {
-          t1.addListener(dart.bind(this, _handleResizeProgressChanged));
-          t1.addStatusListener(dart.fn(status => this.updateKeepAlive(), T.AnimationStatusTovoid()));
-          return t1;
-        })());
-        dart.nullCheck(this[_resizeController]).forward();
-        this.setState(dart.fn(() => {
-          this[_sizePriorToCollapse] = this.context.size;
-          this[_resizeAnimation] = dart.nullCheck(this[_resizeController]).drive(core.double, new tween.CurveTween.new({curve: dismissible._kResizeTimeCurve})).drive(core.double, new (T.TweenOfdouble()).new({begin: 1.0, end: 0.0}));
-        }, T.VoidTovoid()));
-      }
-    }
-    [_handleResizeProgressChanged]() {
-      let t1, t1$;
-      if (dart.nullCheck(this[_resizeController]).isCompleted) {
-        t1 = this.widget.onDismissed;
-        t1 == null ? null : t1(this[_dismissDirection]);
-      } else {
-        t1$ = this.widget.onResize;
-        t1$ == null ? null : t1$();
-      }
-    }
-    build(context) {
-      super.build(context);
-      if (!(!this[_directionIsXAxis] || debug.debugCheckHasDirectionality(context))) dart.assertFailed(null, I[1], 556, 12, "!_directionIsXAxis || debugCheckHasDirectionality(context)");
-      let background = this.widget.background;
-      if (this.widget.secondaryBackground != null) {
-        let direction = this[_dismissDirection];
-        if (direction === dismissible.DismissDirection.endToStart || direction === dismissible.DismissDirection.up) background = this.widget.secondaryBackground;
-      }
-      if (this[_resizeAnimation] != null) {
-        if (!dart.fn(() => {
-          if (dart.nullCheck(this[_resizeAnimation]).status !== animation.AnimationStatus.forward) {
-            if (!(dart.nullCheck(this[_resizeAnimation]).status === animation.AnimationStatus.completed)) dart.assertFailed(null, I[1], 569, 18, "_resizeAnimation!.status == AnimationStatus.completed");
-            dart.throw(new assertions.FlutterError.fromParts(T.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("A dismissed Dismissible widget is still part of the tree."), new assertions.ErrorHint.new("Make sure to implement the onDismissed handler and to immediately remove the Dismissible " + "widget from the application once that handler has fired.")])));
-          }
-          return true;
-        }, T.VoidTobool())()) dart.assertFailed(null, I[1], 567, 14, "() {\r\n        if (_resizeAnimation!.status != AnimationStatus.forward) {\r\n          assert(_resizeAnimation!.status == AnimationStatus.completed);\r\n          throw FlutterError.fromParts(<DiagnosticsNode>[\r\n            ErrorSummary('A dismissed Dismissible widget is still part of the tree.'),\r\n            ErrorHint(\r\n              'Make sure to implement the onDismissed handler and to immediately remove the Dismissible '\r\n              'widget from the application once that handler has fired.',\r\n            ),\r\n          ]);\r\n        }\r\n        return true;\r\n      }()");
-        return new transitions.SizeTransition.new({sizeFactor: dart.nullCheck(this[_resizeAnimation]), axis: this[_directionIsXAxis] ? basic_types.Axis.vertical : basic_types.Axis.horizontal, child: new basic.SizedBox.new({width: dart.nullCheck(this[_sizePriorToCollapse]).width, height: dart.nullCheck(this[_sizePriorToCollapse]).height, child: background, $creationLocationd_0dea112b090073317d4: C[21] || CT.C21}), $creationLocationd_0dea112b090073317d4: C[26] || CT.C26});
-      }
-      let content = new transitions.SlideTransition.new({position: this[_moveAnimation], child: this.widget.child, $creationLocationd_0dea112b090073317d4: C[31] || CT.C31});
-      if (background != null) {
-        content = new basic.Stack.new({children: (() => {
-            let t1 = T.JSArrayOfWidget().of([]);
-            if (!this[_moveAnimation].isDismissed) t1[$add](new basic.Positioned.fill({child: new basic.ClipRect.new({clipper: new dismissible._DismissibleClipper.new({axis: this[_directionIsXAxis] ? basic_types.Axis.horizontal : basic_types.Axis.vertical, moveAnimation: this[_moveAnimation]}), child: background, $creationLocationd_0dea112b090073317d4: C[35] || CT.C35}), $creationLocationd_0dea112b090073317d4: C[39] || CT.C39}));
-            t1[$add](content);
-            return t1;
-          })(), $creationLocationd_0dea112b090073317d4: C[42] || CT.C42});
-      }
-      return new gesture_detector.GestureDetector.new({onHorizontalDragStart: this[_directionIsXAxis] ? dart.bind(this, _handleDragStart) : null, onHorizontalDragUpdate: this[_directionIsXAxis] ? dart.bind(this, _handleDragUpdate) : null, onHorizontalDragEnd: this[_directionIsXAxis] ? dart.bind(this, _handleDragEnd) : null, onVerticalDragStart: this[_directionIsXAxis] ? null : dart.bind(this, _handleDragStart), onVerticalDragUpdate: this[_directionIsXAxis] ? null : dart.bind(this, _handleDragUpdate), onVerticalDragEnd: this[_directionIsXAxis] ? null : dart.bind(this, _handleDragEnd), behavior: this.widget.behavior, child: content, dragStartBehavior: this.widget.dragStartBehavior, $creationLocationd_0dea112b090073317d4: C[45] || CT.C45});
+    transformInternal(t) {
+      if (!(this.threshold >= 0.0)) dart.assertFailed(null, I[0], 215, 12, "threshold >= 0.0");
+      if (!(this.threshold <= 1.0)) dart.assertFailed(null, I[0], 216, 12, "threshold <= 1.0");
+      return t < this.threshold ? 0.0 : 1.0;
     }
   };
-  (dismissible._DismissibleState.new = function() {
-    this[_moveController] = null;
-    this[___DismissibleState__moveAnimation] = null;
-    this[_resizeController] = null;
-    this[_resizeAnimation] = null;
-    this[_dragExtent] = 0.0;
-    this[_dragUnderway] = false;
-    this[_sizePriorToCollapse] = null;
-    dismissible._DismissibleState.__proto__.new.call(this);
+  (curves.Threshold.new = function(threshold) {
+    this[threshold$] = threshold;
+    if (!(threshold !== null)) dart.assertFailed(null, I[0], 206, 44, "threshold != null");
+    curves.Threshold.__proto__.new.call(this);
     ;
-  }).prototype = dismissible._DismissibleState.prototype;
-  dart.addTypeTests(dismissible._DismissibleState);
-  dart.addTypeCaches(dismissible._DismissibleState);
-  dart.setMethodSignature(dismissible._DismissibleState, () => ({
-    __proto__: dart.getMethods(dismissible._DismissibleState.__proto__),
-    [_extentToDirection]: dart.fnType(dismissible.DismissDirection, [core.double]),
-    [_handleDragStart]: dart.fnType(dart.void, [drag_details.DragStartDetails]),
-    [_handleDragUpdate]: dart.fnType(dart.void, [drag_details.DragUpdateDetails]),
-    [_updateMoveAnimation]: dart.fnType(dart.void, []),
-    [_describeFlingGesture]: dart.fnType(dismissible._FlingGestureKind, [velocity_tracker.Velocity]),
-    [_handleDragEnd]: dart.fnType(async.Future$(dart.void), [drag_details.DragEndDetails]),
-    [_handleDismissStatusChanged]: dart.fnType(async.Future$(dart.void), [animation.AnimationStatus]),
-    [_confirmStartResizeAnimation]: dart.fnType(async.Future$(dart.nullable(core.bool)), []),
-    [_startResizeAnimation]: dart.fnType(dart.void, []),
-    [_handleResizeProgressChanged]: dart.fnType(dart.void, [])
+  }).prototype = curves.Threshold.prototype;
+  dart.addTypeTests(curves.Threshold);
+  dart.addTypeCaches(curves.Threshold);
+  dart.setLibraryUri(curves.Threshold, I[1]);
+  dart.setFieldSignature(curves.Threshold, () => ({
+    __proto__: dart.getFields(curves.Threshold.__proto__),
+    threshold: dart.finalFieldType(core.double)
   }));
-  dart.setGetterSignature(dismissible._DismissibleState, () => ({
-    __proto__: dart.getGetters(dismissible._DismissibleState.__proto__),
-    [_moveAnimation]: animation.Animation$(ui.Offset),
-    wantKeepAlive: core.bool,
-    [_directionIsXAxis]: core.bool,
-    [_dismissDirection]: dismissible.DismissDirection,
-    [_isActive]: core.bool,
-    [_overallDragAxisExtent]: core.double
+  var a$ = dart.privateName(curves, "Cubic.a");
+  var b$ = dart.privateName(curves, "Cubic.b");
+  var c$ = dart.privateName(curves, "Cubic.c");
+  var d$ = dart.privateName(curves, "Cubic.d");
+  var _evaluateCubic = dart.privateName(curves, "_evaluateCubic");
+  curves.Cubic = class Cubic extends curves.Curve {
+    get a() {
+      return this[a$];
+    }
+    set a(value) {
+      super.a = value;
+    }
+    get b() {
+      return this[b$];
+    }
+    set b(value) {
+      super.b = value;
+    }
+    get c() {
+      return this[c$];
+    }
+    set c(value) {
+      super.c = value;
+    }
+    get d() {
+      return this[d$];
+    }
+    set d(value) {
+      super.d = value;
+    }
+    [_evaluateCubic](a, b, m) {
+      return 3 * a * (1 - m) * (1 - m) * m + 3 * b * (1 - m) * m * m + m * m * m;
+    }
+    transformInternal(t) {
+      let start = 0.0;
+      let end = 1.0;
+      while (true) {
+        let midpoint = (start + end) / 2;
+        let estimate = this[_evaluateCubic](this.a, this.c, midpoint);
+        if ((t - estimate)[$abs]() < 0.001) return this[_evaluateCubic](this.b, this.d, midpoint);
+        if (estimate < t)
+          start = midpoint;
+        else
+          end = midpoint;
+      }
+    }
+    toString() {
+      return object.objectRuntimeType(this, "Cubic") + "(" + this.a[$toStringAsFixed](2) + ", " + this.b[$toStringAsFixed](2) + ", " + this.c[$toStringAsFixed](2) + ", " + this.d[$toStringAsFixed](2) + ")";
+    }
+  };
+  (curves.Cubic.new = function(a, b, c, d) {
+    this[a$] = a;
+    this[b$] = b;
+    this[c$] = c;
+    this[d$] = d;
+    if (!(a !== null)) dart.assertFailed(null, I[0], 249, 14, "a != null");
+    if (!(b !== null)) dart.assertFailed(null, I[0], 250, 14, "b != null");
+    if (!(c !== null)) dart.assertFailed(null, I[0], 251, 14, "c != null");
+    if (!(d !== null)) dart.assertFailed(null, I[0], 252, 14, "d != null");
+    curves.Cubic.__proto__.new.call(this);
+    ;
+  }).prototype = curves.Cubic.prototype;
+  dart.addTypeTests(curves.Cubic);
+  dart.addTypeCaches(curves.Cubic);
+  dart.setMethodSignature(curves.Cubic, () => ({
+    __proto__: dart.getMethods(curves.Cubic.__proto__),
+    [_evaluateCubic]: dart.fnType(core.double, [core.double, core.double, core.double])
   }));
-  dart.setSetterSignature(dismissible._DismissibleState, () => ({
-    __proto__: dart.getSetters(dismissible._DismissibleState.__proto__),
-    [_moveAnimation]: animation.Animation$(ui.Offset)
+  dart.setLibraryUri(curves.Cubic, I[1]);
+  dart.setFieldSignature(curves.Cubic, () => ({
+    __proto__: dart.getFields(curves.Cubic.__proto__),
+    a: dart.finalFieldType(core.double),
+    b: dart.finalFieldType(core.double),
+    c: dart.finalFieldType(core.double),
+    d: dart.finalFieldType(core.double)
   }));
-  dart.setLibraryUri(dismissible._DismissibleState, I[0]);
-  dart.setFieldSignature(dismissible._DismissibleState, () => ({
-    __proto__: dart.getFields(dismissible._DismissibleState.__proto__),
-    [_moveController]: dart.fieldType(dart.nullable(animation_controller.AnimationController)),
-    [___DismissibleState__moveAnimation]: dart.fieldType(dart.nullable(animation.Animation$(ui.Offset))),
-    [_resizeController]: dart.fieldType(dart.nullable(animation_controller.AnimationController)),
-    [_resizeAnimation]: dart.fieldType(dart.nullable(animation.Animation$(core.double))),
-    [_dragExtent]: dart.fieldType(core.double),
-    [_dragUnderway]: dart.fieldType(core.bool),
-    [_sizePriorToCollapse]: dart.fieldType(dart.nullable(ui.Size))
-  }));
-  var Cubic_d = dart.privateName(curves, "Cubic.d");
-  var Cubic_c = dart.privateName(curves, "Cubic.c");
-  var Cubic_b = dart.privateName(curves, "Cubic.b");
-  var Cubic_a = dart.privateName(curves, "Cubic.a");
-  var Interval_curve = dart.privateName(curves, "Interval.curve");
-  var Interval_end = dart.privateName(curves, "Interval.end");
-  var Interval_begin = dart.privateName(curves, "Interval.begin");
-  dart.defineLazy(dismissible, {
-    /*dismissible._kResizeTimeCurve*/get _kResizeTimeCurve() {
-      return C[56] || CT.C56;
-    },
-    /*dismissible._kMinFlingVelocity*/get _kMinFlingVelocity() {
-      return 700;
-    },
-    /*dismissible._kMinFlingVelocityDelta*/get _kMinFlingVelocityDelta() {
-      return 400;
-    },
-    /*dismissible._kFlingVelocityScale*/get _kFlingVelocityScale() {
-      return 0.0033333333333333335;
-    },
-    /*dismissible._kDismissThreshold*/get _kDismissThreshold() {
-      return 0.4;
+  dart.defineExtensionMethods(curves.Cubic, ['toString']);
+  dart.defineLazy(curves.Cubic, {
+    /*curves.Cubic._cubicErrorBound*/get _cubicErrorBound() {
+      return 0.001;
     }
   }, false);
-  dart.trackLibraries("packages/flutter/src/widgets/dismissible.dart", {
-    "package:flutter/src/widgets/dismissible.dart": dismissible
+  curves.Curve2D = class Curve2D extends curves.ParametricCurve$(ui.Offset) {
+    generateSamples(opts) {
+      let start = opts && 'start' in opts ? opts.start : 0;
+      let end = opts && 'end' in opts ? opts.end : 1;
+      let tolerance = opts && 'tolerance' in opts ? opts.tolerance : 1e-10;
+      if (!(tolerance !== null)) dart.assertFailed(null, I[0], 462, 12, "tolerance != null");
+      if (!(start !== null)) dart.assertFailed(null, I[0], 463, 12, "start != null");
+      if (!(end !== null)) dart.assertFailed(null, I[0], 464, 12, "end != null");
+      if (!(end > start)) dart.assertFailed(null, I[0], 465, 12, "end > start");
+      let rand = math.Random.new(this.samplingSeed);
+      function isFlat(p, q, r) {
+        let pr = p['-'](r);
+        let qr = q['-'](r);
+        let z = pr.dx * qr.dy - qr.dx * pr.dy;
+        return z * z < tolerance;
+      }
+      dart.fn(isFlat, T.OffsetAndOffsetAndOffsetTobool());
+      let first = new curves.Curve2DSample.new(start, this.transform(start));
+      let last = new curves.Curve2DSample.new(end, this.transform(end));
+      let samples = T.JSArrayOfCurve2DSample().of([first]);
+      const sample = (p, q, opts) => {
+        let forceSubdivide = opts && 'forceSubdivide' in opts ? opts.forceSubdivide : false;
+        let t = p.t + (0.45 + 0.1 * rand.nextDouble()) * (q.t - p.t);
+        let r = new curves.Curve2DSample.new(t, this.transform(t));
+        if (!forceSubdivide && isFlat(p.value, q.value, r.value)) {
+          samples[$add](q);
+        } else {
+          sample(p, r);
+          sample(r, q);
+        }
+      };
+      dart.fn(sample, T.Curve2DSampleAndCurve2DSample__Tovoid());
+      sample(first, last, {forceSubdivide: (first.value.dx - last.value.dx)[$abs]() < tolerance && (first.value.dy - last.value.dy)[$abs]() < tolerance});
+      return samples;
+    }
+    get samplingSeed() {
+      return 0;
+    }
+    findInverse(x) {
+      if (!(x !== null)) dart.assertFailed(null, I[0], 521, 12, "x != null");
+      let start = 0.0;
+      let end = 1.0;
+      let mid = null;
+      function mid$35get() {
+        let t1;
+        t1 = mid;
+        return t1 == null ? dart.throw(new _internal.LateError.localNI("mid")) : t1;
+      }
+      dart.fn(mid$35get, T.VoidTodouble());
+      function mid$35set(t2) {
+        return mid = t2;
+      }
+      dart.fn(mid$35set, T.doubleTodynamic());
+      const offsetToOrigin = pos => {
+        return x - this.transform(pos).dx;
+      };
+      dart.fn(offsetToOrigin, T.doubleTodouble());
+      let count = 100;
+      let startValue = offsetToOrigin(start);
+      while ((end - start) / 2.0 > 0.000001 && count > 0) {
+        mid$35set((end + start) / 2.0);
+        let value = offsetToOrigin(mid$35get());
+        if (value[$sign] === startValue[$sign]) {
+          start = mid$35get();
+        } else {
+          end = mid$35get();
+        }
+        count = count - 1;
+      }
+      return mid$35get();
+    }
+  };
+  (curves.Curve2D.new = function() {
+    curves.Curve2D.__proto__.new.call(this);
+    ;
+  }).prototype = curves.Curve2D.prototype;
+  dart.addTypeTests(curves.Curve2D);
+  dart.addTypeCaches(curves.Curve2D);
+  dart.setMethodSignature(curves.Curve2D, () => ({
+    __proto__: dart.getMethods(curves.Curve2D.__proto__),
+    generateSamples: dart.fnType(core.Iterable$(curves.Curve2DSample), [], {end: core.double, start: core.double, tolerance: core.double}, {}),
+    findInverse: dart.fnType(core.double, [core.double])
+  }));
+  dart.setGetterSignature(curves.Curve2D, () => ({
+    __proto__: dart.getGetters(curves.Curve2D.__proto__),
+    samplingSeed: core.int
+  }));
+  dart.setLibraryUri(curves.Curve2D, I[1]);
+  var t$ = dart.privateName(curves, "Curve2DSample.t");
+  var value$ = dart.privateName(curves, "Curve2DSample.value");
+  curves.Curve2DSample = class Curve2DSample extends core.Object {
+    get t() {
+      return this[t$];
+    }
+    set t(value) {
+      super.t = value;
+    }
+    get value() {
+      return this[value$];
+    }
+    set value(value) {
+      super.value = value;
+    }
+    toString() {
+      return "[(" + this.value.dx[$toStringAsFixed](2) + ", " + this.value.dy[$toStringAsFixed](2) + "), " + this.t[$toStringAsFixed](2) + "]";
+    }
+  };
+  (curves.Curve2DSample.new = function(t, value) {
+    this[t$] = t;
+    this[value$] = value;
+    if (!(t !== null)) dart.assertFailed(null, I[0], 556, 52, "t != null");
+    if (!(value !== null)) dart.assertFailed(null, I[0], 556, 71, "value != null");
+    ;
+  }).prototype = curves.Curve2DSample.prototype;
+  dart.addTypeTests(curves.Curve2DSample);
+  dart.addTypeCaches(curves.Curve2DSample);
+  dart.setLibraryUri(curves.Curve2DSample, I[1]);
+  dart.setFieldSignature(curves.Curve2DSample, () => ({
+    __proto__: dart.getFields(curves.Curve2DSample.__proto__),
+    t: dart.finalFieldType(core.double),
+    value: dart.finalFieldType(ui.Offset)
+  }));
+  dart.defineExtensionMethods(curves.Curve2DSample, ['toString']);
+  var _controlPoints = dart.privateName(curves, "_controlPoints");
+  var _startHandle = dart.privateName(curves, "_startHandle");
+  var _endHandle = dart.privateName(curves, "_endHandle");
+  var _tension = dart.privateName(curves, "_tension");
+  var _cubicSegments = dart.privateName(curves, "_cubicSegments");
+  var _initializeIfNeeded = dart.privateName(curves, "_initializeIfNeeded");
+  curves.CatmullRomSpline = class CatmullRomSpline extends curves.Curve2D {
+    static _computeSegments(controlPoints, tension, opts) {
+      let startHandle = opts && 'startHandle' in opts ? opts.startHandle : null;
+      let endHandle = opts && 'endHandle' in opts ? opts.endHandle : null;
+      startHandle == null ? startHandle = controlPoints[$_get](0)['*'](2.0)['-'](controlPoints[$_get](1)) : null;
+      endHandle == null ? endHandle = controlPoints[$last]['*'](2.0)['-'](controlPoints[$_get](controlPoints[$length] - 2)) : null;
+      let allPoints = (() => {
+        let t4 = T.JSArrayOfOffset().of([startHandle]);
+        t4[$addAll](controlPoints);
+        t4[$add](endHandle);
+        return t4;
+      })();
+      let reverseTension = 1.0 - tension;
+      let result = T.JSArrayOfListOfOffset().of([]);
+      for (let i = 0; i < allPoints[$length] - 3; i = i + 1) {
+        let curve = T.JSArrayOfOffset().of([allPoints[$_get](i), allPoints[$_get](i + 1), allPoints[$_get](i + 2), allPoints[$_get](i + 3)]);
+        let diffCurve10 = curve[$_get](1)['-'](curve[$_get](0));
+        let diffCurve21 = curve[$_get](2)['-'](curve[$_get](1));
+        let diffCurve32 = curve[$_get](3)['-'](curve[$_get](2));
+        let t01 = math.pow(diffCurve10.distance, 0.5)[$toDouble]();
+        let t12 = math.pow(diffCurve21.distance, 0.5)[$toDouble]();
+        let t23 = math.pow(diffCurve32.distance, 0.5)[$toDouble]();
+        let m1 = diffCurve21['+'](diffCurve10['/'](t01)['-'](curve[$_get](2)['-'](curve[$_get](0))['/'](t01 + t12))['*'](t12))['*'](reverseTension);
+        let m2 = diffCurve21['+'](diffCurve32['/'](t23)['-'](curve[$_get](3)['-'](curve[$_get](1))['/'](t12 + t23))['*'](t12))['*'](reverseTension);
+        let sumM12 = m1['+'](m2);
+        let segment = T.JSArrayOfOffset().of([diffCurve21['*'](-2.0)['+'](sumM12), diffCurve21['*'](3.0)['-'](m1)['-'](sumM12), m1, curve[$_get](1)]);
+        result[$add](segment);
+      }
+      return result;
+    }
+    [_initializeIfNeeded]() {
+      if (this[_cubicSegments][$isNotEmpty]) {
+        return;
+      }
+      this[_cubicSegments][$addAll](curves.CatmullRomSpline._computeSegments(dart.nullCheck(this[_controlPoints]), dart.nullCheck(this[_tension]), {startHandle: this[_startHandle], endHandle: this[_endHandle]}));
+    }
+    get samplingSeed() {
+      this[_initializeIfNeeded]();
+      let seedPoint = this[_cubicSegments][$_get](0)[$_get](1);
+      return ((seedPoint.dx + seedPoint.dy) * 10000)[$round]();
+    }
+    transformInternal(t) {
+      this[_initializeIfNeeded]();
+      let length = this[_cubicSegments][$length][$toDouble]();
+      let position = null;
+      let localT = null;
+      let index = null;
+      if (t < 1.0) {
+        position = t * length;
+        localT = position[$modulo](1.0);
+        index = position[$floor]();
+      } else {
+        position = length;
+        localT = 1.0;
+        index = this[_cubicSegments][$length] - 1;
+      }
+      let cubicControlPoints = this[_cubicSegments][$_get](index);
+      let localT2 = localT * localT;
+      return cubicControlPoints[$_get](0)['*'](localT2)['*'](localT)['+'](cubicControlPoints[$_get](1)['*'](localT2))['+'](cubicControlPoints[$_get](2)['*'](localT))['+'](cubicControlPoints[$_get](3));
+    }
+  };
+  (curves.CatmullRomSpline.new = function(controlPoints, opts) {
+    let tension = opts && 'tension' in opts ? opts.tension : 0;
+    let startHandle = opts && 'startHandle' in opts ? opts.startHandle : null;
+    let endHandle = opts && 'endHandle' in opts ? opts.endHandle : null;
+    if (!(controlPoints !== null)) dart.assertFailed(null, I[0], 626, 19, "controlPoints != null");
+    if (!(tension !== null)) dart.assertFailed(null, I[0], 627, 19, "tension != null");
+    if (!(tension <= 1.0)) dart.assertFailed("tension " + dart.str(tension) + " must not be greater than 1.0.", I[0], 628, 19, "tension <= 1.0");
+    if (!(tension >= 0.0)) dart.assertFailed("tension " + dart.str(tension) + " must not be negative.", I[0], 629, 19, "tension >= 0.0");
+    if (!(controlPoints[$length] > 3)) dart.assertFailed("There must be at least four control points to create a CatmullRomSpline.", I[0], 630, 19, "controlPoints.length > 3");
+    this[_controlPoints] = controlPoints;
+    this[_startHandle] = startHandle;
+    this[_endHandle] = endHandle;
+    this[_tension] = tension;
+    this[_cubicSegments] = T.JSArrayOfListOfOffset().of([]);
+    curves.CatmullRomSpline.__proto__.new.call(this);
+    ;
+  }).prototype = curves.CatmullRomSpline.prototype;
+  (curves.CatmullRomSpline.precompute = function(controlPoints, opts) {
+    let tension = opts && 'tension' in opts ? opts.tension : 0;
+    let startHandle = opts && 'startHandle' in opts ? opts.startHandle : null;
+    let endHandle = opts && 'endHandle' in opts ? opts.endHandle : null;
+    if (!(controlPoints !== null)) dart.assertFailed(null, I[0], 646, 19, "controlPoints != null");
+    if (!(tension !== null)) dart.assertFailed(null, I[0], 647, 19, "tension != null");
+    if (!(tension <= 1.0)) dart.assertFailed("tension " + dart.str(tension) + " must not be greater than 1.0.", I[0], 648, 19, "tension <= 1.0");
+    if (!(tension >= 0.0)) dart.assertFailed("tension " + dart.str(tension) + " must not be negative.", I[0], 649, 19, "tension >= 0.0");
+    if (!(controlPoints[$length] > 3)) dart.assertFailed("There must be at least four control points to create a CatmullRomSpline.", I[0], 650, 19, "controlPoints.length > 3");
+    this[_controlPoints] = null;
+    this[_startHandle] = null;
+    this[_endHandle] = null;
+    this[_tension] = null;
+    this[_cubicSegments] = curves.CatmullRomSpline._computeSegments(controlPoints, tension, {startHandle: startHandle, endHandle: endHandle});
+    curves.CatmullRomSpline.__proto__.new.call(this);
+    ;
+  }).prototype = curves.CatmullRomSpline.prototype;
+  dart.addTypeTests(curves.CatmullRomSpline);
+  dart.addTypeCaches(curves.CatmullRomSpline);
+  dart.setMethodSignature(curves.CatmullRomSpline, () => ({
+    __proto__: dart.getMethods(curves.CatmullRomSpline.__proto__),
+    [_initializeIfNeeded]: dart.fnType(dart.void, [])
+  }));
+  dart.setLibraryUri(curves.CatmullRomSpline, I[1]);
+  dart.setFieldSignature(curves.CatmullRomSpline, () => ({
+    __proto__: dart.getFields(curves.CatmullRomSpline.__proto__),
+    [_cubicSegments]: dart.finalFieldType(core.List$(core.List$(ui.Offset))),
+    [_controlPoints]: dart.finalFieldType(dart.nullable(core.List$(ui.Offset))),
+    [_startHandle]: dart.finalFieldType(dart.nullable(ui.Offset)),
+    [_endHandle]: dart.finalFieldType(dart.nullable(ui.Offset)),
+    [_tension]: dart.finalFieldType(dart.nullable(core.double))
+  }));
+  var controlPoints$ = dart.privateName(curves, "CatmullRomCurve.controlPoints");
+  var tension$ = dart.privateName(curves, "CatmullRomCurve.tension");
+  var _precomputedSamples = dart.privateName(curves, "_precomputedSamples");
+  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
+  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
+  curves.CatmullRomCurve = class CatmullRomCurve extends curves.Curve {
+    get controlPoints() {
+      return this[controlPoints$];
+    }
+    set controlPoints(value) {
+      super.controlPoints = value;
+    }
+    get tension() {
+      return this[tension$];
+    }
+    set tension(value) {
+      super.tension = value;
+    }
+    static _computeSamples(controlPoints, tension) {
+      return new curves.CatmullRomSpline.precompute((() => {
+        let t5 = T.JSArrayOfOffset().of([ui.Offset.zero]);
+        t5[$addAll](controlPoints);
+        t5[$add](C[1] || CT.C1);
+        return t5;
+      })(), {tension: tension}).generateSamples({start: 0.0, end: 1.0, tolerance: 1e-12})[$toList]();
+    }
+    static validateControlPoints(controlPoints, opts) {
+      let tension = opts && 'tension' in opts ? opts.tension : 0;
+      let reasons = opts && 'reasons' in opts ? opts.reasons : null;
+      if (!(tension !== null)) dart.assertFailed(null, I[0], 907, 12, "tension != null");
+      if (controlPoints == null) {
+        if (!dart.fn(() => {
+          let t6;
+          t6 = reasons;
+          t6 == null ? null : t6[$add]("Supplied control points cannot be null");
+          return true;
+        }, T.VoidTobool())()) dart.assertFailed(null, I[0], 909, 14, "() {\r\n        reasons?.add('Supplied control points cannot be null');\r\n        return true;\r\n      }()");
+        return false;
+      }
+      if (controlPoints[$length] < 2) {
+        if (!dart.fn(() => {
+          let t6;
+          t6 = reasons;
+          t6 == null ? null : t6[$add]("There must be at least two points supplied to create a valid curve.");
+          return true;
+        }, T.VoidTobool())()) dart.assertFailed(null, I[0], 917, 14, "() {\r\n        reasons?.add('There must be at least two points supplied to create a valid curve.');\r\n        return true;\r\n      }()");
+        return false;
+      }
+      controlPoints = (() => {
+        let t6 = T.JSArrayOfOffset().of([ui.Offset.zero]);
+        t6[$addAll](controlPoints);
+        t6[$add](C[1] || CT.C1);
+        return t6;
+      })();
+      let startHandle = controlPoints[$_get](0)['*'](2.0)['-'](controlPoints[$_get](1));
+      let endHandle = controlPoints[$last]['*'](2.0)['-'](controlPoints[$_get](controlPoints[$length] - 2));
+      controlPoints = (() => {
+        let t7 = T.JSArrayOfOffset().of([startHandle]);
+        t7[$addAll](controlPoints);
+        t7[$add](endHandle);
+        return t7;
+      })();
+      let lastX = -(1 / 0);
+      for (let i = 0; i < controlPoints[$length]; i = i + 1) {
+        if (i > 1 && i < controlPoints[$length] - 2 && (controlPoints[$_get](i).dx <= 0.0 || controlPoints[$_get](i).dx >= 1.0)) {
+          if (!dart.fn(() => {
+            let t8;
+            t8 = reasons;
+            t8 == null ? null : t8[$add]("Control points must have X values between 0.0 and 1.0, exclusive. " + "Point " + dart.str(i) + " has an x value (" + dart.str(dart.nullCheck(controlPoints)[$_get](i).dx) + ") which is outside the range.");
+            return true;
+          }, T.VoidTobool())()) dart.assertFailed(null, I[0], 933, 16, "() {\r\n          reasons?.add(\r\n            'Control points must have X values between 0.0 and 1.0, exclusive. '\r\n            'Point $i has an x value (${controlPoints![i].dx}) which is outside the range.',\r\n          );\r\n          return true;\r\n        }()");
+          return false;
+        }
+        if (controlPoints[$_get](i).dx <= lastX) {
+          if (!dart.fn(() => {
+            let t8;
+            t8 = reasons;
+            t8 == null ? null : t8[$add]("Each X coordinate must be greater than the preceding X coordinate " + "(i.e. must be monotonically increasing in X). Point " + dart.str(i) + " has an x value of " + dart.str(dart.nullCheck(controlPoints)[$_get](i).dx) + ", which is not greater than " + dart.str(lastX));
+            return true;
+          }, T.VoidTobool())()) dart.assertFailed(null, I[0], 943, 16, "() {\r\n          reasons?.add(\r\n            'Each X coordinate must be greater than the preceding X coordinate '\r\n            '(i.e. must be monotonically increasing in X). Point $i has an x value of '\r\n            '${controlPoints![i].dx}, which is not greater than $lastX',\r\n          );\r\n          return true;\r\n        }()");
+          return false;
+        }
+        lastX = controlPoints[$_get](i).dx;
+      }
+      let success = true;
+      lastX = -(1 / 0);
+      let testSpline = new curves.CatmullRomSpline.new(controlPoints, {tension: tension});
+      let start = testSpline.findInverse(0.0);
+      let end = testSpline.findInverse(1.0);
+      let samplePoints = testSpline.generateSamples({start: start, end: end});
+      if (samplePoints[$first].value.dy[$abs]() > 0.001 || (1.0 - samplePoints[$last].value.dy)[$abs]() > 0.001) {
+        let bail = true;
+        success = false;
+        if (!dart.fn(() => {
+          let t8;
+          t8 = reasons;
+          t8 == null ? null : t8[$add]("The curve has more than one Y value at X = " + dart.str(samplePoints[$first].value.dx) + ". " + "Try moving some control points further away from this value of X, or increasing " + "the tension.");
+          bail = reasons == null;
+          return true;
+        }, T.VoidTobool())()) dart.assertFailed(null, I[0], 970, 14, "() {\r\n        reasons?.add(\r\n          'The curve has more than one Y value at X = ${samplePoints.first.value.dx}. '\r\n          'Try moving some control points further away from this value of X, or increasing '\r\n          'the tension.',\r\n        );\r\n        // No need to keep going if we're not giving reasons.\r\n        bail = reasons == null;\r\n        return true;\r\n      }()");
+        if (bail) {
+          return false;
+        }
+      }
+      for (let sample of samplePoints) {
+        let point = sample.value;
+        let t = sample.t;
+        let x = point.dx;
+        if (t >= start && t <= end && (x < -0.001 || x > 1.0 + 0.001)) {
+          let bail = true;
+          success = false;
+          if (!dart.fn(() => {
+            let t8;
+            t8 = reasons;
+            t8 == null ? null : t8[$add]("The resulting curve has an X value (" + dart.str(x) + ") which is outside " + "the range [0.0, 1.0], inclusive.");
+            bail = reasons == null;
+            return true;
+          }, T.VoidTobool())()) dart.assertFailed(null, I[0], 993, 16, "() {\r\n          reasons?.add(\r\n            'The resulting curve has an X value ($x) which is outside '\r\n            'the range [0.0, 1.0], inclusive.',\r\n          );\r\n          // No need to keep going if we're not giving reasons.\r\n          bail = reasons == null;\r\n          return true;\r\n        }()");
+          if (bail) {
+            return false;
+          }
+        }
+        if (x < lastX) {
+          let bail = true;
+          success = false;
+          if (!dart.fn(() => {
+            let t8;
+            t8 = reasons;
+            t8 == null ? null : t8[$add]("The curve has more than one Y value at x = " + dart.str(x) + ". Try moving " + "some control points further apart in X, or increasing the tension.");
+            bail = reasons == null;
+            return true;
+          }, T.VoidTobool())()) dart.assertFailed(null, I[0], 1011, 16, "() {\r\n          reasons?.add(\r\n            'The curve has more than one Y value at x = $x. Try moving '\r\n            'some control points further apart in X, or increasing the tension.',\r\n          );\r\n          // No need to keep going if we're not giving reasons.\r\n          bail = reasons == null;\r\n          return true;\r\n        }()");
+          if (bail) {
+            return false;
+          }
+        }
+        lastX = x;
+      }
+      return success;
+    }
+    transformInternal(t) {
+      if (this[_precomputedSamples][$isEmpty]) {
+        this[_precomputedSamples][$addAll](curves.CatmullRomCurve._computeSamples(this.controlPoints, this.tension));
+      }
+      let start = 0;
+      let end = this[_precomputedSamples][$length] - 1;
+      let mid = null;
+      let value = null;
+      let startValue = this[_precomputedSamples][$_get](start).value;
+      let endValue = this[_precomputedSamples][$_get](end).value;
+      while (end - start > 1) {
+        mid = ((end + start) / 2)[$truncate]();
+        value = this[_precomputedSamples][$_get](mid).value;
+        if (t >= value.dx) {
+          start = mid;
+          startValue = value;
+        } else {
+          end = mid;
+          endValue = value;
+        }
+      }
+      let t2 = (t - startValue.dx) / (endValue.dx - startValue.dx);
+      return dart.nullCheck(ui.lerpDouble(startValue.dy, endValue.dy, t2));
+    }
+  };
+  (curves.CatmullRomCurve.new = function(controlPoints, opts) {
+    let tension = opts && 'tension' in opts ? opts.tension : 0;
+    this[controlPoints$] = controlPoints;
+    this[tension$] = tension;
+    if (!(tension !== null)) dart.assertFailed(null, I[0], 804, 16, "tension != null");
+    if (!dart.fn(() => {
+      let t5;
+      return curves.CatmullRomCurve.validateControlPoints(controlPoints, {tension: tension, reasons: (t5 = curves.CatmullRomCurve._debugAssertReasons, (() => {
+          t5[$clear]();
+          return t5;
+        })())});
+    }, T.VoidTobool())()) dart.assertFailed("control points " + dart.str(controlPoints) + " could not be validated:\n  " + curves.CatmullRomCurve._debugAssertReasons[$join]("\n  "), I[0], 805, 16, "() {\r\n          return validateControlPoints(\r\n            controlPoints,\r\n            tension: tension,\r\n            reasons: _debugAssertReasons..clear(),\r\n          );\r\n        }()");
+    this[_precomputedSamples] = T.JSArrayOfCurve2DSample().of([]);
+    curves.CatmullRomCurve.__proto__.new.call(this);
+    ;
+  }).prototype = curves.CatmullRomCurve.prototype;
+  (curves.CatmullRomCurve.precompute = function(controlPoints, opts) {
+    let tension = opts && 'tension' in opts ? opts.tension : 0;
+    this[controlPoints$] = controlPoints;
+    this[tension$] = tension;
+    if (!(tension !== null)) dart.assertFailed(null, I[0], 821, 16, "tension != null");
+    if (!dart.fn(() => {
+      let t5;
+      return curves.CatmullRomCurve.validateControlPoints(controlPoints, {tension: tension, reasons: (t5 = curves.CatmullRomCurve._debugAssertReasons, (() => {
+          t5[$clear]();
+          return t5;
+        })())});
+    }, T.VoidTobool())()) dart.assertFailed("control points " + dart.str(controlPoints) + " could not be validated:\n  " + curves.CatmullRomCurve._debugAssertReasons[$join]("\n  "), I[0], 822, 16, "() {\r\n          return validateControlPoints(\r\n            controlPoints,\r\n            tension: tension,\r\n            reasons: _debugAssertReasons..clear(),\r\n          );\r\n        }()");
+    this[_precomputedSamples] = curves.CatmullRomCurve._computeSamples(controlPoints, tension);
+    curves.CatmullRomCurve.__proto__.new.call(this);
+    ;
+  }).prototype = curves.CatmullRomCurve.prototype;
+  dart.addTypeTests(curves.CatmullRomCurve);
+  dart.addTypeCaches(curves.CatmullRomCurve);
+  dart.setLibraryUri(curves.CatmullRomCurve, I[1]);
+  dart.setFieldSignature(curves.CatmullRomCurve, () => ({
+    __proto__: dart.getFields(curves.CatmullRomCurve.__proto__),
+    [_precomputedSamples]: dart.finalFieldType(core.List$(curves.Curve2DSample)),
+    controlPoints: dart.finalFieldType(core.List$(ui.Offset)),
+    tension: dart.finalFieldType(core.double)
+  }));
+  dart.defineLazy(curves.CatmullRomCurve, {
+    /*curves.CatmullRomCurve._debugAssertReasons*/get _debugAssertReasons() {
+      return T.JSArrayOfString().of([]);
+    }
+  }, false);
+  var curve$0 = dart.privateName(curves, "FlippedCurve.curve");
+  curves.FlippedCurve = class FlippedCurve extends curves.Curve {
+    get curve() {
+      return this[curve$0];
+    }
+    set curve(value) {
+      super.curve = value;
+    }
+    transformInternal(t) {
+      return 1.0 - this.curve.transform(1.0 - t);
+    }
+    toString() {
+      return object.objectRuntimeType(this, "FlippedCurve") + "(" + dart.str(this.curve) + ")";
+    }
+  };
+  (curves.FlippedCurve.new = function(curve) {
+    this[curve$0] = curve;
+    if (!(curve !== null)) dart.assertFailed(null, I[0], 1087, 43, "curve != null");
+    curves.FlippedCurve.__proto__.new.call(this);
+    ;
+  }).prototype = curves.FlippedCurve.prototype;
+  dart.addTypeTests(curves.FlippedCurve);
+  dart.addTypeCaches(curves.FlippedCurve);
+  dart.setLibraryUri(curves.FlippedCurve, I[1]);
+  dart.setFieldSignature(curves.FlippedCurve, () => ({
+    __proto__: dart.getFields(curves.FlippedCurve.__proto__),
+    curve: dart.finalFieldType(curves.Curve)
+  }));
+  dart.defineExtensionMethods(curves.FlippedCurve, ['toString']);
+  curves._DecelerateCurve = class _DecelerateCurve extends curves.Curve {
+    transformInternal(t) {
+      t = 1.0 - t;
+      return 1.0 - t * t;
+    }
+  };
+  (curves._DecelerateCurve.__ = function() {
+    curves._DecelerateCurve.__proto__.new.call(this);
+    ;
+  }).prototype = curves._DecelerateCurve.prototype;
+  dart.addTypeTests(curves._DecelerateCurve);
+  dart.addTypeCaches(curves._DecelerateCurve);
+  dart.setLibraryUri(curves._DecelerateCurve, I[1]);
+  curves._BounceInCurve = class _BounceInCurve extends curves.Curve {
+    transformInternal(t) {
+      return 1.0 - curves._bounce(1.0 - t);
+    }
+  };
+  (curves._BounceInCurve.__ = function() {
+    curves._BounceInCurve.__proto__.new.call(this);
+    ;
+  }).prototype = curves._BounceInCurve.prototype;
+  dart.addTypeTests(curves._BounceInCurve);
+  dart.addTypeCaches(curves._BounceInCurve);
+  dart.setLibraryUri(curves._BounceInCurve, I[1]);
+  curves._BounceOutCurve = class _BounceOutCurve extends curves.Curve {
+    transformInternal(t) {
+      return curves._bounce(t);
+    }
+  };
+  (curves._BounceOutCurve.__ = function() {
+    curves._BounceOutCurve.__proto__.new.call(this);
+    ;
+  }).prototype = curves._BounceOutCurve.prototype;
+  dart.addTypeTests(curves._BounceOutCurve);
+  dart.addTypeCaches(curves._BounceOutCurve);
+  dart.setLibraryUri(curves._BounceOutCurve, I[1]);
+  curves._BounceInOutCurve = class _BounceInOutCurve extends curves.Curve {
+    transformInternal(t) {
+      if (t < 0.5)
+        return (1.0 - curves._bounce(1.0 - t * 2.0)) * 0.5;
+      else
+        return curves._bounce(t * 2.0 - 1.0) * 0.5 + 0.5;
+    }
+  };
+  (curves._BounceInOutCurve.__ = function() {
+    curves._BounceInOutCurve.__proto__.new.call(this);
+    ;
+  }).prototype = curves._BounceInOutCurve.prototype;
+  dart.addTypeTests(curves._BounceInOutCurve);
+  dart.addTypeCaches(curves._BounceInOutCurve);
+  dart.setLibraryUri(curves._BounceInOutCurve, I[1]);
+  var period$ = dart.privateName(curves, "ElasticInCurve.period");
+  curves.ElasticInCurve = class ElasticInCurve extends curves.Curve {
+    get period() {
+      return this[period$];
+    }
+    set period(value) {
+      super.period = value;
+    }
+    transformInternal(t) {
+      let s = this.period / 4.0;
+      t = t - 1.0;
+      return -math.pow(2.0, 10.0 * t) * math.sin((t - s) * (3.141592653589793 * 2.0) / this.period);
+    }
+    toString() {
+      return object.objectRuntimeType(this, "ElasticInCurve") + "(" + dart.str(this.period) + ")";
+    }
+  };
+  (curves.ElasticInCurve.new = function(period = 0.4) {
+    this[period$] = period;
+    curves.ElasticInCurve.__proto__.new.call(this);
+    ;
+  }).prototype = curves.ElasticInCurve.prototype;
+  dart.addTypeTests(curves.ElasticInCurve);
+  dart.addTypeCaches(curves.ElasticInCurve);
+  dart.setLibraryUri(curves.ElasticInCurve, I[1]);
+  dart.setFieldSignature(curves.ElasticInCurve, () => ({
+    __proto__: dart.getFields(curves.ElasticInCurve.__proto__),
+    period: dart.finalFieldType(core.double)
+  }));
+  dart.defineExtensionMethods(curves.ElasticInCurve, ['toString']);
+  var period$0 = dart.privateName(curves, "ElasticOutCurve.period");
+  curves.ElasticOutCurve = class ElasticOutCurve extends curves.Curve {
+    get period() {
+      return this[period$0];
+    }
+    set period(value) {
+      super.period = value;
+    }
+    transformInternal(t) {
+      let s = this.period / 4.0;
+      return math.pow(2.0, -10 * t) * math.sin((t - s) * (3.141592653589793 * 2.0) / this.period) + 1.0;
+    }
+    toString() {
+      return object.objectRuntimeType(this, "ElasticOutCurve") + "(" + dart.str(this.period) + ")";
+    }
+  };
+  (curves.ElasticOutCurve.new = function(period = 0.4) {
+    this[period$0] = period;
+    curves.ElasticOutCurve.__proto__.new.call(this);
+    ;
+  }).prototype = curves.ElasticOutCurve.prototype;
+  dart.addTypeTests(curves.ElasticOutCurve);
+  dart.addTypeCaches(curves.ElasticOutCurve);
+  dart.setLibraryUri(curves.ElasticOutCurve, I[1]);
+  dart.setFieldSignature(curves.ElasticOutCurve, () => ({
+    __proto__: dart.getFields(curves.ElasticOutCurve.__proto__),
+    period: dart.finalFieldType(core.double)
+  }));
+  dart.defineExtensionMethods(curves.ElasticOutCurve, ['toString']);
+  var period$1 = dart.privateName(curves, "ElasticInOutCurve.period");
+  curves.ElasticInOutCurve = class ElasticInOutCurve extends curves.Curve {
+    get period() {
+      return this[period$1];
+    }
+    set period(value) {
+      super.period = value;
+    }
+    transformInternal(t) {
+      let s = this.period / 4.0;
+      t = 2.0 * t - 1.0;
+      if (t < 0.0)
+        return -0.5 * math.pow(2.0, 10.0 * t) * math.sin((t - s) * (3.141592653589793 * 2.0) / this.period);
+      else
+        return math.pow(2.0, -10.0 * t) * math.sin((t - s) * (3.141592653589793 * 2.0) / this.period) * 0.5 + 1.0;
+    }
+    toString() {
+      return object.objectRuntimeType(this, "ElasticInOutCurve") + "(" + dart.str(this.period) + ")";
+    }
+  };
+  (curves.ElasticInOutCurve.new = function(period = 0.4) {
+    this[period$1] = period;
+    curves.ElasticInOutCurve.__proto__.new.call(this);
+    ;
+  }).prototype = curves.ElasticInOutCurve.prototype;
+  dart.addTypeTests(curves.ElasticInOutCurve);
+  dart.addTypeCaches(curves.ElasticInOutCurve);
+  dart.setLibraryUri(curves.ElasticInOutCurve, I[1]);
+  dart.setFieldSignature(curves.ElasticInOutCurve, () => ({
+    __proto__: dart.getFields(curves.ElasticInOutCurve.__proto__),
+    period: dart.finalFieldType(core.double)
+  }));
+  dart.defineExtensionMethods(curves.ElasticInOutCurve, ['toString']);
+  curves.Curves = class Curves extends core.Object {};
+  (curves.Curves.__ = function() {
+    ;
+  }).prototype = curves.Curves.prototype;
+  dart.addTypeTests(curves.Curves);
+  dart.addTypeCaches(curves.Curves);
+  dart.setLibraryUri(curves.Curves, I[1]);
+  dart.defineLazy(curves.Curves, {
+    /*curves.Curves.linear*/get linear() {
+      return C[0] || CT.C0;
+    },
+    /*curves.Curves.decelerate*/get decelerate() {
+      return C[2] || CT.C2;
+    },
+    /*curves.Curves.fastLinearToSlowEaseIn*/get fastLinearToSlowEaseIn() {
+      return C[3] || CT.C3;
+    },
+    /*curves.Curves.ease*/get ease() {
+      return C[4] || CT.C4;
+    },
+    /*curves.Curves.easeIn*/get easeIn() {
+      return C[5] || CT.C5;
+    },
+    /*curves.Curves.easeInToLinear*/get easeInToLinear() {
+      return C[6] || CT.C6;
+    },
+    /*curves.Curves.easeInSine*/get easeInSine() {
+      return C[7] || CT.C7;
+    },
+    /*curves.Curves.easeInQuad*/get easeInQuad() {
+      return C[8] || CT.C8;
+    },
+    /*curves.Curves.easeInCubic*/get easeInCubic() {
+      return C[9] || CT.C9;
+    },
+    /*curves.Curves.easeInQuart*/get easeInQuart() {
+      return C[10] || CT.C10;
+    },
+    /*curves.Curves.easeInQuint*/get easeInQuint() {
+      return C[11] || CT.C11;
+    },
+    /*curves.Curves.easeInExpo*/get easeInExpo() {
+      return C[12] || CT.C12;
+    },
+    /*curves.Curves.easeInCirc*/get easeInCirc() {
+      return C[13] || CT.C13;
+    },
+    /*curves.Curves.easeInBack*/get easeInBack() {
+      return C[14] || CT.C14;
+    },
+    /*curves.Curves.easeOut*/get easeOut() {
+      return C[15] || CT.C15;
+    },
+    /*curves.Curves.linearToEaseOut*/get linearToEaseOut() {
+      return C[16] || CT.C16;
+    },
+    /*curves.Curves.easeOutSine*/get easeOutSine() {
+      return C[17] || CT.C17;
+    },
+    /*curves.Curves.easeOutQuad*/get easeOutQuad() {
+      return C[18] || CT.C18;
+    },
+    /*curves.Curves.easeOutCubic*/get easeOutCubic() {
+      return C[19] || CT.C19;
+    },
+    /*curves.Curves.easeOutQuart*/get easeOutQuart() {
+      return C[20] || CT.C20;
+    },
+    /*curves.Curves.easeOutQuint*/get easeOutQuint() {
+      return C[21] || CT.C21;
+    },
+    /*curves.Curves.easeOutExpo*/get easeOutExpo() {
+      return C[22] || CT.C22;
+    },
+    /*curves.Curves.easeOutCirc*/get easeOutCirc() {
+      return C[23] || CT.C23;
+    },
+    /*curves.Curves.easeOutBack*/get easeOutBack() {
+      return C[24] || CT.C24;
+    },
+    /*curves.Curves.easeInOut*/get easeInOut() {
+      return C[25] || CT.C25;
+    },
+    /*curves.Curves.easeInOutSine*/get easeInOutSine() {
+      return C[26] || CT.C26;
+    },
+    /*curves.Curves.easeInOutQuad*/get easeInOutQuad() {
+      return C[27] || CT.C27;
+    },
+    /*curves.Curves.easeInOutCubic*/get easeInOutCubic() {
+      return C[28] || CT.C28;
+    },
+    /*curves.Curves.easeInOutQuart*/get easeInOutQuart() {
+      return C[29] || CT.C29;
+    },
+    /*curves.Curves.easeInOutQuint*/get easeInOutQuint() {
+      return C[30] || CT.C30;
+    },
+    /*curves.Curves.easeInOutExpo*/get easeInOutExpo() {
+      return C[31] || CT.C31;
+    },
+    /*curves.Curves.easeInOutCirc*/get easeInOutCirc() {
+      return C[32] || CT.C32;
+    },
+    /*curves.Curves.easeInOutBack*/get easeInOutBack() {
+      return C[33] || CT.C33;
+    },
+    /*curves.Curves.fastOutSlowIn*/get fastOutSlowIn() {
+      return C[34] || CT.C34;
+    },
+    /*curves.Curves.slowMiddle*/get slowMiddle() {
+      return C[35] || CT.C35;
+    },
+    /*curves.Curves.bounceIn*/get bounceIn() {
+      return C[36] || CT.C36;
+    },
+    /*curves.Curves.bounceOut*/get bounceOut() {
+      return C[37] || CT.C37;
+    },
+    /*curves.Curves.bounceInOut*/get bounceInOut() {
+      return C[38] || CT.C38;
+    },
+    /*curves.Curves.elasticIn*/get elasticIn() {
+      return C[39] || CT.C39;
+    },
+    /*curves.Curves.elasticOut*/get elasticOut() {
+      return C[40] || CT.C40;
+    },
+    /*curves.Curves.elasticInOut*/get elasticInOut() {
+      return C[41] || CT.C41;
+    }
+  }, false);
+  curves._bounce = function _bounce(t) {
+    if (t < 1.0 / 2.75) {
+      return 7.5625 * t * t;
+    } else if (t < 2 / 2.75) {
+      t = t - 1.5 / 2.75;
+      return 7.5625 * t * t + 0.75;
+    } else if (t < 2.5 / 2.75) {
+      t = t - 2.25 / 2.75;
+      return 7.5625 * t * t + 0.9375;
+    }
+    t = t - 2.625 / 2.75;
+    return 7.5625 * t * t + 0.984375;
+  };
+  dart.trackLibraries("packages/flutter/src/animation/curves.dart", {
+    "package:flutter/src/animation/curves.dart": curves
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["dismissible.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/widgets/dismissible.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["curves.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;gBAkCqB;AACjB,cAAO,AAAE,CAAD;AACR,cAAO,AAAE,AAAO,CAAR,IAAI,OAAO,AAAE,CAAD,IAAI,wBAAK,AAAiD,+BAA9B,CAAC;AACjD,cAAO,wBAAkB,CAAC;MAC5B;wBAM2B;AACC,QAA1B,WAAM;MACR;;AAGqB,wCAAkB,MAAM;MAAkB;;;;IA1BxC;;;;;;;;;;;;;;;;cAgEC;AACtB,UAAI,AAAE,CAAD,KAAI,OAAO,AAAE,CAAD,KAAI;AACnB,cAAO,EAAC;;AAEV,YAAa,iBAAU,CAAC;IAC1B;;AAcqB,yCAAa;IAAK;;;AAjCjC;;EAAO;;;;;;;;;sBA2CmB;AAAM,cAAC;;;;AAHjC;;EAAW;;;;;;IAmBP;;;;;;sBAGsB;AACpB,MAAV,IAAA,AAAE,CAAD,GAAI;AACL,YAAO,AAAE,EAAD,GAAG,AAAE,CAAD;IACd;;AAIE,YAAU,AAA6C,0BAA3B,MAAM,cAAY,eAAE,cAAK;IACvD;;;IAdoB;UAAgB,AAAM,KAAD;AAAnC;;EAA4C;;;;;;;;;;;;;IAsCrC;;;;;;IAKA;;;;;;IAGD;;;;;;sBAGoB;AAC9B,YAAO,AAAM,cAAG;AAChB,YAAO,AAAM,cAAG;AAChB,YAAO,AAAI,YAAG;AACd,YAAO,AAAI,YAAG;AACd,YAAO,AAAI,YAAG;AACmC,MAAjD,IAAkC,CAAjB,CAAX,AAAE,CAAD,GAAG,eAAU,AAAI,WAAE,qBAAc,KAAK;AAC7C,UAAI,AAAE,CAAD,KAAI,OAAO,AAAE,CAAD,KAAI,KACnB,MAAO,EAAC;AACV,YAAO,AAAM,sBAAU,CAAC;IAC1B;;AAIE,WAAU,kBAAN,aACF,MAAU,AAAmE,0BAAjD,MAAM,cAAY,eAAE,cAAK,eAAO,YAAG,gBAAQ;AACzE,YAAU,AAAuD,0BAArC,MAAM,cAAY,eAAE,cAAK,eAAO,YAAG;IACjE;;kCApCoB,OAAY;QAAY;IAAxB;IAAY;IAAY;UACjC,AAAM,KAAD;UACL,AAAI,GAAD;UACH,AAAM,KAAD;AAHV;;EAGmB;;;;;;;;;;;;;IAgDZ;;;;;;sBAGmB;AAC9B,YAAO,AAAU,kBAAG;AACpB,YAAO,AAAU,kBAAG;AACpB,YAAO,AAAE,EAAD,GAAG,iBAAY,MAAM;IAC/B;;;IAZqB;UAAoB,AAAU,SAAD;AAA5C;;EAAqD;;;;;;;;;;;;;;IAoD9C;;;;;;IAMA;;;;;;IAMA;;;;;;IAMA;;;;;;qBAIgB,GAAU,GAAU;AAC/C,YAAO,AAAE,AAAI,AAAU,AAAU,AAAI,AACI,KAD9B,CAAC,IAAI,AAAE,IAAE,CAAC,KAAK,AAAE,IAAE,CAAC,IAAI,CAAC,GAC7B,AAAE,AAAI,AAAU,AAAc,IAA1B,CAAC,IAAI,AAAE,IAAE,CAAC,IAAc,CAAC,GAAG,CAAC,GACL,AAAE,AAAI,CAAL,GAAG,CAAC,GAAG,CAAC;IAC9C;sBAGgC;AACvB,kBAAQ;AACR,gBAAM;AACb,aAAO;AACQ,uBAAyB,CAAb,AAAM,KAAD,GAAG,GAAG,IAAI;AAC3B,uBAAW,qBAAe,QAAG,QAAG,QAAQ;AACrD,YAAmB,AAAM,CAApB,AAAE,CAAD,GAAG,QAAQ,mBACf,MAAO,sBAAe,QAAG,QAAG,QAAQ;AACtC,YAAI,AAAS,QAAD,GAAG,CAAC;AACE,UAAhB,QAAQ,QAAQ;;AAEF,UAAd,MAAM,QAAQ;;IAEpB;;AAIE,YAAU,AAAsI,0BAApH,MAAM,WAAS,MAAG,AAAE,yBAAgB,KAAG,OAAI,AAAE,yBAAgB,KAAG,OAAI,AAAE,yBAAgB,KAAG,OAAI,AAAE,yBAAgB,KAAG;IAChJ;;+BAzDiB,GAAQ,GAAQ,GAAQ;IAAxB;IAAQ;IAAQ;IAAQ;UAC9B,AAAE,CAAD;UACD,AAAE,CAAD;UACD,AAAE,CAAD;UACD,AAAE,CAAD;AAJN;;EAIe;;;;;;;;;;;;;;;;;MA0BD,6BAAgB;;;;;;UA0K3B;UACA;UACA;AAYP,YAAO,AAAU,SAAD;AAChB,YAAO,AAAM,KAAD;AACZ,YAAO,AAAI,GAAD;AACV,YAAO,AAAI,GAAD,GAAG,KAAK;AAGA,iBAAY,gBAAO;AACrC,eAAK,OAAc,GAAU,GAAU;AAExB,iBAAK,AAAE,CAAD,MAAG,CAAC;AACV,iBAAK,AAAE,CAAD,MAAG,CAAC;AACV,gBAAI,AAAG,AAAG,AAAQ,EAAZ,MAAM,AAAG,EAAD,MAAM,AAAG,AAAG,EAAJ,MAAM,AAAG,EAAD;AAC3C,cAAQ,AAAE,AAAK,EAAN,GAAG,CAAC,GAAI,SAAS;;;AAGR,kBAAQ,6BAAc,KAAK,EAAE,eAAU,KAAK;AAC5C,iBAAO,6BAAc,GAAG,EAAE,eAAU,GAAG;AACjC,oBAAyB,+BAAC,KAAK;AACzD,YAAK,UAAqB,GAAiB;YAAS;AAGrC,gBAAI,AAAE,AAAE,CAAH,KAAsC,CAAhC,AAAK,OAAE,AAAI,MAAE,AAAK,IAAD,kBAAkB,AAAE,AAAE,CAAH,KAAK,AAAE,CAAD;AAC9C,gBAAI,6BAAc,CAAC,EAAE,eAAU,CAAC;AAEpD,aAAK,cAAc,IAAI,MAAM,CAAC,AAAE,CAAD,QAAQ,AAAE,CAAD,QAAQ,AAAE,CAAD;AACjC,UAAd,AAAQ,OAAD,OAAK,CAAC;;AAED,UAAZ,MAAM,CAAC,CAAC,EAAE,CAAC;AACC,UAAZ,MAAM,CAAC,CAAC,EAAE,CAAC;;;;AASd,MAJD,MAAM,CACJ,KAAK,EACL,IAAI,mBAC6C,AAAM,AAAY,CAAlD,AAAM,AAAM,AAAG,KAAV,YAAY,AAAK,AAAM,IAAP,qBAAmB,SAAS,IAAqC,AAAM,CAAtC,AAAM,AAAM,AAAG,KAAV,YAAY,AAAK,AAAM,IAAP,qBAAmB,SAAS;AAE1H,YAAO,QAAO;IAChB;;AAUwB;IAAC;gBASC;AACxB,YAAO,AAAE,CAAD;AACD,kBAAQ;AACR,gBAAM;AACD;;;;;;;;;;;AACZ,YAAO,iBAAsB;AAAQ,cAAA,AAAE,EAAD,GAAG,AAAe,eAAL,GAAG;;;AAIlD,kBAAQ;AACC,uBAAa,cAAc,CAAC,KAAK;AAC9C,aAAqB,AAAM,CAAnB,AAAI,GAAD,GAAG,KAAK,IAAI,kBAAoB,AAAM,KAAD,GAAG;AACxB,QAAzB,UAAoB,CAAb,AAAI,GAAD,GAAG,KAAK,IAAI;AACT,oBAAQ,cAAc,CAAC;AACpC,YAAI,AAAM,AAAK,KAAN,YAAS,AAAW,UAAD;AACf,UAAX,QAAQ;;AAEC,UAAT,MAAM;;AAED,QAAP,QAAA,AAAK,KAAA;;AAEP,YAAO;IACT;;;AApHM;;EAAS;;;;;;;;;;;;;;;;IAqIF;;;;;;IAGA;;;;;;;AAIX,YAAO,AAA6F,QAAxF,AAAM,AAAG,gCAAgB,KAAG,OAAI,AAAM,AAAG,gCAAgB,KAAG,QAAK,AAAE,yBAAgB,KAAG;IACpG;;uCAXyB,GAAQ;IAAR;IAAQ;UAAgB,AAAE,CAAD;UAAkB,AAAM,KAAD;;EAAS;;;;;;;;;;;;;;;;;4BAuGjE,eACN;UACC;UACA;AAK+C,MAAzD,AAAY,WAAD,WAAX,cAAgB,AAAa,AAAI,AAAM,aAAV,QAAC,QAAK,UAAM,AAAa,aAAA,QAAC,MAA3C;AACoE,MAAhF,AAAU,SAAD,WAAT,YAAc,AAAc,AAAK,AAAM,aAAZ,aAAQ,UAAM,AAAa,aAAA,QAAC,AAAc,AAAO,aAAR,YAAU,MAApE;AACS,sBAAoB;yCACrC,WAAW;AACR,iCAAa;AAChB,0BAAS;;;AASE,2BAAiB,AAAI,MAAE,OAAO;AAClB,mBAAuB;AAChD,eAAS,IAAI,GAAG,AAAE,CAAD,GAAG,AAAU,AAAO,SAAR,YAAU,GAAK,IAAF,AAAE,CAAC,GAAH;AACrB,oBAAgB,wBAAC,AAAS,SAAA,QAAC,CAAC,GAAG,AAAS,SAAA,QAAC,AAAE,CAAD,GAAG,IAAI,AAAS,SAAA,QAAC,AAAE,CAAD,GAAG,IAAI,AAAS,SAAA,QAAC,AAAE,CAAD,GAAG;AACvF,0BAAc,AAAK,AAAI,KAAJ,QAAC,QAAK,AAAK,KAAA,QAAC;AAC/B,0BAAc,AAAK,AAAI,KAAJ,QAAC,QAAK,AAAK,KAAA,QAAC;AAC/B,0BAAc,AAAK,AAAI,KAAJ,QAAC,QAAK,AAAK,KAAA,QAAC;AAC/B,kBAAM,AAAsC,SAA7B,AAAY,WAAD;AAC1B,kBAAM,AAAsC,SAA7B,AAAY,WAAD;AAC1B,kBAAM,AAAsC,SAA7B,AAAY,WAAD;AAE1B,iBAAM,AAAY,AAAmE,WAApE,MAAI,AAAY,AAAM,AAAuC,WAA9C,MAAG,GAAG,OAAI,AAAK,AAAI,AAAY,KAAhB,QAAC,QAAK,AAAK,KAAA,QAAC,SAAO,AAAI,GAAD,GAAG,GAAG,QAAK,GAAG,QAAI,cAAc;AACrG,iBAAM,AAAY,AAAmE,WAApE,MAAI,AAAY,AAAM,AAAuC,WAA9C,MAAG,GAAG,OAAI,AAAK,AAAI,AAAY,KAAhB,QAAC,QAAK,AAAK,KAAA,QAAC,SAAO,AAAI,GAAD,GAAG,GAAG,QAAK,GAAG,QAAI,cAAc;AACrG,qBAAS,AAAG,EAAD,MAAG,EAAE;AAEV,sBAAkB,wBACnC,AAAY,AAAO,WAAR,MAAG,CAAC,UAAM,MAAM,GAC3B,AAAY,AAAM,AAAK,WAAZ,MAAG,UAAM,EAAE,OAAG,MAAM,GAC/B,EAAE,EACF,AAAK,KAAA,QAAC;AAEW,QAAnB,AAAO,MAAD,OAAK,OAAO;;AAEpB,YAAO,OAAM;IACf;;AAYE,UAAI,AAAe;AACjB;;AAID,MAFD,AAAe,8BACb,yCAA+B,eAAd,uBAAyB,eAAR,+BAAwB,+BAAyB;IAEvF;;AAKuB,MAArB;AACa,sBAAY,AAAc,AAAG,4BAAF,UAAG;AAC3C,YAA+C,EAAT,CAA7B,AAAU,AAAG,SAAJ,MAAM,AAAU,SAAD,OAAO;IAC1C;sBAGgC;AACT,MAArB;AACa,mBAAS,AAAe,AAAO;AAC/B;AACA;AACH;AACV,UAAI,AAAE,CAAD,GAAG;AACe,QAArB,WAAW,AAAE,CAAD,GAAG,MAAM;AACE,QAAvB,SAAS,AAAS,QAAD,UAAG;AACI,QAAxB,QAAQ,AAAS,QAAD;;AAEC,QAAjB,WAAW,MAAM;AACL,QAAZ,SAAS;AACwB,QAAjC,QAAQ,AAAe,AAAO,gCAAE;;AAEf,+BAAqB,AAAc,4BAAC,KAAK;AAC/C,oBAAU,AAAO,MAAD,GAAG,MAAM;AACtC,YAAO,AAAkB,AAAI,AAAU,AAClC,AACA,AACA,mBAHoB,QAAC,QAAK,OAAO,OAAG,MAAM,OACxC,AAAkB,AAAI,kBAAJ,QAAC,QAAK,OAAO,QAC/B,AAAkB,AAAI,kBAAJ,QAAC,QAAK,MAAM,QAC9B,AAAkB,kBAAA,QAAC;IAC5B;;0CArIiB;QACJ;QACC;QACA;UACE,AAAc,aAAD;UACb,AAAQ,OAAD;UACP,AAAQ,OAAD,IAAI,wBAAK,AAAgD,sBAAtC,OAAO;UACjC,AAAQ,OAAD,IAAI,wBAAK,AAAwC,sBAA9B,OAAO;UACjC,AAAc,AAAO,aAAR,YAAU,sBAAG;IAClB,uBAAE,aAAa;IACjB,qBAAE,WAAW;IACf,mBAAE,SAAS;IACb,iBAAE,OAAO;IACH,uBAAgB;AAdxC;;EAc0C;iDAOzB;QACJ;QACC;QACA;UACE,AAAc,aAAD;UACb,AAAQ,OAAD;UACP,AAAQ,OAAD,IAAI,wBAAK,AAAgD,sBAAtC,OAAO;UACjC,AAAQ,OAAD,IAAI,wBAAK,AAAwC,sBAA9B,OAAO;UACjC,AAAc,AAAO,aAAR,YAAU,sBAAG;IAClB,uBAAE;IACJ,qBAAE;IACJ,mBAAE;IACJ,iBAAE;IACI,uBAAE,yCAAiB,aAAa,EAAE,OAAO,gBAAe,WAAW,aAAa,SAAS;AAdjH;;EAckH;;;;;;;;;;;;;;;;;;;;;;IA+N/F;;;;;;IASN;;;;;;2BAtD2C,eAAsB;AAC5E,YAAwB,AAKtB,AAAwD,wCAFhD;yCAAQ;AAAS,iCAAa;AAAQ;;sBACrC,OAAO,2BACO,UAAU,gBAAgB;IACrD;iCA+DkB;UACP;UACO;AAEhB,YAAO,AAAQ,OAAD;AACd,UAAI,AAAc,aAAD;AACf,aAAO,AAGN;;AAFuD,eAAtD,OAAO;uBAAP,OAAS,SAAI;AACb,gBAAO;;AAET,cAAO;;AAGT,UAAI,AAAc,AAAO,aAAR,YAAU;AACzB,aAAO,AAGN;;AAFoF,eAAnF,OAAO;uBAAP,OAAS,SAAI;AACb,gBAAO;;AAET,cAAO;;AAGsE,MAA/E,gBAAwB;yCAAQ;AAAS,iCAAa;AAAQ;;;AACjD,wBAAc,AAAa,AAAI,AAAM,aAAV,QAAC,QAAK,UAAM,AAAa,aAAA,QAAC;AACrD,sBAAY,AAAc,AAAK,AAAM,aAAZ,aAAQ,UAAM,AAAa,aAAA,QAAC,AAAc,AAAO,aAAR,YAAU;AACvB,MAAlE,gBAAwB;yCAAC,WAAW;AAAK,iCAAa;AAAE,0BAAS;;;AAC1D,kBAAQ;AACf,eAAS,IAAI,GAAG,AAAE,CAAD,GAAG,AAAc,aAAD,WAAW,IAAF,AAAE,CAAC,GAAH;AACxC,YAAI,AAAE,CAAD,GAAG,KACJ,AAAE,CAAD,GAAG,AAAc,AAAO,aAAR,YAAU,MAC1B,AAAa,AAAI,AAAG,aAAP,QAAC,CAAC,QAAQ,OAAO,AAAa,AAAI,AAAG,aAAP,QAAC,CAAC,QAAQ;AACxD,eAAO,AAMN;;AAFE,iBAHD,OAAO;yBAAP,OAAS,SAAG,AACV,uEACA,oBAAQ,CAAC,mCAAgC,AAAC,AAAI,eAAlB,aAAa,SAAE,CAAC,QAAK;AAEnD,kBAAO;;AAET,gBAAO;;AAET,YAAI,AAAa,AAAI,AAAG,aAAP,QAAC,CAAC,QAAQ,KAAK;AAC9B,eAAO,AAON;;AAFE,iBAJD,OAAO;yBAAP,OAAS,SAAG,AACV,uEACA,kEAAsD,CAAC,qCACvC,AAAC,AAAI,eAAlB,aAAa,SAAE,CAAC,QAAK,0CAA6B,KAAK;AAE5D,kBAAO;;AAET,gBAAO;;AAEkB,QAA3B,QAAQ,AAAa,AAAI,aAAJ,QAAC,CAAC;;AAGpB,oBAAU;AAGS,MAAxB,QAAQ;AAEe,uBAAa,gCAAiB,aAAa,YAAW,OAAO;AACvE,kBAAQ,AAAW,UAAD,aAAa;AAC/B,gBAAM,AAAW,UAAD,aAAa;AACZ,yBAAe,AAAW,UAAD,yBAAwB,KAAK,OAAO,GAAG;AAG9F,UAAI,AAAa,AAAM,AAAM,AAAG,AAAM,YAAtB,qCAAwE,AAAM,CAAxC,AAAI,MAAE,AAAa,AAAK,AAAM,YAAZ;AACjE,mBAAO;AACG,QAAf,UAAU;AACV,aAAO,AASN;;AAJE,eAJD,OAAO;uBAAP,OAAS,SAAG,AACV,yDAA8C,AAAa,AAAM,AAAM,YAAb,qBAAgB,OAC1E,qFACA;AAGoB,UAAtB,OAAO,AAAQ,OAAD;AACd,gBAAO;;AAET,YAAI,IAAI;AAGN,gBAAO;;;AAGX,eAAyB,SAAU,aAAY;AAChC,oBAAQ,AAAO,MAAD;AACd,gBAAI,AAAO,MAAD;AACV,gBAAI,AAAM,KAAD;AACtB,YAAI,AAAE,CAAD,IAAI,KAAK,IAAI,AAAE,CAAD,IAAI,GAAG,KAAK,AAAE,CAAD,GAAG,CAAC,SAAQ,AAAE,CAAD,GAAG,AAAI,MAAE;AAC/C,qBAAO;AACG,UAAf,UAAU;AACV,eAAO,AAQN;;AAJE,iBAHD,OAAO;yBAAP,OAAS,SAAG,AACV,kDAAsC,CAAC,4BACvC;AAGoB,YAAtB,OAAO,AAAQ,OAAD;AACd,kBAAO;;AAET,cAAI,IAAI;AAGN,kBAAO;;;AAGX,YAAI,AAAE,CAAD,GAAG,KAAK;AACN,qBAAO;AACG,UAAf,UAAU;AACV,eAAO,AAQN;;AAJE,iBAHD,OAAO;yBAAP,OAAS,SAAG,AACV,yDAA6C,CAAC,sBAC9C;AAGoB,YAAtB,OAAO,AAAQ,OAAD;AACd,kBAAO;;AAET,cAAI,IAAI;AAGN,kBAAO;;;AAGF,QAAT,QAAQ,CAAC;;AAEX,YAAO,QAAO;IAChB;sBAGgC;AAG9B,UAAI,AAAoB;AAE6C,QAAnE,AAAoB,mCAAO,uCAAgB,oBAAe;;AAExD,kBAAQ;AACR,gBAAM,AAAoB,AAAO,qCAAE;AACnC;AACG;AACA,uBAAa,AAAmB,AAAQ,iCAAP,KAAK;AACtC,qBAAW,AAAmB,AAAM,iCAAL,GAAG;AAGzC,aAAO,AAAI,AAAQ,GAAT,GAAG,KAAK,GAAG;AACK,QAAxB,MAAoB,EAAb,AAAI,GAAD,GAAG,KAAK,IAAK;AACe,QAAtC,QAAQ,AAAmB,AAAM,iCAAL,GAAG;AAC/B,YAAI,AAAE,CAAD,IAAI,AAAM,KAAD;AACD,UAAX,QAAQ,GAAG;AACO,UAAlB,aAAa,KAAK;;AAET,UAAT,MAAM,GAAG;AACO,UAAhB,WAAW,KAAK;;;AAKP,eAAyB,CAAnB,AAAE,CAAD,GAAG,AAAW,UAAD,QAAQ,AAAS,AAAG,QAAJ,MAAM,AAAW,UAAD;AACjE,YAAiD,gBAA1C,cAAW,AAAW,UAAD,KAAK,AAAS,QAAD,KAAK,EAAE;IAClD;;yCAnQqB;QAAqB;IAArB;IAAqB;UAC7B,AAAQ,OAAD;SACP,AAMN;;AALC,YAAO,8CACL,aAAa,YACJ,OAAO,6DACP;AAAqB;;;4CAE7B,AAA8F,6BAA7E,aAAa,qCAA8B,AAAoB,kDAAK;IAGtE,4BAAiB;AAX3C;;EAW6C;gDAMb;QAAqB;IAArB;IAAqB;UACxC,AAAQ,OAAD;SACP,AAMN;;AALC,YAAO,8CACL,aAAa,YACJ,OAAO,6DACP;AAAqB;;;4CAE7B,AAA8F,6BAA7E,aAAa,qCAA8B,AAAoB,kDAAK;IAGtE,4BAAE,uCAAgB,aAAa,EAAE,OAAO;AAXlE;;EAWmE;;;;;;;;;;;MAYzC,0CAAmB;YAAW;;;;;IAuP5C;;;;;;sBAGoB;AAAM,YAAA,AAAI,OAAE,AAAM,qBAAU,AAAI,MAAE,CAAC;IAAC;;AAIlE,YAAU,AAAiD,0BAA/B,MAAM,kBAAgB,eAAE,cAAK;IAC3D;;;IAXwB;UAAgB,AAAM,KAAD;AAAvC;;EAAgD;;;;;;;;;;sBAyBtB;AAInB,MAAX,IAAI,AAAI,MAAE,CAAC;AACX,YAAO,AAAI,OAAE,AAAE,CAAD,GAAG,CAAC;IACpB;;;AATM;;EAAoB;;;;;sBAmCM;AAC9B,YAAO,AAAI,OAAE,eAAQ,AAAI,MAAE,CAAC;IAC9B;;;AALM;;EAAkB;;;;;sBAeQ;AAC9B,YAAO,gBAAQ,CAAC;IAClB;;;AALM;;EAAmB;;;;;sBAeO;AAC9B,UAAI,AAAE,CAAD,GAAG;AACN,cAAsC,EAA9B,AAAI,MAAE,eAAQ,AAAI,MAAE,AAAE,CAAD,GAAG,QAAQ;;AAExC,cAAO,AAAuB,AAAM,gBAArB,AAAE,AAAM,CAAP,GAAG,MAAM,OAAO,MAAM;IAC1C;;;AARM;;EAAqB;;;;;;IA2Bd;;;;;;sBAGmB;AACjB,cAAI,AAAO,cAAE;AACf,MAAX,IAAI,AAAE,CAAD,GAAG;AACR,YAAO,AAAyB,EAAxB,SAAS,KAAK,AAAK,OAAE,CAAC,IAAI,SAAiB,AAAkB,CAAzB,AAAE,CAAD,GAAG,CAAC,KAAa,oBAAE,OAAO;IACzE;;AAIE,YAAU,AAAoD,0BAAlC,MAAM,oBAAkB,eAAE,eAAM;IAC9D;;;IAf2B;AAArB;;EAAmC;;;;;;;;;;;IA+B5B;;;;;;sBAGmB;AACjB,cAAI,AAAO,cAAE;AAC1B,YAAO,AAAuB,AAA+C,UAA7D,KAAK,AAAI,CAAH,KAAK,CAAC,IAAI,SAAiB,AAAkB,CAAzB,AAAE,CAAD,GAAG,CAAC,KAAa,oBAAE,OAAO,eAAU;IACjF;;AAIE,YAAU,AAAqD,0BAAnC,MAAM,qBAAmB,eAAE,eAAM;IAC/D;;;IAd4B;AAAtB;;EAAoC;;;;;;;;;;;IA+B7B;;;;;;sBAGmB;AACjB,cAAI,AAAO,cAAE;AACT,MAAjB,IAAI,AAAI,AAAI,MAAF,CAAC,GAAG;AACd,UAAI,AAAE,CAAD,GAAG;AACN,cAAO,AAAK,AAA0B,EAA9B,MAAM,SAAS,KAAK,AAAK,OAAE,CAAC,IAAI,SAAiB,AAAkB,CAAzB,AAAE,CAAD,GAAG,CAAC,KAAa,oBAAE,OAAO;;AAE7E,cAAO,AAAyB,AAA+C,AAAM,UAArE,KAAK,AAAM,CAAL,OAAO,CAAC,IAAI,SAAiB,AAAkB,CAAzB,AAAE,CAAD,GAAG,CAAC,KAAa,oBAAE,OAAO,eAAU,MAAM;IAC3F;;AAIE,YAAU,AAAuD,0BAArC,MAAM,uBAAqB,eAAE,eAAM;IACjE;;;IAlB8B;AAAxB;;EAAsC;;;;;;;;;;;;EAwElC;;;;;MASS,oBAAM;;;MASN,wBAAU;;;MASV,oCAAsB;;;MAKtB,kBAAI;;;MAKJ,oBAAM;;;MAON,4BAAc;;;MAUd,wBAAU;;;MAWV,wBAAU;;;MAWV,yBAAW;;;MAaX,yBAAW;;;MAUX,yBAAW;;;MAaX,wBAAU;;;MAWV,wBAAU;;;MAUV,wBAAU;;;MAKV,qBAAO;;;MAOP,6BAAe;;;MAUf,yBAAW;;;MAWX,yBAAW;;;MAaX,0BAAY;;;MAaZ,0BAAY;;;MAUZ,0BAAY;;;MAUZ,yBAAW;;;MAWX,yBAAW;;;MAUX,yBAAW;;;MAMX,uBAAS;;;MAST,2BAAa;;;MAWb,2BAAa;;;MAcb,4BAAc;;;MAcd,4BAAc;;;MAWd,4BAAc;;;MAcd,2BAAa;;;MAcb,2BAAa;;;MAcb,2BAAa;;;MAab,2BAAa;;;MAMb,wBAAU;;;MAKV,sBAAQ;;;MAKR,uBAAS;;;MAKT,yBAAW;;;MAKF,uBAAS;;;MAKR,wBAAU;;;MAKR,0BAAY;;;;oCAvkBvB;AACpB,QAAI,AAAE,CAAD,GAAG,AAAI,MAAE;AACZ,YAAO,AAAO,AAAI,UAAF,CAAC,GAAG,CAAC;UAChB,KAAI,AAAE,CAAD,GAAG,AAAE,IAAE;AACF,MAAf,IAAA,AAAE,CAAD,GAAI,AAAI,MAAE;AACX,YAAO,AAAO,AAAI,AAAI,UAAN,CAAC,GAAG,CAAC,GAAG;UACnB,KAAI,AAAE,CAAD,GAAG,AAAI,MAAE;AACH,MAAhB,IAAA,AAAE,CAAD,GAAI,AAAK,OAAE;AACZ,YAAO,AAAO,AAAI,AAAI,UAAN,CAAC,GAAG,CAAC,GAAG;;AAET,IAAjB,IAAA,AAAE,CAAD,GAAI,AAAM,QAAE;AACb,UAAO,AAAO,AAAI,AAAI,UAAN,CAAC,GAAG,CAAC,GAAG;EAC1B","file":"../../../../../../../packages/flutter/src/animation/curves.dart.lib.js"}');
   // Exports:
   return {
-    src__widgets__dismissible: dismissible
+    src__animation__curves: curves
   };
 }));
 
-//# sourceMappingURL=dismissible.dart.lib.js.map
+//# sourceMappingURL=curves.dart.lib.js.map
