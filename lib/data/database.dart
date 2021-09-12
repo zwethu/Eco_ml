@@ -62,7 +62,7 @@ class Outcome extends HiveObject {
 @HiveType(typeId: 6)
 class Piggy extends HiveObject {
   @HiveField(0)
-  double percentage;
+  var percentage;
   @HiveField(1)
   bool showPiggy;
   Piggy(this.percentage, this.showPiggy);

@@ -18,13 +18,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
   final username = Hive.box('username').getAt(0) as UserName;
-  final pages = [
-    WalletPage(),
-    ReportPage(),
-    BankPage(),
-    SettingPage(),
-  ];
-
+  
 @override
   void dispose() {
   //  Hive.close();
@@ -32,6 +26,18 @@ class _HomePageState extends State<HomePage> {
   }
   @override
   Widget build(BuildContext context) {
+    final pages = [
+    WalletPage(),
+    ReportPage(),
+    (() {
+   if(currentIndex==2){
+     return PiggyHomePage();
+   }else{
+    return BankPage();
+   }
+}()),
+    SettingPage(),
+  ];
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -116,3 +122,5 @@ void navigateToProfile(BuildContext context) {
 void navigateToCategories(BuildContext context) {
   AutoRouter.of(context).push(CategoriesRoute());
 }
+
+

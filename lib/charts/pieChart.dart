@@ -1,7 +1,6 @@
 import 'package:eco_ml/charts/barChart.dart';
 import 'package:eco_ml/data/database.dart';
 import 'package:eco_ml/data/incomeData.dart';
-import 'package:eco_ml/data/outcomeData.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:hive/hive.dart';

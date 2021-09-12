@@ -1,430 +1,313 @@
-define(['dart_sdk', 'packages/flutter/src/services/text_input.dart', 'packages/flutter/src/foundation/_platform_web.dart', 'packages/characters/src/characters_impl.dart', 'packages/characters/src/extensions.dart', 'packages/flutter/src/services/text_editing.dart'], (function load__packages__flutter__src__services__text_formatter_dart(dart_sdk, packages__flutter__src__services__text_input$46dart, packages__flutter__src__foundation___platform_web$46dart, packages__characters__src__characters_impl$46dart, packages__characters__src__extensions$46dart, packages__flutter__src__services__text_editing$46dart) {
+define(['dart_sdk', 'packages/intl/src/intl/date_computation.dart', 'packages/clock/src/stopwatch.dart'], (function load__packages__intl__src__intl__date_builder_dart(dart_sdk, packages__intl__src__intl__date_computation$46dart, packages__clock__src__stopwatch$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const math = dart_sdk.math;
-  const ui = dart_sdk.ui;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const text_input = packages__flutter__src__services__text_input$46dart.src__services__text_input;
-  const platform$ = packages__flutter__src__foundation___platform_web$46dart.src__foundation__platform;
-  const characters_impl = packages__characters__src__characters_impl$46dart.src__characters_impl;
-  const extensions = packages__characters__src__extensions$46dart.src__extensions;
-  const text_editing = packages__flutter__src__services__text_editing$46dart.src__services__text_editing;
-  var text_formatter = Object.create(dart.library);
-  var $isNotEmpty = dartx.isNotEmpty;
-  var $splitMapJoin = dartx.splitMapJoin;
-  var $length = dartx.length;
-  var $substring = dartx.substring;
+  const date_computation = packages__intl__src__intl__date_computation$46dart.src__intl__date_computation;
+  const $default = packages__clock__src__stopwatch$46dart.src__default;
+  var date_builder = Object.create(dart.library);
+  var $truncate = dartx.truncate;
   dart._checkModuleNullSafetyMode(true);
-  var T = {
-    MatchToString: () => (T.MatchToString = dart.constFn(dart.fnType(core.String, [core.Match])))(),
-    StringToString: () => (T.StringToString = dart.constFn(dart.fnType(core.String, [core.String])))()
-  };
   const CT = Object.create({
     _: () => (C, CT)
   });
-  dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: text_formatter.MaxLengthEnforcement.prototype,
-        [_name$]: "MaxLengthEnforcement.none",
-        index: 0
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: text_formatter.MaxLengthEnforcement.prototype,
-        [_name$]: "MaxLengthEnforcement.enforced",
-        index: 1
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: text_formatter.MaxLengthEnforcement.prototype,
-        [_name$]: "MaxLengthEnforcement.truncateAfterCompositionEnds",
-        index: 2
-      });
-    },
-    get C3() {
-      return C[3] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2], text_formatter.MaxLengthEnforcement);
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.android",
-        index: 0
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.windows",
-        index: 5
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.iOS",
-        index: 2
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.macOS",
-        index: 4
-      });
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.linux",
-        index: 3
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.fuchsia",
-        index: 1
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: ui.TextAffinity.prototype,
-        [_name$0]: "TextAffinity.downstream",
-        index: 1
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: text_editing.TextSelection.prototype,
-        [TextRange_end]: -1,
-        [TextRange_start]: -1,
-        [TextSelection_isDirectional]: false,
-        [TextSelection_affinity]: C[11] || CT.C11,
-        [TextSelection_extentOffset]: -1,
-        [TextSelection_baseOffset]: -1
-      });
-    }
-  }, false);
-  var C = Array(12).fill(void 0);
   var I = [
-    "package:flutter/src/services/text_formatter.dart",
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/services/text_formatter.dart"
+    "file:///D:/DevelpmentTool/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0/lib/src/intl/date_builder.dart",
+    "package:intl/src/intl/date_builder.dart"
   ];
-  var _name$ = dart.privateName(text_formatter, "_name");
-  text_formatter.MaxLengthEnforcement = class MaxLengthEnforcement extends core.Object {
-    toString() {
-      return this[_name$];
+  var year = dart.privateName(date_builder, "DateBuilder.year");
+  var month = dart.privateName(date_builder, "DateBuilder.month");
+  var day = dart.privateName(date_builder, "DateBuilder.day");
+  var dayOfYear = dart.privateName(date_builder, "DateBuilder.dayOfYear");
+  var hour = dart.privateName(date_builder, "DateBuilder.hour");
+  var minute = dart.privateName(date_builder, "DateBuilder.minute");
+  var second = dart.privateName(date_builder, "DateBuilder.second");
+  var fractionalSecond = dart.privateName(date_builder, "DateBuilder.fractionalSecond");
+  var pm = dart.privateName(date_builder, "DateBuilder.pm");
+  var utc = dart.privateName(date_builder, "DateBuilder.utc");
+  var dateOnly = dart.privateName(date_builder, "DateBuilder.dateOnly");
+  var _hasAmbiguousCentury = dart.privateName(date_builder, "_hasAmbiguousCentury");
+  var _date = dart.privateName(date_builder, "_date");
+  var _retried = dart.privateName(date_builder, "_retried");
+  var _locale$ = dart.privateName(date_builder, "_locale");
+  var _dateTimeConstructor$ = dart.privateName(date_builder, "_dateTimeConstructor");
+  var _verify = dart.privateName(date_builder, "_verify");
+  var _offsetYear = dart.privateName(date_builder, "_offsetYear");
+  var _correctForErrors = dart.privateName(date_builder, "_correctForErrors");
+  date_builder.DateBuilder = class DateBuilder extends core.Object {
+    get year() {
+      return this[year];
     }
-  };
-  (text_formatter.MaxLengthEnforcement.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
-    ;
-  }).prototype = text_formatter.MaxLengthEnforcement.prototype;
-  dart.addTypeTests(text_formatter.MaxLengthEnforcement);
-  dart.addTypeCaches(text_formatter.MaxLengthEnforcement);
-  dart.setLibraryUri(text_formatter.MaxLengthEnforcement, I[0]);
-  dart.setFieldSignature(text_formatter.MaxLengthEnforcement, () => ({
-    __proto__: dart.getFields(text_formatter.MaxLengthEnforcement.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(text_formatter.MaxLengthEnforcement, ['toString']);
-  text_formatter.MaxLengthEnforcement.none = C[0] || CT.C0;
-  text_formatter.MaxLengthEnforcement.enforced = C[1] || CT.C1;
-  text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds = C[2] || CT.C2;
-  text_formatter.MaxLengthEnforcement.values = C[3] || CT.C3;
-  text_formatter.TextInputFormatter = class TextInputFormatter extends core.Object {
-    static withFunction(formatFunction) {
-      return new text_formatter._SimpleTextInputFormatter.new(formatFunction);
+    set year(value) {
+      this[year] = value;
     }
-  };
-  (text_formatter.TextInputFormatter.new = function() {
-    ;
-  }).prototype = text_formatter.TextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.TextInputFormatter);
-  dart.addTypeCaches(text_formatter.TextInputFormatter);
-  dart.setLibraryUri(text_formatter.TextInputFormatter, I[0]);
-  text_formatter._SimpleTextInputFormatter = class _SimpleTextInputFormatter extends text_formatter.TextInputFormatter {
-    formatEditUpdate(oldValue, newValue) {
-      let t1, t0;
-      t0 = oldValue;
-      t1 = newValue;
-      return this.formatFunction(t0, t1);
+    get month() {
+      return this[month];
     }
-  };
-  (text_formatter._SimpleTextInputFormatter.new = function(formatFunction) {
-    this.formatFunction = formatFunction;
-    if (!(formatFunction !== null)) dart.assertFailed(null, I[1], 111, 14, "formatFunction != null");
-    ;
-  }).prototype = text_formatter._SimpleTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter._SimpleTextInputFormatter);
-  dart.addTypeCaches(text_formatter._SimpleTextInputFormatter);
-  dart.setMethodSignature(text_formatter._SimpleTextInputFormatter, () => ({
-    __proto__: dart.getMethods(text_formatter._SimpleTextInputFormatter.__proto__),
-    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
-  }));
-  dart.setLibraryUri(text_formatter._SimpleTextInputFormatter, I[0]);
-  dart.setFieldSignature(text_formatter._SimpleTextInputFormatter, () => ({
-    __proto__: dart.getFields(text_formatter._SimpleTextInputFormatter.__proto__),
-    formatFunction: dart.finalFieldType(dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue]))
-  }));
-  var filterPattern$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.filterPattern");
-  var allow$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.allow");
-  var replacementString$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.replacementString");
-  text_formatter.FilteringTextInputFormatter = class FilteringTextInputFormatter extends text_formatter.TextInputFormatter {
-    get filterPattern() {
-      return this[filterPattern$];
+    set month(value) {
+      this[month] = value;
     }
-    set filterPattern(value) {
-      super.filterPattern = value;
+    get day() {
+      return this[day];
     }
-    get allow() {
-      return this[allow$];
+    set day(value) {
+      this[day] = value;
     }
-    set allow(value) {
-      super.allow = value;
+    get dayOfYear() {
+      return this[dayOfYear];
     }
-    get replacementString() {
-      return this[replacementString$];
+    set dayOfYear(value) {
+      this[dayOfYear] = value;
     }
-    set replacementString(value) {
-      super.replacementString = value;
+    get hour() {
+      return this[hour];
     }
-    formatEditUpdate(oldValue, newValue) {
-      return text_formatter._selectionAwareTextManipulation(newValue, dart.fn(substring => substring[$splitMapJoin](this.filterPattern, {onMatch: !this.allow ? dart.fn(match => this.replacementString, T.MatchToString()) : null, onNonMatch: this.allow ? dart.fn(nonMatch => nonMatch[$isNotEmpty] ? this.replacementString : "", T.StringToString()) : null}), T.StringToString()));
+    set hour(value) {
+      this[hour] = value;
     }
-  };
-  (text_formatter.FilteringTextInputFormatter.new = function(filterPattern, opts) {
-    let allow = opts && 'allow' in opts ? opts.allow : null;
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    this[filterPattern$] = filterPattern;
-    this[allow$] = allow;
-    this[replacementString$] = replacementString;
-    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 153, 15, "filterPattern != null");
-    if (!(allow !== null)) dart.assertFailed(null, I[1], 154, 15, "allow != null");
-    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 155, 15, "replacementString != null");
-    ;
-  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
-  (text_formatter.FilteringTextInputFormatter.allow = function(filterPattern, opts) {
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    this[filterPattern$] = filterPattern;
-    this[replacementString$] = replacementString;
-    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 164, 15, "filterPattern != null");
-    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 165, 15, "replacementString != null");
-    this[allow$] = true;
-    ;
-  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
-  (text_formatter.FilteringTextInputFormatter.deny = function(filterPattern, opts) {
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    this[filterPattern$] = filterPattern;
-    this[replacementString$] = replacementString;
-    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 175, 15, "filterPattern != null");
-    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 176, 15, "replacementString != null");
-    this[allow$] = false;
-    ;
-  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.FilteringTextInputFormatter);
-  dart.addTypeCaches(text_formatter.FilteringTextInputFormatter);
-  dart.setMethodSignature(text_formatter.FilteringTextInputFormatter, () => ({
-    __proto__: dart.getMethods(text_formatter.FilteringTextInputFormatter.__proto__),
-    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
-  }));
-  dart.setLibraryUri(text_formatter.FilteringTextInputFormatter, I[0]);
-  dart.setFieldSignature(text_formatter.FilteringTextInputFormatter, () => ({
-    __proto__: dart.getFields(text_formatter.FilteringTextInputFormatter.__proto__),
-    filterPattern: dart.finalFieldType(core.Pattern),
-    allow: dart.finalFieldType(core.bool),
-    replacementString: dart.finalFieldType(core.String)
-  }));
-  dart.defineLazy(text_formatter.FilteringTextInputFormatter, {
-    /*text_formatter.FilteringTextInputFormatter.singleLineFormatter*/get singleLineFormatter() {
-      return new text_formatter.FilteringTextInputFormatter.deny("\n");
-    },
-    /*text_formatter.FilteringTextInputFormatter.digitsOnly*/get digitsOnly() {
-      return new text_formatter.FilteringTextInputFormatter.allow(core.RegExp.new("[0-9]"));
+    get minute() {
+      return this[minute];
     }
-  }, false);
-  text_formatter.BlacklistingTextInputFormatter = class BlacklistingTextInputFormatter extends text_formatter.FilteringTextInputFormatter {
-    get blacklistedPattern() {
-      return this.filterPattern;
+    set minute(value) {
+      this[minute] = value;
     }
-  };
-  (text_formatter.BlacklistingTextInputFormatter.new = function(blacklistedPattern, opts) {
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    text_formatter.BlacklistingTextInputFormatter.__proto__.deny.call(this, blacklistedPattern, {replacementString: replacementString});
-    ;
-  }).prototype = text_formatter.BlacklistingTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.BlacklistingTextInputFormatter);
-  dart.addTypeCaches(text_formatter.BlacklistingTextInputFormatter);
-  dart.setGetterSignature(text_formatter.BlacklistingTextInputFormatter, () => ({
-    __proto__: dart.getGetters(text_formatter.BlacklistingTextInputFormatter.__proto__),
-    blacklistedPattern: core.Pattern
-  }));
-  dart.setLibraryUri(text_formatter.BlacklistingTextInputFormatter, I[0]);
-  dart.defineLazy(text_formatter.BlacklistingTextInputFormatter, {
-    /*text_formatter.BlacklistingTextInputFormatter.singleLineFormatter*/get singleLineFormatter() {
-      return new text_formatter.BlacklistingTextInputFormatter.new(core.RegExp.new("\\n"));
+    get second() {
+      return this[second];
     }
-  }, false);
-  text_formatter.WhitelistingTextInputFormatter = class WhitelistingTextInputFormatter extends text_formatter.FilteringTextInputFormatter {
-    get whitelistedPattern() {
-      return this.filterPattern;
+    set second(value) {
+      this[second] = value;
     }
-  };
-  (text_formatter.WhitelistingTextInputFormatter.new = function(whitelistedPattern) {
-    if (!(whitelistedPattern !== null)) dart.assertFailed(null, I[1], 329, 14, "whitelistedPattern != null");
-    text_formatter.WhitelistingTextInputFormatter.__proto__.allow.call(this, whitelistedPattern);
-    ;
-  }).prototype = text_formatter.WhitelistingTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.WhitelistingTextInputFormatter);
-  dart.addTypeCaches(text_formatter.WhitelistingTextInputFormatter);
-  dart.setGetterSignature(text_formatter.WhitelistingTextInputFormatter, () => ({
-    __proto__: dart.getGetters(text_formatter.WhitelistingTextInputFormatter.__proto__),
-    whitelistedPattern: core.Pattern
-  }));
-  dart.setLibraryUri(text_formatter.WhitelistingTextInputFormatter, I[0]);
-  dart.defineLazy(text_formatter.WhitelistingTextInputFormatter, {
-    /*text_formatter.WhitelistingTextInputFormatter.digitsOnly*/get digitsOnly() {
-      return new text_formatter.WhitelistingTextInputFormatter.new(core.RegExp.new("\\d+"));
+    get fractionalSecond() {
+      return this[fractionalSecond];
     }
-  }, false);
-  var maxLength$ = dart.privateName(text_formatter, "LengthLimitingTextInputFormatter.maxLength");
-  var maxLengthEnforcement$ = dart.privateName(text_formatter, "LengthLimitingTextInputFormatter.maxLengthEnforcement");
-  var _name = dart.privateName(platform$, "_name");
-  text_formatter.LengthLimitingTextInputFormatter = class LengthLimitingTextInputFormatter extends text_formatter.TextInputFormatter {
-    get maxLength() {
-      return this[maxLength$];
+    set fractionalSecond(value) {
+      this[fractionalSecond] = value;
     }
-    set maxLength(value) {
-      super.maxLength = value;
+    get pm() {
+      return this[pm];
     }
-    get maxLengthEnforcement() {
-      return this[maxLengthEnforcement$];
+    set pm(value) {
+      this[pm] = value;
     }
-    set maxLengthEnforcement(value) {
-      super.maxLengthEnforcement = value;
+    get utc() {
+      return this[utc];
     }
-    static getDefaultMaxLengthEnforcement(platform = null) {
-      let t0;
-      if (true) {
-        return text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds;
+    set utc(value) {
+      this[utc] = value;
+    }
+    get dateOnly() {
+      return this[dateOnly];
+    }
+    set dateOnly(value) {
+      this[dateOnly] = value;
+    }
+    setYear(x) {
+      this.year = x;
+    }
+    setHasAmbiguousCentury(isAmbiguous) {
+      this[_hasAmbiguousCentury] = isAmbiguous;
+    }
+    setMonth(x) {
+      this.month = x;
+    }
+    setDay(x) {
+      this.day = x;
+    }
+    setDayOfYear(x) {
+      this.dayOfYear = x;
+    }
+    get dayOrDayOfYear() {
+      return this.dayOfYear === 0 ? this.day : this.dayOfYear;
+    }
+    setHour(x) {
+      this.hour = x;
+    }
+    setMinute(x) {
+      this.minute = x;
+    }
+    setSecond(x) {
+      this.second = x;
+    }
+    setFractionalSecond(x) {
+      this.fractionalSecond = x;
+    }
+    get hour24() {
+      return this.pm ? this.hour + 12 : this.hour;
+    }
+    verify(s) {
+      this[_verify](this.month, 1, 12, "month", s);
+      this[_verify](this.hour24, 0, 23, "hour", s);
+      this[_verify](this.minute, 0, 59, "minute", s);
+      this[_verify](this.second, 0, 59, "second", s);
+      this[_verify](this.fractionalSecond, 0, 999, "fractional second", s);
+      let date = this.asDate();
+      let minimumDate = this.dateOnly && date.hour === 1 ? 0 : date.hour;
+      this[_verify](this.hour24, minimumDate, date.hour, "hour", s, date);
+      if (this.dayOfYear > 0) {
+        let leapYear = date_computation.isLeapYear(date);
+        let correspondingDay = date_computation.dayOfYear(date.month, date.day, leapYear);
+        this[_verify](this.dayOfYear, correspondingDay, correspondingDay, "dayOfYear", s, date);
       } else {
-        switch (t0 = platform, t0 == null ? platform$.defaultTargetPlatform : t0) {
-          case C[4] || CT.C4:
-          case C[5] || CT.C5:
-          {
-            return text_formatter.MaxLengthEnforcement.enforced;
-          }
-          case C[6] || CT.C6:
-          case C[7] || CT.C7:
-          case C[8] || CT.C8:
-          case C[9] || CT.C9:
-          {
-            return text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds;
-          }
+        this[_verify](this.day, date.day, date.day, "day", s, date);
+      }
+      this[_verify](this.year, date.year, date.year, "year", s, date);
+    }
+    [_verify](value, min, max, desc, originalInput, parsed = null) {
+      let t0, t0$;
+      if (value < min || value > max) {
+        let parsedDescription = parsed == null ? "" : " Date parsed as " + dart.str(parsed) + ".";
+        let errorDescription = "Error parsing " + originalInput + ", invalid " + desc + " value: " + dart.str(value) + " in " + this[_locale$] + " with time zone offset " + dart.str((t0$ = (t0 = parsed, t0 == null ? null : t0.timeZoneOffset), t0$ == null ? "unknown" : t0$)) + "." + " Expected value between " + dart.str(min) + " and " + dart.str(max) + "." + parsedDescription + ".";
+        if (this[_retried] > 0) {
+          errorDescription = errorDescription + (" Failed after " + dart.str(this[_retried]) + " retries.");
         }
+        dart.throw(new core.FormatException.new(errorDescription));
       }
     }
-    static truncate(value, maxLength) {
-      let iterator = new characters_impl.StringCharacterRange.new(value.text);
-      if (extensions['StringCharacters|get#characters'](value.text)[$length] > maxLength) {
-        iterator.expandNext(maxLength);
-      }
-      let truncated = iterator.current;
-      return new text_input.TextEditingValue.new({text: truncated, selection: value.selection.copyWith({baseOffset: math.min(core.int, value.selection.start, truncated.length), extentOffset: math.min(core.int, value.selection.end, truncated.length)}), composing: !value.composing.isCollapsed && truncated.length > value.composing.start ? new ui.TextRange.new({start: value.composing.start, end: math.min(core.int, value.composing.end, truncated.length)}) : ui.TextRange.empty});
+    [_offsetYear](dateTime, offsetYears) {
+      let t7, t6, t5, t4, t3, t2, t1, t0;
+      t0 = dateTime.year + offsetYears;
+      t1 = dateTime.month;
+      t2 = dateTime.day;
+      t3 = dateTime.hour;
+      t4 = dateTime.minute;
+      t5 = dateTime.second;
+      t6 = dateTime.millisecond;
+      t7 = dateTime.isUtc;
+      return this[_dateTimeConstructor$](t0, t1, t2, t3, t4, t5, t6, t7);
     }
-    formatEditUpdate(oldValue, newValue) {
-      let t0;
-      let maxLength = this.maxLength;
-      if (maxLength == null || maxLength === -1 || extensions['StringCharacters|get#characters'](newValue.text)[$length] <= dart.notNull(maxLength)) {
-        return newValue;
-      }
-      if (!(dart.notNull(maxLength) > 0)) dart.assertFailed(null, I[1], 497, 12, "maxLength > 0");
-      switch (t0 = this.maxLengthEnforcement, t0 == null ? text_formatter.LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement() : t0) {
-        case C[0] || CT.C0:
-        {
-          return newValue;
-        }
-        case C[1] || CT.C1:
-        {
-          if (extensions['StringCharacters|get#characters'](oldValue.text)[$length] === maxLength && oldValue.selection.isCollapsed) {
-            return oldValue;
-          }
-          return text_formatter.LengthLimitingTextInputFormatter.truncate(newValue, maxLength);
-        }
-        case C[2] || CT.C2:
-        {
-          if (extensions['StringCharacters|get#characters'](oldValue.text)[$length] === maxLength && !oldValue.composing.isValid) {
-            return oldValue;
-          }
-          if (newValue.composing.isValid) {
-            return newValue;
-          }
-          return text_formatter.LengthLimitingTextInputFormatter.truncate(newValue, maxLength);
-        }
-      }
-    }
-  };
-  (text_formatter.LengthLimitingTextInputFormatter.new = function(maxLength, opts) {
-    let maxLengthEnforcement = opts && 'maxLengthEnforcement' in opts ? opts.maxLengthEnforcement : null;
-    this[maxLength$] = maxLength;
-    this[maxLengthEnforcement$] = maxLengthEnforcement;
-    if (!(maxLength == null || maxLength === -1 || dart.notNull(maxLength) > 0)) dart.assertFailed(null, I[1], 371, 15, "maxLength == null || maxLength == -1 || maxLength > 0");
-    ;
-  }).prototype = text_formatter.LengthLimitingTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.LengthLimitingTextInputFormatter);
-  dart.addTypeCaches(text_formatter.LengthLimitingTextInputFormatter);
-  dart.setMethodSignature(text_formatter.LengthLimitingTextInputFormatter, () => ({
-    __proto__: dart.getMethods(text_formatter.LengthLimitingTextInputFormatter.__proto__),
-    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
-  }));
-  dart.setLibraryUri(text_formatter.LengthLimitingTextInputFormatter, I[0]);
-  dart.setFieldSignature(text_formatter.LengthLimitingTextInputFormatter, () => ({
-    __proto__: dart.getFields(text_formatter.LengthLimitingTextInputFormatter.__proto__),
-    maxLength: dart.finalFieldType(dart.nullable(core.int)),
-    maxLengthEnforcement: dart.finalFieldType(dart.nullable(text_formatter.MaxLengthEnforcement))
-  }));
-  var TextRange_end = dart.privateName(ui, "TextRange.end");
-  var TextRange_start = dart.privateName(ui, "TextRange.start");
-  var TextSelection_isDirectional = dart.privateName(text_editing, "TextSelection.isDirectional");
-  var _name$0 = dart.privateName(ui, "_name");
-  var TextSelection_affinity = dart.privateName(text_editing, "TextSelection.affinity");
-  var TextSelection_extentOffset = dart.privateName(text_editing, "TextSelection.extentOffset");
-  var TextSelection_baseOffset = dart.privateName(text_editing, "TextSelection.baseOffset");
-  text_formatter._selectionAwareTextManipulation = function _selectionAwareTextManipulation(value, substringManipulation) {
-    let t0;
-    let selectionStartIndex = value.selection.start;
-    let selectionEndIndex = value.selection.end;
-    let manipulatedText = null;
-    let manipulatedSelection = null;
-    if (selectionStartIndex < 0 || selectionEndIndex < 0) {
-      manipulatedText = substringManipulation(value.text);
-    } else {
-      let beforeSelection = substringManipulation(value.text[$substring](0, selectionStartIndex));
-      let inSelection = substringManipulation(value.text[$substring](selectionStartIndex, selectionEndIndex));
-      let afterSelection = substringManipulation(value.text[$substring](selectionEndIndex));
-      manipulatedText = beforeSelection + inSelection + afterSelection;
-      if (value.selection.baseOffset > value.selection.extentOffset) {
-        manipulatedSelection = value.selection.copyWith({baseOffset: beforeSelection.length + inSelection.length, extentOffset: beforeSelection.length});
+    asDate(opts) {
+      let t7, t6, t5, t4, t3, t2, t1, t0, t7$, t6$, t5$, t4$, t3$, t2$, t1$, t0$, t7$0, t6$0, t5$0, t4$0, t3$0, t2$0, t1$0, t0$0;
+      let retries = opts && 'retries' in opts ? opts.retries : 3;
+      if (this[_date] != null) return dart.nullCheck(this[_date]);
+      let preliminaryResult = null;
+      let hasCentury = !this[_hasAmbiguousCentury] || this.year < 0 || this.year >= 100;
+      if (hasCentury) {
+        preliminaryResult = (t0 = this.year, t1 = this.month, t2 = this.dayOrDayOfYear, t3 = this.hour24, t4 = this.minute, t5 = this.second, t6 = this.fractionalSecond, t7 = this.utc, this[_dateTimeConstructor$](t0, t1, t2, t3, t4, t5, t6, t7));
       } else {
-        manipulatedSelection = value.selection.copyWith({baseOffset: beforeSelection.length, extentOffset: beforeSelection.length + inSelection.length});
+        let now = $default.clock.now();
+        if (this.utc) {
+          now = now.toUtc();
+        }
+        let lowerDate = this[_offsetYear](now, -80);
+        let upperDate = this[_offsetYear](now, 100 - 80);
+        let lowerCentury = (lowerDate.year / 100)[$truncate]() * 100;
+        let upperCentury = (upperDate.year / 100)[$truncate]() * 100;
+        preliminaryResult = (t0$ = upperCentury + this.year, t1$ = this.month, t2$ = this.dayOrDayOfYear, t3$ = this.hour24, t4$ = this.minute, t5$ = this.second, t6$ = this.fractionalSecond, t7$ = this.utc, this[_dateTimeConstructor$](t0$, t1$, t2$, t3$, t4$, t5$, t6$, t7$));
+        if (preliminaryResult.compareTo(upperDate) <= 0) {
+          if (!(preliminaryResult.compareTo(lowerDate) > 0)) dart.assertFailed(null, I[0], 217, 16, "preliminaryResult.compareTo(lowerDate) > 0");
+        } else {
+          preliminaryResult = (t0$0 = lowerCentury + this.year, t1$0 = this.month, t2$0 = this.dayOrDayOfYear, t3$0 = this.hour24, t4$0 = this.minute, t5$0 = this.second, t6$0 = this.fractionalSecond, t7$0 = this.utc, this[_dateTimeConstructor$](t0$0, t1$0, t2$0, t3$0, t4$0, t5$0, t6$0, t7$0));
+        }
       }
+      if (this.utc && hasCentury) {
+        this[_date] = preliminaryResult;
+      } else {
+        this[_date] = this[_correctForErrors](preliminaryResult, retries);
+      }
+      return dart.nullCheck(this[_date]);
     }
-    return new text_input.TextEditingValue.new({text: manipulatedText, selection: (t0 = manipulatedSelection, t0 == null ? C[10] || CT.C10 : t0), composing: manipulatedText === value.text ? value.composing : ui.TextRange.empty});
+    [_correctForErrors](result, retries) {
+      if (retries <= 0) {
+        return result;
+      }
+      let leapYear = date_computation.isLeapYear(result);
+      let resultDayOfYear = date_computation.dayOfYear(result.month, result.day, leapYear);
+      if (!this.utc && result.isUtc && (result.hour !== this.hour24 || result.day !== resultDayOfYear || !new core.DateTime.now().isUtc)) {
+        this[_retried] = this[_retried] + 1;
+        return this.asDate({retries: retries - 1});
+      }
+      if (this.dateOnly && result.hour !== 0) {
+        let tryAgain = this.asDate({retries: retries - 1});
+        if (!tryAgain._equals(result)) {
+          return tryAgain;
+        }
+        let expectedDayOfYear = this.dayOfYear === 0 ? date_computation.dayOfYear(this.month, this.day, leapYear) : this.dayOfYear;
+        let daysPrevious = expectedDayOfYear - resultDayOfYear;
+        let offset = daysPrevious * 24 - result.hour;
+        let adjusted = result.add(new core.Duration.new({hours: offset}));
+        if (adjusted.hour === 0) {
+          return adjusted;
+        }
+        let adjustedDayOfYear = date_computation.dayOfYear(adjusted.month, adjusted.day, leapYear);
+        if (adjustedDayOfYear !== expectedDayOfYear) {
+          return result;
+        }
+        return adjusted;
+      }
+      return result;
+    }
   };
-  dart.trackLibraries("packages/flutter/src/services/text_formatter.dart", {
-    "package:flutter/src/services/text_formatter.dart": text_formatter
+  (date_builder.DateBuilder.new = function(_locale, _dateTimeConstructor) {
+    this[year] = 1970;
+    this[month] = 1;
+    this[day] = 1;
+    this[dayOfYear] = 0;
+    this[hour] = 0;
+    this[minute] = 0;
+    this[second] = 0;
+    this[fractionalSecond] = 0;
+    this[pm] = false;
+    this[utc] = false;
+    this[_hasAmbiguousCentury] = false;
+    this[_date] = null;
+    this[_retried] = 0;
+    this[dateOnly] = false;
+    this[_locale$] = _locale;
+    this[_dateTimeConstructor$] = _dateTimeConstructor;
+    ;
+  }).prototype = date_builder.DateBuilder.prototype;
+  dart.addTypeTests(date_builder.DateBuilder);
+  dart.addTypeCaches(date_builder.DateBuilder);
+  dart.setMethodSignature(date_builder.DateBuilder, () => ({
+    __proto__: dart.getMethods(date_builder.DateBuilder.__proto__),
+    setYear: dart.fnType(dart.void, [core.int]),
+    setHasAmbiguousCentury: dart.fnType(dart.void, [core.bool]),
+    setMonth: dart.fnType(dart.void, [core.int]),
+    setDay: dart.fnType(dart.void, [core.int]),
+    setDayOfYear: dart.fnType(dart.void, [core.int]),
+    setHour: dart.fnType(dart.void, [core.int]),
+    setMinute: dart.fnType(dart.void, [core.int]),
+    setSecond: dart.fnType(dart.void, [core.int]),
+    setFractionalSecond: dart.fnType(dart.void, [core.int]),
+    verify: dart.fnType(dart.void, [core.String]),
+    [_verify]: dart.fnType(dart.void, [core.int, core.int, core.int, core.String, core.String], [dart.nullable(core.DateTime)]),
+    [_offsetYear]: dart.fnType(core.DateTime, [core.DateTime, core.int]),
+    asDate: dart.fnType(core.DateTime, [], {retries: core.int}, {}),
+    [_correctForErrors]: dart.fnType(core.DateTime, [core.DateTime, core.int])
+  }));
+  dart.setGetterSignature(date_builder.DateBuilder, () => ({
+    __proto__: dart.getGetters(date_builder.DateBuilder.__proto__),
+    dayOrDayOfYear: core.int,
+    hour24: core.int
+  }));
+  dart.setLibraryUri(date_builder.DateBuilder, I[1]);
+  dart.setFieldSignature(date_builder.DateBuilder, () => ({
+    __proto__: dart.getFields(date_builder.DateBuilder.__proto__),
+    year: dart.fieldType(core.int),
+    month: dart.fieldType(core.int),
+    day: dart.fieldType(core.int),
+    dayOfYear: dart.fieldType(core.int),
+    hour: dart.fieldType(core.int),
+    minute: dart.fieldType(core.int),
+    second: dart.fieldType(core.int),
+    fractionalSecond: dart.fieldType(core.int),
+    pm: dart.fieldType(core.bool),
+    utc: dart.fieldType(core.bool),
+    [_hasAmbiguousCentury]: dart.fieldType(core.bool),
+    [_locale$]: dart.finalFieldType(core.String),
+    [_date]: dart.fieldType(dart.nullable(core.DateTime)),
+    [_retried]: dart.fieldType(core.int),
+    dateOnly: dart.fieldType(core.bool),
+    [_dateTimeConstructor$]: dart.finalFieldType(dart.fnType(core.DateTime, [core.int, core.int, core.int, core.int, core.int, core.int, core.int, core.bool]))
+  }));
+  dart.trackLibraries("packages/intl/src/intl/date_builder.dart", {
+    "package:intl/src/intl/date_builder.dart": date_builder
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["text_formatter.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/services/text_formatter.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["date_builder.dart"],"names":[],"mappings":"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","file":"../../../../../../../../../packages/intl/src/intl/date_builder.dart.lib.js"}');
   // Exports:
   return {
-    src__services__text_formatter: text_formatter
+    src__intl__date_builder: date_builder
   };
 }));
 
-//# sourceMappingURL=text_formatter.dart.lib.js.map
+//# sourceMappingURL=date_builder.dart.lib.js.map

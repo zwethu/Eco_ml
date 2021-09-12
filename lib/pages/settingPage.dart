@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:eco_ml/data/outcomeData.dart';
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -50,7 +49,7 @@ class _SettingPageState extends State<SettingPage> {
                 height: 20,
                 child: Text(''),
               ),
-              GestureDetector(
+              InkWell(
                 child: Container(
                   height: 50,
                   padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),

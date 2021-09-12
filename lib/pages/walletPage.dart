@@ -141,7 +141,7 @@ class _WalletPageState extends State<WalletPage> {
                         Container(
                           padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
                           child: Text(
-                            '$income Ks',
+                            '$income',
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -187,7 +187,7 @@ class _WalletPageState extends State<WalletPage> {
                         Container(
                           padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
                           child: Text(
-                            '$outcome Ks',
+                            '$outcome',
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -247,7 +247,7 @@ class _WalletPageState extends State<WalletPage> {
                                           BorderRadius.all(Radius.circular(15)),
                                     ),
                                     margin: EdgeInsets.symmetric(
-                                        vertical: 5, horizontal: 10),
+                                        vertical: 5, horizontal: 5),
                                     padding: EdgeInsets.all(5),
                                     child: ListTile(
                                       leading: Container(
@@ -290,10 +290,10 @@ class _WalletPageState extends State<WalletPage> {
                                       ),
                                       trailing: Text(
                                         data.isExpense
-                                            ? '- ' +
+                                            ? '-' +
                                                 data.amount.toString() +
                                                 ' Ks'
-                                            : '+ ' +
+                                            : '+' +
                                                 data.amount.toString() +
                                                 ' Ks',
                                         style: TextStyle(

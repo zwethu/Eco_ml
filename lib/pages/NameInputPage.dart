@@ -105,7 +105,7 @@ class _NameInputPageState extends State<NameInputPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(30),
+                padding: EdgeInsets.all(25),
                 child: ElevatedButton(
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -116,31 +116,23 @@ class _NameInputPageState extends State<NameInputPage> {
                     backgroundColor:
                         MaterialStateProperty.all(Color(0xffE3A5AA)),
                   ),
-                  
                   onPressed: () {
-                    if(nameController.text.isEmpty){
-                      _validate=true;
-                      setState(() {
-                        
-                      });
-                    }
-                     
-                    else{
+                    if (nameController.text.isEmpty) {
+                      _validate = true;
+                      setState(() {});
+                    } else {
                       _validate = false;
                       setState(() {
-                         final newData = UserName(nameController.text.toString());
-                    addData(newData);
-                    newData.save();
-                    navigateToAmountInputPage(context);
+                        final newData =
+                            UserName(nameController.text.toString());
+                        addData(newData);
+                        newData.save();
+                        navigateToAmountInputPage(context);
                       });
                     }
-                   
-                         
-                       
-                   
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 0, horizontal: 60),
+                    margin: EdgeInsets.symmetric(vertical: 0, horizontal: 45),
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                     child: Text(
                       "Submit",
@@ -153,6 +145,7 @@ class _NameInputPageState extends State<NameInputPage> {
                   ),
                 ),
               ),
+              
             ],
           ),
         ),

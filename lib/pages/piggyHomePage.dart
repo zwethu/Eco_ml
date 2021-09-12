@@ -10,7 +10,7 @@ class PiggyHomePage extends StatefulWidget {
 
 class _PiggyHomePageState extends State<PiggyHomePage> with SingleTickerProviderStateMixin {
   late AnimationController animationController;
-
+  
   @override
   void initState() {
     animationController = AnimationController(
@@ -32,10 +32,6 @@ void dispose() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff4F98A1),
-        elevation: 1,
-      ),
       body: Column(
         children: [
           SizedBox(

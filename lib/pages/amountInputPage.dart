@@ -18,7 +18,7 @@ class _AmountInputPageState extends State<AmountInputPage> {
   final piggyBox = Hive.box('piggy');
 
   TextEditingController amountController = TextEditingController();
-  bool _validate = false;
+  // bool _validate = false;
   @override
   void initState() {
     super.initState();
@@ -106,7 +106,7 @@ class _AmountInputPageState extends State<AmountInputPage> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(30),
+                padding: EdgeInsets.all(25),
                 child: ElevatedButton(
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -133,14 +133,14 @@ class _AmountInputPageState extends State<AmountInputPage> {
                       final calculateOutcome = outcomeData ?? 0.0;
                       outcomeBox.put(0, calculateOutcome);
                       print(outcomeBox.get(0));
-                      final piggyData = piggyBox.get(0);
-                      final calculatePiggy = piggyData ?? 0;
+                      var piggyData = piggyBox.get(0);
+                      var calculatePiggy = piggyData ?? 0.0;
                       piggyBox.put(0, calculatePiggy);
                       print(piggyBox.get(0));
                     });
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 0, horizontal: 60),
+                    margin: EdgeInsets.symmetric(vertical: 0, horizontal: 50),
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                     child: Text(
                       "Submit",
