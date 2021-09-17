@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/data/database.dart';
 import 'package:eco_ml/pages/amountInputPage.dart';
@@ -220,7 +221,8 @@ class _TransactionPageState extends State<TransactionPage> {
                           print(outcomeBox.get(0));
                         }
                         navigateToHome(context);
-
+                          final player = AudioCache();
+                          player.play('images/cash.mp3');
                         // transactionBox.clear();
                         // outcomeBox.clear();
                         // incomeBox.clear();

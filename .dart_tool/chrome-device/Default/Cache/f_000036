@@ -1,23 +1,37 @@
-define(['dart_sdk', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/animation/curves.dart', 'packages/flutter/src/foundation/change_notifier.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/widgets/widget_span.dart'], (function load__packages__flutter__src__material__tab_controller_dart(dart_sdk, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__animation__curves$46dart, packages__flutter__src__foundation__change_notifier$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__widgets__widget_span$46dart) {
+define(['dart_sdk', 'packages/vector_math/vector_math_64.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/foundation/collections.dart', 'packages/flutter/src/foundation/object.dart'], (function load__packages__flutter__src__painting__gradient_dart(dart_sdk, packages__vector_math__vector_math_64$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__foundation__collections$46dart, packages__flutter__src__foundation__object$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const _internal = dart_sdk._internal;
+  const ui = dart_sdk.ui;
   const math = dart_sdk.math;
+  const typed_data = dart_sdk.typed_data;
+  const collection = dart_sdk.collection;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
-  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
-  const change_notifier = packages__flutter__src__foundation__change_notifier$46dart.src__foundation__change_notifier;
-  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const ticker_provider = packages__flutter__src__widgets__widget_span$46dart.src__widgets__ticker_provider;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  var tab_controller = Object.create(dart.library);
-  var $toDouble = dartx.toDouble;
-  var $_equals = dartx._equals;
+  const vector_math_64 = packages__vector_math__vector_math_64$46dart.vector_math_64;
+  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
+  const collections = packages__flutter__src__foundation__collections$46dart.src__foundation__collections;
+  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
+  var gradient = Object.create(dart.library);
+  var $length = dartx.length;
+  var $map = dartx.map;
+  var $toList = dartx.toList;
+  var $runtimeType = dartx.runtimeType;
+  var $isNotEmpty = dartx.isNotEmpty;
+  var $first = dartx.first;
+  var $last = dartx.last;
+  var $lastIndexWhere = dartx.lastIndexWhere;
+  var $_get = dartx._get;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))()
+    ListOfdouble: () => (T.ListOfdouble = dart.constFn(core.List$(core.double)))(),
+    intTodouble: () => (T.intTodouble = dart.constFn(dart.fnType(core.double, [core.int])))(),
+    ColorToColor: () => (T.ColorToColor = dart.constFn(dart.fnType(ui.Color, [ui.Color])))(),
+    LinearGradientN: () => (T.LinearGradientN = dart.constFn(dart.nullable(gradient.LinearGradient)))(),
+    RadialGradientN: () => (T.RadialGradientN = dart.constFn(dart.nullable(gradient.RadialGradient)))(),
+    SweepGradientN: () => (T.SweepGradientN = dart.constFn(dart.nullable(gradient.SweepGradient)))(),
+    doubleTobool: () => (T.doubleTobool = dart.constFn(dart.fnType(core.bool, [core.double])))(),
+    SplayTreeSetOfdouble: () => (T.SplayTreeSetOfdouble = dart.constFn(collection.SplayTreeSet$(core.double)))(),
+    doubleToColor: () => (T.doubleToColor = dart.constFn(dart.fnType(ui.Color, [core.double])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
@@ -25,399 +39,520 @@ define(['dart_sdk', 'packages/flutter/src/animation/animation_controller.dart', 
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 300000
+        __proto__: alignment.Alignment.prototype,
+        [Alignment_y]: 0,
+        [Alignment_x]: -1
       });
     },
     get C1() {
       return C[1] = dart.const({
-        __proto__: curves.Cubic.prototype,
-        [Cubic_d]: 1,
-        [Cubic_c]: 0.25,
-        [Cubic_b]: 0.1,
-        [Cubic_a]: 0.25
+        __proto__: alignment.Alignment.prototype,
+        [Alignment_y]: 0,
+        [Alignment_x]: 1
       });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "controller",
-        [_Location_column]: 7,
-        [_Location_line]: 441,
-        [_Location_file]: null
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "enabled",
-        [_Location_column]: 7,
-        [_Location_line]: 442,
-        [_Location_file]: null
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 443,
-        [_Location_file]: null
-      });
-    },
-    get C3() {
-      return C[3] = dart.constList([C[4] || CT.C4, C[5] || CT.C5, C[6] || CT.C6], widget_inspector._Location);
     },
     get C2() {
       return C[2] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[3] || CT.C3,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 440,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/material/tab_controller.dart"
+        __proto__: ui.TileMode.prototype,
+        [_name]: "TileMode.clamp",
+        index: 0
+      });
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: alignment.Alignment.prototype,
+        [Alignment_y]: 0,
+        [Alignment_x]: 0
       });
     }
   }, false);
-  var C = Array(7).fill(void 0);
+  var C = Array(4).fill(void 0);
   var I = [
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/material/tab_controller.dart",
-    "package:flutter/src/material/tab_controller.dart"
+    "package:flutter/src/painting/gradient.dart",
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/painting/gradient.dart"
   ];
-  var length$ = dart.privateName(tab_controller, "TabController.length");
-  var _indexIsChangingCount = dart.privateName(tab_controller, "_indexIsChangingCount");
-  var _index = dart.privateName(tab_controller, "_index");
-  var _previousIndex = dart.privateName(tab_controller, "_previousIndex");
-  var _animationController = dart.privateName(tab_controller, "_animationController");
-  var _copyWith = dart.privateName(tab_controller, "_copyWith");
-  var _changeIndex = dart.privateName(tab_controller, "_changeIndex");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  var Cubic_d = dart.privateName(curves, "Cubic.d");
-  var Cubic_c = dart.privateName(curves, "Cubic.c");
-  var Cubic_b = dart.privateName(curves, "Cubic.b");
-  var Cubic_a = dart.privateName(curves, "Cubic.a");
-  tab_controller.TabController = class TabController extends change_notifier.ChangeNotifier {
-    get length() {
-      return this[length$];
+  gradient._ColorsAndStops = class _ColorsAndStops extends core.Object {};
+  (gradient._ColorsAndStops.new = function(colors, stops) {
+    this.colors = colors;
+    this.stops = stops;
+    ;
+  }).prototype = gradient._ColorsAndStops.prototype;
+  dart.addTypeTests(gradient._ColorsAndStops);
+  dart.addTypeCaches(gradient._ColorsAndStops);
+  dart.setLibraryUri(gradient._ColorsAndStops, I[0]);
+  dart.setFieldSignature(gradient._ColorsAndStops, () => ({
+    __proto__: dart.getFields(gradient._ColorsAndStops.__proto__),
+    colors: dart.finalFieldType(core.List$(ui.Color)),
+    stops: dart.finalFieldType(core.List$(core.double))
+  }));
+  gradient.GradientTransform = class GradientTransform extends core.Object {};
+  (gradient.GradientTransform.new = function() {
+    ;
+  }).prototype = gradient.GradientTransform.prototype;
+  dart.addTypeTests(gradient.GradientTransform);
+  dart.addTypeCaches(gradient.GradientTransform);
+  dart.setLibraryUri(gradient.GradientTransform, I[0]);
+  var radians$ = dart.privateName(gradient, "GradientRotation.radians");
+  gradient.GradientRotation = class GradientRotation extends gradient.GradientTransform {
+    get radians() {
+      return this[radians$];
     }
-    set length(value) {
-      super.length = value;
+    set radians(value) {
+      super.radians = value;
     }
-    [_copyWith](opts) {
-      let t0, t0$, t0$0;
-      let index = opts && 'index' in opts ? opts.index : null;
-      let length = opts && 'length' in opts ? opts.length : null;
-      let previousIndex = opts && 'previousIndex' in opts ? opts.previousIndex : null;
-      return new tab_controller.TabController.__({index: (t0 = index, t0 == null ? this[_index] : t0), length: (t0$ = length, t0$ == null ? this.length : t0$), animationController: this[_animationController], previousIndex: (t0$0 = previousIndex, t0$0 == null ? this[_previousIndex] : t0$0)});
-    }
-    get animation() {
+    transform(bounds, opts) {
       let t0;
-      t0 = this[_animationController];
-      return t0 == null ? null : t0.view;
-    }
-    [_changeIndex](value, opts) {
-      let duration = opts && 'duration' in opts ? opts.duration : null;
-      let curve = opts && 'curve' in opts ? opts.curve : null;
-      if (!(value !== null)) dart.assertFailed(null, I[0], 211, 12, "value != null");
-      if (!(value >= 0 && (value < this.length || this.length === 0))) dart.assertFailed(null, I[0], 212, 12, "value >= 0 && (value < length || length == 0)");
-      if (!(duration != null || curve == null)) dart.assertFailed(null, I[0], 213, 12, "duration != null || curve == null");
-      if (!(this[_indexIsChangingCount] >= 0)) dart.assertFailed(null, I[0], 214, 12, "_indexIsChangingCount >= 0");
-      if (value === this[_index] || this.length < 2) return;
-      this[_previousIndex] = this.index;
-      this[_index] = value;
-      if (duration != null) {
-        this[_indexIsChangingCount] = this[_indexIsChangingCount] + 1;
-        this.notifyListeners();
-        dart.nullCheck(this[_animationController]).animateTo(this[_index][$toDouble](), {duration: duration, curve: dart.nullCheck(curve)}).whenCompleteOrCancel(dart.fn(() => {
-          if (this[_animationController] != null) {
-            this[_indexIsChangingCount] = this[_indexIsChangingCount] - 1;
-            this.notifyListeners();
-          }
-        }, T.VoidTovoid()));
-      } else {
-        this[_indexIsChangingCount] = this[_indexIsChangingCount] + 1;
-        dart.nullCheck(this[_animationController]).value = this[_index][$toDouble]();
-        this[_indexIsChangingCount] = this[_indexIsChangingCount] - 1;
-        this.notifyListeners();
-      }
-    }
-    get index() {
-      return this[_index];
-    }
-    set index(value) {
-      this[_changeIndex](value);
-    }
-    get previousIndex() {
-      return this[_previousIndex];
-    }
-    get indexIsChanging() {
-      return this[_indexIsChangingCount] !== 0;
-    }
-    animateTo(value, opts) {
-      let duration = opts && 'duration' in opts ? opts.duration : C[0] || CT.C0;
-      let curve = opts && 'curve' in opts ? opts.curve : C[1] || CT.C1;
-      this[_changeIndex](value, {duration: duration, curve: curve});
-    }
-    get offset() {
-      return dart.nullCheck(this[_animationController]).value - this[_index][$toDouble]();
-    }
-    set offset(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[0], 287, 12, "value != null");
-      if (!(value >= -1.0 && value <= 1.0)) dart.assertFailed(null, I[0], 288, 12, "value >= -1.0 && value <= 1.0");
-      if (!!this.indexIsChanging) dart.assertFailed(null, I[0], 289, 12, "!indexIsChanging");
-      if (value === this.offset) return;
-      dart.nullCheck(this[_animationController]).value = value + this[_index][$toDouble]();
-    }
-    dispose() {
-      let t0;
-      t0 = this[_animationController];
-      t0 == null ? null : t0.dispose();
-      this[_animationController] = null;
-      super.dispose();
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      if (!(bounds !== null)) dart.assertFailed(null, I[1], 110, 12, "bounds != null");
+      let sinRadians = math.sin(this.radians);
+      let oneMinusCosRadians = 1 - math.cos(this.radians);
+      let center = bounds.center;
+      let originX = sinRadians * center.dy + oneMinusCosRadians * center.dx;
+      let originY = -sinRadians * center.dx + oneMinusCosRadians * center.dy;
+      t0 = vector_math_64.Matrix4.identity();
+      return (() => {
+        t0.translate(originX, originY);
+        t0.rotateZ(this.radians);
+        return t0;
+      })();
     }
   };
-  (tab_controller.TabController.new = function(opts) {
-    let initialIndex = opts && 'initialIndex' in opts ? opts.initialIndex : 0;
-    let length = opts && 'length' in opts ? opts.length : null;
-    let vsync = opts && 'vsync' in opts ? opts.vsync : null;
-    this[_indexIsChangingCount] = 0;
-    this[length$] = length;
-    if (!(length !== null && length >= 0)) dart.assertFailed(null, I[0], 150, 14, "length != null && length >= 0");
-    if (!(initialIndex !== null && initialIndex >= 0 && (length === 0 || initialIndex < length))) dart.assertFailed(null, I[0], 151, 14, "initialIndex != null && initialIndex >= 0 && (length == 0 || initialIndex < length)");
-    this[_index] = initialIndex;
-    this[_previousIndex] = initialIndex;
-    this[_animationController] = new animation_controller.AnimationController.unbounded({value: initialIndex[$toDouble](), vsync: vsync});
-    tab_controller.TabController.__proto__.new.call(this);
+  (gradient.GradientRotation.new = function(radians) {
+    this[radians$] = radians;
+    gradient.GradientRotation.__proto__.new.call(this);
     ;
-  }).prototype = tab_controller.TabController.prototype;
-  (tab_controller.TabController.__ = function(opts) {
-    let index = opts && 'index' in opts ? opts.index : null;
-    let previousIndex = opts && 'previousIndex' in opts ? opts.previousIndex : null;
-    let animationController = opts && 'animationController' in opts ? opts.animationController : null;
-    let length = opts && 'length' in opts ? opts.length : null;
-    this[_indexIsChangingCount] = 0;
-    this[length$] = length;
-    this[_index] = index;
-    this[_previousIndex] = previousIndex;
-    this[_animationController] = animationController;
-    tab_controller.TabController.__proto__.new.call(this);
-    ;
-  }).prototype = tab_controller.TabController.prototype;
-  dart.addTypeTests(tab_controller.TabController);
-  dart.addTypeCaches(tab_controller.TabController);
-  dart.setMethodSignature(tab_controller.TabController, () => ({
-    __proto__: dart.getMethods(tab_controller.TabController.__proto__),
-    [_copyWith]: dart.fnType(tab_controller.TabController, [], {}, {index: dart.nullable(core.int), length: dart.nullable(core.int), previousIndex: dart.nullable(core.int)}),
-    [_changeIndex]: dart.fnType(dart.void, [core.int], {curve: dart.nullable(curves.Curve), duration: dart.nullable(core.Duration)}, {}),
-    animateTo: dart.fnType(dart.void, [core.int], {curve: curves.Curve, duration: core.Duration}, {})
+  }).prototype = gradient.GradientRotation.prototype;
+  dart.addTypeTests(gradient.GradientRotation);
+  dart.addTypeCaches(gradient.GradientRotation);
+  dart.setMethodSignature(gradient.GradientRotation, () => ({
+    __proto__: dart.getMethods(gradient.GradientRotation.__proto__),
+    transform: dart.fnType(vector_math_64.Matrix4, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {})
   }));
-  dart.setGetterSignature(tab_controller.TabController, () => ({
-    __proto__: dart.getGetters(tab_controller.TabController.__proto__),
-    animation: dart.nullable(animation.Animation$(core.double)),
-    index: core.int,
-    previousIndex: core.int,
-    indexIsChanging: core.bool,
-    offset: core.double
+  dart.setLibraryUri(gradient.GradientRotation, I[0]);
+  dart.setFieldSignature(gradient.GradientRotation, () => ({
+    __proto__: dart.getFields(gradient.GradientRotation.__proto__),
+    radians: dart.finalFieldType(core.double)
   }));
-  dart.setSetterSignature(tab_controller.TabController, () => ({
-    __proto__: dart.getSetters(tab_controller.TabController.__proto__),
-    index: core.int,
-    offset: core.double
-  }));
-  dart.setLibraryUri(tab_controller.TabController, I[1]);
-  dart.setFieldSignature(tab_controller.TabController, () => ({
-    __proto__: dart.getFields(tab_controller.TabController.__proto__),
-    [_animationController]: dart.fieldType(dart.nullable(animation_controller.AnimationController)),
-    length: dart.finalFieldType(core.int),
-    [_index]: dart.fieldType(core.int),
-    [_previousIndex]: dart.fieldType(core.int),
-    [_indexIsChangingCount]: dart.fieldType(core.int)
-  }));
-  var controller$ = dart.privateName(tab_controller, "_TabControllerScope.controller");
-  var enabled$ = dart.privateName(tab_controller, "_TabControllerScope.enabled");
-  tab_controller._TabControllerScope = class _TabControllerScope extends framework.InheritedWidget {
-    get controller() {
-      return this[controller$];
+  var colors$ = dart.privateName(gradient, "Gradient.colors");
+  var stops$ = dart.privateName(gradient, "Gradient.stops");
+  var transform$ = dart.privateName(gradient, "Gradient.transform");
+  var _impliedStops = dart.privateName(gradient, "_impliedStops");
+  var _resolveTransform = dart.privateName(gradient, "_resolveTransform");
+  gradient.Gradient = class Gradient extends core.Object {
+    get colors() {
+      return this[colors$];
     }
-    set controller(value) {
-      super.controller = value;
+    set colors(value) {
+      super.colors = value;
     }
-    get enabled() {
-      return this[enabled$];
+    get stops() {
+      return this[stops$];
     }
-    set enabled(value) {
-      super.enabled = value;
+    set stops(value) {
+      super.stops = value;
     }
-    updateShouldNotify(old) {
-      tab_controller._TabControllerScope.as(old);
-      return this.enabled !== old.enabled || !this.controller[$_equals](old.controller);
+    get transform() {
+      return this[transform$];
+    }
+    set transform(value) {
+      super.transform = value;
+    }
+    [_impliedStops]() {
+      if (this.stops != null) return dart.nullCheck(this.stops);
+      if (!(this.colors[$length] >= 2)) dart.assertFailed("colors list must have at least two colors", I[1], 190, 12, "colors.length >= 2");
+      let separation = 1.0 / (this.colors[$length] - 1);
+      return T.ListOfdouble().generate(this.colors[$length], dart.fn(index => index * separation, T.intTodouble()), {growable: false});
+    }
+    lerpFrom(a, t) {
+      if (a == null) return this.scale(t);
+      return null;
+    }
+    lerpTo(b, t) {
+      if (b == null) return this.scale(1.0 - t);
+      return null;
+    }
+    static lerp(a, b, t) {
+      if (!(t !== null)) dart.assertFailed(null, I[1], 291, 12, "t != null");
+      let result = null;
+      if (b != null) result = b.lerpFrom(a, t);
+      if (result == null && a != null) result = a.lerpTo(b, t);
+      if (result != null) return result;
+      if (a == null && b == null) return null;
+      if (!(a != null && b != null)) dart.assertFailed(null, I[1], 301, 12, "a != null && b != null");
+      return t < 0.5 ? dart.nullCheck(a).scale(1.0 - t * 2.0) : dart.nullCheck(b).scale((t - 0.5) * 2.0);
+    }
+    [_resolveTransform](bounds, textDirection) {
+      let t1, t0;
+      t0 = this.transform;
+      return t0 == null ? null : (t1 = t0.transform(bounds, {textDirection: textDirection}), t1 == null ? null : t1.storage);
     }
   };
-  (tab_controller._TabControllerScope.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let controller = opts && 'controller' in opts ? opts.controller : null;
-    let enabled = opts && 'enabled' in opts ? opts.enabled : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[controller$] = controller;
-    this[enabled$] = enabled;
-    tab_controller._TabControllerScope.__proto__.new.call(this, {key: key, child: child, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (gradient.Gradient.new = function(opts) {
+    let colors = opts && 'colors' in opts ? opts.colors : null;
+    let stops = opts && 'stops' in opts ? opts.stops : null;
+    let transform = opts && 'transform' in opts ? opts.transform : null;
+    this[colors$] = colors;
+    this[stops$] = stops;
+    this[transform$] = transform;
+    if (!(colors !== null)) dart.assertFailed(null, I[1], 153, 15, "colors != null");
     ;
-  }).prototype = tab_controller._TabControllerScope.prototype;
-  dart.addTypeTests(tab_controller._TabControllerScope);
-  dart.addTypeCaches(tab_controller._TabControllerScope);
-  dart.setMethodSignature(tab_controller._TabControllerScope, () => ({
-    __proto__: dart.getMethods(tab_controller._TabControllerScope.__proto__),
-    updateShouldNotify: dart.fnType(core.bool, [dart.nullable(core.Object)])
+  }).prototype = gradient.Gradient.prototype;
+  dart.addTypeTests(gradient.Gradient);
+  dart.addTypeCaches(gradient.Gradient);
+  dart.setMethodSignature(gradient.Gradient, () => ({
+    __proto__: dart.getMethods(gradient.Gradient.__proto__),
+    [_impliedStops]: dart.fnType(core.List$(core.double), []),
+    lerpFrom: dart.fnType(dart.nullable(gradient.Gradient), [dart.nullable(gradient.Gradient), core.double]),
+    lerpTo: dart.fnType(dart.nullable(gradient.Gradient), [dart.nullable(gradient.Gradient), core.double]),
+    [_resolveTransform]: dart.fnType(dart.nullable(typed_data.Float64List), [ui.Rect, dart.nullable(ui.TextDirection)])
   }));
-  dart.setLibraryUri(tab_controller._TabControllerScope, I[1]);
-  dart.setFieldSignature(tab_controller._TabControllerScope, () => ({
-    __proto__: dart.getFields(tab_controller._TabControllerScope.__proto__),
-    controller: dart.finalFieldType(tab_controller.TabController),
-    enabled: dart.finalFieldType(core.bool)
+  dart.setLibraryUri(gradient.Gradient, I[0]);
+  dart.setFieldSignature(gradient.Gradient, () => ({
+    __proto__: dart.getFields(gradient.Gradient.__proto__),
+    colors: dart.finalFieldType(core.List$(ui.Color)),
+    stops: dart.finalFieldType(dart.nullable(core.List$(core.double))),
+    transform: dart.finalFieldType(dart.nullable(gradient.GradientTransform))
   }));
-  var length$0 = dart.privateName(tab_controller, "DefaultTabController.length");
-  var initialIndex$ = dart.privateName(tab_controller, "DefaultTabController.initialIndex");
-  var child$ = dart.privateName(tab_controller, "DefaultTabController.child");
-  tab_controller.DefaultTabController = class DefaultTabController extends framework.StatefulWidget {
-    get length() {
-      return this[length$0];
+  var begin$ = dart.privateName(gradient, "LinearGradient.begin");
+  var end$ = dart.privateName(gradient, "LinearGradient.end");
+  var tileMode$ = dart.privateName(gradient, "LinearGradient.tileMode");
+  var Alignment_y = dart.privateName(alignment, "Alignment.y");
+  var Alignment_x = dart.privateName(alignment, "Alignment.x");
+  var _name = dart.privateName(ui, "_name");
+  gradient.LinearGradient = class LinearGradient extends gradient.Gradient {
+    get begin() {
+      return this[begin$];
     }
-    set length(value) {
-      super.length = value;
+    set begin(value) {
+      super.begin = value;
     }
-    get initialIndex() {
-      return this[initialIndex$];
+    get end() {
+      return this[end$];
     }
-    set initialIndex(value) {
-      super.initialIndex = value;
+    set end(value) {
+      super.end = value;
     }
-    get child() {
-      return this[child$];
+    get tileMode() {
+      return this[tileMode$];
     }
-    set child(value) {
-      super.child = value;
+    set tileMode(value) {
+      super.tileMode = value;
     }
-    static of(context) {
-      let t0;
-      let scope = context.dependOnInheritedWidgetOfExactType(tab_controller._TabControllerScope);
-      t0 = scope;
-      return t0 == null ? null : t0.controller;
+    createShader(rect, opts) {
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      return ui.Gradient.linear(this.begin.resolve(textDirection).withinRect(rect), this.end.resolve(textDirection).withinRect(rect), this.colors, this[_impliedStops](), this.tileMode, this[_resolveTransform](rect, textDirection));
     }
-    createState() {
-      return new tab_controller._DefaultTabControllerState.new();
+    scale(factor) {
+      return new gradient.LinearGradient.new({begin: this.begin, end: this.end, colors: this.colors[$map](ui.Color, dart.fn(color => dart.nullCheck(ui.Color.lerp(null, color, factor)), T.ColorToColor()))[$toList](), stops: this.stops, tileMode: this.tileMode});
+    }
+    lerpFrom(a, t) {
+      if (a == null || gradient.LinearGradient.is(a)) return gradient.LinearGradient.lerp(T.LinearGradientN().as(a), this, t);
+      return super.lerpFrom(a, t);
+    }
+    lerpTo(b, t) {
+      if (b == null || gradient.LinearGradient.is(b)) return gradient.LinearGradient.lerp(this, T.LinearGradientN().as(b), t);
+      return super.lerpTo(b, t);
+    }
+    static lerp(a, b, t) {
+      if (!(t !== null)) dart.assertFailed(null, I[1], 477, 12, "t != null");
+      if (a == null && b == null) return null;
+      if (a == null) return dart.nullCheck(b).scale(t);
+      if (b == null) return a.scale(1.0 - t);
+      let interpolated = gradient._interpolateColorsAndStops(a.colors, a[_impliedStops](), b.colors, b[_impliedStops](), t);
+      return new gradient.LinearGradient.new({begin: dart.nullCheck(alignment.AlignmentGeometry.lerp(a.begin, b.begin, t)), end: dart.nullCheck(alignment.AlignmentGeometry.lerp(a.end, b.end, t)), colors: interpolated.colors, stops: interpolated.stops, tileMode: t < 0.5 ? a.tileMode : b.tileMode});
+    }
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
+      return gradient.LinearGradient.is(other) && other.begin._equals(this.begin) && other.end._equals(this.end) && other.tileMode === this.tileMode && collections.listEquals(ui.Color, other.colors, this.colors) && collections.listEquals(core.double, other.stops, this.stops);
+    }
+    get hashCode() {
+      return ui.hashValues(this.begin, this.end, this.tileMode, ui.hashList(this.colors), ui.hashList(this.stops));
+    }
+    toString() {
+      return object.objectRuntimeType(this, "LinearGradient") + "(" + dart.str(this.begin) + ", " + dart.str(this.end) + ", " + dart.str(this.colors) + ", " + dart.str(this.stops) + ", " + dart.str(this.tileMode) + ")";
     }
   };
-  (tab_controller.DefaultTabController.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let length = opts && 'length' in opts ? opts.length : null;
-    let initialIndex = opts && 'initialIndex' in opts ? opts.initialIndex : 0;
-    let child = opts && 'child' in opts ? opts.child : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[length$0] = length;
-    this[initialIndex$] = initialIndex;
-    this[child$] = child;
-    if (!(initialIndex !== null)) dart.assertFailed(null, I[0], 378, 15, "initialIndex != null");
-    if (!(length >= 0)) dart.assertFailed(null, I[0], 379, 15, "length >= 0");
-    if (!(length === 0 || initialIndex >= 0 && initialIndex < length)) dart.assertFailed(null, I[0], 380, 15, "length == 0 || (initialIndex >= 0 && initialIndex < length)");
-    tab_controller.DefaultTabController.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (gradient.LinearGradient.new = function(opts) {
+    let begin = opts && 'begin' in opts ? opts.begin : C[0] || CT.C0;
+    let end = opts && 'end' in opts ? opts.end : C[1] || CT.C1;
+    let colors = opts && 'colors' in opts ? opts.colors : null;
+    let stops = opts && 'stops' in opts ? opts.stops : null;
+    let tileMode = opts && 'tileMode' in opts ? opts.tileMode : C[2] || CT.C2;
+    let transform = opts && 'transform' in opts ? opts.transform : null;
+    this[begin$] = begin;
+    this[end$] = end;
+    this[tileMode$] = tileMode;
+    if (!(begin !== null)) dart.assertFailed(null, I[1], 374, 15, "begin != null");
+    if (!(end !== null)) dart.assertFailed(null, I[1], 375, 15, "end != null");
+    if (!(tileMode !== null)) dart.assertFailed(null, I[1], 376, 15, "tileMode != null");
+    gradient.LinearGradient.__proto__.new.call(this, {colors: colors, stops: stops, transform: transform});
     ;
-  }).prototype = tab_controller.DefaultTabController.prototype;
-  dart.addTypeTests(tab_controller.DefaultTabController);
-  dart.addTypeCaches(tab_controller.DefaultTabController);
-  dart.setMethodSignature(tab_controller.DefaultTabController, () => ({
-    __proto__: dart.getMethods(tab_controller.DefaultTabController.__proto__),
-    createState: dart.fnType(tab_controller._DefaultTabControllerState, [])
+  }).prototype = gradient.LinearGradient.prototype;
+  dart.addTypeTests(gradient.LinearGradient);
+  dart.addTypeCaches(gradient.LinearGradient);
+  dart.setMethodSignature(gradient.LinearGradient, () => ({
+    __proto__: dart.getMethods(gradient.LinearGradient.__proto__),
+    createShader: dart.fnType(ui.Shader, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
+    scale: dart.fnType(gradient.LinearGradient, [core.double])
   }));
-  dart.setLibraryUri(tab_controller.DefaultTabController, I[1]);
-  dart.setFieldSignature(tab_controller.DefaultTabController, () => ({
-    __proto__: dart.getFields(tab_controller.DefaultTabController.__proto__),
-    length: dart.finalFieldType(core.int),
-    initialIndex: dart.finalFieldType(core.int),
-    child: dart.finalFieldType(framework.Widget)
+  dart.setLibraryUri(gradient.LinearGradient, I[0]);
+  dart.setFieldSignature(gradient.LinearGradient, () => ({
+    __proto__: dart.getFields(gradient.LinearGradient.__proto__),
+    begin: dart.finalFieldType(alignment.AlignmentGeometry),
+    end: dart.finalFieldType(alignment.AlignmentGeometry),
+    tileMode: dart.finalFieldType(ui.TileMode)
   }));
-  var ___DefaultTabControllerState__controller = dart.privateName(tab_controller, "_#_DefaultTabControllerState#_controller");
-  var _controller = dart.privateName(tab_controller, "_controller");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  const State_SingleTickerProviderStateMixin$36 = class State_SingleTickerProviderStateMixin extends framework.State$(tab_controller.DefaultTabController) {};
-  (State_SingleTickerProviderStateMixin$36.new = function() {
-    ticker_provider.SingleTickerProviderStateMixin$(tab_controller.DefaultTabController)[dart.mixinNew].call(this);
-    State_SingleTickerProviderStateMixin$36.__proto__.new.call(this);
-  }).prototype = State_SingleTickerProviderStateMixin$36.prototype;
-  dart.applyMixin(State_SingleTickerProviderStateMixin$36, ticker_provider.SingleTickerProviderStateMixin$(tab_controller.DefaultTabController));
-  tab_controller._DefaultTabControllerState = class _DefaultTabControllerState extends State_SingleTickerProviderStateMixin$36 {
-    get [_controller]() {
-      let t0;
-      t0 = this[___DefaultTabControllerState__controller];
-      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_controller")) : t0;
+  dart.defineExtensionMethods(gradient.LinearGradient, ['_equals', 'toString']);
+  dart.defineExtensionAccessors(gradient.LinearGradient, ['hashCode']);
+  var center$ = dart.privateName(gradient, "RadialGradient.center");
+  var radius$ = dart.privateName(gradient, "RadialGradient.radius");
+  var tileMode$0 = dart.privateName(gradient, "RadialGradient.tileMode");
+  var focal$ = dart.privateName(gradient, "RadialGradient.focal");
+  var focalRadius$ = dart.privateName(gradient, "RadialGradient.focalRadius");
+  gradient.RadialGradient = class RadialGradient extends gradient.Gradient {
+    get center() {
+      return this[center$];
     }
-    set [_controller](t0) {
-      this[___DefaultTabControllerState__controller] = t0;
+    set center(value) {
+      super.center = value;
     }
-    initState() {
-      super.initState();
-      this[_controller] = new tab_controller.TabController.new({vsync: this, length: this.widget.length, initialIndex: this.widget.initialIndex});
+    get radius() {
+      return this[radius$];
     }
-    dispose() {
-      this[_controller].dispose();
-      super.dispose();
+    set radius(value) {
+      super.radius = value;
     }
-    build(context) {
-      return new tab_controller._TabControllerScope.new({controller: this[_controller], enabled: ticker_provider.TickerMode.of(context), child: this.widget.child, $creationLocationd_0dea112b090073317d4: C[2] || CT.C2});
+    get tileMode() {
+      return this[tileMode$0];
     }
-    didUpdateWidget(oldWidget) {
-      tab_controller.DefaultTabController.as(oldWidget);
-      super.didUpdateWidget(oldWidget);
-      if (oldWidget.length !== this.widget.length) {
-        let newIndex = null;
-        let previousIndex = this[_controller].previousIndex;
-        if (this[_controller].index >= this.widget.length) {
-          newIndex = math.max(core.int, 0, this.widget.length - 1);
-          previousIndex = this[_controller].index;
-        }
-        this[_controller] = this[_controller][_copyWith]({length: this.widget.length, index: newIndex, previousIndex: previousIndex});
-      }
+    set tileMode(value) {
+      super.tileMode = value;
+    }
+    get focal() {
+      return this[focal$];
+    }
+    set focal(value) {
+      super.focal = value;
+    }
+    get focalRadius() {
+      return this[focalRadius$];
+    }
+    set focalRadius(value) {
+      super.focalRadius = value;
+    }
+    createShader(rect, opts) {
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      return ui.Gradient.radial(this.center.resolve(textDirection).withinRect(rect), this.radius * rect.shortestSide, this.colors, this[_impliedStops](), this.tileMode, this[_resolveTransform](rect, textDirection), this.focal == null ? null : dart.nullCheck(this.focal).resolve(textDirection).withinRect(rect), this.focalRadius * rect.shortestSide);
+    }
+    scale(factor) {
+      return new gradient.RadialGradient.new({center: this.center, radius: this.radius, colors: this.colors[$map](ui.Color, dart.fn(color => dart.nullCheck(ui.Color.lerp(null, color, factor)), T.ColorToColor()))[$toList](), stops: this.stops, tileMode: this.tileMode, focal: this.focal, focalRadius: this.focalRadius});
+    }
+    lerpFrom(a, t) {
+      if (a == null || gradient.RadialGradient.is(a)) return gradient.RadialGradient.lerp(T.RadialGradientN().as(a), this, t);
+      return super.lerpFrom(a, t);
+    }
+    lerpTo(b, t) {
+      if (b == null || gradient.RadialGradient.is(b)) return gradient.RadialGradient.lerp(this, T.RadialGradientN().as(b), t);
+      return super.lerpTo(b, t);
+    }
+    static lerp(a, b, t) {
+      if (!(t !== null)) dart.assertFailed(null, I[1], 735, 12, "t != null");
+      if (a == null && b == null) return null;
+      if (a == null) return dart.nullCheck(b).scale(t);
+      if (b == null) return a.scale(1.0 - t);
+      let interpolated = gradient._interpolateColorsAndStops(a.colors, a[_impliedStops](), b.colors, b[_impliedStops](), t);
+      return new gradient.RadialGradient.new({center: dart.nullCheck(alignment.AlignmentGeometry.lerp(a.center, b.center, t)), radius: math.max(core.double, 0.0, dart.nullCheck(ui.lerpDouble(a.radius, b.radius, t))), colors: interpolated.colors, stops: interpolated.stops, tileMode: t < 0.5 ? a.tileMode : b.tileMode, focal: alignment.AlignmentGeometry.lerp(a.focal, b.focal, t), focalRadius: math.max(core.double, 0.0, dart.nullCheck(ui.lerpDouble(a.focalRadius, b.focalRadius, t)))});
+    }
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
+      return gradient.RadialGradient.is(other) && other.center._equals(this.center) && other.radius === this.radius && other.tileMode === this.tileMode && collections.listEquals(ui.Color, other.colors, this.colors) && collections.listEquals(core.double, other.stops, this.stops) && dart.equals(other.focal, this.focal) && other.focalRadius === this.focalRadius;
+    }
+    get hashCode() {
+      return ui.hashValues(this.center, this.radius, this.tileMode, ui.hashList(this.colors), ui.hashList(this.stops), this.focal, this.focalRadius);
+    }
+    toString() {
+      return object.objectRuntimeType(this, "RadialGradient") + "(" + dart.str(this.center) + ", " + dart.str(this.radius) + ", " + dart.str(this.colors) + ", " + dart.str(this.stops) + ", " + dart.str(this.tileMode) + ", " + dart.str(this.focal) + ", " + dart.str(this.focalRadius) + ")";
     }
   };
-  (tab_controller._DefaultTabControllerState.new = function() {
-    this[___DefaultTabControllerState__controller] = null;
-    tab_controller._DefaultTabControllerState.__proto__.new.call(this);
+  (gradient.RadialGradient.new = function(opts) {
+    let center = opts && 'center' in opts ? opts.center : C[3] || CT.C3;
+    let radius = opts && 'radius' in opts ? opts.radius : 0.5;
+    let colors = opts && 'colors' in opts ? opts.colors : null;
+    let stops = opts && 'stops' in opts ? opts.stops : null;
+    let tileMode = opts && 'tileMode' in opts ? opts.tileMode : C[2] || CT.C2;
+    let focal = opts && 'focal' in opts ? opts.focal : null;
+    let focalRadius = opts && 'focalRadius' in opts ? opts.focalRadius : 0;
+    let transform = opts && 'transform' in opts ? opts.transform : null;
+    this[center$] = center;
+    this[radius$] = radius;
+    this[tileMode$0] = tileMode;
+    this[focal$] = focal;
+    this[focalRadius$] = focalRadius;
+    if (!(center !== null)) dart.assertFailed(null, I[1], 606, 15, "center != null");
+    if (!(radius !== null)) dart.assertFailed(null, I[1], 607, 15, "radius != null");
+    if (!(tileMode !== null)) dart.assertFailed(null, I[1], 608, 15, "tileMode != null");
+    if (!(focalRadius !== null)) dart.assertFailed(null, I[1], 609, 15, "focalRadius != null");
+    gradient.RadialGradient.__proto__.new.call(this, {colors: colors, stops: stops, transform: transform});
     ;
-  }).prototype = tab_controller._DefaultTabControllerState.prototype;
-  dart.addTypeTests(tab_controller._DefaultTabControllerState);
-  dart.addTypeCaches(tab_controller._DefaultTabControllerState);
-  dart.setMethodSignature(tab_controller._DefaultTabControllerState, () => ({
-    __proto__: dart.getMethods(tab_controller._DefaultTabControllerState.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = gradient.RadialGradient.prototype;
+  dart.addTypeTests(gradient.RadialGradient);
+  dart.addTypeCaches(gradient.RadialGradient);
+  dart.setMethodSignature(gradient.RadialGradient, () => ({
+    __proto__: dart.getMethods(gradient.RadialGradient.__proto__),
+    createShader: dart.fnType(ui.Shader, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
+    scale: dart.fnType(gradient.RadialGradient, [core.double])
   }));
-  dart.setGetterSignature(tab_controller._DefaultTabControllerState, () => ({
-    __proto__: dart.getGetters(tab_controller._DefaultTabControllerState.__proto__),
-    [_controller]: tab_controller.TabController
+  dart.setLibraryUri(gradient.RadialGradient, I[0]);
+  dart.setFieldSignature(gradient.RadialGradient, () => ({
+    __proto__: dart.getFields(gradient.RadialGradient.__proto__),
+    center: dart.finalFieldType(alignment.AlignmentGeometry),
+    radius: dart.finalFieldType(core.double),
+    tileMode: dart.finalFieldType(ui.TileMode),
+    focal: dart.finalFieldType(dart.nullable(alignment.AlignmentGeometry)),
+    focalRadius: dart.finalFieldType(core.double)
   }));
-  dart.setSetterSignature(tab_controller._DefaultTabControllerState, () => ({
-    __proto__: dart.getSetters(tab_controller._DefaultTabControllerState.__proto__),
-    [_controller]: tab_controller.TabController
+  dart.defineExtensionMethods(gradient.RadialGradient, ['_equals', 'toString']);
+  dart.defineExtensionAccessors(gradient.RadialGradient, ['hashCode']);
+  var center$0 = dart.privateName(gradient, "SweepGradient.center");
+  var startAngle$ = dart.privateName(gradient, "SweepGradient.startAngle");
+  var endAngle$ = dart.privateName(gradient, "SweepGradient.endAngle");
+  var tileMode$1 = dart.privateName(gradient, "SweepGradient.tileMode");
+  gradient.SweepGradient = class SweepGradient extends gradient.Gradient {
+    get center() {
+      return this[center$0];
+    }
+    set center(value) {
+      super.center = value;
+    }
+    get startAngle() {
+      return this[startAngle$];
+    }
+    set startAngle(value) {
+      super.startAngle = value;
+    }
+    get endAngle() {
+      return this[endAngle$];
+    }
+    set endAngle(value) {
+      super.endAngle = value;
+    }
+    get tileMode() {
+      return this[tileMode$1];
+    }
+    set tileMode(value) {
+      super.tileMode = value;
+    }
+    createShader(rect, opts) {
+      let textDirection = opts && 'textDirection' in opts ? opts.textDirection : null;
+      return ui.Gradient.sweep(this.center.resolve(textDirection).withinRect(rect), this.colors, this[_impliedStops](), this.tileMode, this.startAngle, this.endAngle, this[_resolveTransform](rect, textDirection));
+    }
+    scale(factor) {
+      return new gradient.SweepGradient.new({center: this.center, startAngle: this.startAngle, endAngle: this.endAngle, colors: this.colors[$map](ui.Color, dart.fn(color => dart.nullCheck(ui.Color.lerp(null, color, factor)), T.ColorToColor()))[$toList](), stops: this.stops, tileMode: this.tileMode});
+    }
+    lerpFrom(a, t) {
+      if (a == null || gradient.SweepGradient.is(a)) return gradient.SweepGradient.lerp(T.SweepGradientN().as(a), this, t);
+      return super.lerpFrom(a, t);
+    }
+    lerpTo(b, t) {
+      if (b == null || gradient.SweepGradient.is(b)) return gradient.SweepGradient.lerp(this, T.SweepGradientN().as(b), t);
+      return super.lerpTo(b, t);
+    }
+    static lerp(a, b, t) {
+      if (!(t !== null)) dart.assertFailed(null, I[1], 982, 12, "t != null");
+      if (a == null && b == null) return null;
+      if (a == null) return dart.nullCheck(b).scale(t);
+      if (b == null) return a.scale(1.0 - t);
+      let interpolated = gradient._interpolateColorsAndStops(a.colors, a[_impliedStops](), b.colors, b[_impliedStops](), t);
+      return new gradient.SweepGradient.new({center: dart.nullCheck(alignment.AlignmentGeometry.lerp(a.center, b.center, t)), startAngle: math.max(core.double, 0.0, dart.nullCheck(ui.lerpDouble(a.startAngle, b.startAngle, t))), endAngle: math.max(core.double, 0.0, dart.nullCheck(ui.lerpDouble(a.endAngle, b.endAngle, t))), colors: interpolated.colors, stops: interpolated.stops, tileMode: t < 0.5 ? a.tileMode : b.tileMode});
+    }
+    _equals(other) {
+      if (other == null) return false;
+      if (this === other) return true;
+      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
+      return gradient.SweepGradient.is(other) && other.center._equals(this.center) && other.startAngle === this.startAngle && other.endAngle === this.endAngle && other.tileMode === this.tileMode && collections.listEquals(ui.Color, other.colors, this.colors) && collections.listEquals(core.double, other.stops, this.stops);
+    }
+    get hashCode() {
+      return ui.hashValues(this.center, this.startAngle, this.endAngle, this.tileMode, ui.hashList(this.colors), ui.hashList(this.stops));
+    }
+    toString() {
+      return object.objectRuntimeType(this, "SweepGradient") + "(" + dart.str(this.center) + ", " + dart.str(this.startAngle) + ", " + dart.str(this.endAngle) + ", " + dart.str(this.colors) + ", " + dart.str(this.stops) + ", " + dart.str(this.tileMode) + ")";
+    }
+  };
+  (gradient.SweepGradient.new = function(opts) {
+    let center = opts && 'center' in opts ? opts.center : C[3] || CT.C3;
+    let startAngle = opts && 'startAngle' in opts ? opts.startAngle : 0;
+    let endAngle = opts && 'endAngle' in opts ? opts.endAngle : 6.283185307179586;
+    let colors = opts && 'colors' in opts ? opts.colors : null;
+    let stops = opts && 'stops' in opts ? opts.stops : null;
+    let tileMode = opts && 'tileMode' in opts ? opts.tileMode : C[2] || CT.C2;
+    let transform = opts && 'transform' in opts ? opts.transform : null;
+    this[center$0] = center;
+    this[startAngle$] = startAngle;
+    this[endAngle$] = endAngle;
+    this[tileMode$1] = tileMode;
+    if (!(center !== null)) dart.assertFailed(null, I[1], 880, 15, "center != null");
+    if (!(startAngle !== null)) dart.assertFailed(null, I[1], 881, 15, "startAngle != null");
+    if (!(endAngle !== null)) dart.assertFailed(null, I[1], 882, 15, "endAngle != null");
+    if (!(tileMode !== null)) dart.assertFailed(null, I[1], 883, 15, "tileMode != null");
+    gradient.SweepGradient.__proto__.new.call(this, {colors: colors, stops: stops, transform: transform});
+    ;
+  }).prototype = gradient.SweepGradient.prototype;
+  dart.addTypeTests(gradient.SweepGradient);
+  dart.addTypeCaches(gradient.SweepGradient);
+  dart.setMethodSignature(gradient.SweepGradient, () => ({
+    __proto__: dart.getMethods(gradient.SweepGradient.__proto__),
+    createShader: dart.fnType(ui.Shader, [ui.Rect], {textDirection: dart.nullable(ui.TextDirection)}, {}),
+    scale: dart.fnType(gradient.SweepGradient, [core.double])
   }));
-  dart.setLibraryUri(tab_controller._DefaultTabControllerState, I[1]);
-  dart.setFieldSignature(tab_controller._DefaultTabControllerState, () => ({
-    __proto__: dart.getFields(tab_controller._DefaultTabControllerState.__proto__),
-    [___DefaultTabControllerState__controller]: dart.fieldType(dart.nullable(tab_controller.TabController))
+  dart.setLibraryUri(gradient.SweepGradient, I[0]);
+  dart.setFieldSignature(gradient.SweepGradient, () => ({
+    __proto__: dart.getFields(gradient.SweepGradient.__proto__),
+    center: dart.finalFieldType(alignment.AlignmentGeometry),
+    startAngle: dart.finalFieldType(core.double),
+    endAngle: dart.finalFieldType(core.double),
+    tileMode: dart.finalFieldType(ui.TileMode)
   }));
-  dart.trackLibraries("packages/flutter/src/material/tab_controller.dart", {
-    "package:flutter/src/material/tab_controller.dart": tab_controller
+  dart.defineExtensionMethods(gradient.SweepGradient, ['_equals', 'toString']);
+  dart.defineExtensionAccessors(gradient.SweepGradient, ['hashCode']);
+  gradient._sample = function _sample(colors, stops, t) {
+    if (!(colors !== null)) dart.assertFailed(null, I[1], 25, 10, "colors != null");
+    if (!colors[$isNotEmpty]) dart.assertFailed(null, I[1], 26, 10, "colors.isNotEmpty");
+    if (!(stops !== null)) dart.assertFailed(null, I[1], 27, 10, "stops != null");
+    if (!stops[$isNotEmpty]) dart.assertFailed(null, I[1], 28, 10, "stops.isNotEmpty");
+    if (!(t !== null)) dart.assertFailed(null, I[1], 29, 10, "t != null");
+    if (t <= stops[$first]) return colors[$first];
+    if (t >= stops[$last]) return colors[$last];
+    let index = stops[$lastIndexWhere](dart.fn(s => s <= t, T.doubleTobool()));
+    if (!(index !== -1)) dart.assertFailed(null, I[1], 35, 10, "index != -1");
+    return dart.nullCheck(ui.Color.lerp(colors[$_get](index), colors[$_get](index + 1), (t - stops[$_get](index)) / (stops[$_get](index + 1) - stops[$_get](index))));
+  };
+  gradient._interpolateColorsAndStops = function _interpolateColorsAndStops(aColors, aStops, bColors, bStops, t) {
+    let t0;
+    if (!(aColors[$length] >= 2)) dart.assertFailed(null, I[1], 49, 10, "aColors.length >= 2");
+    if (!(bColors[$length] >= 2)) dart.assertFailed(null, I[1], 50, 10, "bColors.length >= 2");
+    if (!(aStops[$length] === aColors[$length])) dart.assertFailed(null, I[1], 51, 10, "aStops.length == aColors.length");
+    if (!(bStops[$length] === bColors[$length])) dart.assertFailed(null, I[1], 52, 10, "bStops.length == bColors.length");
+    let stops = (t0 = new (T.SplayTreeSetOfdouble()).new(), (() => {
+      t0.addAll(aStops);
+      t0.addAll(bStops);
+      return t0;
+    })());
+    let interpolatedStops = stops.toList({growable: false});
+    let interpolatedColors = interpolatedStops[$map](ui.Color, dart.fn(stop => dart.nullCheck(ui.Color.lerp(gradient._sample(aColors, aStops, stop), gradient._sample(bColors, bStops, stop), t)), T.doubleToColor()))[$toList]({growable: false});
+    return new gradient._ColorsAndStops.new(interpolatedColors, interpolatedStops);
+  };
+  dart.trackLibraries("packages/flutter/src/painting/gradient.dart", {
+    "package:flutter/src/painting/gradient.dart": gradient
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["tab_controller.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/material/tab_controller.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["gradient.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2CAiBuB,QAAa;IAAb;IAAa;;EAAM;;;;;;;;;;;;EAuDf;;;;;;IAiCZ;;;;;;cAGU;;UAAwB;AAC7C,YAAO,AAAO,MAAD;AACA,uBAAa,SAAS;AACtB,+BAAqB,AAAE,IAAE,SAAS;AAClC,mBAAS,AAAO,MAAD;AACf,oBAAU,AAAW,AAAY,UAAb,GAAG,AAAO,MAAD,MAAM,AAAmB,kBAAD,GAAG,AAAO,MAAD;AAC9D,oBAAU,AAAY,AAAY,CAAvB,UAAU,GAAG,AAAO,MAAD,MAAM,AAAmB,kBAAD,GAAG,AAAO,MAAD;AAE5E,WAAe;;AACX,qBAAU,OAAO,EAAE,OAAO;AAC1B,mBAAQ;;;IACd;;;IAjB4B;AAAtB;;EAA8B;;;;;;;;;;;;;;;;;;IA0DlB;;;;;;IAkBE;;;;;;IAMK;;;;;;;AAGvB,UAAI,oBACF,MAAY,gBAAL;AACT,YAAO,AAAO,AAAO,wBAAG,sBAAG;AACd,uBAAa,AAAI,OAAG,AAAO,AAAO,uBAAE;AACjD,YAAO,2BACL,AAAO,sBACP,QAAK,SAAU,AAAM,KAAD,GAAG,UAAU,+BACvB;IAEd;aAgD6B,GAAU;AACrC,UAAI,AAAE,CAAD,UACH,MAAO,YAAM,CAAC;AAChB,YAAO;IACT;WA2B2B,GAAU;AACnC,UAAI,AAAE,CAAD,UACH,MAAO,YAAM,AAAI,MAAE,CAAC;AACtB,YAAO;IACT;gBAUgC,GAAa,GAAU;AACrD,YAAO,AAAE,CAAD;AACE;AACV,UAAI,CAAC,UACH,AAAyB,SAAhB,AAAE,CAAD,UAAU,CAAC,EAAE,CAAC;AAC1B,UAAI,AAAO,MAAD,YAAY,CAAC,UACrB,AAAuB,SAAd,AAAE,CAAD,QAAQ,CAAC,EAAE,CAAC;AACxB,UAAI,MAAM,UACR,MAAO,OAAM;AACf,UAAI,AAAE,CAAD,YAAY,AAAE,CAAD,UAChB,MAAO;AACT,YAAO,AAAU,CAAT,YAAY,CAAC;AACrB,YAAO,AAAE,EAAD,GAAG,MAAO,AAAE,eAAH,CAAC,QAAQ,AAAI,MAAG,AAAE,CAAD,GAAG,OAAS,AAAE,eAAH,CAAC,QAAkB,CAAT,AAAE,CAAD,GAAG,OAAO;IACpE;wBAEoC,QAAuB;;AACzD,WAAO;uCAAW,aAAU,MAAM,kBAAiB,aAAa,iBAAzD,OAA4D;IACrE;;;QA7JgB;QACT;QACA;IAFS;IACT;IACA;UACK,AAAO,MAAD;;EAAS;;;;;;;;;;;;;;;;;;;;;;;;IA+OH;;;;;;IAeA;;;;;;IAUT;;;;;;iBAGU;UAAuB;AAC9C,YAAmB,oBACjB,AAAM,AAAuB,mBAAf,aAAa,aAAa,IAAI,GAC5C,AAAI,AAAuB,iBAAf,aAAa,aAAa,IAAI,GAC1C,aAAQ,uBAAiB,eAAU,wBAAkB,IAAI,EAAE,aAAa;IAE5E;UAO4B;AAC1B,YAAO,yCACE,iBACF,kBACG,AAAO,AAA8D,4BAAnD,QAAO,SAAyC,eAAzB,cAAK,MAAM,KAAK,EAAE,MAAM,0CAClE,sBACG;IAEd;aAG6B,GAAU;AACrC,UAAI,AAAE,CAAD,YAAe,2BAAF,CAAC,GACjB,MAAsB,8BAAO,uBAAF,CAAC,GAAqB,MAAM,CAAC;AAC1D,YAAa,gBAAS,CAAC,EAAE,CAAC;IAC5B;WAG2B,GAAU;AACnC,UAAI,AAAE,CAAD,YAAe,2BAAF,CAAC,GACjB,MAAsB,8BAAK,MAAQ,uBAAF,CAAC,GAAqB,CAAC;AAC1D,YAAa,cAAO,CAAC,EAAE,CAAC;IAC1B;gBAqB4C,GAAmB,GAAU;AACvE,YAAO,AAAE,CAAD;AACR,UAAI,AAAE,CAAD,YAAY,AAAE,CAAD,UAChB,MAAO;AACT,UAAI,AAAE,CAAD,UACH,MAAQ,AAAE,gBAAH,CAAC,QAAQ,CAAC;AACnB,UAAI,AAAE,CAAD,UACH,MAAO,AAAE,EAAD,OAAO,AAAI,MAAE,CAAC;AACF,yBAAe,oCACjC,AAAE,CAAD,SACD,AAAE,CAAD,mBACD,AAAE,CAAD,SACD,AAAE,CAAD,mBACD,CAAC;AAEL,YAAO,yCAC6C,eAAzB,iCAAK,AAAE,CAAD,QAAQ,AAAE,CAAD,QAAQ,CAAC,SACL,eAArB,iCAAK,AAAE,CAAD,MAAM,AAAE,CAAD,MAAM,CAAC,YACnC,AAAa,YAAD,gBACb,AAAa,YAAD,kBACT,AAAE,CAAD,GAAG,MAAM,AAAE,CAAD,YAAY,AAAE,CAAD;IAEtC;;UAGwB;AACtB,UAAI,AAAU,SAAM,KAAK,EACvB,MAAO;AACT,WAAI,AAAM,KAAD,uBAAgB,qBACvB,MAAO;AACT,YAAa,AAKT,4BALG,KAAK,KACL,AAAM,AAAM,KAAP,eAAU,eACf,AAAM,AAAI,KAAL,aAAQ,aACb,AAAM,AAAS,KAAV,cAAa,iBAClB,iCAAkB,AAAM,KAAD,SAAS,gBAChC,oCAAmB,AAAM,KAAD,QAAQ;IACzC;;AAGoB,2BAAW,YAAO,UAAK,eAAU,YAAS,cAAS,YAAS;IAAO;;AAIrF,YAAU,AAAqF,0BAAnE,MAAM,oBAAkB,eAAE,cAAK,gBAAG,YAAG,gBAAG,eAAM,gBAAG,cAAK,gBAAG,iBAAQ;IAC/F;;;QAxJO;QACA;QACgB;QACP;QACT;QACc;IALd;IACA;IAGA;UAEK,AAAM,KAAD;UACL,AAAI,GAAD;UACH,AAAS,QAAD;AACf,8DAAc,MAAM,SAAS,KAAK,aAAa,SAAS;;EAAC;;;;;;;;;;;;;;;;;;;;;;;IAyPtC;;;;;;IAQX;;;;;;IAcE;;;;;;IAUU;;;;;;IAYZ;;;;;;iBAGY;UAAuB;AAC9C,YAAmB,oBACjB,AAAO,AAAuB,oBAAf,aAAa,aAAa,IAAI,GAC7C,AAAO,cAAE,AAAK,IAAD,eACb,aAAQ,uBAAiB,eACzB,wBAAkB,IAAI,EAAE,aAAa,GACrC,AAAM,qBAAW,OAAY,AAAE,AAAuB,eAA9B,oBAAe,aAAa,aAAa,IAAI,GACrE,AAAY,mBAAE,AAAK,IAAD;IAEtB;UAO4B;AAC1B,YAAO,0CACG,qBACA,qBACA,AAAO,AAA8D,4BAAnD,QAAO,SAAyC,eAAzB,cAAK,MAAM,KAAK,EAAE,MAAM,0CAClE,sBACG,sBACH,yBACM;IAEjB;aAG6B,GAAU;AACrC,UAAI,AAAE,CAAD,YAAe,2BAAF,CAAC,GACjB,MAAsB,8BAAO,uBAAF,CAAC,GAAqB,MAAM,CAAC;AAC1D,YAAa,gBAAS,CAAC,EAAE,CAAC;IAC5B;WAG2B,GAAU;AACnC,UAAI,AAAE,CAAD,YAAe,2BAAF,CAAC,GACjB,MAAsB,8BAAK,MAAQ,uBAAF,CAAC,GAAqB,CAAC;AAC1D,YAAa,cAAO,CAAC,EAAE,CAAC;IAC1B;gBAqB4C,GAAmB,GAAU;AACvE,YAAO,AAAE,CAAD;AACR,UAAI,AAAE,CAAD,YAAY,AAAE,CAAD,UAChB,MAAO;AACT,UAAI,AAAE,CAAD,UACH,MAAQ,AAAE,gBAAH,CAAC,QAAQ,CAAC;AACnB,UAAI,AAAE,CAAD,UACH,MAAO,AAAE,EAAD,OAAO,AAAI,MAAE,CAAC;AACF,yBAAe,oCACjC,AAAE,CAAD,SACD,AAAE,CAAD,mBACD,AAAE,CAAD,SACD,AAAE,CAAD,mBACD,CAAC;AAEL,YAAO,0CACgD,eAA3B,iCAAK,AAAE,CAAD,SAAS,AAAE,CAAD,SAAS,CAAC,YAC5C,sBAAS,KAAyC,eAApC,cAAc,AAAE,CAAD,SAAS,AAAE,CAAD,SAAS,CAAC,aACjD,AAAa,YAAD,gBACb,AAAa,YAAD,kBACT,AAAE,CAAD,GAAG,MAAM,AAAE,CAAD,YAAY,AAAE,CAAD,kBACT,iCAAK,AAAE,CAAD,QAAQ,AAAE,CAAD,QAAQ,CAAC,gBACpC,sBAAS,KAAmD,eAA9C,cAAc,AAAE,CAAD,cAAc,AAAE,CAAD,cAAc,CAAC;IAE5E;;UAGwB;AACtB,UAAI,AAAU,SAAM,KAAK,EACvB,MAAO;AACT,WAAI,AAAM,KAAD,uBAAgB,qBACvB,MAAO;AACT,YAAa,AAOT,4BAPG,KAAK,KACL,AAAM,AAAO,KAAR,gBAAW,gBAChB,AAAM,AAAO,KAAR,YAAW,eAChB,AAAM,AAAS,KAAV,cAAa,iBAClB,iCAAkB,AAAM,KAAD,SAAS,gBAChC,oCAAmB,AAAM,KAAD,QAAQ,eACpB,YAAZ,AAAM,KAAD,QAAU,eACf,AAAM,AAAY,KAAb,iBAAgB;IAC9B;;AAGoB,2BAAW,aAAQ,aAAQ,eAAU,YAAS,cAAS,YAAS,aAAQ,YAAO;IAAY;;AAI7G,YAAU,AAA+G,0BAA7F,MAAM,oBAAkB,eAAE,eAAM,gBAAG,eAAM,gBAAG,eAAM,gBAAG,cAAK,gBAAG,iBAAQ,gBAAG,cAAK,gBAAG,oBAAW;IACzH;;;QAxLO;QACA;QACgB;QACP;QACT;QACA;QACA;QACc;IAPd;IACA;IAGA;IACA;IACA;UAEK,AAAO,MAAD;UACN,AAAO,MAAD;UACN,AAAS,QAAD;UACR,AAAY,WAAD;AAClB,8DAAc,MAAM,SAAS,KAAK,aAAa,SAAS;;EAAC;;;;;;;;;;;;;;;;;;;;;;;;IAkStC;;;;;;IAKX;;;;;;IAKA;;;;;;IAUE;;;;;;iBAGU;UAAuB;AAC9C,YAAmB,mBACjB,AAAO,AAAuB,oBAAf,aAAa,aAAa,IAAI,GAC7C,aAAQ,uBAAiB,eACzB,iBACA,eACA,wBAAkB,IAAI,EAAE,aAAa;IAEzC;UAO2B;AACzB,YAAO,yCACG,yBACI,2BACF,uBACF,AAAO,AAA8D,4BAAnD,QAAO,SAAyC,eAAzB,cAAK,MAAM,KAAK,EAAE,MAAM,0CAClE,sBACG;IAEd;aAG6B,GAAU;AACrC,UAAI,AAAE,CAAD,YAAe,0BAAF,CAAC,GACjB,MAAqB,6BAAO,sBAAF,CAAC,GAAoB,MAAM,CAAC;AACxD,YAAa,gBAAS,CAAC,EAAE,CAAC;IAC5B;WAG2B,GAAU;AACnC,UAAI,AAAE,CAAD,YAAe,0BAAF,CAAC,GACjB,MAAqB,6BAAK,MAAQ,sBAAF,CAAC,GAAoB,CAAC;AACxD,YAAa,cAAO,CAAC,EAAE,CAAC;IAC1B;gBAoB0C,GAAkB,GAAU;AACpE,YAAO,AAAE,CAAD;AACR,UAAI,AAAE,CAAD,YAAY,AAAE,CAAD,UAChB,MAAO;AACT,UAAI,AAAE,CAAD,UACH,MAAQ,AAAE,gBAAH,CAAC,QAAQ,CAAC;AACnB,UAAI,AAAE,CAAD,UACH,MAAO,AAAE,EAAD,OAAO,AAAI,MAAE,CAAC;AACF,yBAAe,oCACjC,AAAE,CAAD,SACD,AAAE,CAAD,mBACD,AAAE,CAAD,SACD,AAAE,CAAD,mBACD,CAAC;AAEL,YAAO,yCACgD,eAA3B,iCAAK,AAAE,CAAD,SAAS,AAAE,CAAD,SAAS,CAAC,gBACxC,sBAAS,KAAiD,eAA5C,cAAc,AAAE,CAAD,aAAa,AAAE,CAAD,aAAa,CAAC,eAC3D,sBAAS,KAA6C,eAAxC,cAAc,AAAE,CAAD,WAAW,AAAE,CAAD,WAAW,CAAC,aACvD,AAAa,YAAD,gBACb,AAAa,YAAD,kBACT,AAAE,CAAD,GAAG,MAAM,AAAE,CAAD,YAAY,AAAE,CAAD;IAEtC;;UAGwB;AACtB,UAAI,AAAU,SAAM,KAAK,EACvB,MAAO;AACT,WAAI,AAAM,KAAD,uBAAgB,qBACvB,MAAO;AACT,YAAa,AAMT,2BANG,KAAK,KACL,AAAM,AAAO,KAAR,gBAAW,gBAChB,AAAM,AAAW,KAAZ,gBAAe,mBACpB,AAAM,AAAS,KAAV,cAAa,iBAClB,AAAM,AAAS,KAAV,cAAa,iBAClB,iCAAkB,AAAM,KAAD,SAAS,gBAChC,oCAAmB,AAAM,KAAD,QAAQ;IACzC;;AAGoB,2BAAW,aAAQ,iBAAY,eAAU,eAAU,YAAS,cAAS,YAAS;IAAO;;AAIvG,YAAU,AAAuG,0BAArF,MAAM,mBAAiB,eAAE,eAAM,gBAAG,mBAAU,gBAAG,iBAAQ,gBAAG,eAAM,gBAAG,cAAK,gBAAG,iBAAQ;IACjH;;;QA1JO;QACA;QACA;QACgB;QACP;QACT;QACc;IANd;IACA;IACA;IAGA;UAEK,AAAO,MAAD;UACN,AAAW,UAAD;UACV,AAAS,QAAD;UACR,AAAS,QAAD;AACf,6DAAc,MAAM,SAAS,KAAK,aAAa,SAAS;;EAAC;;;;;;;;;;;;;;;;;;sCA51BtC,QAAqB,OAAc;AAC3D,UAAO,AAAO,MAAD;AACb,SAAO,AAAO,MAAD;AACb,UAAO,AAAM,KAAD;AACZ,SAAO,AAAM,KAAD;AACZ,UAAO,AAAE,CAAD;AACR,QAAI,AAAE,CAAD,IAAI,AAAM,KAAD,UACZ,MAAO,AAAO,OAAD;AACf,QAAI,AAAE,CAAD,IAAI,AAAM,KAAD,SACZ,MAAO,AAAO,OAAD;AACL,gBAAQ,AAAM,KAAD,kBAAgB,QAAQ,KAAM,AAAE,CAAD,IAAI,CAAC;AAC3D,UAAO,AAAM,KAAD,KAAI,CAAC;AACjB,UAGC,gBAHY,cACT,AAAM,MAAA,QAAC,KAAK,GAAG,AAAM,MAAA,QAAC,AAAM,KAAD,GAAG,IACX,CAAlB,AAAE,CAAD,GAAG,AAAK,KAAA,QAAC,KAAK,MAAM,AAAK,AAAY,KAAZ,QAAC,AAAM,KAAD,GAAG,KAAK,AAAK,KAAA,QAAC,KAAK;EAE1D;4EAGc,SACC,QACD,SACC,QACN;;AAEP,UAAO,AAAQ,AAAO,OAAR,aAAW;AACzB,UAAO,AAAQ,AAAO,OAAR,aAAW;AACzB,UAAO,AAAO,AAAO,MAAR,cAAW,AAAQ,OAAD;AAC/B,UAAO,AAAO,AAAO,MAAR,cAAW,AAAQ,OAAD;AACJ,4DAAQ;AAC/B,gBAAO,MAAM;AACb,gBAAO,MAAM;;;AACE,4BAAoB,AAAM,KAAD,mBAAkB;AAC5C,6BAAqB,AAAkB,AAEvD,iBAFsD,iBAChD,QAAQ,QAAsF,eAAvE,cAAK,iBAAQ,OAAO,EAAE,MAAM,EAAE,IAAI,GAAG,iBAAQ,OAAO,EAAE,MAAM,EAAE,IAAI,GAAG,CAAC,4CAClF;AACnB,UAAO,kCAAgB,kBAAkB,EAAE,iBAAiB;EAC9D","file":"../../../../../../../packages/flutter/src/painting/gradient.dart.lib.js"}');
   // Exports:
   return {
-    src__material__tab_controller: tab_controller
+    src__painting__gradient: gradient
   };
 }));
 
-//# sourceMappingURL=tab_controller.dart.lib.js.map
+//# sourceMappingURL=gradient.dart.lib.js.map

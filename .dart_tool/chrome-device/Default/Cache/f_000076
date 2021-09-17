@@ -1,231 +1,367 @@
-define(['dart_sdk', 'packages/flutter/src/rendering/sliver.dart', 'packages/flutter/src/rendering/sliver_multi_box_adaptor.dart'], (function load__packages__flutter__src__rendering__sliver_fixed_extent_list_dart(dart_sdk, packages__flutter__src__rendering__sliver$46dart, packages__flutter__src__rendering__sliver_multi_box_adaptor$46dart) {
+define(['dart_sdk', 'packages/flutter/src/foundation/object.dart', 'packages/flutter/src/physics/tolerance.dart', 'packages/flutter/src/physics/utils.dart', 'packages/flutter/src/physics/simulation.dart'], (function load__packages__flutter__src__physics__spring_simulation_dart(dart_sdk, packages__flutter__src__foundation__object$46dart, packages__flutter__src__physics__tolerance$46dart, packages__flutter__src__physics__utils$46dart, packages__flutter__src__physics__simulation$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const sliver = packages__flutter__src__rendering__sliver$46dart.src__rendering__sliver;
-  const sliver_multi_box_adaptor = packages__flutter__src__rendering__sliver_multi_box_adaptor$46dart.src__rendering__sliver_multi_box_adaptor;
-  var sliver_fixed_extent_list = Object.create(dart.library);
-  var $round = dartx.round;
-  var $abs = dartx.abs;
-  var $floor = dartx.floor;
-  var $ceil = dartx.ceil;
-  var $isFinite = dartx.isFinite;
+  const object = packages__flutter__src__foundation__object$46dart.src__foundation__object;
+  const tolerance = packages__flutter__src__physics__tolerance$46dart.src__physics__tolerance;
+  const utils = packages__flutter__src__physics__utils$46dart.src__physics__utils;
+  const simulation = packages__flutter__src__physics__simulation$46dart.src__physics__simulation;
+  var spring_simulation = Object.create(dart.library);
+  var $toStringAsFixed = dartx.toStringAsFixed;
   dart._checkModuleNullSafetyMode(true);
   const CT = Object.create({
     _: () => (C, CT)
   });
+  dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: spring_simulation.SpringType.prototype,
+        [_name$]: "SpringType.criticallyDamped",
+        index: 0
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: spring_simulation.SpringType.prototype,
+        [_name$]: "SpringType.underDamped",
+        index: 1
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: spring_simulation.SpringType.prototype,
+        [_name$]: "SpringType.overDamped",
+        index: 2
+      });
+    },
+    get C3() {
+      return C[3] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2], spring_simulation.SpringType);
+    },
+    get C4() {
+      return C[4] = dart.const({
+        __proto__: tolerance.Tolerance.prototype,
+        [Tolerance_velocity]: 0.001,
+        [Tolerance_time]: 0.001,
+        [Tolerance_distance]: 0.001
+      });
+    }
+  }, false);
+  var C = Array(5).fill(void 0);
   var I = [
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/rendering/sliver_fixed_extent_list.dart",
-    "package:flutter/src/rendering/sliver_fixed_extent_list.dart"
+    "package:flutter/src/physics/spring_simulation.dart",
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/physics/spring_simulation.dart"
   ];
-  var _calculateLeadingGarbage = dart.privateName(sliver_fixed_extent_list, "_calculateLeadingGarbage");
-  var _calculateTrailingGarbage = dart.privateName(sliver_fixed_extent_list, "_calculateTrailingGarbage");
-  sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor = class RenderSliverFixedExtentBoxAdaptor extends sliver_multi_box_adaptor.RenderSliverMultiBoxAdaptor {
-    indexToLayoutOffset(itemExtent, index) {
-      return itemExtent * index;
+  var mass$ = dart.privateName(spring_simulation, "SpringDescription.mass");
+  var stiffness$ = dart.privateName(spring_simulation, "SpringDescription.stiffness");
+  var damping$ = dart.privateName(spring_simulation, "SpringDescription.damping");
+  spring_simulation.SpringDescription = class SpringDescription extends core.Object {
+    get mass() {
+      return this[mass$];
     }
-    getMinChildIndexForScrollOffset(scrollOffset, itemExtent) {
-      if (itemExtent > 0.0) {
-        let actual = scrollOffset / itemExtent;
-        let round = actual[$round]();
-        if ((actual - round)[$abs]() < 1e-10) {
-          return round;
-        }
-        return actual[$floor]();
-      }
-      return 0;
+    set mass(value) {
+      super.mass = value;
     }
-    getMaxChildIndexForScrollOffset(scrollOffset, itemExtent) {
-      if (itemExtent > 0.0) {
-        let actual = scrollOffset / itemExtent - 1;
-        let round = actual[$round]();
-        if (sliver_fixed_extent_list._isWithinPrecisionErrorTolerance(actual, round)) {
-          return math.max(core.int, 0, round);
-        }
-        return math.max(core.int, 0, actual[$ceil]());
-      }
-      return 0;
+    get stiffness() {
+      return this[stiffness$];
     }
-    estimateMaxScrollOffset(constraints, opts) {
-      let firstIndex = opts && 'firstIndex' in opts ? opts.firstIndex : null;
-      let lastIndex = opts && 'lastIndex' in opts ? opts.lastIndex : null;
-      let leadingScrollOffset = opts && 'leadingScrollOffset' in opts ? opts.leadingScrollOffset : null;
-      let trailingScrollOffset = opts && 'trailingScrollOffset' in opts ? opts.trailingScrollOffset : null;
-      return this.childManager.estimateMaxScrollOffset(constraints, {firstIndex: firstIndex, lastIndex: lastIndex, leadingScrollOffset: leadingScrollOffset, trailingScrollOffset: trailingScrollOffset});
+    set stiffness(value) {
+      super.stiffness = value;
     }
-    computeMaxScrollOffset(constraints, itemExtent) {
-      return this.childManager.childCount * itemExtent;
+    get damping() {
+      return this[damping$];
     }
-    [_calculateLeadingGarbage](firstIndex) {
-      let walker = this.firstChild;
-      let leadingGarbage = 0;
-      while (walker != null && this.indexOf(walker) < firstIndex) {
-        leadingGarbage = leadingGarbage + 1;
-        walker = this.childAfter(walker);
-      }
-      return leadingGarbage;
+    set damping(value) {
+      super.damping = value;
     }
-    [_calculateTrailingGarbage](targetLastIndex) {
-      let walker = this.lastChild;
-      let trailingGarbage = 0;
-      while (walker != null && this.indexOf(walker) > targetLastIndex) {
-        trailingGarbage = trailingGarbage + 1;
-        walker = this.childBefore(walker);
-      }
-      return trailingGarbage;
-    }
-    performLayout() {
-      let constraints = this.constraints;
-      this.childManager.didStartLayout();
-      this.childManager.setDidUnderflow(false);
-      let itemExtent = this.itemExtent;
-      let scrollOffset = constraints.scrollOffset + constraints.cacheOrigin;
-      if (!(scrollOffset >= 0.0)) dart.assertFailed(null, I[0], 182, 12, "scrollOffset >= 0.0");
-      let remainingExtent = constraints.remainingCacheExtent;
-      if (!(remainingExtent >= 0.0)) dart.assertFailed(null, I[0], 184, 12, "remainingExtent >= 0.0");
-      let targetEndScrollOffset = scrollOffset + remainingExtent;
-      let childConstraints = constraints.asBoxConstraints({minExtent: itemExtent, maxExtent: itemExtent});
-      let firstIndex = this.getMinChildIndexForScrollOffset(scrollOffset, itemExtent);
-      let targetLastIndex = targetEndScrollOffset[$isFinite] ? this.getMaxChildIndexForScrollOffset(targetEndScrollOffset, itemExtent) : null;
-      if (this.firstChild != null) {
-        let leadingGarbage = this[_calculateLeadingGarbage](firstIndex);
-        let trailingGarbage = targetLastIndex != null ? this[_calculateTrailingGarbage](targetLastIndex) : 0;
-        this.collectGarbage(leadingGarbage, trailingGarbage);
-      } else {
-        this.collectGarbage(0, 0);
-      }
-      if (this.firstChild == null) {
-        if (!this.addInitialChild({index: firstIndex, layoutOffset: this.indexToLayoutOffset(itemExtent, firstIndex)})) {
-          let max = null;
-          if (firstIndex <= 0) {
-            max = 0.0;
-          } else {
-            max = this.computeMaxScrollOffset(constraints, itemExtent);
-          }
-          this.geometry = new sliver.SliverGeometry.new({scrollExtent: max, maxPaintExtent: max});
-          this.childManager.didFinishLayout();
-          return;
-        }
-      }
-      let trailingChildWithLayout = null;
-      for (let index = this.indexOf(dart.nullCheck(this.firstChild)) - 1; index >= firstIndex; index = index - 1) {
-        let child = this.insertAndLayoutLeadingChild(childConstraints);
-        if (child == null) {
-          this.geometry = new sliver.SliverGeometry.new({scrollOffsetCorrection: index * itemExtent});
-          return;
-        }
-        let childParentData = sliver_multi_box_adaptor.SliverMultiBoxAdaptorParentData.as(dart.nullCheck(child.parentData));
-        childParentData.layoutOffset = this.indexToLayoutOffset(itemExtent, index);
-        if (!(childParentData.index === index)) dart.assertFailed(null, I[0], 235, 14, "childParentData.index == index");
-        trailingChildWithLayout == null ? trailingChildWithLayout = child : null;
-      }
-      if (trailingChildWithLayout == null) {
-        dart.nullCheck(this.firstChild).layout(childConstraints);
-        let childParentData = sliver_multi_box_adaptor.SliverMultiBoxAdaptorParentData.as(dart.nullCheck(dart.nullCheck(this.firstChild).parentData));
-        childParentData.layoutOffset = this.indexToLayoutOffset(itemExtent, firstIndex);
-        trailingChildWithLayout = this.firstChild;
-      }
-      let estimatedMaxScrollOffset = 1 / 0;
-      for (let index = this.indexOf(dart.nullCheck(trailingChildWithLayout)) + 1; targetLastIndex == null || index <= dart.notNull(targetLastIndex); index = index + 1) {
-        let child = this.childAfter(dart.nullCheck(trailingChildWithLayout));
-        if (child == null || this.indexOf(child) !== index) {
-          child = this.insertAndLayoutChild(childConstraints, {after: trailingChildWithLayout});
-          if (child == null) {
-            estimatedMaxScrollOffset = index * itemExtent;
-            break;
-          }
-        } else {
-          child.layout(childConstraints);
-        }
-        trailingChildWithLayout = child;
-        if (!(child != null)) dart.assertFailed(null, I[0], 260, 14, "child != null");
-        let childParentData = sliver_multi_box_adaptor.SliverMultiBoxAdaptorParentData.as(dart.nullCheck(child.parentData));
-        if (!(childParentData.index === index)) dart.assertFailed(null, I[0], 262, 14, "childParentData.index == index");
-        childParentData.layoutOffset = this.indexToLayoutOffset(itemExtent, dart.nullCheck(childParentData.index));
-      }
-      let lastIndex = this.indexOf(dart.nullCheck(this.lastChild));
-      let leadingScrollOffset = this.indexToLayoutOffset(itemExtent, firstIndex);
-      let trailingScrollOffset = this.indexToLayoutOffset(itemExtent, lastIndex + 1);
-      if (!(firstIndex === 0 || dart.nullCheck(this.childScrollOffset(dart.nullCheck(this.firstChild))) - scrollOffset <= 1e-10)) dart.assertFailed(null, I[0], 270, 12, "firstIndex == 0 || childScrollOffset(firstChild!)! - scrollOffset <= precisionErrorTolerance");
-      if (!this.debugAssertChildListIsNonEmptyAndContiguous()) dart.assertFailed(null, I[0], 271, 12, "debugAssertChildListIsNonEmptyAndContiguous()");
-      if (!(this.indexOf(dart.nullCheck(this.firstChild)) === firstIndex)) dart.assertFailed(null, I[0], 272, 12, "indexOf(firstChild!) == firstIndex");
-      if (!(targetLastIndex == null || lastIndex <= dart.notNull(targetLastIndex))) dart.assertFailed(null, I[0], 273, 12, "targetLastIndex == null || lastIndex <= targetLastIndex");
-      estimatedMaxScrollOffset = math.min(core.double, estimatedMaxScrollOffset, this.estimateMaxScrollOffset(constraints, {firstIndex: firstIndex, lastIndex: lastIndex, leadingScrollOffset: leadingScrollOffset, trailingScrollOffset: trailingScrollOffset}));
-      let paintExtent = this.calculatePaintOffset(constraints, {from: leadingScrollOffset, to: trailingScrollOffset});
-      let cacheExtent = this.calculateCacheOffset(constraints, {from: leadingScrollOffset, to: trailingScrollOffset});
-      let targetEndScrollOffsetForPaint = constraints.scrollOffset + constraints.remainingPaintExtent;
-      let targetLastIndexForPaint = targetEndScrollOffsetForPaint[$isFinite] ? this.getMaxChildIndexForScrollOffset(targetEndScrollOffsetForPaint, itemExtent) : null;
-      this.geometry = new sliver.SliverGeometry.new({scrollExtent: estimatedMaxScrollOffset, paintExtent: paintExtent, cacheExtent: cacheExtent, maxPaintExtent: estimatedMaxScrollOffset, hasVisualOverflow: targetLastIndexForPaint != null && lastIndex >= dart.notNull(targetLastIndexForPaint) || constraints.scrollOffset > 0.0});
-      if (estimatedMaxScrollOffset === trailingScrollOffset) this.childManager.setDidUnderflow(true);
-      this.childManager.didFinishLayout();
+    toString() {
+      return object.objectRuntimeType(this, "SpringDescription") + "(mass: " + this.mass[$toStringAsFixed](1) + ", stiffness: " + this.stiffness[$toStringAsFixed](1) + ", damping: " + this.damping[$toStringAsFixed](1) + ")";
     }
   };
-  (sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor.new = function(opts) {
-    let childManager = opts && 'childManager' in opts ? opts.childManager : null;
-    sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor.__proto__.new.call(this, {childManager: childManager});
+  (spring_simulation.SpringDescription.new = function(opts) {
+    let mass = opts && 'mass' in opts ? opts.mass : null;
+    let stiffness = opts && 'stiffness' in opts ? opts.stiffness : null;
+    let damping = opts && 'damping' in opts ? opts.damping : null;
+    this[mass$] = mass;
+    this[stiffness$] = stiffness;
+    this[damping$] = damping;
     ;
-  }).prototype = sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor.prototype;
-  dart.addTypeTests(sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor);
-  dart.addTypeCaches(sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor);
-  dart.setMethodSignature(sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor, () => ({
-    __proto__: dart.getMethods(sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor.__proto__),
-    indexToLayoutOffset: dart.fnType(core.double, [core.double, core.int]),
-    getMinChildIndexForScrollOffset: dart.fnType(core.int, [core.double, core.double]),
-    getMaxChildIndexForScrollOffset: dart.fnType(core.int, [core.double, core.double]),
-    estimateMaxScrollOffset: dart.fnType(core.double, [sliver.SliverConstraints], {firstIndex: dart.nullable(core.int), lastIndex: dart.nullable(core.int), leadingScrollOffset: dart.nullable(core.double), trailingScrollOffset: dart.nullable(core.double)}, {}),
-    computeMaxScrollOffset: dart.fnType(core.double, [sliver.SliverConstraints, core.double]),
-    [_calculateLeadingGarbage]: dart.fnType(core.int, [core.int]),
-    [_calculateTrailingGarbage]: dart.fnType(core.int, [core.int]),
-    performLayout: dart.fnType(dart.void, [])
-  }));
-  dart.setLibraryUri(sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor, I[1]);
-  var _itemExtent = dart.privateName(sliver_fixed_extent_list, "_itemExtent");
-  sliver_fixed_extent_list.RenderSliverFixedExtentList = class RenderSliverFixedExtentList extends sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor {
-    get itemExtent() {
-      return this[_itemExtent];
-    }
-    set itemExtent(value) {
-      if (!(value !== null)) dart.assertFailed(null, I[0], 354, 12, "value != null");
-      if (this[_itemExtent] === value) return;
-      this[_itemExtent] = value;
-      this.markNeedsLayout();
-    }
-  };
-  (sliver_fixed_extent_list.RenderSliverFixedExtentList.new = function(opts) {
-    let childManager = opts && 'childManager' in opts ? opts.childManager : null;
-    let itemExtent = opts && 'itemExtent' in opts ? opts.itemExtent : null;
-    this[_itemExtent] = itemExtent;
-    sliver_fixed_extent_list.RenderSliverFixedExtentList.__proto__.new.call(this, {childManager: childManager});
+  }).prototype = spring_simulation.SpringDescription.prototype;
+  (spring_simulation.SpringDescription.withDampingRatio = function(opts) {
+    let mass = opts && 'mass' in opts ? opts.mass : null;
+    let stiffness = opts && 'stiffness' in opts ? opts.stiffness : null;
+    let ratio = opts && 'ratio' in opts ? opts.ratio : 1;
+    this[mass$] = mass;
+    this[stiffness$] = stiffness;
+    this[damping$] = ratio * 2.0 * math.sqrt(mass * stiffness);
     ;
-  }).prototype = sliver_fixed_extent_list.RenderSliverFixedExtentList.prototype;
-  dart.addTypeTests(sliver_fixed_extent_list.RenderSliverFixedExtentList);
-  dart.addTypeCaches(sliver_fixed_extent_list.RenderSliverFixedExtentList);
-  dart.setGetterSignature(sliver_fixed_extent_list.RenderSliverFixedExtentList, () => ({
-    __proto__: dart.getGetters(sliver_fixed_extent_list.RenderSliverFixedExtentList.__proto__),
-    itemExtent: core.double
+  }).prototype = spring_simulation.SpringDescription.prototype;
+  dart.addTypeTests(spring_simulation.SpringDescription);
+  dart.addTypeCaches(spring_simulation.SpringDescription);
+  dart.setLibraryUri(spring_simulation.SpringDescription, I[0]);
+  dart.setFieldSignature(spring_simulation.SpringDescription, () => ({
+    __proto__: dart.getFields(spring_simulation.SpringDescription.__proto__),
+    mass: dart.finalFieldType(core.double),
+    stiffness: dart.finalFieldType(core.double),
+    damping: dart.finalFieldType(core.double)
   }));
-  dart.setSetterSignature(sliver_fixed_extent_list.RenderSliverFixedExtentList, () => ({
-    __proto__: dart.getSetters(sliver_fixed_extent_list.RenderSliverFixedExtentList.__proto__),
-    itemExtent: core.double
-  }));
-  dart.setLibraryUri(sliver_fixed_extent_list.RenderSliverFixedExtentList, I[1]);
-  dart.setFieldSignature(sliver_fixed_extent_list.RenderSliverFixedExtentList, () => ({
-    __proto__: dart.getFields(sliver_fixed_extent_list.RenderSliverFixedExtentList.__proto__),
-    [_itemExtent]: dart.fieldType(core.double)
-  }));
-  sliver_fixed_extent_list._isWithinPrecisionErrorTolerance = function _isWithinPrecisionErrorTolerance(actual, round) {
-    return (actual - round)[$abs]() < 1e-10;
+  dart.defineExtensionMethods(spring_simulation.SpringDescription, ['toString']);
+  var _name$ = dart.privateName(spring_simulation, "_name");
+  spring_simulation.SpringType = class SpringType extends core.Object {
+    toString() {
+      return this[_name$];
+    }
   };
-  dart.trackLibraries("packages/flutter/src/rendering/sliver_fixed_extent_list.dart", {
-    "package:flutter/src/rendering/sliver_fixed_extent_list.dart": sliver_fixed_extent_list
+  (spring_simulation.SpringType.new = function(index, _name) {
+    this.index = index;
+    this[_name$] = _name;
+    ;
+  }).prototype = spring_simulation.SpringType.prototype;
+  dart.addTypeTests(spring_simulation.SpringType);
+  dart.addTypeCaches(spring_simulation.SpringType);
+  dart.setLibraryUri(spring_simulation.SpringType, I[0]);
+  dart.setFieldSignature(spring_simulation.SpringType, () => ({
+    __proto__: dart.getFields(spring_simulation.SpringType.__proto__),
+    index: dart.finalFieldType(core.int),
+    [_name$]: dart.finalFieldType(core.String)
+  }));
+  dart.defineExtensionMethods(spring_simulation.SpringType, ['toString']);
+  spring_simulation.SpringType.criticallyDamped = C[0] || CT.C0;
+  spring_simulation.SpringType.underDamped = C[1] || CT.C1;
+  spring_simulation.SpringType.overDamped = C[2] || CT.C2;
+  spring_simulation.SpringType.values = C[3] || CT.C3;
+  var Tolerance_velocity = dart.privateName(tolerance, "Tolerance.velocity");
+  var Tolerance_time = dart.privateName(tolerance, "Tolerance.time");
+  var Tolerance_distance = dart.privateName(tolerance, "Tolerance.distance");
+  var _endPosition = dart.privateName(spring_simulation, "_endPosition");
+  var _solution = dart.privateName(spring_simulation, "_solution");
+  spring_simulation.SpringSimulation = class SpringSimulation extends simulation.Simulation {
+    get type() {
+      return this[_solution].type;
+    }
+    x(time) {
+      return this[_endPosition] + this[_solution].x(time);
+    }
+    dx(time) {
+      return this[_solution].dx(time);
+    }
+    isDone(time) {
+      return utils.nearZero(this[_solution].x(time), this.tolerance.distance) && utils.nearZero(this[_solution].dx(time), this.tolerance.velocity);
+    }
+    toString() {
+      return object.objectRuntimeType(this, "SpringSimulation") + "(end: " + dart.str(this[_endPosition]) + ", " + dart.str(this.type) + ")";
+    }
+  };
+  (spring_simulation.SpringSimulation.new = function(spring, start, end, velocity, opts) {
+    let tolerance = opts && 'tolerance' in opts ? opts.tolerance : C[4] || CT.C4;
+    this[_endPosition] = end;
+    this[_solution] = spring_simulation._SpringSolution.new(spring, start - end, velocity);
+    spring_simulation.SpringSimulation.__proto__.new.call(this, {tolerance: tolerance});
+    ;
+  }).prototype = spring_simulation.SpringSimulation.prototype;
+  dart.addTypeTests(spring_simulation.SpringSimulation);
+  dart.addTypeCaches(spring_simulation.SpringSimulation);
+  dart.setMethodSignature(spring_simulation.SpringSimulation, () => ({
+    __proto__: dart.getMethods(spring_simulation.SpringSimulation.__proto__),
+    x: dart.fnType(core.double, [core.double]),
+    dx: dart.fnType(core.double, [core.double]),
+    isDone: dart.fnType(core.bool, [core.double])
+  }));
+  dart.setGetterSignature(spring_simulation.SpringSimulation, () => ({
+    __proto__: dart.getGetters(spring_simulation.SpringSimulation.__proto__),
+    type: spring_simulation.SpringType
+  }));
+  dart.setLibraryUri(spring_simulation.SpringSimulation, I[0]);
+  dart.setFieldSignature(spring_simulation.SpringSimulation, () => ({
+    __proto__: dart.getFields(spring_simulation.SpringSimulation.__proto__),
+    [_endPosition]: dart.finalFieldType(core.double),
+    [_solution]: dart.finalFieldType(spring_simulation._SpringSolution)
+  }));
+  dart.defineExtensionMethods(spring_simulation.SpringSimulation, ['toString']);
+  spring_simulation.ScrollSpringSimulation = class ScrollSpringSimulation extends spring_simulation.SpringSimulation {
+    x(time) {
+      return this.isDone(time) ? this[_endPosition] : super.x(time);
+    }
+  };
+  (spring_simulation.ScrollSpringSimulation.new = function(spring, start, end, velocity, opts) {
+    let tolerance = opts && 'tolerance' in opts ? opts.tolerance : C[4] || CT.C4;
+    spring_simulation.ScrollSpringSimulation.__proto__.new.call(this, spring, start, end, velocity, {tolerance: tolerance});
+    ;
+  }).prototype = spring_simulation.ScrollSpringSimulation.prototype;
+  dart.addTypeTests(spring_simulation.ScrollSpringSimulation);
+  dart.addTypeCaches(spring_simulation.ScrollSpringSimulation);
+  dart.setLibraryUri(spring_simulation.ScrollSpringSimulation, I[0]);
+  spring_simulation._SpringSolution = class _SpringSolution extends core.Object {
+    static new(spring, initialPosition, initialVelocity) {
+      if (!(spring !== null)) dart.assertFailed(null, I[1], 156, 12, "spring != null");
+      if (!(spring.mass !== null)) dart.assertFailed(null, I[1], 157, 12, "spring.mass != null");
+      if (!(spring.stiffness !== null)) dart.assertFailed(null, I[1], 158, 12, "spring.stiffness != null");
+      if (!(spring.damping !== null)) dart.assertFailed(null, I[1], 159, 12, "spring.damping != null");
+      if (!(initialPosition !== null)) dart.assertFailed(null, I[1], 160, 12, "initialPosition != null");
+      if (!(initialVelocity !== null)) dart.assertFailed(null, I[1], 161, 12, "initialVelocity != null");
+      let cmk = spring.damping * spring.damping - 4 * spring.mass * spring.stiffness;
+      if (cmk === 0.0) return spring_simulation._CriticalSolution.new(spring, initialPosition, initialVelocity);
+      if (cmk > 0.0) return spring_simulation._OverdampedSolution.new(spring, initialPosition, initialVelocity);
+      return spring_simulation._UnderdampedSolution.new(spring, initialPosition, initialVelocity);
+    }
+  };
+  (spring_simulation._SpringSolution[dart.mixinNew] = function() {
+  }).prototype = spring_simulation._SpringSolution.prototype;
+  dart.addTypeTests(spring_simulation._SpringSolution);
+  dart.addTypeCaches(spring_simulation._SpringSolution);
+  dart.setLibraryUri(spring_simulation._SpringSolution, I[0]);
+  var _r = dart.privateName(spring_simulation, "_r");
+  var _c1 = dart.privateName(spring_simulation, "_c1");
+  var _c2 = dart.privateName(spring_simulation, "_c2");
+  spring_simulation._CriticalSolution = class _CriticalSolution extends core.Object {
+    static new(spring, distance, velocity) {
+      let r = -spring.damping / (2.0 * spring.mass);
+      let c1 = distance;
+      let c2 = velocity / (r * distance);
+      return new spring_simulation._CriticalSolution.withArgs(r, c1, c2);
+    }
+    x(time) {
+      return (this[_c1] + this[_c2] * time) * math.pow(2.718281828459045, this[_r] * time);
+    }
+    dx(time) {
+      let power = math.pow(2.718281828459045, this[_r] * time);
+      return this[_r] * (this[_c1] + this[_c2] * time) * power + this[_c2] * power;
+    }
+    get type() {
+      return spring_simulation.SpringType.criticallyDamped;
+    }
+  };
+  (spring_simulation._CriticalSolution.withArgs = function(r, c1, c2) {
+    this[_r] = r;
+    this[_c1] = c1;
+    this[_c2] = c2;
+    ;
+  }).prototype = spring_simulation._CriticalSolution.prototype;
+  dart.addTypeTests(spring_simulation._CriticalSolution);
+  dart.addTypeCaches(spring_simulation._CriticalSolution);
+  spring_simulation._CriticalSolution[dart.implements] = () => [spring_simulation._SpringSolution];
+  dart.setMethodSignature(spring_simulation._CriticalSolution, () => ({
+    __proto__: dart.getMethods(spring_simulation._CriticalSolution.__proto__),
+    x: dart.fnType(core.double, [core.double]),
+    dx: dart.fnType(core.double, [core.double])
+  }));
+  dart.setGetterSignature(spring_simulation._CriticalSolution, () => ({
+    __proto__: dart.getGetters(spring_simulation._CriticalSolution.__proto__),
+    type: spring_simulation.SpringType
+  }));
+  dart.setLibraryUri(spring_simulation._CriticalSolution, I[0]);
+  dart.setFieldSignature(spring_simulation._CriticalSolution, () => ({
+    __proto__: dart.getFields(spring_simulation._CriticalSolution.__proto__),
+    [_r]: dart.finalFieldType(core.double),
+    [_c1]: dart.finalFieldType(core.double),
+    [_c2]: dart.finalFieldType(core.double)
+  }));
+  var _r1 = dart.privateName(spring_simulation, "_r1");
+  var _r2 = dart.privateName(spring_simulation, "_r2");
+  spring_simulation._OverdampedSolution = class _OverdampedSolution extends core.Object {
+    static new(spring, distance, velocity) {
+      let cmk = spring.damping * spring.damping - 4 * spring.mass * spring.stiffness;
+      let r1 = (-spring.damping - math.sqrt(cmk)) / (2.0 * spring.mass);
+      let r2 = (-spring.damping + math.sqrt(cmk)) / (2.0 * spring.mass);
+      let c2 = (velocity - r1 * distance) / (r2 - r1);
+      let c1 = distance - c2;
+      return new spring_simulation._OverdampedSolution.withArgs(r1, r2, c1, c2);
+    }
+    x(time) {
+      return this[_c1] * math.pow(2.718281828459045, this[_r1] * time) + this[_c2] * math.pow(2.718281828459045, this[_r2] * time);
+    }
+    dx(time) {
+      return this[_c1] * this[_r1] * math.pow(2.718281828459045, this[_r1] * time) + this[_c2] * this[_r2] * math.pow(2.718281828459045, this[_r2] * time);
+    }
+    get type() {
+      return spring_simulation.SpringType.overDamped;
+    }
+  };
+  (spring_simulation._OverdampedSolution.withArgs = function(r1, r2, c1, c2) {
+    this[_r1] = r1;
+    this[_r2] = r2;
+    this[_c1] = c1;
+    this[_c2] = c2;
+    ;
+  }).prototype = spring_simulation._OverdampedSolution.prototype;
+  dart.addTypeTests(spring_simulation._OverdampedSolution);
+  dart.addTypeCaches(spring_simulation._OverdampedSolution);
+  spring_simulation._OverdampedSolution[dart.implements] = () => [spring_simulation._SpringSolution];
+  dart.setMethodSignature(spring_simulation._OverdampedSolution, () => ({
+    __proto__: dart.getMethods(spring_simulation._OverdampedSolution.__proto__),
+    x: dart.fnType(core.double, [core.double]),
+    dx: dart.fnType(core.double, [core.double])
+  }));
+  dart.setGetterSignature(spring_simulation._OverdampedSolution, () => ({
+    __proto__: dart.getGetters(spring_simulation._OverdampedSolution.__proto__),
+    type: spring_simulation.SpringType
+  }));
+  dart.setLibraryUri(spring_simulation._OverdampedSolution, I[0]);
+  dart.setFieldSignature(spring_simulation._OverdampedSolution, () => ({
+    __proto__: dart.getFields(spring_simulation._OverdampedSolution.__proto__),
+    [_r1]: dart.finalFieldType(core.double),
+    [_r2]: dart.finalFieldType(core.double),
+    [_c1]: dart.finalFieldType(core.double),
+    [_c2]: dart.finalFieldType(core.double)
+  }));
+  var _w = dart.privateName(spring_simulation, "_w");
+  spring_simulation._UnderdampedSolution = class _UnderdampedSolution extends core.Object {
+    static new(spring, distance, velocity) {
+      let w = math.sqrt(4.0 * spring.mass * spring.stiffness - spring.damping * spring.damping) / (2.0 * spring.mass);
+      let r = -(spring.damping / 2.0 * spring.mass);
+      let c1 = distance;
+      let c2 = (velocity - r * distance) / w;
+      return new spring_simulation._UnderdampedSolution.withArgs(w, r, c1, c2);
+    }
+    x(time) {
+      return math.pow(2.718281828459045, this[_r] * time) * (this[_c1] * math.cos(this[_w] * time) + this[_c2] * math.sin(this[_w] * time));
+    }
+    dx(time) {
+      let power = math.pow(2.718281828459045, this[_r] * time);
+      let cosine = math.cos(this[_w] * time);
+      let sine = math.sin(this[_w] * time);
+      return power * (this[_c2] * this[_w] * cosine - this[_c1] * this[_w] * sine) + this[_r] * power * (this[_c2] * sine + this[_c1] * cosine);
+    }
+    get type() {
+      return spring_simulation.SpringType.underDamped;
+    }
+  };
+  (spring_simulation._UnderdampedSolution.withArgs = function(w, r, c1, c2) {
+    this[_w] = w;
+    this[_r] = r;
+    this[_c1] = c1;
+    this[_c2] = c2;
+    ;
+  }).prototype = spring_simulation._UnderdampedSolution.prototype;
+  dart.addTypeTests(spring_simulation._UnderdampedSolution);
+  dart.addTypeCaches(spring_simulation._UnderdampedSolution);
+  spring_simulation._UnderdampedSolution[dart.implements] = () => [spring_simulation._SpringSolution];
+  dart.setMethodSignature(spring_simulation._UnderdampedSolution, () => ({
+    __proto__: dart.getMethods(spring_simulation._UnderdampedSolution.__proto__),
+    x: dart.fnType(core.double, [core.double]),
+    dx: dart.fnType(core.double, [core.double])
+  }));
+  dart.setGetterSignature(spring_simulation._UnderdampedSolution, () => ({
+    __proto__: dart.getGetters(spring_simulation._UnderdampedSolution.__proto__),
+    type: spring_simulation.SpringType
+  }));
+  dart.setLibraryUri(spring_simulation._UnderdampedSolution, I[0]);
+  dart.setFieldSignature(spring_simulation._UnderdampedSolution, () => ({
+    __proto__: dart.getFields(spring_simulation._UnderdampedSolution.__proto__),
+    [_w]: dart.finalFieldType(core.double),
+    [_r]: dart.finalFieldType(core.double),
+    [_c1]: dart.finalFieldType(core.double),
+    [_c2]: dart.finalFieldType(core.double)
+  }));
+  dart.trackLibraries("packages/flutter/src/physics/spring_simulation.dart", {
+    "package:flutter/src/physics/spring_simulation.dart": spring_simulation
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["sliver_fixed_extent_list.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/rendering/sliver_fixed_extent_list.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["spring_simulation.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/physics/spring_simulation.dart.lib.js"}');
   // Exports:
   return {
-    src__rendering__sliver_fixed_extent_list: sliver_fixed_extent_list
+    src__physics__spring_simulation: spring_simulation
   };
 }));
 
-//# sourceMappingURL=sliver_fixed_extent_list.dart.lib.js.map
+//# sourceMappingURL=spring_simulation.dart.lib.js.map

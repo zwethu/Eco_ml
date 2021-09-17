@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'package:eco_ml/route/router.gr.dart';
@@ -114,6 +115,8 @@ class _PiggyPageState extends State<PiggyPage> {
                       final data = piggyBox.get(0);
                       print(data);
                       navigateToHome(context);
+                       final player = AudioCache();
+                          player.play('images/coin.wav');
                     },
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),

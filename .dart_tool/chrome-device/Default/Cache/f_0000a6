@@ -1,44 +1,393 @@
-define(['dart_sdk', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/flutter/src/painting/borders.dart'], (function load__packages__fl_chart__src__utils__utils_dart(dart_sdk, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__painting__strut_style$46dart, packages__flutter__src__painting__borders$46dart) {
+define(['dart_sdk', 'packages/flutter/src/widgets/widget_span.dart', 'packages/hive/src/box/lazy_box_impl.dart', 'packages/eco_ml/data/database.dart', 'packages/flutter/src/painting/edge_insets.dart', 'packages/flutter/src/material/card.dart', 'packages/flutter/src/material/colors.dart', 'packages/flutter/src/painting/rounded_rectangle_border.dart', 'packages/flutter/src/painting/border_radius.dart', 'packages/flutter/src/rendering/flex.dart', 'packages/flutter/src/painting/box_decoration.dart', 'packages/flutter/src/painting/strut_style.dart', 'packages/fl_chart/src/chart/scatter_chart/scatter_chart_painter.dart', 'packages/fl_chart/src/chart/base/base_chart/fl_touch_event.dart', 'packages/intl/src/intl/date_format.dart'], (function load__packages__eco_ml__charts__barChart_dart(dart_sdk, packages__flutter__src__widgets__widget_span$46dart, packages__hive__src__box__lazy_box_impl$46dart, packages__eco_ml__data__database$46dart, packages__flutter__src__painting__edge_insets$46dart, packages__flutter__src__material__card$46dart, packages__flutter__src__material__colors$46dart, packages__flutter__src__painting__rounded_rectangle_border$46dart, packages__flutter__src__painting__border_radius$46dart, packages__flutter__src__rendering__flex$46dart, packages__flutter__src__painting__box_decoration$46dart, packages__flutter__src__painting__strut_style$46dart, packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart, packages__fl_chart__src__chart__base__base_chart__fl_touch_event$46dart, packages__intl__src__intl__date_format$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const ui = dart_sdk.ui;
-  const math = dart_sdk.math;
+  const _js_helper = dart_sdk._js_helper;
+  const _interceptors = dart_sdk._interceptors;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
+  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
+  const container = packages__flutter__src__widgets__widget_span$46dart.src__widgets__container;
+  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
   const text = packages__flutter__src__widgets__widget_span$46dart.src__widgets__text;
-  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
+  const hive = packages__hive__src__box__lazy_box_impl$46dart.hive;
+  const database = packages__eco_ml__data__database$46dart.data__database;
+  const edge_insets = packages__flutter__src__painting__edge_insets$46dart.src__painting__edge_insets;
+  const card = packages__flutter__src__material__card$46dart.src__material__card;
+  const colors = packages__flutter__src__material__colors$46dart.src__material__colors;
+  const rounded_rectangle_border = packages__flutter__src__painting__rounded_rectangle_border$46dart.src__painting__rounded_rectangle_border;
+  const border_radius = packages__flutter__src__painting__border_radius$46dart.src__painting__border_radius;
+  const flex = packages__flutter__src__rendering__flex$46dart.src__rendering__flex;
+  const box_decoration = packages__flutter__src__painting__box_decoration$46dart.src__painting__box_decoration;
   const text_style = packages__flutter__src__painting__strut_style$46dart.src__painting__text_style;
-  const borders = packages__flutter__src__painting__borders$46dart.src__painting__borders;
-  var utils = Object.create(dart.library);
-  var $abs = dartx.abs;
-  var $toDouble = dartx.toDouble;
-  var $length = dartx.length;
+  const bar_chart = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__bar_chart__bar_chart;
+  const bar_chart_data = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__bar_chart__bar_chart_data;
+  const axis_chart_data = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__base__axis_chart__axis_chart_data;
+  const base_chart_data = packages__fl_chart__src__chart__scatter_chart__scatter_chart_painter$46dart.src__chart__base__base_chart__base_chart_data;
+  const fl_touch_event = packages__fl_chart__src__chart__base__base_chart__fl_touch_event$46dart.src__chart__base__base_chart__fl_touch_event;
+  const date_format = packages__intl__src__intl__date_format$46dart.src__intl__date_format;
+  var barChart = Object.create(dart.library);
+  var $toInt = dartx.toInt;
+  var $toString = dartx.toString;
+  var $first = dartx.first;
+  var $values = dartx.values;
   var $_get = dartx._get;
   var $last = dartx.last;
-  var $truncate = dartx.truncate;
-  var $round = dartx.round;
-  var $toInt = dartx.toInt;
-  var $toStringAsFixed = dartx.toStringAsFixed;
-  var $endsWith = dartx.endsWith;
-  var $substring = dartx.substring;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    ListOfdouble: () => (T.ListOfdouble = dart.constFn(core.List$(core.double)))(),
-    intTodouble: () => (T.intTodouble = dart.constFn(dart.fnType(core.double, [core.int])))()
+    MapOfString$double: () => (T.MapOfString$double = dart.constFn(core.Map$(core.String, core.double)))(),
+    ListOfMapOfString$double: () => (T.ListOfMapOfString$double = dart.constFn(core.List$(T.MapOfString$double())))(),
+    IdentityMapOfString$double: () => (T.IdentityMapOfString$double = dart.constFn(_js_helper.IdentityMap$(core.String, core.double)))(),
+    intToMapOfString$double: () => (T.intToMapOfString$double = dart.constFn(dart.fnType(T.MapOfString$double(), [core.int])))(),
+    JSArrayOfWidget: () => (T.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
+    BarChartGroupDataAndintAndBarChartRodData__ToNull: () => (T.BarChartGroupDataAndintAndBarChartRodData__ToNull = dart.constFn(dart.fnType(core.Null, [bar_chart_data.BarChartGroupData, core.int, bar_chart_data.BarChartRodData, core.int])))(),
+    VoidTovoid: () => (T.VoidTovoid = dart.constFn(dart.fnType(dart.void, [])))(),
+    BarTouchResponseN: () => (T.BarTouchResponseN = dart.constFn(dart.nullable(bar_chart_data.BarTouchResponse)))(),
+    FlTouchEventAndBarTouchResponseNTovoid: () => (T.FlTouchEventAndBarTouchResponseNTovoid = dart.constFn(dart.fnType(dart.void, [fl_touch_event.FlTouchEvent, T.BarTouchResponseN()])))(),
+    BuildContextAnddoubleToTextStyle: () => (T.BuildContextAnddoubleToTextStyle = dart.constFn(dart.fnType(text_style.TextStyle, [framework.BuildContext, core.double])))(),
+    doubleToString: () => (T.doubleToString = dart.constFn(dart.fnType(core.String, [core.double])))(),
+    JSArrayOfColor: () => (T.JSArrayOfColor = dart.constFn(_interceptors.JSArray$(ui.Color)))(),
+    JSArrayOfBarChartRodData: () => (T.JSArrayOfBarChartRodData = dart.constFn(_interceptors.JSArray$(bar_chart_data.BarChartRodData)))(),
+    ListOfBarChartGroupData: () => (T.ListOfBarChartGroupData = dart.constFn(core.List$(bar_chart_data.BarChartGroupData)))(),
+    intToBarChartGroupData: () => (T.intToBarChartGroupData = dart.constFn(dart.fnType(bar_chart_data.BarChartGroupData, [core.int])))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
+    get C0() {
+      return C[0] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283694551.0
+      });
+    },
     get C1() {
       return C[1] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294951118.0
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: edge_insets.EdgeInsets.prototype,
+        [EdgeInsets_bottom]: 10,
+        [EdgeInsets_right]: 10,
+        [EdgeInsets_top]: 10,
+        [EdgeInsets_left]: 10
+      });
+    },
+    get C5() {
+      return C[5] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 29,
+        [_Location_line]: 81,
+        [_Location_file]: null
+      });
+    },
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 29,
+        [_Location_line]: 82,
+        [_Location_file]: null
+      });
+    },
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 29,
+        [_Location_line]: 83,
+        [_Location_file]: null
+      });
+    },
+    get C8() {
+      return C[8] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 29,
+        [_Location_line]: 84,
+        [_Location_file]: null
+      });
+    },
+    get C4() {
+      return C[4] = dart.constList([C[5] || CT.C5, C[6] || CT.C6, C[7] || CT.C7, C[8] || CT.C8], widget_inspector._Location);
+    },
+    get C3() {
+      return C[3] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[4] || CT.C4,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 80,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C11() {
+      return C[11] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 32,
+        [_Location_line]: 88,
+        [_Location_file]: null
+      });
+    },
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 31,
+        [_Location_line]: 89,
+        [_Location_file]: null
+      });
+    },
+    get C10() {
+      return C[10] = dart.constList([C[11] || CT.C11, C[12] || CT.C12], widget_inspector._Location);
+    },
+    get C9() {
+      return C[9] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[10] || CT.C10,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 88,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C15() {
+      return C[15] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 25,
+        [_Location_line]: 79,
+        [_Location_file]: null
+      });
+    },
+    get C14() {
+      return C[14] = dart.constList([C[15] || CT.C15], widget_inspector._Location);
+    },
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[14] || CT.C14,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 78,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C18() {
+      return C[18] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 25,
+        [_Location_line]: 96,
+        [_Location_file]: null
+      });
+    },
+    get C17() {
+      return C[17] = dart.constList([C[18] || CT.C18], widget_inspector._Location);
+    },
+    get C16() {
+      return C[16] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[17] || CT.C17,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 95,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C21() {
+      return C[21] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "margin",
+        [_Location_column]: 29,
+        [_Location_line]: 101,
+        [_Location_file]: null
+      });
+    },
+    get C22() {
+      return C[22] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "height",
+        [_Location_column]: 29,
+        [_Location_line]: 102,
+        [_Location_file]: null
+      });
+    },
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "width",
+        [_Location_column]: 29,
+        [_Location_line]: 103,
+        [_Location_file]: null
+      });
+    },
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "decoration",
+        [_Location_column]: 29,
+        [_Location_line]: 104,
+        [_Location_file]: null
+      });
+    },
+    get C20() {
+      return C[20] = dart.constList([C[21] || CT.C21, C[22] || CT.C22, C[23] || CT.C23, C[24] || CT.C24], widget_inspector._Location);
+    },
+    get C19() {
+      return C[19] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[20] || CT.C20,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 100,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 32,
+        [_Location_line]: 108,
+        [_Location_file]: null
+      });
+    },
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "style",
+        [_Location_column]: 31,
+        [_Location_line]: 109,
+        [_Location_file]: null
+      });
+    },
+    get C26() {
+      return C[26] = dart.constList([C[27] || CT.C27, C[28] || CT.C28], widget_inspector._Location);
+    },
+    get C25() {
+      return C[25] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[26] || CT.C26,
+        [_Location_name]: null,
+        [_Location_column]: 27,
+        [_Location_line]: 108,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C31() {
+      return C[31] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 25,
+        [_Location_line]: 99,
+        [_Location_file]: null
+      });
+    },
+    get C30() {
+      return C[30] = dart.constList([C[31] || CT.C31], widget_inspector._Location);
+    },
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[30] || CT.C30,
+        [_Location_name]: null,
+        [_Location_column]: 23,
+        [_Location_line]: 98,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C34() {
+      return C[34] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 21,
+        [_Location_line]: 77,
+        [_Location_file]: null
+      });
+    },
+    get C33() {
+      return C[33] = dart.constList([C[34] || CT.C34], widget_inspector._Location);
+    },
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[33] || CT.C33,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 76,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C37() {
+      return C[37] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 19,
+        [_Location_line]: 75,
+        [_Location_file]: null
+      });
+    },
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 76,
+        [_Location_file]: null
+      });
+    },
+    get C36() {
+      return C[36] = dart.constList([C[37] || CT.C37, C[38] || CT.C38], widget_inspector._Location);
+    },
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[36] || CT.C36,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 74,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C40() {
+      return C[40] = dart.const({
         __proto__: ui.FontWeight.prototype,
         [FontWeight_index]: 6
       });
     },
-    get C0() {
-      return C[0] = dart.const({
+    get C41() {
+      return C[41] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283406497.0
+      });
+    },
+    get C39() {
+      return C[39] = dart.const({
         __proto__: text_style.TextStyle.prototype,
         [TextStyle_fontFeatures]: null,
         [TextStyle_shadows]: null,
@@ -56,39 +405,318 @@ define(['dart_sdk', 'packages/flutter/src/painting/border_radius.dart', 'package
         [TextStyle_wordSpacing]: null,
         [TextStyle_letterSpacing]: null,
         [TextStyle_fontStyle]: null,
-        [TextStyle_fontWeight]: C[1] || CT.C1,
-        [TextStyle_fontSize]: null,
+        [TextStyle_fontWeight]: C[40] || CT.C40,
+        [TextStyle_fontSize]: 14,
         [TextStyle__package]: null,
         [TextStyle__fontFamilyFallback]: null,
         [TextStyle_fontFamily]: null,
         [TextStyle_backgroundColor]: null,
-        [TextStyle_color]: null,
+        [TextStyle_color]: C[41] || CT.C41,
         [TextStyle_inherit]: true
       });
     },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: borders.BorderStyle.prototype,
-        [_name]: "BorderStyle.solid",
-        index: 1
+    get C44() {
+      return C[44] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "data",
+        [_Location_column]: 21,
+        [_Location_line]: 120,
+        [_Location_file]: null
       });
     },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 4278190080.0
+    get C43() {
+      return C[43] = dart.constList([C[44] || CT.C44], widget_inspector._Location);
+    },
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[43] || CT.C43,
+        [_Location_name]: null,
+        [_Location_column]: 26,
+        [_Location_line]: 119,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
       });
     },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: borders.BorderSide.prototype,
-        [BorderSide_style]: C[3] || CT.C3,
-        [BorderSide_width]: 0,
-        [BorderSide_color]: C[4] || CT.C4
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 19,
+        [_Location_line]: 119,
+        [_Location_file]: null
       });
+    },
+    get C46() {
+      return C[46] = dart.constList([C[47] || CT.C47], widget_inspector._Location);
+    },
+    get C45() {
+      return C[45] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[46] || CT.C46,
+        [_Location_name]: null,
+        [_Location_column]: 17,
+        [_Location_line]: 118,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "crossAxisAlignment",
+        [_Location_column]: 15,
+        [_Location_line]: 70,
+        [_Location_file]: null
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisAlignment",
+        [_Location_column]: 15,
+        [_Location_line]: 71,
+        [_Location_file]: null
+      });
+    },
+    get C52() {
+      return C[52] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "mainAxisSize",
+        [_Location_column]: 15,
+        [_Location_line]: 72,
+        [_Location_file]: null
+      });
+    },
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "children",
+        [_Location_column]: 15,
+        [_Location_line]: 73,
+        [_Location_file]: null
+      });
+    },
+    get C49() {
+      return C[49] = dart.constList([C[50] || CT.C50, C[51] || CT.C51, C[52] || CT.C52, C[53] || CT.C53], widget_inspector._Location);
+    },
+    get C48() {
+      return C[48] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[49] || CT.C49,
+        [_Location_name]: null,
+        [_Location_column]: 20,
+        [_Location_line]: 69,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C56() {
+      return C[56] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 13,
+        [_Location_line]: 68,
+        [_Location_file]: null
+      });
+    },
+    get C57() {
+      return C[57] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 13,
+        [_Location_line]: 69,
+        [_Location_file]: null
+      });
+    },
+    get C55() {
+      return C[55] = dart.constList([C[56] || CT.C56, C[57] || CT.C57], widget_inspector._Location);
+    },
+    get C54() {
+      return C[54] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[55] || CT.C55,
+        [_Location_name]: null,
+        [_Location_column]: 18,
+        [_Location_line]: 67,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C60() {
+      return C[60] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "elevation",
+        [_Location_column]: 11,
+        [_Location_line]: 62,
+        [_Location_file]: null
+      });
+    },
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "shadowColor",
+        [_Location_column]: 11,
+        [_Location_line]: 63,
+        [_Location_file]: null
+      });
+    },
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "shape",
+        [_Location_column]: 11,
+        [_Location_line]: 64,
+        [_Location_file]: null
+      });
+    },
+    get C63() {
+      return C[63] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "color",
+        [_Location_column]: 11,
+        [_Location_line]: 66,
+        [_Location_file]: null
+      });
+    },
+    get C64() {
+      return C[64] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 11,
+        [_Location_line]: 67,
+        [_Location_file]: null
+      });
+    },
+    get C59() {
+      return C[59] = dart.constList([C[60] || CT.C60, C[61] || CT.C61, C[62] || CT.C62, C[63] || CT.C63, C[64] || CT.C64], widget_inspector._Location);
+    },
+    get C58() {
+      return C[58] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[59] || CT.C59,
+        [_Location_name]: null,
+        [_Location_column]: 16,
+        [_Location_line]: 61,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "padding",
+        [_Location_column]: 9,
+        [_Location_line]: 60,
+        [_Location_file]: null
+      });
+    },
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 9,
+        [_Location_line]: 61,
+        [_Location_file]: null
+      });
+    },
+    get C66() {
+      return C[66] = dart.constList([C[67] || CT.C67, C[68] || CT.C68], widget_inspector._Location);
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[66] || CT.C66,
+        [_Location_name]: null,
+        [_Location_column]: 14,
+        [_Location_line]: 59,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "aspectRatio",
+        [_Location_column]: 7,
+        [_Location_line]: 58,
+        [_Location_file]: null
+      });
+    },
+    get C72() {
+      return C[72] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: null,
+        [_Location_name]: "child",
+        [_Location_column]: 7,
+        [_Location_line]: 59,
+        [_Location_file]: null
+      });
+    },
+    get C70() {
+      return C[70] = dart.constList([C[71] || CT.C71, C[72] || CT.C72], widget_inspector._Location);
+    },
+    get C69() {
+      return C[69] = dart.const({
+        __proto__: widget_inspector._Location.prototype,
+        [_Location_parameterLocations]: C[70] || CT.C70,
+        [_Location_name]: null,
+        [_Location_column]: 12,
+        [_Location_line]: 57,
+        [_Location_file]: "file:///D:/workspace/flutter/Eco_ml/lib/charts/barChart.dart"
+      });
+    },
+    get C73() {
+      return C[73] = dart.constList([], core.int);
     }
   }, false);
-  var C = Array(5).fill(void 0);
+  var C = Array(74).fill(void 0);
+  var I = ["package:eco_ml/charts/barChart.dart"];
+  barChart.BarChartSample2 = class BarChartSample2 extends framework.StatefulWidget {
+    createState() {
+      return new barChart.BarChartSample2State.new();
+    }
+  };
+  (barChart.BarChartSample2.new = function(opts) {
+    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
+    barChart.BarChartSample2.__proto__.new.call(this, {$creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+    ;
+  }).prototype = barChart.BarChartSample2.prototype;
+  dart.addTypeTests(barChart.BarChartSample2);
+  dart.addTypeCaches(barChart.BarChartSample2);
+  dart.setMethodSignature(barChart.BarChartSample2, () => ({
+    __proto__: dart.getMethods(barChart.BarChartSample2.__proto__),
+    createState: dart.fnType(framework.State$(framework.StatefulWidget), [])
+  }));
+  dart.setLibraryUri(barChart.BarChartSample2, I[0]);
+  var box = dart.privateName(barChart, "BarChartSample2State.box");
+  var incomeBox = dart.privateName(barChart, "BarChartSample2State.incomeBox");
+  var outcomeBox = dart.privateName(barChart, "BarChartSample2State.outcomeBox");
+  var leftBarColor = dart.privateName(barChart, "BarChartSample2State.leftBarColor");
+  var rightBarColor = dart.privateName(barChart, "BarChartSample2State.rightBarColor");
+  var width = dart.privateName(barChart, "BarChartSample2State.width");
+  var value1 = dart.privateName(barChart, "BarChartSample2State.value1");
+  var touchedIndex = dart.privateName(barChart, "BarChartSample2State.touchedIndex");
+  var Color_value = dart.privateName(ui, "Color.value");
+  var EdgeInsets_bottom = dart.privateName(edge_insets, "EdgeInsets.bottom");
+  var EdgeInsets_right = dart.privateName(edge_insets, "EdgeInsets.right");
+  var EdgeInsets_top = dart.privateName(edge_insets, "EdgeInsets.top");
+  var EdgeInsets_left = dart.privateName(edge_insets, "EdgeInsets.left");
+  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
+  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
+  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
+  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
+  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
   var TextStyle_fontFeatures = dart.privateName(text_style, "TextStyle.fontFeatures");
   var TextStyle_shadows = dart.privateName(text_style, "TextStyle.shadows");
   var TextStyle_debugLabel = dart.privateName(text_style, "TextStyle.debugLabel");
@@ -114,190 +742,160 @@ define(['dart_sdk', 'packages/flutter/src/painting/border_radius.dart', 'package
   var TextStyle_backgroundColor = dart.privateName(text_style, "TextStyle.backgroundColor");
   var TextStyle_color = dart.privateName(text_style, "TextStyle.color");
   var TextStyle_inherit = dart.privateName(text_style, "TextStyle.inherit");
-  utils.radians = function radians(degrees) {
-    return degrees * 0.017453292519943295;
-  };
-  utils.degrees = function degrees(radians) {
-    return radians * 57.29577951308232;
-  };
-  utils.getDefaultSize = function getDefaultSize(screenSize) {
-    let resultSize = null;
-    if (screenSize.width < screenSize.height) {
-      resultSize = new ui.Size.new(screenSize.width, screenSize.width);
-    } else if (screenSize.height < screenSize.width) {
-      resultSize = new ui.Size.new(screenSize.height, screenSize.height);
-    } else {
-      resultSize = new ui.Size.new(screenSize.width, screenSize.height);
+  barChart.BarChartSample2State = class BarChartSample2State extends framework.State$(barChart.BarChartSample2) {
+    get box() {
+      return this[box];
     }
-    return resultSize['*'](0.7);
-  };
-  utils.translateRotatedPosition = function translateRotatedPosition(size, degree) {
-    return size / 4 * math.sin(utils.radians(degree[$abs]()));
-  };
-  utils.calculateRotationOffset = function calculateRotationOffset(size, degree) {
-    let rotatedHeight = (size.width * math.sin(utils.radians(degree)))[$abs]() + (size.height * math.cos(utils.radians(degree)))[$abs]();
-    let rotatedWidth = (size.width * math.cos(utils.radians(degree)))[$abs]() + (size.height * math.sin(utils.radians(degree)))[$abs]();
-    return new ui.Offset.new((size.width - rotatedWidth) / 2, (size.height - rotatedHeight) / 2);
-  };
-  utils.normalizeBorderRadius = function normalizeBorderRadius(borderRadius, width) {
-    if (borderRadius == null) {
-      return null;
+    set box(value) {
+      super.box = value;
     }
-    let topLeft = null;
-    if (borderRadius.topLeft.x > width / 2 || borderRadius.topLeft.y > width / 2) {
-      topLeft = new ui.Radius.circular(width / 2);
-    } else {
-      topLeft = borderRadius.topLeft;
+    get incomeBox() {
+      return this[incomeBox];
     }
-    let topRight = null;
-    if (borderRadius.topRight.x > width / 2 || borderRadius.topRight.y > width / 2) {
-      topRight = new ui.Radius.circular(width / 2);
-    } else {
-      topRight = borderRadius.topRight;
+    set incomeBox(value) {
+      super.incomeBox = value;
     }
-    let bottomLeft = null;
-    if (borderRadius.bottomLeft.x > width / 2 || borderRadius.bottomLeft.y > width / 2) {
-      bottomLeft = new ui.Radius.circular(width / 2);
-    } else {
-      bottomLeft = borderRadius.bottomLeft;
+    get outcomeBox() {
+      return this[outcomeBox];
     }
-    let bottomRight = null;
-    if (borderRadius.bottomRight.x > width / 2 || borderRadius.bottomRight.y > width / 2) {
-      bottomRight = new ui.Radius.circular(width / 2);
-    } else {
-      bottomRight = borderRadius.bottomRight;
+    set outcomeBox(value) {
+      super.outcomeBox = value;
     }
-    return new border_radius.BorderRadius.only({topLeft: topLeft, topRight: topRight, bottomLeft: bottomLeft, bottomRight: bottomRight});
-  };
-  utils.normalizeBorderSide = function normalizeBorderSide(borderSide, width) {
-    if (borderSide == null) {
-      return utils.DefaultBorderSide;
+    get leftBarColor() {
+      return this[leftBarColor];
     }
-    let borderWidth = null;
-    if (borderSide.width > width / 2) {
-      borderWidth = width / (2)[$toDouble]();
-    } else {
-      borderWidth = borderSide.width;
+    set leftBarColor(value) {
+      super.leftBarColor = value;
     }
-    return borderSide.copyWith({width: borderWidth});
-  };
-  utils.lerpGradient = function lerpGradient(colors, stops, t) {
-    let length = colors[$length];
-    if (stops[$length] !== length) {
-      stops = T.ListOfdouble().generate(length, dart.fn(i => (i + 1) / length, T.intTodouble()));
+    get rightBarColor() {
+      return this[rightBarColor];
     }
-    for (let s = 0; s < stops[$length] - 1; s = s + 1) {
-      let leftStop = stops[$_get](s);
-      let rightStop = stops[$_get](s + 1);
-      let leftColor = colors[$_get](s);
-      let rightColor = colors[$_get](s + 1);
-      if (t <= leftStop) {
-        return leftColor;
-      } else if (t < rightStop) {
-        let sectionT = (t - leftStop) / (rightStop - leftStop);
-        return dart.nullCheck(ui.Color.lerp(leftColor, rightColor, sectionT));
+    set rightBarColor(value) {
+      super.rightBarColor = value;
+    }
+    get width() {
+      return this[width];
+    }
+    set width(value) {
+      super.width = value;
+    }
+    get value1() {
+      return this[value1];
+    }
+    set value1(value) {
+      this[value1] = value;
+    }
+    get touchedIndex() {
+      return this[touchedIndex];
+    }
+    set touchedIndex(value) {
+      this[touchedIndex] = value;
+    }
+    get groupedTransactions() {
+      return T.ListOfMapOfString$double().generate(7, dart.fn(index => {
+        let iterateIndex = 6 - index;
+        let weekDay = new core.DateTime.now().subtract(new core.Duration.new({days: iterateIndex}));
+        let totalSumExpense = 0.0;
+        let totalSumIncome = 0.0;
+        for (let i = 0; i < this.box.length; i = i + 1) {
+          let data = database.Transaction.as(this.box.getAt(i));
+          if (data.datatime.day === weekDay.day && data.datatime.month === weekDay.month && data.isExpense) {
+            totalSumExpense = totalSumExpense + data.amount;
+          } else if (data.datatime.day === weekDay.day && data.datatime.month === weekDay.month && !data.isExpense) {
+            totalSumIncome = totalSumIncome + data.amount;
+          }
+        }
+        return new (T.IdentityMapOfString$double()).from(["amount", totalSumExpense, "amount2", totalSumIncome]);
+      }, T.intToMapOfString$double()));
+    }
+    initState() {
+      super.initState();
+    }
+    build(context) {
+      return new basic.AspectRatio.new({aspectRatio: 3 / 2, child: new container.Container.new({padding: new edge_insets.EdgeInsets.all(20.0), child: new card.Card.new({elevation: 5.0, shadowColor: colors.Colors.grey, shape: new rounded_rectangle_border.RoundedRectangleBorder.new({borderRadius: new border_radius.BorderRadius.circular(20.0)}), color: colors.Colors.white, child: new basic.Padding.new({padding: C[2] || CT.C2, child: new basic.Column.new({crossAxisAlignment: flex.CrossAxisAlignment.stretch, mainAxisAlignment: flex.MainAxisAlignment.start, mainAxisSize: flex.MainAxisSize.max, children: T.JSArrayOfWidget().of([new container.Container.new({padding: new edge_insets.EdgeInsets.only({left: 15.0, top: 10.0}), child: new basic.Column.new({children: T.JSArrayOfWidget().of([new basic.Row.new({children: T.JSArrayOfWidget().of([new container.Container.new({margin: new edge_insets.EdgeInsets.only({right: 10.0}), height: 10.0, width: 10.0, decoration: new box_decoration.BoxDecoration.new({borderRadius: new border_radius.BorderRadius.circular(300.0), color: new ui.Color.new(4283694551)}), $creationLocationd_0dea112b090073317d4: C[3] || CT.C3}), new text.Text.new("Income", {style: new text_style.TextStyle.new({color: new ui.Color.new(4283406497), fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[9] || CT.C9})]), $creationLocationd_0dea112b090073317d4: C[13] || CT.C13}), new basic.SizedBox.new({height: 1.0, $creationLocationd_0dea112b090073317d4: C[16] || CT.C16}), new basic.Row.new({children: T.JSArrayOfWidget().of([new container.Container.new({margin: new edge_insets.EdgeInsets.only({right: 10.0}), height: 10.0, width: 10.0, decoration: new box_decoration.BoxDecoration.new({borderRadius: new border_radius.BorderRadius.circular(300.0), color: new ui.Color.new(4294951118)}), $creationLocationd_0dea112b090073317d4: C[19] || CT.C19}), new text.Text.new("Expense", {style: new text_style.TextStyle.new({color: new ui.Color.new(4283406497), fontWeight: ui.FontWeight.bold}), $creationLocationd_0dea112b090073317d4: C[25] || CT.C25})]), $creationLocationd_0dea112b090073317d4: C[29] || CT.C29})]), $creationLocationd_0dea112b090073317d4: C[32] || CT.C32}), $creationLocationd_0dea112b090073317d4: C[35] || CT.C35}), new basic.Expanded.new({child: new bar_chart.BarChart.new(new bar_chart_data.BarChartData.new({maxY: 20.0, barTouchData: new bar_chart_data.BarTouchData.new({touchTooltipData: new bar_chart_data.BarTouchTooltipData.new({tooltipMargin: 5.0, tooltipPadding: new edge_insets.EdgeInsets.all(0.0), tooltipBgColor: colors.Colors.transparent, getTooltipItem: dart.fn((group, groupIndex, rod, rodIndex) => {
+                          }, T.BarChartGroupDataAndintAndBarChartRodData__ToNull())}), touchCallback: dart.fn((event, barTouchResponse) => {
+                          this.setState(dart.fn(() => {
+                            if (!event.isInterestedForInteractions || barTouchResponse == null || barTouchResponse.spot == null) {
+                              this.touchedIndex = -1;
+                              return;
+                            }
+                            this.touchedIndex = dart.nullCheck(barTouchResponse.spot).touchedBarGroupIndex;
+                          }, T.VoidTovoid()));
+                        }, T.FlTouchEventAndBarTouchResponseNTovoid())}), titlesData: new axis_chart_data.FlTitlesData.new({show: true, rightTitles: new axis_chart_data.SideTitles.new({showTitles: false}), topTitles: new axis_chart_data.SideTitles.new({showTitles: false}), bottomTitles: new axis_chart_data.SideTitles.new({showTitles: true, getTextStyles: dart.fn((context, value) => C[39] || CT.C39, T.BuildContextAnddoubleToTextStyle()), margin: 5.0, getTitles: dart.fn(value1 => {
+                            let value2 = 6 - value1;
+                            let weekDay = new core.DateTime.now().subtract(new core.Duration.new({days: value2[$toInt]()}));
+                            return new date_format.DateFormat.E().format(weekDay)[$toString]();
+                          }, T.doubleToString())}), leftTitles: new axis_chart_data.SideTitles.new({showTitles: false})}), borderData: new base_chart_data.FlBorderData.new({show: false}), barGroups: this.showingGroups(), gridData: new axis_chart_data.FlGridData.new({show: false})}), {$creationLocationd_0dea112b090073317d4: C[42] || CT.C42}), $creationLocationd_0dea112b090073317d4: C[45] || CT.C45})]), $creationLocationd_0dea112b090073317d4: C[48] || CT.C48}), $creationLocationd_0dea112b090073317d4: C[54] || CT.C54}), $creationLocationd_0dea112b090073317d4: C[58] || CT.C58}), $creationLocationd_0dea112b090073317d4: C[65] || CT.C65}), $creationLocationd_0dea112b090073317d4: C[69] || CT.C69});
+    }
+    makeGroupData(x, y1, y2, opts) {
+      let isTouched = opts && 'isTouched' in opts ? opts.isTouched : false;
+      let showTooltips = opts && 'showTooltips' in opts ? opts.showTooltips : C[73] || CT.C73;
+      return new bar_chart_data.BarChartGroupData.new({barsSpace: 4.0, x: x, barRods: T.JSArrayOfBarChartRodData().of([new bar_chart_data.BarChartRodData.new({y: isTouched ? y1 + 1 : y1, colors: T.JSArrayOfColor().of([this.leftBarColor]), width: this.width}), new bar_chart_data.BarChartRodData.new({y: isTouched ? y2 + 1 : y2, colors: T.JSArrayOfColor().of([this.rightBarColor]), width: this.width})])});
+    }
+    showingGroups() {
+      let totalSumIncome = 0.0;
+      let totalSumExpense = 0.0;
+      for (let index = 0; index < this.box.length; index = index + 1) {
+        let data = database.Transaction.as(this.box.getAt(index));
+        if (data.isExpense) {
+          totalSumExpense = totalSumExpense + data.amount;
+        } else if (!data.isExpense) {
+          totalSumIncome = totalSumIncome + data.amount;
+        }
       }
-    }
-    return colors[$last];
-  };
-  utils.getEfficientInterval = function getEfficientInterval(axisViewSize, diffInYAxis, opts) {
-    let pixelPerInterval = opts && 'pixelPerInterval' in opts ? opts.pixelPerInterval : 40;
-    let allowedCount = (axisViewSize / pixelPerInterval)[$truncate]();
-    let accurateInterval = diffInYAxis / allowedCount;
-    return utils._roundInterval(accurateInterval)[$toDouble]();
-  };
-  utils._roundInterval = function _roundInterval(input) {
-    let count = 0;
-    if (input >= 10) {
-      count = count + 1;
-    }
-    while ((input / 100)[$truncate]() !== 0) {
-      input = input / 10;
-      count = count + 1;
-    }
-    let scaled = input >= 10 ? input[$round]() / 10 : input;
-    if (scaled >= 2.6) {
-      return 5 * math.pow(10, count)[$toInt]();
-    } else if (scaled >= 1.6) {
-      return 2 * math.pow(10, count)[$toInt]();
-    } else {
-      return math.pow(10, count)[$toInt]();
+      return T.ListOfBarChartGroupData().generate(7, dart.fn(i => {
+        let smth = this.groupedTransactions[$_get](i)[$values][$first];
+        let expenseValue = smth / (totalSumIncome + totalSumExpense) * 30;
+        let smth2 = this.groupedTransactions[$_get](i)[$values][$last];
+        let incomeValue = smth2 / (totalSumExpense + totalSumIncome) * 30;
+        return this.makeGroupData(i, incomeValue, expenseValue, {isTouched: i === this.touchedIndex});
+      }, T.intToBarChartGroupData()));
     }
   };
-  utils.formatNumber = function formatNumber(number) {
-    let isNegative = number < 0;
-    if (isNegative) {
-      number = number[$abs]();
-    }
-    let resultNumber = null;
-    let symbol = null;
-    if (number >= 1000000000) {
-      resultNumber = (number / 1000000000)[$toStringAsFixed](1);
-      symbol = "B";
-    } else if (number >= 1000000) {
-      resultNumber = (number / 1000000)[$toStringAsFixed](1);
-      symbol = "M";
-    } else if (number >= 1000) {
-      resultNumber = (number / 1000)[$toStringAsFixed](1);
-      symbol = "K";
-    } else {
-      resultNumber = number[$toStringAsFixed](1);
-      symbol = "";
-    }
-    if (resultNumber[$endsWith](".0")) {
-      resultNumber = resultNumber[$substring](0, resultNumber.length - 2);
-    }
-    if (isNegative) {
-      resultNumber = "-" + resultNumber;
-    }
-    return resultNumber + symbol;
-  };
-  utils.getThemeAwareTextStyle = function getThemeAwareTextStyle(context, providedStyle) {
-    let t0;
-    let defaultTextStyle = text.DefaultTextStyle.of(context);
-    let effectiveTextStyle = providedStyle;
-    if (providedStyle == null || providedStyle.inherit) {
-      effectiveTextStyle = defaultTextStyle.style.merge(providedStyle);
-    }
-    if (media_query.MediaQuery.boldTextOverride(context)) {
-      effectiveTextStyle = dart.nullCheck(effectiveTextStyle).merge(C[0] || CT.C0);
-    }
-    t0 = effectiveTextStyle;
-    return t0 == null ? effectiveTextStyle = defaultTextStyle.style : t0;
-  };
-  var _name = dart.privateName(borders, "_name");
-  var BorderSide_style = dart.privateName(borders, "BorderSide.style");
-  var BorderSide_width = dart.privateName(borders, "BorderSide.width");
-  var Color_value = dart.privateName(ui, "Color.value");
-  var BorderSide_color = dart.privateName(borders, "BorderSide.color");
-  dart.defineLazy(utils, {
-    /*utils._degrees2Radians*/get _degrees2Radians() {
-      return 0.017453292519943295;
-    },
-    /*utils._radians2Degrees*/get _radians2Degrees() {
-      return 57.29577951308232;
-    },
-    /*utils.DefaultBorderSide*/get DefaultBorderSide() {
-      return C[2] || CT.C2;
-    },
-    /*utils.billion*/get billion() {
-      return 1000000000;
-    },
-    /*utils.million*/get million() {
-      return 1000000;
-    },
-    /*utils.kilo*/get kilo() {
-      return 1000;
-    }
-  }, false);
-  dart.trackLibraries("packages/fl_chart/src/utils/utils.dart", {
-    "package:fl_chart/src/utils/utils.dart": utils
+  (barChart.BarChartSample2State.new = function() {
+    this[box] = hive.Hive.box(dart.dynamic, "transactions");
+    this[incomeBox] = hive.Hive.box(dart.dynamic, "income");
+    this[outcomeBox] = hive.Hive.box(dart.dynamic, "outcome");
+    this[leftBarColor] = C[0] || CT.C0;
+    this[rightBarColor] = C[1] || CT.C1;
+    this[width] = 10.0;
+    this[value1] = 7.0;
+    this[touchedIndex] = -1;
+    barChart.BarChartSample2State.__proto__.new.call(this);
+    ;
+  }).prototype = barChart.BarChartSample2State.prototype;
+  dart.addTypeTests(barChart.BarChartSample2State);
+  dart.addTypeCaches(barChart.BarChartSample2State);
+  dart.setMethodSignature(barChart.BarChartSample2State, () => ({
+    __proto__: dart.getMethods(barChart.BarChartSample2State.__proto__),
+    build: dart.fnType(framework.Widget, [framework.BuildContext]),
+    makeGroupData: dart.fnType(bar_chart_data.BarChartGroupData, [core.int, core.double, core.double], {isTouched: core.bool, showTooltips: core.List$(core.int)}, {}),
+    showingGroups: dart.fnType(core.List$(bar_chart_data.BarChartGroupData), [])
+  }));
+  dart.setGetterSignature(barChart.BarChartSample2State, () => ({
+    __proto__: dart.getGetters(barChart.BarChartSample2State.__proto__),
+    groupedTransactions: core.List$(core.Map$(core.String, core.double))
+  }));
+  dart.setLibraryUri(barChart.BarChartSample2State, I[0]);
+  dart.setFieldSignature(barChart.BarChartSample2State, () => ({
+    __proto__: dart.getFields(barChart.BarChartSample2State.__proto__),
+    box: dart.finalFieldType(hive.Box),
+    incomeBox: dart.finalFieldType(hive.Box),
+    outcomeBox: dart.finalFieldType(hive.Box),
+    leftBarColor: dart.finalFieldType(ui.Color),
+    rightBarColor: dart.finalFieldType(ui.Color),
+    width: dart.finalFieldType(core.double),
+    value1: dart.fieldType(core.double),
+    touchedIndex: dart.fieldType(core.int)
+  }));
+  dart.trackLibraries("packages/eco_ml/charts/barChart.dart", {
+    "package:eco_ml/charts/barChart.dart": barChart
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["utils.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;mCAQsB;AAAY,UAAA,AAAQ,QAAD;EAAmB;mCAKtC;AAAY,UAAA,AAAQ,QAAD;EAAmB;iDAInC;AAClB;AACL,QAAI,AAAW,AAAM,UAAP,SAAS,AAAW,UAAD;AACsB,MAArD,aAAa,gBAAK,AAAW,UAAD,QAAQ,AAAW,UAAD;UACzC,KAAI,AAAW,AAAO,UAAR,UAAU,AAAW,UAAD;AACgB,MAAvD,aAAa,gBAAK,AAAW,UAAD,SAAS,AAAW,UAAD;;AAEO,MAAtD,aAAa,gBAAK,AAAW,UAAD,QAAQ,AAAW,UAAD;;AAEhD,UAAO,AAAW,WAAD,MAAG;EACtB;qEAGuC,MAAa;AAClD,UAAQ,AAAK,AAAK,KAAN,GAAG,IAAK,SAAS,cAAQ,AAAO,MAAD;EAC7C;mEAEoC,MAAa;AACzC,wBACuC,AAAM,CAA9C,AAAK,AAAM,IAAP,SAAS,SAAS,cAAQ,MAAM,cAAiD,CAApC,AAAK,AAAO,IAAR,UAAU,SAAI,cAAQ,MAAM;AAChF,uBACkC,AAAM,CAAzC,AAAK,AAAM,IAAP,SAAS,SAAI,cAAQ,MAAM,cAAiD,CAApC,AAAK,AAAO,IAAR,UAAU,SAAI,cAAQ,MAAM;AACjF,UAAO,mBAAmC,CAA3B,AAAK,AAAM,IAAP,SAAS,YAAY,IAAI,GAAiC,CAA7B,AAAK,AAAO,IAAR,UAAU,aAAa,IAAI;EACjF;+DAGkD,cAAqB;AACrE,QAAI,AAAa,YAAD;AACd,YAAO;;AAGF;AACP,QAAI,AAAa,AAAQ,AAAE,YAAX,aAAa,AAAM,KAAD,GAAG,KAAK,AAAa,AAAQ,AAAE,YAAX,aAAa,AAAM,KAAD,GAAG;AACrC,MAApC,UAAiB,uBAAS,AAAM,KAAD,GAAG;;AAEJ,MAA9B,UAAU,AAAa,YAAD;;AAGjB;AACP,QAAI,AAAa,AAAS,AAAE,YAAZ,cAAc,AAAM,KAAD,GAAG,KAAK,AAAa,AAAS,AAAE,YAAZ,cAAc,AAAM,KAAD,GAAG;AACtC,MAArC,WAAkB,uBAAS,AAAM,KAAD,GAAG;;AAEH,MAAhC,WAAW,AAAa,YAAD;;AAGlB;AACP,QAAI,AAAa,AAAW,AAAE,YAAd,gBAAgB,AAAM,KAAD,GAAG,KAAK,AAAa,AAAW,AAAE,YAAd,gBAAgB,AAAM,KAAD,GAAG;AACxC,MAAvC,aAAoB,uBAAS,AAAM,KAAD,GAAG;;AAED,MAApC,aAAa,AAAa,YAAD;;AAGpB;AACP,QAAI,AAAa,AAAY,AAAE,YAAf,iBAAiB,AAAM,KAAD,GAAG,KAAK,AAAa,AAAY,AAAE,YAAf,iBAAiB,AAAM,KAAD,GAAG;AACzC,MAAxC,cAAqB,uBAAS,AAAM,KAAD,GAAG;;AAEA,MAAtC,cAAc,AAAa,YAAD;;AAG5B,UAAoB,+CACT,OAAO,YACN,QAAQ,cACN,UAAU,eACT,WAAW;EAE5B;2DAM2C,YAAmB;AAC5D,QAAI,AAAW,UAAD;AACZ,YAAO;;AAGF;AACP,QAAI,AAAW,AAAM,UAAP,SAAS,AAAM,KAAD,GAAG;AACK,MAAlC,cAAc,AAAM,KAAD,GAAK,CAAF;;AAEQ,MAA9B,cAAc,AAAW,UAAD;;AAG1B,UAAO,AAAW,WAAD,kBAAiB,WAAW;EAC/C;6CAG+B,QAAqB,OAAc;AAC1D,iBAAS,AAAO,MAAD;AACrB,QAAI,AAAM,KAAD,cAAW,MAAM;AAE8B,MAAtD,QAAa,0BAAS,MAAM,EAAE,QAAC,KAAc,CAAP,AAAE,CAAD,GAAG,KAAK,MAAM;;AAGvD,aAAS,IAAI,GAAG,AAAE,CAAD,GAAG,AAAM,AAAO,KAAR,YAAU,GAAG,IAAA,AAAC,CAAA;AAC/B,qBAAW,AAAK,KAAA,QAAC,CAAC;AAAG,sBAAY,AAAK,KAAA,QAAC,AAAE,CAAD,GAAG;AAC3C,sBAAY,AAAM,MAAA,QAAC,CAAC;AAAG,uBAAa,AAAM,MAAA,QAAC,AAAE,CAAD,GAAG;AACrD,UAAI,AAAE,CAAD,IAAI,QAAQ;AACf,cAAO,UAAS;YACX,KAAI,AAAE,CAAD,GAAG,SAAS;AAChB,uBAA0B,CAAd,AAAE,CAAD,GAAG,QAAQ,KAAK,AAAU,SAAD,GAAG,QAAQ;AACvD,cAAkD,gBAArC,cAAK,SAAS,EAAE,UAAU,EAAE,QAAQ;;;AAGrD,UAAO,AAAO,OAAD;EACf;6DASmC,cAAqB;QAC5C;AACJ,uBAA4B,CAAb,YAAY,GAAI,gBAAgB;AAC/C,2BAAmB,AAAY,WAAD,GAAG,YAAY;AACnD,UAAO,AAAiC,sBAAlB,gBAAgB;EACxC;iDAE0B;AACpB,gBAAQ;AAEZ,QAAI,AAAM,KAAD,IAAI;AACJ,MAAP,QAAA,AAAK,KAAA;;AAGP,WAAa,CAAN,KAAK,GAAI,sBAAO;AACV,MAAX,QAAA,AAAM,KAAD,GAAI;AACF,MAAP,QAAA,AAAK,KAAA;;AAGD,iBAAS,AAAM,KAAD,IAAI,KAAK,AAAM,AAAQ,KAAT,aAAW,KAAK,KAAK;AAEvD,QAAI,AAAO,MAAD,IAAI;AACZ,YAAO,AAAE,KAAE,AAAe,SAAX,IAAI,KAAK;UACnB,KAAI,AAAO,MAAD,IAAI;AACnB,YAAO,AAAE,KAAE,AAAe,SAAX,IAAI,KAAK;;AAExB,YAAO,AAAe,UAAX,IAAI,KAAK;;EAExB;6CAmB2B;AACnB,qBAAa,AAAO,MAAD,GAAG;AAE5B,QAAI,UAAU;AACS,MAArB,SAAS,AAAO,MAAD;;AAGV;AACA;AACP,QAAI,AAAO,MAAD;AAC4C,MAApD,eAAkC,CAAlB,AAAO,MAAD,iCAA4B;AACtC,MAAZ,SAAS;UACJ,KAAI,AAAO,MAAD;AACqC,MAApD,eAAkC,CAAlB,AAAO,MAAD,8BAA4B;AACtC,MAAZ,SAAS;UACJ,KAAI,AAAO,MAAD;AACkC,MAAjD,eAA+B,CAAf,AAAO,MAAD,2BAAyB;AACnC,MAAZ,SAAS;;AAE+B,MAAxC,eAAe,AAAO,MAAD,mBAAiB;AAC3B,MAAX,SAAS;;AAGX,QAAI,AAAa,YAAD,YAAU;AACyC,MAAjE,eAAe,AAAa,YAAD,aAAW,GAAG,AAAa,AAAO,YAAR,UAAU;;AAGjE,QAAI,UAAU;AACmB,MAA/B,eAAe,AAAgB,MAAb,YAAY;;AAGhC,UAAO,AAAa,aAAD,GAAG,MAAM;EAC9B;iEAG8C,SAAoB;;AAC1D,2BAAoC,yBAAG,OAAO;AAChD,6BAAqB,aAAa;AACtC,QAAI,AAAc,aAAD,YAAY,AAAc,aAAD;AACwB,MAAhE,qBAAqB,AAAiB,AAAM,gBAAP,aAAa,aAAa;;AAEjE,QAAe,wCAAiB,OAAO;AACuD,MAA5F,qBAAuC,AAAE,eAApB,kBAAkB;;AAEzC,SAAO,kBAAkB;UAAC,cAAnB,qBAAuB,AAAiB,gBAAD;EAChD;;;;;;;MA1Na,sBAAgB;;;MAKhB,sBAAgB;;;MA2EZ,uBAAiB;;;MA8ErB,aAAO;;;MAGP,aAAO;;;MAGP,UAAI","file":"../../../../../../../../../packages/fl_chart/src/utils/utils.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["barChart.dart"],"names":[],"mappings":"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","file":"../../../../../packages/eco_ml/charts/barChart.dart.lib.js"}');
   // Exports:
   return {
-    src__utils__utils: utils
+    charts__barChart: barChart
   };
 }));
 
-//# sourceMappingURL=utils.dart.lib.js.map
+//# sourceMappingURL=barChart.dart.lib.js.map

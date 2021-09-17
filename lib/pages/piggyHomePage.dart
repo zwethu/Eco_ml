@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
@@ -83,23 +84,29 @@ class _PiggyHomePageState extends State<PiggyHomePage>
                 ),
               )),
               Center(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 140,
-                  child: LiquidCustomProgressIndicator(
-                    direction: Axis.vertical,
-                    shapePath: _piggypath(),
-                    valueColor: AlwaysStoppedAnimation(Color(0xff4F98A1)),
-                    value: (piggyData) * 0.01,
-                    backgroundColor: Color(0xffa6cbd6),
-                    center: Text(
-                      '$piggyData%',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                child: GestureDetector(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 140,
+                    child: LiquidCustomProgressIndicator(
+                      direction: Axis.vertical,
+                      shapePath: _piggypath(),
+                      valueColor: AlwaysStoppedAnimation(Color(0xff4F98A1)),
+                      value: (piggyData) * 0.01,
+                      backgroundColor: Color(0xffa6cbd6),
+                      center: Text(
+                        '$piggyData%',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
+                  onTap: (){
+                     final player = AudioCache();
+                          player.play('images/water.wav');
+                  },
                 ),
               ),
               SizedBox(

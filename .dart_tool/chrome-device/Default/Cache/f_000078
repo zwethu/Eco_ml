@@ -1,430 +1,231 @@
-define(['dart_sdk', 'packages/flutter/src/services/text_input.dart', 'packages/flutter/src/foundation/_platform_web.dart', 'packages/characters/src/characters_impl.dart', 'packages/characters/src/extensions.dart', 'packages/flutter/src/services/text_editing.dart'], (function load__packages__flutter__src__services__text_formatter_dart(dart_sdk, packages__flutter__src__services__text_input$46dart, packages__flutter__src__foundation___platform_web$46dart, packages__characters__src__characters_impl$46dart, packages__characters__src__extensions$46dart, packages__flutter__src__services__text_editing$46dart) {
+define(['dart_sdk', 'packages/flutter/src/rendering/sliver.dart', 'packages/flutter/src/rendering/sliver_multi_box_adaptor.dart'], (function load__packages__flutter__src__rendering__sliver_fixed_extent_list_dart(dart_sdk, packages__flutter__src__rendering__sliver$46dart, packages__flutter__src__rendering__sliver_multi_box_adaptor$46dart) {
   'use strict';
   const core = dart_sdk.core;
   const math = dart_sdk.math;
-  const ui = dart_sdk.ui;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const text_input = packages__flutter__src__services__text_input$46dart.src__services__text_input;
-  const platform$ = packages__flutter__src__foundation___platform_web$46dart.src__foundation__platform;
-  const characters_impl = packages__characters__src__characters_impl$46dart.src__characters_impl;
-  const extensions = packages__characters__src__extensions$46dart.src__extensions;
-  const text_editing = packages__flutter__src__services__text_editing$46dart.src__services__text_editing;
-  var text_formatter = Object.create(dart.library);
-  var $isNotEmpty = dartx.isNotEmpty;
-  var $splitMapJoin = dartx.splitMapJoin;
-  var $length = dartx.length;
-  var $substring = dartx.substring;
+  const sliver = packages__flutter__src__rendering__sliver$46dart.src__rendering__sliver;
+  const sliver_multi_box_adaptor = packages__flutter__src__rendering__sliver_multi_box_adaptor$46dart.src__rendering__sliver_multi_box_adaptor;
+  var sliver_fixed_extent_list = Object.create(dart.library);
+  var $round = dartx.round;
+  var $abs = dartx.abs;
+  var $floor = dartx.floor;
+  var $ceil = dartx.ceil;
+  var $isFinite = dartx.isFinite;
   dart._checkModuleNullSafetyMode(true);
-  var T = {
-    MatchToString: () => (T.MatchToString = dart.constFn(dart.fnType(core.String, [core.Match])))(),
-    StringToString: () => (T.StringToString = dart.constFn(dart.fnType(core.String, [core.String])))()
-  };
   const CT = Object.create({
     _: () => (C, CT)
   });
-  dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: text_formatter.MaxLengthEnforcement.prototype,
-        [_name$]: "MaxLengthEnforcement.none",
-        index: 0
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: text_formatter.MaxLengthEnforcement.prototype,
-        [_name$]: "MaxLengthEnforcement.enforced",
-        index: 1
-      });
-    },
-    get C2() {
-      return C[2] = dart.const({
-        __proto__: text_formatter.MaxLengthEnforcement.prototype,
-        [_name$]: "MaxLengthEnforcement.truncateAfterCompositionEnds",
-        index: 2
-      });
-    },
-    get C3() {
-      return C[3] = dart.constList([C[0] || CT.C0, C[1] || CT.C1, C[2] || CT.C2], text_formatter.MaxLengthEnforcement);
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.android",
-        index: 0
-      });
-    },
-    get C5() {
-      return C[5] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.windows",
-        index: 5
-      });
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.iOS",
-        index: 2
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.macOS",
-        index: 4
-      });
-    },
-    get C8() {
-      return C[8] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.linux",
-        index: 3
-      });
-    },
-    get C9() {
-      return C[9] = dart.const({
-        __proto__: platform$.TargetPlatform.prototype,
-        [_name]: "TargetPlatform.fuchsia",
-        index: 1
-      });
-    },
-    get C11() {
-      return C[11] = dart.const({
-        __proto__: ui.TextAffinity.prototype,
-        [_name$0]: "TextAffinity.downstream",
-        index: 1
-      });
-    },
-    get C10() {
-      return C[10] = dart.const({
-        __proto__: text_editing.TextSelection.prototype,
-        [TextRange_end]: -1,
-        [TextRange_start]: -1,
-        [TextSelection_isDirectional]: false,
-        [TextSelection_affinity]: C[11] || CT.C11,
-        [TextSelection_extentOffset]: -1,
-        [TextSelection_baseOffset]: -1
-      });
-    }
-  }, false);
-  var C = Array(12).fill(void 0);
   var I = [
-    "package:flutter/src/services/text_formatter.dart",
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/services/text_formatter.dart"
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/rendering/sliver_fixed_extent_list.dart",
+    "package:flutter/src/rendering/sliver_fixed_extent_list.dart"
   ];
-  var _name$ = dart.privateName(text_formatter, "_name");
-  text_formatter.MaxLengthEnforcement = class MaxLengthEnforcement extends core.Object {
-    toString() {
-      return this[_name$];
+  var _calculateLeadingGarbage = dart.privateName(sliver_fixed_extent_list, "_calculateLeadingGarbage");
+  var _calculateTrailingGarbage = dart.privateName(sliver_fixed_extent_list, "_calculateTrailingGarbage");
+  sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor = class RenderSliverFixedExtentBoxAdaptor extends sliver_multi_box_adaptor.RenderSliverMultiBoxAdaptor {
+    indexToLayoutOffset(itemExtent, index) {
+      return itemExtent * index;
     }
-  };
-  (text_formatter.MaxLengthEnforcement.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
-    ;
-  }).prototype = text_formatter.MaxLengthEnforcement.prototype;
-  dart.addTypeTests(text_formatter.MaxLengthEnforcement);
-  dart.addTypeCaches(text_formatter.MaxLengthEnforcement);
-  dart.setLibraryUri(text_formatter.MaxLengthEnforcement, I[0]);
-  dart.setFieldSignature(text_formatter.MaxLengthEnforcement, () => ({
-    __proto__: dart.getFields(text_formatter.MaxLengthEnforcement.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
-  }));
-  dart.defineExtensionMethods(text_formatter.MaxLengthEnforcement, ['toString']);
-  text_formatter.MaxLengthEnforcement.none = C[0] || CT.C0;
-  text_formatter.MaxLengthEnforcement.enforced = C[1] || CT.C1;
-  text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds = C[2] || CT.C2;
-  text_formatter.MaxLengthEnforcement.values = C[3] || CT.C3;
-  text_formatter.TextInputFormatter = class TextInputFormatter extends core.Object {
-    static withFunction(formatFunction) {
-      return new text_formatter._SimpleTextInputFormatter.new(formatFunction);
+    getMinChildIndexForScrollOffset(scrollOffset, itemExtent) {
+      if (itemExtent > 0.0) {
+        let actual = scrollOffset / itemExtent;
+        let round = actual[$round]();
+        if ((actual - round)[$abs]() < 1e-10) {
+          return round;
+        }
+        return actual[$floor]();
+      }
+      return 0;
     }
-  };
-  (text_formatter.TextInputFormatter.new = function() {
-    ;
-  }).prototype = text_formatter.TextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.TextInputFormatter);
-  dart.addTypeCaches(text_formatter.TextInputFormatter);
-  dart.setLibraryUri(text_formatter.TextInputFormatter, I[0]);
-  text_formatter._SimpleTextInputFormatter = class _SimpleTextInputFormatter extends text_formatter.TextInputFormatter {
-    formatEditUpdate(oldValue, newValue) {
-      let t1, t0;
-      t0 = oldValue;
-      t1 = newValue;
-      return this.formatFunction(t0, t1);
+    getMaxChildIndexForScrollOffset(scrollOffset, itemExtent) {
+      if (itemExtent > 0.0) {
+        let actual = scrollOffset / itemExtent - 1;
+        let round = actual[$round]();
+        if (sliver_fixed_extent_list._isWithinPrecisionErrorTolerance(actual, round)) {
+          return math.max(core.int, 0, round);
+        }
+        return math.max(core.int, 0, actual[$ceil]());
+      }
+      return 0;
     }
-  };
-  (text_formatter._SimpleTextInputFormatter.new = function(formatFunction) {
-    this.formatFunction = formatFunction;
-    if (!(formatFunction !== null)) dart.assertFailed(null, I[1], 111, 14, "formatFunction != null");
-    ;
-  }).prototype = text_formatter._SimpleTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter._SimpleTextInputFormatter);
-  dart.addTypeCaches(text_formatter._SimpleTextInputFormatter);
-  dart.setMethodSignature(text_formatter._SimpleTextInputFormatter, () => ({
-    __proto__: dart.getMethods(text_formatter._SimpleTextInputFormatter.__proto__),
-    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
-  }));
-  dart.setLibraryUri(text_formatter._SimpleTextInputFormatter, I[0]);
-  dart.setFieldSignature(text_formatter._SimpleTextInputFormatter, () => ({
-    __proto__: dart.getFields(text_formatter._SimpleTextInputFormatter.__proto__),
-    formatFunction: dart.finalFieldType(dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue]))
-  }));
-  var filterPattern$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.filterPattern");
-  var allow$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.allow");
-  var replacementString$ = dart.privateName(text_formatter, "FilteringTextInputFormatter.replacementString");
-  text_formatter.FilteringTextInputFormatter = class FilteringTextInputFormatter extends text_formatter.TextInputFormatter {
-    get filterPattern() {
-      return this[filterPattern$];
+    estimateMaxScrollOffset(constraints, opts) {
+      let firstIndex = opts && 'firstIndex' in opts ? opts.firstIndex : null;
+      let lastIndex = opts && 'lastIndex' in opts ? opts.lastIndex : null;
+      let leadingScrollOffset = opts && 'leadingScrollOffset' in opts ? opts.leadingScrollOffset : null;
+      let trailingScrollOffset = opts && 'trailingScrollOffset' in opts ? opts.trailingScrollOffset : null;
+      return this.childManager.estimateMaxScrollOffset(constraints, {firstIndex: firstIndex, lastIndex: lastIndex, leadingScrollOffset: leadingScrollOffset, trailingScrollOffset: trailingScrollOffset});
     }
-    set filterPattern(value) {
-      super.filterPattern = value;
+    computeMaxScrollOffset(constraints, itemExtent) {
+      return this.childManager.childCount * itemExtent;
     }
-    get allow() {
-      return this[allow$];
+    [_calculateLeadingGarbage](firstIndex) {
+      let walker = this.firstChild;
+      let leadingGarbage = 0;
+      while (walker != null && this.indexOf(walker) < firstIndex) {
+        leadingGarbage = leadingGarbage + 1;
+        walker = this.childAfter(walker);
+      }
+      return leadingGarbage;
     }
-    set allow(value) {
-      super.allow = value;
+    [_calculateTrailingGarbage](targetLastIndex) {
+      let walker = this.lastChild;
+      let trailingGarbage = 0;
+      while (walker != null && this.indexOf(walker) > targetLastIndex) {
+        trailingGarbage = trailingGarbage + 1;
+        walker = this.childBefore(walker);
+      }
+      return trailingGarbage;
     }
-    get replacementString() {
-      return this[replacementString$];
-    }
-    set replacementString(value) {
-      super.replacementString = value;
-    }
-    formatEditUpdate(oldValue, newValue) {
-      return text_formatter._selectionAwareTextManipulation(newValue, dart.fn(substring => substring[$splitMapJoin](this.filterPattern, {onMatch: !this.allow ? dart.fn(match => this.replacementString, T.MatchToString()) : null, onNonMatch: this.allow ? dart.fn(nonMatch => nonMatch[$isNotEmpty] ? this.replacementString : "", T.StringToString()) : null}), T.StringToString()));
-    }
-  };
-  (text_formatter.FilteringTextInputFormatter.new = function(filterPattern, opts) {
-    let allow = opts && 'allow' in opts ? opts.allow : null;
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    this[filterPattern$] = filterPattern;
-    this[allow$] = allow;
-    this[replacementString$] = replacementString;
-    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 153, 15, "filterPattern != null");
-    if (!(allow !== null)) dart.assertFailed(null, I[1], 154, 15, "allow != null");
-    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 155, 15, "replacementString != null");
-    ;
-  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
-  (text_formatter.FilteringTextInputFormatter.allow = function(filterPattern, opts) {
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    this[filterPattern$] = filterPattern;
-    this[replacementString$] = replacementString;
-    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 164, 15, "filterPattern != null");
-    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 165, 15, "replacementString != null");
-    this[allow$] = true;
-    ;
-  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
-  (text_formatter.FilteringTextInputFormatter.deny = function(filterPattern, opts) {
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    this[filterPattern$] = filterPattern;
-    this[replacementString$] = replacementString;
-    if (!(filterPattern !== null)) dart.assertFailed(null, I[1], 175, 15, "filterPattern != null");
-    if (!(replacementString !== null)) dart.assertFailed(null, I[1], 176, 15, "replacementString != null");
-    this[allow$] = false;
-    ;
-  }).prototype = text_formatter.FilteringTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.FilteringTextInputFormatter);
-  dart.addTypeCaches(text_formatter.FilteringTextInputFormatter);
-  dart.setMethodSignature(text_formatter.FilteringTextInputFormatter, () => ({
-    __proto__: dart.getMethods(text_formatter.FilteringTextInputFormatter.__proto__),
-    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
-  }));
-  dart.setLibraryUri(text_formatter.FilteringTextInputFormatter, I[0]);
-  dart.setFieldSignature(text_formatter.FilteringTextInputFormatter, () => ({
-    __proto__: dart.getFields(text_formatter.FilteringTextInputFormatter.__proto__),
-    filterPattern: dart.finalFieldType(core.Pattern),
-    allow: dart.finalFieldType(core.bool),
-    replacementString: dart.finalFieldType(core.String)
-  }));
-  dart.defineLazy(text_formatter.FilteringTextInputFormatter, {
-    /*text_formatter.FilteringTextInputFormatter.singleLineFormatter*/get singleLineFormatter() {
-      return new text_formatter.FilteringTextInputFormatter.deny("\n");
-    },
-    /*text_formatter.FilteringTextInputFormatter.digitsOnly*/get digitsOnly() {
-      return new text_formatter.FilteringTextInputFormatter.allow(core.RegExp.new("[0-9]"));
-    }
-  }, false);
-  text_formatter.BlacklistingTextInputFormatter = class BlacklistingTextInputFormatter extends text_formatter.FilteringTextInputFormatter {
-    get blacklistedPattern() {
-      return this.filterPattern;
-    }
-  };
-  (text_formatter.BlacklistingTextInputFormatter.new = function(blacklistedPattern, opts) {
-    let replacementString = opts && 'replacementString' in opts ? opts.replacementString : "";
-    text_formatter.BlacklistingTextInputFormatter.__proto__.deny.call(this, blacklistedPattern, {replacementString: replacementString});
-    ;
-  }).prototype = text_formatter.BlacklistingTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.BlacklistingTextInputFormatter);
-  dart.addTypeCaches(text_formatter.BlacklistingTextInputFormatter);
-  dart.setGetterSignature(text_formatter.BlacklistingTextInputFormatter, () => ({
-    __proto__: dart.getGetters(text_formatter.BlacklistingTextInputFormatter.__proto__),
-    blacklistedPattern: core.Pattern
-  }));
-  dart.setLibraryUri(text_formatter.BlacklistingTextInputFormatter, I[0]);
-  dart.defineLazy(text_formatter.BlacklistingTextInputFormatter, {
-    /*text_formatter.BlacklistingTextInputFormatter.singleLineFormatter*/get singleLineFormatter() {
-      return new text_formatter.BlacklistingTextInputFormatter.new(core.RegExp.new("\\n"));
-    }
-  }, false);
-  text_formatter.WhitelistingTextInputFormatter = class WhitelistingTextInputFormatter extends text_formatter.FilteringTextInputFormatter {
-    get whitelistedPattern() {
-      return this.filterPattern;
-    }
-  };
-  (text_formatter.WhitelistingTextInputFormatter.new = function(whitelistedPattern) {
-    if (!(whitelistedPattern !== null)) dart.assertFailed(null, I[1], 329, 14, "whitelistedPattern != null");
-    text_formatter.WhitelistingTextInputFormatter.__proto__.allow.call(this, whitelistedPattern);
-    ;
-  }).prototype = text_formatter.WhitelistingTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.WhitelistingTextInputFormatter);
-  dart.addTypeCaches(text_formatter.WhitelistingTextInputFormatter);
-  dart.setGetterSignature(text_formatter.WhitelistingTextInputFormatter, () => ({
-    __proto__: dart.getGetters(text_formatter.WhitelistingTextInputFormatter.__proto__),
-    whitelistedPattern: core.Pattern
-  }));
-  dart.setLibraryUri(text_formatter.WhitelistingTextInputFormatter, I[0]);
-  dart.defineLazy(text_formatter.WhitelistingTextInputFormatter, {
-    /*text_formatter.WhitelistingTextInputFormatter.digitsOnly*/get digitsOnly() {
-      return new text_formatter.WhitelistingTextInputFormatter.new(core.RegExp.new("\\d+"));
-    }
-  }, false);
-  var maxLength$ = dart.privateName(text_formatter, "LengthLimitingTextInputFormatter.maxLength");
-  var maxLengthEnforcement$ = dart.privateName(text_formatter, "LengthLimitingTextInputFormatter.maxLengthEnforcement");
-  var _name = dart.privateName(platform$, "_name");
-  text_formatter.LengthLimitingTextInputFormatter = class LengthLimitingTextInputFormatter extends text_formatter.TextInputFormatter {
-    get maxLength() {
-      return this[maxLength$];
-    }
-    set maxLength(value) {
-      super.maxLength = value;
-    }
-    get maxLengthEnforcement() {
-      return this[maxLengthEnforcement$];
-    }
-    set maxLengthEnforcement(value) {
-      super.maxLengthEnforcement = value;
-    }
-    static getDefaultMaxLengthEnforcement(platform = null) {
-      let t0;
-      if (true) {
-        return text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds;
+    performLayout() {
+      let constraints = this.constraints;
+      this.childManager.didStartLayout();
+      this.childManager.setDidUnderflow(false);
+      let itemExtent = this.itemExtent;
+      let scrollOffset = constraints.scrollOffset + constraints.cacheOrigin;
+      if (!(scrollOffset >= 0.0)) dart.assertFailed(null, I[0], 182, 12, "scrollOffset >= 0.0");
+      let remainingExtent = constraints.remainingCacheExtent;
+      if (!(remainingExtent >= 0.0)) dart.assertFailed(null, I[0], 184, 12, "remainingExtent >= 0.0");
+      let targetEndScrollOffset = scrollOffset + remainingExtent;
+      let childConstraints = constraints.asBoxConstraints({minExtent: itemExtent, maxExtent: itemExtent});
+      let firstIndex = this.getMinChildIndexForScrollOffset(scrollOffset, itemExtent);
+      let targetLastIndex = targetEndScrollOffset[$isFinite] ? this.getMaxChildIndexForScrollOffset(targetEndScrollOffset, itemExtent) : null;
+      if (this.firstChild != null) {
+        let leadingGarbage = this[_calculateLeadingGarbage](firstIndex);
+        let trailingGarbage = targetLastIndex != null ? this[_calculateTrailingGarbage](targetLastIndex) : 0;
+        this.collectGarbage(leadingGarbage, trailingGarbage);
       } else {
-        switch (t0 = platform, t0 == null ? platform$.defaultTargetPlatform : t0) {
-          case C[4] || CT.C4:
-          case C[5] || CT.C5:
-          {
-            return text_formatter.MaxLengthEnforcement.enforced;
+        this.collectGarbage(0, 0);
+      }
+      if (this.firstChild == null) {
+        if (!this.addInitialChild({index: firstIndex, layoutOffset: this.indexToLayoutOffset(itemExtent, firstIndex)})) {
+          let max = null;
+          if (firstIndex <= 0) {
+            max = 0.0;
+          } else {
+            max = this.computeMaxScrollOffset(constraints, itemExtent);
           }
-          case C[6] || CT.C6:
-          case C[7] || CT.C7:
-          case C[8] || CT.C8:
-          case C[9] || CT.C9:
-          {
-            return text_formatter.MaxLengthEnforcement.truncateAfterCompositionEnds;
-          }
+          this.geometry = new sliver.SliverGeometry.new({scrollExtent: max, maxPaintExtent: max});
+          this.childManager.didFinishLayout();
+          return;
         }
       }
-    }
-    static truncate(value, maxLength) {
-      let iterator = new characters_impl.StringCharacterRange.new(value.text);
-      if (extensions['StringCharacters|get#characters'](value.text)[$length] > maxLength) {
-        iterator.expandNext(maxLength);
-      }
-      let truncated = iterator.current;
-      return new text_input.TextEditingValue.new({text: truncated, selection: value.selection.copyWith({baseOffset: math.min(core.int, value.selection.start, truncated.length), extentOffset: math.min(core.int, value.selection.end, truncated.length)}), composing: !value.composing.isCollapsed && truncated.length > value.composing.start ? new ui.TextRange.new({start: value.composing.start, end: math.min(core.int, value.composing.end, truncated.length)}) : ui.TextRange.empty});
-    }
-    formatEditUpdate(oldValue, newValue) {
-      let t0;
-      let maxLength = this.maxLength;
-      if (maxLength == null || maxLength === -1 || extensions['StringCharacters|get#characters'](newValue.text)[$length] <= dart.notNull(maxLength)) {
-        return newValue;
-      }
-      if (!(dart.notNull(maxLength) > 0)) dart.assertFailed(null, I[1], 497, 12, "maxLength > 0");
-      switch (t0 = this.maxLengthEnforcement, t0 == null ? text_formatter.LengthLimitingTextInputFormatter.getDefaultMaxLengthEnforcement() : t0) {
-        case C[0] || CT.C0:
-        {
-          return newValue;
+      let trailingChildWithLayout = null;
+      for (let index = this.indexOf(dart.nullCheck(this.firstChild)) - 1; index >= firstIndex; index = index - 1) {
+        let child = this.insertAndLayoutLeadingChild(childConstraints);
+        if (child == null) {
+          this.geometry = new sliver.SliverGeometry.new({scrollOffsetCorrection: index * itemExtent});
+          return;
         }
-        case C[1] || CT.C1:
-        {
-          if (extensions['StringCharacters|get#characters'](oldValue.text)[$length] === maxLength && oldValue.selection.isCollapsed) {
-            return oldValue;
-          }
-          return text_formatter.LengthLimitingTextInputFormatter.truncate(newValue, maxLength);
-        }
-        case C[2] || CT.C2:
-        {
-          if (extensions['StringCharacters|get#characters'](oldValue.text)[$length] === maxLength && !oldValue.composing.isValid) {
-            return oldValue;
-          }
-          if (newValue.composing.isValid) {
-            return newValue;
-          }
-          return text_formatter.LengthLimitingTextInputFormatter.truncate(newValue, maxLength);
-        }
+        let childParentData = sliver_multi_box_adaptor.SliverMultiBoxAdaptorParentData.as(dart.nullCheck(child.parentData));
+        childParentData.layoutOffset = this.indexToLayoutOffset(itemExtent, index);
+        if (!(childParentData.index === index)) dart.assertFailed(null, I[0], 235, 14, "childParentData.index == index");
+        trailingChildWithLayout == null ? trailingChildWithLayout = child : null;
       }
+      if (trailingChildWithLayout == null) {
+        dart.nullCheck(this.firstChild).layout(childConstraints);
+        let childParentData = sliver_multi_box_adaptor.SliverMultiBoxAdaptorParentData.as(dart.nullCheck(dart.nullCheck(this.firstChild).parentData));
+        childParentData.layoutOffset = this.indexToLayoutOffset(itemExtent, firstIndex);
+        trailingChildWithLayout = this.firstChild;
+      }
+      let estimatedMaxScrollOffset = 1 / 0;
+      for (let index = this.indexOf(dart.nullCheck(trailingChildWithLayout)) + 1; targetLastIndex == null || index <= dart.notNull(targetLastIndex); index = index + 1) {
+        let child = this.childAfter(dart.nullCheck(trailingChildWithLayout));
+        if (child == null || this.indexOf(child) !== index) {
+          child = this.insertAndLayoutChild(childConstraints, {after: trailingChildWithLayout});
+          if (child == null) {
+            estimatedMaxScrollOffset = index * itemExtent;
+            break;
+          }
+        } else {
+          child.layout(childConstraints);
+        }
+        trailingChildWithLayout = child;
+        if (!(child != null)) dart.assertFailed(null, I[0], 260, 14, "child != null");
+        let childParentData = sliver_multi_box_adaptor.SliverMultiBoxAdaptorParentData.as(dart.nullCheck(child.parentData));
+        if (!(childParentData.index === index)) dart.assertFailed(null, I[0], 262, 14, "childParentData.index == index");
+        childParentData.layoutOffset = this.indexToLayoutOffset(itemExtent, dart.nullCheck(childParentData.index));
+      }
+      let lastIndex = this.indexOf(dart.nullCheck(this.lastChild));
+      let leadingScrollOffset = this.indexToLayoutOffset(itemExtent, firstIndex);
+      let trailingScrollOffset = this.indexToLayoutOffset(itemExtent, lastIndex + 1);
+      if (!(firstIndex === 0 || dart.nullCheck(this.childScrollOffset(dart.nullCheck(this.firstChild))) - scrollOffset <= 1e-10)) dart.assertFailed(null, I[0], 270, 12, "firstIndex == 0 || childScrollOffset(firstChild!)! - scrollOffset <= precisionErrorTolerance");
+      if (!this.debugAssertChildListIsNonEmptyAndContiguous()) dart.assertFailed(null, I[0], 271, 12, "debugAssertChildListIsNonEmptyAndContiguous()");
+      if (!(this.indexOf(dart.nullCheck(this.firstChild)) === firstIndex)) dart.assertFailed(null, I[0], 272, 12, "indexOf(firstChild!) == firstIndex");
+      if (!(targetLastIndex == null || lastIndex <= dart.notNull(targetLastIndex))) dart.assertFailed(null, I[0], 273, 12, "targetLastIndex == null || lastIndex <= targetLastIndex");
+      estimatedMaxScrollOffset = math.min(core.double, estimatedMaxScrollOffset, this.estimateMaxScrollOffset(constraints, {firstIndex: firstIndex, lastIndex: lastIndex, leadingScrollOffset: leadingScrollOffset, trailingScrollOffset: trailingScrollOffset}));
+      let paintExtent = this.calculatePaintOffset(constraints, {from: leadingScrollOffset, to: trailingScrollOffset});
+      let cacheExtent = this.calculateCacheOffset(constraints, {from: leadingScrollOffset, to: trailingScrollOffset});
+      let targetEndScrollOffsetForPaint = constraints.scrollOffset + constraints.remainingPaintExtent;
+      let targetLastIndexForPaint = targetEndScrollOffsetForPaint[$isFinite] ? this.getMaxChildIndexForScrollOffset(targetEndScrollOffsetForPaint, itemExtent) : null;
+      this.geometry = new sliver.SliverGeometry.new({scrollExtent: estimatedMaxScrollOffset, paintExtent: paintExtent, cacheExtent: cacheExtent, maxPaintExtent: estimatedMaxScrollOffset, hasVisualOverflow: targetLastIndexForPaint != null && lastIndex >= dart.notNull(targetLastIndexForPaint) || constraints.scrollOffset > 0.0});
+      if (estimatedMaxScrollOffset === trailingScrollOffset) this.childManager.setDidUnderflow(true);
+      this.childManager.didFinishLayout();
     }
   };
-  (text_formatter.LengthLimitingTextInputFormatter.new = function(maxLength, opts) {
-    let maxLengthEnforcement = opts && 'maxLengthEnforcement' in opts ? opts.maxLengthEnforcement : null;
-    this[maxLength$] = maxLength;
-    this[maxLengthEnforcement$] = maxLengthEnforcement;
-    if (!(maxLength == null || maxLength === -1 || dart.notNull(maxLength) > 0)) dart.assertFailed(null, I[1], 371, 15, "maxLength == null || maxLength == -1 || maxLength > 0");
+  (sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor.new = function(opts) {
+    let childManager = opts && 'childManager' in opts ? opts.childManager : null;
+    sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor.__proto__.new.call(this, {childManager: childManager});
     ;
-  }).prototype = text_formatter.LengthLimitingTextInputFormatter.prototype;
-  dart.addTypeTests(text_formatter.LengthLimitingTextInputFormatter);
-  dart.addTypeCaches(text_formatter.LengthLimitingTextInputFormatter);
-  dart.setMethodSignature(text_formatter.LengthLimitingTextInputFormatter, () => ({
-    __proto__: dart.getMethods(text_formatter.LengthLimitingTextInputFormatter.__proto__),
-    formatEditUpdate: dart.fnType(text_input.TextEditingValue, [text_input.TextEditingValue, text_input.TextEditingValue])
+  }).prototype = sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor.prototype;
+  dart.addTypeTests(sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor);
+  dart.addTypeCaches(sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor);
+  dart.setMethodSignature(sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor, () => ({
+    __proto__: dart.getMethods(sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor.__proto__),
+    indexToLayoutOffset: dart.fnType(core.double, [core.double, core.int]),
+    getMinChildIndexForScrollOffset: dart.fnType(core.int, [core.double, core.double]),
+    getMaxChildIndexForScrollOffset: dart.fnType(core.int, [core.double, core.double]),
+    estimateMaxScrollOffset: dart.fnType(core.double, [sliver.SliverConstraints], {firstIndex: dart.nullable(core.int), lastIndex: dart.nullable(core.int), leadingScrollOffset: dart.nullable(core.double), trailingScrollOffset: dart.nullable(core.double)}, {}),
+    computeMaxScrollOffset: dart.fnType(core.double, [sliver.SliverConstraints, core.double]),
+    [_calculateLeadingGarbage]: dart.fnType(core.int, [core.int]),
+    [_calculateTrailingGarbage]: dart.fnType(core.int, [core.int]),
+    performLayout: dart.fnType(dart.void, [])
   }));
-  dart.setLibraryUri(text_formatter.LengthLimitingTextInputFormatter, I[0]);
-  dart.setFieldSignature(text_formatter.LengthLimitingTextInputFormatter, () => ({
-    __proto__: dart.getFields(text_formatter.LengthLimitingTextInputFormatter.__proto__),
-    maxLength: dart.finalFieldType(dart.nullable(core.int)),
-    maxLengthEnforcement: dart.finalFieldType(dart.nullable(text_formatter.MaxLengthEnforcement))
-  }));
-  var TextRange_end = dart.privateName(ui, "TextRange.end");
-  var TextRange_start = dart.privateName(ui, "TextRange.start");
-  var TextSelection_isDirectional = dart.privateName(text_editing, "TextSelection.isDirectional");
-  var _name$0 = dart.privateName(ui, "_name");
-  var TextSelection_affinity = dart.privateName(text_editing, "TextSelection.affinity");
-  var TextSelection_extentOffset = dart.privateName(text_editing, "TextSelection.extentOffset");
-  var TextSelection_baseOffset = dart.privateName(text_editing, "TextSelection.baseOffset");
-  text_formatter._selectionAwareTextManipulation = function _selectionAwareTextManipulation(value, substringManipulation) {
-    let t0;
-    let selectionStartIndex = value.selection.start;
-    let selectionEndIndex = value.selection.end;
-    let manipulatedText = null;
-    let manipulatedSelection = null;
-    if (selectionStartIndex < 0 || selectionEndIndex < 0) {
-      manipulatedText = substringManipulation(value.text);
-    } else {
-      let beforeSelection = substringManipulation(value.text[$substring](0, selectionStartIndex));
-      let inSelection = substringManipulation(value.text[$substring](selectionStartIndex, selectionEndIndex));
-      let afterSelection = substringManipulation(value.text[$substring](selectionEndIndex));
-      manipulatedText = beforeSelection + inSelection + afterSelection;
-      if (value.selection.baseOffset > value.selection.extentOffset) {
-        manipulatedSelection = value.selection.copyWith({baseOffset: beforeSelection.length + inSelection.length, extentOffset: beforeSelection.length});
-      } else {
-        manipulatedSelection = value.selection.copyWith({baseOffset: beforeSelection.length, extentOffset: beforeSelection.length + inSelection.length});
-      }
+  dart.setLibraryUri(sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor, I[1]);
+  var _itemExtent = dart.privateName(sliver_fixed_extent_list, "_itemExtent");
+  sliver_fixed_extent_list.RenderSliverFixedExtentList = class RenderSliverFixedExtentList extends sliver_fixed_extent_list.RenderSliverFixedExtentBoxAdaptor {
+    get itemExtent() {
+      return this[_itemExtent];
     }
-    return new text_input.TextEditingValue.new({text: manipulatedText, selection: (t0 = manipulatedSelection, t0 == null ? C[10] || CT.C10 : t0), composing: manipulatedText === value.text ? value.composing : ui.TextRange.empty});
+    set itemExtent(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[0], 354, 12, "value != null");
+      if (this[_itemExtent] === value) return;
+      this[_itemExtent] = value;
+      this.markNeedsLayout();
+    }
   };
-  dart.trackLibraries("packages/flutter/src/services/text_formatter.dart", {
-    "package:flutter/src/services/text_formatter.dart": text_formatter
+  (sliver_fixed_extent_list.RenderSliverFixedExtentList.new = function(opts) {
+    let childManager = opts && 'childManager' in opts ? opts.childManager : null;
+    let itemExtent = opts && 'itemExtent' in opts ? opts.itemExtent : null;
+    this[_itemExtent] = itemExtent;
+    sliver_fixed_extent_list.RenderSliverFixedExtentList.__proto__.new.call(this, {childManager: childManager});
+    ;
+  }).prototype = sliver_fixed_extent_list.RenderSliverFixedExtentList.prototype;
+  dart.addTypeTests(sliver_fixed_extent_list.RenderSliverFixedExtentList);
+  dart.addTypeCaches(sliver_fixed_extent_list.RenderSliverFixedExtentList);
+  dart.setGetterSignature(sliver_fixed_extent_list.RenderSliverFixedExtentList, () => ({
+    __proto__: dart.getGetters(sliver_fixed_extent_list.RenderSliverFixedExtentList.__proto__),
+    itemExtent: core.double
+  }));
+  dart.setSetterSignature(sliver_fixed_extent_list.RenderSliverFixedExtentList, () => ({
+    __proto__: dart.getSetters(sliver_fixed_extent_list.RenderSliverFixedExtentList.__proto__),
+    itemExtent: core.double
+  }));
+  dart.setLibraryUri(sliver_fixed_extent_list.RenderSliverFixedExtentList, I[1]);
+  dart.setFieldSignature(sliver_fixed_extent_list.RenderSliverFixedExtentList, () => ({
+    __proto__: dart.getFields(sliver_fixed_extent_list.RenderSliverFixedExtentList.__proto__),
+    [_itemExtent]: dart.fieldType(core.double)
+  }));
+  sliver_fixed_extent_list._isWithinPrecisionErrorTolerance = function _isWithinPrecisionErrorTolerance(actual, round) {
+    return (actual - round)[$abs]() < 1e-10;
+  };
+  dart.trackLibraries("packages/flutter/src/rendering/sliver_fixed_extent_list.dart", {
+    "package:flutter/src/rendering/sliver_fixed_extent_list.dart": sliver_fixed_extent_list
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["text_formatter.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/services/text_formatter.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["sliver_fixed_extent_list.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/rendering/sliver_fixed_extent_list.dart.lib.js"}');
   // Exports:
   return {
-    src__services__text_formatter: text_formatter
+    src__rendering__sliver_fixed_extent_list: sliver_fixed_extent_list
   };
 }));
 
-//# sourceMappingURL=text_formatter.dart.lib.js.map
+//# sourceMappingURL=sliver_fixed_extent_list.dart.lib.js.map

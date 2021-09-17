@@ -1,721 +1,577 @@
-define(['dart_sdk', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/animation/curves.dart', 'packages/flutter/src/semantics/binding.dart', 'packages/flutter/src/scheduler/ticker.dart', 'packages/flutter/src/physics/spring_simulation.dart', 'packages/flutter/src/physics/simulation.dart', 'packages/flutter/src/physics/tolerance.dart'], (function load__packages__flutter__src__animation__animation_controller_dart(dart_sdk, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__animation__curves$46dart, packages__flutter__src__semantics__binding$46dart, packages__flutter__src__scheduler__ticker$46dart, packages__flutter__src__physics__spring_simulation$46dart, packages__flutter__src__physics__simulation$46dart, packages__flutter__src__physics__tolerance$46dart) {
+define(['dart_sdk', 'packages/flutter/src/rendering/layer.dart', 'packages/flutter/src/rendering/sliver.dart', 'packages/flutter/src/painting/basic_types.dart', 'packages/flutter/src/rendering/sliver_multi_box_adaptor.dart'], (function load__packages__flutter__src__rendering__sliver_grid_dart(dart_sdk, packages__flutter__src__rendering__layer$46dart, packages__flutter__src__rendering__sliver$46dart, packages__flutter__src__painting__basic_types$46dart, packages__flutter__src__rendering__sliver_multi_box_adaptor$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const _internal = dart_sdk._internal;
   const _interceptors = dart_sdk._interceptors;
-  const ui = dart_sdk.ui;
+  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const animation = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
-  const listener_helpers = packages__flutter__src__animation__listener_helpers$46dart.src__animation__listener_helpers;
-  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
-  const binding = packages__flutter__src__semantics__binding$46dart.src__semantics__binding;
-  const ticker = packages__flutter__src__scheduler__ticker$46dart.src__scheduler__ticker;
-  const spring_simulation = packages__flutter__src__physics__spring_simulation$46dart.src__physics__spring_simulation;
-  const simulation = packages__flutter__src__physics__simulation$46dart.src__physics__simulation;
-  const tolerance = packages__flutter__src__physics__tolerance$46dart.src__physics__tolerance;
-  var animation_controller = Object.create(dart.library);
-  var $toDouble = dartx.toDouble;
-  var $clamp = dartx.clamp;
-  var $isFinite = dartx.isFinite;
-  var $abs = dartx.abs;
-  var $runtimeType = dartx.runtimeType;
-  var $toStringAsFixed = dartx.toStringAsFixed;
-  var $modulo = dartx['%'];
-  var $isOdd = dartx.isOdd;
+  const box = packages__flutter__src__rendering__layer$46dart.src__rendering__box;
+  const object = packages__flutter__src__rendering__layer$46dart.src__rendering__object;
+  const sliver = packages__flutter__src__rendering__sliver$46dart.src__rendering__sliver;
+  const basic_types = packages__flutter__src__painting__basic_types$46dart.src__painting__basic_types;
+  const sliver_multi_box_adaptor = packages__flutter__src__rendering__sliver_multi_box_adaptor$46dart.src__rendering__sliver_multi_box_adaptor;
+  var sliver_grid = Object.create(dart.library);
+  var $join = dartx.join;
   var $truncate = dartx.truncate;
+  var $ceil = dartx.ceil;
+  var $modulo = dartx['%'];
+  var $_equals = dartx._equals;
+  var $runtimeType = dartx.runtimeType;
+  var $isFinite = dartx.isFinite;
+  var $clamp = dartx.clamp;
   dart._checkModuleNullSafetyMode(true);
   var T = {
-    VoidTobool: () => (T.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
-    DiagnosticsPropertyOfAnimationController: () => (T.DiagnosticsPropertyOfAnimationController = dart.constFn(diagnostics.DiagnosticsProperty$(animation_controller.AnimationController)))(),
-    JSArrayOfDiagnosticsNode: () => (T.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))()
+    JSArrayOfString: () => (T.JSArrayOfString = dart.constFn(_interceptors.JSArray$(core.String)))()
   };
   const CT = Object.create({
     _: () => (C, CT)
   });
-  dart.defineLazy(CT, {
-    get C0() {
-      return C[0] = dart.const({
-        __proto__: animation_controller._AnimationDirection.prototype,
-        [_name$]: "_AnimationDirection.forward",
-        index: 0
-      });
-    },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: animation_controller._AnimationDirection.prototype,
-        [_name$]: "_AnimationDirection.reverse",
-        index: 1
-      });
-    },
-    get C2() {
-      return C[2] = dart.constList([C[0] || CT.C0, C[1] || CT.C1], animation_controller._AnimationDirection);
-    },
-    get C3() {
-      return C[3] = dart.const({
-        __proto__: animation_controller.AnimationBehavior.prototype,
-        [_name$]: "AnimationBehavior.normal",
-        index: 0
-      });
-    },
-    get C4() {
-      return C[4] = dart.const({
-        __proto__: animation_controller.AnimationBehavior.prototype,
-        [_name$]: "AnimationBehavior.preserve",
-        index: 1
-      });
-    },
-    get C5() {
-      return C[5] = dart.constList([C[3] || CT.C3, C[4] || CT.C4], animation_controller.AnimationBehavior);
-    },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: curves._Linear.prototype
-      });
-    },
-    get C7() {
-      return C[7] = dart.const({
-        __proto__: tolerance.Tolerance.prototype,
-        [Tolerance_velocity]: 1 / 0,
-        [Tolerance_time]: 0.001,
-        [Tolerance_distance]: 0.01
-      });
-    }
-  }, false);
-  var C = Array(8).fill(void 0);
   var I = [
-    "package:flutter/src/animation/animation_controller.dart",
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/animation/animation_controller.dart"
+    "package:flutter/src/rendering/sliver_grid.dart",
+    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/rendering/sliver_grid.dart"
   ];
-  var _name$ = dart.privateName(animation_controller, "_name");
-  animation_controller._AnimationDirection = class _AnimationDirection extends core.Object {
+  var scrollOffset$ = dart.privateName(sliver_grid, "SliverGridGeometry.scrollOffset");
+  var crossAxisOffset$ = dart.privateName(sliver_grid, "SliverGridGeometry.crossAxisOffset");
+  var mainAxisExtent$ = dart.privateName(sliver_grid, "SliverGridGeometry.mainAxisExtent");
+  var crossAxisExtent$ = dart.privateName(sliver_grid, "SliverGridGeometry.crossAxisExtent");
+  sliver_grid.SliverGridGeometry = class SliverGridGeometry extends core.Object {
+    get scrollOffset() {
+      return this[scrollOffset$];
+    }
+    set scrollOffset(value) {
+      super.scrollOffset = value;
+    }
+    get crossAxisOffset() {
+      return this[crossAxisOffset$];
+    }
+    set crossAxisOffset(value) {
+      super.crossAxisOffset = value;
+    }
+    get mainAxisExtent() {
+      return this[mainAxisExtent$];
+    }
+    set mainAxisExtent(value) {
+      super.mainAxisExtent = value;
+    }
+    get crossAxisExtent() {
+      return this[crossAxisExtent$];
+    }
+    set crossAxisExtent(value) {
+      super.crossAxisExtent = value;
+    }
+    get trailingScrollOffset() {
+      return this.scrollOffset + this.mainAxisExtent;
+    }
+    getBoxConstraints(constraints) {
+      return constraints.asBoxConstraints({minExtent: this.mainAxisExtent, maxExtent: this.mainAxisExtent, crossAxisExtent: this.crossAxisExtent});
+    }
     toString() {
-      return this[_name$];
+      let properties = T.JSArrayOfString().of(["scrollOffset: " + dart.str(this.scrollOffset), "crossAxisOffset: " + dart.str(this.crossAxisOffset), "mainAxisExtent: " + dart.str(this.mainAxisExtent), "crossAxisExtent: " + dart.str(this.crossAxisExtent)]);
+      return "SliverGridGeometry(" + properties[$join](", ") + ")";
     }
   };
-  (animation_controller._AnimationDirection.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
+  (sliver_grid.SliverGridGeometry.new = function(opts) {
+    let scrollOffset = opts && 'scrollOffset' in opts ? opts.scrollOffset : null;
+    let crossAxisOffset = opts && 'crossAxisOffset' in opts ? opts.crossAxisOffset : null;
+    let mainAxisExtent = opts && 'mainAxisExtent' in opts ? opts.mainAxisExtent : null;
+    let crossAxisExtent = opts && 'crossAxisExtent' in opts ? opts.crossAxisExtent : null;
+    this[scrollOffset$] = scrollOffset;
+    this[crossAxisOffset$] = crossAxisOffset;
+    this[mainAxisExtent$] = mainAxisExtent;
+    this[crossAxisExtent$] = crossAxisExtent;
     ;
-  }).prototype = animation_controller._AnimationDirection.prototype;
-  dart.addTypeTests(animation_controller._AnimationDirection);
-  dart.addTypeCaches(animation_controller._AnimationDirection);
-  dart.setLibraryUri(animation_controller._AnimationDirection, I[0]);
-  dart.setFieldSignature(animation_controller._AnimationDirection, () => ({
-    __proto__: dart.getFields(animation_controller._AnimationDirection.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
+  }).prototype = sliver_grid.SliverGridGeometry.prototype;
+  dart.addTypeTests(sliver_grid.SliverGridGeometry);
+  dart.addTypeCaches(sliver_grid.SliverGridGeometry);
+  dart.setMethodSignature(sliver_grid.SliverGridGeometry, () => ({
+    __proto__: dart.getMethods(sliver_grid.SliverGridGeometry.__proto__),
+    getBoxConstraints: dart.fnType(box.BoxConstraints, [sliver.SliverConstraints])
   }));
-  dart.defineExtensionMethods(animation_controller._AnimationDirection, ['toString']);
-  animation_controller._AnimationDirection.forward = C[0] || CT.C0;
-  animation_controller._AnimationDirection.reverse = C[1] || CT.C1;
-  animation_controller._AnimationDirection.values = C[2] || CT.C2;
-  animation_controller.AnimationBehavior = class AnimationBehavior extends core.Object {
-    toString() {
-      return this[_name$];
+  dart.setGetterSignature(sliver_grid.SliverGridGeometry, () => ({
+    __proto__: dart.getGetters(sliver_grid.SliverGridGeometry.__proto__),
+    trailingScrollOffset: core.double
+  }));
+  dart.setLibraryUri(sliver_grid.SliverGridGeometry, I[0]);
+  dart.setFieldSignature(sliver_grid.SliverGridGeometry, () => ({
+    __proto__: dart.getFields(sliver_grid.SliverGridGeometry.__proto__),
+    scrollOffset: dart.finalFieldType(core.double),
+    crossAxisOffset: dart.finalFieldType(core.double),
+    mainAxisExtent: dart.finalFieldType(core.double),
+    crossAxisExtent: dart.finalFieldType(core.double)
+  }));
+  dart.defineExtensionMethods(sliver_grid.SliverGridGeometry, ['toString']);
+  sliver_grid.SliverGridLayout = class SliverGridLayout extends core.Object {};
+  (sliver_grid.SliverGridLayout.new = function() {
+    ;
+  }).prototype = sliver_grid.SliverGridLayout.prototype;
+  dart.addTypeTests(sliver_grid.SliverGridLayout);
+  dart.addTypeCaches(sliver_grid.SliverGridLayout);
+  dart.setLibraryUri(sliver_grid.SliverGridLayout, I[0]);
+  var crossAxisCount$ = dart.privateName(sliver_grid, "SliverGridRegularTileLayout.crossAxisCount");
+  var mainAxisStride$ = dart.privateName(sliver_grid, "SliverGridRegularTileLayout.mainAxisStride");
+  var crossAxisStride$ = dart.privateName(sliver_grid, "SliverGridRegularTileLayout.crossAxisStride");
+  var childMainAxisExtent$ = dart.privateName(sliver_grid, "SliverGridRegularTileLayout.childMainAxisExtent");
+  var childCrossAxisExtent$ = dart.privateName(sliver_grid, "SliverGridRegularTileLayout.childCrossAxisExtent");
+  var reverseCrossAxis$ = dart.privateName(sliver_grid, "SliverGridRegularTileLayout.reverseCrossAxis");
+  var _getOffsetFromStartInCrossAxis = dart.privateName(sliver_grid, "_getOffsetFromStartInCrossAxis");
+  sliver_grid.SliverGridRegularTileLayout = class SliverGridRegularTileLayout extends sliver_grid.SliverGridLayout {
+    get crossAxisCount() {
+      return this[crossAxisCount$];
+    }
+    set crossAxisCount(value) {
+      super.crossAxisCount = value;
+    }
+    get mainAxisStride() {
+      return this[mainAxisStride$];
+    }
+    set mainAxisStride(value) {
+      super.mainAxisStride = value;
+    }
+    get crossAxisStride() {
+      return this[crossAxisStride$];
+    }
+    set crossAxisStride(value) {
+      super.crossAxisStride = value;
+    }
+    get childMainAxisExtent() {
+      return this[childMainAxisExtent$];
+    }
+    set childMainAxisExtent(value) {
+      super.childMainAxisExtent = value;
+    }
+    get childCrossAxisExtent() {
+      return this[childCrossAxisExtent$];
+    }
+    set childCrossAxisExtent(value) {
+      super.childCrossAxisExtent = value;
+    }
+    get reverseCrossAxis() {
+      return this[reverseCrossAxis$];
+    }
+    set reverseCrossAxis(value) {
+      super.reverseCrossAxis = value;
+    }
+    getMinChildIndexForScrollOffset(scrollOffset) {
+      return this.mainAxisStride > 1e-10 ? this.crossAxisCount * (scrollOffset / this.mainAxisStride)[$truncate]() : 0;
+    }
+    getMaxChildIndexForScrollOffset(scrollOffset) {
+      if (this.mainAxisStride > 0.0) {
+        let mainAxisCount = (scrollOffset / this.mainAxisStride)[$ceil]();
+        return math.max(core.int, 0, this.crossAxisCount * mainAxisCount - 1);
+      }
+      return 0;
+    }
+    [_getOffsetFromStartInCrossAxis](crossAxisStart) {
+      if (this.reverseCrossAxis) return this.crossAxisCount * this.crossAxisStride - crossAxisStart - this.childCrossAxisExtent - (this.crossAxisStride - this.childCrossAxisExtent);
+      return crossAxisStart;
+    }
+    getGeometryForChildIndex(index) {
+      let crossAxisStart = index[$modulo](this.crossAxisCount) * this.crossAxisStride;
+      return new sliver_grid.SliverGridGeometry.new({scrollOffset: (index / this.crossAxisCount)[$truncate]() * this.mainAxisStride, crossAxisOffset: this[_getOffsetFromStartInCrossAxis](crossAxisStart), mainAxisExtent: this.childMainAxisExtent, crossAxisExtent: this.childCrossAxisExtent});
+    }
+    computeMaxScrollOffset(childCount) {
+      if (!(childCount !== null)) dart.assertFailed(null, I[1], 228, 12, "childCount != null");
+      let mainAxisCount = ((childCount - 1) / this.crossAxisCount)[$truncate]() + 1;
+      let mainAxisSpacing = this.mainAxisStride - this.childMainAxisExtent;
+      return this.mainAxisStride * mainAxisCount - mainAxisSpacing;
     }
   };
-  (animation_controller.AnimationBehavior.new = function(index, _name) {
-    this.index = index;
-    this[_name$] = _name;
+  (sliver_grid.SliverGridRegularTileLayout.new = function(opts) {
+    let crossAxisCount = opts && 'crossAxisCount' in opts ? opts.crossAxisCount : null;
+    let mainAxisStride = opts && 'mainAxisStride' in opts ? opts.mainAxisStride : null;
+    let crossAxisStride = opts && 'crossAxisStride' in opts ? opts.crossAxisStride : null;
+    let childMainAxisExtent = opts && 'childMainAxisExtent' in opts ? opts.childMainAxisExtent : null;
+    let childCrossAxisExtent = opts && 'childCrossAxisExtent' in opts ? opts.childCrossAxisExtent : null;
+    let reverseCrossAxis = opts && 'reverseCrossAxis' in opts ? opts.reverseCrossAxis : null;
+    this[crossAxisCount$] = crossAxisCount;
+    this[mainAxisStride$] = mainAxisStride;
+    this[crossAxisStride$] = crossAxisStride;
+    this[childMainAxisExtent$] = childMainAxisExtent;
+    this[childCrossAxisExtent$] = childCrossAxisExtent;
+    this[reverseCrossAxis$] = reverseCrossAxis;
+    if (!(crossAxisCount !== null && crossAxisCount > 0)) dart.assertFailed(null, I[1], 158, 15, "crossAxisCount != null && crossAxisCount > 0");
+    if (!(mainAxisStride !== null && mainAxisStride >= 0)) dart.assertFailed(null, I[1], 159, 15, "mainAxisStride != null && mainAxisStride >= 0");
+    if (!(crossAxisStride !== null && crossAxisStride >= 0)) dart.assertFailed(null, I[1], 160, 15, "crossAxisStride != null && crossAxisStride >= 0");
+    if (!(childMainAxisExtent !== null && childMainAxisExtent >= 0)) dart.assertFailed(null, I[1], 161, 15, "childMainAxisExtent != null && childMainAxisExtent >= 0");
+    if (!(childCrossAxisExtent !== null && childCrossAxisExtent >= 0)) dart.assertFailed(null, I[1], 162, 15, "childCrossAxisExtent != null && childCrossAxisExtent >= 0");
+    if (!(reverseCrossAxis !== null)) dart.assertFailed(null, I[1], 163, 15, "reverseCrossAxis != null");
+    sliver_grid.SliverGridRegularTileLayout.__proto__.new.call(this);
     ;
-  }).prototype = animation_controller.AnimationBehavior.prototype;
-  dart.addTypeTests(animation_controller.AnimationBehavior);
-  dart.addTypeCaches(animation_controller.AnimationBehavior);
-  dart.setLibraryUri(animation_controller.AnimationBehavior, I[0]);
-  dart.setFieldSignature(animation_controller.AnimationBehavior, () => ({
-    __proto__: dart.getFields(animation_controller.AnimationBehavior.__proto__),
-    index: dart.finalFieldType(core.int),
-    [_name$]: dart.finalFieldType(core.String)
+  }).prototype = sliver_grid.SliverGridRegularTileLayout.prototype;
+  dart.addTypeTests(sliver_grid.SliverGridRegularTileLayout);
+  dart.addTypeCaches(sliver_grid.SliverGridRegularTileLayout);
+  dart.setMethodSignature(sliver_grid.SliverGridRegularTileLayout, () => ({
+    __proto__: dart.getMethods(sliver_grid.SliverGridRegularTileLayout.__proto__),
+    getMinChildIndexForScrollOffset: dart.fnType(core.int, [core.double]),
+    getMaxChildIndexForScrollOffset: dart.fnType(core.int, [core.double]),
+    [_getOffsetFromStartInCrossAxis]: dart.fnType(core.double, [core.double]),
+    getGeometryForChildIndex: dart.fnType(sliver_grid.SliverGridGeometry, [core.int]),
+    computeMaxScrollOffset: dart.fnType(core.double, [core.int])
   }));
-  dart.defineExtensionMethods(animation_controller.AnimationBehavior, ['toString']);
-  animation_controller.AnimationBehavior.normal = C[3] || CT.C3;
-  animation_controller.AnimationBehavior.preserve = C[4] || CT.C4;
-  animation_controller.AnimationBehavior.values = C[5] || CT.C5;
-  var lowerBound$ = dart.privateName(animation_controller, "AnimationController.lowerBound");
-  var upperBound$ = dart.privateName(animation_controller, "AnimationController.upperBound");
-  var debugLabel$ = dart.privateName(animation_controller, "AnimationController.debugLabel");
-  var animationBehavior$ = dart.privateName(animation_controller, "AnimationController.animationBehavior");
-  var duration$ = dart.privateName(animation_controller, "AnimationController.duration");
-  var reverseDuration$ = dart.privateName(animation_controller, "AnimationController.reverseDuration");
-  var _ticker = dart.privateName(animation_controller, "_ticker");
-  var _simulation = dart.privateName(animation_controller, "_simulation");
-  var __AnimationController__value = dart.privateName(animation_controller, "_#AnimationController#_value");
-  var _lastElapsedDuration = dart.privateName(animation_controller, "_lastElapsedDuration");
-  var __AnimationController__status = dart.privateName(animation_controller, "_#AnimationController#_status");
-  var _lastReportedStatus = dart.privateName(animation_controller, "_lastReportedStatus");
-  var _direction = dart.privateName(animation_controller, "_direction");
-  var _tick = dart.privateName(animation_controller, "_tick");
-  var _internalSetValue = dart.privateName(animation_controller, "_internalSetValue");
-  var _value = dart.privateName(animation_controller, "_value");
-  var _checkStatusChanged = dart.privateName(animation_controller, "_checkStatusChanged");
-  var _status = dart.privateName(animation_controller, "_status");
-  var _animateToInternal = dart.privateName(animation_controller, "_animateToInternal");
-  var _startSimulation = dart.privateName(animation_controller, "_startSimulation");
-  var _directionSetter = dart.privateName(animation_controller, "_directionSetter");
-  const Animation_AnimationEagerListenerMixin$36 = class Animation_AnimationEagerListenerMixin extends animation.Animation$(core.double) {};
-  (Animation_AnimationEagerListenerMixin$36.new = function() {
-    Animation_AnimationEagerListenerMixin$36.__proto__.new.call(this);
-  }).prototype = Animation_AnimationEagerListenerMixin$36.prototype;
-  dart.applyMixin(Animation_AnimationEagerListenerMixin$36, listener_helpers.AnimationEagerListenerMixin);
-  const Animation_AnimationLocalListenersMixin$36 = class Animation_AnimationLocalListenersMixin extends Animation_AnimationEagerListenerMixin$36 {};
-  (Animation_AnimationLocalListenersMixin$36.new = function() {
-    listener_helpers.AnimationLocalListenersMixin[dart.mixinNew].call(this);
-    Animation_AnimationLocalListenersMixin$36.__proto__.new.call(this);
-  }).prototype = Animation_AnimationLocalListenersMixin$36.prototype;
-  dart.applyMixin(Animation_AnimationLocalListenersMixin$36, listener_helpers.AnimationLocalListenersMixin);
-  const Animation_AnimationLocalStatusListenersMixin$36 = class Animation_AnimationLocalStatusListenersMixin extends Animation_AnimationLocalListenersMixin$36 {};
-  (Animation_AnimationLocalStatusListenersMixin$36.new = function() {
-    listener_helpers.AnimationLocalStatusListenersMixin[dart.mixinNew].call(this);
-    Animation_AnimationLocalStatusListenersMixin$36.__proto__.new.call(this);
-  }).prototype = Animation_AnimationLocalStatusListenersMixin$36.prototype;
-  dart.applyMixin(Animation_AnimationLocalStatusListenersMixin$36, listener_helpers.AnimationLocalStatusListenersMixin);
-  animation_controller.AnimationController = class AnimationController extends Animation_AnimationLocalStatusListenersMixin$36 {
-    get lowerBound() {
-      return this[lowerBound$];
+  dart.setLibraryUri(sliver_grid.SliverGridRegularTileLayout, I[0]);
+  dart.setFieldSignature(sliver_grid.SliverGridRegularTileLayout, () => ({
+    __proto__: dart.getFields(sliver_grid.SliverGridRegularTileLayout.__proto__),
+    crossAxisCount: dart.finalFieldType(core.int),
+    mainAxisStride: dart.finalFieldType(core.double),
+    crossAxisStride: dart.finalFieldType(core.double),
+    childMainAxisExtent: dart.finalFieldType(core.double),
+    childCrossAxisExtent: dart.finalFieldType(core.double),
+    reverseCrossAxis: dart.finalFieldType(core.bool)
+  }));
+  sliver_grid.SliverGridDelegate = class SliverGridDelegate extends core.Object {};
+  (sliver_grid.SliverGridDelegate.new = function() {
+    ;
+  }).prototype = sliver_grid.SliverGridDelegate.prototype;
+  dart.addTypeTests(sliver_grid.SliverGridDelegate);
+  dart.addTypeCaches(sliver_grid.SliverGridDelegate);
+  dart.setLibraryUri(sliver_grid.SliverGridDelegate, I[0]);
+  var crossAxisCount$0 = dart.privateName(sliver_grid, "SliverGridDelegateWithFixedCrossAxisCount.crossAxisCount");
+  var mainAxisSpacing$ = dart.privateName(sliver_grid, "SliverGridDelegateWithFixedCrossAxisCount.mainAxisSpacing");
+  var crossAxisSpacing$ = dart.privateName(sliver_grid, "SliverGridDelegateWithFixedCrossAxisCount.crossAxisSpacing");
+  var childAspectRatio$ = dart.privateName(sliver_grid, "SliverGridDelegateWithFixedCrossAxisCount.childAspectRatio");
+  var mainAxisExtent$0 = dart.privateName(sliver_grid, "SliverGridDelegateWithFixedCrossAxisCount.mainAxisExtent");
+  var _debugAssertIsValid = dart.privateName(sliver_grid, "_debugAssertIsValid");
+  sliver_grid.SliverGridDelegateWithFixedCrossAxisCount = class SliverGridDelegateWithFixedCrossAxisCount extends sliver_grid.SliverGridDelegate {
+    get crossAxisCount() {
+      return this[crossAxisCount$0];
     }
-    set lowerBound(value) {
-      super.lowerBound = value;
+    set crossAxisCount(value) {
+      super.crossAxisCount = value;
     }
-    get upperBound() {
-      return this[upperBound$];
+    get mainAxisSpacing() {
+      return this[mainAxisSpacing$];
     }
-    set upperBound(value) {
-      super.upperBound = value;
+    set mainAxisSpacing(value) {
+      super.mainAxisSpacing = value;
     }
-    get debugLabel() {
-      return this[debugLabel$];
+    get crossAxisSpacing() {
+      return this[crossAxisSpacing$];
     }
-    set debugLabel(value) {
-      super.debugLabel = value;
+    set crossAxisSpacing(value) {
+      super.crossAxisSpacing = value;
     }
-    get animationBehavior() {
-      return this[animationBehavior$];
+    get childAspectRatio() {
+      return this[childAspectRatio$];
     }
-    set animationBehavior(value) {
-      super.animationBehavior = value;
+    set childAspectRatio(value) {
+      super.childAspectRatio = value;
     }
-    get duration() {
-      return this[duration$];
+    get mainAxisExtent() {
+      return this[mainAxisExtent$0];
     }
-    set duration(value) {
-      this[duration$] = value;
+    set mainAxisExtent(value) {
+      super.mainAxisExtent = value;
     }
-    get reverseDuration() {
-      return this[reverseDuration$];
+    [_debugAssertIsValid]() {
+      if (!(this.crossAxisCount > 0)) dart.assertFailed(null, I[1], 373, 12, "crossAxisCount > 0");
+      if (!(this.mainAxisSpacing >= 0.0)) dart.assertFailed(null, I[1], 374, 12, "mainAxisSpacing >= 0.0");
+      if (!(this.crossAxisSpacing >= 0.0)) dart.assertFailed(null, I[1], 375, 12, "crossAxisSpacing >= 0.0");
+      if (!(this.childAspectRatio > 0.0)) dart.assertFailed(null, I[1], 376, 12, "childAspectRatio > 0.0");
+      return true;
     }
-    set reverseDuration(value) {
-      this[reverseDuration$] = value;
-    }
-    get view() {
-      return this;
-    }
-    resync(vsync) {
-      let oldTicker = dart.nullCheck(this[_ticker]);
-      this[_ticker] = vsync.createTicker(dart.bind(this, _tick));
-      dart.nullCheck(this[_ticker]).absorbTicker(oldTicker);
-    }
-    get value() {
-      return this[_value];
-    }
-    get [_value]() {
+    getLayout(constraints) {
       let t0;
-      t0 = this[__AnimationController__value];
-      return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_value")) : t0;
+      if (!this[_debugAssertIsValid]()) dart.assertFailed(null, I[1], 382, 12, "_debugAssertIsValid()");
+      let usableCrossAxisExtent = math.max(core.double, 0.0, constraints.crossAxisExtent - this.crossAxisSpacing * (this.crossAxisCount - 1));
+      let childCrossAxisExtent = usableCrossAxisExtent / this.crossAxisCount;
+      let childMainAxisExtent = (t0 = this.mainAxisExtent, t0 == null ? childCrossAxisExtent / this.childAspectRatio : t0);
+      return new sliver_grid.SliverGridRegularTileLayout.new({crossAxisCount: this.crossAxisCount, mainAxisStride: childMainAxisExtent + this.mainAxisSpacing, crossAxisStride: childCrossAxisExtent + this.crossAxisSpacing, childMainAxisExtent: childMainAxisExtent, childCrossAxisExtent: childCrossAxisExtent, reverseCrossAxis: basic_types.axisDirectionIsReversed(constraints.crossAxisDirection)});
     }
-    set [_value](t0) {
-      this[__AnimationController__value] = t0;
-    }
-    set value(newValue) {
-      if (!(newValue !== null)) dart.assertFailed(null, I[1], 363, 12, "newValue != null");
-      this.stop();
-      this[_internalSetValue](newValue);
-      this.notifyListeners();
-      this[_checkStatusChanged]();
-    }
-    reset() {
-      this.value = this.lowerBound;
-    }
-    get velocity() {
-      if (!this.isAnimating) return 0.0;
-      return dart.nullCheck(this[_simulation]).dx(dart.nullCheck(this.lastElapsedDuration).inMicroseconds[$toDouble]() / 1000000);
-    }
-    [_internalSetValue](newValue) {
-      this[_value] = newValue[$clamp](this.lowerBound, this.upperBound);
-      if (this[_value] === this.lowerBound) {
-        this[_status] = animation.AnimationStatus.dismissed;
-      } else if (this[_value] === this.upperBound) {
-        this[_status] = animation.AnimationStatus.completed;
-      } else {
-        this[_status] = this[_direction] === animation_controller._AnimationDirection.forward ? animation.AnimationStatus.forward : animation.AnimationStatus.reverse;
-      }
-    }
-    get lastElapsedDuration() {
-      return this[_lastElapsedDuration];
-    }
-    get isAnimating() {
-      return this[_ticker] != null && dart.nullCheck(this[_ticker]).isActive;
-    }
-    get status() {
-      return this[_status];
-    }
-    get [_status]() {
-      let t1;
-      t1 = this[__AnimationController__status];
-      return t1 == null ? dart.throw(new _internal.LateError.fieldNI("_status")) : t1;
-    }
-    set [_status](t1) {
-      this[__AnimationController__status] = t1;
-    }
-    forward(opts) {
-      let from = opts && 'from' in opts ? opts.from : null;
-      if (!dart.fn(() => {
-        if (this.duration == null) {
-          dart.throw(assertions.FlutterError.new("AnimationController.forward() called with no default duration.\n" + "The \"duration\" property should be set, either in the constructor or later, before " + "calling the forward() function."));
-        }
-        return true;
-      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 444, 12, "() {\r\n      if (duration == null) {\r\n        throw FlutterError(\r\n          'AnimationController.forward() called with no default duration.\\n'\r\n          'The \"duration\" property should be set, either in the constructor or later, before '\r\n          'calling the forward() function.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
-      if (!(this[_ticker] != null)) dart.assertFailed("AnimationController.forward() called after AnimationController.dispose()\n" + "AnimationController methods should not be used after calling dispose.", I[1], 455, 7, "_ticker != null");
-      this[_direction] = animation_controller._AnimationDirection.forward;
-      if (from != null) this.value = from;
-      return this[_animateToInternal](this.upperBound);
-    }
-    reverse(opts) {
-      let from = opts && 'from' in opts ? opts.from : null;
-      if (!dart.fn(() => {
-        if (this.duration == null && this.reverseDuration == null) {
-          dart.throw(assertions.FlutterError.new("AnimationController.reverse() called with no default duration or reverseDuration.\n" + "The \"duration\" or \"reverseDuration\" property should be set, either in the constructor or later, before " + "calling the reverse() function."));
-        }
-        return true;
-      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 477, 12, "() {\r\n      if (duration == null && reverseDuration == null) {\r\n        throw FlutterError(\r\n          'AnimationController.reverse() called with no default duration or reverseDuration.\\n'\r\n          'The \"duration\" or \"reverseDuration\" property should be set, either in the constructor or later, before '\r\n          'calling the reverse() function.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
-      if (!(this[_ticker] != null)) dart.assertFailed("AnimationController.reverse() called after AnimationController.dispose()\n" + "AnimationController methods should not be used after calling dispose.", I[1], 488, 7, "_ticker != null");
-      this[_direction] = animation_controller._AnimationDirection.reverse;
-      if (from != null) this.value = from;
-      return this[_animateToInternal](this.lowerBound);
-    }
-    animateTo(target, opts) {
-      let duration = opts && 'duration' in opts ? opts.duration : null;
-      let curve = opts && 'curve' in opts ? opts.curve : C[6] || CT.C6;
-      if (!dart.fn(() => {
-        if (this.duration == null && duration == null) {
-          dart.throw(assertions.FlutterError.new("AnimationController.animateTo() called with no explicit duration and no default duration.\n" + "Either the \"duration\" argument to the animateTo() method should be provided, or the " + "\"duration\" property should be set, either in the constructor or later, before " + "calling the animateTo() function."));
-        }
-        return true;
-      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 515, 12, "() {\r\n      if (this.duration == null && duration == null) {\r\n        throw FlutterError(\r\n          'AnimationController.animateTo() called with no explicit duration and no default duration.\\n'\r\n          'Either the \"duration\" argument to the animateTo() method should be provided, or the '\r\n          '\"duration\" property should be set, either in the constructor or later, before '\r\n          'calling the animateTo() function.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
-      if (!(this[_ticker] != null)) dart.assertFailed("AnimationController.animateTo() called after AnimationController.dispose()\n" + "AnimationController methods should not be used after calling dispose.", I[1], 527, 7, "_ticker != null");
-      this[_direction] = animation_controller._AnimationDirection.forward;
-      return this[_animateToInternal](target, {duration: duration, curve: curve});
-    }
-    animateBack(target, opts) {
-      let duration = opts && 'duration' in opts ? opts.duration : null;
-      let curve = opts && 'curve' in opts ? opts.curve : C[6] || CT.C6;
-      if (!dart.fn(() => {
-        if (this.duration == null && this.reverseDuration == null && duration == null) {
-          dart.throw(assertions.FlutterError.new("AnimationController.animateBack() called with no explicit duration and no default duration or reverseDuration.\n" + "Either the \"duration\" argument to the animateBack() method should be provided, or the " + "\"duration\" or \"reverseDuration\" property should be set, either in the constructor or later, before " + "calling the animateBack() function."));
-        }
-        return true;
-      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 548, 12, "() {\r\n      if (this.duration == null && reverseDuration == null && duration == null) {\r\n        throw FlutterError(\r\n          'AnimationController.animateBack() called with no explicit duration and no default duration or reverseDuration.\\n'\r\n          'Either the \"duration\" argument to the animateBack() method should be provided, or the '\r\n          '\"duration\" or \"reverseDuration\" property should be set, either in the constructor or later, before '\r\n          'calling the animateBack() function.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
-      if (!(this[_ticker] != null)) dart.assertFailed("AnimationController.animateBack() called after AnimationController.dispose()\n" + "AnimationController methods should not be used after calling dispose.", I[1], 560, 7, "_ticker != null");
-      this[_direction] = animation_controller._AnimationDirection.reverse;
-      return this[_animateToInternal](target, {duration: duration, curve: curve});
-    }
-    [_animateToInternal](target, opts) {
-      let duration = opts && 'duration' in opts ? opts.duration : null;
-      let curve = opts && 'curve' in opts ? opts.curve : C[6] || CT.C6;
-      let scale = 1.0;
-      if (dart.nullCheck(binding.SemanticsBinding.instance).disableAnimations) {
-        switch (this.animationBehavior) {
-          case C[3] || CT.C3:
-          {
-            scale = 0.05;
-            break;
-          }
-          case C[4] || CT.C4:
-          {
-            break;
-          }
-        }
-      }
-      let simulationDuration = duration;
-      if (simulationDuration == null) {
-        if (!!(this.duration == null && this[_direction] === animation_controller._AnimationDirection.forward)) dart.assertFailed(null, I[1], 584, 14, "!(this.duration == null && _direction == _AnimationDirection.forward)");
-        if (!!(this.duration == null && this[_direction] === animation_controller._AnimationDirection.reverse && this.reverseDuration == null)) dart.assertFailed(null, I[1], 585, 14, "!(this.duration == null && _direction == _AnimationDirection.reverse && reverseDuration == null)");
-        let range = this.upperBound - this.lowerBound;
-        let remainingFraction = range[$isFinite] ? (target - this[_value])[$abs]() / range : 1.0;
-        let directionDuration = this[_direction] === animation_controller._AnimationDirection.reverse && this.reverseDuration != null ? dart.nullCheck(this.reverseDuration) : dart.nullCheck(this.duration);
-        simulationDuration = directionDuration['*'](remainingFraction);
-      } else if (target === this.value) {
-        simulationDuration = core.Duration.zero;
-      }
-      this.stop();
-      if (dart.equals(simulationDuration, core.Duration.zero)) {
-        if (this.value !== target) {
-          this[_value] = target[$clamp](this.lowerBound, this.upperBound);
-          this.notifyListeners();
-        }
-        this[_status] = this[_direction] === animation_controller._AnimationDirection.forward ? animation.AnimationStatus.completed : animation.AnimationStatus.dismissed;
-        this[_checkStatusChanged]();
-        return new ticker.TickerFuture.complete();
-      }
-      if (!simulationDuration['>'](core.Duration.zero)) dart.assertFailed(null, I[1], 609, 12, "simulationDuration > Duration.zero");
-      if (!!this.isAnimating) dart.assertFailed(null, I[1], 610, 12, "!isAnimating");
-      return this[_startSimulation](new animation_controller._InterpolationSimulation.new(this[_value], target, simulationDuration, curve, scale));
-    }
-    repeat(opts) {
-      let min = opts && 'min' in opts ? opts.min : null;
-      let max = opts && 'max' in opts ? opts.max : null;
-      let reverse = opts && 'reverse' in opts ? opts.reverse : false;
-      let period = opts && 'period' in opts ? opts.period : null;
-      min == null ? min = this.lowerBound : null;
-      max == null ? max = this.upperBound : null;
-      period == null ? period = this.duration : null;
-      if (!dart.fn(() => {
-        if (period == null) {
-          dart.throw(assertions.FlutterError.new("AnimationController.repeat() called without an explicit period and with no default Duration.\n" + "Either the \"period\" argument to the repeat() method should be provided, or the " + "\"duration\" property should be set, either in the constructor or later, before " + "calling the repeat() function."));
-        }
-        return true;
-      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 639, 12, "() {\r\n      if (period == null) {\r\n        throw FlutterError(\r\n          'AnimationController.repeat() called without an explicit period and with no default Duration.\\n'\r\n          'Either the \"period\" argument to the repeat() method should be provided, or the '\r\n          '\"duration\" property should be set, either in the constructor or later, before '\r\n          'calling the repeat() function.',\r\n        );\r\n      }\r\n      return true;\r\n    }()");
-      if (!(dart.notNull(max) >= dart.notNull(min))) dart.assertFailed(null, I[1], 650, 12, "max >= min");
-      if (!(dart.notNull(max) <= this.upperBound && dart.notNull(min) >= this.lowerBound)) dart.assertFailed(null, I[1], 651, 12, "max <= upperBound && min >= lowerBound");
-      if (!(reverse !== null)) dart.assertFailed(null, I[1], 652, 12, "reverse != null");
-      this.stop();
-      return this[_startSimulation](new animation_controller._RepeatingSimulation.new(this[_value], min, max, reverse, dart.nullCheck(period), dart.bind(this, _directionSetter)));
-    }
-    [_directionSetter](direction) {
-      this[_direction] = direction;
-      this[_status] = this[_direction] === animation_controller._AnimationDirection.forward ? animation.AnimationStatus.forward : animation.AnimationStatus.reverse;
-      this[_checkStatusChanged]();
-    }
-    fling(opts) {
-      let t2, t2$;
-      let velocity = opts && 'velocity' in opts ? opts.velocity : 1;
-      let springDescription = opts && 'springDescription' in opts ? opts.springDescription : null;
-      let animationBehavior = opts && 'animationBehavior' in opts ? opts.animationBehavior : null;
-      springDescription == null ? springDescription = animation_controller._kFlingSpringDescription : null;
-      this[_direction] = velocity < 0.0 ? animation_controller._AnimationDirection.reverse : animation_controller._AnimationDirection.forward;
-      let target = velocity < 0.0 ? this.lowerBound - animation_controller._kFlingTolerance.distance : this.upperBound + animation_controller._kFlingTolerance.distance;
-      let scale = 1.0;
-      let behavior = (t2 = animationBehavior, t2 == null ? this.animationBehavior : t2);
-      if (dart.nullCheck(binding.SemanticsBinding.instance).disableAnimations) {
-        switch (behavior) {
-          case C[3] || CT.C3:
-          {
-            scale = 200.0;
-            break;
-          }
-          case C[4] || CT.C4:
-          {
-            break;
-          }
-        }
-      }
-      let simulation = (t2$ = new spring_simulation.SpringSimulation.new(springDescription, this.value, target, velocity * scale), (() => {
-        t2$.tolerance = animation_controller._kFlingTolerance;
-        return t2$;
-      })());
-      if (!(simulation.type !== spring_simulation.SpringType.underDamped)) dart.assertFailed("The resulting spring simulation is of type SpringType.underDamped.\n" + "This can lead to unexpected look of the animation, please adjust the springDescription parameter", I[1], 705, 7, "simulation.type != SpringType.underDamped");
-      this.stop();
-      return this[_startSimulation](simulation);
-    }
-    animateWith(simulation) {
-      if (!(this[_ticker] != null)) dart.assertFailed("AnimationController.animateWith() called after AnimationController.dispose()\n" + "AnimationController methods should not be used after calling dispose.", I[1], 729, 7, "_ticker != null");
-      this.stop();
-      this[_direction] = animation_controller._AnimationDirection.forward;
-      return this[_startSimulation](simulation);
-    }
-    [_startSimulation](simulation) {
-      if (!(simulation !== null)) dart.assertFailed(null, I[1], 739, 12, "simulation != null");
-      if (!!this.isAnimating) dart.assertFailed(null, I[1], 740, 12, "!isAnimating");
-      this[_simulation] = simulation;
-      this[_lastElapsedDuration] = core.Duration.zero;
-      this[_value] = simulation.x(0.0)[$clamp](this.lowerBound, this.upperBound);
-      let result = dart.nullCheck(this[_ticker]).start();
-      this[_status] = this[_direction] === animation_controller._AnimationDirection.forward ? animation.AnimationStatus.forward : animation.AnimationStatus.reverse;
-      this[_checkStatusChanged]();
-      return result;
-    }
-    stop(opts) {
-      let canceled = opts && 'canceled' in opts ? opts.canceled : true;
-      if (!(this[_ticker] != null)) dart.assertFailed("AnimationController.stop() called after AnimationController.dispose()\n" + "AnimationController methods should not be used after calling dispose.", I[1], 771, 7, "_ticker != null");
-      this[_simulation] = null;
-      this[_lastElapsedDuration] = null;
-      dart.nullCheck(this[_ticker]).stop({canceled: canceled});
-    }
-    dispose() {
-      if (!dart.fn(() => {
-        if (this[_ticker] == null) {
-          dart.throw(new assertions.FlutterError.fromParts(T.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("AnimationController.dispose() called more than once."), new assertions.ErrorDescription.new("A given " + dart.str(this[$runtimeType]) + " cannot be disposed more than once.\n"), new (T.DiagnosticsPropertyOfAnimationController()).new("The following " + dart.str(this[$runtimeType]) + " object was disposed multiple times", this, {style: diagnostics.DiagnosticsTreeStyle.errorProperty})])));
-        }
-        return true;
-      }, T.VoidTobool())()) dart.assertFailed(null, I[1], 788, 12, "() {\r\n      if (_ticker == null) {\r\n        throw FlutterError.fromParts(<DiagnosticsNode>[\r\n          ErrorSummary('AnimationController.dispose() called more than once.'),\r\n          ErrorDescription('A given $runtimeType cannot be disposed more than once.\\n'),\r\n          DiagnosticsProperty<AnimationController>(\r\n            'The following $runtimeType object was disposed multiple times',\r\n            this,\r\n            style: DiagnosticsTreeStyle.errorProperty,\r\n          ),\r\n        ]);\r\n      }\r\n      return true;\r\n    }()");
-      dart.nullCheck(this[_ticker]).dispose();
-      this[_ticker] = null;
-      super.dispose();
-    }
-    [_checkStatusChanged]() {
-      let newStatus = this.status;
-      if (this[_lastReportedStatus] !== newStatus) {
-        this[_lastReportedStatus] = newStatus;
-        this.notifyStatusListeners(newStatus);
-      }
-    }
-    [_tick](elapsed) {
-      this[_lastElapsedDuration] = elapsed;
-      let elapsedInSeconds = elapsed.inMicroseconds[$toDouble]() / 1000000;
-      if (!(elapsedInSeconds >= 0.0)) dart.assertFailed(null, I[1], 819, 12, "elapsedInSeconds >= 0.0");
-      this[_value] = dart.nullCheck(this[_simulation]).x(elapsedInSeconds)[$clamp](this.lowerBound, this.upperBound);
-      if (dart.nullCheck(this[_simulation]).isDone(elapsedInSeconds)) {
-        this[_status] = this[_direction] === animation_controller._AnimationDirection.forward ? animation.AnimationStatus.completed : animation.AnimationStatus.dismissed;
-        this.stop({canceled: false});
-      }
-      this.notifyListeners();
-      this[_checkStatusChanged]();
-    }
-    toStringDetails() {
-      let paused = this.isAnimating ? "" : "; paused";
-      let ticker = this[_ticker] == null ? "; DISPOSED" : dart.nullCheck(this[_ticker]).muted ? "; silenced" : "";
-      let label = this.debugLabel == null ? "" : "; for " + dart.str(this.debugLabel);
-      let more = super.toStringDetails() + " " + this.value[$toStringAsFixed](3);
-      return more + paused + ticker + label;
+    shouldRelayout(oldDelegate) {
+      sliver_grid.SliverGridDelegateWithFixedCrossAxisCount.as(oldDelegate);
+      return oldDelegate.crossAxisCount !== this.crossAxisCount || oldDelegate.mainAxisSpacing !== this.mainAxisSpacing || oldDelegate.crossAxisSpacing !== this.crossAxisSpacing || oldDelegate.childAspectRatio !== this.childAspectRatio || oldDelegate.mainAxisExtent != this.mainAxisExtent;
     }
   };
-  (animation_controller.AnimationController.new = function(opts) {
-    let t0;
-    let value = opts && 'value' in opts ? opts.value : null;
-    let duration = opts && 'duration' in opts ? opts.duration : null;
-    let reverseDuration = opts && 'reverseDuration' in opts ? opts.reverseDuration : null;
-    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
-    let lowerBound = opts && 'lowerBound' in opts ? opts.lowerBound : 0;
-    let upperBound = opts && 'upperBound' in opts ? opts.upperBound : 1;
-    let animationBehavior = opts && 'animationBehavior' in opts ? opts.animationBehavior : C[3] || CT.C3;
-    let vsync = opts && 'vsync' in opts ? opts.vsync : null;
-    this[_ticker] = null;
-    this[_simulation] = null;
-    this[__AnimationController__value] = null;
-    this[_lastElapsedDuration] = null;
-    this[__AnimationController__status] = null;
-    this[_lastReportedStatus] = animation.AnimationStatus.dismissed;
-    this[duration$] = duration;
-    this[reverseDuration$] = reverseDuration;
-    this[debugLabel$] = debugLabel;
-    this[lowerBound$] = lowerBound;
-    this[upperBound$] = upperBound;
-    this[animationBehavior$] = animationBehavior;
-    if (!(lowerBound !== null)) dart.assertFailed(null, I[1], 242, 15, "lowerBound != null");
-    if (!(upperBound !== null)) dart.assertFailed(null, I[1], 243, 15, "upperBound != null");
-    if (!(upperBound >= lowerBound)) dart.assertFailed(null, I[1], 244, 15, "upperBound >= lowerBound");
-    if (!(vsync !== null)) dart.assertFailed(null, I[1], 245, 15, "vsync != null");
-    this[_direction] = animation_controller._AnimationDirection.forward;
-    animation_controller.AnimationController.__proto__.new.call(this);
-    this[_ticker] = vsync.createTicker(dart.bind(this, _tick));
-    this[_internalSetValue]((t0 = value, t0 == null ? this.lowerBound : t0));
-  }).prototype = animation_controller.AnimationController.prototype;
-  (animation_controller.AnimationController.unbounded = function(opts) {
-    let value = opts && 'value' in opts ? opts.value : 0;
-    let duration = opts && 'duration' in opts ? opts.duration : null;
-    let reverseDuration = opts && 'reverseDuration' in opts ? opts.reverseDuration : null;
-    let debugLabel = opts && 'debugLabel' in opts ? opts.debugLabel : null;
-    let vsync = opts && 'vsync' in opts ? opts.vsync : null;
-    let animationBehavior = opts && 'animationBehavior' in opts ? opts.animationBehavior : C[4] || CT.C4;
-    this[_ticker] = null;
-    this[_simulation] = null;
-    this[__AnimationController__value] = null;
-    this[_lastElapsedDuration] = null;
-    this[__AnimationController__status] = null;
-    this[_lastReportedStatus] = animation.AnimationStatus.dismissed;
-    this[duration$] = duration;
-    this[reverseDuration$] = reverseDuration;
-    this[debugLabel$] = debugLabel;
-    this[animationBehavior$] = animationBehavior;
-    if (!(value !== null)) dart.assertFailed(null, I[1], 275, 15, "value != null");
-    if (!(vsync !== null)) dart.assertFailed(null, I[1], 276, 15, "vsync != null");
-    this[lowerBound$] = -1 / 0;
-    this[upperBound$] = 1 / 0;
-    this[_direction] = animation_controller._AnimationDirection.forward;
-    animation_controller.AnimationController.__proto__.new.call(this);
-    this[_ticker] = vsync.createTicker(dart.bind(this, _tick));
-    this[_internalSetValue](value);
-  }).prototype = animation_controller.AnimationController.prototype;
-  dart.addTypeTests(animation_controller.AnimationController);
-  dart.addTypeCaches(animation_controller.AnimationController);
-  dart.setMethodSignature(animation_controller.AnimationController, () => ({
-    __proto__: dart.getMethods(animation_controller.AnimationController.__proto__),
-    resync: dart.fnType(dart.void, [ticker.TickerProvider]),
-    reset: dart.fnType(dart.void, []),
-    [_internalSetValue]: dart.fnType(dart.void, [core.double]),
-    forward: dart.fnType(ticker.TickerFuture, [], {from: dart.nullable(core.double)}, {}),
-    reverse: dart.fnType(ticker.TickerFuture, [], {from: dart.nullable(core.double)}, {}),
-    animateTo: dart.fnType(ticker.TickerFuture, [core.double], {curve: curves.Curve, duration: dart.nullable(core.Duration)}, {}),
-    animateBack: dart.fnType(ticker.TickerFuture, [core.double], {curve: curves.Curve, duration: dart.nullable(core.Duration)}, {}),
-    [_animateToInternal]: dart.fnType(ticker.TickerFuture, [core.double], {curve: curves.Curve, duration: dart.nullable(core.Duration)}, {}),
-    repeat: dart.fnType(ticker.TickerFuture, [], {max: dart.nullable(core.double), min: dart.nullable(core.double), period: dart.nullable(core.Duration), reverse: core.bool}, {}),
-    [_directionSetter]: dart.fnType(dart.void, [animation_controller._AnimationDirection]),
-    fling: dart.fnType(ticker.TickerFuture, [], {animationBehavior: dart.nullable(animation_controller.AnimationBehavior), springDescription: dart.nullable(spring_simulation.SpringDescription), velocity: core.double}, {}),
-    animateWith: dart.fnType(ticker.TickerFuture, [simulation.Simulation]),
-    [_startSimulation]: dart.fnType(ticker.TickerFuture, [simulation.Simulation]),
-    stop: dart.fnType(dart.void, [], {canceled: core.bool}, {}),
-    [_checkStatusChanged]: dart.fnType(dart.void, []),
-    [_tick]: dart.fnType(dart.void, [core.Duration])
-  }));
-  dart.setGetterSignature(animation_controller.AnimationController, () => ({
-    __proto__: dart.getGetters(animation_controller.AnimationController.__proto__),
-    view: animation.Animation$(core.double),
-    value: core.double,
-    [_value]: core.double,
-    velocity: core.double,
-    lastElapsedDuration: dart.nullable(core.Duration),
-    isAnimating: core.bool,
-    status: animation.AnimationStatus,
-    [_status]: animation.AnimationStatus
-  }));
-  dart.setSetterSignature(animation_controller.AnimationController, () => ({
-    __proto__: dart.getSetters(animation_controller.AnimationController.__proto__),
-    [_value]: core.double,
-    value: core.double,
-    [_status]: animation.AnimationStatus
-  }));
-  dart.setLibraryUri(animation_controller.AnimationController, I[0]);
-  dart.setFieldSignature(animation_controller.AnimationController, () => ({
-    __proto__: dart.getFields(animation_controller.AnimationController.__proto__),
-    lowerBound: dart.finalFieldType(core.double),
-    upperBound: dart.finalFieldType(core.double),
-    debugLabel: dart.finalFieldType(dart.nullable(core.String)),
-    animationBehavior: dart.finalFieldType(animation_controller.AnimationBehavior),
-    duration: dart.fieldType(dart.nullable(core.Duration)),
-    reverseDuration: dart.fieldType(dart.nullable(core.Duration)),
-    [_ticker]: dart.fieldType(dart.nullable(ticker.Ticker)),
-    [_simulation]: dart.fieldType(dart.nullable(simulation.Simulation)),
-    [__AnimationController__value]: dart.fieldType(dart.nullable(core.double)),
-    [_lastElapsedDuration]: dart.fieldType(dart.nullable(core.Duration)),
-    [_direction]: dart.fieldType(animation_controller._AnimationDirection),
-    [__AnimationController__status]: dart.fieldType(dart.nullable(animation.AnimationStatus)),
-    [_lastReportedStatus]: dart.fieldType(animation.AnimationStatus)
-  }));
-  var _begin$ = dart.privateName(animation_controller, "_begin");
-  var _end$ = dart.privateName(animation_controller, "_end");
-  var _curve$ = dart.privateName(animation_controller, "_curve");
-  var _durationInSeconds = dart.privateName(animation_controller, "_durationInSeconds");
-  animation_controller._InterpolationSimulation = class _InterpolationSimulation extends simulation.Simulation {
-    x(timeInSeconds) {
-      let t = (timeInSeconds / this[_durationInSeconds])[$clamp](0.0, 1.0);
-      if (t === 0.0)
-        return this[_begin$];
-      else if (t === 1.0)
-        return this[_end$];
-      else
-        return this[_begin$] + (this[_end$] - this[_begin$]) * this[_curve$].transform(t);
-    }
-    dx(timeInSeconds) {
-      let epsilon = this.tolerance.time;
-      return (this.x(timeInSeconds + epsilon) - this.x(timeInSeconds - epsilon)) / (2 * epsilon);
-    }
-    isDone(timeInSeconds) {
-      return timeInSeconds > this[_durationInSeconds];
-    }
-  };
-  (animation_controller._InterpolationSimulation.new = function(_begin, _end, duration, _curve, scale) {
-    this[_begin$] = _begin;
-    this[_end$] = _end;
-    this[_curve$] = _curve;
-    if (!(_begin !== null)) dart.assertFailed(null, I[1], 843, 14, "_begin != null");
-    if (!(_end !== null)) dart.assertFailed(null, I[1], 844, 14, "_end != null");
-    if (!(duration !== null && duration.inMicroseconds > 0)) dart.assertFailed(null, I[1], 845, 14, "duration != null && duration.inMicroseconds > 0");
-    this[_durationInSeconds] = duration.inMicroseconds * scale / 1000000;
-    animation_controller._InterpolationSimulation.__proto__.new.call(this);
+  (sliver_grid.SliverGridDelegateWithFixedCrossAxisCount.new = function(opts) {
+    let crossAxisCount = opts && 'crossAxisCount' in opts ? opts.crossAxisCount : null;
+    let mainAxisSpacing = opts && 'mainAxisSpacing' in opts ? opts.mainAxisSpacing : 0;
+    let crossAxisSpacing = opts && 'crossAxisSpacing' in opts ? opts.crossAxisSpacing : 0;
+    let childAspectRatio = opts && 'childAspectRatio' in opts ? opts.childAspectRatio : 1;
+    let mainAxisExtent = opts && 'mainAxisExtent' in opts ? opts.mainAxisExtent : null;
+    this[crossAxisCount$0] = crossAxisCount;
+    this[mainAxisSpacing$] = mainAxisSpacing;
+    this[crossAxisSpacing$] = crossAxisSpacing;
+    this[childAspectRatio$] = childAspectRatio;
+    this[mainAxisExtent$0] = mainAxisExtent;
+    if (!(crossAxisCount !== null && crossAxisCount > 0)) dart.assertFailed(null, I[1], 349, 15, "crossAxisCount != null && crossAxisCount > 0");
+    if (!(mainAxisSpacing !== null && mainAxisSpacing >= 0)) dart.assertFailed(null, I[1], 350, 15, "mainAxisSpacing != null && mainAxisSpacing >= 0");
+    if (!(crossAxisSpacing !== null && crossAxisSpacing >= 0)) dart.assertFailed(null, I[1], 351, 15, "crossAxisSpacing != null && crossAxisSpacing >= 0");
+    if (!(childAspectRatio !== null && childAspectRatio > 0)) dart.assertFailed(null, I[1], 352, 15, "childAspectRatio != null && childAspectRatio > 0");
+    sliver_grid.SliverGridDelegateWithFixedCrossAxisCount.__proto__.new.call(this);
     ;
-  }).prototype = animation_controller._InterpolationSimulation.prototype;
-  dart.addTypeTests(animation_controller._InterpolationSimulation);
-  dart.addTypeCaches(animation_controller._InterpolationSimulation);
-  dart.setMethodSignature(animation_controller._InterpolationSimulation, () => ({
-    __proto__: dart.getMethods(animation_controller._InterpolationSimulation.__proto__),
-    x: dart.fnType(core.double, [core.double]),
-    dx: dart.fnType(core.double, [core.double]),
-    isDone: dart.fnType(core.bool, [core.double])
+  }).prototype = sliver_grid.SliverGridDelegateWithFixedCrossAxisCount.prototype;
+  dart.addTypeTests(sliver_grid.SliverGridDelegateWithFixedCrossAxisCount);
+  dart.addTypeCaches(sliver_grid.SliverGridDelegateWithFixedCrossAxisCount);
+  dart.setMethodSignature(sliver_grid.SliverGridDelegateWithFixedCrossAxisCount, () => ({
+    __proto__: dart.getMethods(sliver_grid.SliverGridDelegateWithFixedCrossAxisCount.__proto__),
+    [_debugAssertIsValid]: dart.fnType(core.bool, []),
+    getLayout: dart.fnType(sliver_grid.SliverGridLayout, [sliver.SliverConstraints]),
+    shouldRelayout: dart.fnType(core.bool, [dart.nullable(core.Object)])
   }));
-  dart.setLibraryUri(animation_controller._InterpolationSimulation, I[0]);
-  dart.setFieldSignature(animation_controller._InterpolationSimulation, () => ({
-    __proto__: dart.getFields(animation_controller._InterpolationSimulation.__proto__),
-    [_durationInSeconds]: dart.finalFieldType(core.double),
-    [_begin$]: dart.finalFieldType(core.double),
-    [_end$]: dart.finalFieldType(core.double),
-    [_curve$]: dart.finalFieldType(curves.Curve)
+  dart.setLibraryUri(sliver_grid.SliverGridDelegateWithFixedCrossAxisCount, I[0]);
+  dart.setFieldSignature(sliver_grid.SliverGridDelegateWithFixedCrossAxisCount, () => ({
+    __proto__: dart.getFields(sliver_grid.SliverGridDelegateWithFixedCrossAxisCount.__proto__),
+    crossAxisCount: dart.finalFieldType(core.int),
+    mainAxisSpacing: dart.finalFieldType(core.double),
+    crossAxisSpacing: dart.finalFieldType(core.double),
+    childAspectRatio: dart.finalFieldType(core.double),
+    mainAxisExtent: dart.finalFieldType(dart.nullable(core.double))
   }));
-  var _periodInSeconds = dart.privateName(animation_controller, "_periodInSeconds");
-  var _initialT = dart.privateName(animation_controller, "_initialT");
-  animation_controller._RepeatingSimulation = class _RepeatingSimulation extends simulation.Simulation {
-    x(timeInSeconds) {
-      let t2, t2$;
-      if (!(timeInSeconds >= 0.0)) dart.assertFailed(null, I[1], 894, 12, "timeInSeconds >= 0.0");
-      let totalTimeInSeconds = timeInSeconds + this[_initialT];
-      let t = (totalTimeInSeconds / this[_periodInSeconds])[$modulo](1.0);
-      let _isPlayingReverse = (totalTimeInSeconds / this[_periodInSeconds])[$truncate]()[$isOdd];
-      if (this.reverse && _isPlayingReverse) {
-        t2 = animation_controller._AnimationDirection.reverse;
-        this.directionSetter(t2);
-        return dart.nullCheck(ui.lerpDouble(this.max, this.min, t));
-      } else {
-        t2$ = animation_controller._AnimationDirection.forward;
-        this.directionSetter(t2$);
-        return dart.nullCheck(ui.lerpDouble(this.min, this.max, t));
-      }
+  var maxCrossAxisExtent$ = dart.privateName(sliver_grid, "SliverGridDelegateWithMaxCrossAxisExtent.maxCrossAxisExtent");
+  var mainAxisSpacing$0 = dart.privateName(sliver_grid, "SliverGridDelegateWithMaxCrossAxisExtent.mainAxisSpacing");
+  var crossAxisSpacing$0 = dart.privateName(sliver_grid, "SliverGridDelegateWithMaxCrossAxisExtent.crossAxisSpacing");
+  var childAspectRatio$0 = dart.privateName(sliver_grid, "SliverGridDelegateWithMaxCrossAxisExtent.childAspectRatio");
+  var mainAxisExtent$1 = dart.privateName(sliver_grid, "SliverGridDelegateWithMaxCrossAxisExtent.mainAxisExtent");
+  sliver_grid.SliverGridDelegateWithMaxCrossAxisExtent = class SliverGridDelegateWithMaxCrossAxisExtent extends sliver_grid.SliverGridDelegate {
+    get maxCrossAxisExtent() {
+      return this[maxCrossAxisExtent$];
     }
-    dx(timeInSeconds) {
-      return (this.max - this.min) / this[_periodInSeconds];
+    set maxCrossAxisExtent(value) {
+      super.maxCrossAxisExtent = value;
     }
-    isDone(timeInSeconds) {
-      return false;
+    get mainAxisSpacing() {
+      return this[mainAxisSpacing$0];
+    }
+    set mainAxisSpacing(value) {
+      super.mainAxisSpacing = value;
+    }
+    get crossAxisSpacing() {
+      return this[crossAxisSpacing$0];
+    }
+    set crossAxisSpacing(value) {
+      super.crossAxisSpacing = value;
+    }
+    get childAspectRatio() {
+      return this[childAspectRatio$0];
+    }
+    set childAspectRatio(value) {
+      super.childAspectRatio = value;
+    }
+    get mainAxisExtent() {
+      return this[mainAxisExtent$1];
+    }
+    set mainAxisExtent(value) {
+      super.mainAxisExtent = value;
+    }
+    [_debugAssertIsValid](crossAxisExtent) {
+      if (!(crossAxisExtent > 0.0)) dart.assertFailed(null, I[1], 482, 12, "crossAxisExtent > 0.0");
+      if (!(this.maxCrossAxisExtent > 0.0)) dart.assertFailed(null, I[1], 483, 12, "maxCrossAxisExtent > 0.0");
+      if (!(this.mainAxisSpacing >= 0.0)) dart.assertFailed(null, I[1], 484, 12, "mainAxisSpacing >= 0.0");
+      if (!(this.crossAxisSpacing >= 0.0)) dart.assertFailed(null, I[1], 485, 12, "crossAxisSpacing >= 0.0");
+      if (!(this.childAspectRatio > 0.0)) dart.assertFailed(null, I[1], 486, 12, "childAspectRatio > 0.0");
+      return true;
+    }
+    getLayout(constraints) {
+      let t0;
+      if (!this[_debugAssertIsValid](constraints.crossAxisExtent)) dart.assertFailed(null, I[1], 492, 12, "_debugAssertIsValid(constraints.crossAxisExtent)");
+      let crossAxisCount = (constraints.crossAxisExtent / (this.maxCrossAxisExtent + this.crossAxisSpacing))[$ceil]();
+      let usableCrossAxisExtent = math.max(core.double, 0.0, constraints.crossAxisExtent - this.crossAxisSpacing * (crossAxisCount - 1));
+      let childCrossAxisExtent = usableCrossAxisExtent / crossAxisCount;
+      let childMainAxisExtent = (t0 = this.mainAxisExtent, t0 == null ? childCrossAxisExtent / this.childAspectRatio : t0);
+      return new sliver_grid.SliverGridRegularTileLayout.new({crossAxisCount: crossAxisCount, mainAxisStride: childMainAxisExtent + this.mainAxisSpacing, crossAxisStride: childCrossAxisExtent + this.crossAxisSpacing, childMainAxisExtent: childMainAxisExtent, childCrossAxisExtent: childCrossAxisExtent, reverseCrossAxis: basic_types.axisDirectionIsReversed(constraints.crossAxisDirection)});
+    }
+    shouldRelayout(oldDelegate) {
+      sliver_grid.SliverGridDelegateWithMaxCrossAxisExtent.as(oldDelegate);
+      return oldDelegate.maxCrossAxisExtent !== this.maxCrossAxisExtent || oldDelegate.mainAxisSpacing !== this.mainAxisSpacing || oldDelegate.crossAxisSpacing !== this.crossAxisSpacing || oldDelegate.childAspectRatio !== this.childAspectRatio || oldDelegate.mainAxisExtent != this.mainAxisExtent;
     }
   };
-  (animation_controller._RepeatingSimulation.new = function(initialValue, min, max, reverse, period, directionSetter) {
-    this.min = min;
-    this.max = max;
-    this.reverse = reverse;
-    this.directionSetter = directionSetter;
-    this[_periodInSeconds] = period.inMicroseconds / 1000000;
-    this[_initialT] = max === min ? 0.0 : initialValue / (max - min) * (period.inMicroseconds / 1000000);
-    animation_controller._RepeatingSimulation.__proto__.new.call(this);
-    if (!(this[_periodInSeconds] > 0.0)) dart.assertFailed(null, I[1], 880, 12, "_periodInSeconds > 0.0");
-    if (!(this[_initialT] >= 0.0)) dart.assertFailed(null, I[1], 881, 12, "_initialT >= 0.0");
-  }).prototype = animation_controller._RepeatingSimulation.prototype;
-  dart.addTypeTests(animation_controller._RepeatingSimulation);
-  dart.addTypeCaches(animation_controller._RepeatingSimulation);
-  dart.setMethodSignature(animation_controller._RepeatingSimulation, () => ({
-    __proto__: dart.getMethods(animation_controller._RepeatingSimulation.__proto__),
-    x: dart.fnType(core.double, [core.double]),
-    dx: dart.fnType(core.double, [core.double]),
-    isDone: dart.fnType(core.bool, [core.double])
+  (sliver_grid.SliverGridDelegateWithMaxCrossAxisExtent.new = function(opts) {
+    let maxCrossAxisExtent = opts && 'maxCrossAxisExtent' in opts ? opts.maxCrossAxisExtent : null;
+    let mainAxisSpacing = opts && 'mainAxisSpacing' in opts ? opts.mainAxisSpacing : 0;
+    let crossAxisSpacing = opts && 'crossAxisSpacing' in opts ? opts.crossAxisSpacing : 0;
+    let childAspectRatio = opts && 'childAspectRatio' in opts ? opts.childAspectRatio : 1;
+    let mainAxisExtent = opts && 'mainAxisExtent' in opts ? opts.mainAxisExtent : null;
+    this[maxCrossAxisExtent$] = maxCrossAxisExtent;
+    this[mainAxisSpacing$0] = mainAxisSpacing;
+    this[crossAxisSpacing$0] = crossAxisSpacing;
+    this[childAspectRatio$0] = childAspectRatio;
+    this[mainAxisExtent$1] = mainAxisExtent;
+    if (!(maxCrossAxisExtent !== null && maxCrossAxisExtent > 0)) dart.assertFailed(null, I[1], 448, 15, "maxCrossAxisExtent != null && maxCrossAxisExtent > 0");
+    if (!(mainAxisSpacing !== null && mainAxisSpacing >= 0)) dart.assertFailed(null, I[1], 449, 15, "mainAxisSpacing != null && mainAxisSpacing >= 0");
+    if (!(crossAxisSpacing !== null && crossAxisSpacing >= 0)) dart.assertFailed(null, I[1], 450, 15, "crossAxisSpacing != null && crossAxisSpacing >= 0");
+    if (!(childAspectRatio !== null && childAspectRatio > 0)) dart.assertFailed(null, I[1], 451, 15, "childAspectRatio != null && childAspectRatio > 0");
+    sliver_grid.SliverGridDelegateWithMaxCrossAxisExtent.__proto__.new.call(this);
+    ;
+  }).prototype = sliver_grid.SliverGridDelegateWithMaxCrossAxisExtent.prototype;
+  dart.addTypeTests(sliver_grid.SliverGridDelegateWithMaxCrossAxisExtent);
+  dart.addTypeCaches(sliver_grid.SliverGridDelegateWithMaxCrossAxisExtent);
+  dart.setMethodSignature(sliver_grid.SliverGridDelegateWithMaxCrossAxisExtent, () => ({
+    __proto__: dart.getMethods(sliver_grid.SliverGridDelegateWithMaxCrossAxisExtent.__proto__),
+    [_debugAssertIsValid]: dart.fnType(core.bool, [core.double]),
+    getLayout: dart.fnType(sliver_grid.SliverGridLayout, [sliver.SliverConstraints]),
+    shouldRelayout: dart.fnType(core.bool, [dart.nullable(core.Object)])
   }));
-  dart.setLibraryUri(animation_controller._RepeatingSimulation, I[0]);
-  dart.setFieldSignature(animation_controller._RepeatingSimulation, () => ({
-    __proto__: dart.getFields(animation_controller._RepeatingSimulation.__proto__),
-    min: dart.finalFieldType(core.double),
-    max: dart.finalFieldType(core.double),
-    reverse: dart.finalFieldType(core.bool),
-    directionSetter: dart.finalFieldType(dart.fnType(dart.void, [animation_controller._AnimationDirection])),
-    [_periodInSeconds]: dart.finalFieldType(core.double),
-    [_initialT]: dart.finalFieldType(core.double)
+  dart.setLibraryUri(sliver_grid.SliverGridDelegateWithMaxCrossAxisExtent, I[0]);
+  dart.setFieldSignature(sliver_grid.SliverGridDelegateWithMaxCrossAxisExtent, () => ({
+    __proto__: dart.getFields(sliver_grid.SliverGridDelegateWithMaxCrossAxisExtent.__proto__),
+    maxCrossAxisExtent: dart.finalFieldType(core.double),
+    mainAxisSpacing: dart.finalFieldType(core.double),
+    crossAxisSpacing: dart.finalFieldType(core.double),
+    childAspectRatio: dart.finalFieldType(core.double),
+    mainAxisExtent: dart.finalFieldType(dart.nullable(core.double))
   }));
-  var Tolerance_velocity = dart.privateName(tolerance, "Tolerance.velocity");
-  var Tolerance_time = dart.privateName(tolerance, "Tolerance.time");
-  var Tolerance_distance = dart.privateName(tolerance, "Tolerance.distance");
-  dart.defineLazy(animation_controller, {
-    /*animation_controller._kFlingSpringDescription*/get _kFlingSpringDescription() {
-      return new spring_simulation.SpringDescription.withDampingRatio({mass: 1.0, stiffness: 500.0, ratio: 1.0});
-    },
-    /*animation_controller._kFlingTolerance*/get _kFlingTolerance() {
-      return C[7] || CT.C7;
+  var crossAxisOffset = dart.privateName(sliver_grid, "SliverGridParentData.crossAxisOffset");
+  sliver_grid.SliverGridParentData = class SliverGridParentData extends sliver_multi_box_adaptor.SliverMultiBoxAdaptorParentData {
+    get crossAxisOffset() {
+      return this[crossAxisOffset];
     }
-  }, false);
-  dart.trackLibraries("packages/flutter/src/animation/animation_controller.dart", {
-    "package:flutter/src/animation/animation_controller.dart": animation_controller
+    set crossAxisOffset(value) {
+      this[crossAxisOffset] = value;
+    }
+    toString() {
+      return "crossAxisOffset=" + dart.str(this.crossAxisOffset) + "; " + super.toString();
+    }
+  };
+  (sliver_grid.SliverGridParentData.new = function() {
+    this[crossAxisOffset] = null;
+    sliver_grid.SliverGridParentData.__proto__.new.call(this);
+    ;
+  }).prototype = sliver_grid.SliverGridParentData.prototype;
+  dart.addTypeTests(sliver_grid.SliverGridParentData);
+  dart.addTypeCaches(sliver_grid.SliverGridParentData);
+  dart.setLibraryUri(sliver_grid.SliverGridParentData, I[0]);
+  dart.setFieldSignature(sliver_grid.SliverGridParentData, () => ({
+    __proto__: dart.getFields(sliver_grid.SliverGridParentData.__proto__),
+    crossAxisOffset: dart.fieldType(dart.nullable(core.double))
+  }));
+  dart.defineExtensionMethods(sliver_grid.SliverGridParentData, ['toString']);
+  var _gridDelegate = dart.privateName(sliver_grid, "_gridDelegate");
+  sliver_grid.RenderSliverGrid = class RenderSliverGrid extends sliver_multi_box_adaptor.RenderSliverMultiBoxAdaptor {
+    setupParentData(child) {
+      object.RenderObject.as(child);
+      if (!sliver_grid.SliverGridParentData.is(child.parentData)) child.parentData = new sliver_grid.SliverGridParentData.new();
+    }
+    get gridDelegate() {
+      return this[_gridDelegate];
+    }
+    set gridDelegate(value) {
+      if (!(value !== null)) dart.assertFailed(null, I[1], 568, 12, "value != null");
+      if (this[_gridDelegate][$_equals](value)) return;
+      if (!value[$runtimeType]._equals(this[_gridDelegate][$runtimeType]) || value.shouldRelayout(this[_gridDelegate])) this.markNeedsLayout();
+      this[_gridDelegate] = value;
+    }
+    childCrossAxisPosition(child) {
+      box.RenderBox.as(child);
+      let childParentData = sliver_grid.SliverGridParentData.as(dart.nullCheck(child.parentData));
+      return dart.nullCheck(childParentData.crossAxisOffset);
+    }
+    performLayout() {
+      let constraints = this.constraints;
+      this.childManager.didStartLayout();
+      this.childManager.setDidUnderflow(false);
+      let scrollOffset = constraints.scrollOffset + constraints.cacheOrigin;
+      if (!(scrollOffset >= 0.0)) dart.assertFailed(null, I[1], 590, 12, "scrollOffset >= 0.0");
+      let remainingExtent = constraints.remainingCacheExtent;
+      if (!(remainingExtent >= 0.0)) dart.assertFailed(null, I[1], 592, 12, "remainingExtent >= 0.0");
+      let targetEndScrollOffset = scrollOffset + remainingExtent;
+      let layout = this[_gridDelegate].getLayout(constraints);
+      let firstIndex = layout.getMinChildIndexForScrollOffset(scrollOffset);
+      let targetLastIndex = targetEndScrollOffset[$isFinite] ? layout.getMaxChildIndexForScrollOffset(targetEndScrollOffset) : null;
+      if (this.firstChild != null) {
+        let oldFirstIndex = this.indexOf(dart.nullCheck(this.firstChild));
+        let oldLastIndex = this.indexOf(dart.nullCheck(this.lastChild));
+        let leadingGarbage = (firstIndex - oldFirstIndex)[$clamp](0, this.childCount);
+        let trailingGarbage = targetLastIndex == null ? 0 : (oldLastIndex - dart.notNull(targetLastIndex))[$clamp](0, this.childCount);
+        this.collectGarbage(leadingGarbage, trailingGarbage);
+      } else {
+        this.collectGarbage(0, 0);
+      }
+      let firstChildGridGeometry = layout.getGeometryForChildIndex(firstIndex);
+      let leadingScrollOffset = firstChildGridGeometry.scrollOffset;
+      let trailingScrollOffset = firstChildGridGeometry.trailingScrollOffset;
+      if (this.firstChild == null) {
+        if (!this.addInitialChild({index: firstIndex, layoutOffset: firstChildGridGeometry.scrollOffset})) {
+          let max = layout.computeMaxScrollOffset(this.childManager.childCount);
+          this.geometry = new sliver.SliverGeometry.new({scrollExtent: max, maxPaintExtent: max});
+          this.childManager.didFinishLayout();
+          return;
+        }
+      }
+      let trailingChildWithLayout = null;
+      for (let index = this.indexOf(dart.nullCheck(this.firstChild)) - 1; index >= firstIndex; index = index - 1) {
+        let gridGeometry = layout.getGeometryForChildIndex(index);
+        let child = dart.nullCheck(this.insertAndLayoutLeadingChild(gridGeometry.getBoxConstraints(constraints)));
+        let childParentData = sliver_grid.SliverGridParentData.as(dart.nullCheck(child.parentData));
+        childParentData.layoutOffset = gridGeometry.scrollOffset;
+        childParentData.crossAxisOffset = gridGeometry.crossAxisOffset;
+        if (!(childParentData.index === index)) dart.assertFailed(null, I[1], 640, 14, "childParentData.index == index");
+        trailingChildWithLayout == null ? trailingChildWithLayout = child : null;
+        trailingScrollOffset = math.max(core.double, trailingScrollOffset, gridGeometry.trailingScrollOffset);
+      }
+      if (trailingChildWithLayout == null) {
+        dart.nullCheck(this.firstChild).layout(firstChildGridGeometry.getBoxConstraints(constraints));
+        let childParentData = sliver_grid.SliverGridParentData.as(dart.nullCheck(dart.nullCheck(this.firstChild).parentData));
+        childParentData.layoutOffset = firstChildGridGeometry.scrollOffset;
+        childParentData.crossAxisOffset = firstChildGridGeometry.crossAxisOffset;
+        trailingChildWithLayout = this.firstChild;
+      }
+      for (let index = this.indexOf(dart.nullCheck(trailingChildWithLayout)) + 1; targetLastIndex == null || index <= dart.notNull(targetLastIndex); index = index + 1) {
+        let gridGeometry = layout.getGeometryForChildIndex(index);
+        let childConstraints = gridGeometry.getBoxConstraints(constraints);
+        let child = this.childAfter(dart.nullCheck(trailingChildWithLayout));
+        if (child == null || this.indexOf(child) !== index) {
+          child = this.insertAndLayoutChild(childConstraints, {after: trailingChildWithLayout});
+          if (child == null) {
+            break;
+          }
+        } else {
+          child.layout(childConstraints);
+        }
+        trailingChildWithLayout = child;
+        if (!(child != null)) dart.assertFailed(null, I[1], 667, 14, "child != null");
+        let childParentData = sliver_grid.SliverGridParentData.as(dart.nullCheck(child.parentData));
+        childParentData.layoutOffset = gridGeometry.scrollOffset;
+        childParentData.crossAxisOffset = gridGeometry.crossAxisOffset;
+        if (!(childParentData.index === index)) dart.assertFailed(null, I[1], 671, 14, "childParentData.index == index");
+        trailingScrollOffset = math.max(core.double, trailingScrollOffset, gridGeometry.trailingScrollOffset);
+      }
+      let lastIndex = this.indexOf(dart.nullCheck(this.lastChild));
+      if (!this.debugAssertChildListIsNonEmptyAndContiguous()) dart.assertFailed(null, I[1], 677, 12, "debugAssertChildListIsNonEmptyAndContiguous()");
+      if (!(this.indexOf(dart.nullCheck(this.firstChild)) === firstIndex)) dart.assertFailed(null, I[1], 678, 12, "indexOf(firstChild!) == firstIndex");
+      if (!(targetLastIndex == null || lastIndex <= dart.notNull(targetLastIndex))) dart.assertFailed(null, I[1], 679, 12, "targetLastIndex == null || lastIndex <= targetLastIndex");
+      let estimatedTotalExtent = this.childManager.estimateMaxScrollOffset(constraints, {firstIndex: firstIndex, lastIndex: lastIndex, leadingScrollOffset: leadingScrollOffset, trailingScrollOffset: trailingScrollOffset});
+      let paintExtent = this.calculatePaintOffset(constraints, {from: math.min(core.double, constraints.scrollOffset, leadingScrollOffset), to: trailingScrollOffset});
+      let cacheExtent = this.calculateCacheOffset(constraints, {from: leadingScrollOffset, to: trailingScrollOffset});
+      this.geometry = new sliver.SliverGeometry.new({scrollExtent: estimatedTotalExtent, paintExtent: paintExtent, maxPaintExtent: estimatedTotalExtent, cacheExtent: cacheExtent, hasVisualOverflow: true});
+      if (estimatedTotalExtent === trailingScrollOffset) this.childManager.setDidUnderflow(true);
+      this.childManager.didFinishLayout();
+    }
+  };
+  (sliver_grid.RenderSliverGrid.new = function(opts) {
+    let childManager = opts && 'childManager' in opts ? opts.childManager : null;
+    let gridDelegate = opts && 'gridDelegate' in opts ? opts.gridDelegate : null;
+    if (!(gridDelegate !== null)) dart.assertFailed(null, I[1], 554, 15, "gridDelegate != null");
+    this[_gridDelegate] = gridDelegate;
+    sliver_grid.RenderSliverGrid.__proto__.new.call(this, {childManager: childManager});
+    ;
+  }).prototype = sliver_grid.RenderSliverGrid.prototype;
+  dart.addTypeTests(sliver_grid.RenderSliverGrid);
+  dart.addTypeCaches(sliver_grid.RenderSliverGrid);
+  dart.setMethodSignature(sliver_grid.RenderSliverGrid, () => ({
+    __proto__: dart.getMethods(sliver_grid.RenderSliverGrid.__proto__),
+    performLayout: dart.fnType(dart.void, [])
+  }));
+  dart.setGetterSignature(sliver_grid.RenderSliverGrid, () => ({
+    __proto__: dart.getGetters(sliver_grid.RenderSliverGrid.__proto__),
+    gridDelegate: sliver_grid.SliverGridDelegate
+  }));
+  dart.setSetterSignature(sliver_grid.RenderSliverGrid, () => ({
+    __proto__: dart.getSetters(sliver_grid.RenderSliverGrid.__proto__),
+    gridDelegate: sliver_grid.SliverGridDelegate
+  }));
+  dart.setLibraryUri(sliver_grid.RenderSliverGrid, I[0]);
+  dart.setFieldSignature(sliver_grid.RenderSliverGrid, () => ({
+    __proto__: dart.getFields(sliver_grid.RenderSliverGrid.__proto__),
+    [_gridDelegate]: dart.fieldType(sliver_grid.SliverGridDelegate)
+  }));
+  dart.trackLibraries("packages/flutter/src/rendering/sliver_grid.dart", {
+    "package:flutter/src/rendering/sliver_grid.dart": sliver_grid
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["animation_controller.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/animation/animation_controller.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["sliver_grid.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/rendering/sliver_grid.dart.lib.js"}');
   // Exports:
   return {
-    src__animation__animation_controller: animation_controller
+    src__rendering__sliver_grid: sliver_grid
   };
 }));
 
-//# sourceMappingURL=animation_controller.dart.lib.js.map
+//# sourceMappingURL=sliver_grid.dart.lib.js.map

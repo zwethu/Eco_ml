@@ -37,58 +37,67 @@ class _ImagePageState extends State<ImagePage> {
     return SafeArea(
       child: Scaffold(
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 50,
-              ),
-              (isPicked)
-                  ? CircleAvatar(
-                      backgroundImage: FileImage(imagePicked),
-                      radius: 50,
-                    )
-                  : CircleAvatar(
-                      backgroundColor: Colors.black,
-                      radius: 50,
-                    ),
-              SizedBox(
-                height: 30,
-              ),
-              InkWell(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xff4F98A1)),
-                    ),
-                    height: 30,
-                    width: 100,
-                    child: Center(
-                      child: Text(
-                        'Choose image',
-                        textAlign: TextAlign.center,
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/submit_name.png'),
+              fit: BoxFit.fill,
+            ),
+          ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 50,
+                ),
+                (isPicked)
+                    ? CircleAvatar(
+                        backgroundImage: FileImage(imagePicked),
+                        radius: 50,
+                      )
+                    : CircleAvatar(
+                        backgroundColor: Colors.black,
+                        radius: 50,
+                      ),
+                SizedBox(
+                  height: 30,
+                ),
+                InkWell(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xff4F98A1)),
+                      ),
+                      height: 30,
+                      width: 100,
+                      child: Center(
+                        child: Text(
+                          'Choose image',
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
-                  ),
-                  onTap: () async {
-                    await pickImage();
-                    if (isPicked) {
-                      imageBox.put(0, ImageUrl(imagePicked.readAsBytesSync()));
-                        AutoRouter.of(context).push(AmountInputRoute());
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Chooes profile picture',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
+                    onTap: () async {
+                      await pickImage();
+                      if (isPicked) {
+                        imageBox.put(0, ImageUrl(imagePicked.readAsBytesSync()));
+                          AutoRouter.of(context).push(AmountInputRoute());
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Chooes profile picture',
+                              style: TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                            backgroundColor: Color(0xff4F98A1),
+                            elevation: 10,
+                            duration: Duration(seconds: 2),
                           ),
-                          backgroundColor: Color(0xff4F98A1),
-                          elevation: 10,
-                          duration: Duration(seconds: 2),
-                        ),
-                      );
-                    }
-                  }),
-            ],
+                        );
+                      }
+                    }),
+              ],
+            ),
           ),
         ),
       ),
