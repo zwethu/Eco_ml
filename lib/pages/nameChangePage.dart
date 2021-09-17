@@ -27,6 +27,7 @@ class _NameChangePageState extends State<NameChangePage> {
   @override
   void dispose() {
     // Hive.close();
+    AutoRouter.of(context).pop(NameChangeRoute());
     super.dispose();
   }
 
@@ -35,6 +36,10 @@ class _NameChangePageState extends State<NameChangePage> {
     return SafeArea(
       child: Scaffold(
         // resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          elevation: 2,
+          backgroundColor: Color(0xff4F98A1),
+        ),
         body: SingleChildScrollView(
           child: Container(
             width: MediaQuery.of(context).size.width,
@@ -115,6 +120,7 @@ class _NameChangePageState extends State<NameChangePage> {
                       addData(newData);
                       newData.save();
                       navigateToHome(context);
+    
                     },
                     child: Container(
                       margin: EdgeInsets.symmetric(vertical: 0, horizontal: 50),

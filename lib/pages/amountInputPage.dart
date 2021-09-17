@@ -16,7 +16,7 @@ class _AmountInputPageState extends State<AmountInputPage> {
   final incomeBox = Hive.box('income');
   final outcomeBox = Hive.box('outcome');
   final piggyBox = Hive.box('piggy');
-
+  final imageBox = Hive.box('image');
   TextEditingController amountController = TextEditingController();
   // bool _validate = false;
   @override
@@ -141,6 +141,15 @@ class _AmountInputPageState extends State<AmountInputPage> {
                       piggyBox.put(0, calculatePiggy);
                       piggyBox.put(1, false);
                       print(piggyBox.get(0));
+                    
+                      // // var imageData = imageBox.get(0);
+                      // // var calculatedImage = imageData?? ImageUrl(File('assets/images/profile.png').readAsBytesSync());
+                      // // imageBox.put(0, calculatedImage);
+                      // imageBox.put(0,ImageUrl()..check=false);
+                      // imageBox.put(1,false);
+                      // // imageBox.clear();
+                      // print('hellp');
+
                     });
                   },
                   child: Container(

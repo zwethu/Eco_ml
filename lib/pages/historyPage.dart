@@ -1,3 +1,4 @@
+
 import 'package:eco_ml/data/incomeData.dart';
 import 'package:eco_ml/data/outcomeData.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,10 @@ class HistoryPage extends StatefulWidget {
 
 class _HistoryPageState extends State<HistoryPage> {
   final transactionBox = Hive.box('transactions');
+  @override
+  void dispose() {
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     final data = transactionBox.getAt(widget.index);

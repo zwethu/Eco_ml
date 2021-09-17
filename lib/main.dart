@@ -15,6 +15,7 @@ Future main() async{
   Hive.registerAdapter(IncomeAdapter());
   Hive.registerAdapter(OutcomeAdapter());
   Hive.registerAdapter(PiggyAdapter());
+  Hive.registerAdapter(ImageUrlAdapter());
   Hive.openBox('username');
   Hive.openBox('amount');
   Hive.openBox('id');
@@ -22,6 +23,7 @@ Future main() async{
   Hive.openBox('income');
   Hive.openBox('outcome');
   Hive.openBox('piggy');
+  Hive.openBox('image');
   runApp(MyApp());
 }
 

@@ -6,6 +6,7 @@ import 'package:hive/hive.dart';
 class AmountChangePage extends StatefulWidget {
   const AmountChangePage({Key? key}) : super(key: key);
 
+
   @override
   _AmountChangePageState createState() => _AmountChangePageState();
 }
@@ -14,11 +15,17 @@ class _AmountChangePageState extends State<AmountChangePage> {
   final piggyBox = Hive.box('piggy');
   TextEditingController amountController = TextEditingController();
   @override
+  void dispose() {
+    amountController.dispose();
+    
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        elevation: 0,
+        elevation: 2,
         backgroundColor: Color(0xff4F98A1),
       ),
       body: SingleChildScrollView(

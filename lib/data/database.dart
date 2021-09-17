@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:hive/hive.dart';
 
 part 'database.g.dart';
@@ -66,4 +68,11 @@ class Piggy extends HiveObject {
   @HiveField(1)
   bool showPiggy;
   Piggy(this.percentage, this.showPiggy);
+}
+
+@HiveType(typeId: 7)
+class ImageUrl extends HiveObject{
+  @HiveField(0)
+   final Uint8List url;
+   ImageUrl(this.url);
 }

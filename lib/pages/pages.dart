@@ -6,6 +6,5 @@ export 'piggyHomePage.dart';
 export 'piggyPage.dart';
 export 'profilePage.dart';
 export 'reportPage.dart';
-export 'settingPage.dart';
 export 'splashPage.dart';
 export 'walletPage.dart';

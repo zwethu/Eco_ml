@@ -128,7 +128,7 @@ class _NameInputPageState extends State<NameInputPage> {
                               UserName(nameController.text.toString());
                           addData(newData);
                           newData.save();
-                          navigateToAmountInputPage(context);
+                          navigateToImagePage(context);
                         });
                       }
                     },
@@ -156,8 +156,8 @@ class _NameInputPageState extends State<NameInputPage> {
   }
 }
 
-void navigateToAmountInputPage(context) {
-  AutoRouter.of(context).push(AmountInputRoute());
+void navigateToImagePage(context) {
+  AutoRouter.of(context).push(ImageRoute());
 }
 
 void addData(UserName database) {

@@ -6,6 +6,7 @@ import 'package:eco_ml/pages/settingPage.dart';
 import 'package:eco_ml/pages/walletPage.dart';
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
+
 import 'package:hive/hive.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,26 +20,39 @@ class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
   final username = Hive.box('username').getAt(0) as UserName;
   final piggyBox = Hive.box('piggy');
-@override
+  final imageBox = Hive.box('image');
+  // late ImageUrl? url;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   void dispose() {
-  //  Hive.close();
+    //  Hive.close();
     super.dispose();
   }
+
+
   @override
   Widget build(BuildContext context) {
-    bool check = piggyBox.get(1) ;
+
+    final imageData = imageBox.get(0)as ImageUrl;
+    bool check = piggyBox.get(1);
+
     final pages = [
-    WalletPage(),
-    ReportPage(),
-    (() {
-   if(check){
-     return PiggyHomePage();
-   }else{
-    return BankPage();
-   }
-}()),
-    SettingPage(),
-  ];
+      WalletPage(),
+      ReportPage(),
+      (() {
+        if (check) {
+          return PiggyHomePage();
+        } else {
+          return BankPage();
+        }
+      }()),
+      SettingPage(),
+    ];
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -53,18 +67,16 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          elevation: 2,
+          elevation: 1,
           backgroundColor: Color(0xff4F98A1),
           actions: [
-            TextButton.icon(
-              onPressed: () {
-                navigateToProfile(context);
-                currentIndex = 2;
-              },
-              icon: CircleAvatar(
-                backgroundImage: AssetImage('assets/images/avator.jpeg'),
+            GestureDetector(
+              child: CircleAvatar(
+                backgroundImage: MemoryImage(imageData.url),
               ),
-              label: Text(''),
+              onTap: (){
+                navigateToProfile(context);
+              },
             ),
             SizedBox(
               width: 10,
@@ -112,7 +124,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-    
   }
 }
 
@@ -123,5 +134,3 @@ void navigateToProfile(BuildContext context) {
 void navigateToCategories(BuildContext context) {
   AutoRouter.of(context).push(CategoriesRoute());
 }
-
-

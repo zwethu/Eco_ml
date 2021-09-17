@@ -10,6 +10,7 @@ import 'package:flutter/material.dart' as _i2;
 import '../pages/amountChangePage.dart' as _i8;
 import '../pages/amountInputPage.dart' as _i5;
 import '../pages/historyPage.dart' as _i7;
+import '../pages/imagePage.dart' as _i10;
 import '../pages/nameChangePage.dart' as _i9;
 import '../pages/NameInputPage.dart' as _i4;
 import '../pages/pages.dart' as _i3;
@@ -93,6 +94,11 @@ class MyAppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return const _i9.NameChangePage();
+        }),
+    ImageRoute.name: (routeData) => _i1.MaterialPageX<dynamic>(
+        routeData: routeData,
+        builder: (_) {
+          return const _i10.ImagePage();
         })
   };
 
@@ -111,7 +117,8 @@ class MyAppRouter extends _i1.RootStackRouter {
         _i1.RouteConfig(TransactionRoute.name, path: '/transaction-page'),
         _i1.RouteConfig(HistoryRoute.name, path: '/history-page'),
         _i1.RouteConfig(AmountChangeRoute.name, path: '/amount-change-page'),
-        _i1.RouteConfig(NameChangeRoute.name, path: '/name-change-page')
+        _i1.RouteConfig(NameChangeRoute.name, path: '/name-change-page'),
+        _i1.RouteConfig(ImageRoute.name, path: '/image-page')
       ];
 }
 
@@ -216,4 +223,10 @@ class NameChangeRoute extends _i1.PageRouteInfo {
   const NameChangeRoute() : super(name, path: '/name-change-page');
 
   static const String name = 'NameChangeRoute';
+}
+
+class ImageRoute extends _i1.PageRouteInfo {
+  const ImageRoute() : super(name, path: '/image-page');
+
+  static const String name = 'ImageRoute';
 }

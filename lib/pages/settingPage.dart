@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:eco_ml/data/database.dart';
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
@@ -18,6 +22,27 @@ class _SettingPageState extends State<SettingPage> {
   final incomeBox = Hive.box('income');
   final outcomeBox = Hive.box('outcome');
   final piggyBox = Hive.box('piggy');
+  final imageBox = Hive.box('image');
+  late File imagePicked;
+  bool isPicked = false;
+  Future<void> pickImage() async {
+    final ImagePicker _picker = ImagePicker();
+    XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        imagePicked = File(pickedFile.path);
+        isPicked = true;
+      });
+    } else {
+      isPicked = false;
+    }
+  }
+
+  void getData() {
+    // ignore: unused_local_variable
+    final data = imageBox.get(0) as ImageUrl;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,13 +53,12 @@ class _SettingPageState extends State<SettingPage> {
               color: Color(0xff4F98A1),
             ),
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(15),
-                topRight: Radius.circular(15),
-                bottomLeft: Radius.circular(15),
-                bottomRight: Radius.circular(15)),
+              topLeft: Radius.circular(15),
+              topRight: Radius.circular(15),
+            ),
           ),
           width: MediaQuery.of(context).size.width / 1.2,
-          height: 360,
+          height: 282,
           child: Column(
             children: [
               Container(
@@ -51,7 +75,10 @@ class _SettingPageState extends State<SettingPage> {
               ),
               InkWell(
                 child: Container(
-                  height: 50,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xff4F98A1)),
+                  ),
+                  height: 65,
                   padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -70,16 +97,16 @@ class _SettingPageState extends State<SettingPage> {
                     ],
                   ),
                 ),
-                onTap: (){
+                onTap: () {
                   naviToNameChangePage(context);
                 },
               ),
-              Divider(
-                color: Color(0xff4F98A1),
-              ),
-              GestureDetector(
+              InkWell(
                 child: Container(
-                  height: 50,
+                  height: 65,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xff4F98A1)),
+                  ),
                   padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -98,16 +125,37 @@ class _SettingPageState extends State<SettingPage> {
                     ],
                   ),
                 ),
-                onTap: (){
-
+                onTap: () async {
+                  await pickImage();
+                  if (isPicked) {
+                    setState(() {
+                      imageBox.put(0, ImageUrl(imagePicked.readAsBytesSync()));
+                      AutoRouter.of(context).push(HomeRoute());
+                    });
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Chooes profile picture',
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        backgroundColor: Color(0xff4F98A1),
+                        elevation: 10,
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  }
+                  setState(() {
+                    getData();
+                  });
                 },
               ),
-              Divider(
-                color: Color(0xff4F98A1),
-              ),
-              GestureDetector(
+              InkWell(
                 child: Container(
-                  height: 50,
+                  height: 65,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xff4F98A1)),
+                  ),
                   padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -126,16 +174,16 @@ class _SettingPageState extends State<SettingPage> {
                     ],
                   ),
                 ),
-                onTap: (){
+                onTap: () {
                   naviToAmountChangePage(context);
                 },
               ),
-              Divider(
-                color: Color(0xff4F98A1),
-              ),
-              GestureDetector(
+              InkWell(
                 child: Container(
-                  height: 50,
+                  height: 65,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Color(0xff4F98A1)),
+                  ),
                   padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,7 +202,7 @@ class _SettingPageState extends State<SettingPage> {
                     ],
                   ),
                 ),
-                onTap: (){
+                onTap: () {
                   usernameBox.clear();
                   amountBox.clear();
                   idBox.clear();
@@ -162,31 +210,9 @@ class _SettingPageState extends State<SettingPage> {
                   incomeBox.clear();
                   outcomeBox.clear();
                   piggyBox.clear();
+                  imageBox.clear();
                   navigateToOnboard(context);
                 },
-              ),
-              Divider(
-                color: Color(0xff4F98A1),
-              ),
-              Container(
-                height: 60,
-                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Theme:',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Icon(
-                      Icons.edit_rounded,
-                      size: 30,
-                    ),
-                  ],
-                ),
               ),
             ],
           ),
@@ -196,13 +222,14 @@ class _SettingPageState extends State<SettingPage> {
   }
 }
 
-void naviToAmountChangePage(BuildContext context){
+void naviToAmountChangePage(BuildContext context) {
   AutoRouter.of(context).push(AmountChangeRoute());
 }
 
-void naviToNameChangePage(BuildContext context){
+void naviToNameChangePage(BuildContext context) {
   AutoRouter.of(context).push(NameChangeRoute());
 }
+
 void navigateToOnboard(context) {
   AutoRouter.of(context).push(OnboardRoute());
 }

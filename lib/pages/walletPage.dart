@@ -33,10 +33,21 @@ class _WalletPageState extends State<WalletPage> {
     // final totalExpense;
     // final totalIncome;
     final amount = Hive.box('amount').get(0);
-    double income = incomeBox.get(0);
-    double outcome = outcomeBox.get(0);
+    // double income = incomeBox.get(0);
+    // double outcome = outcomeBox.get(0);
     double piggydata = piggyBox.get(0);
-    double total = amount.amount + (income - outcome);
+    var totalSumIncome = 0.0;
+    double totalSumExpense = 0.0;
+    for (var i = 0; i < box.length; i++) {
+      final data = box.getAt(i) as Transaction;
+      if (data.isExpense) {
+        totalSumExpense += data.amount;
+      } else if (!data.isExpense) {
+        totalSumIncome += data.amount;
+      }
+    }
+
+    double total = amount.amount + (totalSumIncome - totalSumExpense);
     double percent;
     if (total >= 0) {
       percent = total - (total * (piggydata / 100));
@@ -141,7 +152,7 @@ class _WalletPageState extends State<WalletPage> {
                         Container(
                           padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
                           child: Text(
-                            '$income',
+                            '$totalSumIncome',
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -187,7 +198,7 @@ class _WalletPageState extends State<WalletPage> {
                         Container(
                           padding: EdgeInsets.fromLTRB(10, 5, 10, 15),
                           child: Text(
-                            '$outcome',
+                            '$totalSumExpense',
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -237,76 +248,286 @@ class _WalletPageState extends State<WalletPage> {
                               itemBuilder: (BuildContext context, int index) {
                                 final data =
                                     dataBox.getAt(index) as Transaction;
-                                return GestureDetector(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      // color: Colors.white,
-                                      // border: Border.all(
-                                      //     color: Colors.black38, width: 1),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(15)),
-                                    ),
-                                    margin: EdgeInsets.symmetric(
-                                        vertical: 5, horizontal: 5),
-                                    padding: EdgeInsets.all(5),
-                                    child: ListTile(
-                                      leading: Container(
-                                        height: 50,
-                                        width: 50,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                          color: data.isExpense
-                                              ? outcomeData[data.iconId]
-                                                  .colorName
-                                              : incomeData[data.iconId]
-                                                  .colorName,
-                                        ),
-                                        child: Icon(
-                                          data.isExpense
-                                              ? outcomeData[data.iconId]
-                                                  .iconName
-                                              : incomeData[data.iconId]
-                                                  .iconName,
-                                          size: 25,
-                                          color: Colors.grey.shade100,
-                                        ),
+                                return Dismissible(
+                                  key: UniqueKey(),
+                                  background: Container(
+                                    padding: EdgeInsets.only(right: 20),
+                                    alignment: Alignment.centerRight,
+                                    color: Colors.red,
+                                    child: Column(children: [
+                                      SizedBox(
+                                        height: 20,
                                       ),
-                                      title: Text(
-                                        data.isExpense
-                                            ? outcomeData[data.iconId].title
-                                            : incomeData[data.iconId].title,
-                                        style: TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xff201A3C),
-                                        ),
-                                      ),
-                                      subtitle: Text(
-                                        DateFormat.yMMMMd()
-                                            .format(data.datatime)
-                                            .toString(),
-                                      
-                                      ),
-                                      trailing: Text(
-                                        data.isExpense
-                                            ? '-' +
-                                                data.amount.toString() +
-                                                ' Ks'
-                                            : '+' +
-                                                data.amount.toString() +
-                                                ' Ks',
-                                        style: TextStyle(
-                                          color:Color(0xff201A3C),
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
+                                      Icon(Icons.delete, color: Colors.white),
+                                      Text(
+                                        'Delete',
+                                        style: TextStyle(color: Colors.white),
+                                      )
+                                    ]),
                                   ),
-                                  onTap: () {
-                                    print(index);
-                                    naviToHistoryPage(context, index);
+                                  direction: DismissDirection.endToStart,
+                                  onDismissed: (DismissDirection direction) {
+                                    if (direction ==
+                                        DismissDirection.endToStart) {
+                                      deleteTransaction(data);
+                                    }
+                                    setState(() {});
                                   },
+                                  child: GestureDetector(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        // color: Colors.white,
+                                        // border: Border.all(
+                                        //     color: Colors.black38, width: 1),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(15)),
+                                      ),
+                                      margin: EdgeInsets.symmetric(
+                                          vertical: 5, horizontal: 5),
+                                      padding: EdgeInsets.all(5),
+                                      child: ListTile(
+                                        leading: Container(
+                                          height: 50,
+                                          width: 50,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            color: data.isExpense
+                                                ? outcomeData[data.iconId]
+                                                    .colorName
+                                                : incomeData[data.iconId]
+                                                    .colorName,
+                                          ),
+                                          child: Icon(
+                                            data.isExpense
+                                                ? outcomeData[data.iconId]
+                                                    .iconName
+                                                : incomeData[data.iconId]
+                                                    .iconName,
+                                            size: 25,
+                                            color: Colors.grey.shade100,
+                                          ),
+                                        ),
+                                        title: Text(
+                                          data.isExpense
+                                              ? outcomeData[data.iconId].title
+                                              : incomeData[data.iconId].title,
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: Color(0xff201A3C),
+                                          ),
+                                        ),
+                                        subtitle: Text(
+                                          DateFormat.yMMMMd()
+                                              .format(data.datatime)
+                                              .toString(),
+                                        ),
+                                        trailing: Text(
+                                          data.isExpense
+                                              ? '-' +
+                                                  data.amount.toString() +
+                                                  ' Ks'
+                                              : '+' +
+                                                  data.amount.toString() +
+                                                  ' Ks',
+                                          style: TextStyle(
+                                              color: data.isExpense
+                                                  ? Colors.red
+                                                  : Colors.green,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ),
+                                    onTap: () {
+                                      showDialog(
+                                        useRootNavigator: false,
+                                        context: context,
+                                        builder: (_) => SimpleDialog(
+                                          contentPadding: EdgeInsets.all(0),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(18)),
+                                          children: [
+                                            Center(
+                                              child: InkWell(
+                                                child: Card(
+                                                  color: Color(0xffD2F1F2),
+                                                  margin: EdgeInsets.fromLTRB(
+                                                      5, 0, 5, 5),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              18)),
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.start,
+                                                    children: [
+                                                      Row(
+                                                        children: [
+                                                          Container(
+                                                            margin:
+                                                                EdgeInsets.all(18),
+                                                            height: 50,
+                                                            width: 50,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(15),
+                                                              color: data.isExpense
+                                                                  ? outcomeData[data
+                                                                          .iconId]
+                                                                      .colorName
+                                                                  : incomeData[data
+                                                                          .iconId]
+                                                                      .colorName,
+                                                            ),
+                                                            child: Icon(
+                                                              data.isExpense
+                                                                  ? outcomeData[data
+                                                                          .iconId]
+                                                                      .iconName
+                                                                  : incomeData[data
+                                                                          .iconId]
+                                                                      .iconName,
+                                                              size: 25,
+                                                              color: Colors
+                                                                  .grey.shade100,
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            data.isExpense
+                                                                ? outcomeData[
+                                                                        data.iconId]
+                                                                    .title
+                                                                : incomeData[
+                                                                        data.iconId]
+                                                                    .title,
+                                                            style: TextStyle(
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight.bold,
+                                                              color:
+                                                                  Color(0xff201A3C),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      Container(
+                                                        margin: EdgeInsets.fromLTRB(
+                                                            20, 0, 20, 5),
+                                                        child: Text(
+                                                          data.isExpense
+                                                              ? '-' +
+                                                                  data.amount
+                                                                      .toString() +
+                                                                  ' Ks'
+                                                              : '+' +
+                                                                  data.amount
+                                                                      .toString() +
+                                                                  ' Ks',
+                                                          style: TextStyle(
+                                                              color: data.isExpense
+                                                                  ? Colors.red
+                                                                  : Colors.green,
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight.bold),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        margin: EdgeInsets.fromLTRB(
+                                                            20, 10, 20, 5),
+                                                        child: Row(children: [
+                                                          Text(
+                                                            "Date:   ",
+                                                            style: TextStyle(
+                                                                color: Colors.grey,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                          Text(
+                                                            DateFormat.yMMMMd()
+                                                                .format(
+                                                                    data.datatime)
+                                                                .toString(),
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                        ]),
+                                                      ),
+                                                      Container(
+                                                        margin: EdgeInsets.fromLTRB(
+                                                            20, 10, 20, 20),
+                                                        child: Row(children: [
+                                                          Text(
+                                                            "Discription:   ",
+                                                            style: TextStyle(
+                                                                color: Colors.grey,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                                          GestureDetector(
+                                                            child: Text(
+                                                              data.description == ''
+                                                                  ? 'No description to show'
+                                                                  : 'Tap to view discription',
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                            onTap: (){
+                                                              naviToHistoryPage(context, index);
+                                                            }
+                                                          ),
+                                                        ]),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                                onTap: (){
+                                                  naviToHistoryPage(context, index);
+                                                },
+                                              ),
+                                            )
+                                          ],
+                                          titlePadding:
+                                              EdgeInsets.fromLTRB(15, 10, 0, 8),
+                                          title: Row(
+                                            children: [
+                                              Text(
+                                                'Transaction Dialog',
+                                                style: TextStyle(
+                                                    color: Color(0xff4F98A1)),
+                                              ),
+                                              Container(
+                                                padding: EdgeInsets.only(
+                                                    left: 40, right: 0),
+                                                child: IconButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                    icon: Icon(
+                                                      Icons.close,
+                                                      size: 20,
+                                                      color: Color(0xff4F98A1),
+                                                    )),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
                                 );
                               },
                             ),
@@ -327,4 +548,8 @@ class _WalletPageState extends State<WalletPage> {
 
 void naviToHistoryPage(BuildContext context, int id) {
   AutoRouter.of(context).push(HistoryRoute(index: id));
+}
+
+void deleteTransaction(Transaction transcation) {
+  transcation.delete();
 }

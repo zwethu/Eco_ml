@@ -4,6 +4,7 @@ import 'package:eco_ml/pages/NameInputPage.dart';
 import 'package:eco_ml/pages/amountChangePage.dart';
 import 'package:eco_ml/pages/amountInputPage.dart';
 import 'package:eco_ml/pages/historyPage.dart';
+import 'package:eco_ml/pages/imagePage.dart';
 import 'package:eco_ml/pages/nameChangePage.dart';
 import 'package:eco_ml/pages/pages.dart';
 import 'package:eco_ml/pages/transactionPage.dart';
@@ -28,6 +29,7 @@ import 'package:eco_ml/pages/transactionPage.dart';
     AutoRoute(page: HistoryPage),
     AutoRoute(page: AmountChangePage),
     AutoRoute(page: NameChangePage),
+    AutoRoute(page: ImagePage),
       ],  
 )    
 class $MyAppRouter{}

@@ -17,7 +17,7 @@ class PieChartClass extends StatefulWidget {
 class _PieChartClassState extends State<PieChartClass> {
   var expenseList = [];
   final box = Hive.box('transactions');
-   final incomeBox = Hive.box('income');
+  final incomeBox = Hive.box('income');
   int touchedIndex = -1;
 
   @override
@@ -36,91 +36,64 @@ class _PieChartClassState extends State<PieChartClass> {
                     borderRadius: BorderRadius.circular(20)),
                 color: Colors.white,
                 child: Row(children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.only(left: 10, top: 10),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Categories',
-                          style: TextStyle(
-                              color: Color(0xff4F98A1),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20),
-                        ),
-                        SizedBox(
-                          height: 40,
-                        ),
-                        Container(
-                          padding: EdgeInsets.only(left: 10),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
+                  Expanded(
+                    child: Container(
+                      padding: EdgeInsets.only(left: 10, top: 10),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(left: 0, right: 20),
+                            child: Text(
+                              'Categories',
+                              style: TextStyle(
+                                  color: Color(0xff4F98A1),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Wrap(
+                              children: List.generate(box.length, (index) {
+                            final data = box.getAt(index) as Transaction;
+                            if (!data.isExpense &&
+                                data.datatime.day == DateTime.now().day) {
+                              return Container(
+                                padding: EdgeInsets.only(left: 10),
+                                child: Row(
                                   children: [
                                     Container(
                                       margin:
                                           EdgeInsets.only(right: 10, left: 10),
-                                      height: 10,
-                                      width: 10,
+                                      height: 20,
+                                      width: 20,
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                              BorderRadius.circular(300),
-                                          color: Color(0xff8DA2FF)),
+                                              BorderRadius.circular(5),
+                                          color: incomeData[data.iconId]
+                                              .colorName),
+                                      child: Icon(
+                                          incomeData[data.iconId].iconName,
+                                          size: 13,
+                                          color: Colors.white),
                                     ),
-                                    Text('Food',
+                                    SizedBox(height: 30),
+                                    Text(incomeData[data.iconId].title,
                                         style: TextStyle(
                                           color: Color(0xff4F98A1),
                                           fontWeight: FontWeight.bold,
-                                        ))
+                                        )),
+                                    SizedBox(height: 30),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      margin:
-                                          EdgeInsets.only(right: 10, left: 10),
-                                      height: 10,
-                                      width: 10,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(300),
-                                          color: Color(0xffFFB82F)),
-                                    ),
-                                    Text('Clothing',
-                                        style: TextStyle(
-                                          color: Color(0xff4F98A1),
-                                          fontWeight: FontWeight.bold,
-                                        ))
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Row(
-                                  children: [
-                                    Container(
-                                      margin:
-                                          EdgeInsets.only(right: 10, left: 10),
-                                      height: 10,
-                                      width: 10,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(300),
-                                          color: Color(0xff3FF367)),
-                                    ),
-                                    Text('Transportation',
-                                        style: TextStyle(
-                                          color: Color(0xff4F98A1),
-                                          fontWeight: FontWeight.bold,
-                                        ))
-                                  ],
-                                )
-                              ]),
-                        )
-                      ],
+                              );
+                            } else {
+                              return Text('');
+                            }
+                          })),
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -162,18 +135,30 @@ class _PieChartClassState extends State<PieChartClass> {
   }
 
   List<PieChartSectionData> showingSections() {
+    double totalSumIncome = 0.0;
+    // ignore: unused_local_variable
+    double totalSumExpense = 0.0;
+    for (var i = 0; i < box.length; i++) {
+      final data = box.getAt(i) as Transaction;
+      if (data.isExpense) {
+        totalSumExpense += data.amount;
+      } else if (!data.isExpense) {
+        totalSumIncome += data.amount;
+      }
+    }
     return List.generate(box.length, (i) {
       final data = box.getAt(i) as Transaction;
-      double income = incomeBox.get(0);
+
+      // double income = incomeBox.get(0);
 
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 20.0 : 16.0;
       final radius = isTouched ? 55.0 : 50.0;
-      double value = (data.amount / income) * 100;
-      if (!data.isExpense && data.datatime.day==DateTime.now().day) {
+      double value = (data.amount / totalSumIncome) * 100.0;
+      if (!data.isExpense && data.datatime.day == DateTime.now().day) {
         return PieChartSectionData(
           color: incomeData[data.iconId].colorName,
-          value: value.ceilToDouble(),
+          value: value,
           title: '${value.ceilToDouble()}%',
           radius: radius,
           titleStyle: TextStyle(
@@ -182,11 +167,8 @@ class _PieChartClassState extends State<PieChartClass> {
               color: const Color(0xffffffff)),
         );
       } else {
-       
-        return PieChartSectionData(
-          value: 0
-        );
-      } 
+        return PieChartSectionData(value: 0);
+      }
     });
   }
 }

@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class PieChartProfile extends StatefulWidget {
   @override
@@ -8,6 +9,10 @@ class PieChartProfile extends StatefulWidget {
 
 class PieChartProfileState extends State {
   int touchedIndex = -1;
+  final box = Hive.box('transactions');
+  final incomeBox = Hive.box('income');
+  final outcomeBox = Hive.box('outcome');
+  final piggyBox = Hive.box('piggy');
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +29,6 @@ class PieChartProfileState extends State {
           shadowColor: Colors.grey,
           child: Row(
             children: <Widget>[
-             
-              
               Expanded(
                 child: AspectRatio(
                   aspectRatio: 0.5,
@@ -46,7 +49,7 @@ class PieChartProfileState extends State {
                         }),
                         startDegreeOffset: 180,
                         borderData: FlBorderData(
-                          show:false,
+                          show: false,
                         ),
                         sectionsSpace: 6,
                         centerSpaceRadius: 0,
@@ -54,7 +57,7 @@ class PieChartProfileState extends State {
                   ),
                 ),
               ),
-               const SizedBox(
+              const SizedBox(
                 height: 28,
               ),
               Container(
@@ -72,16 +75,16 @@ class PieChartProfileState extends State {
                               borderRadius: BorderRadius.circular(0),
                               color: Color(0xff3f5166)),
                         ),
-                        Text(' Total',
-                            style: TextStyle(
-                                color: Color(0xff4F98A1),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 23))
+                        Text(
+                          ' Total',
+                          style: TextStyle(
+                              color: Color(0xff4F98A1),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 23),
+                        ),
                       ],
                     ),
-                    SizedBox(
-                      height:20
-                    ),
+                    SizedBox(height: 20),
                     Row(
                       children: [
                         Container(
@@ -92,11 +95,13 @@ class PieChartProfileState extends State {
                               borderRadius: BorderRadius.circular(0),
                               color: Color(0xffff7733)),
                         ),
-                        Text('Saving',
-                            style: TextStyle(
-                                color: Color(0xff4F98A1),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22))
+                        Text(
+                          'Saving',
+                          style: TextStyle(
+                              color: Color(0xff4F98A1),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22),
+                        ),
                       ],
                     )
                   ],
@@ -113,51 +118,45 @@ class PieChartProfileState extends State {
     return List.generate(
       2,
       (i) {
+        final amount = Hive.box('amount').get(0);
+        double income = incomeBox.get(0);
+        double outcome = outcomeBox.get(0);
+        double piggydata = piggyBox.get(0);
+        // ignore: unused_local_variable
+        double total = amount.amount + (income - outcome);
+
         final isTouched = i == touchedIndex;
         final opacity = isTouched ? 1.0 : 0.6;
-        
-        double value1 = 80;
-        double value2 = 40;
-        
 
         final color0 = const Color(0xffff828a);
         final color1 = const Color(0xff0FE944);
 
-
         switch (i) {
           case 0:
             return PieChartSectionData(
-              
-                color: color0,
-                value: value1,
-                title: '80%',
-                radius: 55,
-                titleStyle: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: const Color(0xffffffff)),
-                titlePositionPercentageOffset: 0.5,
-                );
-          case 1:
-            return PieChartSectionData(
-             
-              color: color1.withOpacity(opacity),
-              value: value2,
-              title: '20%',
-              radius: 65,
+              color: color0.withOpacity(opacity),
+              value: piggydata,
+              title: piggydata.toString() + '%',
+              radius: 55,
               titleStyle: TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.bold,
-                  color: const Color(0xffffffff)),
+                  // color: const Color(0xffffffff),
+                  ),
               titlePositionPercentageOffset: 0.5,
-
-               borderSide: BorderSide(
-
-                
-                color: Colors.white,
-                width: 6
+            );
+          case 1:
+            return PieChartSectionData(
+              color: color1.withOpacity(opacity),
+              value: 100-piggydata,
+              title: 'Total',
+              radius: 65,
+              titleStyle: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                // color: const Color(0xffffffff),
               ),
-              
+              titlePositionPercentageOffset: 0.5,
             );
 
           default:
@@ -167,6 +166,3 @@ class PieChartProfileState extends State {
     );
   }
 }
-
-
-

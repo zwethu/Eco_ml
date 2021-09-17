@@ -1,5 +1,7 @@
+import 'package:eco_ml/data/database.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class PieChartProfileTwo extends StatefulWidget {
   @override
@@ -7,8 +9,10 @@ class PieChartProfileTwo extends StatefulWidget {
 }
 
 class PieChartProfileTwoState extends State {
+  final box = Hive.box('transactions');
   int touchedIndex = -1;
-
+  final incomeBox = Hive.box('income');
+   final outcomeBox = Hive.box('outcome');
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
@@ -108,41 +112,55 @@ class PieChartProfileTwoState extends State {
   }
 
   List<PieChartSectionData> showingSections() {
+     var totalSumIncome = 0.0;
+    double totalSumExpense = 0.0;
+    for (var i = 0; i < box.length; i++) {
+      final data = box.getAt(i) as Transaction;
+      if (data.isExpense) {
+        totalSumExpense += data.amount;
+      } else if (!data.isExpense) {
+        totalSumIncome += data.amount;
+      }
+    }
     return List.generate(
       2,
       (i) {
         final isTouched = i == touchedIndex;
         final opacity = isTouched ? 1.0 : 0.6;
         double size =  50;
-        double value1 = 80;
-        double value2 = 20;
-        final double radius1 = value1 < value2
-            ? isTouched
-                ? 70
-                : 65
-            : isTouched
-                ? 65
-                : 65;
-        final double radius2 = value2 < value1
-            ? isTouched
-                ? 70
-                : 65
-            : isTouched
-                ? 65
-                : 65;
+  
+       
 
         final color0 = const Color(0xffff828a);
         final color1 = const Color(0xff0FE944);
 
-
-
+        // ignore: unused_local_variable
+        double outcome = outcomeBox.get(0);
+        // ignore: unused_local_variable
+        double income = incomeBox.get(0);
+        var incomeValue = ( totalSumIncome /( totalSumIncome +totalSumExpense))*100;
+        var outcomeValue = (totalSumExpense/( totalSumIncome +totalSumExpense))*100;
+         final double radius1 = incomeValue < outcomeValue
+            ? isTouched
+                ? 70
+                : 65
+            : isTouched
+                ? 65
+                : 65;
+        final double radius2 = outcomeValue < incomeValue
+            ? isTouched
+                ? 70
+                : 65
+            : isTouched
+                ? 65
+                : 65;
         switch (i) {
           case 0:
             return PieChartSectionData(
                 color: color0.withOpacity(opacity),
-                value: value1,
+                value: outcomeValue,
                 title: '',
-                radius: radius1,
+                radius: radius2,
                 titleStyle: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -156,9 +174,9 @@ class PieChartProfileTwoState extends State {
           case 1:
             return PieChartSectionData(
               color: color1.withOpacity(opacity),
-              value: value2,
+              value: incomeValue,
               title: '',
-              radius: radius2,
+              radius: radius1,
               titleStyle: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

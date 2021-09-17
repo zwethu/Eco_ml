@@ -12,6 +12,10 @@ class BankPage extends StatefulWidget {
 
 class _BankPageState extends State<BankPage> {
   @override
+  void dispose() {
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
