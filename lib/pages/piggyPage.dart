@@ -44,7 +44,7 @@ class _PiggyPageState extends State<PiggyPage> {
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 10),
                   child: Text(
-                    'Piggy Bank',
+                    'How much percentage do\nyou wanna save?',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
@@ -60,11 +60,11 @@ class _PiggyPageState extends State<PiggyPage> {
                     autofocus: true,
                     controller: amountController,
                     decoration: InputDecoration(
-                      hintText: 'Enter your Total Amount',
+                      hintText: 'Enter percentage%',
                       filled: true,
                       hintStyle: TextStyle(
                         color: Color(0xff9E8FAE),
-                        fontSize: 30,
+                        fontSize: 28,
                         fontWeight: FontWeight.normal,
                       ),
                       fillColor: Color(0xffFDF1F1),

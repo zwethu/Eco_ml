@@ -172,19 +172,19 @@ class _PiggyHomePageState extends State<PiggyHomePage>
   Path _piggypath() {
     return Path()
           ..addRRect(RRect.fromRectAndRadius(
-              Rect.fromLTWH(130, 10, 150, 120), Radius.circular(600)))
+              Rect.fromLTWH(120, 10, 150, 120), Radius.circular(600)))
           ..addRRect(RRect.fromRectAndRadius(
-              Rect.fromLTWH(120, 60, 20, 25), Radius.circular(300)))
+              Rect.fromLTWH(110, 60, 20, 25), Radius.circular(300)))
           ..addRRect(RRect.fromRectAndRadius(
-              Rect.fromLTWH(160, 110, 25, 30), Radius.circular(5)))
+              Rect.fromLTWH(150, 110, 25, 30), Radius.circular(5)))
           ..addRRect(RRect.fromRectAndRadius(
-              Rect.fromLTWH(220, 110, 25, 30), Radius.circular(5)))
-          ..quadraticBezierTo(260, 50, 280, 30)
-          ..moveTo(160, 20)
-          ..lineTo(160, 0)
-          ..lineTo(180, 20)
-          ..moveTo(130, 20)
-          ..lineTo(50, 20)
+              Rect.fromLTWH(210, 110, 25, 30), Radius.circular(5)))
+          ..quadraticBezierTo(250, 50, 270, 30)
+          ..moveTo(150, 20)
+          ..lineTo(150, 0)
+          ..lineTo(170, 20)
+          ..moveTo(120, 20)
+          ..lineTo(40, 20)
           ..close()
 
         // ..quadraticBezierTo(35, 110, 55, 120)
@@ -202,7 +202,7 @@ class _PiggyHomePageState extends State<PiggyHomePage>
   Path _coinpath() {
     return Path()
       ..addRRect(RRect.fromRectAndRadius(
-          Rect.fromLTWH(193, 0, 25, 25), Radius.circular(300)))
+          Rect.fromLTWH(183, 0, 25, 25), Radius.circular(300)))
       ..close();
   }
 }

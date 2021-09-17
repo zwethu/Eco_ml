@@ -40,8 +40,9 @@ class _BankPageState extends State<BankPage> {
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 15),
+              padding: EdgeInsets.all(40),
               child: Text(
-                'Piggy saves the certain \npercentage of money from\nyour income.',
+                'Piggy saves the certain \npercentage of money from\nyour total amount.',
                 style: TextStyle(
                   fontSize: 24,
                   color: Color(0xff4F98A1),
