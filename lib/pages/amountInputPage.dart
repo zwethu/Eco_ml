@@ -127,7 +127,7 @@ class _AmountInputPageState extends State<AmountInputPage> {
                       addAmount(data);
                       // final amountData = double.parse(value);
                       // amountBox.put(0,amountData);
-                      amountBox.put(1, false);
+                      amountBox.put(1, true);
                       final incomeData = incomeBox.get(0);
                       final calculateIncome = incomeData ?? 0.0;
                       incomeBox.put(0, calculateIncome);

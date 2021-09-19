@@ -223,6 +223,7 @@ class _TransactionPageState extends State<TransactionPage> {
                         navigateToHome(context);
                           final player = AudioCache();
                           player.play('images/cash.mp3');
+                         
                         // transactionBox.clear();
                         // outcomeBox.clear();
                         // incomeBox.clear();

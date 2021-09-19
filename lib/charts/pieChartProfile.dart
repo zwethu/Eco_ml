@@ -73,7 +73,7 @@ class PieChartProfileState extends State {
                           width: 22,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(0),
-                              color: Color(0xff3f5166)),
+                              color: Color(0xff0FE944)),
                         ),
                         Text(
                           ' Total',
@@ -93,7 +93,7 @@ class PieChartProfileState extends State {
                           width: 21,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(0),
-                              color: Color(0xffff7733)),
+                              color: Color(0xffff828a)),
                         ),
                         Text(
                           'Saving',
