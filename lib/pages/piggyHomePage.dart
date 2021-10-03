@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:eco_ml/data/database.dart';
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -42,17 +43,24 @@ class _PiggyHomePageState extends State<PiggyHomePage>
   @override
   Widget build(BuildContext context) {
     final amount = Hive.box('amount').get(0);
-    double income = incomeBox.get(0);
-    double outcome = outcomeBox.get(0);
     double piggydata = piggyBox.get(0);
-    double total = amount.amount + (income - outcome);
+    var totalSumIncome = 0.0;
+    double totalSumExpense = 0.0;
+    for (var i = 0; i < box.length; i++) {
+      final data = box.getAt(i) as Transaction;
+      if (data.isExpense) {
+        totalSumExpense += data.amount;
+      } else if (!data.isExpense) {
+        totalSumIncome += data.amount;
+      }
+    }
+    double total = amount.amount + (totalSumIncome - totalSumExpense);
     double percent;
     if (total >= 0) {
       percent = (total * (piggydata / 100));
     } else {
       percent = 0;
     }
-    double piggyData = piggyBox.get(0);
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
@@ -63,9 +71,10 @@ class _PiggyHomePageState extends State<PiggyHomePage>
                 child: Text(
                   'Piggy Bank',
                   style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      color: Color(0xff4F98A1)),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: Color(0xff4F98A1),
+                  ),
                 ),
               ),
               SizedBox(
@@ -92,10 +101,10 @@ class _PiggyHomePageState extends State<PiggyHomePage>
                       direction: Axis.vertical,
                       shapePath: _piggypath(),
                       valueColor: AlwaysStoppedAnimation(Color(0xff4F98A1)),
-                      value: (piggyData) * 0.01,
+                      value: (piggydata) * 0.01,
                       backgroundColor: Color(0xffa6cbd6),
                       center: Text(
-                        '$piggyData%',
+                        '$piggydata%',
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
@@ -103,9 +112,9 @@ class _PiggyHomePageState extends State<PiggyHomePage>
                       ),
                     ),
                   ),
-                  onTap: (){
-                     final player = AudioCache();
-                          player.play('images/water.wav');
+                  onTap: () {
+                    final player = AudioCache();
+                    player.play('images/water.wav');
                   },
                 ),
               ),
@@ -114,7 +123,7 @@ class _PiggyHomePageState extends State<PiggyHomePage>
               ),
               Center(
                 child: Text(
-                  'Your saving percentage: $piggyData%',
+                  'Your saving percentage: $piggydata%',
                   style: TextStyle(
                     fontSize: 20,
                     color: Color(0xff4F98A1),
@@ -136,7 +145,7 @@ class _PiggyHomePageState extends State<PiggyHomePage>
               SizedBox(
                 height: 25,
               ),
-           Container(
+              Container(
                 margin: EdgeInsets.all(35),
                 child: ElevatedButton(
                   style: ButtonStyle(
@@ -149,7 +158,7 @@ class _PiggyHomePageState extends State<PiggyHomePage>
                         MaterialStateProperty.all(Color(0xff72ADB4)),
                   ),
                   onPressed: () {
-                    naviToAmountChangePage(context);
+                    
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
