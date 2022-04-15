@@ -158,7 +158,7 @@ class _PiggyHomePageState extends State<PiggyHomePage>
                         MaterialStateProperty.all(Color(0xff72ADB4)),
                   ),
                   onPressed: () {
-                    
+                    naviToAmountChangePage(context);
                   },
                   child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
