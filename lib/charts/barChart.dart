@@ -1,5 +1,8 @@
+import 'package:eco_ml/data/database.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:intl/intl.dart';
 
 class BarChartSample2 extends StatefulWidget {
   @override
@@ -7,9 +10,40 @@ class BarChartSample2 extends StatefulWidget {
 }
 
 class BarChartSample2State extends State<BarChartSample2> {
+  final box = Hive.box('transactions');
+  final incomeBox = Hive.box('income');
+  final outcomeBox = Hive.box('outcome');
+
+  List<Map<String, double>> get groupedTransactions {
+    return List.generate(7, (index) {
+      final iterateIndex = 6 - index;
+      final weekDay = DateTime.now().subtract(Duration(days: iterateIndex));
+      double totalSumExpense = 0.0;
+      var totalSumIncome = 0.0;
+
+      for (var i = 0; i < box.length; i++) {
+        final data = box.getAt(i) as Transaction;
+        if (data.datatime.day == weekDay.day &&
+            data.datatime.month == weekDay.month &&
+            data.isExpense) {
+          totalSumExpense += data.amount;
+        } else if (data.datatime.day == weekDay.day &&
+            data.datatime.month == weekDay.month &&
+            !data.isExpense) {
+          totalSumIncome += data.amount;
+        }
+      }
+      return {
+        'amount': totalSumExpense,
+        'amount2': totalSumIncome,
+      };
+    });
+  }
+
   final Color leftBarColor = const Color(0xff53fdd7);
   final Color rightBarColor = const Color(0xffFFC0CE);
   final double width = 10;
+  double value1 = 7;
 
   int touchedIndex = -1;
 
@@ -91,8 +125,11 @@ class BarChartSample2State extends State<BarChartSample2> {
                       maxY: 20,
                       barTouchData: BarTouchData(
                         touchTooltipData: BarTouchTooltipData(
+                            tooltipMargin: 5.0,
+                            tooltipPadding: EdgeInsets.all(0),
                             tooltipBgColor: Colors.transparent,
                             getTooltipItem: (group, groupIndex, rod, rodIndex) {
+<<<<<<< HEAD
                               String weekDay;
                               switch (group.x.toInt()) {
                                 case 0:
@@ -136,6 +173,51 @@ class BarChartSample2State extends State<BarChartSample2> {
                                   ),
                                 ],
                               );
+=======
+                              // String weekDay;
+                              // switch (group.x.toInt()) {
+                              //   case 0:
+                              //     weekDay = 'Monday';
+                              //     break;
+                              //   case 1:
+                              //     weekDay = 'Tuesday';
+                              //     break;
+                              //   case 2:
+                              //     weekDay = 'Wednesday';
+                              //     break;
+                              //   case 3:
+                              //     weekDay = 'Thursday';
+                              //     break;
+                              //   case 4:
+                              //     weekDay = 'Friday';
+                              //     break;
+                              //   case 5:
+                              //     weekDay = 'Saturday';
+                              //     break;
+                              //   case 6:
+                              //     weekDay = 'Sunday';
+                              //     break;
+                              //   default:
+                              //     throw Error();
+                              // }
+                              // return BarTooltipItem(
+                              //   weekDay + '\n',
+                              //   TextStyle(
+                              //     color: Colors.white,
+                              //     fontSize: 15,
+                              //   ),
+                              //   children: <TextSpan>[
+                              //     TextSpan(
+                              //       text: (rod.y - 1).toString(),
+                              //       style: TextStyle(
+                              //         color: Colors.white,
+                              //         fontSize: 14,
+                              //         fontWeight: FontWeight.w500,
+                              //       ),
+                              //     ),
+                              //   ],
+                              // );
+>>>>>>> AUg2
                             }),
                         touchCallback: (FlTouchEvent event, barTouchResponse) {
                           setState(() {
@@ -161,25 +243,12 @@ class BarChartSample2State extends State<BarChartSample2> {
                               fontWeight: FontWeight.bold,
                               fontSize: 14),
                           margin: 5,
-                          getTitles: (double value) {
-                            switch (value.toInt()) {
-                              case 0:
-                                return 'Mon';
-                              case 1:
-                                return 'Tue';
-                              case 2:
-                                return 'Wed';
-                              case 3:
-                                return 'Thu';
-                              case 4:
-                                return 'Fri';
-                              case 5:
-                                return 'Sat';
-                              case 6:
-                                return 'Sun';
-                              default:
-                                return '';
-                            }
+                          getTitles: (value1) {
+                            final value2 = 6 - value1;
+                            final weekDay = DateTime.now()
+                                .subtract(Duration(days: value2.toInt()));
+
+                            return DateFormat.E().format(weekDay).toString();
                           },
                         ),
                         leftTitles: SideTitles(
@@ -223,24 +292,26 @@ class BarChartSample2State extends State<BarChartSample2> {
     ]);
   }
 
-  List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
-        switch (i) {
-          case 0:
-            return makeGroupData(0, 5, 12, isTouched: i == touchedIndex);
-          case 1:
-            return makeGroupData(1, 16, 12, isTouched: i == touchedIndex);
-          case 2:
-            return makeGroupData(2, 18, 5, isTouched: i == touchedIndex);
-          case 3:
-            return makeGroupData(3, 20, 16, isTouched: i == touchedIndex);
-          case 4:
-            return makeGroupData(4, 17, 6, isTouched: i == touchedIndex);
-          case 5:
-            return makeGroupData(5, 19, 1.5, isTouched: i == touchedIndex);
-          case 6:
-            return makeGroupData(6, 10, 1.5, isTouched: i == touchedIndex);
-          default:
-            return throw Error();
-        }
-      });
+  List<BarChartGroupData> showingGroups() {
+    var totalSumIncome = 0.0;
+    double totalSumExpense = 0.0;
+    for (var index = 0; index < box.length; index++) {
+      final data = box.getAt(index) as Transaction;
+      if (data.isExpense) {
+        totalSumExpense += data.amount;
+      } else if (!data.isExpense) {
+        totalSumIncome += data.amount;
+      }
+    }
+    return List.generate(7, (i) {
+      var smth = groupedTransactions[i].values.first;
+      var expenseValue = (smth / (totalSumIncome + totalSumExpense)) * 30;
+      var smth2 = groupedTransactions[i].values.last;
+
+      var incomeValue = (smth2 / (totalSumExpense + totalSumIncome)) * 30;
+
+      return makeGroupData(i, incomeValue, expenseValue,
+          isTouched: i == touchedIndex);
+    });
+  }
 }

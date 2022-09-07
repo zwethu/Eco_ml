@@ -1,1996 +1,2383 @@
-define(['dart_sdk', 'packages/flutter/src/foundation/change_notifier.dart', 'packages/flutter/src/animation/listener_helpers.dart', 'packages/flutter/src/widgets/widget_span.dart', 'packages/flutter/src/foundation/debug.dart', 'packages/flutter/src/animation/curves.dart', 'packages/flutter/src/painting/decoration.dart', 'packages/flutter/src/gestures/monodrag.dart', 'packages/flutter/src/rendering/stack.dart', 'packages/flutter/src/rendering/proxy_box.dart', 'packages/flutter/src/gestures/drag_details.dart', 'packages/flutter/src/gestures/events.dart', 'packages/flutter/src/animation/animation_controller.dart', 'packages/flutter/src/widgets/implicit_animations.dart', 'packages/flutter/src/painting/_network_image_web.dart', 'packages/flutter/src/cupertino/text_theme.dart', 'packages/flutter/src/cupertino/interface_level.dart', 'packages/flutter/src/painting/alignment.dart', 'packages/flutter/src/cupertino/debug.dart'], (function load__packages__flutter__src__cupertino__route_dart(dart_sdk, packages__flutter__src__foundation__change_notifier$46dart, packages__flutter__src__animation__listener_helpers$46dart, packages__flutter__src__widgets__widget_span$46dart, packages__flutter__src__foundation__debug$46dart, packages__flutter__src__animation__curves$46dart, packages__flutter__src__painting__decoration$46dart, packages__flutter__src__gestures__monodrag$46dart, packages__flutter__src__rendering__stack$46dart, packages__flutter__src__rendering__proxy_box$46dart, packages__flutter__src__gestures__drag_details$46dart, packages__flutter__src__gestures__events$46dart, packages__flutter__src__animation__animation_controller$46dart, packages__flutter__src__widgets__implicit_animations$46dart, packages__flutter__src__painting___network_image_web$46dart, packages__flutter__src__cupertino__text_theme$46dart, packages__flutter__src__cupertino__interface_level$46dart, packages__flutter__src__painting__alignment$46dart, packages__flutter__src__cupertino__debug$46dart) {
+define(['dart_sdk', 'packages/flutter/src/painting/colors.dart'], (function load__packages__flutter__src__material__colors_dart(dart_sdk, packages__flutter__src__painting__colors$46dart) {
   'use strict';
   const core = dart_sdk.core;
-  const _interceptors = dart_sdk._interceptors;
   const ui = dart_sdk.ui;
-  const _internal = dart_sdk._internal;
-  const math = dart_sdk.math;
   const dart = dart_sdk.dart;
   const dartx = dart_sdk.dartx;
-  const change_notifier = packages__flutter__src__foundation__change_notifier$46dart.src__foundation__change_notifier;
-  const animation$ = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animation;
-  const animations = packages__flutter__src__animation__listener_helpers$46dart.src__animation__animations;
-  const tween = packages__flutter__src__animation__listener_helpers$46dart.src__animation__tween;
-  const basic = packages__flutter__src__widgets__widget_span$46dart.src__widgets__basic;
-  const widget_inspector = packages__flutter__src__widgets__widget_span$46dart.src__widgets__widget_inspector;
-  const pages = packages__flutter__src__widgets__widget_span$46dart.src__widgets__pages;
-  const framework = packages__flutter__src__widgets__widget_span$46dart.src__widgets__framework;
-  const navigator = packages__flutter__src__widgets__widget_span$46dart.src__widgets__navigator;
-  const debug = packages__flutter__src__widgets__widget_span$46dart.src__widgets__debug;
-  const transitions = packages__flutter__src__widgets__widget_span$46dart.src__widgets__transitions;
-  const media_query = packages__flutter__src__widgets__widget_span$46dart.src__widgets__media_query;
-  const routes = packages__flutter__src__widgets__widget_span$46dart.src__widgets__routes;
-  const assertions = packages__flutter__src__foundation__debug$46dart.src__foundation__assertions;
-  const diagnostics = packages__flutter__src__foundation__debug$46dart.src__foundation__diagnostics;
-  const curves = packages__flutter__src__animation__curves$46dart.src__animation__curves;
-  const decoration = packages__flutter__src__painting__decoration$46dart.src__painting__decoration;
-  const monodrag = packages__flutter__src__gestures__monodrag$46dart.src__gestures__monodrag;
-  const stack = packages__flutter__src__rendering__stack$46dart.src__rendering__stack;
-  const proxy_box = packages__flutter__src__rendering__proxy_box$46dart.src__rendering__proxy_box;
-  const drag_details = packages__flutter__src__gestures__drag_details$46dart.src__gestures__drag_details;
-  const events = packages__flutter__src__gestures__events$46dart.src__gestures__events;
-  const animation_controller = packages__flutter__src__animation__animation_controller$46dart.src__animation__animation_controller;
-  const implicit_animations = packages__flutter__src__widgets__implicit_animations$46dart.src__widgets__implicit_animations;
-  const image_provider = packages__flutter__src__painting___network_image_web$46dart.src__painting__image_provider;
-  const colors = packages__flutter__src__cupertino__text_theme$46dart.src__cupertino__colors;
-  const interface_level = packages__flutter__src__cupertino__interface_level$46dart.src__cupertino__interface_level;
-  const alignment = packages__flutter__src__painting__alignment$46dart.src__painting__alignment;
-  const localizations = packages__flutter__src__cupertino__debug$46dart.src__cupertino__localizations;
-  var route$ = Object.create(dart.library);
-  var $abs = dartx.abs;
-  var $floor = dartx.floor;
-  var $map = dartx.map;
-  var $toList = dartx.toList;
-  var $length = dartx.length;
-  var $_get = dartx._get;
-  var $add = dartx.add;
-  var $runtimeType = dartx.runtimeType;
-  var $hashCode = dartx.hashCode;
-  var $truncate = dartx.truncate;
-  var $modulo = dartx['%'];
+  const colors = packages__flutter__src__painting__colors$46dart.src__painting__colors;
+  var colors$ = Object.create(dart.library);
   dart._checkModuleNullSafetyMode(true);
-  var T$ = {
-    StringN: () => (T$.StringN = dart.constFn(dart.nullable(core.String)))(),
-    ValueNotifierOfStringN: () => (T$.ValueNotifierOfStringN = dart.constFn(change_notifier.ValueNotifier$(T$.StringN())))(),
-    JSArrayOfDiagnosticsNode: () => (T$.JSArrayOfDiagnosticsNode = dart.constFn(_interceptors.JSArray$(diagnostics.DiagnosticsNode)))(),
-    VoidTobool: () => (T$.VoidTobool = dart.constFn(dart.fnType(core.bool, [])))(),
-    JSArrayOfWidget: () => (T$.JSArrayOfWidget = dart.constFn(_interceptors.JSArray$(framework.Widget)))(),
-    ObjectN: () => (T$.ObjectN = dart.constFn(dart.nullable(core.Object)))(),
-    AnimationStatusTovoid: () => (T$.AnimationStatusTovoid = dart.constFn(dart.fnType(dart.void, [animation$.AnimationStatus])))(),
-    VoidToFn: () => (T$.VoidToFn = dart.constFn(dart.fnType(T$.AnimationStatusTovoid(), [])))(),
-    FnTodynamic: () => (T$.FnTodynamic = dart.constFn(dart.fnType(dart.dynamic, [T$.AnimationStatusTovoid()])))(),
-    ColorToColor: () => (T$.ColorToColor = dart.constFn(dart.fnType(ui.Color, [ui.Color])))(),
-    JSArrayOfColor: () => (T$.JSArrayOfColor = dart.constFn(_interceptors.JSArray$(ui.Color)))(),
-    IterablePropertyOfColor: () => (T$.IterablePropertyOfColor = dart.constFn(diagnostics.IterableProperty$(ui.Color)))(),
-    TweenOfOffset: () => (T$.TweenOfOffset = dart.constFn(tween.Tween$(ui.Offset)))(),
-    AnimationOfdouble: () => (T$.AnimationOfdouble = dart.constFn(animation$.Animation$(core.double)))(),
-    BuildContextAndAnimationOfdoubleAndAnimationOfdouble__ToWidget: () => (T$.BuildContextAndAnimationOfdoubleAndAnimationOfdouble__ToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, T$.AnimationOfdouble(), T$.AnimationOfdouble(), framework.Widget])))(),
-    BuildContextAndAnimationOfdoubleAndAnimationOfdoubleToWidget: () => (T$.BuildContextAndAnimationOfdoubleAndAnimationOfdoubleToWidget = dart.constFn(dart.fnType(framework.Widget, [framework.BuildContext, T$.AnimationOfdouble(), T$.AnimationOfdouble()])))(),
-    TweenOfdouble: () => (T$.TweenOfdouble = dart.constFn(tween.Tween$(core.double)))()
-  };
   const CT = Object.create({
     _: () => (C, CT)
   });
   dart.defineLazy(CT, {
     get C0() {
       return C[0] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 400000
+        __proto__: ui.Color.prototype,
+        [Color_value]: 0
+      });
+    },
+    get C1() {
+      return C[1] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278190080.0
+      });
+    },
+    get C2() {
+      return C[2] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 3707764736.0
       });
     },
     get C3() {
       return C[3] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "scopesRoute",
-        [_Location_column]: 7,
-        [_Location_line]: 209,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 2315255808.0
       });
     },
     get C4() {
       return C[4] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "explicitChildNodes",
-        [_Location_column]: 7,
-        [_Location_line]: 210,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 1929379840
       });
     },
     get C5() {
       return C[5] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 211,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 1627389952
       });
     },
-    get C2() {
-      return C[2] = dart.constList([C[3] || CT.C3, C[4] || CT.C4, C[5] || CT.C5], widget_inspector._Location);
+    get C6() {
+      return C[6] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 1107296256
+      });
     },
-    get C1() {
-      return C[1] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[2] || CT.C2,
-        [_Location_name]: null,
-        [_Location_column]: 27,
-        [_Location_line]: 208,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C7() {
+      return C[7] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 520093696
       });
     },
     get C8() {
       return C[8] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "primaryRouteAnimation",
-        [_Location_column]: 9,
-        [_Location_line]: 266,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294967295.0
       });
     },
     get C9() {
       return C[9] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "secondaryRouteAnimation",
-        [_Location_column]: 9,
-        [_Location_line]: 267,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 3019898879.0
       });
     },
     get C10() {
       return C[10] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 268,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 2583691263.0
       });
     },
     get C11() {
       return C[11] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "linearTransition",
-        [_Location_column]: 9,
-        [_Location_line]: 269,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 2332033023.0
       });
     },
-    get C7() {
-      return C[7] = dart.constList([C[8] || CT.C8, C[9] || CT.C9, C[10] || CT.C10, C[11] || CT.C11], widget_inspector._Location);
+    get C12() {
+      return C[12] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 1660944383
+      });
     },
-    get C6() {
-      return C[6] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[7] || CT.C7,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 265,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C13() {
+      return C[13] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 1308622847
       });
     },
     get C14() {
       return C[14] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "enabledCallback",
-        [_Location_column]: 11,
-        [_Location_line]: 277,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 1040187391
       });
     },
     get C15() {
       return C[15] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onStartPopGesture",
-        [_Location_column]: 11,
-        [_Location_line]: 278,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 536870911
       });
     },
     get C16() {
       return C[16] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 279,
-        [_Location_file]: null
-      });
-    },
-    get C13() {
-      return C[13] = dart.constList([C[14] || CT.C14, C[15] || CT.C15, C[16] || CT.C16], widget_inspector._Location);
-    },
-    get C12() {
-      return C[12] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[13] || CT.C13,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 276,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+        __proto__: ui.Color.prototype,
+        [Color_value]: 452984831
       });
     },
     get C19() {
       return C[19] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "primaryRouteAnimation",
-        [_Location_column]: 9,
-        [_Location_line]: 273,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294962158.0
       });
     },
     get C20() {
       return C[20] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "secondaryRouteAnimation",
-        [_Location_column]: 9,
-        [_Location_line]: 274,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294954450.0
       });
     },
     get C21() {
       return C[21] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "linearTransition",
-        [_Location_column]: 9,
-        [_Location_line]: 275,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293892762.0
       });
     },
     get C22() {
       return C[22] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 276,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293227379.0
       });
     },
-    get C18() {
-      return C[18] = dart.constList([C[19] || CT.C19, C[20] || CT.C20, C[21] || CT.C21, C[22] || CT.C22], widget_inspector._Location);
+    get C23() {
+      return C[23] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293874512.0
+      });
     },
-    get C17() {
-      return C[17] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[18] || CT.C18,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 272,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C24() {
+      return C[24] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294198070.0
       });
     },
     get C25() {
       return C[25] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "decoration",
-        [_Location_column]: 11,
-        [_Location_line]: 503,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293212469.0
       });
     },
     get C26() {
       return C[26] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 504,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292030255.0
       });
     },
-    get C24() {
-      return C[24] = dart.constList([C[25] || CT.C25, C[26] || CT.C26], widget_inspector._Location);
-    },
-    get C23() {
-      return C[23] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[24] || CT.C24,
-        [_Location_name]: null,
-        [_Location_column]: 16,
-        [_Location_line]: 502,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C27() {
+      return C[27] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4291176488.0
       });
     },
-    get C29() {
-      return C[29] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 9,
-        [_Location_line]: 500,
-        [_Location_file]: null
+    get C28() {
+      return C[28] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290190364.0
       });
     },
-    get C30() {
-      return C[30] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "textDirection",
-        [_Location_column]: 9,
-        [_Location_line]: 501,
-        [_Location_file]: null
+    get C18() {
+      return C[18] = dart.constMap(core.int, ui.Color, [50, C[19] || CT.C19, 100, C[20] || CT.C20, 200, C[21] || CT.C21, 300, C[22] || CT.C22, 400, C[23] || CT.C23, 500, C[24] || CT.C24, 600, C[25] || CT.C25, 700, C[26] || CT.C26, 800, C[27] || CT.C27, 900, C[28] || CT.C28]);
+    },
+    get C17() {
+      return C[17] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4294198070.0,
+        [ColorSwatch__swatch]: C[18] || CT.C18
       });
     },
     get C31() {
       return C[31] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 502,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294937216.0
       });
     },
-    get C28() {
-      return C[28] = dart.constList([C[29] || CT.C29, C[30] || CT.C30, C[31] || CT.C31], widget_inspector._Location);
+    get C32() {
+      return C[32] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294922834.0
+      });
     },
-    get C27() {
-      return C[27] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[28] || CT.C28,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 499,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C33() {
+      return C[33] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294907716.0
       });
     },
     get C34() {
       return C[34] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 7,
-        [_Location_line]: 496,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292149248.0
       });
     },
-    get C35() {
-      return C[35] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "textDirection",
-        [_Location_column]: 7,
-        [_Location_line]: 497,
-        [_Location_file]: null
-      });
+    get C30() {
+      return C[30] = dart.constMap(core.int, ui.Color, [100, C[31] || CT.C31, 200, C[32] || CT.C32, 400, C[33] || CT.C33, 700, C[34] || CT.C34]);
     },
-    get C36() {
-      return C[36] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "transformHitTests",
-        [_Location_column]: 7,
-        [_Location_line]: 498,
-        [_Location_file]: null
+    get C29() {
+      return C[29] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4294922834.0,
+        [ColorSwatch__swatch]: C[30] || CT.C30
       });
     },
     get C37() {
       return C[37] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 499,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294763756.0
       });
     },
-    get C33() {
-      return C[33] = dart.constList([C[34] || CT.C34, C[35] || CT.C35, C[36] || CT.C36, C[37] || CT.C37], widget_inspector._Location);
+    get C38() {
+      return C[38] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294491088.0
+      });
     },
-    get C32() {
-      return C[32] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[33] || CT.C33,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 495,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C39() {
+      return C[39] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294217649.0
       });
     },
     get C40() {
       return C[40] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 9,
-        [_Location_line]: 564,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293943954.0
       });
     },
     get C41() {
       return C[41] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 565,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293673082.0
       });
     },
-    get C39() {
-      return C[39] = dart.constList([C[40] || CT.C40, C[41] || CT.C41], widget_inspector._Location);
+    get C42() {
+      return C[42] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293467747.0
+      });
     },
-    get C38() {
-      return C[38] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[39] || CT.C39,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 563,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C43() {
+      return C[43] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292352864.0
       });
     },
     get C44() {
       return C[44] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "position",
-        [_Location_column]: 7,
-        [_Location_line]: 560,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290910299.0
       });
     },
     get C45() {
       return C[45] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "textDirection",
-        [_Location_column]: 7,
-        [_Location_line]: 561,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289533015.0
       });
     },
     get C46() {
       return C[46] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "transformHitTests",
-        [_Location_column]: 7,
-        [_Location_line]: 562,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4287106639.0
       });
     },
-    get C47() {
-      return C[47] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 563,
-        [_Location_file]: null
-      });
+    get C36() {
+      return C[36] = dart.constMap(core.int, ui.Color, [50, C[37] || CT.C37, 100, C[38] || CT.C38, 200, C[39] || CT.C39, 300, C[40] || CT.C40, 400, C[41] || CT.C41, 500, C[42] || CT.C42, 600, C[43] || CT.C43, 700, C[44] || CT.C44, 800, C[45] || CT.C45, 900, C[46] || CT.C46]);
     },
-    get C43() {
-      return C[43] = dart.constList([C[44] || CT.C44, C[45] || CT.C45, C[46] || CT.C46, C[47] || CT.C47], widget_inspector._Location);
-    },
-    get C42() {
-      return C[42] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[43] || CT.C43,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 559,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
-      });
-    },
-    get C48() {
-      return C[48] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name]: "TextDirection.rtl",
-        index: 0
+    get C35() {
+      return C[35] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4293467747.0,
+        [ColorSwatch__swatch]: C[36] || CT.C36
       });
     },
     get C49() {
       return C[49] = dart.const({
-        __proto__: ui.TextDirection.prototype,
-        [_name]: "TextDirection.ltr",
-        index: 1
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294934699.0
+      });
+    },
+    get C50() {
+      return C[50] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294918273.0
+      });
+    },
+    get C51() {
+      return C[51] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294246487.0
       });
     },
     get C52() {
       return C[52] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "onPointerDown",
-        [_Location_column]: 13,
-        [_Location_line]: 684,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4291105122.0
       });
     },
-    get C53() {
-      return C[53] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "behavior",
-        [_Location_column]: 13,
-        [_Location_line]: 685,
-        [_Location_file]: null
+    get C48() {
+      return C[48] = dart.constMap(core.int, ui.Color, [100, C[49] || CT.C49, 200, C[50] || CT.C50, 400, C[51] || CT.C51, 700, C[52] || CT.C52]);
+    },
+    get C47() {
+      return C[47] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4294918273.0,
+        [ColorSwatch__swatch]: C[48] || CT.C48
       });
     },
-    get C51() {
-      return C[51] = dart.constList([C[52] || CT.C52, C[53] || CT.C53], widget_inspector._Location);
-    },
-    get C50() {
-      return C[50] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[51] || CT.C51,
-        [_Location_name]: null,
-        [_Location_column]: 18,
-        [_Location_line]: 683,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C55() {
+      return C[55] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294174197.0
       });
     },
     get C56() {
       return C[56] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "start",
-        [_Location_column]: 11,
-        [_Location_line]: 679,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292984551.0
       });
     },
     get C57() {
       return C[57] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "width",
-        [_Location_column]: 11,
-        [_Location_line]: 680,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4291728344.0
       });
     },
     get C58() {
       return C[58] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "top",
-        [_Location_column]: 11,
-        [_Location_line]: 681,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290406600.0
       });
     },
     get C59() {
       return C[59] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "bottom",
-        [_Location_column]: 11,
-        [_Location_line]: 682,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289415100.0
       });
     },
     get C60() {
       return C[60] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 11,
-        [_Location_line]: 683,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4288423856.0
       });
     },
-    get C55() {
-      return C[55] = dart.constList([C[56] || CT.C56, C[57] || CT.C57, C[58] || CT.C58, C[59] || CT.C59, C[60] || CT.C60], widget_inspector._Location);
+    get C61() {
+      return C[61] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4287505578.0
+      });
     },
-    get C54() {
-      return C[54] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[55] || CT.C55,
-        [_Location_name]: null,
-        [_Location_column]: 9,
-        [_Location_line]: 678,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C62() {
+      return C[62] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286259106.0
       });
     },
     get C63() {
       return C[63] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "fit",
-        [_Location_column]: 7,
-        [_Location_line]: 675,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4285143962.0
       });
     },
     get C64() {
       return C[64] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "children",
-        [_Location_column]: 7,
-        [_Location_line]: 676,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283045004.0
       });
     },
-    get C62() {
-      return C[62] = dart.constList([C[63] || CT.C63, C[64] || CT.C64], widget_inspector._Location);
+    get C54() {
+      return C[54] = dart.constMap(core.int, ui.Color, [50, C[55] || CT.C55, 100, C[56] || CT.C56, 200, C[57] || CT.C57, 300, C[58] || CT.C58, 400, C[59] || CT.C59, 500, C[60] || CT.C60, 600, C[61] || CT.C61, 700, C[62] || CT.C62, 800, C[63] || CT.C63, 900, C[64] || CT.C64]);
     },
-    get C61() {
-      return C[61] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[62] || CT.C62,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 674,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C53() {
+      return C[53] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4288423856.0,
+        [ColorSwatch__swatch]: C[54] || CT.C54
       });
     },
-    get C65() {
-      return C[65] = dart.const({
-        __proto__: curves.Cubic.prototype,
-        [Cubic_d]: 1,
-        [Cubic_c]: 0.04,
-        [Cubic_b]: 1,
-        [Cubic_a]: 0.18
+    get C67() {
+      return C[67] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293558524.0
       });
     },
-    get C66() {
-      return C[66] = dart.const({
-        __proto__: route$._CupertinoEdgeShadowDecoration.prototype,
-        [_colors$]: null
+    get C68() {
+      return C[68] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292886779.0
       });
     },
     get C69() {
       return C[69] = dart.const({
         __proto__: ui.Color.prototype,
-        [Color_value]: 939524096
+        [Color_value]: 4292149497.0
       });
     },
     get C70() {
       return C[70] = dart.const({
         __proto__: ui.Color.prototype,
-        [Color_value]: 301989888
+        [Color_value]: 4289331455.0
       });
     },
-    get C71() {
-      return C[71] = dart.const({
+    get C66() {
+      return C[66] = dart.constMap(core.int, ui.Color, [100, C[67] || CT.C67, 200, C[68] || CT.C68, 400, C[69] || CT.C69, 700, C[70] || CT.C70]);
+    },
+    get C65() {
+      return C[65] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4292886779.0,
+        [ColorSwatch__swatch]: C[66] || CT.C66
+      });
+    },
+    get C73() {
+      return C[73] = dart.const({
         __proto__: ui.Color.prototype,
-        [Color_value]: 67108864
-      });
-    },
-    get C72() {
-      return C[72] = dart.const({
-        __proto__: ui.Color.prototype,
-        [Color_value]: 0
-      });
-    },
-    get C68() {
-      return C[68] = dart.constList([C[69] || CT.C69, C[70] || CT.C70, C[71] || CT.C71, C[72] || CT.C72], ui.Color);
-    },
-    get C67() {
-      return C[67] = dart.const({
-        __proto__: route$._CupertinoEdgeShadowDecoration.prototype,
-        [_colors$]: C[68] || CT.C68
+        [Color_value]: 4293781494.0
       });
     },
     get C74() {
       return C[74] = dart.const({
         __proto__: ui.Color.prototype,
-        [Color_value]: 2046820352
+        [Color_value]: 4291937513.0
       });
     },
     get C75() {
       return C[75] = dart.const({
         __proto__: ui.Color.prototype,
-        [Color_value]: 855638016
-      });
-    },
-    get C73() {
-      return C[73] = dart.const({
-        __proto__: colors.CupertinoDynamicColor.prototype,
-        [Color_value]: 0,
-        [CupertinoDynamicColor_darkHighContrastElevatedColor]: C[74] || CT.C74,
-        [CupertinoDynamicColor_highContrastElevatedColor]: C[75] || CT.C75,
-        [CupertinoDynamicColor_darkElevatedColor]: C[74] || CT.C74,
-        [CupertinoDynamicColor_elevatedColor]: C[75] || CT.C75,
-        [CupertinoDynamicColor_darkHighContrastColor]: C[74] || CT.C74,
-        [CupertinoDynamicColor_highContrastColor]: C[75] || CT.C75,
-        [CupertinoDynamicColor_darkColor]: C[74] || CT.C74,
-        [CupertinoDynamicColor_color]: C[75] || CT.C75,
-        [CupertinoDynamicColor__debugResolveContext]: null,
-        [CupertinoDynamicColor__debugLabel]: null,
-        [CupertinoDynamicColor__effectiveColor]: C[75] || CT.C75
+        [Color_value]: 4289961435.0
       });
     },
     get C76() {
       return C[76] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 1,
-        [OffsetBase__dx]: 0
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4287985101.0
+      });
+    },
+    get C77() {
+      return C[77] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286470082.0
+      });
+    },
+    get C78() {
+      return C[78] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284955319.0
       });
     },
     get C79() {
       return C[79] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "builder",
-        [_Location_column]: 22,
-        [_Location_line]: 1070,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284364209.0
       });
     },
-    get C78() {
-      return C[78] = dart.constList([C[79] || CT.C79], widget_inspector._Location);
+    get C80() {
+      return C[80] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283510184.0
+      });
     },
-    get C77() {
-      return C[77] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[78] || CT.C78,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 1070,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C81() {
+      return C[81] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282722208.0
       });
     },
     get C82() {
       return C[82] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "data",
-        [_Location_column]: 7,
-        [_Location_line]: 1069,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281408402.0
       });
     },
-    get C83() {
-      return C[83] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 1070,
-        [_Location_file]: null
+    get C72() {
+      return C[72] = dart.constMap(core.int, ui.Color, [50, C[73] || CT.C73, 100, C[74] || CT.C74, 200, C[75] || CT.C75, 300, C[76] || CT.C76, 400, C[77] || CT.C77, 500, C[78] || CT.C78, 600, C[79] || CT.C79, 700, C[80] || CT.C80, 800, C[81] || CT.C81, 900, C[82] || CT.C82]);
+    },
+    get C71() {
+      return C[71] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4284955319.0,
+        [ColorSwatch__swatch]: C[72] || CT.C72
       });
     },
-    get C81() {
-      return C[81] = dart.constList([C[82] || CT.C82, C[83] || CT.C83], widget_inspector._Location);
-    },
-    get C80() {
-      return C[80] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[81] || CT.C81,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 1068,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C85() {
+      return C[85] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289956095.0
       });
     },
     get C86() {
       return C[86] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "translation",
-        [_Location_column]: 9,
-        [_Location_line]: 1079,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286336511.0
       });
     },
     get C87() {
       return C[87] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 9,
-        [_Location_line]: 1080,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284817407.0
       });
     },
-    get C85() {
-      return C[85] = dart.constList([C[86] || CT.C86, C[87] || CT.C87], widget_inspector._Location);
+    get C88() {
+      return C[88] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284612842.0
+      });
     },
     get C84() {
-      return C[84] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[85] || CT.C85,
-        [_Location_name]: null,
-        [_Location_column]: 14,
-        [_Location_line]: 1078,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
-      });
+      return C[84] = dart.constMap(core.int, ui.Color, [100, C[85] || CT.C85, 200, C[86] || CT.C86, 400, C[87] || CT.C87, 700, C[88] || CT.C88]);
     },
-    get C90() {
-      return C[90] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "alignment",
-        [_Location_column]: 7,
-        [_Location_line]: 1077,
-        [_Location_file]: null
+    get C83() {
+      return C[83] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4286336511.0,
+        [ColorSwatch__swatch]: C[84] || CT.C84
       });
     },
     get C91() {
       return C[91] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 1078,
-        [_Location_file]: null
-      });
-    },
-    get C89() {
-      return C[89] = dart.constList([C[90] || CT.C90, C[91] || CT.C91], widget_inspector._Location);
-    },
-    get C88() {
-      return C[88] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[89] || CT.C89,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 1076,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293454582.0
       });
     },
     get C92() {
       return C[92] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 250000
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4291152617.0
       });
     },
     get C93() {
-      return C[93] = dart.fn(route$._buildCupertinoDialogTransitions, T$.BuildContextAndAnimationOfdoubleAndAnimationOfdouble__ToWidget());
+      return C[93] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4288653530.0
+      });
+    },
+    get C94() {
+      return C[94] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286154443.0
+      });
+    },
+    get C95() {
+      return C[95] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284246976.0
+      });
     },
     get C96() {
       return C[96] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "opacity",
-        [_Location_column]: 7,
-        [_Location_line]: 1223,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282339765.0
       });
     },
     get C97() {
       return C[97] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 1224,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281944491.0
       });
     },
-    get C95() {
-      return C[95] = dart.constList([C[96] || CT.C96, C[97] || CT.C97], widget_inspector._Location);
+    get C98() {
+      return C[98] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281352095.0
+      });
     },
-    get C94() {
-      return C[94] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[95] || CT.C95,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 1222,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C99() {
+      return C[99] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280825235.0
       });
     },
     get C100() {
       return C[100] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 7,
-        [_Location_line]: 1230,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4279903102.0
       });
     },
-    get C101() {
-      return C[101] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "scale",
-        [_Location_column]: 7,
-        [_Location_line]: 1231,
-        [_Location_file]: null
+    get C90() {
+      return C[90] = dart.constMap(core.int, ui.Color, [50, C[91] || CT.C91, 100, C[92] || CT.C92, 200, C[93] || CT.C93, 300, C[94] || CT.C94, 400, C[95] || CT.C95, 500, C[96] || CT.C96, 600, C[97] || CT.C97, 700, C[98] || CT.C98, 800, C[99] || CT.C99, 900, C[100] || CT.C100]);
+    },
+    get C89() {
+      return C[89] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4282339765.0,
+        [ColorSwatch__swatch]: C[90] || CT.C90
       });
     },
-    get C99() {
-      return C[99] = dart.constList([C[100] || CT.C100, C[101] || CT.C101], widget_inspector._Location);
-    },
-    get C98() {
-      return C[98] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[99] || CT.C99,
-        [_Location_name]: null,
-        [_Location_column]: 12,
-        [_Location_line]: 1229,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+    get C103() {
+      return C[103] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4287405823.0
       });
     },
     get C104() {
       return C[104] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "opacity",
-        [_Location_column]: 5,
-        [_Location_line]: 1228,
-        [_Location_file]: null
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283657726.0
       });
     },
     get C105() {
       return C[105] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: null,
-        [_Location_name]: "child",
-        [_Location_column]: 5,
-        [_Location_line]: 1229,
-        [_Location_file]: null
-      });
-    },
-    get C103() {
-      return C[103] = dart.constList([C[104] || CT.C104, C[105] || CT.C105], widget_inspector._Location);
-    },
-    get C102() {
-      return C[102] = dart.const({
-        __proto__: widget_inspector._Location.prototype,
-        [_Location_parameterLocations]: C[103] || CT.C103,
-        [_Location_name]: null,
-        [_Location_column]: 10,
-        [_Location_line]: 1227,
-        [_Location_file]: "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart"
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282211070.0
       });
     },
     get C106() {
       return C[106] = dart.const({
-        __proto__: core.Duration.prototype,
-        [Duration__duration]: 335000
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281356286.0
       });
     },
-    get C107() {
-      return C[107] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 0,
-        [OffsetBase__dx]: 1
+    get C102() {
+      return C[102] = dart.constMap(core.int, ui.Color, [100, C[103] || CT.C103, 200, C[104] || CT.C104, 400, C[105] || CT.C105, 700, C[106] || CT.C106]);
+    },
+    get C101() {
+      return C[101] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4283657726.0,
+        [ColorSwatch__swatch]: C[102] || CT.C102
+      });
+    },
+    get C109() {
+      return C[109] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293128957.0
+      });
+    },
+    get C110() {
+      return C[110] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290502395.0
+      });
+    },
+    get C111() {
+      return C[111] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4287679225.0
+      });
+    },
+    get C112() {
+      return C[112] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284790262.0
+      });
+    },
+    get C113() {
+      return C[113] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282557941.0
+      });
+    },
+    get C114() {
+      return C[114] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280391411.0
+      });
+    },
+    get C115() {
+      return C[115] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280191205.0
+      });
+    },
+    get C116() {
+      return C[116] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4279858898.0
+      });
+    },
+    get C117() {
+      return C[117] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4279592384.0
+      });
+    },
+    get C118() {
+      return C[118] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4279060385.0
       });
     },
     get C108() {
-      return C[108] = dart.const({
-        __proto__: ui.Offset.prototype,
-        [OffsetBase__dy]: 0,
-        [OffsetBase__dx]: -0.3333333333333333
+      return C[108] = dart.constMap(core.int, ui.Color, [50, C[109] || CT.C109, 100, C[110] || CT.C110, 200, C[111] || CT.C111, 300, C[112] || CT.C112, 400, C[113] || CT.C113, 500, C[114] || CT.C114, 600, C[115] || CT.C115, 700, C[116] || CT.C116, 800, C[117] || CT.C117, 900, C[118] || CT.C118]);
+    },
+    get C107() {
+      return C[107] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4280391411.0,
+        [ColorSwatch__swatch]: C[108] || CT.C108
       });
+    },
+    get C121() {
+      return C[121] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286755327.0
+      });
+    },
+    get C122() {
+      return C[122] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282682111.0
+      });
+    },
+    get C123() {
+      return C[123] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280908287.0
+      });
+    },
+    get C124() {
+      return C[124] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280902399.0
+      });
+    },
+    get C120() {
+      return C[120] = dart.constMap(core.int, ui.Color, [100, C[121] || CT.C121, 200, C[122] || CT.C122, 400, C[123] || CT.C123, 700, C[124] || CT.C124]);
+    },
+    get C119() {
+      return C[119] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4282682111.0,
+        [ColorSwatch__swatch]: C[120] || CT.C120
+      });
+    },
+    get C127() {
+      return C[127] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292998654.0
+      });
+    },
+    get C128() {
+      return C[128] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289979900.0
+      });
+    },
+    get C129() {
+      return C[129] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286698746.0
+      });
+    },
+    get C130() {
+      return C[130] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283417591.0
+      });
+    },
+    get C131() {
+      return C[131] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280923894.0
+      });
+    },
+    get C132() {
+      return C[132] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278430196.0
+      });
+    },
+    get C133() {
+      return C[133] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278426597.0
+      });
+    },
+    get C134() {
+      return C[134] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278356177.0
+      });
+    },
+    get C135() {
+      return C[135] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278351805.0
+      });
+    },
+    get C136() {
+      return C[136] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278278043.0
+      });
+    },
+    get C126() {
+      return C[126] = dart.constMap(core.int, ui.Color, [50, C[127] || CT.C127, 100, C[128] || CT.C128, 200, C[129] || CT.C129, 300, C[130] || CT.C130, 400, C[131] || CT.C131, 500, C[132] || CT.C132, 600, C[133] || CT.C133, 700, C[134] || CT.C134, 800, C[135] || CT.C135, 900, C[136] || CT.C136]);
+    },
+    get C125() {
+      return C[125] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4278430196.0,
+        [ColorSwatch__swatch]: C[126] || CT.C126
+      });
+    },
+    get C139() {
+      return C[139] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286634239.0
+      });
+    },
+    get C140() {
+      return C[140] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282434815.0
+      });
+    },
+    get C141() {
+      return C[141] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278235391.0
+      });
+    },
+    get C142() {
+      return C[142] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278227434.0
+      });
+    },
+    get C138() {
+      return C[138] = dart.constMap(core.int, ui.Color, [100, C[139] || CT.C139, 200, C[140] || CT.C140, 400, C[141] || CT.C141, 700, C[142] || CT.C142]);
+    },
+    get C137() {
+      return C[137] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4282434815.0,
+        [ColorSwatch__swatch]: C[138] || CT.C138
+      });
+    },
+    get C145() {
+      return C[145] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292933626.0
+      });
+    },
+    get C146() {
+      return C[146] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289915890.0
+      });
+    },
+    get C147() {
+      return C[147] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286635754.0
+      });
+    },
+    get C148() {
+      return C[148] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283289825.0
+      });
+    },
+    get C149() {
+      return C[149] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280731354.0
+      });
+    },
+    get C150() {
+      return C[150] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278238420.0
+      });
+    },
+    get C151() {
+      return C[151] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278234305.0
+      });
+    },
+    get C152() {
+      return C[152] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278228903.0
+      });
+    },
+    get C153() {
+      return C[153] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278223759.0
+      });
+    },
+    get C154() {
+      return C[154] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278214756.0
+      });
+    },
+    get C144() {
+      return C[144] = dart.constMap(core.int, ui.Color, [50, C[145] || CT.C145, 100, C[146] || CT.C146, 200, C[147] || CT.C147, 300, C[148] || CT.C148, 400, C[149] || CT.C149, 500, C[150] || CT.C150, 600, C[151] || CT.C151, 700, C[152] || CT.C152, 800, C[153] || CT.C153, 900, C[154] || CT.C154]);
+    },
+    get C143() {
+      return C[143] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4278238420.0,
+        [ColorSwatch__swatch]: C[144] || CT.C144
+      });
+    },
+    get C157() {
+      return C[157] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286906367.0
+      });
+    },
+    get C158() {
+      return C[158] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4279828479.0
+      });
+    },
+    get C159() {
+      return C[159] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278248959.0
+      });
+    },
+    get C160() {
+      return C[160] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278237396.0
+      });
+    },
+    get C156() {
+      return C[156] = dart.constMap(core.int, ui.Color, [100, C[157] || CT.C157, 200, C[158] || CT.C158, 400, C[159] || CT.C159, 700, C[160] || CT.C160]);
+    },
+    get C155() {
+      return C[155] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4279828479.0,
+        [ColorSwatch__swatch]: C[156] || CT.C156
+      });
+    },
+    get C163() {
+      return C[163] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292932337.0
+      });
+    },
+    get C164() {
+      return C[164] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289912795.0
+      });
+    },
+    get C165() {
+      return C[165] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286630852.0
+      });
+    },
+    get C166() {
+      return C[166] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283283116.0
+      });
+    },
+    get C167() {
+      return C[167] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280723098.0
+      });
+    },
+    get C168() {
+      return C[168] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278228616.0
+      });
+    },
+    get C169() {
+      return C[169] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278225275.0
+      });
+    },
+    get C170() {
+      return C[170] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278221163.0
+      });
+    },
+    get C171() {
+      return C[171] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278217052.0
+      });
+    },
+    get C172() {
+      return C[172] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278209856.0
+      });
+    },
+    get C162() {
+      return C[162] = dart.constMap(core.int, ui.Color, [50, C[163] || CT.C163, 100, C[164] || CT.C164, 200, C[165] || CT.C165, 300, C[166] || CT.C166, 400, C[167] || CT.C167, 500, C[168] || CT.C168, 600, C[169] || CT.C169, 700, C[170] || CT.C170, 800, C[171] || CT.C171, 900, C[172] || CT.C172]);
+    },
+    get C161() {
+      return C[161] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4278228616.0,
+        [ColorSwatch__swatch]: C[162] || CT.C162
+      });
+    },
+    get C175() {
+      return C[175] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289200107.0
+      });
+    },
+    get C176() {
+      return C[176] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284809178.0
+      });
+    },
+    get C177() {
+      return C[177] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280150454.0
+      });
+    },
+    get C178() {
+      return C[178] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278239141.0
+      });
+    },
+    get C174() {
+      return C[174] = dart.constMap(core.int, ui.Color, [100, C[175] || CT.C175, 200, C[176] || CT.C176, 400, C[177] || CT.C177, 700, C[178] || CT.C178]);
+    },
+    get C173() {
+      return C[173] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4284809178.0,
+        [ColorSwatch__swatch]: C[174] || CT.C174
+      });
+    },
+    get C181() {
+      return C[181] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293457385.0
+      });
+    },
+    get C182() {
+      return C[182] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4291356361.0
+      });
+    },
+    get C183() {
+      return C[183] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289058471.0
+      });
+    },
+    get C184() {
+      return C[184] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286695300.0
+      });
+    },
+    get C185() {
+      return C[185] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284922730.0
+      });
+    },
+    get C186() {
+      return C[186] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283215696.0
+      });
+    },
+    get C187() {
+      return C[187] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282622023.0
+      });
+    },
+    get C188() {
+      return C[188] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281896508.0
+      });
+    },
+    get C189() {
+      return C[189] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281236786.0
+      });
+    },
+    get C190() {
+      return C[190] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4279983648.0
+      });
+    },
+    get C180() {
+      return C[180] = dart.constMap(core.int, ui.Color, [50, C[181] || CT.C181, 100, C[182] || CT.C182, 200, C[183] || CT.C183, 300, C[184] || CT.C184, 400, C[185] || CT.C185, 500, C[186] || CT.C186, 600, C[187] || CT.C187, 700, C[188] || CT.C188, 800, C[189] || CT.C189, 900, C[190] || CT.C190]);
+    },
+    get C179() {
+      return C[179] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4283215696.0,
+        [ColorSwatch__swatch]: C[180] || CT.C180
+      });
+    },
+    get C193() {
+      return C[193] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290377418.0
+      });
+    },
+    get C194() {
+      return C[194] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4285132974.0
+      });
+    },
+    get C195() {
+      return C[195] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278249078.0
+      });
+    },
+    get C196() {
+      return C[196] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4278241363.0
+      });
+    },
+    get C192() {
+      return C[192] = dart.constMap(core.int, ui.Color, [100, C[193] || CT.C193, 200, C[194] || CT.C194, 400, C[195] || CT.C195, 700, C[196] || CT.C196]);
+    },
+    get C191() {
+      return C[191] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4285132974.0,
+        [ColorSwatch__swatch]: C[192] || CT.C192
+      });
+    },
+    get C199() {
+      return C[199] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294047977.0
+      });
+    },
+    get C200() {
+      return C[200] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292668872.0
+      });
+    },
+    get C201() {
+      return C[201] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4291158437.0
+      });
+    },
+    get C202() {
+      return C[202] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289648001.0
+      });
+    },
+    get C203() {
+      return C[203] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4288466021.0
+      });
+    },
+    get C204() {
+      return C[204] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4287349578.0
+      });
+    },
+    get C205() {
+      return C[205] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286362434.0
+      });
+    },
+    get C206() {
+      return C[206] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4285046584.0
+      });
+    },
+    get C207() {
+      return C[207] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283796271.0
+      });
+    },
+    get C208() {
+      return C[208] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281559326.0
+      });
+    },
+    get C198() {
+      return C[198] = dart.constMap(core.int, ui.Color, [50, C[199] || CT.C199, 100, C[200] || CT.C200, 200, C[201] || CT.C201, 300, C[202] || CT.C202, 400, C[203] || CT.C203, 500, C[204] || CT.C204, 600, C[205] || CT.C205, 700, C[206] || CT.C206, 800, C[207] || CT.C207, 900, C[208] || CT.C208]);
+    },
+    get C197() {
+      return C[197] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4287349578.0,
+        [ColorSwatch__swatch]: C[198] || CT.C198
+      });
+    },
+    get C211() {
+      return C[211] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4291624848.0
+      });
+    },
+    get C212() {
+      return C[212] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289920857.0
+      });
+    },
+    get C213() {
+      return C[213] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4285988611.0
+      });
+    },
+    get C214() {
+      return C[214] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284800279.0
+      });
+    },
+    get C210() {
+      return C[210] = dart.constMap(core.int, ui.Color, [100, C[211] || CT.C211, 200, C[212] || CT.C212, 400, C[213] || CT.C213, 700, C[214] || CT.C214]);
+    },
+    get C209() {
+      return C[209] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4289920857.0,
+        [ColorSwatch__swatch]: C[210] || CT.C210
+      });
+    },
+    get C217() {
+      return C[217] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294573031.0
+      });
+    },
+    get C218() {
+      return C[218] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293981379.0
+      });
+    },
+    get C219() {
+      return C[219] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293324444.0
+      });
+    },
+    get C220() {
+      return C[220] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292667253.0
+      });
+    },
+    get C221() {
+      return C[221] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292141399.0
+      });
+    },
+    get C222() {
+      return C[222] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4291681337.0
+      });
+    },
+    get C223() {
+      return C[223] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290824755.0
+      });
+    },
+    get C224() {
+      return C[224] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289705003.0
+      });
+    },
+    get C225() {
+      return C[225] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4288584996.0
+      });
+    },
+    get C226() {
+      return C[226] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286740247.0
+      });
+    },
+    get C216() {
+      return C[216] = dart.constMap(core.int, ui.Color, [50, C[217] || CT.C217, 100, C[218] || CT.C218, 200, C[219] || CT.C219, 300, C[220] || CT.C220, 400, C[221] || CT.C221, 500, C[222] || CT.C222, 600, C[223] || CT.C223, 700, C[224] || CT.C224, 800, C[225] || CT.C225, 900, C[226] || CT.C226]);
+    },
+    get C215() {
+      return C[215] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4291681337.0,
+        [ColorSwatch__swatch]: C[216] || CT.C216
+      });
+    },
+    get C229() {
+      return C[229] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294246273.0
+      });
+    },
+    get C230() {
+      return C[230] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293852993.0
+      });
+    },
+    get C231() {
+      return C[231] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4291231488.0
+      });
+    },
+    get C232() {
+      return C[232] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289653248.0
+      });
+    },
+    get C228() {
+      return C[228] = dart.constMap(core.int, ui.Color, [100, C[229] || CT.C229, 200, C[230] || CT.C230, 400, C[231] || CT.C231, 700, C[232] || CT.C232]);
+    },
+    get C227() {
+      return C[227] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4293852993.0,
+        [ColorSwatch__swatch]: C[228] || CT.C228
+      });
+    },
+    get C235() {
+      return C[235] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294966759.0
+      });
+    },
+    get C236() {
+      return C[236] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294965700.0
+      });
+    },
+    get C237() {
+      return C[237] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294964637.0
+      });
+    },
+    get C238() {
+      return C[238] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294963574.0
+      });
+    },
+    get C239() {
+      return C[239] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294962776.0
+      });
+    },
+    get C240() {
+      return C[240] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294961979.0
+      });
+    },
+    get C241() {
+      return C[241] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294826037.0
+      });
+    },
+    get C242() {
+      return C[242] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294688813.0
+      });
+    },
+    get C243() {
+      return C[243] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294551589.0
+      });
+    },
+    get C244() {
+      return C[244] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294278935.0
+      });
+    },
+    get C234() {
+      return C[234] = dart.constMap(core.int, ui.Color, [50, C[235] || CT.C235, 100, C[236] || CT.C236, 200, C[237] || CT.C237, 300, C[238] || CT.C238, 400, C[239] || CT.C239, 500, C[240] || CT.C240, 600, C[241] || CT.C241, 700, C[242] || CT.C242, 800, C[243] || CT.C243, 900, C[244] || CT.C244]);
+    },
+    get C233() {
+      return C[233] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4294961979.0,
+        [ColorSwatch__swatch]: C[234] || CT.C234
+      });
+    },
+    get C247() {
+      return C[247] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294967181.0
+      });
+    },
+    get C248() {
+      return C[248] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294967040.0
+      });
+    },
+    get C249() {
+      return C[249] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294961664.0
+      });
+    },
+    get C250() {
+      return C[250] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294956544.0
+      });
+    },
+    get C246() {
+      return C[246] = dart.constMap(core.int, ui.Color, [100, C[247] || CT.C247, 200, C[248] || CT.C248, 400, C[249] || CT.C249, 700, C[250] || CT.C250]);
+    },
+    get C245() {
+      return C[245] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4294967040.0,
+        [ColorSwatch__swatch]: C[246] || CT.C246
+      });
+    },
+    get C253() {
+      return C[253] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294965473.0
+      });
+    },
+    get C254() {
+      return C[254] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294962355.0
+      });
+    },
+    get C255() {
+      return C[255] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294959234.0
+      });
+    },
+    get C256() {
+      return C[256] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294956367.0
+      });
+    },
+    get C257() {
+      return C[257] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294953512.0
+      });
+    },
+    get C258() {
+      return C[258] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294951175.0
+      });
+    },
+    get C259() {
+      return C[259] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294947584.0
+      });
+    },
+    get C260() {
+      return C[260] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294942720.0
+      });
+    },
+    get C261() {
+      return C[261] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294938368.0
+      });
+    },
+    get C262() {
+      return C[262] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294930176.0
+      });
+    },
+    get C252() {
+      return C[252] = dart.constMap(core.int, ui.Color, [50, C[253] || CT.C253, 100, C[254] || CT.C254, 200, C[255] || CT.C255, 300, C[256] || CT.C256, 400, C[257] || CT.C257, 500, C[258] || CT.C258, 600, C[259] || CT.C259, 700, C[260] || CT.C260, 800, C[261] || CT.C261, 900, C[262] || CT.C262]);
+    },
+    get C251() {
+      return C[251] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4294951175.0,
+        [ColorSwatch__swatch]: C[252] || CT.C252
+      });
+    },
+    get C265() {
+      return C[265] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294960511.0
+      });
+    },
+    get C266() {
+      return C[266] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294956864.0
+      });
+    },
+    get C267() {
+      return C[267] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294951936.0
+      });
+    },
+    get C268() {
+      return C[268] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294945536.0
+      });
+    },
+    get C264() {
+      return C[264] = dart.constMap(core.int, ui.Color, [100, C[265] || CT.C265, 200, C[266] || CT.C266, 400, C[267] || CT.C267, 700, C[268] || CT.C268]);
+    },
+    get C263() {
+      return C[263] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4294956864.0,
+        [ColorSwatch__swatch]: C[264] || CT.C264
+      });
+    },
+    get C271() {
+      return C[271] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294964192.0
+      });
+    },
+    get C272() {
+      return C[272] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294959282.0
+      });
+    },
+    get C273() {
+      return C[273] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294954112.0
+      });
+    },
+    get C274() {
+      return C[274] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294948685.0
+      });
+    },
+    get C275() {
+      return C[275] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294944550.0
+      });
+    },
+    get C276() {
+      return C[276] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294940672.0
+      });
+    },
+    get C277() {
+      return C[277] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294675456.0
+      });
+    },
+    get C278() {
+      return C[278] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294278144.0
+      });
+    },
+    get C279() {
+      return C[279] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293880832.0
+      });
+    },
+    get C280() {
+      return C[280] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293284096.0
+      });
+    },
+    get C270() {
+      return C[270] = dart.constMap(core.int, ui.Color, [50, C[271] || CT.C271, 100, C[272] || CT.C272, 200, C[273] || CT.C273, 300, C[274] || CT.C274, 400, C[275] || CT.C275, 500, C[276] || CT.C276, 600, C[277] || CT.C277, 700, C[278] || CT.C278, 800, C[279] || CT.C279, 900, C[280] || CT.C280]);
+    },
+    get C269() {
+      return C[269] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4294940672.0,
+        [ColorSwatch__swatch]: C[270] || CT.C270
+      });
+    },
+    get C283() {
+      return C[283] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294955392.0
+      });
+    },
+    get C284() {
+      return C[284] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294945600.0
+      });
+    },
+    get C285() {
+      return C[285] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294938880.0
+      });
+    },
+    get C286() {
+      return C[286] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294929664.0
+      });
+    },
+    get C282() {
+      return C[282] = dart.constMap(core.int, ui.Color, [100, C[283] || CT.C283, 200, C[284] || CT.C284, 400, C[285] || CT.C285, 700, C[286] || CT.C286]);
+    },
+    get C281() {
+      return C[281] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4294945600.0,
+        [ColorSwatch__swatch]: C[282] || CT.C282
+      });
+    },
+    get C289() {
+      return C[289] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294699495.0
+      });
+    },
+    get C290() {
+      return C[290] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294954172.0
+      });
+    },
+    get C291() {
+      return C[291] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294945681.0
+      });
+    },
+    get C292() {
+      return C[292] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294937189.0
+      });
+    },
+    get C293() {
+      return C[293] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294930499.0
+      });
+    },
+    get C294() {
+      return C[294] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294924066.0
+      });
+    },
+    get C295() {
+      return C[295] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294201630.0
+      });
+    },
+    get C296() {
+      return C[296] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293282329.0
+      });
+    },
+    get C297() {
+      return C[297] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292363029.0
+      });
+    },
+    get C298() {
+      return C[298] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290721292.0
+      });
+    },
+    get C288() {
+      return C[288] = dart.constMap(core.int, ui.Color, [50, C[289] || CT.C289, 100, C[290] || CT.C290, 200, C[291] || CT.C291, 300, C[292] || CT.C292, 400, C[293] || CT.C293, 500, C[294] || CT.C294, 600, C[295] || CT.C295, 700, C[296] || CT.C296, 800, C[297] || CT.C297, 900, C[298] || CT.C298]);
+    },
+    get C287() {
+      return C[287] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4294924066.0,
+        [ColorSwatch__swatch]: C[288] || CT.C288
+      });
+    },
+    get C301() {
+      return C[301] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294942336.0
+      });
+    },
+    get C302() {
+      return C[302] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294929984.0
+      });
+    },
+    get C303() {
+      return C[303] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294917376.0
+      });
+    },
+    get C304() {
+      return C[304] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292684800.0
+      });
+    },
+    get C300() {
+      return C[300] = dart.constMap(core.int, ui.Color, [100, C[301] || CT.C301, 200, C[302] || CT.C302, 400, C[303] || CT.C303, 700, C[304] || CT.C304]);
+    },
+    get C299() {
+      return C[299] = dart.const({
+        __proto__: colors$.MaterialAccentColor.prototype,
+        [Color_value]: 4294929984.0,
+        [ColorSwatch__swatch]: C[300] || CT.C300
+      });
+    },
+    get C307() {
+      return C[307] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293913577.0
+      });
+    },
+    get C308() {
+      return C[308] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292332744.0
+      });
+    },
+    get C309() {
+      return C[309] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290554532.0
+      });
+    },
+    get C310() {
+      return C[310] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4288776319.0
+      });
+    },
+    get C311() {
+      return C[311] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4287458915.0
+      });
+    },
+    get C312() {
+      return C[312] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286141768.0
+      });
+    },
+    get C313() {
+      return C[313] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4285353025.0
+      });
+    },
+    get C314() {
+      return C[314] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284301367.0
+      });
+    },
+    get C315() {
+      return C[315] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283315246.0
+      });
+    },
+    get C316() {
+      return C[316] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282263331.0
+      });
+    },
+    get C306() {
+      return C[306] = dart.constMap(core.int, ui.Color, [50, C[307] || CT.C307, 100, C[308] || CT.C308, 200, C[309] || CT.C309, 300, C[310] || CT.C310, 400, C[311] || CT.C311, 500, C[312] || CT.C312, 600, C[313] || CT.C313, 700, C[314] || CT.C314, 800, C[315] || CT.C315, 900, C[316] || CT.C316]);
+    },
+    get C305() {
+      return C[305] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4286141768.0,
+        [ColorSwatch__swatch]: C[306] || CT.C306
+      });
+    },
+    get C319() {
+      return C[319] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294638330.0
+      });
+    },
+    get C320() {
+      return C[320] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4294309365.0
+      });
+    },
+    get C321() {
+      return C[321] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293848814.0
+      });
+    },
+    get C322() {
+      return C[322] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292927712.0
+      });
+    },
+    get C323() {
+      return C[323] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4292269782.0
+      });
+    },
+    get C324() {
+      return C[324] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4290624957.0
+      });
+    },
+    get C325() {
+      return C[325] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4288585374.0
+      });
+    },
+    get C326() {
+      return C[326] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4285887861.0
+      });
+    },
+    get C327() {
+      return C[327] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284572001.0
+      });
+    },
+    get C328() {
+      return C[328] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282532418.0
+      });
+    },
+    get C329() {
+      return C[329] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281348144.0
+      });
+    },
+    get C330() {
+      return C[330] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280361249.0
+      });
+    },
+    get C318() {
+      return C[318] = dart.constMap(core.int, ui.Color, [50, C[319] || CT.C319, 100, C[320] || CT.C320, 200, C[321] || CT.C321, 300, C[322] || CT.C322, 350, C[323] || CT.C323, 400, C[324] || CT.C324, 500, C[325] || CT.C325, 600, C[326] || CT.C326, 700, C[327] || CT.C327, 800, C[328] || CT.C328, 850, C[329] || CT.C329, 900, C[330] || CT.C330]);
+    },
+    get C317() {
+      return C[317] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4288585374.0,
+        [ColorSwatch__swatch]: C[318] || CT.C318
+      });
+    },
+    get C333() {
+      return C[333] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4293718001.0
+      });
+    },
+    get C334() {
+      return C[334] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4291811548.0
+      });
+    },
+    get C335() {
+      return C[335] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4289773253.0
+      });
+    },
+    get C336() {
+      return C[336] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4287669422.0
+      });
+    },
+    get C337() {
+      return C[337] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4286091420.0
+      });
+    },
+    get C338() {
+      return C[338] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4284513675.0
+      });
+    },
+    get C339() {
+      return C[339] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4283723386.0
+      });
+    },
+    get C340() {
+      return C[340] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4282735204.0
+      });
+    },
+    get C341() {
+      return C[341] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4281812815.0
+      });
+    },
+    get C342() {
+      return C[342] = dart.const({
+        __proto__: ui.Color.prototype,
+        [Color_value]: 4280693304.0
+      });
+    },
+    get C332() {
+      return C[332] = dart.constMap(core.int, ui.Color, [50, C[333] || CT.C333, 100, C[334] || CT.C334, 200, C[335] || CT.C335, 300, C[336] || CT.C336, 400, C[337] || CT.C337, 500, C[338] || CT.C338, 600, C[339] || CT.C339, 700, C[340] || CT.C340, 800, C[341] || CT.C341, 900, C[342] || CT.C342]);
+    },
+    get C331() {
+      return C[331] = dart.const({
+        __proto__: colors$.MaterialColor.prototype,
+        [Color_value]: 4284513675.0,
+        [ColorSwatch__swatch]: C[332] || CT.C332
+      });
+    },
+    get C343() {
+      return C[343] = dart.constList([C[17] || CT.C17, C[35] || CT.C35, C[53] || CT.C53, C[71] || CT.C71, C[89] || CT.C89, C[107] || CT.C107, C[125] || CT.C125, C[143] || CT.C143, C[161] || CT.C161, C[179] || CT.C179, C[197] || CT.C197, C[215] || CT.C215, C[233] || CT.C233, C[251] || CT.C251, C[269] || CT.C269, C[287] || CT.C287, C[305] || CT.C305, C[331] || CT.C331], colors$.MaterialColor);
+    },
+    get C344() {
+      return C[344] = dart.constList([C[29] || CT.C29, C[47] || CT.C47, C[65] || CT.C65, C[83] || CT.C83, C[101] || CT.C101, C[119] || CT.C119, C[137] || CT.C137, C[155] || CT.C155, C[173] || CT.C173, C[191] || CT.C191, C[209] || CT.C209, C[227] || CT.C227, C[245] || CT.C245, C[263] || CT.C263, C[281] || CT.C281, C[299] || CT.C299], colors$.MaterialAccentColor);
     }
   }, false);
-  var C = Array(109).fill(void 0);
-  var I = [
-    "file:///D:/DevelpmentTool/flutter/packages/flutter/lib/src/cupertino/route.dart",
-    "package:flutter/src/cupertino/route.dart"
-  ];
-  var _previousTitle = dart.privateName(route$, "CupertinoRouteTransitionMixin._previousTitle");
-  var _previousTitle$ = dart.privateName(route$, "_previousTitle");
-  var Duration__duration = dart.privateName(core, "Duration._duration");
-  var _Location_parameterLocations = dart.privateName(widget_inspector, "_Location.parameterLocations");
-  var _Location_name = dart.privateName(widget_inspector, "_Location.name");
-  var _Location_column = dart.privateName(widget_inspector, "_Location.column");
-  var _Location_line = dart.privateName(widget_inspector, "_Location.line");
-  var _Location_file = dart.privateName(widget_inspector, "_Location.file");
-  const _is_CupertinoRouteTransitionMixin_default = Symbol('_is_CupertinoRouteTransitionMixin_default');
-  route$.CupertinoRouteTransitionMixin$ = dart.generic(T => {
-    class CupertinoRouteTransitionMixin extends pages.PageRoute$(T) {
-      static isPopGestureInProgress(route) {
-        return dart.nullCheck(route.navigator).userGestureInProgress;
-      }
-      static _isPopGestureEnabled(T, route) {
-        if (route.isFirst) return false;
-        if (route.willHandlePopInternally) return false;
-        if (route.hasScopedWillPopCallback) return false;
-        if (route.fullscreenDialog) return false;
-        if (dart.nullCheck(route.animation).status !== animation$.AnimationStatus.completed) return false;
-        if (dart.nullCheck(route.secondaryAnimation).status !== animation$.AnimationStatus.dismissed) return false;
-        if (route$.CupertinoRouteTransitionMixin.isPopGestureInProgress(route)) return false;
-        return true;
-      }
-      static _startPopGesture(T, route) {
-        if (!route$.CupertinoRouteTransitionMixin._isPopGestureEnabled(T, route)) dart.assertFailed(null, I[0], 229, 12, "_isPopGestureEnabled(route)");
-        return new (route$._CupertinoBackGestureController$(T)).new({navigator: dart.nullCheck(route.navigator), controller: dart.nullCheck(route.controller)});
-      }
-      static buildPageTransitions(T, route, context, animation, secondaryAnimation, child) {
-        let linearTransition = route$.CupertinoRouteTransitionMixin.isPopGestureInProgress(route);
-        if (route.fullscreenDialog) {
-          return new route$.CupertinoFullscreenDialogTransition.new({primaryRouteAnimation: animation, secondaryRouteAnimation: secondaryAnimation, child: child, linearTransition: linearTransition, $creationLocationd_0dea112b090073317d4: C[6] || CT.C6});
-        } else {
-          return new route$.CupertinoPageTransition.new({primaryRouteAnimation: animation, secondaryRouteAnimation: secondaryAnimation, linearTransition: linearTransition, child: new (route$._CupertinoBackGestureDetector$(T)).new({enabledCallback: dart.fn(() => route$.CupertinoRouteTransitionMixin._isPopGestureEnabled(T, route), T$.VoidTobool()), onStartPopGesture: dart.fn(() => route$.CupertinoRouteTransitionMixin._startPopGesture(T, route), dart.fnType(route$._CupertinoBackGestureController$(T), [])), child: child, $creationLocationd_0dea112b090073317d4: C[12] || CT.C12}), $creationLocationd_0dea112b090073317d4: C[17] || CT.C17});
-        }
-      }
+  var C = Array(345).fill(void 0);
+  var I = ["package:flutter/src/material/colors.dart"];
+  colors$.MaterialColor = class MaterialColor extends colors.ColorSwatch$(core.int) {
+    get shade50() {
+      return dart.nullCheck(this._get(50));
     }
-    CupertinoRouteTransitionMixin[dart.mixinOn] = PageRoute => class CupertinoRouteTransitionMixin extends PageRoute {
-      get [_previousTitle$]() {
-        return this[_previousTitle];
-      }
-      set [_previousTitle$](value) {
-        this[_previousTitle] = value;
-      }
-      get previousTitle() {
-        if (!(this[_previousTitle$] != null)) dart.assertFailed("Cannot read the previousTitle for a route that has not yet been installed", I[0], 105, 7, "_previousTitle != null");
-        return dart.nullCheck(this[_previousTitle$]);
-      }
-      didChangePrevious(previousRoute) {
-        let previousTitleString = route$.CupertinoRouteTransitionMixin.is(previousRoute) ? previousRoute.title : null;
-        if (this[_previousTitle$] == null) {
-          this[_previousTitle$] = new (T$.ValueNotifierOfStringN()).new(previousTitleString);
-        } else {
-          dart.nullCheck(this[_previousTitle$]).value = previousTitleString;
-        }
-        super.didChangePrevious(previousRoute);
-      }
-      get transitionDuration() {
-        return C[0] || CT.C0;
-      }
-      get barrierColor() {
-        return null;
-      }
-      get barrierLabel() {
-        return null;
-      }
-      canTransitionTo(nextRoute) {
-        return route$.CupertinoRouteTransitionMixin.is(nextRoute) && !nextRoute.fullscreenDialog;
-      }
-      get popGestureInProgress() {
-        return route$.CupertinoRouteTransitionMixin.isPopGestureInProgress(this);
-      }
-      get popGestureEnabled() {
-        return route$.CupertinoRouteTransitionMixin._isPopGestureEnabled(T, this);
-      }
-      buildPage(context, animation, secondaryAnimation) {
-        let child = this.buildContent(context);
-        let result = new basic.Semantics.new({scopesRoute: true, explicitChildNodes: true, child: child, $creationLocationd_0dea112b090073317d4: C[1] || CT.C1});
-        if (!dart.fn(() => {
-          if (child === null) {
-            dart.throw(new assertions.FlutterError.fromParts(T$.JSArrayOfDiagnosticsNode().of([new assertions.ErrorSummary.new("The builder for route \"" + dart.str(this.settings.name) + "\" returned null."), new assertions.ErrorDescription.new("Route builders must never return null.")])));
-          }
-          return true;
-        }, T$.VoidTobool())()) dart.assertFailed(null, I[0], 213, 12, "() {\r\n      if (child == null) {\r\n        throw FlutterError.fromParts(<DiagnosticsNode>[\r\n          ErrorSummary('The builder for route \"${settings.name}\" returned null.'),\r\n          ErrorDescription('Route builders must never return null.'),\r\n        ]);\r\n      }\r\n      return true;\r\n    }()");
-        return result;
-      }
-      buildTransitions(context, animation, secondaryAnimation, child) {
-        return route$.CupertinoRouteTransitionMixin.buildPageTransitions(T, this, context, animation, secondaryAnimation, child);
-      }
-    };
-    (CupertinoRouteTransitionMixin[dart.mixinNew] = function() {
-      this[_previousTitle] = null;
-    }).prototype = CupertinoRouteTransitionMixin.prototype;
-    dart.addTypeTests(CupertinoRouteTransitionMixin);
-    CupertinoRouteTransitionMixin.prototype[_is_CupertinoRouteTransitionMixin_default] = true;
-    dart.addTypeCaches(CupertinoRouteTransitionMixin);
-    CupertinoRouteTransitionMixin[dart.implements] = () => [pages.PageRoute$(T)];
-    dart.setMethodSignature(CupertinoRouteTransitionMixin, () => ({
-      __proto__: dart.getMethods(CupertinoRouteTransitionMixin.__proto__),
-      buildPage: dart.fnType(framework.Widget, [framework.BuildContext, animation$.Animation$(core.double), animation$.Animation$(core.double)])
-    }));
-    dart.setGetterSignature(CupertinoRouteTransitionMixin, () => ({
-      __proto__: dart.getGetters(CupertinoRouteTransitionMixin.__proto__),
-      previousTitle: change_notifier.ValueListenable$(dart.nullable(core.String)),
-      transitionDuration: core.Duration,
-      barrierColor: dart.nullable(ui.Color),
-      barrierLabel: dart.nullable(core.String),
-      popGestureInProgress: core.bool,
-      popGestureEnabled: core.bool
-    }));
-    dart.setLibraryUri(CupertinoRouteTransitionMixin, I[1]);
-    dart.setFieldSignature(CupertinoRouteTransitionMixin, () => ({
-      __proto__: dart.getFields(CupertinoRouteTransitionMixin.__proto__),
-      [_previousTitle$]: dart.fieldType(dart.nullable(change_notifier.ValueNotifier$(dart.nullable(core.String))))
-    }));
-    return CupertinoRouteTransitionMixin;
-  });
-  route$.CupertinoRouteTransitionMixin = route$.CupertinoRouteTransitionMixin$();
-  dart.addTypeTests(route$.CupertinoRouteTransitionMixin, _is_CupertinoRouteTransitionMixin_default);
-  var builder$ = dart.privateName(route$, "CupertinoPageRoute.builder");
-  var title$ = dart.privateName(route$, "CupertinoPageRoute.title");
-  var maintainState$ = dart.privateName(route$, "CupertinoPageRoute.maintainState");
-  const _is_CupertinoPageRoute_default = Symbol('_is_CupertinoPageRoute_default');
-  route$.CupertinoPageRoute$ = dart.generic(T => {
-    const PageRoute_CupertinoRouteTransitionMixin$36 = class PageRoute_CupertinoRouteTransitionMixin extends pages.PageRoute$(T) {};
-    (PageRoute_CupertinoRouteTransitionMixin$36.new = function(opts) {
-      route$.CupertinoRouteTransitionMixin$(T)[dart.mixinNew].call(this);
-      PageRoute_CupertinoRouteTransitionMixin$36.__proto__.new.call(this, opts);
-    }).prototype = PageRoute_CupertinoRouteTransitionMixin$36.prototype;
-    dart.applyMixin(PageRoute_CupertinoRouteTransitionMixin$36, route$.CupertinoRouteTransitionMixin$(T));
-    class CupertinoPageRoute extends PageRoute_CupertinoRouteTransitionMixin$36 {
-      get builder() {
-        return this[builder$];
-      }
-      set builder(value) {
-        super.builder = value;
-      }
-      get title() {
-        return this[title$];
-      }
-      set title(value) {
-        super.title = value;
-      }
-      get maintainState() {
-        return this[maintainState$];
-      }
-      set maintainState(value) {
-        super.maintainState = value;
-      }
-      buildContent(context) {
-        let t0;
-        t0 = context;
-        return this.builder(t0);
-      }
-      get debugLabel() {
-        return super.debugLabel + "(" + dart.str(this.settings.name) + ")";
-      }
+    get shade100() {
+      return dart.nullCheck(this._get(100));
     }
-    (CupertinoPageRoute.new = function(opts) {
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      let title = opts && 'title' in opts ? opts.title : null;
-      let settings = opts && 'settings' in opts ? opts.settings : null;
-      let maintainState = opts && 'maintainState' in opts ? opts.maintainState : true;
-      let fullscreenDialog = opts && 'fullscreenDialog' in opts ? opts.fullscreenDialog : false;
-      this[builder$] = builder;
-      this[title$] = title;
-      this[maintainState$] = maintainState;
-      if (!(builder !== null)) dart.assertFailed(null, I[0], 325, 15, "builder != null");
-      if (!(maintainState !== null)) dart.assertFailed(null, I[0], 326, 15, "maintainState != null");
-      if (!(fullscreenDialog !== null)) dart.assertFailed(null, I[0], 327, 15, "fullscreenDialog != null");
-      CupertinoPageRoute.__proto__.new.call(this, {settings: settings, fullscreenDialog: fullscreenDialog});
-      if (!this.opaque) dart.assertFailed(null, I[0], 329, 12, "opaque");
-    }).prototype = CupertinoPageRoute.prototype;
-    dart.addTypeTests(CupertinoPageRoute);
-    CupertinoPageRoute.prototype[_is_CupertinoPageRoute_default] = true;
-    dart.addTypeCaches(CupertinoPageRoute);
-    dart.setMethodSignature(CupertinoPageRoute, () => ({
-      __proto__: dart.getMethods(CupertinoPageRoute.__proto__),
-      buildContent: dart.fnType(framework.Widget, [framework.BuildContext])
-    }));
-    dart.setLibraryUri(CupertinoPageRoute, I[1]);
-    dart.setFieldSignature(CupertinoPageRoute, () => ({
-      __proto__: dart.getFields(CupertinoPageRoute.__proto__),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext])),
-      title: dart.finalFieldType(dart.nullable(core.String)),
-      maintainState: dart.finalFieldType(core.bool)
-    }));
-    return CupertinoPageRoute;
-  });
-  route$.CupertinoPageRoute = route$.CupertinoPageRoute$();
-  dart.addTypeTests(route$.CupertinoPageRoute, _is_CupertinoPageRoute_default);
-  var _page = dart.privateName(route$, "_page");
-  const _is__PageBasedCupertinoPageRoute_default = Symbol('_is__PageBasedCupertinoPageRoute_default');
-  route$._PageBasedCupertinoPageRoute$ = dart.generic(T => {
-    var CupertinoPageOfT = () => (CupertinoPageOfT = dart.constFn(route$.CupertinoPage$(T)))();
-    const PageRoute_CupertinoRouteTransitionMixin$36 = class PageRoute_CupertinoRouteTransitionMixin extends pages.PageRoute$(T) {};
-    (PageRoute_CupertinoRouteTransitionMixin$36.new = function(opts) {
-      route$.CupertinoRouteTransitionMixin$(T)[dart.mixinNew].call(this);
-      PageRoute_CupertinoRouteTransitionMixin$36.__proto__.new.call(this, opts);
-    }).prototype = PageRoute_CupertinoRouteTransitionMixin$36.prototype;
-    dart.applyMixin(PageRoute_CupertinoRouteTransitionMixin$36, route$.CupertinoRouteTransitionMixin$(T));
-    class _PageBasedCupertinoPageRoute extends PageRoute_CupertinoRouteTransitionMixin$36 {
-      get [_page]() {
-        return CupertinoPageOfT().as(this.settings);
-      }
-      buildContent(context) {
-        return this[_page].child;
-      }
-      get title() {
-        return this[_page].title;
-      }
-      get maintainState() {
-        return this[_page].maintainState;
-      }
-      get fullscreenDialog() {
-        return this[_page].fullscreenDialog;
-      }
-      get debugLabel() {
-        return super.debugLabel + "(" + dart.str(this[_page].name) + ")";
-      }
+    get shade200() {
+      return dart.nullCheck(this._get(200));
     }
-    (_PageBasedCupertinoPageRoute.new = function(opts) {
-      let page = opts && 'page' in opts ? opts.page : null;
-      if (!(page !== null)) dart.assertFailed(null, I[0], 355, 15, "page != null");
-      _PageBasedCupertinoPageRoute.__proto__.new.call(this, {settings: page});
-      if (!this.opaque) dart.assertFailed(null, I[0], 357, 12, "opaque");
-    }).prototype = _PageBasedCupertinoPageRoute.prototype;
-    dart.addTypeTests(_PageBasedCupertinoPageRoute);
-    _PageBasedCupertinoPageRoute.prototype[_is__PageBasedCupertinoPageRoute_default] = true;
-    dart.addTypeCaches(_PageBasedCupertinoPageRoute);
-    dart.setMethodSignature(_PageBasedCupertinoPageRoute, () => ({
-      __proto__: dart.getMethods(_PageBasedCupertinoPageRoute.__proto__),
-      buildContent: dart.fnType(framework.Widget, [framework.BuildContext])
-    }));
-    dart.setGetterSignature(_PageBasedCupertinoPageRoute, () => ({
-      __proto__: dart.getGetters(_PageBasedCupertinoPageRoute.__proto__),
-      [_page]: route$.CupertinoPage$(T),
-      title: dart.nullable(core.String),
-      maintainState: core.bool,
-      fullscreenDialog: core.bool
-    }));
-    dart.setLibraryUri(_PageBasedCupertinoPageRoute, I[1]);
-    return _PageBasedCupertinoPageRoute;
-  });
-  route$._PageBasedCupertinoPageRoute = route$._PageBasedCupertinoPageRoute$();
-  dart.addTypeTests(route$._PageBasedCupertinoPageRoute, _is__PageBasedCupertinoPageRoute_default);
-  var child$ = dart.privateName(route$, "CupertinoPage.child");
-  var title$0 = dart.privateName(route$, "CupertinoPage.title");
-  var maintainState$0 = dart.privateName(route$, "CupertinoPage.maintainState");
-  var fullscreenDialog$ = dart.privateName(route$, "CupertinoPage.fullscreenDialog");
-  const _is_CupertinoPage_default = Symbol('_is_CupertinoPage_default');
-  route$.CupertinoPage$ = dart.generic(T => {
-    var _PageBasedCupertinoPageRouteOfT = () => (_PageBasedCupertinoPageRouteOfT = dart.constFn(route$._PageBasedCupertinoPageRoute$(T)))();
-    class CupertinoPage extends navigator.Page$(T) {
-      get child() {
-        return this[child$];
-      }
-      set child(value) {
-        super.child = value;
-      }
-      get title() {
-        return this[title$0];
-      }
-      set title(value) {
-        super.title = value;
-      }
-      get maintainState() {
-        return this[maintainState$0];
-      }
-      set maintainState(value) {
-        super.maintainState = value;
-      }
-      get fullscreenDialog() {
-        return this[fullscreenDialog$];
-      }
-      set fullscreenDialog(value) {
-        super.fullscreenDialog = value;
-      }
-      createRoute(context) {
-        return new (_PageBasedCupertinoPageRouteOfT()).new({page: this});
-      }
+    get shade300() {
+      return dart.nullCheck(this._get(300));
     }
-    (CupertinoPage.new = function(opts) {
-      let child = opts && 'child' in opts ? opts.child : null;
-      let maintainState = opts && 'maintainState' in opts ? opts.maintainState : true;
-      let title = opts && 'title' in opts ? opts.title : null;
-      let fullscreenDialog = opts && 'fullscreenDialog' in opts ? opts.fullscreenDialog : false;
-      let key = opts && 'key' in opts ? opts.key : null;
-      let name = opts && 'name' in opts ? opts.name : null;
-      let $arguments = opts && 'arguments' in opts ? opts.arguments : null;
-      let restorationId = opts && 'restorationId' in opts ? opts.restorationId : null;
-      this[child$] = child;
-      this[maintainState$0] = maintainState;
-      this[title$0] = title;
-      this[fullscreenDialog$] = fullscreenDialog;
-      if (!(child !== null)) dart.assertFailed(null, I[0], 405, 15, "child != null");
-      if (!(maintainState !== null)) dart.assertFailed(null, I[0], 406, 15, "maintainState != null");
-      if (!(fullscreenDialog !== null)) dart.assertFailed(null, I[0], 407, 15, "fullscreenDialog != null");
-      CupertinoPage.__proto__.new.call(this, {key: key, name: name, arguments: $arguments, restorationId: restorationId});
-      ;
-    }).prototype = CupertinoPage.prototype;
-    dart.addTypeTests(CupertinoPage);
-    CupertinoPage.prototype[_is_CupertinoPage_default] = true;
-    dart.addTypeCaches(CupertinoPage);
-    dart.setMethodSignature(CupertinoPage, () => ({
-      __proto__: dart.getMethods(CupertinoPage.__proto__),
-      createRoute: dart.fnType(navigator.Route$(T), [framework.BuildContext])
-    }));
-    dart.setLibraryUri(CupertinoPage, I[1]);
-    dart.setFieldSignature(CupertinoPage, () => ({
-      __proto__: dart.getFields(CupertinoPage.__proto__),
-      child: dart.finalFieldType(framework.Widget),
-      title: dart.finalFieldType(dart.nullable(core.String)),
-      maintainState: dart.finalFieldType(core.bool),
-      fullscreenDialog: dart.finalFieldType(core.bool)
-    }));
-    return CupertinoPage;
-  });
-  route$.CupertinoPage = route$.CupertinoPage$();
-  dart.addTypeTests(route$.CupertinoPage, _is_CupertinoPage_default);
-  var child$0 = dart.privateName(route$, "CupertinoPageTransition.child");
-  var _primaryPositionAnimation = dart.privateName(route$, "_primaryPositionAnimation");
-  var _secondaryPositionAnimation = dart.privateName(route$, "_secondaryPositionAnimation");
-  var _primaryShadowAnimation = dart.privateName(route$, "_primaryShadowAnimation");
-  route$.CupertinoPageTransition = class CupertinoPageTransition extends framework.StatelessWidget {
-    get child() {
-      return this[child$0];
+    get shade400() {
+      return dart.nullCheck(this._get(400));
     }
-    set child(value) {
-      super.child = value;
+    get shade500() {
+      return dart.nullCheck(this._get(500));
     }
-    build(context) {
-      if (!debug.debugCheckHasDirectionality(context)) dart.assertFailed(null, I[0], 493, 12, "debugCheckHasDirectionality(context)");
-      let textDirection = basic.Directionality.of(context);
-      return new transitions.SlideTransition.new({position: this[_secondaryPositionAnimation], textDirection: textDirection, transformHitTests: false, child: new transitions.SlideTransition.new({position: this[_primaryPositionAnimation], textDirection: textDirection, child: new transitions.DecoratedBoxTransition.new({decoration: this[_primaryShadowAnimation], child: this.child, $creationLocationd_0dea112b090073317d4: C[23] || CT.C23}), $creationLocationd_0dea112b090073317d4: C[27] || CT.C27}), $creationLocationd_0dea112b090073317d4: C[32] || CT.C32});
+    get shade600() {
+      return dart.nullCheck(this._get(600));
+    }
+    get shade700() {
+      return dart.nullCheck(this._get(700));
+    }
+    get shade800() {
+      return dart.nullCheck(this._get(800));
+    }
+    get shade900() {
+      return dart.nullCheck(this._get(900));
     }
   };
-  (route$.CupertinoPageTransition.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let primaryRouteAnimation = opts && 'primaryRouteAnimation' in opts ? opts.primaryRouteAnimation : null;
-    let secondaryRouteAnimation = opts && 'secondaryRouteAnimation' in opts ? opts.secondaryRouteAnimation : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    let linearTransition = opts && 'linearTransition' in opts ? opts.linearTransition : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[child$0] = child;
-    if (!(linearTransition !== null)) dart.assertFailed(null, I[0], 447, 15, "linearTransition != null");
-    this[_primaryPositionAnimation] = (linearTransition ? primaryRouteAnimation : new animations.CurvedAnimation.new({parent: primaryRouteAnimation, curve: curves.Curves.linearToEaseOut, reverseCurve: curves.Curves.easeInToLinear})).drive(ui.Offset, route$._kRightMiddleTween);
-    this[_secondaryPositionAnimation] = (linearTransition ? secondaryRouteAnimation : new animations.CurvedAnimation.new({parent: secondaryRouteAnimation, curve: curves.Curves.linearToEaseOut, reverseCurve: curves.Curves.easeInToLinear})).drive(ui.Offset, route$._kMiddleLeftTween);
-    this[_primaryShadowAnimation] = (linearTransition ? primaryRouteAnimation : new animations.CurvedAnimation.new({parent: primaryRouteAnimation, curve: curves.Curves.linearToEaseOut})).drive(decoration.Decoration, route$._CupertinoEdgeShadowDecoration.kTween);
-    route$.CupertinoPageTransition.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (colors$.MaterialColor.new = function(primary, swatch) {
+    colors$.MaterialColor.__proto__.new.call(this, primary, swatch);
     ;
-  }).prototype = route$.CupertinoPageTransition.prototype;
-  dart.addTypeTests(route$.CupertinoPageTransition);
-  dart.addTypeCaches(route$.CupertinoPageTransition);
-  dart.setMethodSignature(route$.CupertinoPageTransition, () => ({
-    __proto__: dart.getMethods(route$.CupertinoPageTransition.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = colors$.MaterialColor.prototype;
+  dart.addTypeTests(colors$.MaterialColor);
+  dart.addTypeCaches(colors$.MaterialColor);
+  dart.setGetterSignature(colors$.MaterialColor, () => ({
+    __proto__: dart.getGetters(colors$.MaterialColor.__proto__),
+    shade50: ui.Color,
+    shade100: ui.Color,
+    shade200: ui.Color,
+    shade300: ui.Color,
+    shade400: ui.Color,
+    shade500: ui.Color,
+    shade600: ui.Color,
+    shade700: ui.Color,
+    shade800: ui.Color,
+    shade900: ui.Color
   }));
-  dart.setLibraryUri(route$.CupertinoPageTransition, I[1]);
-  dart.setFieldSignature(route$.CupertinoPageTransition, () => ({
-    __proto__: dart.getFields(route$.CupertinoPageTransition.__proto__),
-    [_primaryPositionAnimation]: dart.finalFieldType(animation$.Animation$(ui.Offset)),
-    [_secondaryPositionAnimation]: dart.finalFieldType(animation$.Animation$(ui.Offset)),
-    [_primaryShadowAnimation]: dart.finalFieldType(animation$.Animation$(decoration.Decoration)),
-    child: dart.finalFieldType(framework.Widget)
-  }));
-  var child$1 = dart.privateName(route$, "CupertinoFullscreenDialogTransition.child");
-  var _positionAnimation = dart.privateName(route$, "_positionAnimation");
-  route$.CupertinoFullscreenDialogTransition = class CupertinoFullscreenDialogTransition extends framework.StatelessWidget {
-    get child() {
-      return this[child$1];
+  dart.setLibraryUri(colors$.MaterialColor, I[0]);
+  colors$.MaterialAccentColor = class MaterialAccentColor extends colors.ColorSwatch$(core.int) {
+    get shade50() {
+      return dart.nullCheck(this._get(50));
     }
-    set child(value) {
-      super.child = value;
+    get shade100() {
+      return dart.nullCheck(this._get(100));
     }
-    build(context) {
-      if (!debug.debugCheckHasDirectionality(context)) dart.assertFailed(null, I[0], 557, 12, "debugCheckHasDirectionality(context)");
-      let textDirection = basic.Directionality.of(context);
-      return new transitions.SlideTransition.new({position: this[_secondaryPositionAnimation], textDirection: textDirection, transformHitTests: false, child: new transitions.SlideTransition.new({position: this[_positionAnimation], child: this.child, $creationLocationd_0dea112b090073317d4: C[38] || CT.C38}), $creationLocationd_0dea112b090073317d4: C[42] || CT.C42});
+    get shade200() {
+      return dart.nullCheck(this._get(200));
+    }
+    get shade400() {
+      return dart.nullCheck(this._get(400));
+    }
+    get shade700() {
+      return dart.nullCheck(this._get(700));
     }
   };
-  (route$.CupertinoFullscreenDialogTransition.new = function(opts) {
-    let key = opts && 'key' in opts ? opts.key : null;
-    let primaryRouteAnimation = opts && 'primaryRouteAnimation' in opts ? opts.primaryRouteAnimation : null;
-    let secondaryRouteAnimation = opts && 'secondaryRouteAnimation' in opts ? opts.secondaryRouteAnimation : null;
-    let child = opts && 'child' in opts ? opts.child : null;
-    let linearTransition = opts && 'linearTransition' in opts ? opts.linearTransition : null;
-    let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-    this[child$1] = child;
-    this[_positionAnimation] = new animations.CurvedAnimation.new({parent: primaryRouteAnimation, curve: curves.Curves.linearToEaseOut, reverseCurve: curves.Curves.linearToEaseOut.flipped}).drive(ui.Offset, route$._kBottomUpTween);
-    this[_secondaryPositionAnimation] = (linearTransition ? secondaryRouteAnimation : new animations.CurvedAnimation.new({parent: secondaryRouteAnimation, curve: curves.Curves.linearToEaseOut, reverseCurve: curves.Curves.easeInToLinear})).drive(ui.Offset, route$._kMiddleLeftTween);
-    route$.CupertinoFullscreenDialogTransition.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
+  (colors$.MaterialAccentColor.new = function(primary, swatch) {
+    colors$.MaterialAccentColor.__proto__.new.call(this, primary, swatch);
     ;
-  }).prototype = route$.CupertinoFullscreenDialogTransition.prototype;
-  dart.addTypeTests(route$.CupertinoFullscreenDialogTransition);
-  dart.addTypeCaches(route$.CupertinoFullscreenDialogTransition);
-  dart.setMethodSignature(route$.CupertinoFullscreenDialogTransition, () => ({
-    __proto__: dart.getMethods(route$.CupertinoFullscreenDialogTransition.__proto__),
-    build: dart.fnType(framework.Widget, [framework.BuildContext])
+  }).prototype = colors$.MaterialAccentColor.prototype;
+  dart.addTypeTests(colors$.MaterialAccentColor);
+  dart.addTypeCaches(colors$.MaterialAccentColor);
+  dart.setGetterSignature(colors$.MaterialAccentColor, () => ({
+    __proto__: dart.getGetters(colors$.MaterialAccentColor.__proto__),
+    shade50: ui.Color,
+    shade100: ui.Color,
+    shade200: ui.Color,
+    shade400: ui.Color,
+    shade700: ui.Color
   }));
-  dart.setLibraryUri(route$.CupertinoFullscreenDialogTransition, I[1]);
-  dart.setFieldSignature(route$.CupertinoFullscreenDialogTransition, () => ({
-    __proto__: dart.getFields(route$.CupertinoFullscreenDialogTransition.__proto__),
-    [_positionAnimation]: dart.finalFieldType(animation$.Animation$(ui.Offset)),
-    [_secondaryPositionAnimation]: dart.finalFieldType(animation$.Animation$(ui.Offset)),
-    child: dart.finalFieldType(framework.Widget)
-  }));
-  var child$2 = dart.privateName(route$, "_CupertinoBackGestureDetector.child");
-  var enabledCallback$ = dart.privateName(route$, "_CupertinoBackGestureDetector.enabledCallback");
-  var onStartPopGesture$ = dart.privateName(route$, "_CupertinoBackGestureDetector.onStartPopGesture");
-  const _is__CupertinoBackGestureDetector_default = Symbol('_is__CupertinoBackGestureDetector_default');
-  route$._CupertinoBackGestureDetector$ = dart.generic(T => {
-    var _CupertinoBackGestureDetectorStateOfT = () => (_CupertinoBackGestureDetectorStateOfT = dart.constFn(route$._CupertinoBackGestureDetectorState$(T)))();
-    class _CupertinoBackGestureDetector extends framework.StatefulWidget {
-      get child() {
-        return this[child$2];
-      }
-      set child(value) {
-        super.child = value;
-      }
-      get enabledCallback() {
-        return this[enabledCallback$];
-      }
-      set enabledCallback(value) {
-        super.enabledCallback = value;
-      }
-      get onStartPopGesture() {
-        return this[onStartPopGesture$];
-      }
-      set onStartPopGesture(value) {
-        super.onStartPopGesture = value;
-      }
-      createState() {
-        return new (_CupertinoBackGestureDetectorStateOfT()).new();
-      }
-    }
-    (_CupertinoBackGestureDetector.new = function(opts) {
-      let key = opts && 'key' in opts ? opts.key : null;
-      let enabledCallback = opts && 'enabledCallback' in opts ? opts.enabledCallback : null;
-      let onStartPopGesture = opts && 'onStartPopGesture' in opts ? opts.onStartPopGesture : null;
-      let child = opts && 'child' in opts ? opts.child : null;
-      let $36creationLocationd_0dea112b090073317d4 = opts && '$creationLocationd_0dea112b090073317d4' in opts ? opts.$creationLocationd_0dea112b090073317d4 : null;
-      this[enabledCallback$] = enabledCallback;
-      this[onStartPopGesture$] = onStartPopGesture;
-      this[child$2] = child;
-      if (!(enabledCallback !== null)) dart.assertFailed(null, I[0], 588, 15, "enabledCallback != null");
-      if (!(onStartPopGesture !== null)) dart.assertFailed(null, I[0], 589, 15, "onStartPopGesture != null");
-      if (!(child !== null)) dart.assertFailed(null, I[0], 590, 15, "child != null");
-      _CupertinoBackGestureDetector.__proto__.new.call(this, {key: key, $creationLocationd_0dea112b090073317d4: $36creationLocationd_0dea112b090073317d4});
-      ;
-    }).prototype = _CupertinoBackGestureDetector.prototype;
-    dart.addTypeTests(_CupertinoBackGestureDetector);
-    _CupertinoBackGestureDetector.prototype[_is__CupertinoBackGestureDetector_default] = true;
-    dart.addTypeCaches(_CupertinoBackGestureDetector);
-    dart.setMethodSignature(_CupertinoBackGestureDetector, () => ({
-      __proto__: dart.getMethods(_CupertinoBackGestureDetector.__proto__),
-      createState: dart.fnType(route$._CupertinoBackGestureDetectorState$(T), [])
-    }));
-    dart.setLibraryUri(_CupertinoBackGestureDetector, I[1]);
-    dart.setFieldSignature(_CupertinoBackGestureDetector, () => ({
-      __proto__: dart.getFields(_CupertinoBackGestureDetector.__proto__),
-      child: dart.finalFieldType(framework.Widget),
-      enabledCallback: dart.finalFieldType(dart.fnType(core.bool, [])),
-      onStartPopGesture: dart.finalFieldType(dart.fnType(route$._CupertinoBackGestureController$(T), []))
-    }));
-    return _CupertinoBackGestureDetector;
-  });
-  route$._CupertinoBackGestureDetector = route$._CupertinoBackGestureDetector$();
-  dart.addTypeTests(route$._CupertinoBackGestureDetector, _is__CupertinoBackGestureDetector_default);
-  var _backGestureController = dart.privateName(route$, "_backGestureController");
-  var ___CupertinoBackGestureDetectorState__recognizer = dart.privateName(route$, "_#_CupertinoBackGestureDetectorState#_recognizer");
-  var _recognizer = dart.privateName(route$, "_recognizer");
-  var _handleDragStart = dart.privateName(route$, "_handleDragStart");
-  var _handleDragUpdate = dart.privateName(route$, "_handleDragUpdate");
-  var _handleDragEnd = dart.privateName(route$, "_handleDragEnd");
-  var _handleDragCancel = dart.privateName(route$, "_handleDragCancel");
-  var _convertToLogical = dart.privateName(route$, "_convertToLogical");
-  var _handlePointerDown = dart.privateName(route$, "_handlePointerDown");
-  var _name = dart.privateName(ui, "_name");
-  const _is__CupertinoBackGestureDetectorState_default = Symbol('_is__CupertinoBackGestureDetectorState_default');
-  route$._CupertinoBackGestureDetectorState$ = dart.generic(T => {
-    class _CupertinoBackGestureDetectorState extends framework.State$(route$._CupertinoBackGestureDetector$(T)) {
-      get [_recognizer]() {
-        let t0;
-        t0 = this[___CupertinoBackGestureDetectorState__recognizer];
-        return t0 == null ? dart.throw(new _internal.LateError.fieldNI("_recognizer")) : t0;
-      }
-      set [_recognizer](t0) {
-        this[___CupertinoBackGestureDetectorState__recognizer] = t0;
-      }
-      initState() {
-        let t1;
-        super.initState();
-        this[_recognizer] = (t1 = new monodrag.HorizontalDragGestureRecognizer.new({debugOwner: this}), (() => {
-          t1.onStart = dart.bind(this, _handleDragStart);
-          t1.onUpdate = dart.bind(this, _handleDragUpdate);
-          t1.onEnd = dart.bind(this, _handleDragEnd);
-          t1.onCancel = dart.bind(this, _handleDragCancel);
-          return t1;
-        })());
-      }
-      dispose() {
-        this[_recognizer].dispose();
-        super.dispose();
-      }
-      [_handleDragStart](details) {
-        if (!this.mounted) dart.assertFailed(null, I[0], 625, 12, "mounted");
-        if (!(this[_backGestureController] == null)) dart.assertFailed(null, I[0], 626, 12, "_backGestureController == null");
-        this[_backGestureController] = this.widget.onStartPopGesture();
-      }
-      [_handleDragUpdate](details) {
-        if (!this.mounted) dart.assertFailed(null, I[0], 631, 12, "mounted");
-        if (!(this[_backGestureController] != null)) dart.assertFailed(null, I[0], 632, 12, "_backGestureController != null");
-        dart.nullCheck(this[_backGestureController]).dragUpdate(this[_convertToLogical](dart.nullCheck(details.primaryDelta) / dart.nullCheck(this.context.size).width));
-      }
-      [_handleDragEnd](details) {
-        if (!this.mounted) dart.assertFailed(null, I[0], 637, 12, "mounted");
-        if (!(this[_backGestureController] != null)) dart.assertFailed(null, I[0], 638, 12, "_backGestureController != null");
-        dart.nullCheck(this[_backGestureController]).dragEnd(this[_convertToLogical](details.velocity.pixelsPerSecond.dx / dart.nullCheck(this.context.size).width));
-        this[_backGestureController] = null;
-      }
-      [_handleDragCancel]() {
-        let t1;
-        if (!this.mounted) dart.assertFailed(null, I[0], 644, 12, "mounted");
-        t1 = this[_backGestureController];
-        t1 == null ? null : t1.dragEnd(0.0);
-        this[_backGestureController] = null;
-      }
-      [_handlePointerDown](event) {
-        if (this.widget.enabledCallback()) this[_recognizer].addPointer(event);
-      }
-      [_convertToLogical](value) {
-        switch (basic.Directionality.of(this.context)) {
-          case C[48] || CT.C48:
-          {
-            return -value;
-          }
-          case C[49] || CT.C49:
-          {
-            return value;
-          }
-        }
-      }
-      build(context) {
-        if (!debug.debugCheckHasDirectionality(context)) dart.assertFailed(null, I[0], 667, 12, "debugCheckHasDirectionality(context)");
-        let dragAreaWidth = basic.Directionality.of(context) === ui.TextDirection.ltr ? media_query.MediaQuery.of(context).padding.left : media_query.MediaQuery.of(context).padding.right;
-        dragAreaWidth = math.max(core.double, dragAreaWidth, 20);
-        return new basic.Stack.new({fit: stack.StackFit.passthrough, children: T$.JSArrayOfWidget().of([this.widget.child, new basic.PositionedDirectional.new({start: 0.0, width: dragAreaWidth, top: 0.0, bottom: 0.0, child: new basic.Listener.new({onPointerDown: dart.bind(this, _handlePointerDown), behavior: proxy_box.HitTestBehavior.translucent, $creationLocationd_0dea112b090073317d4: C[50] || CT.C50}), $creationLocationd_0dea112b090073317d4: C[54] || CT.C54})]), $creationLocationd_0dea112b090073317d4: C[61] || CT.C61});
-      }
-    }
-    (_CupertinoBackGestureDetectorState.new = function() {
-      this[_backGestureController] = null;
-      this[___CupertinoBackGestureDetectorState__recognizer] = null;
-      _CupertinoBackGestureDetectorState.__proto__.new.call(this);
-      ;
-    }).prototype = _CupertinoBackGestureDetectorState.prototype;
-    dart.addTypeTests(_CupertinoBackGestureDetectorState);
-    _CupertinoBackGestureDetectorState.prototype[_is__CupertinoBackGestureDetectorState_default] = true;
-    dart.addTypeCaches(_CupertinoBackGestureDetectorState);
-    dart.setMethodSignature(_CupertinoBackGestureDetectorState, () => ({
-      __proto__: dart.getMethods(_CupertinoBackGestureDetectorState.__proto__),
-      [_handleDragStart]: dart.fnType(dart.void, [drag_details.DragStartDetails]),
-      [_handleDragUpdate]: dart.fnType(dart.void, [drag_details.DragUpdateDetails]),
-      [_handleDragEnd]: dart.fnType(dart.void, [drag_details.DragEndDetails]),
-      [_handleDragCancel]: dart.fnType(dart.void, []),
-      [_handlePointerDown]: dart.fnType(dart.void, [events.PointerDownEvent]),
-      [_convertToLogical]: dart.fnType(core.double, [core.double]),
-      build: dart.fnType(framework.Widget, [framework.BuildContext])
-    }));
-    dart.setGetterSignature(_CupertinoBackGestureDetectorState, () => ({
-      __proto__: dart.getGetters(_CupertinoBackGestureDetectorState.__proto__),
-      [_recognizer]: monodrag.HorizontalDragGestureRecognizer
-    }));
-    dart.setSetterSignature(_CupertinoBackGestureDetectorState, () => ({
-      __proto__: dart.getSetters(_CupertinoBackGestureDetectorState.__proto__),
-      [_recognizer]: monodrag.HorizontalDragGestureRecognizer
-    }));
-    dart.setLibraryUri(_CupertinoBackGestureDetectorState, I[1]);
-    dart.setFieldSignature(_CupertinoBackGestureDetectorState, () => ({
-      __proto__: dart.getFields(_CupertinoBackGestureDetectorState.__proto__),
-      [_backGestureController]: dart.fieldType(dart.nullable(route$._CupertinoBackGestureController$(T))),
-      [___CupertinoBackGestureDetectorState__recognizer]: dart.fieldType(dart.nullable(monodrag.HorizontalDragGestureRecognizer))
-    }));
-    return _CupertinoBackGestureDetectorState;
-  });
-  route$._CupertinoBackGestureDetectorState = route$._CupertinoBackGestureDetectorState$();
-  dart.addTypeTests(route$._CupertinoBackGestureDetectorState, _is__CupertinoBackGestureDetectorState_default);
-  var Cubic_d = dart.privateName(curves, "Cubic.d");
-  var Cubic_c = dart.privateName(curves, "Cubic.c");
-  var Cubic_b = dart.privateName(curves, "Cubic.b");
-  var Cubic_a = dart.privateName(curves, "Cubic.a");
-  const _is__CupertinoBackGestureController_default = Symbol('_is__CupertinoBackGestureController_default');
-  route$._CupertinoBackGestureController$ = dart.generic(T => {
-    class _CupertinoBackGestureController extends core.Object {
-      dragUpdate(delta) {
-        let t1;
-        t1 = this.controller;
-        t1.value = t1.value - delta;
-      }
-      dragEnd(velocity) {
-        let animationCurve = C[65] || CT.C65;
-        let animateForward = null;
-        if (velocity[$abs]() >= 1)
-          animateForward = velocity <= 0;
-        else
-          animateForward = this.controller.value > 0.5;
-        if (animateForward) {
-          let droppedPageForwardAnimationTime = math.min(core.int, dart.nullCheck(ui.lerpDouble(800, 0, this.controller.value))[$floor](), 300);
-          this.controller.animateTo(1.0, {duration: new core.Duration.new({milliseconds: droppedPageForwardAnimationTime}), curve: animationCurve});
-        } else {
-          this.navigator.pop(T$.ObjectN());
-          if (this.controller.isAnimating) {
-            let droppedPageBackAnimationTime = dart.nullCheck(ui.lerpDouble(0, 800, this.controller.value))[$floor]();
-            this.controller.animateBack(0.0, {duration: new core.Duration.new({milliseconds: droppedPageBackAnimationTime}), curve: animationCurve});
-          }
-        }
-        if (this.controller.isAnimating) {
-          let animationStatusCallback = null;
-          function animationStatusCallback$35get() {
-            let t2;
-            t2 = animationStatusCallback;
-            return t2 == null ? dart.throw(new _internal.LateError.localNI("animationStatusCallback")) : t2;
-          }
-          dart.fn(animationStatusCallback$35get, T$.VoidToFn());
-          function animationStatusCallback$35set(t3) {
-            return animationStatusCallback = t3;
-          }
-          dart.fn(animationStatusCallback$35set, T$.FnTodynamic());
-          animationStatusCallback$35set(dart.fn(status => {
-            this.navigator.didStopUserGesture();
-            this.controller.removeStatusListener(animationStatusCallback$35get());
-          }, T$.AnimationStatusTovoid()));
-          this.controller.addStatusListener(animationStatusCallback$35get());
-        } else {
-          this.navigator.didStopUserGesture();
-        }
-      }
-    }
-    (_CupertinoBackGestureController.new = function(opts) {
-      let navigator = opts && 'navigator' in opts ? opts.navigator : null;
-      let controller = opts && 'controller' in opts ? opts.controller : null;
-      this.navigator = navigator;
-      this.controller = controller;
-      if (!(navigator !== null)) dart.assertFailed(null, I[0], 712, 15, "navigator != null");
-      if (!(controller !== null)) dart.assertFailed(null, I[0], 713, 15, "controller != null");
-      this.navigator.didStartUserGesture();
-    }).prototype = _CupertinoBackGestureController.prototype;
-    dart.addTypeTests(_CupertinoBackGestureController);
-    _CupertinoBackGestureController.prototype[_is__CupertinoBackGestureController_default] = true;
-    dart.addTypeCaches(_CupertinoBackGestureController);
-    dart.setMethodSignature(_CupertinoBackGestureController, () => ({
-      __proto__: dart.getMethods(_CupertinoBackGestureController.__proto__),
-      dragUpdate: dart.fnType(dart.void, [core.double]),
-      dragEnd: dart.fnType(dart.void, [core.double])
-    }));
-    dart.setLibraryUri(_CupertinoBackGestureController, I[1]);
-    dart.setFieldSignature(_CupertinoBackGestureController, () => ({
-      __proto__: dart.getFields(_CupertinoBackGestureController.__proto__),
-      controller: dart.finalFieldType(animation_controller.AnimationController),
-      navigator: dart.finalFieldType(navigator.NavigatorState)
-    }));
-    return _CupertinoBackGestureController;
-  });
-  route$._CupertinoBackGestureController = route$._CupertinoBackGestureController$();
-  dart.addTypeTests(route$._CupertinoBackGestureController, _is__CupertinoBackGestureController_default);
-  var _colors$ = dart.privateName(route$, "_CupertinoEdgeShadowDecoration._colors");
-  var _colors = dart.privateName(route$, "_colors");
+  dart.setLibraryUri(colors$.MaterialAccentColor, I[0]);
   var Color_value = dart.privateName(ui, "Color.value");
-  route$._CupertinoEdgeShadowDecoration = class _CupertinoEdgeShadowDecoration extends decoration.Decoration {
-    get [_colors]() {
-      return this[_colors$];
-    }
-    set [_colors](value) {
-      super[_colors] = value;
-    }
-    static lerp(a, b, t) {
-      let t6, t6$;
-      if (!(t !== null)) dart.assertFailed(null, I[0], 836, 12, "t != null");
-      if (a == null && b == null) return null;
-      if (a == null) return dart.nullCheck(b)[_colors] == null ? b : new route$._CupertinoEdgeShadowDecoration.__(dart.nullCheck(b[_colors])[$map](ui.Color, dart.fn(color => dart.nullCheck(ui.Color.lerp(null, color, t)), T$.ColorToColor()))[$toList]());
-      if (b == null) return a[_colors] == null ? a : new route$._CupertinoEdgeShadowDecoration.__(dart.nullCheck(a[_colors])[$map](ui.Color, dart.fn(color => dart.nullCheck(ui.Color.lerp(null, color, 1.0 - t)), T$.ColorToColor()))[$toList]());
-      if (!(b[_colors] != null || a[_colors] != null)) dart.assertFailed(null, I[0], 843, 12, "b._colors != null || a._colors != null");
-      if (!(b[_colors] == null || a[_colors] == null || dart.nullCheck(a[_colors])[$length] === dart.nullCheck(b[_colors])[$length])) dart.assertFailed(null, I[0], 846, 12, "b._colors == null || a._colors == null || a._colors!.length == b._colors!.length");
-      return new route$._CupertinoEdgeShadowDecoration.__((() => {
-        let t5 = T$.JSArrayOfColor().of([]);
-        for (let i = 0; i < dart.nullCheck(b[_colors])[$length]; i = i + 1)
-          t5[$add](dart.nullCheck(ui.Color.lerp((t6 = a[_colors], t6 == null ? null : t6[$_get](i)), (t6$ = b[_colors], t6$ == null ? null : t6$[$_get](i)), t)));
-        return t5;
-      })());
-    }
-    lerpFrom(a, t) {
-      if (route$._CupertinoEdgeShadowDecoration.is(a)) return dart.nullCheck(route$._CupertinoEdgeShadowDecoration.lerp(a, this, t));
-      return dart.nullCheck(route$._CupertinoEdgeShadowDecoration.lerp(null, this, t));
-    }
-    lerpTo(b, t) {
-      if (route$._CupertinoEdgeShadowDecoration.is(b)) return dart.nullCheck(route$._CupertinoEdgeShadowDecoration.lerp(this, b, t));
-      return dart.nullCheck(route$._CupertinoEdgeShadowDecoration.lerp(this, null, t));
-    }
-    createBoxPainter(onChanged = null) {
-      return new route$._CupertinoEdgeShadowPainter.new(this, onChanged);
-    }
-    _equals(other) {
-      if (other == null) return false;
-      if (!other[$runtimeType]._equals(this[$runtimeType])) return false;
-      return route$._CupertinoEdgeShadowDecoration.is(other) && dart.equals(other[_colors], this[_colors]);
-    }
-    get hashCode() {
-      return dart.hashCode(this[_colors]);
-    }
-    debugFillProperties(properties) {
-      super.debugFillProperties(properties);
-      properties.add(new (T$.IterablePropertyOfColor()).new("colors", this[_colors]));
-    }
-  };
-  (route$._CupertinoEdgeShadowDecoration.__ = function(_colors = null) {
-    this[_colors$] = _colors;
-    route$._CupertinoEdgeShadowDecoration.__proto__.new.call(this);
+  var ColorSwatch__swatch = dart.privateName(colors, "ColorSwatch._swatch");
+  colors$.Colors = class Colors extends core.Object {};
+  (colors$.Colors.__ = function() {
     ;
-  }).prototype = route$._CupertinoEdgeShadowDecoration.prototype;
-  dart.addTypeTests(route$._CupertinoEdgeShadowDecoration);
-  dart.addTypeCaches(route$._CupertinoEdgeShadowDecoration);
-  dart.setMethodSignature(route$._CupertinoEdgeShadowDecoration, () => ({
-    __proto__: dart.getMethods(route$._CupertinoEdgeShadowDecoration.__proto__),
-    lerpFrom: dart.fnType(route$._CupertinoEdgeShadowDecoration, [dart.nullable(decoration.Decoration), core.double]),
-    lerpTo: dart.fnType(route$._CupertinoEdgeShadowDecoration, [dart.nullable(decoration.Decoration), core.double]),
-    createBoxPainter: dart.fnType(route$._CupertinoEdgeShadowPainter, [], [dart.nullable(dart.fnType(dart.void, []))])
-  }));
-  dart.setLibraryUri(route$._CupertinoEdgeShadowDecoration, I[1]);
-  dart.setFieldSignature(route$._CupertinoEdgeShadowDecoration, () => ({
-    __proto__: dart.getFields(route$._CupertinoEdgeShadowDecoration.__proto__),
-    [_colors]: dart.finalFieldType(dart.nullable(core.List$(ui.Color)))
-  }));
-  dart.defineExtensionMethods(route$._CupertinoEdgeShadowDecoration, ['_equals']);
-  dart.defineExtensionAccessors(route$._CupertinoEdgeShadowDecoration, ['hashCode']);
-  dart.defineLazy(route$._CupertinoEdgeShadowDecoration, {
-    /*route$._CupertinoEdgeShadowDecoration.kTween*/get kTween() {
-      return new implicit_animations.DecorationTween.new({begin: C[66] || CT.C66, end: C[67] || CT.C67});
+  }).prototype = colors$.Colors.prototype;
+  dart.addTypeTests(colors$.Colors);
+  dart.addTypeCaches(colors$.Colors);
+  dart.setLibraryUri(colors$.Colors, I[0]);
+  dart.defineLazy(colors$.Colors, {
+    /*colors$.Colors.transparent*/get transparent() {
+      return C[0] || CT.C0;
     },
-    set kTween(_) {}
-  }, false);
-  var _decoration$ = dart.privateName(route$, "_decoration");
-  route$._CupertinoEdgeShadowPainter = class _CupertinoEdgeShadowPainter extends decoration.BoxPainter {
-    paint(canvas, offset, configuration) {
-      let t6;
-      let colors = this[_decoration$][_colors];
-      if (colors == null) {
-        return;
-      }
-      let shadowWidth = 0.05 * dart.nullCheck(configuration.size).width;
-      let shadowHeight = dart.nullCheck(configuration.size).height;
-      let bandWidth = shadowWidth / (colors[$length] - 1);
-      let textDirection = configuration.textDirection;
-      if (!(textDirection != null)) dart.assertFailed(null, I[0], 939, 12, "textDirection != null");
-      let start = null;
-      let shadowDirection = null;
-      switch (dart.nullCheck(textDirection)) {
-        case C[48] || CT.C48:
-        {
-          start = offset.dx + dart.nullCheck(configuration.size).width;
-          shadowDirection = 1.0;
-          break;
-        }
-        case C[49] || CT.C49:
-        {
-          start = offset.dx;
-          shadowDirection = -1.0;
-          break;
-        }
-      }
-      let bandColorIndex = 0;
-      for (let dx = 0; dx < shadowWidth; dx = dx + 1) {
-        if ((dx / bandWidth)[$truncate]() !== bandColorIndex) {
-          bandColorIndex = bandColorIndex + 1;
-        }
-        let paint = (t6 = ui.Paint.new(), (() => {
-          t6.color = dart.nullCheck(ui.Color.lerp(colors[$_get](bandColorIndex), colors[$_get](bandColorIndex + 1), dx[$modulo](bandWidth) / bandWidth));
-          return t6;
-        })());
-        let x = start + shadowDirection * dx;
-        canvas.drawRect(new ui.Rect.fromLTWH(x - 1.0, offset.dy, 1.0, shadowHeight), paint);
-      }
-    }
-  };
-  (route$._CupertinoEdgeShadowPainter.new = function(_decoration, onChange) {
-    this[_decoration$] = _decoration;
-    if (!(_decoration !== null)) dart.assertFailed(null, I[0], 897, 14, "_decoration != null");
-    if (!(_decoration[_colors] == null || dart.nullCheck(_decoration[_colors])[$length] > 1)) dart.assertFailed(null, I[0], 898, 14, "_decoration._colors == null || _decoration._colors!.length > 1");
-    route$._CupertinoEdgeShadowPainter.__proto__.new.call(this, onChange);
-    ;
-  }).prototype = route$._CupertinoEdgeShadowPainter.prototype;
-  dart.addTypeTests(route$._CupertinoEdgeShadowPainter);
-  dart.addTypeCaches(route$._CupertinoEdgeShadowPainter);
-  dart.setMethodSignature(route$._CupertinoEdgeShadowPainter, () => ({
-    __proto__: dart.getMethods(route$._CupertinoEdgeShadowPainter.__proto__),
-    paint: dart.fnType(dart.void, [ui.Canvas, ui.Offset, image_provider.ImageConfiguration])
-  }));
-  dart.setLibraryUri(route$._CupertinoEdgeShadowPainter, I[1]);
-  dart.setFieldSignature(route$._CupertinoEdgeShadowPainter, () => ({
-    __proto__: dart.getFields(route$._CupertinoEdgeShadowPainter.__proto__),
-    [_decoration$]: dart.finalFieldType(route$._CupertinoEdgeShadowDecoration)
-  }));
-  var builder$0 = dart.privateName(route$, "CupertinoModalPopupRoute.builder");
-  var barrierLabel$ = dart.privateName(route$, "CupertinoModalPopupRoute.barrierLabel");
-  var barrierColor$ = dart.privateName(route$, "CupertinoModalPopupRoute.barrierColor");
-  var CupertinoDynamicColor_darkHighContrastElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.darkHighContrastElevatedColor");
-  var CupertinoDynamicColor_highContrastElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.highContrastElevatedColor");
-  var CupertinoDynamicColor_darkElevatedColor = dart.privateName(colors, "CupertinoDynamicColor.darkElevatedColor");
-  var CupertinoDynamicColor_elevatedColor = dart.privateName(colors, "CupertinoDynamicColor.elevatedColor");
-  var CupertinoDynamicColor_darkHighContrastColor = dart.privateName(colors, "CupertinoDynamicColor.darkHighContrastColor");
-  var CupertinoDynamicColor_highContrastColor = dart.privateName(colors, "CupertinoDynamicColor.highContrastColor");
-  var CupertinoDynamicColor_darkColor = dart.privateName(colors, "CupertinoDynamicColor.darkColor");
-  var CupertinoDynamicColor_color = dart.privateName(colors, "CupertinoDynamicColor.color");
-  var CupertinoDynamicColor__debugResolveContext = dart.privateName(colors, "CupertinoDynamicColor._debugResolveContext");
-  var CupertinoDynamicColor__debugLabel = dart.privateName(colors, "CupertinoDynamicColor._debugLabel");
-  var CupertinoDynamicColor__effectiveColor = dart.privateName(colors, "CupertinoDynamicColor._effectiveColor");
-  var _barrierDismissible = dart.privateName(route$, "_barrierDismissible");
-  var _semanticsDismissible = dart.privateName(route$, "_semanticsDismissible");
-  var _animation = dart.privateName(route$, "_animation");
-  var __CupertinoModalPopupRoute__offsetTween = dart.privateName(route$, "_#CupertinoModalPopupRoute#_offsetTween");
-  var _offsetTween = dart.privateName(route$, "_offsetTween");
-  var OffsetBase__dy = dart.privateName(ui, "OffsetBase._dy");
-  var OffsetBase__dx = dart.privateName(ui, "OffsetBase._dx");
-  const _is_CupertinoModalPopupRoute_default = Symbol('_is_CupertinoModalPopupRoute_default');
-  route$.CupertinoModalPopupRoute$ = dart.generic(T => {
-    class CupertinoModalPopupRoute extends routes.PopupRoute$(T) {
-      get builder() {
-        return this[builder$0];
-      }
-      set builder(value) {
-        super.builder = value;
-      }
-      get barrierLabel() {
-        return this[barrierLabel$];
-      }
-      set barrierLabel(value) {
-        super.barrierLabel = value;
-      }
-      get barrierColor() {
-        return this[barrierColor$];
-      }
-      set barrierColor(value) {
-        super.barrierColor = value;
-      }
-      get barrierDismissible() {
-        let t6;
-        t6 = this[_barrierDismissible];
-        return t6 == null ? true : t6;
-      }
-      get semanticsDismissible() {
-        let t6;
-        t6 = this[_semanticsDismissible];
-        return t6 == null ? false : t6;
-      }
-      get transitionDuration() {
-        return route$._kModalPopupTransitionDuration;
-      }
-      get [_offsetTween]() {
-        let t6;
-        t6 = this[__CupertinoModalPopupRoute__offsetTween];
-        return t6 == null ? dart.throw(new _internal.LateError.fieldNI("_offsetTween")) : t6;
-      }
-      set [_offsetTween](t6) {
-        this[__CupertinoModalPopupRoute__offsetTween] = t6;
-      }
-      createAnimation() {
-        if (!(this[_animation] == null)) dart.assertFailed(null, I[0], 1050, 12, "_animation == null");
-        this[_animation] = new animations.CurvedAnimation.new({parent: super.createAnimation(), curve: curves.Curves.linearToEaseOut, reverseCurve: curves.Curves.linearToEaseOut.flipped});
-        this[_offsetTween] = new (T$.TweenOfOffset()).new({begin: C[76] || CT.C76, end: ui.Offset.zero});
-        return dart.nullCheck(this[_animation]);
-      }
-      buildPage(context, animation, secondaryAnimation) {
-        return new interface_level.CupertinoUserInterfaceLevel.new({data: interface_level.CupertinoUserInterfaceLevelData.elevated, child: new basic.Builder.new({builder: this.builder, $creationLocationd_0dea112b090073317d4: C[77] || CT.C77}), $creationLocationd_0dea112b090073317d4: C[80] || CT.C80});
-      }
-      buildTransitions(context, animation, secondaryAnimation, child) {
-        return new basic.Align.new({alignment: alignment.Alignment.bottomCenter, child: new basic.FractionalTranslation.new({translation: this[_offsetTween].evaluate(dart.nullCheck(this[_animation])), child: child, $creationLocationd_0dea112b090073317d4: C[84] || CT.C84}), $creationLocationd_0dea112b090073317d4: C[88] || CT.C88});
-      }
-    }
-    (CupertinoModalPopupRoute.new = function(opts) {
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      let barrierLabel = opts && 'barrierLabel' in opts ? opts.barrierLabel : "Dismiss";
-      let barrierColor = opts && 'barrierColor' in opts ? opts.barrierColor : C[73] || CT.C73;
-      let barrierDismissible = opts && 'barrierDismissible' in opts ? opts.barrierDismissible : true;
-      let semanticsDismissible = opts && 'semanticsDismissible' in opts ? opts.semanticsDismissible : null;
-      let filter = opts && 'filter' in opts ? opts.filter : null;
-      let settings = opts && 'settings' in opts ? opts.settings : null;
-      this[_barrierDismissible] = null;
-      this[_semanticsDismissible] = null;
-      this[_animation] = null;
-      this[__CupertinoModalPopupRoute__offsetTween] = null;
-      this[builder$0] = builder;
-      this[barrierLabel$] = barrierLabel;
-      this[barrierColor$] = barrierColor;
-      CupertinoModalPopupRoute.__proto__.new.call(this, {filter: filter, settings: settings});
-      this[_barrierDismissible] = barrierDismissible;
-      this[_semanticsDismissible] = semanticsDismissible;
-    }).prototype = CupertinoModalPopupRoute.prototype;
-    dart.addTypeTests(CupertinoModalPopupRoute);
-    CupertinoModalPopupRoute.prototype[_is_CupertinoModalPopupRoute_default] = true;
-    dart.addTypeCaches(CupertinoModalPopupRoute);
-    dart.setMethodSignature(CupertinoModalPopupRoute, () => ({
-      __proto__: dart.getMethods(CupertinoModalPopupRoute.__proto__),
-      buildPage: dart.fnType(framework.Widget, [framework.BuildContext, animation$.Animation$(core.double), animation$.Animation$(core.double)])
-    }));
-    dart.setGetterSignature(CupertinoModalPopupRoute, () => ({
-      __proto__: dart.getGetters(CupertinoModalPopupRoute.__proto__),
-      barrierDismissible: core.bool,
-      transitionDuration: core.Duration,
-      [_offsetTween]: tween.Tween$(ui.Offset)
-    }));
-    dart.setSetterSignature(CupertinoModalPopupRoute, () => ({
-      __proto__: dart.getSetters(CupertinoModalPopupRoute.__proto__),
-      [_offsetTween]: tween.Tween$(ui.Offset)
-    }));
-    dart.setLibraryUri(CupertinoModalPopupRoute, I[1]);
-    dart.setFieldSignature(CupertinoModalPopupRoute, () => ({
-      __proto__: dart.getFields(CupertinoModalPopupRoute.__proto__),
-      builder: dart.finalFieldType(dart.fnType(framework.Widget, [framework.BuildContext])),
-      [_barrierDismissible]: dart.fieldType(dart.nullable(core.bool)),
-      [_semanticsDismissible]: dart.fieldType(dart.nullable(core.bool)),
-      barrierLabel: dart.finalFieldType(core.String),
-      barrierColor: dart.finalFieldType(dart.nullable(ui.Color)),
-      [_animation]: dart.fieldType(dart.nullable(animation$.Animation$(core.double))),
-      [__CupertinoModalPopupRoute__offsetTween]: dart.fieldType(dart.nullable(tween.Tween$(ui.Offset)))
-    }));
-    return CupertinoModalPopupRoute;
-  });
-  route$.CupertinoModalPopupRoute = route$.CupertinoModalPopupRoute$();
-  dart.addTypeTests(route$.CupertinoModalPopupRoute, _is_CupertinoModalPopupRoute_default);
-  const _is_CupertinoDialogRoute_default = Symbol('_is_CupertinoDialogRoute_default');
-  route$.CupertinoDialogRoute$ = dart.generic(T => {
-    class CupertinoDialogRoute extends routes.RawDialogRoute$(T) {}
-    (CupertinoDialogRoute.new = function(opts) {
-      let t7, t7$;
-      let builder = opts && 'builder' in opts ? opts.builder : null;
-      let context = opts && 'context' in opts ? opts.context : null;
-      let barrierDismissible = opts && 'barrierDismissible' in opts ? opts.barrierDismissible : true;
-      let barrierColor = opts && 'barrierColor' in opts ? opts.barrierColor : null;
-      let barrierLabel = opts && 'barrierLabel' in opts ? opts.barrierLabel : null;
-      let transitionDuration = opts && 'transitionDuration' in opts ? opts.transitionDuration : C[92] || CT.C92;
-      let transitionBuilder = opts && 'transitionBuilder' in opts ? opts.transitionBuilder : C[93] || CT.C93;
-      let settings = opts && 'settings' in opts ? opts.settings : null;
-      if (!(barrierDismissible !== null)) dart.assertFailed(null, I[0], 1386, 15, "barrierDismissible != null");
-      CupertinoDialogRoute.__proto__.new.call(this, {pageBuilder: dart.fn((context, animation, secondaryAnimation) => builder(context), T$.BuildContextAndAnimationOfdoubleAndAnimationOfdoubleToWidget()), barrierDismissible: barrierDismissible, barrierLabel: (t7 = barrierLabel, t7 == null ? localizations.CupertinoLocalizations.of(context).modalBarrierDismissLabel : t7), barrierColor: (t7$ = barrierColor, t7$ == null ? colors.CupertinoDynamicColor.resolve(route$.kCupertinoModalBarrierColor, context) : t7$), transitionDuration: transitionDuration, transitionBuilder: transitionBuilder, settings: settings});
-      ;
-    }).prototype = CupertinoDialogRoute.prototype;
-    dart.addTypeTests(CupertinoDialogRoute);
-    CupertinoDialogRoute.prototype[_is_CupertinoDialogRoute_default] = true;
-    dart.addTypeCaches(CupertinoDialogRoute);
-    dart.setLibraryUri(CupertinoDialogRoute, I[1]);
-    return CupertinoDialogRoute;
-  });
-  route$.CupertinoDialogRoute = route$.CupertinoDialogRoute$();
-  dart.addTypeTests(route$.CupertinoDialogRoute, _is_CupertinoDialogRoute_default);
-  route$.showCupertinoModalPopup = function showCupertinoModalPopup(T, opts) {
-    let context = opts && 'context' in opts ? opts.context : null;
-    let builder = opts && 'builder' in opts ? opts.builder : null;
-    let filter = opts && 'filter' in opts ? opts.filter : null;
-    let barrierColor = opts && 'barrierColor' in opts ? opts.barrierColor : C[73] || CT.C73;
-    let barrierDismissible = opts && 'barrierDismissible' in opts ? opts.barrierDismissible : true;
-    let useRootNavigator = opts && 'useRootNavigator' in opts ? opts.useRootNavigator : true;
-    let semanticsDismissible = opts && 'semanticsDismissible' in opts ? opts.semanticsDismissible : null;
-    let routeSettings = opts && 'routeSettings' in opts ? opts.routeSettings : null;
-    if (!(useRootNavigator !== null)) dart.assertFailed(null, I[0], 1197, 10, "useRootNavigator != null");
-    return navigator.Navigator.of(context, {rootNavigator: useRootNavigator}).push(T, new (route$.CupertinoModalPopupRoute$(T)).new({builder: builder, filter: filter, barrierColor: colors.CupertinoDynamicColor.resolve(barrierColor, context), barrierDismissible: barrierDismissible, semanticsDismissible: semanticsDismissible, settings: routeSettings}));
-  };
-  route$._buildCupertinoDialogTransitions = function _buildCupertinoDialogTransitions(context, animation, secondaryAnimation, child) {
-    let fadeAnimation = new animations.CurvedAnimation.new({parent: animation, curve: curves.Curves.easeInOut});
-    if (animation.status === animation$.AnimationStatus.reverse) {
-      return new transitions.FadeTransition.new({opacity: fadeAnimation, child: child, $creationLocationd_0dea112b090073317d4: C[94] || CT.C94});
-    }
-    return new transitions.FadeTransition.new({opacity: fadeAnimation, child: new transitions.ScaleTransition.new({child: child, scale: animation.drive(core.double, route$._dialogScaleTween), $creationLocationd_0dea112b090073317d4: C[98] || CT.C98}), $creationLocationd_0dea112b090073317d4: C[102] || CT.C102});
-  };
-  route$.showCupertinoDialog = function showCupertinoDialog(T, opts) {
-    let context = opts && 'context' in opts ? opts.context : null;
-    let builder = opts && 'builder' in opts ? opts.builder : null;
-    let barrierLabel = opts && 'barrierLabel' in opts ? opts.barrierLabel : null;
-    let useRootNavigator = opts && 'useRootNavigator' in opts ? opts.useRootNavigator : true;
-    let barrierDismissible = opts && 'barrierDismissible' in opts ? opts.barrierDismissible : false;
-    let routeSettings = opts && 'routeSettings' in opts ? opts.routeSettings : null;
-    if (!(builder !== null)) dart.assertFailed(null, I[0], 1328, 10, "builder != null");
-    if (!(useRootNavigator !== null)) dart.assertFailed(null, I[0], 1329, 10, "useRootNavigator != null");
-    return navigator.Navigator.of(context, {rootNavigator: useRootNavigator}).push(T, new (route$.CupertinoDialogRoute$(T)).new({builder: builder, context: context, barrierDismissible: barrierDismissible, barrierLabel: barrierLabel, barrierColor: colors.CupertinoDynamicColor.resolve(route$.kCupertinoModalBarrierColor, context), settings: routeSettings}));
-  };
-  dart.defineLazy(route$, {
-    /*route$._kBackGestureWidth*/get _kBackGestureWidth() {
-      return 20;
+    /*colors$.Colors.black*/get black() {
+      return C[1] || CT.C1;
     },
-    /*route$._kMinFlingVelocity*/get _kMinFlingVelocity() {
-      return 1;
+    /*colors$.Colors.black87*/get black87() {
+      return C[2] || CT.C2;
     },
-    /*route$._kMaxDroppedSwipePageForwardAnimationTime*/get _kMaxDroppedSwipePageForwardAnimationTime() {
-      return 800;
+    /*colors$.Colors.black54*/get black54() {
+      return C[3] || CT.C3;
     },
-    /*route$._kMaxPageBackAnimationTime*/get _kMaxPageBackAnimationTime() {
-      return 300;
+    /*colors$.Colors.black45*/get black45() {
+      return C[4] || CT.C4;
     },
-    /*route$.kCupertinoModalBarrierColor*/get kCupertinoModalBarrierColor() {
-      return C[73] || CT.C73;
+    /*colors$.Colors.black38*/get black38() {
+      return C[5] || CT.C5;
     },
-    /*route$._kModalPopupTransitionDuration*/get _kModalPopupTransitionDuration() {
-      return C[106] || CT.C106;
+    /*colors$.Colors.black26*/get black26() {
+      return C[6] || CT.C6;
     },
-    /*route$._kRightMiddleTween*/get _kRightMiddleTween() {
-      return new (T$.TweenOfOffset()).new({begin: C[107] || CT.C107, end: ui.Offset.zero});
+    /*colors$.Colors.black12*/get black12() {
+      return C[7] || CT.C7;
     },
-    /*route$._kMiddleLeftTween*/get _kMiddleLeftTween() {
-      return new (T$.TweenOfOffset()).new({begin: ui.Offset.zero, end: C[108] || CT.C108});
+    /*colors$.Colors.white*/get white() {
+      return C[8] || CT.C8;
     },
-    /*route$._kBottomUpTween*/get _kBottomUpTween() {
-      return new (T$.TweenOfOffset()).new({begin: C[76] || CT.C76, end: ui.Offset.zero});
+    /*colors$.Colors.white70*/get white70() {
+      return C[9] || CT.C9;
     },
-    /*route$._dialogScaleTween*/get _dialogScaleTween() {
-      return new (T$.TweenOfdouble()).new({begin: 1.3, end: 1.0}).chain(new tween.CurveTween.new({curve: curves.Curves.linearToEaseOut}));
+    /*colors$.Colors.white60*/get white60() {
+      return C[10] || CT.C10;
+    },
+    /*colors$.Colors.white54*/get white54() {
+      return C[11] || CT.C11;
+    },
+    /*colors$.Colors.white38*/get white38() {
+      return C[12] || CT.C12;
+    },
+    /*colors$.Colors.white30*/get white30() {
+      return C[13] || CT.C13;
+    },
+    /*colors$.Colors.white24*/get white24() {
+      return C[14] || CT.C14;
+    },
+    /*colors$.Colors.white12*/get white12() {
+      return C[15] || CT.C15;
+    },
+    /*colors$.Colors.white10*/get white10() {
+      return C[16] || CT.C16;
+    },
+    /*colors$.Colors.red*/get red() {
+      return C[17] || CT.C17;
+    },
+    /*colors$.Colors._redPrimaryValue*/get _redPrimaryValue() {
+      return 4294198070.0;
+    },
+    /*colors$.Colors.redAccent*/get redAccent() {
+      return C[29] || CT.C29;
+    },
+    /*colors$.Colors._redAccentValue*/get _redAccentValue() {
+      return 4294922834.0;
+    },
+    /*colors$.Colors.pink*/get pink() {
+      return C[35] || CT.C35;
+    },
+    /*colors$.Colors._pinkPrimaryValue*/get _pinkPrimaryValue() {
+      return 4293467747.0;
+    },
+    /*colors$.Colors.pinkAccent*/get pinkAccent() {
+      return C[47] || CT.C47;
+    },
+    /*colors$.Colors._pinkAccentPrimaryValue*/get _pinkAccentPrimaryValue() {
+      return 4294918273.0;
+    },
+    /*colors$.Colors.purple*/get purple() {
+      return C[53] || CT.C53;
+    },
+    /*colors$.Colors._purplePrimaryValue*/get _purplePrimaryValue() {
+      return 4288423856.0;
+    },
+    /*colors$.Colors.purpleAccent*/get purpleAccent() {
+      return C[65] || CT.C65;
+    },
+    /*colors$.Colors._purpleAccentPrimaryValue*/get _purpleAccentPrimaryValue() {
+      return 4292886779.0;
+    },
+    /*colors$.Colors.deepPurple*/get deepPurple() {
+      return C[71] || CT.C71;
+    },
+    /*colors$.Colors._deepPurplePrimaryValue*/get _deepPurplePrimaryValue() {
+      return 4284955319.0;
+    },
+    /*colors$.Colors.deepPurpleAccent*/get deepPurpleAccent() {
+      return C[83] || CT.C83;
+    },
+    /*colors$.Colors._deepPurpleAccentPrimaryValue*/get _deepPurpleAccentPrimaryValue() {
+      return 4286336511.0;
+    },
+    /*colors$.Colors.indigo*/get indigo() {
+      return C[89] || CT.C89;
+    },
+    /*colors$.Colors._indigoPrimaryValue*/get _indigoPrimaryValue() {
+      return 4282339765.0;
+    },
+    /*colors$.Colors.indigoAccent*/get indigoAccent() {
+      return C[101] || CT.C101;
+    },
+    /*colors$.Colors._indigoAccentPrimaryValue*/get _indigoAccentPrimaryValue() {
+      return 4283657726.0;
+    },
+    /*colors$.Colors.blue*/get blue() {
+      return C[107] || CT.C107;
+    },
+    /*colors$.Colors._bluePrimaryValue*/get _bluePrimaryValue() {
+      return 4280391411.0;
+    },
+    /*colors$.Colors.blueAccent*/get blueAccent() {
+      return C[119] || CT.C119;
+    },
+    /*colors$.Colors._blueAccentPrimaryValue*/get _blueAccentPrimaryValue() {
+      return 4282682111.0;
+    },
+    /*colors$.Colors.lightBlue*/get lightBlue() {
+      return C[125] || CT.C125;
+    },
+    /*colors$.Colors._lightBluePrimaryValue*/get _lightBluePrimaryValue() {
+      return 4278430196.0;
+    },
+    /*colors$.Colors.lightBlueAccent*/get lightBlueAccent() {
+      return C[137] || CT.C137;
+    },
+    /*colors$.Colors._lightBlueAccentPrimaryValue*/get _lightBlueAccentPrimaryValue() {
+      return 4282434815.0;
+    },
+    /*colors$.Colors.cyan*/get cyan() {
+      return C[143] || CT.C143;
+    },
+    /*colors$.Colors._cyanPrimaryValue*/get _cyanPrimaryValue() {
+      return 4278238420.0;
+    },
+    /*colors$.Colors.cyanAccent*/get cyanAccent() {
+      return C[155] || CT.C155;
+    },
+    /*colors$.Colors._cyanAccentPrimaryValue*/get _cyanAccentPrimaryValue() {
+      return 4279828479.0;
+    },
+    /*colors$.Colors.teal*/get teal() {
+      return C[161] || CT.C161;
+    },
+    /*colors$.Colors._tealPrimaryValue*/get _tealPrimaryValue() {
+      return 4278228616.0;
+    },
+    /*colors$.Colors.tealAccent*/get tealAccent() {
+      return C[173] || CT.C173;
+    },
+    /*colors$.Colors._tealAccentPrimaryValue*/get _tealAccentPrimaryValue() {
+      return 4284809178.0;
+    },
+    /*colors$.Colors.green*/get green() {
+      return C[179] || CT.C179;
+    },
+    /*colors$.Colors._greenPrimaryValue*/get _greenPrimaryValue() {
+      return 4283215696.0;
+    },
+    /*colors$.Colors.greenAccent*/get greenAccent() {
+      return C[191] || CT.C191;
+    },
+    /*colors$.Colors._greenAccentPrimaryValue*/get _greenAccentPrimaryValue() {
+      return 4285132974.0;
+    },
+    /*colors$.Colors.lightGreen*/get lightGreen() {
+      return C[197] || CT.C197;
+    },
+    /*colors$.Colors._lightGreenPrimaryValue*/get _lightGreenPrimaryValue() {
+      return 4287349578.0;
+    },
+    /*colors$.Colors.lightGreenAccent*/get lightGreenAccent() {
+      return C[209] || CT.C209;
+    },
+    /*colors$.Colors._lightGreenAccentPrimaryValue*/get _lightGreenAccentPrimaryValue() {
+      return 4289920857.0;
+    },
+    /*colors$.Colors.lime*/get lime() {
+      return C[215] || CT.C215;
+    },
+    /*colors$.Colors._limePrimaryValue*/get _limePrimaryValue() {
+      return 4291681337.0;
+    },
+    /*colors$.Colors.limeAccent*/get limeAccent() {
+      return C[227] || CT.C227;
+    },
+    /*colors$.Colors._limeAccentPrimaryValue*/get _limeAccentPrimaryValue() {
+      return 4293852993.0;
+    },
+    /*colors$.Colors.yellow*/get yellow() {
+      return C[233] || CT.C233;
+    },
+    /*colors$.Colors._yellowPrimaryValue*/get _yellowPrimaryValue() {
+      return 4294961979.0;
+    },
+    /*colors$.Colors.yellowAccent*/get yellowAccent() {
+      return C[245] || CT.C245;
+    },
+    /*colors$.Colors._yellowAccentPrimaryValue*/get _yellowAccentPrimaryValue() {
+      return 4294967040.0;
+    },
+    /*colors$.Colors.amber*/get amber() {
+      return C[251] || CT.C251;
+    },
+    /*colors$.Colors._amberPrimaryValue*/get _amberPrimaryValue() {
+      return 4294951175.0;
+    },
+    /*colors$.Colors.amberAccent*/get amberAccent() {
+      return C[263] || CT.C263;
+    },
+    /*colors$.Colors._amberAccentPrimaryValue*/get _amberAccentPrimaryValue() {
+      return 4294956864.0;
+    },
+    /*colors$.Colors.orange*/get orange() {
+      return C[269] || CT.C269;
+    },
+    /*colors$.Colors._orangePrimaryValue*/get _orangePrimaryValue() {
+      return 4294940672.0;
+    },
+    /*colors$.Colors.orangeAccent*/get orangeAccent() {
+      return C[281] || CT.C281;
+    },
+    /*colors$.Colors._orangeAccentPrimaryValue*/get _orangeAccentPrimaryValue() {
+      return 4294945600.0;
+    },
+    /*colors$.Colors.deepOrange*/get deepOrange() {
+      return C[287] || CT.C287;
+    },
+    /*colors$.Colors._deepOrangePrimaryValue*/get _deepOrangePrimaryValue() {
+      return 4294924066.0;
+    },
+    /*colors$.Colors.deepOrangeAccent*/get deepOrangeAccent() {
+      return C[299] || CT.C299;
+    },
+    /*colors$.Colors._deepOrangeAccentPrimaryValue*/get _deepOrangeAccentPrimaryValue() {
+      return 4294929984.0;
+    },
+    /*colors$.Colors.brown*/get brown() {
+      return C[305] || CT.C305;
+    },
+    /*colors$.Colors._brownPrimaryValue*/get _brownPrimaryValue() {
+      return 4286141768.0;
+    },
+    /*colors$.Colors.grey*/get grey() {
+      return C[317] || CT.C317;
+    },
+    /*colors$.Colors._greyPrimaryValue*/get _greyPrimaryValue() {
+      return 4288585374.0;
+    },
+    /*colors$.Colors.blueGrey*/get blueGrey() {
+      return C[331] || CT.C331;
+    },
+    /*colors$.Colors._blueGreyPrimaryValue*/get _blueGreyPrimaryValue() {
+      return 4284513675.0;
+    },
+    /*colors$.Colors.primaries*/get primaries() {
+      return C[343] || CT.C343;
+    },
+    /*colors$.Colors.accents*/get accents() {
+      return C[344] || CT.C344;
     }
   }, false);
-  dart.trackLibraries("packages/flutter/src/cupertino/route.dart", {
-    "package:flutter/src/cupertino/route.dart": route$
+  dart.trackLibraries("packages/flutter/src/material/colors.dart", {
+    "package:flutter/src/material/colors.dart": colors$
   }, {
-  }, '{"version":3,"sourceRoot":"","sources":["route.dart"],"names":[],"mappings":"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","file":"../../../../../../../packages/flutter/src/cupertino/route.dart.lib.js"}');
+  }, '{"version":3,"sourceRoot":"","sources":["colors.dart"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;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","file":"../../../../../../../packages/flutter/src/material/colors.dart.lib.js"}');
   // Exports:
   return {
-    src__cupertino__route: route$
+    src__material__colors: colors$
   };
 }));
 
-//# sourceMappingURL=route.dart.lib.js.map
+//# sourceMappingURL=colors.dart.lib.js.map
