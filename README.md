@@ -11,7 +11,7 @@
 
  * ### save user's income and expenses in local device 📋
 
- ![Transactions](https://github.com/zwethu/Eco_ml/blob/main/wallet.png)
+ ![Transactions](https://github.com/zwethu/Eco_ml/blob/main/wallet.png =250x400)
 
  * ### show user's income and expense in graph and bar 📈
 
