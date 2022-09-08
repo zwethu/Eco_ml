@@ -23,114 +23,121 @@ class _PieChartClassState extends State<PieChartClass> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(children: [
-        BarChartSample2(),
-        AspectRatio(
-          aspectRatio: 3 / 2,
-          child: Container(
-            padding: EdgeInsets.all(20),
-            child: Card(
+      child: Column(
+        children: [
+          BarChartSample2(),
+          AspectRatio(
+            aspectRatio: 3 / 2,
+            child: Container(
+              padding: EdgeInsets.all(20),
+              child: Card(
                 elevation: 5,
                 shadowColor: Colors.grey,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 color: Colors.white,
-                child: Row(children: <Widget>[
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.only(left: 10, top: 10),
-                      child: Column(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.only(left: 0, right: 20),
-                            child: Text(
-                              'Categories',
-                              style: TextStyle(
-                                  color: Color(0xff4F98A1),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10, top: 10),
+                        child: Column(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(left: 0, right: 20),
+                              child: Text(
+                                'Categories',
+                                style: TextStyle(
+                                    color: Color(0xff4F98A1),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Wrap(
-                              children: List.generate(box.length, (index) {
-                            final data = box.getAt(index) as Transaction;
-                            if (!data.isExpense &&
-                                data.datatime.day == DateTime.now().day) {
-                              return Container(
-                                padding: EdgeInsets.only(left: 10),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      margin:
-                                          EdgeInsets.only(right: 10, left: 10),
-                                      height: 20,
-                                      width: 20,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          color: incomeData[data.iconId]
-                                              .colorName),
-                                      child: Icon(
-                                          incomeData[data.iconId].iconName,
-                                          size: 13,
-                                          color: Colors.white),
-                                    ),
-                                    SizedBox(height: 30),
-                                    Text(incomeData[data.iconId].title,
-                                        style: TextStyle(
-                                          color: Color(0xff4F98A1),
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                    SizedBox(height: 30),
-                                  ],
-                                ),
-                              );
-                            } else {
-                              return Text('');
-                            }
-                          })),
-                        ],
+                            SizedBox(
+                              height: 30,
+                            ),
+                            Wrap(
+                                children: List.generate(box.length, (index) {
+                              final data = box.getAt(index) as Transaction;
+                              if (!data.isExpense &&
+                                  data.datatime.day == DateTime.now().day) {
+                                return Container(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            right: 10, left: 10),
+                                        height: 20,
+                                        width: 20,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: incomeData[data.iconId]
+                                                .colorName),
+                                        child: Icon(
+                                            incomeData[data.iconId].iconName,
+                                            size: 13,
+                                            color: Colors.white),
+                                      ),
+                                      SizedBox(height: 30),
+                                      Text(incomeData[data.iconId].title,
+                                          style: TextStyle(
+                                            color: Color(0xff4F98A1),
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                                      SizedBox(height: 30),
+                                    ],
+                                  ),
+                                );
+                              } else {
+                                return Text('');
+                              }
+                            })),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 18,
-                  ),
-                  Expanded(
-                    child: AspectRatio(
-                      aspectRatio: 0.5,
-                      child: PieChart(PieChartData(
-                        pieTouchData: PieTouchData(touchCallback:
-                            (FlTouchEvent event, pieTouchResponse) {
-                          setState(() {
-                            if (!event.isInterestedForInteractions ||
-                                pieTouchResponse == null ||
-                                pieTouchResponse.touchedSection == null) {
-                              touchedIndex = -1;
-                              return;
-                            }
-                            touchedIndex = pieTouchResponse
-                                .touchedSection!.touchedSectionIndex;
-                          });
-                        }),
-                        borderData: FlBorderData(
-                          show: false,
-                        ),
-                        startDegreeOffset: 30,
-                        sectionsSpace: 0,
-                        centerSpaceRadius: 30,
-                        centerSpaceColor: Colors.white,
-                        sections: showingSections(),
-                      )),
+                    const SizedBox(
+                      height: 18,
                     ),
-                  )
-                ])),
+                    Expanded(
+                      child: AspectRatio(
+                        aspectRatio: 0.5,
+                        child: PieChart(
+                          PieChartData(
+                            pieTouchData: PieTouchData(touchCallback:
+                                (FlTouchEvent event, pieTouchResponse) {
+                              setState(() {
+                                if (!event.isInterestedForInteractions ||
+                                    pieTouchResponse == null ||
+                                    pieTouchResponse.touchedSection == null) {
+                                  touchedIndex = -1;
+                                  return;
+                                }
+                                touchedIndex = pieTouchResponse
+                                    .touchedSection!.touchedSectionIndex;
+                              });
+                            }),
+                            borderData: FlBorderData(
+                              show: false,
+                            ),
+                            startDegreeOffset: 30,
+                            sectionsSpace: 0,
+                            centerSpaceRadius: 30,
+                            centerSpaceColor: Colors.white,
+                            sections: showingSections(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 
@@ -162,9 +169,10 @@ class _PieChartClassState extends State<PieChartClass> {
           title: '${value.ceilToDouble()}%',
           radius: radius,
           titleStyle: TextStyle(
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xffffffff)),
+            fontSize: fontSize,
+            fontWeight: FontWeight.bold,
+            color: const Color(0xffffffff),
+          ),
         );
       } else {
         return PieChartSectionData(value: 0);

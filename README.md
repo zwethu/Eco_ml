@@ -9,12 +9,17 @@
 
 ## Features
 
- * ### save user's income and expenses in local database 📋
+ * ### save user's income and expenses in local device 📋
+
+ ![Transactions](https://github.com/zwethu/Eco_ml/blob/main/wallet.png)
 
  * ### show user's income and expense in graph and bar 📈
 
+![Report](https://github.com/zwethu/Eco_ml/blob/main/report.png)
+
  * ### save a certain percentage of user's total balance in piggy bank 🐷
 
+![Piggy Bank](https://github.com/zwethu/Eco_ml/blob/main/piggybank.png)
 
 
 

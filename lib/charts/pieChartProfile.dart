@@ -20,10 +20,13 @@ class PieChartProfileState extends State {
       aspectRatio: 3 / 2,
       child: Container(
         padding: EdgeInsets.all(20),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+        ),
         child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
           color: Colors.white,
           elevation: 3,
           shadowColor: Colors.grey,
@@ -139,16 +142,16 @@ class PieChartProfileState extends State {
               title: piggydata.toString() + '%',
               radius: 55,
               titleStyle: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                  // color: const Color(0xffffffff),
-                  ),
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+                // color: const Color(0xffffffff),
+              ),
               titlePositionPercentageOffset: 0.5,
             );
           case 1:
             return PieChartSectionData(
               color: color1.withOpacity(opacity),
-              value: 100-piggydata,
+              value: 100 - piggydata,
               title: 'Total',
               radius: 65,
               titleStyle: TextStyle(
