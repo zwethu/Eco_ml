@@ -2,7 +2,6 @@ import 'package:eco_ml/data/database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:eco_ml/route/router.gr.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future main() async{

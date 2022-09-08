@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/data/database.dart';
@@ -130,11 +132,17 @@ class _TransactionPageState extends State<TransactionPage> {
                           textAlign: TextAlign.center,
                           decoration: InputDecoration(
                               focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Color(0xff4F98A1), width: 3)),
+                                borderSide: BorderSide(
+                                  color: Color(0xff4F98A1),
+                                  width: 3,
+                                ),
+                              ),
                               enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: Color(0xff4F98A1), width: 3)),
+                                borderSide: BorderSide(
+                                  color: Color(0xff4F98A1),
+                                  width: 3,
+                                ),
+                              ),
                               border: InputBorder.none),
                           cursorColor: Color(0xff4F98A1),
                           cursorHeight: 30,
@@ -166,13 +174,19 @@ class _TransactionPageState extends State<TransactionPage> {
                     decoration: InputDecoration(
                       hintText: 'Write the description...',
                       focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              BorderSide(width: 1, color: Color(0xff4F98A1))),
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Color(0xff4F98A1),
+                        ),
+                      ),
                       enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              BorderSide(width: 1, color: Color(0xff4F98A1))),
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Color(0xff4F98A1),
+                        ),
+                      ),
                       border: InputBorder.none,
                     ),
                     cursorColor: Color(0xff4F98A1),
@@ -221,9 +235,9 @@ class _TransactionPageState extends State<TransactionPage> {
                           print(outcomeBox.get(0));
                         }
                         navigateToHome(context);
-                          final player = AudioCache();
-                          player.play('images/cash.mp3');
-                         
+                        final player = AudioCache();
+                        player.play('images/cash.mp3');
+
                         // transactionBox.clear();
                         // outcomeBox.clear();
                         // incomeBox.clear();
@@ -263,30 +277,36 @@ class _TransactionPageState extends State<TransactionPage> {
         lastDate: DateTime(DateTime.now().year + 5),
         builder: (context, child) {
           return Theme(
-              data: ThemeData(
-                  accentIconTheme: IconThemeData(color: Colors.amber),
-                  cardTheme: CardTheme(
-                      margin: EdgeInsets.all(10),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(60))),
-                  textTheme: TextTheme(
-                    subtitle1: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
-                  colorScheme: ColorScheme.light(
+            data: ThemeData(
+              accentIconTheme: IconThemeData(color: Colors.amber),
+              cardTheme: CardTheme(
+                margin: EdgeInsets.all(10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(60),
+                ),
+              ),
+              textTheme: TextTheme(
+                subtitle1: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+              dialogBackgroundColor: Colors.white,
+              primaryColor: Color(0xff4F98A1),
+              bottomAppBarColor: Color(0xff4F98A1),
+              colorScheme: ColorScheme.light(
                       primary: Color(0xff4F98A1),
                       primaryVariant: Colors.blue,
                       secondaryVariant: Colors.brown,
                       onSecondary: Colors.indigo,
                       onPrimary: Colors.white,
                       surface: Colors.deepPurple,
-                      secondary: Colors.lime),
-                  dialogBackgroundColor: Colors.white,
-                  primaryColor: Color(0xff4F98A1),
-                  accentColor: Color(0xff4F98A1),
-                  bottomAppBarColor: Color(0xff4F98A1)),
-              child: child ?? Text(""));
+                      secondary: Colors.lime)
+                  .copyWith(
+                secondary: Color(0xff4F98A1),
+              ),
+            ),
+            child: child ?? Text(""),
+          );
         });
 
     if (date != null)

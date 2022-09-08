@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/data/database.dart';
-import 'package:eco_ml/pages/bankPage.dart';
 import 'package:eco_ml/pages/pages.dart';
 import 'package:eco_ml/pages/settingPage.dart';
-import 'package:eco_ml/pages/walletPage.dart';
 import 'package:eco_ml/route/router.gr.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:eco_ml/route/router.gr.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class BankPage extends StatefulWidget {

@@ -1,25 +1,20 @@
-
-
-
-
 import 'package:flutter/material.dart';
 
-class OutcomeData{
+class OutcomeData {
   final IconData iconName;
   final Color colorName;
   final String title;
 
   OutcomeData(this.iconName, this.colorName, this.title);
-
 }
-
 
 List<OutcomeData> outcomeData = [
   OutcomeData(Icons.restaurant_rounded, Color(0xffe09243), "Food"),
   OutcomeData(Icons.storefront_rounded, Color(0xff95dec8), "Clothing"),
   OutcomeData(Icons.local_mall_rounded, Color(0xffe677d9), "Shopping"),
   OutcomeData(Icons.card_giftcard_rounded, Color(0xffff9442), "Gift"),
-  OutcomeData(Icons.directions_bus_filled_rounded, Color(0xff65d452), "Transportation"),
+  OutcomeData(
+      Icons.directions_bus_filled_rounded, Color(0xff65d452), "Transportation"),
   OutcomeData(Icons.receipt_long_rounded, Color(0xff49e2f1), "Bill"),
   OutcomeData(Icons.explore_rounded, Color(0xff38fcbe), "Travel"),
   OutcomeData(Icons.family_restroom_rounded, Color(0xffd663ff), "Family"),

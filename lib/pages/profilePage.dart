@@ -2,7 +2,6 @@ import 'package:eco_ml/charts/pieChartProfile.dart';
 import 'package:eco_ml/charts/pieChartProfile2.dart';
 import 'package:eco_ml/data/database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:hive/hive.dart';
 
 class ProfilePage extends StatefulWidget {
