@@ -1,6 +1,6 @@
 # ECO ML
 
-## Author - [Zwe Thura Aung](https://github.com/zwethu) &  [Myat Than Thar Cho](https://github.com/myatthantharcho)
+## Creator - [Zwe Thura Aung](https://github.com/zwethu) &  [Myat Than Thar Cho](https://github.com/myatthantharcho)
 
  ### Eco Ml is an offline expense tracker app. This is our first Flutter Project.
  ###
