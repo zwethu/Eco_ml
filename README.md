@@ -1,4 +1,4 @@
-# ECO ML
+# ECO ML (Expense Tracker)
 
 ## Creator - [Zwe Thura Aung](https://github.com/zwethu) &  [Myat Than Thar Cho](https://github.com/myatthantharcho)
 
@@ -9,15 +9,15 @@
 
 ## Features
 
- * ### save user's income and expenses in local device 📋
+ * ### Save user's income and expenses on local device 📋
  
  <img src="https://github.com/zwethu/Eco_ml/blob/main/wallet.png" width="300">
 
- * ### show user's income and expense in graph and bar 📈
+ * ### Show user's income and expense in graph and bar 📈
 
 <img src="https://github.com/zwethu/Eco_ml/blob/main/report.png" width="300">
 
- * ### save a certain percentage of user's total balance in piggy bank 🐷
+ * ### Save a certain percentage of the user's total balance in the piggy bank 🐷
 
 <img src="https://github.com/zwethu/Eco_ml/blob/main/piggybank.png" width="300">
 
