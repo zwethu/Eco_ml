@@ -278,7 +278,6 @@ class _TransactionPageState extends State<TransactionPage> {
         builder: (context, child) {
           return Theme(
             data: ThemeData(
-              accentIconTheme: IconThemeData(color: Colors.amber),
               cardTheme: CardTheme(
                 margin: EdgeInsets.all(10),
                 shape: RoundedRectangleBorder(
@@ -294,14 +293,12 @@ class _TransactionPageState extends State<TransactionPage> {
               primaryColor: Color(0xff4F98A1),
               bottomAppBarColor: Color(0xff4F98A1),
               colorScheme: ColorScheme.light(
-                      primary: Color(0xff4F98A1),
-                      primaryVariant: Colors.blue,
-                      secondaryVariant: Colors.brown,
-                      onSecondary: Colors.indigo,
-                      onPrimary: Colors.white,
-                      surface: Colors.deepPurple,
-                      secondary: Colors.lime)
-                  .copyWith(
+                primary: Color(0xff4F98A1),
+                onSecondary: Colors.indigo,
+                onPrimary: Colors.white,
+                surface: Colors.deepPurple,
+                secondary: Colors.lime,
+              ).copyWith(
                 secondary: Color(0xff4F98A1),
               ),
             ),
